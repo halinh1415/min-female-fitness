@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<defaults>
+  <entry>
+    <key>native_language</key>
+    <value>true</value>
+  </entry>
+  <entry>
+    <key>native_onboard</key>
+    <value>true</value>
+  </entry>
+  <entry>
+    <key>native_setup</key>
+    <value>true</value>
+  </entry>
+  <entry>
+    <key>inter_first_open</key>
+    <value>true</value>
+  </entry>
+  <entry>
+    <key>inter_start</key>
+    <value>true</value>
+  </entry>
+  <entry>
+    <key>banner</key>
+    <value>true</value>
+  </entry>
+</defaults>

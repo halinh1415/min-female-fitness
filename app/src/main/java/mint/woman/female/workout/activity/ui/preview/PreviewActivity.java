@@ -40,6 +40,8 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.workout.DoWorkoutActivity;
@@ -66,6 +68,7 @@ import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.JsonHelper;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
+import mint.woman.female.workout.utils.RemoteConfigKeys;
 import mint.woman.female.workout.utils.VideoEncryptor;
 
 import java.io.File;
@@ -140,7 +143,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
     }
 
     private void loadInterStart() {
-        if (myPreference.isShowAds() && myPreference.getOK()) {
+        if (myPreference.isShowAds() && myPreference.getOK() && FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.INTER_START)) {
             MaticAd.getInstance().loadInterstitialAd3SameTime(PreviewActivity.this, MaticAdKeys.INTER_START_HIGH, MaticAdKeys.INTER_START_MEDIUM, MaticAdKeys.INTER_START, new MaticAdCallBack());
         }
     }

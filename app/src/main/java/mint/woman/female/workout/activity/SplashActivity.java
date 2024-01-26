@@ -27,11 +27,16 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.nativead.NativeAd;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.ump.ConsentDebugSettings;
 import com.google.android.ump.ConsentForm;
 import com.google.android.ump.ConsentInformation;
 import com.google.android.ump.ConsentRequestParameters;
 import com.google.android.ump.UserMessagingPlatform;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.language.LanguageActivity;
@@ -65,10 +70,11 @@ public class SplashActivity extends AppCompatActivity {
         scaleUp.setFillAfter(true);
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.centerCrop().transform(new RoundedCorners(1));
-        Glide.with(getApplicationContext()).load(Uri.parse("file:///android_asset/images/img_splash.webp" )).into(mSplash);
+        Glide.with(getApplicationContext()).load(Uri.parse("file:///android_asset/images/img_splash.webp")).into(mSplash);
         lottieAnimationView = findViewById(R.id.lottieView);
         lottieAnimationView.setAnimation("load.json");
         lottieAnimationView.playAnimation();
+        updateRemoteConfig();
 
 //        Animation anim = new ScaleAnimation(
 //                1f, 1.5f, // Start and end values for the X axis scaling
@@ -79,9 +85,33 @@ public class SplashActivity extends AppCompatActivity {
 //        anim.setDuration(2000);
 //        mSplash.startAnimation(anim);
 
-        requestTCM();
+        startLoadAd();
     }
-    private void startLoadAd(){
+
+    void updateRemoteConfig() {
+
+        FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .setMinimumFetchIntervalInSeconds(3600)
+                .build();
+        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+        mFirebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults);
+        mFirebaseRemoteConfig.fetchAndActivate()
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        boolean updated = task.getResult();
+//                            Log.d(TAG, "Config params updated: " + updated);
+//                            Toast.makeText(SplashActivity.this, "Fetch and activate succeeded",
+//                                    Toast.LENGTH_SHORT).show();
+
+                    } else {
+//                            Toast.makeText(SplashActivity.this, "Fetch failed",
+//                                    Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void startLoadAd() {
         mHandler.postDelayed(() -> {
             startMain();
 
@@ -93,6 +123,7 @@ public class SplashActivity extends AppCompatActivity {
             loadInterStart();
         }
     }
+
     private void requestTCM() {
         ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this)
                 .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
@@ -129,24 +160,25 @@ public class SplashActivity extends AppCompatActivity {
                 },
                 (ConsentInformation.OnConsentInfoUpdateFailureListener) requestConsentError -> {
                     // Consent gathering failed.
-                    Log.w(TAG, "consent XXX "+String.format("%s: %s",
+                    Log.w(TAG, "consent XXX " + String.format("%s: %s",
                             requestConsentError.getErrorCode(),
                             requestConsentError.getMessage()));
                 });
 
     }
+
     private void loadInterStart() {
-        if (myPreference.isShowAds() && myPreference.getOK()){
-            MaticAd.getInstance().loadInterstitialAd3SameTime(SplashActivity.this, MaticAdKeys.INTER_FIRST_OPEN_HIGH,MaticAdKeys.INTER_FIRST_OPEN_MEDIUM,MaticAdKeys.INTER_FIRST_OPEN,new MaticAdCallBack());
+        if (myPreference.isShowAds() && myPreference.getOK()) {
+            MaticAd.getInstance().loadInterstitialAd3SameTime(SplashActivity.this, MaticAdKeys.INTER_FIRST_OPEN_HIGH, MaticAdKeys.INTER_FIRST_OPEN_MEDIUM, MaticAdKeys.INTER_FIRST_OPEN, new MaticAdCallBack());
         }
     }
 
 
     private void startMain() {
-        if (myPreference.isFirstOpen()){
+        if (myPreference.isFirstOpen()) {
             startActivity(new Intent(SplashActivity.this, LanguageActivity.class));
             finish();
-        }else{
+        } else {
             startActivity(new Intent(SplashActivity.this, YogaActivity.class));
             finish();
         }
@@ -187,6 +219,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
     }
+
     void requestNativeSetup() {
         FitnessApplication.getApplication().getStorageCommon().nativeSetup.postValue(null);
 
@@ -218,6 +251,7 @@ public class SplashActivity extends AppCompatActivity {
         super.attachBaseContext(LanguageHelper.setLanguage(newBase, lang));
 
     }
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

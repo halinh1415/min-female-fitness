@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.ads.nativead.NativeAd;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.make.dots.dotsindicator.DotsIndicator;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
@@ -38,6 +39,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import mint.woman.female.workout.utils.RemoteConfigKeys;
 
 public class BoardingActivity extends AppCompatActivity {
     private static final String TAG = "BoardingActivity" ;
@@ -84,7 +86,7 @@ public class BoardingActivity extends AppCompatActivity {
         boardingAdapter = new BoardingAdapter(getSupportFragmentManager());
         vpOnboard.setAdapter(boardingAdapter);
         dotsIndicator.setViewPager(vpOnboard);
-        if (myPreference.isShowAds()  && myPreference.getOK() ){//&& FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.NATIVE_LANGUAGE)) {
+        if (myPreference.isShowAds()  && myPreference.getOK() && FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.NATIVE_ONBOARD)) {
             FitnessApplication.getApplication().getStorageCommon().nativeAdOnBoard.observe(BoardingActivity.this, (nativeAd) -> {
                 if (nativeAd != null) {
                     MaticAd.getInstance().populateNativeAdView(BoardingActivity.this, nativeAd,R.layout.native_admob_medium_layout, layoutAdNative, shimmerFrameLayout);

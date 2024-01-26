@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.make.dots.dotsindicator.DotsIndicator;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
@@ -51,6 +52,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import mint.woman.female.workout.utils.RemoteConfigKeys;
 
 public class FirstSetupActivity extends AppCompatActivity {
     private static final String TAG = "FirstSetupActivity";
@@ -85,7 +87,7 @@ public class FirstSetupActivity extends AppCompatActivity {
         vpSetup.setAdapter(userSetupAdapter);
         dotsIndicator.setViewPager(vpSetup);
 
-        if (myPreference.isShowAds()  && myPreference.getOK() ){//&& FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.NATIVE_LANGUAGE)) {
+        if (myPreference.isShowAds()  && myPreference.getOK() && FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.NATIVE_SETUP)) {
             FitnessApplication.getApplication().getStorageCommon().nativeSetup.observe(FirstSetupActivity.this, (nativeAd) -> {
                 if (nativeAd != null) {
                     MaticAd.getInstance().populateNativeAdView(FirstSetupActivity.this, nativeAd,R.layout.native_admob_medium_layout, layoutAdNative, shimmerFrameLayout);

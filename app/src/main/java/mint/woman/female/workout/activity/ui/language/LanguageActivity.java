@@ -55,7 +55,7 @@ public class LanguageActivity extends AppCompatActivity implements IChangeLangua
         myPreference = new MyPreference(this);
         initLanguage();
 
-        if (myPreference.isShowAds()  && myPreference.getOK() ){//&& FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.NATIVE_LANGUAGE)) {
+        if (myPreference.isShowAds()  && myPreference.getOK() && FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.NATIVE_LANGUAGE)) {
             FitnessApplication.getApplication().getStorageCommon().nativeAdLanguage.observe(LanguageActivity.this, (nativeAd) -> {
                 if (nativeAd != null) {
                     MaticAd.getInstance().populateNativeAdView(LanguageActivity.this, nativeAd,R.layout.native_ad_language_layout, layoutAdNative, shimmerFrameLayout);
