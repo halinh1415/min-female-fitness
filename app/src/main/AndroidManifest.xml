@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="mint.woman.female.workout">
+
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+
+    <queries>
+        <intent>
+            <action android:name="com.google.android.youtube.api.service.START" />
+        </intent>
+    </queries>
+
+    <application
+        android:name=".FitnessApplication"
+        android:exported="true"
+        android:icon="@drawable/ic_workout"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@drawable/ic_workout"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activity.ui.workout.ChallengeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_challenge"
+            android:parentActivityName=".activity.ui.main.YogaActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ui.main.YogaActivity" />
+        </activity>
+
+        <activity
+            android:name=".activity.ui.firstsetup.FirstSetupActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.FullScreen" />
+        <activity
+            android:name=".activity.ui.boarding.BoardingActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.FullScreen" />
+        <activity
+            android:name=".activity.ui.language.LanguageActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.FullScreen" />
+        <activity
+            android:name=".activity.ui.weekgoal.SetGoalActivity"
+            android:exported="false"
+            android:label="@string/txt_set_your_goal"
+            android:parentActivityName=".activity.ui.main.YogaActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ui.main.YogaActivity" />
+        </activity>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity
+            android:name=".activity.ui.reminder.ReminderActivity"
+            android:label="@string/txt_reminder"
+            android:parentActivityName=".activity.ui.main.YogaActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ui.main.YogaActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ui.main.YogaActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:hardwareAccelerated="true"
+            android:label="@string/app_name"
+            android:largeHeap="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ui.workout.ReplaceActivity"
+            android:exported="false"
+            android:label="@string/txt_replace"
+            android:parentActivityName=".activity.ui.preview.PreviewActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ui.preview.PreviewActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ui.history.HistoryActivity"
+            android:label="@string/mn_history"
+            android:parentActivityName=".activity.ui.report.ReportActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mint.woman.female.workout.activity.ui.report.ReportActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ui.workout.ProgramActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:label="Body Hard"
+            android:parentActivityName=".activity.ui.main.YogaActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="LockedOrientationActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mint.woman.female.workout.activity.ui.main.YogaActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ui.diet.ShoppingListActivity"
+            android:label="@string/txt_shopping_list"
+            android:parentActivityName=".activity.ui.diet.DietActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mint.woman.female.workout.activity.ui.diet.DietActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ExploreDetailActivity"
+            android:label="@string/txt_explore"
+            android:parentActivityName=".activity.ui.main.YogaActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ui.main.YogaActivity" />
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/txt_app_id" />
+
+        <activity
+            android:name=".activity.ui.workout.DoWorkoutActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:hardwareAccelerated="true"
+            android:largeHeap="true"
+            android:launchMode="singleTask"
+            android:parentActivityName=".activity.ui.main.YogaActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullScreen" />
+        <activity
+            android:name=".activity.ui.workout.FinishedActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:hardwareAccelerated="true"
+            android:label=" "
+            android:parentActivityName=".activity.ui.main.YogaActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ui.main.YogaActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ui.report.ReportActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:hardwareAccelerated="true"
+            android:label="@string/txt_report"
+            android:parentActivityName=".activity.ui.main.YogaActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mint.woman.female.workout.activity.ui.main.YogaActivity" />
+        </activity>
+
+        <receiver
+            android:name=".receiver.AlarmReceiver"
+            android:exported="false"
+            android:permission="RemindWorkout">
+            <intent-filter>
+                <action android:name="mint.woman.female.workout" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".receiver.BootReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".activity.PolicyActivity"
+            android:label="Policy"
+            android:parentActivityName=".activity.ui.main.YogaActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mint.woman.female.workout.activity.ui.main.YogaActivity" />
+        </activity>
+        <activity
+            android:name=".activity.SplashActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullScreen"
+            tools:ignore="LockedOrientationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ui.diet.DietActivity"
+            android:label="@string/txt_meal_plan"
+            android:parentActivityName=".activity.ui.main.YogaActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ui.main.YogaActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ui.diet.MealDetailActivity"
+            android:label="Day 1"
+            android:parentActivityName=".activity.ui.diet.DietActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ui.diet.DietActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ui.workout.ExerciseDetailActivity"
+            android:label="Detail"
+            android:parentActivityName=".activity.ui.main.YogaActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ui.main.YogaActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ui.custom.MyWorkoutActivity"
+            android:label="@string/txt_customize"
+            android:parentActivityName=".activity.ui.main.YogaActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mint.woman.female.workout.activity.ui.main.YogaActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ui.custom.CustomMyWorkoutActivity"
+            android:label="@string/txt_customize"
+            android:parentActivityName=".activity.ui.main.YogaActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mint.woman.female.workout.activity.ui.main.YogaActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ui.workout.SelectExerciseActivity"
+            android:label="@string/txt_select_exercise"
+            android:parentActivityName=".activity.ui.custom.CustomMyWorkoutActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ui.custom.CustomMyWorkoutActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ui.preview.PreviewActivity"
+            android:label="Preview"
+            android:parentActivityName=".activity.ui.main.YogaActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mint.woman.female.workout.activity.ui.main.YogaActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ui.workout.RestTimeActivity"
+            android:label="@string/txt_rest_time"
+            android:parentActivityName=".activity.ui.main.YogaActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mint.woman.female.workout.activity.ui.main.YogaActivity" />
+        </activity>
+    </application>
+
+</manifest>

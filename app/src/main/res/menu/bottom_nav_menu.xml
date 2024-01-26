@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/txt_home" />
+    <item
+        android:id="@+id/nav_explore"
+        android:icon="@drawable/ic_boxing_gloves"
+        android:visible="false"
+        android:title="@string/txt_explore" />
+    <item
+        android:id="@+id/nav_report2"
+        android:icon="@drawable/ic_event_note_black_24dp"
+        android:title="@string/txt_report" />
+    <item
+        android:id="@+id/nav_diet"
+        android:icon="@drawable/ic_diet"
+        android:title="@string/txt_meal_plan" />
+    <item
+        android:id="@+id/nav_setting"
+        android:tag="SETTING_FRAGMENT"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/txt_action_settings" />
+
+</menu>

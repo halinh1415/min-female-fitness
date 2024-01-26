@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:background="#a5070809"
+    tools:context=".fragment.RestFragment">
+
+    <TextView
+        android:id="@+id/txt_workout_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="Next 3/11"
+        android:textAllCaps="true"
+        android:textColor="@color/White"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_exercise_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:drawablePadding="10dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:maxLines="2"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/White"
+        android:textSize="18sp"
+        app:drawableRightCompat="@drawable/ic_info_outline_black_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_workout_count" />
+
+    <TextView
+        android:id="@+id/txt_exercise_count"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="x15"
+        android:textAlignment="center"
+        android:textColor="@color/Yellow"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_exercise_name" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_exercise_count">
+
+        <mint.woman.female.workout.custom.CustomVideoView
+            android:id="@+id/videoView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.cardview.widget.CardView>
+    <ImageView
+        android:id="@+id/img_resume"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/adView"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardView"
+        app:srcCompat="@drawable/ic_play_arrow_black_24dp"
+        />
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        custom:adSize="SMART_BANNER"
+        custom:adUnitId="@string/ad_banner_unit_id" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

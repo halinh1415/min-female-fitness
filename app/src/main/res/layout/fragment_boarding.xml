@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".activity.ui.boarding.BoardingFragment">
+
+    <ImageView
+        android:id="@+id/imgOnboard"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:src="@color/Gray"
+         />
+
+    <TextView
+        android:id="@+id/txtTitleOnboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Muay Thai Trainer At Home"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="@dimen/_20sdp" />
+
+    <TextView
+        android:id="@+id/txtContentOnboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/_5sdp"
+        android:text="Introducing a revolutionary new Taekwondo training app designed to help you reach your fitness goals! With step-by-step workouts, personalized meal plans, and comprehensive coaching support"
+        android:textSize="@dimen/_16sdp" />
+</LinearLayout>

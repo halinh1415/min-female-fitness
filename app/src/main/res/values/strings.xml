@@ -1,0 +1,360 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" translatable="false">Female Workout</string>
+    <string name="ad_banner_unit_id" translatable="false" tools:ignore="ExtraTranslation">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="txt_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="txt_rate" translatable="false">Rate us</string>
+    <string name="txt_action_settings">Settings</string>
+    <string name="txt_very_severely_underweight">Very Severely Underweight</string>
+    <string name="txt_severely_underweight">Severely Underweight</string>
+    <string name="txt_underweight">Underweight</string>
+    <string name="txt_normal">Healthy Weight</string>
+    <string name="txt_overweight">Overweight</string>
+    <string name="txt_obese_class_1">Moderately obese</string>
+    <string name="txt_obese_class_2">Severely obese</string>
+    <string name="txt_obese_class_3">Extreme obesity</string>
+    <string name="txt_report">Report</string>
+    <string name="txt_recent_weight">Recent:</string>
+    <string name="txt_highest_weight">Heaviest:</string>
+    <string name="txt_good_weight">Good for you:</string>
+    <string name="txt_lowest_weight">Lightest:</string>
+    <string name="mn_history">History</string>
+    <string name="txt_reminder">Reminder</string>
+    <string name="txt_share">Share</string>
+    <string name="txt_restart_progress">Restart Progress</string>
+    <string name="txt_sunday">Sunday</string>
+    <string name="txt_monday">Monday</string>
+    <string name="txt_tuesday">Tuesday</string>
+    <string name="txt_wednesday">Wednesday</string>
+    <string name="txt_thursday">Thursday</string>
+    <string name="txt_friday">Friday</string>
+    <string name="txt_saturday">Saturday</string>
+    <string name="txt_repeat">Repeat</string>
+    <string name="txt_weight">Weight</string>
+    <string name="txt_height">Height</string>
+    <string name="txt_day_left">Days left</string>
+    <string name="txt_week_count">Week</string>
+    <string name="txt_rest_time">Rest Time</string>
+    <string name="txt_voice_guide">Voice guide</string>
+    <string name="txt_music">Music</string>
+    <string name="txt_voice_language">Voice Language</string>
+    <string name="txt_feedback">Feedback</string>
+    <string name="txt_support">Support</string>
+    <string name="txt_do_you_like">Do you like this app?</string>
+    <string name="txt_pre_rate_can_get">The best we can get :)</string>
+    <string name="txt_some_feedback">Thank for your feedback!</string>
+    <string name="txt_pre_rate_feedback_default">We are trying to work hard for a better user experience. It would be great if you could rate us</string>
+    <string name="txt_feedback_unhappy">Please give us some feedback</string>
+    <string name="txt_pre_rate_title_happy">We like you too</string>
+    <string name="txt_pre_rate_title_unhappy">Oh, no!</string>
+    <string name="txt_workout">Workouts</string>
+    <string name="txt_overall">All</string>
+    <string name="txt_exercise">Exercise</string>
+    <string name="txt_home">Home</string>
+    <string name="txt_workout_again">Workout again</string>
+    <string name="txt_weight_chart">Weight Chart</string>
+    <string name="txt_please_finish_workout">Please finish the previous workout first!</string>
+    <string name="txt_day">Day</string>
+    <string name="txt_days">Days</string>
+    <string name="txt_skip">Skip</string>
+    <string name="txt_take_a_break">Take a rest</string>
+    <string name="txt_press_tired">Press pause if you feel tired</string>
+    <string name="txt_do_you_quit">Do you want to quit?</string>
+    <string name="txt_get_fit">Having a beautiful body has never easy!</string>
+    <string name="txt_quit_text_1">Sweat dripping is fat dropping.</string>
+    <string name="txt_quit_text_2">You’ve gotten this far, just keep going!</string>
+    <string name="txt_quit_text_3">Don’t quit! Feeling tired means it\'s working!</string>
+    <string name="txt_quit_text_4">If you get tired, take a break, but DON\'T QUIT!</string>
+    <string name="txt_quit_text_5">Wanna give up? Think about why you started.</string>
+    <string name="txt_quit_text_6">Keep going! You’re almost there!</string>
+    <string name="txt_quit_text_7_en">It\'s now or never!</string>
+    <string name="txt_remove_ads">Remove ad</string>
+    <string name="txt_language">Language</string>
+    <string name="txt_next_of_exercise">Next</string>
+    <string name="txt_edit">Edit</string>
+    <string name="txt_later_rate">Later</string>
+    <string name="txt_meal_plan">Meals plan</string>
+    <string name="txt_completed">Completed</string>
+    <string name="txt_donate_coffee">Invite a cup coffee to developer</string>
+    <string name="txt_ok">OK</string>
+    <string name="txt_cancel">Cancel</string>
+    <string name="txt_create_reminder">Remind yourself to workout daily</string>
+    <string name="txt_rm_everyday">Every day</string>
+    <string name="txt_challenge">Challenge</string>
+    <string name="txt_beginner">Beginner</string>
+    <string name="txt_intermediate">Intermediate</string>
+    <string name="txt_advanced">Advanced</string>
+    <string name="txt_recommend_app">Recommend App</string>
+    <string name="txt_my_custom_workout">Custom</string>
+    <string name="txt_save">Save</string>
+    <string name="txt_select_exercise">Choosing exercises</string>
+    <string name="txt_my_workout_name">Name</string>
+    <string name="txt_total_day">Days Number</string>
+    <string name="txt_add">Add</string>
+    <string name="txt_reset">Reset</string>
+    <string name="txt_reps">Reps</string>
+    <string name="txt_finish">Finished</string>
+    <string name="txt_customize">My training</string>
+    <string name="txt_today">Today</string>
+    <string name="txt_yesterday">Yesterday</string>
+    <string name="txt_detail">Detail</string>
+    <string name="txt_age">Age</string>
+    <string name="txt_gender">Gender</string>
+    <string name="txt_choose_your_info">Choose your information</string>
+    <string name="txt_female">Female</string>
+    <string name="txt_male">Male</string>
+    <string name="txt_ad_attribution">Ad</string>
+    <string name="txt_monthly">Monthly</string>
+    <string name="txt_yearly">Yearly</string>
+    <string name="txt_left_time">Forever</string>
+    <string name="txt_no_ad_full_feature">No ad and full feature</string>
+    <string name="txt_not_subscribe_premium">You are not registered as a premium member</string>
+    <string name="txt_premium_member">Premium member</string>
+    <string name="txt_unlock_training">This is a premium training</string>
+    <string name="txt_start_to_unlock">Start  to unlock all training plan</string>
+    <string name="txt_go_premium">Go Premium</string>
+    <string name="txt_watch_video">Watch Video</string>
+    <string name="txt_this_week">This week</string>
+    <string name="txt_sync_to_google_fit">Sync to Google Fit</string>
+    <string name="txt_not_remind">Not remind again</string>
+    <string name="txt_close">Close</string>
+    <string name="txt_breakfast">Breakfast</string>
+    <string name="txt_snack">Snack</string>
+    <string name="txt_lunch">Lunch</string>
+    <string name="txt_dinner">Dinner</string>
+    <string name="txt_standard_diet">Standard diet</string>
+    <string name="txt_vegetarian_diet">Vegetarian diet</string>
+    <string name="txt_shopping_list">Shopping list</string>
+    <string name="txt_description">Introduction</string>
+    <string name="txt_benefits">Benefits</string>
+    <string name="txt_tips">Tips</string>
+    <string name="txt_time_to_workout">Time to workout</string>
+    <string name="txt_muscle_focus">Muscle Focus</string>
+    <string name="txt_duration">Duration</string>
+    <string name="txt_copy_day_1_to_all">Copy day 1 to all</string>
+    <string name="txt_body_need_rest">Your body and muscle need to get rest</string>
+    <string name="txt_select_exercise_suit">Choose the exercise speed that suits you</string>
+    <string name="txt_ready_to_go">Ready to go!</string>
+    <string name="txt_week">Weeks</string>
+    <string name="txt_daily">Daily</string>
+    <string name="txt_explore">Discover</string>=
+    <string name="txt_see_more">See more</string>
+    <string name="txt_for_home_workout">For home workout</string>
+    <string name="txt_saved_money">Saved</string>
+    <string name="txt_all_exercise">All exercises</string>
+    <string name="txt_x2_workout">x2 Workout</string>
+    <string name="txt_dark">Dark</string>
+    <string name="txt_light">Light</string>
+    <string name="txt_default">System Default</string>
+    <string name="txt_theme">Theme</string>
+    <string name="txt_menu_home">Home</string>
+    <string name="txt_no_workout">There is no workout history at this time</string>
+    <string name="txt_alert_reset">Reset all history</string>
+    <string name="txt_off_music">Don\'t play music when workout</string>
+    <string name="txt_on_music">Play music when workout</string>
+    <string name="txt_music_volume">Music volume</string>
+    <string name="txt_music_song">Music song</string>
+    <string name="txt_voice_volume">Voice volume</string>
+    <string name="txt_tts_language">Voice Language</string>
+    <string name="txt_ring">Ring Alarm</string>
+    <string name="txt_off_ring">Turn off ring at start and end a exercise</string>
+    <string name="txt_on_ring">Ring at start and end a exercise</string>
+    <string name="txt_voice_off">Do not use voice guide when workout</string>
+    <string name="txt_voice_on">Use voice guide when workout</string>
+    <string name="txt_bestseller">Bestseller</string>
+    <string name="txt_delete_confirm">Confirm delete?</string>
+    <string name="txt_all_pose">All exercise</string>
+    <string name="txt_search_hint">Search exercise</string>
+    <string name="txt_my_yoga">My Programs</string>
+    <string name="txt_add_program">+Add program</string>
+    <string name="txt_go_to">Go!</string>
+    <string name="txt_alert_remove_plan">Are you want leave this program?</string>
+    <string name="txt_touch_to_pause">Pause</string>
+    <string name="txt_previous">Previous</string>
+    <string name="txt_no_my_workout">Click this button to add program</string>
+    <string name="txt_too_easy">Too easy</string>
+    <string name="txt_just_fine">Just fine</string>
+    <string name="txt_too_hard">Too hard</string>
+    <string name="txt_how_do_you_feel">How do you feel?</string>
+    <string name="minutes">Minutes</string>
+    <string name="txt_exercises">Exercises</string>
+    <string name="txt_auto_next">Auto next</string>
+    <string name="txt_remove_plan">Remove program</string>
+    <string name="txt_join_program">Join program</string>
+    <string name="txt_install_tts">Install Voice Language</string>
+    <string name="txt_waist_circumference">Waist circumference</string>
+    <string name="txt_waist_circumference_enter">Enter your waist circumference</string>
+    <string name="txt_weight_enter">Enter your weight</string>
+    <string name="txt_height_enter">Enter your height</string>
+    <string name="txt_weight_invalid">Invalid weight</string>
+    <string name="txt_height_invalid">Height invalid</string>
+    <string name="txt_waist_invalid">Waist circumference invalid</string>
+    <string name="txt_waist_chart">Waist circumference chart</string>
+    <string name="txt_min">Shortest</string>
+    <string name="txt_max">Longest</string>
+    <string name="txt_recent">Recent</string>
+    <string name="txt_week_goal">Week Goal</string>
+    <string name="txt_set_your_goal">Set your goal</string>
+    <string name="txt_set_goal_description">We recommend training at least 3 days weekly for a better result!</string>
+    <string name="txt_set_day_goal_of_week">Training days</string>
+    <string name="txt_first_day_of_week">First day of week</string>
+    <string name="txt_record">Records</string>
+    <string name="txt_calories_burn">Calories burn</string>
+    <string name="txt_target_weight">Target weight</string>
+    <string name="txt_target">Target</string>
+    <string name="txt_minute">Minutes</string>
+    <string name="txt_this_month">This month</string>
+    <string name="txt_punch">Punch</string>
+    <string name="txt_kick">Kick</string>
+    <string name="txt_block">Block and Defense</string>
+    <string name="txt_combo">Combo</string>
+    <string name="txt_next">Next</string>
+    <string name="txt_title_onboard_1">Revolutionizing Home Fitness</string>
+    <string name="txt_title_onboard_2">Tailored Workouts, Real Results</string>
+    <string name="txt_title_onboard_3">Your Fitness, Your Way</string>
+    <string name="txt_title_onboard_4">Community and Connection</string>
+    <string name="txt_title_onboard_5">Empowerment Starts Here</string>
+    <string name="txt_description_onboard_1">Welcome to a revolutionary home workout app designed exclusively for women—your key to a healthier, stronger you. This app redefines fitness, offering personalized routines, expert guidance, and a supportive community right at your fingertips.</string>
+    <string name="txt_description_onboard_2">Unlock your full potential with customized workouts tailored to fit your lifestyle. From high-intensity sessions to mindful exercises, this app empowers you to achieve real, sustainable results on your terms. Say goodbye to one-size-fits-all approaches and hello to a fitness journey crafted just for you.</string>
+    <string name="txt_description_onboard_3">Discover a fitness app that puts you in control. Whether you\'re a beginner or a seasoned pro, this platform adapts to your pace, preferences, and goals. Flexible, intuitive, and user-friendly, it\'s time to make your living room the ultimate gym and your fitness journey uniquely yours.</string>
+    <string name="txt_description_onboard_4">Join a vibrant community of women supporting each other on the path to wellness. Share achievements, seek advice, and find inspiration within a network that understands your journey. Because fitness isn\'t just about physical strength—it\'s about the strength we gain from each other.</string>
+    <string name="txt_description_onboard_5">Embark on a fitness journey that goes beyond the physical. This app is a catalyst for empowerment, encouraging you to embrace your strength, resilience, and well-being. Transform your home into a sanctuary of fitness, and let this app be your guide to a life lived at its healthiest, happiest, and most empowered.</string>
+    <string name="txt_what_is_gender">What is your gender?</string>
+    <string name="txt_how_old_are_you">How old are you?</string>
+    <string name="txt_user_setup_description">Let us know your better to help boost your workout results</string>
+    <string name="txt_how_long_workout">How long can you workout each day?</string>
+    <string name="txt_workout_time_level_1">Less than 15 minutes</string>
+    <string name="txt_workout_time_level_2">From 15 to 45 minutes</string>
+    <string name="txt_workout_time_level_3">Over 45 minutes</string>
+    <string name="txt_step">Step</string>
+    <string name="txt_tell_us_more_info">Tell us more about yourself</string>
+    <string name="txt_translate_ex">Translate name</string>
+    <string name="txt_minutes">Minutes</string>
+    <string name="txt_continue">Continue</string>
+    <string name="txt_calories_chart">Calories chart</string>
+    <string name="txt_warm_up">Warm up</string>
+    <string name="txt_reminder_content_1">Torch fat, shape curves!</string>
+    <string name="txt_reminder_content_2">Slim down, lift spirits.</string>
+    <string name="txt_reminder_content_3">Sweat for a new you.</string>
+    <string name="txt_reminder_content_4">Define goals, feel great.</string>
+    <string name="txt_reminder_content_5">Crush it, stay fit!</string>
+    <string name="txt_take_a_rest_the_next">Take a rest! The next</string>
+    <string name="txt_seconds">Seconds</string>
+    <string name="txt_ready_to_go_the_next">Ready to go! The next</string>
+    <string name="txt_start">Start</string>
+    <string name="txt_half_time">Half the time</string>
+    <string name="text_new">NEW</string>
+    <string name="txt_abs">Abs workout</string>
+    <string name="txt_arm">Arm workout</string>
+    <string name="txt_butt">Butt workout</string>
+    <string name="txt_thigh">Thigh workout</string>
+    <string name="txt_split">Split workout</string>
+    <string name="txt_challenge_7x4">7x4 Challenge</string>
+    <string name="txt_replace">Replace</string>
+    <string name="txt_replace_with">Replace with</string>
+    <string name="text_current">Current</string>
+    <string name="txt_download">Download</string>
+    <string name="txt_retry">Retry</string>
+    <string name="txt_each_side">Each side</string>
+    <string name="belly">Belly</string>
+    <string name="arm">Arm</string>
+    <string name="butt">Butt</string>
+    <string name="thigh">Thigh</string>
+    <string name="focus_part">What\'s your focus part?</string>
+    <string name="full_body">Full body</string>
+    <string name="title_activity_challenge">ChallengeActivity</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+    <string name="action_settings">Settings</string>
+    <string name="txt_start_day">Start from day</string>
+    <string name="txt_choose_day">Choose a day :</string>
+    <string name="txt_set_progress">Set progress</string>
+</resources>

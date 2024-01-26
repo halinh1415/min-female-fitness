@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1045104445248",
+    "project_id": "female-workout-78582",
+    "storage_bucket": "female-workout-78582.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045104445248:android:15f39b4d3d9e1a99419ca5",
+        "android_client_info": {
+          "package_name": "mint.woman.female.workout"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByOAZ_uDss7NG7-dSkhaiMIZO1fHN5l_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

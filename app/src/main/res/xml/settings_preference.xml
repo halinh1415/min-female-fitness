@@ -1,0 +1,133 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:icon="@drawable/ic_music_note_black_24dp">
+
+<!--    <Preference-->
+<!--        android:icon="@drawable/googleg_disabled_color_18"-->
+<!--        android:key="BACK_UP"-->
+<!--        android:title="Back up"-->
+<!--        android:visibility="gone" />-->
+    <PreferenceCategory android:title="General">
+        <ListPreference
+            android:entries="@array/app_theme_name"
+            android:entryValues="@array/app_theme_value"
+            android:key="THEME"
+            android:defaultValue="dark"
+            android:icon="@drawable/ic_baseline_dark_mode_24"
+            android:title="@string/txt_theme"
+            app:useSimpleSummaryProvider="true"/>
+        <ListPreference
+            android:entries="@array/voice_tts_name"
+            android:entryValues="@array/voice_tts_value"
+            android:icon="@drawable/ic_translate_black_24dp"
+            android:key="ST_LANGUAGE"
+            app:useSimpleSummaryProvider="true"
+            android:title="@string/txt_language"/>
+        <ListPreference
+            android:entries="@array/user_gender_name"
+            android:entryValues="@array/user_gender_value"
+            android:icon="@drawable/baseline_person_outline_24"
+            android:key="USER_GENDER"
+            app:useSimpleSummaryProvider="true"
+            android:title="@string/txt_gender"/>
+<!--        <SwitchPreference-->
+<!--            android:defaultValue="false"-->
+<!--            android:icon="@drawable/ic_google_fit"-->
+<!--            android:key="SYNC_GOOGLE_FIT"-->
+<!--            android:title="@string/txt_sync_to_google_fit"/>-->
+        <Preference
+            android:icon="@drawable/ic_bell"
+            android:key="ST_REMINDER"
+            android:title="@string/txt_reminder"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Music">
+        <SwitchPreference
+            app:defaultValue="true"
+            app:icon="@drawable/ic_baseline_music_note_24"
+            app:key="MUSIC_ON"
+            app:summaryOff="@string/txt_off_music"
+            app:summaryOn="@string/txt_on_music"
+            app:title="@string/txt_music" />
+        <SeekBarPreference
+            app:dependency="MUSIC_ON"
+            app:key="MUSIC_VOLUME"
+            app:title="@string/txt_music_volume"
+            android:max="100"
+            app:defaultValue="90" />
+        <ListPreference
+            app:dependency="MUSIC_ON"
+            app:entries="@array/arr_music_name"
+            app:entryValues="@array/arr_music_value"
+            app:icon="@drawable/ic_music_note"
+            app:key="BACK_GROUND_MUSIC"
+            app:summary="Background 1"
+            app:title="@string/txt_music_song"
+            app:useSimpleSummaryProvider="true"
+            />
+        <SwitchPreference
+            app:defaultValue="true"
+            app:icon="@drawable/ic_notifications_black_24dp"
+            app:key="RING_ON"
+            app:summaryOff="@string/txt_off_ring"
+            app:summaryOn="@string/txt_on_ring"
+            app:title="@string/txt_ring" />
+        <ListPreference
+            android:entries="@array/arr_rest_name"
+            android:entryValues="@array/arr_rest_value"
+            android:icon="@drawable/ic_baseline_timer_24"
+            android:key="REST_TIME"
+            app:useSimpleSummaryProvider="true"
+            android:title="@string/txt_rest_time" />
+
+    </PreferenceCategory>
+    <PreferenceCategory app:title="Voice Guide">
+        <SwitchPreference
+            app:defaultValue="true"
+            app:icon="@drawable/ic_baseline_record_voice_over_24"
+            app:key="VOICE_ON"
+            app:title="@string/txt_voice_guide"
+            app:summaryOff="@string/txt_voice_off"
+            app:summaryOn="@string/txt_voice_on"/>
+        <SeekBarPreference
+            app:dependency="VOICE_ON"
+            app:key="VOICE_VOLUME"
+            app:title="@string/txt_voice_volume"
+            android:max="100"
+            app:defaultValue="90" />
+
+        <Preference
+            android:icon="@drawable/ic_baseline_file_download_24"
+            android:key="TTS_INSTALL_VOICE"
+            app:dependency="VOICE_ON"
+            android:title="@string/txt_install_tts"/>
+        <Preference
+            android:icon="@drawable/ic_baseline_swap_horiz_24"
+            android:key="TTS_ENGINE"
+            app:dependency="VOICE_ON"
+            android:title="TTS Engine"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/txt_support">
+        <Preference
+            android:icon="@drawable/ic_share_black_24dp"
+            android:key="ST_SHARE"
+            android:title="@string/txt_share"/>
+        <Preference
+            android:icon="@drawable/ic_baseline_star_24"
+            android:key="ST_RATE"
+            android:title="@string/txt_rate"/>
+        <Preference
+            android:icon="@drawable/ic_feedback_black_24dp"
+            android:key="ST_FEEDBACK"
+            android:title="@string/txt_feedback" />
+        <Preference
+            android:icon="@drawable/ic_version"
+            android:key="VERSION_APP"
+            android:title="Version" />
+        <Preference
+            android:icon="@drawable/ic_security_black_24dp"
+            android:key="PRIVACY_POLICY"
+            android:title="Privacy Policy" />
+    </PreferenceCategory>
+</PreferenceScreen>

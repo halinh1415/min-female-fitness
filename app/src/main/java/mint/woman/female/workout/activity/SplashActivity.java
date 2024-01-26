@@ -1,0 +1,255 @@
+package mint.woman.female.workout.activity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.net.wifi.WifiManager;
+import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
+
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieComposition;
+import com.airbnb.lottie.LottieCompositionFactory;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.nativead.NativeAd;
+import com.google.android.ump.ConsentDebugSettings;
+import com.google.android.ump.ConsentForm;
+import com.google.android.ump.ConsentInformation;
+import com.google.android.ump.ConsentRequestParameters;
+import com.google.android.ump.UserMessagingPlatform;
+import mint.woman.female.workout.FitnessApplication;
+import mint.woman.female.workout.R;
+import mint.woman.female.workout.activity.ui.language.LanguageActivity;
+import mint.woman.female.workout.activity.ui.main.YogaActivity;
+import mint.woman.female.workout.admodule.MaticAd;
+import mint.woman.female.workout.admodule.MaticAdCallBack;
+import mint.woman.female.workout.admodule.MaticAdKeys;
+import mint.woman.female.workout.utils.LanguageHelper;
+import mint.woman.female.workout.utils.MyPreference;
+
+import java.util.Locale;
+
+public class SplashActivity extends AppCompatActivity {
+
+    private static final String TAG = "SplashActivity";
+    MyPreference myPreference;
+    ImageView mSplash;
+    private Handler mHandler = new Handler();
+    LottieAnimationView lottieAnimationView;
+    ConsentInformation consentInformation;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
+        myPreference = new MyPreference(this);
+        myPreference.setOK(true);
+        myPreference.setShowRate(true);
+        mSplash = findViewById(R.id.img_splash);
+        Animation scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up);
+        scaleUp.setFillAfter(true);
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.centerCrop().transform(new RoundedCorners(1));
+        Glide.with(getApplicationContext()).load(Uri.parse("file:///android_asset/images/img_splash.webp" )).into(mSplash);
+        lottieAnimationView = findViewById(R.id.lottieView);
+        lottieAnimationView.setAnimation("load.json");
+        lottieAnimationView.playAnimation();
+
+//        Animation anim = new ScaleAnimation(
+//                1f, 1.5f, // Start and end values for the X axis scaling
+//                1f, 1.5f, // Start and end values for the Y axis scaling
+//                Animation.RELATIVE_TO_PARENT, 0f, // Pivot point of X scaling
+//                Animation.RELATIVE_TO_SELF, 1f); // Pivot point of Y scaling
+//        anim.setFillAfter(true); // Needed to keep the result of the animation
+//        anim.setDuration(2000);
+//        mSplash.startAnimation(anim);
+
+        requestTCM();
+    }
+    private void startLoadAd(){
+        mHandler.postDelayed(() -> {
+            startMain();
+
+        }, 5000);
+        if (myPreference.isShowAds() && myPreference.isFirstOpen()) {
+            requestNativeLanguage();
+            requestNativeOnBoard();
+            requestNativeSetup();
+            loadInterStart();
+        }
+    }
+    private void requestTCM() {
+        ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this)
+                .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
+                .addTestDeviceHashedId("0EAD9B8D367671ED9B8FF80FFEF0C46A")
+                .build();
+
+        ConsentRequestParameters params = new ConsentRequestParameters
+                .Builder()
+
+                .setConsentDebugSettings(debugSettings)
+                .setTagForUnderAgeOfConsent(false)
+                .build();
+
+        consentInformation = UserMessagingPlatform.getConsentInformation(this);
+        //  consentInformation.reset();
+        consentInformation.requestConsentInfoUpdate(
+                this,
+                params,
+                (ConsentInformation.OnConsentInfoUpdateSuccessListener) () -> {
+                    UserMessagingPlatform.loadAndShowConsentFormIfRequired(
+                            this,
+                            (ConsentForm.OnConsentFormDismissedListener) loadAndShowError -> {
+                                if (loadAndShowError != null) {
+                                    // Consent gathering failed.
+                                    Log.w(TAG, String.format("%s: %s",
+                                            loadAndShowError.getErrorCode(),
+                                            loadAndShowError.getMessage()));
+                                }
+
+                                startLoadAd();
+                            }
+                    );
+
+                },
+                (ConsentInformation.OnConsentInfoUpdateFailureListener) requestConsentError -> {
+                    // Consent gathering failed.
+                    Log.w(TAG, "consent XXX "+String.format("%s: %s",
+                            requestConsentError.getErrorCode(),
+                            requestConsentError.getMessage()));
+                });
+
+    }
+    private void loadInterStart() {
+        if (myPreference.isShowAds() && myPreference.getOK()){
+            MaticAd.getInstance().loadInterstitialAd3SameTime(SplashActivity.this, MaticAdKeys.INTER_FIRST_OPEN_HIGH,MaticAdKeys.INTER_FIRST_OPEN_MEDIUM,MaticAdKeys.INTER_FIRST_OPEN,new MaticAdCallBack());
+        }
+    }
+
+
+    private void startMain() {
+        if (myPreference.isFirstOpen()){
+            startActivity(new Intent(SplashActivity.this, LanguageActivity.class));
+            finish();
+        }else{
+            startActivity(new Intent(SplashActivity.this, YogaActivity.class));
+            finish();
+        }
+    }
+
+    void requestNativeLanguage() {
+        MaticAd.getInstance().loadNativeAd3Sametime(SplashActivity.this, MaticAdKeys.NATIVE_LANGUAGE_HIGH, MaticAdKeys.NATIVE_LANGUAGE_MEDIUM, MaticAdKeys.NATIVE_LANGUAGE, new MaticAdCallBack() {
+            @Override
+            public void onNativeAdLoaded(@NonNull NativeAd nativeAd) {
+                super.onNativeAdLoaded(nativeAd);
+                Log.d("HAHA", "loadAds nativeLanguage onNativeAdLoaded");
+                FitnessApplication.getApplication().getStorageCommon().nativeAdLanguage.postValue(nativeAd);
+            }
+
+            @Override
+            public void onAdFailedToLoad(@Nullable AdError adError) {
+                super.onAdFailedToLoad(adError);
+                FitnessApplication.getApplication().getStorageCommon().nativeAdLanguage.postValue(null);
+            }
+        });
+    }
+
+
+    void requestNativeOnBoard() {
+
+        MaticAd.getInstance().loadNativeAd3Sametime(SplashActivity.this, MaticAdKeys.NATIVE_ONBOARD_HIGH, MaticAdKeys.NATIVE_ONBOARD_MEDIUM, MaticAdKeys.NATIVE_ONBOARD, new MaticAdCallBack() {
+            @Override
+            public void onNativeAdLoaded(@NonNull NativeAd nativeAd) {
+                super.onNativeAdLoaded(nativeAd);
+                Log.d("HAHA", "nativeOnBoard1 onNativeAdLoaded");
+                FitnessApplication.getApplication().getStorageCommon().nativeAdOnBoard.postValue(nativeAd);
+            }
+
+            @Override
+            public void onAdFailedToLoad(@Nullable AdError adError) {
+                super.onAdFailedToLoad(adError);
+                FitnessApplication.getApplication().getStorageCommon().nativeAdOnBoard.postValue(null);
+            }
+        });
+    }
+    void requestNativeSetup() {
+        FitnessApplication.getApplication().getStorageCommon().nativeSetup.postValue(null);
+
+//        MaticAd.getInstance().loadNativeAd3Sametime(SplashActivity.this, MaticAdKeys.NATIVE_SETUP_HIGH, MaticAdKeys.NATIVE_SETUP_MEDIUM, MaticAdKeys.NATIVE_SETUP, new MaticAdCallBack() {
+//            @Override
+//            public void onNativeAdLoaded(@NonNull NativeAd nativeAd) {
+//                super.onNativeAdLoaded(nativeAd);
+//                Log.d("HAHA", "nativeOnBoard1 onNativeAdLoaded");
+//                FitnessApplication.getApplication().getStorageCommon().nativeSetup.postValue(nativeAd);
+//            }
+//
+//            @Override
+//            public void onAdFailedToLoad(@Nullable AdError adError) {
+//                super.onAdFailedToLoad(adError);
+//                FitnessApplication.getApplication().getStorageCommon().nativeSetup.postValue(null);
+//            }
+//        });
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(newBase);
+        String lang = preferences.getString("ST_LANGUAGE", "");
+        if (!lang.isEmpty() && lang.length() > 2) {
+            lang = lang.substring(0, 2);
+        } else {
+            lang = Locale.getDefault().getLanguage();
+        }
+        super.attachBaseContext(LanguageHelper.setLanguage(newBase, lang));
+
+    }
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            hideSystemUI();
+        }
+    }
+
+    private void hideSystemUI() {
+        // Enables regular immersive mode.
+        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
+        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE
+                        // Set the content to appear under the system bars so that the
+                        // content doesn't resize when the system bars hide and show.
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        // Hide the nav bar and status bar4
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
+
+    // Shows the system bars by removing all the flags
+// except for the ones that make the content appear under the system bars.
+//    private void showSystemUI() {
+//        View decorView = getWindow().getDecorView();
+//        decorView.setSystemUiVisibility(
+//                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+//    }
+
+}

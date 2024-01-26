@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".activity.ui.firstsetup.content.UserInfoFragment">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_coach" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_tell_us_more_info"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="@dimen/_14sdp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_12sdp"
+        android:text="@string/txt_user_setup_description"
+        android:textAlignment="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_user_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:text="@string/txt_weight"
+                android:textAlignment="viewStart"
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="@dimen/_14sdp" />
+
+            <RadioGroup
+                android:id="@+id/rgUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rdKg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tab_color_selector"
+                    android:button="@android:color/transparent"
+                    android:checked="true"
+                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:text="KG"
+                    android:textColor="@drawable/radio_button_text_selector"
+                    android:textSize="@dimen/_14sdp" />
+
+                <RadioButton
+                    android:id="@+id/rdLb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:background="@drawable/tab_color_selector"
+                    android:button="@android:color/transparent"
+                    android:checked="false"
+                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:text="LB"
+                    android:textColor="@drawable/radio_button_text_selector"
+                    android:textSize="@dimen/_14sdp" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+
+        <mint.woman.female.workout.custom.SuffixTextView
+            android:id="@+id/tv_weight_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="65"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_16sdp" />
+
+        <com.zjun.widget.RuleView
+            android:id="@+id/rule_weight"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            app:gv_maxValue="200"
+            app:gv_minValue="30"
+            app:gv_numberPerCount="10"
+            app:zjun_bgColor="@color/colorAccent"
+            app:zjun_textSize="@dimen/_10sdp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:text="@string/txt_height"
+                android:textAlignment="viewStart"
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="@dimen/_14sdp" />
+            <RadioGroup
+                android:id="@+id/rgUnit1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rdKg1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tab_color_selector"
+                    android:button="@android:color/transparent"
+                    android:checked="true"
+                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:text="CM"
+                    android:textColor="@drawable/radio_button_text_selector"
+                    android:textSize="@dimen/_14sdp" />
+
+                <RadioButton
+                    android:id="@+id/rdLb1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:background="@drawable/tab_color_selector"
+                    android:button="@android:color/transparent"
+                    android:checked="false"
+                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:text="FT"
+                    android:textColor="@drawable/radio_button_text_selector"
+                    android:textSize="@dimen/_14sdp" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <mint.woman.female.workout.custom.SuffixTextView
+            android:id="@+id/tv_height_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="170"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_16sdp" />
+
+        <com.zjun.widget.RuleView
+            android:id="@+id/rule_height"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            app:gv_currentValue="2"
+            app:gv_maxValue="10"
+            app:gv_minValue="1"
+            app:gv_numberPerCount="10"
+            app:zjun_bgColor="@color/Yellow"
+            app:zjun_textSize="@dimen/_10sdp" />
+    </LinearLayout>
+</LinearLayout>

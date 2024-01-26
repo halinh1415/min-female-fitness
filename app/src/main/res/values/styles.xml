@@ -1,0 +1,185 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="android:windowAnimationStyle">@style/animfade</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:fontFamily">@font/fonts</item>
+    </style>
+
+    <style name="app_theme" parent="@style/base_theme">
+        <item name="android:windowBackground">@color/White</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowAnimationStyle">@style/animfade</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/White</item>
+    </style>
+
+    <style name="app_theme_other" parent="@style/base_theme">
+        <item name="android:windowBackground">@color/White</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowAnimationStyle">@style/animfade</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorAccent</item>
+    </style>
+
+    <style name="base_theme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowBackground">@color/no_color</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="alertDialogTheme">@style/alert_dialog_theme</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="alert_dialog_theme" parent="@style/v7_alert_dialog_theme">
+        <item name="android:windowBackground">@color/White</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/White</item>
+    </style>
+    <style name="v7_alert_dialog_theme" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/red_FB45</item>
+    </style>
+    <style name="animfade" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_from_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_to_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_from_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_to_right</item>
+    </style>
+    <style name="AppTheme.FullScreen">
+        <item name="colorPrimaryDark">@color/Black</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:fontFamily">@font/fonts</item>
+    </style>
+
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+        <item name="android:windowBackground">@color/notesBackgroundColor</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" />
+
+    <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="CustomDialog" parent="android:Theme.Dialog">
+        <item name="android:windowMinWidthMajor">65%</item>
+        <item name="android:windowMinWidthMinor">65%</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.ActionBar.Transparent" parent="AppTheme">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="colorPrimary">@android:color/transparent</item>
+    </style>
+
+    <style name="full_screen_dialog" parent="Theme.AppCompat.DayNight.DialogWhenLarge">
+        <!--        <item name="android:windowFrame">@null</item>-->
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowMinWidthMajor">100%</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+    <style name="BottomSheetDialog" parent="Theme.MaterialComponents.DayNight.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+    </style>
+
+    <style name="bottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
+        <item name="behavior_peekHeight">500dp</item>
+        <item name="android:state_expanded">false</item>
+        <item name="expanded">false</item>
+        <item name="android:background">@drawable/rounded_dialog</item>
+    </style>
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/bottom_up</item>
+        <item name="android:windowExitAnimation">@anim/bottom_down</item>
+    </style>
+
+    <style name="AppTheme.AdAttribution">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:textColor">@color/White</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:text">@string/txt_ad_attribution</item>
+        <item name="background">@color/Yellow</item>
+        <!--<item name="android:width">15dp</item>-->
+        <!--<item name="android:height">15dp</item>-->
+    </style>
+
+    <style name="Widget.AppTheme.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="Widget.AppTheme.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    </style>
+    <style name="AdsAppTheme" parent="Theme.AppCompat.Light"/>
+    <style name="AppTheme.Ads" parent="@style/AdsAppTheme">
+        <item name="android:textSize">11.0sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:background">@drawable/ads_icon</item>
+        <item name="android:paddingLeft">3.0dip</item>
+        <item name="android:paddingRight">6.0dip</item>
+        <item name="android:paddingBottom">1.0dip</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">15.0px</item>
+        <item name="android:minHeight">15.0px</item>
+        <item name="android:text">Ad</item>
+    </style>
+    <style name="NumberPickerText">
+        <item name="android:textSize">@dimen/_20sdp</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+
+    </style>
+    <style name="style_text_area_choose" parent="">
+        <item name="android:textSize">@dimen/_14sdp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_bg_round_corner_ff6699_100</item>
+        <item name="android:paddingLeft">@dimen/_8sdp</item>
+        <item name="android:paddingTop">@dimen/_4sdp</item>
+        <item name="android:paddingRight">@dimen/_8sdp</item>
+        <item name="android:paddingBottom">@dimen/_4sdp</item>
+        <item name="android:drawableLeft">@drawable/ic_area_choose</item>
+        <item name="android:drawablePadding">@dimen/_4sdp</item>
+    </style>
+
+    <style name="style_text_area_unchoose" parent="">
+        <item name="android:textSize">@dimen/_14sdp</item>
+        <item name="android:textColor">#ffff6699</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_bg_round_corner_stroke_ff6699_100</item>
+        <item name="android:paddingLeft">@dimen/_8sdp</item>
+        <item name="android:paddingTop">@dimen/_4sdp</item>
+        <item name="android:paddingRight">@dimen/_8sdp</item>
+        <item name="android:paddingBottom">@dimen/_4sdp</item>
+        <item name="android:drawableLeft">@drawable/ic_area_unchoose</item>
+        <item name="android:drawablePadding">@dimen/_4sdp</item>
+    </style>
+</resources>

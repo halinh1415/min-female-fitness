@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="mint.woman.female.workout.activity.ui.home.HomeFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_my_workout"
+            app:destination="@id/nav_my_workout" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_explore"
+            app:destination="@id/nav_explore" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_setting"
+        android:name="mint.woman.female.workout.activity.ui.settings.SettingFragment"
+        android:tag="SETTING_FRAGMENT"
+        android:label="@string/txt_action_settings" >
+        <action
+            android:id="@+id/action_nav_setting_to_nav_reminder"
+            app:destination="@id/nav_reminder" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_history"
+        android:name="mint.woman.female.workout.activity.ui.history.HistoryFragment"
+        android:label="@string/mn_history" />
+
+    <activity
+        android:id="@+id/nav_reminder"
+        android:name="mint.woman.female.workout.activity.ui.reminder.ReminderActivity"
+        android:label="@string/txt_reminder"
+        tools:layout="@layout/activity_reminder" />
+
+    <activity
+        android:id="@+id/nav_diet"
+        android:name="mint.woman.female.workout.activity.ui.diet.DietActivity"
+        android:label="@string/txt_meal_plan"
+        tools:layout="@layout/activity_diet" />
+    <activity
+        android:id="@+id/nav_my_workout"
+        android:name="mint.woman.female.workout.activity.ui.custom.MyWorkoutActivity"
+        android:label="@string/txt_my_custom_workout"
+        tools:layout="@layout/activity_my_workout" />
+
+    <fragment
+        android:id="@+id/nav_explore"
+        android:name="mint.woman.female.workout.activity.ui.explore.ExploreFragment"
+        android:label="@string/txt_explore"
+        tools:layout="@layout/fragment_explore" />
+    <fragment
+        android:id="@+id/nav_report"
+        android:name="mint.woman.female.workout.activity.ui.report.ReportFragment"
+        android:label="@string/txt_report"
+        tools:layout="@layout/fragment_report" >
+    </fragment>
+    <activity
+        android:id="@+id/nav_report2"
+        android:name="mint.woman.female.workout.activity.ui.report.ReportActivity"
+        android:label="@string/txt_report"
+        tools:layout="@layout/activity_report" />
+</navigation>

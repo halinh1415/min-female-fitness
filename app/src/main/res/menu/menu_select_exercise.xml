@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_search"
+        android:title="Search"
+        android:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.SearchView" />
+    <item
+        android:icon="@drawable/ic_baseline_checklist_24"
+        android:id="@+id/mn_select_ex_type"
+        android:title="@string/txt_select_exercise"
+        android:visible="true"
+        app:showAsAction="always|collapseActionView">
+        <menu>
+            <group android:id="@+id/select_all_type">
+                <item
+                    android:id="@+id/mn_all_pose"
+                    android:title="@string/txt_all_pose"
+                    />
+                <item
+                    android:id="@+id/mn_punch"
+                    android:title="@string/txt_punch"
+                    />
+                <item
+                    android:id="@+id/mn_kick"
+                    android:title="@string/txt_kick"
+                    />
+                <item
+                    android:id="@+id/mn_combo"
+                    android:title="@string/txt_combo"
+                    />
+                <item
+                    android:id="@+id/mn_block"
+                    android:title="@string/txt_block"
+                    />
+                <item
+                    android:id="@+id/mn_warm"
+                    android:title="@string/txt_warm_up"
+                    />
+
+            </group>
+
+        </menu>
+    </item>
+</menu>

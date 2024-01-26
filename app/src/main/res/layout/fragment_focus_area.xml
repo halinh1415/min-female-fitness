@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.5" />
+
+    <TextView
+        android:id="@+id/choose_area_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_24sdp"
+        android:layout_marginRight="@dimen/_24sdp"
+        android:gravity="center"
+        android:text="@string/focus_part"
+        android:textAllCaps="true"
+        android:textColor="@color/Black"
+        android:textSize="@dimen/_18sdp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.5" />
+
+    <RelativeLayout
+        android:id="@+id/content_rl"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="10"
+        android:gravity="center"
+        android:minWidth="@dimen/_320sdp">
+
+        <ImageView
+            android:id="@+id/women_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/bg_problem_area" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/area_choose_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/women_img"
+            android:layout_alignBottom="@+id/women_img">
+
+            <TextView
+                android:id="@+id/btn_choose_full_body"
+                style="@style/style_text_area_choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/full_body"
+                android:textAllCaps="true"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/btn_unchoose_full_body"
+                style="@style/style_text_area_unchoose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/full_body"
+                android:textAllCaps="true"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/btn_choose_abs"
+                style="@style/style_text_area_choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="60dp"
+                android:text="@string/belly"
+                android:textAllCaps="true"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/position_abs_y"
+                app:layout_constraintRight_toLeftOf="@+id/position_center_x" />
+
+            <TextView
+                android:id="@+id/btn_unchoose_abs"
+                style="@style/style_text_area_unchoose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="60dp"
+                android:text="@string/belly"
+                android:textAllCaps="true"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/position_abs_y"
+                app:layout_constraintRight_toLeftOf="@+id/position_center_x" />
+
+            <TextView
+                android:id="@+id/btn_choose_arm"
+                style="@style/style_text_area_choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:text="@string/arm"
+                android:textAllCaps="true"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/position_arm_y"
+                app:layout_constraintLeft_toRightOf="@+id/position_center_x" />
+
+            <TextView
+                android:id="@+id/btn_unchoose_arm"
+                style="@style/style_text_area_unchoose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:text="@string/arm"
+                android:textAllCaps="true"
+                app:layout_constraintBottom_toTopOf="@+id/position_arm_y"
+                app:layout_constraintLeft_toRightOf="@+id/position_center_x" />
+
+            <TextView
+                android:id="@+id/btn_choose_butt"
+                style="@style/style_text_area_choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:text="@string/butt"
+                android:textAllCaps="true"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/position_butt_y"
+                app:layout_constraintLeft_toRightOf="@+id/position_center_x" />
+
+            <TextView
+                android:id="@+id/btn_unchoose_butt"
+                style="@style/style_text_area_unchoose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:text="@string/butt"
+                android:textAllCaps="true"
+                app:layout_constraintBottom_toTopOf="@+id/position_butt_y"
+                app:layout_constraintLeft_toRightOf="@+id/position_center_x" />
+
+            <TextView
+                android:id="@+id/btn_choose_thigh"
+                style="@style/style_text_area_choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="90dp"
+                android:text="@string/thigh"
+                android:textAllCaps="true"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/position_thigh_y"
+                app:layout_constraintRight_toLeftOf="@+id/position_center_x" />
+
+            <TextView
+                android:id="@+id/btn_unchoose_thigh"
+                style="@style/style_text_area_unchoose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="90dp"
+                android:text="@string/thigh"
+                android:textAllCaps="true"
+                app:layout_constraintBottom_toTopOf="@+id/position_thigh_y"
+                app:layout_constraintRight_toLeftOf="@+id/position_center_x" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/position_abs_y"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.54" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/position_arm_y"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.11" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/position_butt_y"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.73" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/position_center_x"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/position_thigh_y"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.96" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
+</LinearLayout>

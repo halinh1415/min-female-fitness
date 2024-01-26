@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BMIView">
+        <attr name="verySeverelyUnderweightColor" format="color" />
+        <attr name="severelyUnderweightColor" format="color" />
+        <attr name="underweightColor" format="color" />
+        <attr name="normalColor" format="color" />
+        <attr name="overweightColor" format="color" />
+        <attr name="obeseClass1Color" format="color" />
+        <attr name="obeseClass2Color" format="color" />
+        <attr name="obeseClass3Color" format="color" />
+    </declare-styleable>
+    <declare-styleable name="RatingBarAttributes">
+        <attr name="numStars" format="integer" />
+        <attr name="rating" format="float" />
+        <attr name="starPadding" format="integer" />
+        <attr name="drawableEmpty" format="reference" />
+        <attr name="drawableFilled" format="reference" />
+        <attr name="touchable" format="boolean" />
+        <attr name="clearRatingEnabled" format="boolean" />
+        <attr name="starWidth" format="dimension" />
+        <attr name="starHeight" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="FullscreenAttrs">
+        <attr name="fullscreenBackgroundColor" format="color" />
+        <attr name="fullscreenTextColor" format="color" />
+    </declare-styleable>
+    <declare-styleable name="ExpandableTextView">
+        <attr name="trimLength" format="integer"/>
+    </declare-styleable>
+    <declare-styleable name="RoundedBarChart">
+        <attr name="radius" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="RB">
+        <attr name="ratingStarWidth" format="dimension"/>
+        <attr name="ratingStarHeight" format="dimension"/>
+        <attr name="maxStar" format="integer"/>
+        <attr name="minStar" format="float"/>
+        <attr name="currentStar" format="float"/>
+        <attr name="padding" format="dimension"/>
+        <attr name="emptyStar" format="reference"/>
+        <attr name="fullStar" format="reference"/>
+        <attr name="halfStar" format="reference"/>
+        <attr name="canChange" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="ProgressLineView">
+        <attr name="emptyColor" format="color" />
+        <attr name="fillColor" format="color" />
+        <attr name="currentColor" format="color" />
+        <attr name="separatorColor" format="color" />
+        <attr name="part" format="integer" />
+        <attr name="progressLineView" format="float" />
+    </declare-styleable>
+    <declare-styleable name="StackedView">
+        <attr name="color1" format="color" />
+        <attr name="color2" format="color" />
+        <attr name="color3" format="color" />
+        <attr name="max" format="float" />
+        <attr name="range1" format="float" />
+        <attr name="range2" format="float" />
+        <attr name="progress" format="float" />
+        <attr name="showText" format="boolean" />
+    </declare-styleable>
+</resources>
