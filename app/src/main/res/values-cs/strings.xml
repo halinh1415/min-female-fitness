@@ -253,4 +253,13 @@
     <string name="txt_download">Stažení</string>
     <string name="txt_retry">Zkuste to znovu</string>
     <string name="txt_each_side">Každá strana</string>
+    <string name="belly">Břicho</string>
+    <string name="arm">Paže</string>
+    <string name="butt">Zadek</string>
+    <string name="thigh">Stehno</string>
+    <string name="focus_part">Na co se zaměřujete?</string>
+    <string name="full_body">Plné tělo</string>
+    <string name="txt_start_day">Začněte ode dne</string>
+    <string name="txt_choose_day">Vyberte den:</string>
+    <string name="txt_set_progress">Nastavte průběh</string>
 </resources>

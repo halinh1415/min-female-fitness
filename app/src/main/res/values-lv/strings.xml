@@ -253,4 +253,13 @@
     <string name="txt_download">Lejupielādēt</string>
     <string name="txt_retry">Mēģiniet vēlreiz</string>
     <string name="txt_each_side">Katra puse</string>
+<string name="belly">Vēders</string>
+    <string name="arm">Arm</string>
+    <string name="butt">Muca</string>
+    <string name="thigh">Augšstilbs</string>
+    <string name="focus_part">Kāda ir jūsu fokusa daļa?</string>
+    <string name="full_body">Pilns ķermenis</string>
+    <string name="txt_start_day">Sāciet no dienas</string>
+    <string name="txt_choose_day">Izvēlieties dienu:</string>
+    <string name="txt_set_progress">Iestatīt progresu</string>
 </resources>

@@ -253,4 +253,13 @@
     <string name="txt_download">ダウンロード</string>
     <string name="txt_retry">リトライ</string>
     <string name="txt_each_side">各面</string>
+<string name="belly">腹</string>
+    <string name="arm">腕</string>
+    <string name="butt">お尻</string>
+    <string name="thigh">大腿</string>
+    <string name="focus_part">重点を置いている部分は何ですか?</string>
+    <string name="full_body">全身</string>
+    <string name="txt_start_day">当日からスタート</string>
+    <string name="txt_choose_day">日を選択してください:</string>
+    <string name="txt_set_progress">進行状況を設定する</string>
 </resources>

@@ -253,4 +253,13 @@
     <string name="txt_download">Scaricamento</string>
     <string name="txt_retry">Riprova</string>
     <string name="txt_each_side">Ogni lato</string>
+<string name="belly">Gonfiarsi</string>
+    <string name="arm">Braccio</string>
+    <string name="butt">Culo</string>
+    <string name="thigh">Coscia</string>
+    <string name="focus_part">Qual è la tua parte principale?</string>
+    <string name="full_body">Corpo intero</string>
+    <string name="txt_start_day">Inizia dal giorno</string>
+    <string name="txt_choose_day">Scegli un giorno:</string>
+    <string name="txt_set_progress">Imposta l\'avanzamento</string>
 </resources>

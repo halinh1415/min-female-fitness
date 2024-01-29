@@ -53,7 +53,7 @@
     <string name="txt_please_finish_workout">Hãy hoàn thành bài tập trước đó trước!</string>
     <string name="txt_day">Ngày</string>
     <string name="txt_days">Ngày</string>
-    <string name="txt_skip">Bỏ qua</string>
+    <string name="txt_skip">Nhảy</string>
     <string name="txt_take_a_break">Nghỉ ngơi</string>
     <string name="txt_press_tired">Nhấn tạm dừng nếu bạn cảm thấy mệt mỏi</string>
     <string name="txt_do_you_quit">Bạn có muốn kết thúc?</string>
@@ -134,7 +134,7 @@
     <string name="txt_ready_to_go">Sẵn sàng để đi!</string>
     <string name="txt_week">Tuần</string>
     <string name="txt_daily">Hằng ngày</string>
-    <string name="txt_explore">Khám phá</string>=
+    <string name="txt_explore">Phát hiện</string>=
     <string name="txt_see_more">Xem thêm</string>
     <string name="txt_for_home_workout">Để tập luyện tại nhà</string>
     <string name="txt_saved_money">Đã lưu</string>
@@ -237,7 +237,7 @@
     <string name="txt_reminder_content_5">Hãy nghiền nát nó, giữ dáng!</string>
     <string name="txt_take_a_rest_the_next">Nghỉ ngơi! tiếp theo</string>
     <string name="txt_seconds">Giây</string>
-    <string name="txt_ready_to_go_the_next">Sẵn sàng! tiếp theo</string>
+    <string name="txt_ready_to_go_the_next">Sẵn sàng để đi! tiếp theo</string>
     <string name="txt_start">Bắt đầu</string>
     <string name="txt_half_time">Nửa thời gian</string>
     <string name="text_new">Mới</string>
@@ -245,11 +245,11 @@
     <string name="txt_arm">Tập luyện cánh tay</string>
     <string name="txt_butt">Tập luyện mông</string>
     <string name="txt_thigh">Bài tập đùi</string>
-    <string name="txt_split">Chia tách</string>
+    <string name="txt_split">Chia bài tập</string>
     <string name="txt_challenge_7x4">Thử thách 7x4</string>
     <string name="txt_replace">Thay thế</string>
     <string name="txt_replace_with">Thay bằng</string>
-    <string name="text_current">Hiện tại</string>
+    <string name="text_current">Hiện hành</string>
     <string name="txt_download">Tải xuống</string>
     <string name="txt_retry">Thử lại</string>
     <string name="txt_each_side">Mỗi bên</string>
@@ -257,5 +257,9 @@
     <string name="arm">Cánh tay</string>
     <string name="butt">Mông</string>
     <string name="thigh">Đùi</string>
-    <string name="focus_part">Phần tập trung của bạn là gì?</string>
+    <string name="focus_part">Phần trọng tâm của bạn là gì?</string>
+    <string name="full_body">Toàn cơ thể</string>
+    <string name="txt_start_day">Bắt đầu từ ngày</string>
+    <string name="txt_choose_day">Chọn một ngày:</string>
+    <string name="txt_set_progress">Đặt tiến độ</string>
 </resources>

@@ -253,4 +253,13 @@
     <string name="txt_download">Ladda ner</string>
     <string name="txt_retry">Försök igen</string>
     <string name="txt_each_side">Varje sida</string>
+<string name="belly">Mage</string>
+    <string name="arm">Ärm</string>
+    <string name="butt">Stånga</string>
+    <string name="thigh">Lår</string>
+    <string name="focus_part">Vad är din fokusdel?</string>
+    <string name="full_body">Hela kroppen</string>
+    <string name="txt_start_day">Börja från dagen</string>
+    <string name="txt_choose_day">Välj en dag:</string>
+    <string name="txt_set_progress">Ställ in framsteg</string>
 </resources>

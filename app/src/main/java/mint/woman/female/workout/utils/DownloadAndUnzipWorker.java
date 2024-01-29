@@ -92,50 +92,13 @@ public class DownloadAndUnzipWorker extends Worker {
         }
     }
 
-//    @NonNull
-//    @Override
-//    public Result doWork() {
-//        String zipUrl = getInputData().getString("audio_url");
-//        String destination = getInputData().getString("destination_folder");
-//        try {
-//            URL u = new URL(zipUrl);
-//            URLConnection conn = u.openConnection();
-//            int contentLength = conn.getContentLength();
-//
-//            if (isConnected(conn)) {
-//                DataInputStream stream = new DataInputStream(u.openStream());
-//                byte[] buffer = new byte[contentLength];
-//                stream.readFully(buffer);
-//                stream.close();
-//                File zipFile = new File(getApplicationContext().getCacheDir(), "/temp.zip");
-//                DataOutputStream fos = new DataOutputStream(new FileOutputStream(zipFile));
-//                fos.write(buffer);
-//                fos.flush();
-//                File audioFile = new File(getApplicationContext().getFilesDir(), destination);
-//                if (!audioFile.exists()) {
-//                    audioFile.mkdirs();
-//                }
-//                unzip(zipFile, getApplicationContext().getFilesDir().getPath()+"/"+destination);
-//                //zipFile.delete();
-//                fos.close();
-//            } else {
-//                Log.d(TAG,"Download fail");
-//                Result.failure();
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            Log.d(TAG,"Download fail "+e);
-//            return Result.failure();
-//        }
-//
-//        return null;
-//    }
-
     private void unzip(File zipFile, String destinationFolder) throws IOException {
         try (ZipInputStream zis = new ZipInputStream(new BufferedInputStream(new FileInputStream(zipFile)))) {
             ZipEntry ze;
             while ((ze = zis.getNextEntry()) != null) {
                 File file = new File(destinationFolder, ze.getName());
+                ensureZipPathSafety(file,destinationFolder);
+
                 if (ze.isDirectory()) {
                     file.mkdirs();
                 } else {
@@ -149,6 +112,16 @@ public class DownloadAndUnzipWorker extends Worker {
                 }
                 zis.closeEntry();
             }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void ensureZipPathSafety(final File outputFile, final String destDirectory) throws Exception {
+        String destDirCanonicalPath = (new File(destDirectory)).getCanonicalPath();
+        String outputFileCanonicalPath = outputFile.getCanonicalPath();
+        if (!outputFileCanonicalPath.startsWith(destDirCanonicalPath)) {
+            throw new Exception(String.format("Found Zip Path Traversal Vulnerability with %s", destDirectory));
         }
     }
 }

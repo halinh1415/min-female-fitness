@@ -26,7 +26,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,6 +42,7 @@ import com.google.android.ump.ConsentRequestParameters;
 import com.google.android.ump.UserMessagingPlatform;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.kaopiz.kprogresshud.KProgressHUD;
 
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
@@ -55,17 +61,56 @@ import java.util.Locale;
 public class SplashActivity extends AppCompatActivity {
 
     private static final String TAG = "SplashActivity";
+    private static final int TIME_OUT = 10;
     MyPreference myPreference;
     ImageView mSplash;
     private Handler mHandler = new Handler();
     LottieAnimationView lottieAnimationView;
     ConsentInformation consentInformation;
-
+    InterstitialAd mInterSplashHigh, mInterSplashMedium, mInterSplash;
+    FullScreenContentCallback fullScreenContentCallback;
+    boolean isShowingSplash = false;
+    int timeChecker = 5, interChecker = 0;
+    private final Handler handlerChecker = new Handler();
+    private boolean isFirstRunApp = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         myPreference = new MyPreference(this);
+        fullScreenContentCallback = new FullScreenContentCallback() {
+
+
+            @Override
+            public void onAdShowedFullScreenContent() {
+                super.onAdShowedFullScreenContent();
+                Log.d(TAG," showAds Inter Splash show!");
+
+                isShowingSplash = true;
+            }
+
+            @Override
+            public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                super.onAdFailedToShowFullScreenContent(adError);
+                Log.d(TAG," showAds Inter Splash fail to show");
+
+                // isShowingSplash = false;
+//                mInterSplashHigh = null;
+//                mInterSplashMedium = null;
+//                mInterSplash = null;
+            }
+
+            @Override
+            public void onAdDismissedFullScreenContent() {
+                super.onAdDismissedFullScreenContent();
+                Log.d(TAG," showAds Inter Splash dismiss");
+                //    isShowingSplash = false;
+                mInterSplashHigh = null;
+                mInterSplashMedium = null;
+                mInterSplash = null;
+                startMain();
+            }
+        };
         myPreference.setOK(true);
         myPreference.setShowRate(true);
         mSplash = findViewById(R.id.img_splash);
@@ -118,6 +163,21 @@ public class SplashActivity extends AppCompatActivity {
                 });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (isFirstRunApp){
+            isFirstRunApp = false;
+            return;
+        }
+        if (!isShowingSplash){
+            if (!isFinishing()){
+                checkShowInterSplash();
+            }
+
+        }
+    }
+
     private void startLoadAd() {
         if (myPreference.isShowAds() && myPreference.getOK())
             MobileAds.initialize(this, initializationStatus -> {
@@ -131,7 +191,9 @@ public class SplashActivity extends AppCompatActivity {
             loadInterStart();
         }
         if (myPreference.isShowAds() && !myPreference.isFirstOpen() && FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.INTER_SPLASH)) {
-            loadInterSplash();
+            loadInterSplash3SameTime();
+            checkShowInterSplash();
+
         }
         else{
             mHandler.postDelayed(() -> {
@@ -141,8 +203,141 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
-    private void loadInterSplash() {
+    private void loadInterSplash3SameTime() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        InterstitialAd.load(SplashActivity.this, MaticAdKeys.INTER_SPLASH_HIGH, adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                super.onAdLoaded(interstitialAd);
+                mInterSplashHigh = interstitialAd;
+                Log.d(TAG, "LoadAds mInterSplashHigh done");
+            }
 
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                Log.d(TAG, "LoadAds mInterSplashHigh fail " + loadAdError.getMessage());
+                interChecker++;
+            }
+        });
+        InterstitialAd.load(SplashActivity.this,  MaticAdKeys.INTER_SPLASH_MEDIUM, adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                super.onAdLoaded(interstitialAd);
+                mInterSplashMedium = interstitialAd;
+                Log.d(TAG, "LoadAds mInterSplashMedium done");
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                Log.d(TAG, "LoadAds mInterSplashMedium fail" + loadAdError.getMessage());
+                interChecker++;
+            }
+        });
+        InterstitialAd.load(SplashActivity.this,  MaticAdKeys.INTER_SPLASH, adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                super.onAdLoaded(interstitialAd);
+                mInterSplash = interstitialAd;
+                Log.d(TAG, "LoadAds mInterSplash done");
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                Log.d(TAG, "LoadAds mInterSplash fail" + loadAdError.getMessage());
+                interChecker++;
+            }
+        });
+    }
+    private boolean isSplashAvailable() {
+        if (isShowingSplash) return false;
+        return mInterSplashHigh != null || mInterSplashMedium != null || mInterSplash != null;
+    }
+    private void checkShowInterSplash() {
+
+        handlerChecker.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                timeChecker++;
+                Log.d(TAG, "check ShowAds schedule! at:" + timeChecker + " = " + isSplashAvailable());
+                if (isSplashAvailable()) {
+                    Log.d(TAG, "ShowAds Splash ads Success!");
+                    showInterSplash();
+
+                } else if (timeChecker < TIME_OUT && interChecker < 3) {
+                    handlerChecker.postDelayed(this, 1000);
+                } else {
+                    Log.d(TAG, "time limit check ads! time= " + timeChecker + " inter fail=" + interChecker);
+                    startMain();
+                }
+
+            }
+        }, 5000);
+
+    }
+    KProgressHUD hud;
+
+    void showDialog() {
+        try {
+            if (!(SplashActivity.this).isFinishing()) {
+                hud = KProgressHUD.create(SplashActivity.this)
+                        .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                        .setLabel("Loading ad...")
+                        .setCancellable(false)
+                        .setAnimationSpeed(1)
+                        .setDimAmount(0.5f)
+                        .show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    void hideDialog() {
+        try {
+            if (hud != null && hud.isShowing()) {
+                hud.dismiss();
+                hud = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    void showInterSplash() {
+        if (isSplashAvailable()) {
+            Log.d(TAG,"show splash inter ad in activity: ");
+            if (mInterSplashHigh != null) {
+                showDialog();
+                mInterSplashHigh.setFullScreenContentCallback(fullScreenContentCallback);
+                new Handler().postDelayed(() -> {
+                    hideDialog();
+                    mInterSplashHigh.show(SplashActivity.this);
+                }, 800);
+
+
+            } else if (mInterSplashMedium != null){
+                mInterSplashMedium.setFullScreenContentCallback(fullScreenContentCallback);
+                showDialog();
+                new Handler().postDelayed(() -> {
+                    hideDialog();
+                    mInterSplashMedium.show(SplashActivity.this);
+                }, 800);
+            }else if (mInterSplash != null) {
+                mInterSplash.setFullScreenContentCallback(fullScreenContentCallback);
+                showDialog();
+                new Handler().postDelayed(() -> {
+                    hideDialog();
+                    mInterSplash.show(SplashActivity.this);
+                }, 800);
+            } else {
+                startMain();
+            }
+
+        } else {
+            startMain();
+        }
     }
 
     private void requestTCM() {

@@ -253,4 +253,13 @@
     <string name="txt_download">下載</string>
     <string name="txt_retry">重試</string>
     <string name="txt_each_side">每一面</string>
+<string name="belly">腹部</string>
+    <string name="arm">手臂</string>
+    <string name="butt">屁股</string>
+    <string name="thigh">大腿</string>
+    <string name="focus_part">你的重點是什麼？</string>
+    <string name="full_body">全身</string>
+    <string name="txt_start_day">從當天開始</string>
+    <string name="txt_choose_day">選擇一天：</string>
+    <string name="txt_set_progress">設定進度</string>
 </resources>

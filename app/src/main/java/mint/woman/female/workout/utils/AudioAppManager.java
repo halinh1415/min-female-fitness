@@ -19,6 +19,7 @@ import java.util.Locale;
 public class AudioAppManager {
 
     private static final String TAG = "AudioAppManager";
+    private  final String support_language ="ar@de@en@es@fa@fr@in_ID@it@ja@ko@nl@pl@pt@ru@tr@zh_CN@zh_TW";
     private Context context;
     private List<String> audioResources;
     private MediaPlayer mediaPlayer;

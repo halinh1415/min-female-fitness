@@ -253,4 +253,13 @@
     <string name="txt_download">Ladata</string>
     <string name="txt_retry">Yritä uudelleen</string>
     <string name="txt_each_side">Molemmin puolin</string>
+<string name="belly">Vatsa</string>
+    <string name="arm">Arm</string>
+    <string name="butt">Butt</string>
+    <string name="thigh">Reisi</string>
+    <string name="focus_part">Mikä on painopisteesi?</string>
+    <string name="full_body">Kokovartalo</string>
+    <string name="txt_start_day">Aloita päivästä</string>
+    <string name="txt_choose_day">Valitse päivä:</string>
+    <string name="txt_set_progress">Aseta edistyminen</string>
 </resources>

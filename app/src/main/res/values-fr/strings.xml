@@ -253,4 +253,13 @@
     <string name="txt_download">Télécharger</string>
     <string name="txt_retry">Recommencez</string>
     <string name="txt_each_side">De chaque côté</string>
+    <string name="belly">Ventre</string>
+    <string name="arm">Bras</string>
+    <string name="butt">Bout</string>
+    <string name="thigh">Cuisse</string>
+    <string name="focus_part">Quelle est votre priorité ?</string>
+    <string name="full_body">Tout le corps</string>
+    <string name="txt_start_day">Commencer le jour</string>
+    <string name="txt_choose_day">Choisissez un jour :</string>
+    <string name="txt_set_progress">Définir la progression</string>
 </resources>

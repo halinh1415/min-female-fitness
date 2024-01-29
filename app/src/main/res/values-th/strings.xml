@@ -253,4 +253,13 @@
     <string name="txt_download">ดาวน์โหลด</string>
     <string name="txt_retry">ลองอีกครั้ง</string>
     <string name="txt_each_side">แต่ละด้าน</string>
+<string name="belly">ท้อง</string>
+    <string name="arm">แขน</string>
+    <string name="butt">ก้น</string>
+    <string name="thigh">ต้นขา</string>
+    <string name="focus_part">ส่วนโฟกัสของคุณคืออะไร?</string>
+    <string name="full_body">ตัวเต็ม</string>
+    <string name="txt_start_day">เริ่มต้นจากวัน</string>
+    <string name="txt_choose_day">เลือกวัน :</string>
+    <string name="txt_set_progress">กำหนดความคืบหน้า</string>
 </resources>

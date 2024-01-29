@@ -253,4 +253,13 @@
     <string name="txt_download">Descargar</string>
     <string name="txt_retry">Rever</string>
     <string name="txt_each_side">Cada lado</string>
+<string name="belly">Barriga</string>
+    <string name="arm">Brazo</string>
+    <string name="butt">Culata</string>
+    <string name="thigh">Hermético</string>
+    <string name="focus_part">¿Cuál es tu parte de enfoque?</string>
+    <string name="full_body">Cuerpo completo</string>
+    <string name="txt_start_day">empezar desde el día</string>
+    <string name="txt_choose_day">Elige un día:</string>
+    <string name="txt_set_progress">Establecer progreso</string>
 </resources>

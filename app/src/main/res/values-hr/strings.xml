@@ -253,4 +253,13 @@
     <string name="txt_download">Preuzimanje datoteka</string>
     <string name="txt_retry">Pokušaj ponovo</string>
     <string name="txt_each_side">Svaka strana</string>
+<string name="belly">Trbuh</string>
+    <string name="arm">Ruka</string>
+    <string name="butt">stražnjica</string>
+    <string name="thigh">Bedro</string>
+    <string name="focus_part">Koji je dio vašeg fokusa?</string>
+    <string name="full_body">Cijelo tijelo</string>
+    <string name="txt_start_day">Počni od dana</string>
+    <string name="txt_choose_day">Odaberite dan:</string>
+    <string name="txt_set_progress">Postavite napredak</string>
 </resources>

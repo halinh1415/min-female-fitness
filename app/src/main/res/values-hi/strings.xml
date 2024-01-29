@@ -253,4 +253,13 @@
     <string name="txt_download">डाउनलोड</string>
     <string name="txt_retry">पुन: प्रयास करें</string>
     <string name="txt_each_side">प्रत्येक तरफ</string>
+<string name="belly">पेट</string>
+    <string name="arm">हाथ</string>
+    <string name="butt">बट</string>
+    <string name="thigh">जाँघ</string>
+    <string name="focus_part">आपका फोकस भाग क्या है?</string>
+    <string name="full_body">पूरा शरीर</string>
+    <string name="txt_start_day">दिन से शुरू करें</string>
+    <string name="txt_choose_day">एक दिन चुनें:</string>
+    <string name="txt_set_progress">प्रगति निर्धारित करें</string>
 </resources>

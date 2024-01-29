@@ -253,4 +253,13 @@
     <string name="txt_download">İndirmek</string>
     <string name="txt_retry">Yeniden dene</string>
     <string name="txt_each_side">Her tarafı</string>
+<string name="belly">Karın</string>
+    <string name="arm">Kol</string>
+    <string name="butt">popo</string>
+    <string name="thigh">Uyluk</string>
+    <string name="focus_part">Odaklandığınız kısım nedir?</string>
+    <string name="full_body">Tüm vücut</string>
+    <string name="txt_start_day">Günden başla</string>
+    <string name="txt_choose_day">Bir gün seçin:</string>
+    <string name="txt_set_progress">İlerlemeyi ayarla</string>
 </resources>

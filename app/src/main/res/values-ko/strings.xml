@@ -253,4 +253,13 @@
     <string name="txt_download">다운로드</string>
     <string name="txt_retry">다시 해 보다</string>
     <string name="txt_each_side">양쪽</string>
+<string name="belly">배</string>
+    <string name="arm">팔</string>
+    <string name="butt">대상</string>
+    <string name="thigh">대퇴골</string>
+    <string name="focus_part">당신이 집중하는 부분은 무엇인가요?</string>
+    <string name="full_body">전신</string>
+    <string name="txt_start_day">하루부터 시작</string>
+    <string name="txt_choose_day">날짜를 선택하세요:</string>
+    <string name="txt_set_progress">진행 상황 설정</string>
 </resources>

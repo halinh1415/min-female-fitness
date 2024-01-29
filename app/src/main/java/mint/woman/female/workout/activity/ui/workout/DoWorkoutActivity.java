@@ -54,6 +54,7 @@ import butterknife.OnClick;
 public class DoWorkoutActivity extends AppCompatActivity implements RestFragment.OnRestFragmentInteractionListener, PlayFragment.OnReadyFragmentInteractionListener, DialogQuit.OnQuitListener {
     private final SimpleDateFormat mFormatDateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
     public static int discover = 0;
+    private  final String support_language ="ar@de@en@es@fa@fr@in_ID@it@ja@ko@nl@pl@pt@ru@tr@zh_CN@zh_TW";
     PlanObject mPlanObject;
     ProgramObject mProgramObject;
     Bundle mBundle;
@@ -429,7 +430,13 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                     mAudioAppManager.playText(getString(R.string.txt_half_time));
                 }
                 if (getActionObjectCurrent().time- timeLeft ==5){
-                    playTip();
+                    String lang = myPreference.getLanguage();
+                    if (lang.length()>2){
+                        lang = lang.substring(0,2);
+                    }
+                    if (support_language.contains(lang)){
+                        playTip();
+                    }
                 }
             }
 

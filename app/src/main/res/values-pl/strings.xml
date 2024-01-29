@@ -253,4 +253,13 @@
     <string name="txt_download">Pobierać</string>
     <string name="txt_retry">Spróbować ponownie</string>
     <string name="txt_each_side">Każda strona</string>
+<string name="belly">Brzuch</string>
+    <string name="arm">Ramię</string>
+    <string name="butt">Krupon</string>
+    <string name="thigh">Udo</string>
+    <string name="focus_part">Na czym się skupiasz?</string>
+    <string name="full_body">Całe ciało</string>
+    <string name="txt_start_day">Zacznij od dnia</string>
+    <string name="txt_choose_day">Wybierz dzień:</string>
+    <string name="txt_set_progress">Ustaw postęp</string>
 </resources>

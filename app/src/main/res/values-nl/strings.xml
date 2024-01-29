@@ -253,4 +253,13 @@
     <string name="txt_download">Downloaden</string>
     <string name="txt_retry">Opnieuw proberen</string>
     <string name="txt_each_side">Elke kant</string>
+<string name="belly">Buik</string>
+    <string name="arm">Arm</string>
+    <string name="butt">Kont</string>
+    <string name="thigh">Dij</string>
+    <string name="focus_part">Wat is jouw focusgedeelte?</string>
+    <string name="full_body">Volledige lichaam</string>
+    <string name="txt_start_day">Begin vanaf de dag</string>
+    <string name="txt_choose_day">Kies een dag:</string>
+    <string name="txt_set_progress">Voortgang instellen</string>
 </resources>

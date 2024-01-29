@@ -253,4 +253,13 @@
     <string name="txt_download">Nedlasting</string>
     <string name="txt_retry">Prøv på nytt</string>
     <string name="txt_each_side">Hver side</string>
+<string name="belly">Mage</string>
+    <string name="arm">Væpne</string>
+    <string name="butt">Rumpe</string>
+    <string name="thigh">Lår</string>
+    <string name="focus_part">Hva er fokusdelen din?</string>
+    <string name="full_body">Full kropp</string>
+    <string name="txt_start_day">Start fra dagen</string>
+    <string name="txt_choose_day">Velg en dag:</string>
+    <string name="txt_set_progress">Angi fremdrift</string>
 </resources>

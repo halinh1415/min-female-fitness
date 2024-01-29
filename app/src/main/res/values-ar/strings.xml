@@ -253,4 +253,13 @@
     <string name="txt_download">تحميل</string>
     <string name="txt_retry">أعد المحاولة</string>
     <string name="txt_each_side">كل جانب</string>
+<string name="belly">بطن</string>
+    <string name="arm">ذراع</string>
+    <string name="butt">بعقب</string>
+    <string name="thigh">فخذ</string>
+    <string name="focus_part">ما هو الجزء الذي تركز عليه؟</string>
+    <string name="full_body">جسم كامل</string>
+    <string name="txt_start_day">تبدأ من اليوم</string>
+    <string name="txt_choose_day">اختر يومًا:</string>
+    <string name="txt_set_progress">ضبط التقدم</string>
 </resources>

@@ -2,15 +2,23 @@
 <defaults>
   <entry>
     <key>inter_splash</key>
-    <value>true</value>
+    <value>false</value>
   </entry>
   <entry>
     <key>native_onboard</key>
-    <value>true</value>
+    <value>false</value>
   </entry>
   <entry>
     <key>native_setup</key>
-    <value>true</value>
+    <value>false</value>
+  </entry>
+  <entry>
+    <key>inter_start</key>
+    <value>false</value>
+  </entry>
+  <entry>
+    <key>native_language</key>
+    <value>false</value>
   </entry>
   <entry>
     <key>banner</key>
@@ -18,14 +26,6 @@
   </entry>
   <entry>
     <key>inter_first_open</key>
-    <value>true</value>
-  </entry>
-  <entry>
-    <key>inter_start</key>
-    <value>true</value>
-  </entry>
-  <entry>
-    <key>native_language</key>
     <value>true</value>
   </entry>
   <entry>

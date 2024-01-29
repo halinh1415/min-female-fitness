@@ -253,4 +253,13 @@
     <string name="txt_download">دانلود</string>
     <string name="txt_retry">دوباره امتحان کنید</string>
     <string name="txt_each_side">هر طرف</string>
+<string name="belly">شکم</string>
+    <string name="arm">بازو</string>
+    <string name="butt">لب به لب</string>
+    <string name="thigh">ران</string>
+    <string name="focus_part">بخش تمرکز شما چیست؟</string>
+    <string name="full_body">تمام قد</string>
+    <string name="txt_start_day">از روز شروع کن</string>
+    <string name="txt_choose_day">یک روز را انتخاب کنید:</string>
+    <string name="txt_set_progress">پیشرفت را تنظیم کنید</string>
 </resources>

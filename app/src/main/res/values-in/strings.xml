@@ -166,7 +166,7 @@
     <string name="txt_add_program">+tambahkan program</string>
     <string name="txt_go_to">Pergi!</string>
     <string name="txt_alert_remove_plan">Apakah anda ingin keluar dari program ini?</string>
-    <string name="txt_touch_to_pause">Jeda</string>
+    <string name="txt_touch_to_pause">Berhenti sebentar</string>
     <string name="txt_previous">Sebelumnya</string>
     <string name="txt_no_my_workout">Klik tombol ini untuk menambahkan program</string>
     <string name="txt_too_easy">Terlalu mudah</string>
@@ -253,4 +253,13 @@
     <string name="txt_download">Unduh</string>
     <string name="txt_retry">Mencoba kembali</string>
     <string name="txt_each_side">Setiap sisi</string>
+<string name="belly">Perut</string>
+    <string name="arm">Lengan</string>
+    <string name="butt">Pantat</string>
+    <string name="thigh">Paha</string>
+    <string name="focus_part">Apa bagian fokus Anda?</string>
+    <string name="full_body">Seluruh tubuh</string>
+    <string name="txt_start_day">Mulai dari hari</string>
+    <string name="txt_choose_day">Pilih hari:</string>
+    <string name="txt_set_progress">Tetapkan kemajuan</string>
 </resources>

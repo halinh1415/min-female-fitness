@@ -253,4 +253,13 @@
     <string name="txt_download">Descarregar</string>
     <string name="txt_retry">Torna-ho a provar</string>
     <string name="txt_each_side">Cada costat</string>
+<string name="belly">Panxa</string>
+    <string name="arm">Braç</string>
+    <string name="butt">cul</string>
+    <string name="thigh">Cuixa</string>
+    <string name="focus_part">Quina és la teva part d\'enfocament?</string>
+    <string name="full_body">Cos sencer</string>
+    <string name="txt_start_day">Comença des del dia</string>
+    <string name="txt_choose_day">Tria un dia:</string>
+    <string name="txt_set_progress">Estableix el progrés</string>
 </resources>

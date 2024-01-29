@@ -200,8 +200,10 @@ public class ChallengeActivity extends AppCompatActivity implements IDayClickLis
         getMenuInflater().inflate(R.menu.menu_week, menu);
         if (BuildConfig.DEBUG) {
             menu.findItem(R.id.action_edit).setVisible(true);
+            menu.findItem(R.id.action_set_progress).setVisible(true);
         } else {
             menu.findItem(R.id.action_edit).setVisible(false);
+            menu.findItem(R.id.action_set_progress).setVisible(true);
         }
         return true;
     }
