@@ -13,6 +13,9 @@ public class MaticAdKeys {
     public static final String INTER_START_HIGH = "ca-app-pub-9959217683006097/6770982355";
     public static final String INTER_START_MEDIUM = "ca-app-pub-9959217683006097/8623066174" ;
     public static final String INTER_START = "ca-app-pub-9959217683006097/5996902832" ;
+    public static final String INTER_SPLASH_HIGH = "ca-app-pub-9959217683006097/2887577667";
+    public static final String INTER_SPLASH_MEDIUM = "ca-app-pub-9959217683006097/9553004467" ;
+    public static final String INTER_SPLASH = "ca-app-pub-9959217683006097/9014002312" ;
     public static final String INTER_FIRST_OPEN_HIGH = "ca-app-pub-9959217683006097/4683821166" ;
     public static final String INTER_FIRST_OPEN_MEDIUM = "ca-app-pub-9959217683006097/6218913047" ;
     public static final String INTER_FIRST_OPEN= "ca-app-pub-9959217683006097/2395218106" ;
