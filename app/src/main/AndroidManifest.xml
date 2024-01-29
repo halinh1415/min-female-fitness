@@ -32,7 +32,6 @@
         <activity
             android:name=".activity.ui.workout.ChallengeActivity"
             android:exported="false"
-            android:label="@string/title_activity_challenge"
             android:parentActivityName=".activity.ui.main.YogaActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
