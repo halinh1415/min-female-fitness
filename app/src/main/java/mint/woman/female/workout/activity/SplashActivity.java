@@ -73,6 +73,7 @@ public class SplashActivity extends AppCompatActivity {
     int timeChecker = 5, interChecker = 0;
     private final Handler handlerChecker = new Handler();
     private boolean isFirstRunApp = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +85,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onAdShowedFullScreenContent() {
                 super.onAdShowedFullScreenContent();
-                Log.d(TAG," showAds Inter Splash show!");
+                Log.d(TAG, " showAds Inter Splash show!");
 
                 isShowingSplash = true;
             }
@@ -92,7 +93,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                 super.onAdFailedToShowFullScreenContent(adError);
-                Log.d(TAG," showAds Inter Splash fail to show");
+                Log.d(TAG, " showAds Inter Splash fail to show");
 
                 // isShowingSplash = false;
 //                mInterSplashHigh = null;
@@ -103,7 +104,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onAdDismissedFullScreenContent() {
                 super.onAdDismissedFullScreenContent();
-                Log.d(TAG," showAds Inter Splash dismiss");
+                Log.d(TAG, " showAds Inter Splash dismiss");
                 //    isShowingSplash = false;
                 mInterSplashHigh = null;
                 mInterSplashMedium = null;
@@ -133,9 +134,9 @@ public class SplashActivity extends AppCompatActivity {
 //        anim.setDuration(2000);
 //        mSplash.startAnimation(anim);
 
-        if (NetworkUtil.isOnline()){
+        if (NetworkUtil.isOnline()) {
             requestTCM();
-        }else{
+        } else {
             startLoadAd();
         }
     }
@@ -166,12 +167,12 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (isFirstRunApp){
+        if (isFirstRunApp) {
             isFirstRunApp = false;
             return;
         }
-        if (!isShowingSplash){
-            if (!isFinishing()){
+        if (!isShowingSplash) {
+            if (!isFinishing()) {
                 checkShowInterSplash();
             }
 
@@ -194,8 +195,7 @@ public class SplashActivity extends AppCompatActivity {
             loadInterSplash3SameTime();
             checkShowInterSplash();
 
-        }
-        else{
+        } else {
             mHandler.postDelayed(() -> {
                 startMain();
 
@@ -220,7 +220,7 @@ public class SplashActivity extends AppCompatActivity {
                 interChecker++;
             }
         });
-        InterstitialAd.load(SplashActivity.this,  MaticAdKeys.INTER_SPLASH_MEDIUM, adRequest, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(SplashActivity.this, MaticAdKeys.INTER_SPLASH_MEDIUM, adRequest, new InterstitialAdLoadCallback() {
             @Override
             public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                 super.onAdLoaded(interstitialAd);
@@ -235,7 +235,7 @@ public class SplashActivity extends AppCompatActivity {
                 interChecker++;
             }
         });
-        InterstitialAd.load(SplashActivity.this,  MaticAdKeys.INTER_SPLASH, adRequest, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(SplashActivity.this, MaticAdKeys.INTER_SPLASH, adRequest, new InterstitialAdLoadCallback() {
             @Override
             public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                 super.onAdLoaded(interstitialAd);
@@ -251,10 +251,12 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
     }
+
     private boolean isSplashAvailable() {
         if (isShowingSplash) return false;
         return mInterSplashHigh != null || mInterSplashMedium != null || mInterSplash != null;
     }
+
     private void checkShowInterSplash() {
 
         handlerChecker.postDelayed(new Runnable() {
@@ -277,6 +279,7 @@ public class SplashActivity extends AppCompatActivity {
         }, 5000);
 
     }
+
     KProgressHUD hud;
 
     void showDialog() {
@@ -294,6 +297,7 @@ public class SplashActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
     void hideDialog() {
         try {
             if (hud != null && hud.isShowing()) {
@@ -305,9 +309,10 @@ public class SplashActivity extends AppCompatActivity {
         }
 
     }
+
     void showInterSplash() {
         if (isSplashAvailable()) {
-            Log.d(TAG,"show splash inter ad in activity: ");
+            Log.d(TAG, "show splash inter ad in activity: ");
             if (mInterSplashHigh != null) {
                 showDialog();
                 mInterSplashHigh.setFullScreenContentCallback(fullScreenContentCallback);
@@ -317,14 +322,14 @@ public class SplashActivity extends AppCompatActivity {
                 }, 800);
 
 
-            } else if (mInterSplashMedium != null){
+            } else if (mInterSplashMedium != null) {
                 mInterSplashMedium.setFullScreenContentCallback(fullScreenContentCallback);
                 showDialog();
                 new Handler().postDelayed(() -> {
                     hideDialog();
                     mInterSplashMedium.show(SplashActivity.this);
                 }, 800);
-            }else if (mInterSplash != null) {
+            } else if (mInterSplash != null) {
                 mInterSplash.setFullScreenContentCallback(fullScreenContentCallback);
                 showDialog();
                 new Handler().postDelayed(() -> {

@@ -53,7 +53,7 @@
     <string name="txt_please_finish_workout">Hãy hoàn thành bài tập trước đó trước!</string>
     <string name="txt_day">Ngày</string>
     <string name="txt_days">Ngày</string>
-    <string name="txt_skip">Nhảy</string>
+    <string name="txt_skip">Bỏ qua</string>
     <string name="txt_take_a_break">Nghỉ ngơi</string>
     <string name="txt_press_tired">Nhấn tạm dừng nếu bạn cảm thấy mệt mỏi</string>
     <string name="txt_do_you_quit">Bạn có muốn kết thúc?</string>
@@ -140,8 +140,8 @@
     <string name="txt_saved_money">Đã lưu</string>
     <string name="txt_all_exercise">Tất cả các bài tập</string>
     <string name="txt_x2_workout">Tập luyện x2</string>
-    <string name="txt_dark">Tối tăm</string>
-    <string name="txt_light">Ánh sáng</string>
+    <string name="txt_dark">Tối</string>
+    <string name="txt_light">Sáng</string>
     <string name="txt_default">Mặc định hệ thống</string>
     <string name="txt_theme">Chủ đề</string>
     <string name="txt_menu_home">Trang chủ</string>
@@ -249,7 +249,7 @@
     <string name="txt_challenge_7x4">Thử thách 7x4</string>
     <string name="txt_replace">Thay thế</string>
     <string name="txt_replace_with">Thay bằng</string>
-    <string name="text_current">Hiện hành</string>
+    <string name="text_current">Hiện tại</string>
     <string name="txt_download">Tải xuống</string>
     <string name="txt_retry">Thử lại</string>
     <string name="txt_each_side">Mỗi bên</string>

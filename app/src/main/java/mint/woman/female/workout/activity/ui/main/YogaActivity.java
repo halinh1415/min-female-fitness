@@ -59,9 +59,6 @@ import mint.woman.female.workout.receiver.AlarmReceiver;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
-
 import java.util.Locale;
 
 

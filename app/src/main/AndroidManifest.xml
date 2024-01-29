@@ -42,14 +42,17 @@
         <activity
             android:name=".activity.ui.firstsetup.FirstSetupActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullScreen" />
         <activity
             android:name=".activity.ui.boarding.BoardingActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullScreen" />
         <activity
             android:name=".activity.ui.language.LanguageActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullScreen" />
         <activity
             android:name=".activity.ui.weekgoal.SetGoalActivity"
