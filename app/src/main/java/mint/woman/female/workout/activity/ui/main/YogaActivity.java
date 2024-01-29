@@ -39,6 +39,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.fitness.FitnessOptions;
 import com.google.android.gms.fitness.data.DataType;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.ump.ConsentDebugSettings;
+import com.google.android.ump.ConsentForm;
+import com.google.android.ump.ConsentInformation;
+import com.google.android.ump.ConsentRequestParameters;
+import com.google.android.ump.UserMessagingPlatform;
+
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
 import mint.woman.female.workout.activity.ui.workout.ChallengeActivity;
@@ -61,6 +67,7 @@ import java.util.Locale;
 
 public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHomeFragmentInteractionListener, SettingFragment.OnSettingsListener {
 
+    private static final String TAG = "YogaActivity";
     public static boolean isFirst = true;
     public final static int RC_SIGN_IN = 1201;
     public final static int RC_ACCESS_FITNESS = 1211;
@@ -68,6 +75,7 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
     ProgramObject mCurrentCategory;
     private MyPreference myPreference;
     int flagAds;
+    ConsentInformation consentInformation;
 
     TextToSpeech tts;
 
@@ -88,6 +96,7 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
         NavigationUI.setupWithNavController(navView, navController);
         initView();
 
+        requestTCM();
 
 
     }
@@ -116,23 +125,68 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
                 return;
             }
         }
-        if (myPreference.isRemind()){
+        if (myPreference.isRemind()) {
             createDailyNotify();
         }
         //checkAccount();
     }
+
+    private void requestTCM() {
+        ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this)
+                .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
+                .addTestDeviceHashedId("0EAD9B8D367671ED9B8FF80FFEF0C46A")
+                .build();
+
+        ConsentRequestParameters params = new ConsentRequestParameters
+                .Builder()
+
+                .setConsentDebugSettings(debugSettings)
+                .setTagForUnderAgeOfConsent(false)
+                .build();
+
+        consentInformation = UserMessagingPlatform.getConsentInformation(this);
+        //  consentInformation.reset();
+        consentInformation.requestConsentInfoUpdate(
+                this,
+                params,
+                (ConsentInformation.OnConsentInfoUpdateSuccessListener) () -> {
+                    UserMessagingPlatform.loadAndShowConsentFormIfRequired(
+                            this,
+                            (ConsentForm.OnConsentFormDismissedListener) loadAndShowError -> {
+                                if (loadAndShowError != null) {
+                                    // Consent gathering failed.
+                                    Log.w(TAG, String.format("%s: %s",
+                                            loadAndShowError.getErrorCode(),
+                                            loadAndShowError.getMessage()));
+                                }
+
+                                //  startLoadAd();
+                            }
+                    );
+
+                },
+                (ConsentInformation.OnConsentInfoUpdateFailureListener) requestConsentError -> {
+                    // Consent gathering failed.
+                    Log.w(TAG, "consent XXX " + String.format("%s: %s",
+                            requestConsentError.getErrorCode(),
+                            requestConsentError.getMessage()));
+                });
+
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 101){
+        if (requestCode == 101) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 AlarmReceiver.createNotificationChannels(YogaActivity.this);
-                AlarmReceiver.scheduleLockscreenWidget(YogaActivity.this,myPreference.getTimeRemindDaily());
+                AlarmReceiver.scheduleLockscreenWidget(YogaActivity.this, myPreference.getTimeRemindDaily());
             }
         }
 
     }
-    void createDailyNotify(){
+
+    void createDailyNotify() {
         if (Build.VERSION.SDK_INT >= 33) {
             if (ContextCompat.checkSelfPermission(YogaActivity.this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(YogaActivity.this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
@@ -141,7 +195,7 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
         }
         myPreference.setRemind(false);
         AlarmReceiver.createNotificationChannels(YogaActivity.this);
-        AlarmReceiver.scheduleLockscreenWidget(YogaActivity.this,myPreference.getTimeRemindDaily());
+        AlarmReceiver.scheduleLockscreenWidget(YogaActivity.this, myPreference.getTimeRemindDaily());
     }
 
 
@@ -168,7 +222,6 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
         }
         super.applyOverrideConfiguration(overrideConfiguration);
     }
-
 
 
     @Override

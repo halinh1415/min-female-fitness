@@ -46,6 +46,7 @@ import mint.woman.female.workout.admodule.MaticAdCallBack;
 import mint.woman.female.workout.admodule.MaticAdKeys;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
+import mint.woman.female.workout.utils.NetworkUtil;
 
 import java.util.Locale;
 
@@ -85,7 +86,11 @@ public class SplashActivity extends AppCompatActivity {
 //        anim.setDuration(2000);
 //        mSplash.startAnimation(anim);
 
-        startLoadAd();
+        if (NetworkUtil.isOnline()){
+            requestTCM();
+        }else{
+            startLoadAd();
+        }
     }
 
     void updateRemoteConfig() {

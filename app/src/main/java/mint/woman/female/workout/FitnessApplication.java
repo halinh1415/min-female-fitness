@@ -13,6 +13,7 @@ import mint.woman.female.workout.utils.Database;
 import mint.woman.female.workout.utils.JsonHelper;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
+import mint.woman.female.workout.utils.NetworkUtil;
 import mint.woman.female.workout.utils.StorageCommon;
 
 import java.util.Locale;
@@ -44,6 +45,7 @@ public class FitnessApplication extends Application {
         super.onCreate();
         sInstance = this;
         context = this;
+        NetworkUtil.initNetwork(this);
         FirebaseApp.initializeApp(this);
         storageCommon = new StorageCommon();
         mGSon = new Gson();
