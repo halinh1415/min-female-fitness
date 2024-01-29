@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <defaults>
   <entry>
-    <key>native_language</key>
+    <key>inter_splash</key>
     <value>true</value>
   </entry>
   <entry>
@@ -13,6 +13,10 @@
     <value>true</value>
   </entry>
   <entry>
+    <key>banner</key>
+    <value>true</value>
+  </entry>
+  <entry>
     <key>inter_first_open</key>
     <value>true</value>
   </entry>
@@ -21,7 +25,11 @@
     <value>true</value>
   </entry>
   <entry>
-    <key>banner</key>
+    <key>native_language</key>
     <value>true</value>
+  </entry>
+  <entry>
+    <key>app_open_resume</key>
+    <value>false</value>
   </entry>
 </defaults>

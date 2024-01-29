@@ -26,6 +26,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -47,6 +48,7 @@ import mint.woman.female.workout.admodule.MaticAdKeys;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 import mint.woman.female.workout.utils.NetworkUtil;
+import mint.woman.female.workout.utils.RemoteConfigKeys;
 
 import java.util.Locale;
 
@@ -117,16 +119,30 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void startLoadAd() {
-        mHandler.postDelayed(() -> {
-            startMain();
+        if (myPreference.isShowAds() && myPreference.getOK())
+            MobileAds.initialize(this, initializationStatus -> {
 
-        }, 5000);
+            });
+
         if (myPreference.isShowAds() && myPreference.isFirstOpen()) {
             requestNativeLanguage();
             requestNativeOnBoard();
             requestNativeSetup();
             loadInterStart();
         }
+        if (myPreference.isShowAds() && !myPreference.isFirstOpen() && FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.INTER_SPLASH)) {
+            loadInterSplash();
+        }
+        else{
+            mHandler.postDelayed(() -> {
+                startMain();
+
+            }, 5000);
+        }
+    }
+
+    private void loadInterSplash() {
+
     }
 
     private void requestTCM() {

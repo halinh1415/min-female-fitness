@@ -111,13 +111,7 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
             isFirst = false;
 
         }
-        if (myPreference.isShowAds() && myPreference.getOK())
-            MobileAds.initialize(this, new OnInitializationCompleteListener() {
-                @Override
-                public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
 
-                }
-            });
 
         if (Build.VERSION.SDK_INT >= 33) {
             if (ContextCompat.checkSelfPermission(YogaActivity.this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
