@@ -3,6 +3,7 @@ package mint.woman.female.workout.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -20,7 +21,7 @@ public class ExerciseObject {
     private String videoUrl;
     @SerializedName("introduce")
     private String introduce;
-    @SerializedName("imagePath")
+//    @SerializedName("imagePath")
     private String imagePath;
     @SerializedName("name")
     private String name;
@@ -51,7 +52,7 @@ public class ExerciseObject {
     @SerializedName("qicai")
     private List<String> qicai;
   //  @SerializedName("customfields")
-  @SerializedName("xxx")
+//  @SerializedName("xxx")
     private String customfields;
     @SerializedName("tips")
     private List<Tip> tips;
@@ -60,13 +61,13 @@ public class ExerciseObject {
     private List<Integer> groupactions;
     @SerializedName("playspeeds")
     private PlaySpeeds playspeeds;
-    @SerializedName("imgs")
+//    @SerializedName("imgs")
     private List<String> imgs;
-    @SerializedName("wmimgs")
+//    @SerializedName("wmimgs")
     private List<String> wmimgs;
-    @SerializedName("mankaluli")
+//    @SerializedName("mankaluli")
     private float mankaluli;
-    @SerializedName("womankaluli")
+//    @SerializedName("womankaluli")
     private float womankaluli;
 
 
@@ -286,4 +287,21 @@ public class ExerciseObject {
     public void setGroupactions(List<Integer> groupactions) {
         this.groupactions = groupactions;
     }
+//    public String toTitleCase() {
+//        final String ACTIONABLE_DELIMITERS = " '-/"; // these cause the character following
+//        // to be capitalized
+//
+//        StringBuilder sb = new StringBuilder();
+//        boolean capNext = true;
+//
+//        for (char c : name.toCharArray()) {
+//            c = (capNext)
+//                    ? Character.toUpperCase(c)
+//                    : Character.toLowerCase(c);
+//            sb.append(c);
+//            capNext = (ACTIONABLE_DELIMITERS.indexOf((int) c) >= 0); // explicit cast not needed
+//        }
+//        Log.d("HAHA",sb.toString());
+//        return sb.toString();
+//    }
 }

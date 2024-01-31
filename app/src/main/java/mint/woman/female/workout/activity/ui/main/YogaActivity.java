@@ -125,7 +125,6 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
     private void requestTCM() {
         ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this)
                 .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
-                .addTestDeviceHashedId("0EAD9B8D367671ED9B8FF80FFEF0C46A")
                 .build();
 
         ConsentRequestParameters params = new ConsentRequestParameters

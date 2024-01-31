@@ -473,7 +473,23 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         mProgressLineView.setProgress(currentExerciseCount + progress);
     }
 
+    String toTitleCase(String input) {
+        StringBuilder titleCase = new StringBuilder(input.length());
+        boolean nextTitleCase = true;
 
+        for (char c : input.toCharArray()) {
+            if (Character.isSpaceChar(c)) {
+                nextTitleCase = true;
+            } else if (nextTitleCase) {
+                c = Character.toTitleCase(c);
+                nextTitleCase = false;
+            }
+
+            titleCase.append(c);
+        }
+
+        return titleCase.toString();
+    }
     @Override
     public void onFinishReady() {
 
@@ -507,11 +523,12 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                 if (!getActionObjectCurrent().unit.isEmpty()){
                     mAudioAppManager.playText(getString(R.string.txt_seconds));
                 }
+
+                mAudioAppManager.playText(getExerciseObjectCurrent().getName());
                 if (getExerciseObjectCurrent().getAlternation()&& getActionObjectCurrent().unit.isEmpty()){
                     mAudioAppManager.playText(""+getActionObjectCurrent().time/2);
                     mAudioAppManager.playText(getString(R.string.txt_each_side));
                 }
-                mAudioAppManager.playText(getExerciseObjectCurrent().getName());
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance( mPlanObject.mActionList.get(currentExerciseCount), rest, progress), "Rest").commitAllowingStateLoss();
         } else {

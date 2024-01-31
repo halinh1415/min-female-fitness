@@ -134,11 +134,7 @@ public class SplashActivity extends AppCompatActivity {
 //        anim.setDuration(2000);
 //        mSplash.startAnimation(anim);
 
-        if (NetworkUtil.isOnline()) {
-            requestTCM();
-        } else {
-            startLoadAd();
-        }
+        startLoadAd();
     }
 
     void updateRemoteConfig() {
@@ -173,6 +169,7 @@ public class SplashActivity extends AppCompatActivity {
         }
         if (!isShowingSplash) {
             if (!isFinishing()) {
+                Log.d(TAG,"start from onResume");
                 checkShowInterSplash();
             }
 
@@ -197,6 +194,7 @@ public class SplashActivity extends AppCompatActivity {
 
         } else {
             mHandler.postDelayed(() -> {
+                Log.d(TAG,"start from handler start load Ad");
                 startMain();
 
             }, 5000);
@@ -271,6 +269,7 @@ public class SplashActivity extends AppCompatActivity {
                 } else if (timeChecker < TIME_OUT && interChecker < 3) {
                     handlerChecker.postDelayed(this, 1000);
                 } else {
+                    Log.d(TAG,"start from checkShowInterSplash");
                     Log.d(TAG, "time limit check ads! time= " + timeChecker + " inter fail=" + interChecker);
                     startMain();
                 }
@@ -348,7 +347,6 @@ public class SplashActivity extends AppCompatActivity {
     private void requestTCM() {
         ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this)
                 .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
-                .addTestDeviceHashedId("0EAD9B8D367671ED9B8FF80FFEF0C46A")
                 .build();
 
         ConsentRequestParameters params = new ConsentRequestParameters
