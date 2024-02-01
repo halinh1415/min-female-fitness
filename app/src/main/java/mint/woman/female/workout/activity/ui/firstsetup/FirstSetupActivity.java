@@ -152,7 +152,7 @@ public class FirstSetupActivity extends AppCompatActivity {
     }
 
     private void finishSetup() {
-        if (MaticAd.getInstance().isAvailableInter()){
+        if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.INTER_FIRST_OPEN) &&MaticAd.getInstance().isAvailableInter()){
             MaticAd.getInstance().showPriorityInterstitialAd(FirstSetupActivity.this,new MaticAdCallBack(){
                 @Override
                 public void onNextAction() {

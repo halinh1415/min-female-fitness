@@ -134,7 +134,7 @@ public class SplashActivity extends AppCompatActivity {
 //        anim.setDuration(2000);
 //        mSplash.startAnimation(anim);
 
-        startLoadAd();
+       startLoadAd();
     }
 
     void updateRemoteConfig() {
@@ -169,7 +169,6 @@ public class SplashActivity extends AppCompatActivity {
         }
         if (!isShowingSplash) {
             if (!isFinishing()) {
-                Log.d(TAG,"start from onResume");
                 checkShowInterSplash();
             }
 
@@ -194,7 +193,6 @@ public class SplashActivity extends AppCompatActivity {
 
         } else {
             mHandler.postDelayed(() -> {
-                Log.d(TAG,"start from handler start load Ad");
                 startMain();
 
             }, 5000);
@@ -208,13 +206,11 @@ public class SplashActivity extends AppCompatActivity {
             public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                 super.onAdLoaded(interstitialAd);
                 mInterSplashHigh = interstitialAd;
-                Log.d(TAG, "LoadAds mInterSplashHigh done");
             }
 
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
-                Log.d(TAG, "LoadAds mInterSplashHigh fail " + loadAdError.getMessage());
                 interChecker++;
             }
         });
@@ -223,13 +219,11 @@ public class SplashActivity extends AppCompatActivity {
             public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                 super.onAdLoaded(interstitialAd);
                 mInterSplashMedium = interstitialAd;
-                Log.d(TAG, "LoadAds mInterSplashMedium done");
             }
 
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
-                Log.d(TAG, "LoadAds mInterSplashMedium fail" + loadAdError.getMessage());
                 interChecker++;
             }
         });
@@ -238,13 +232,11 @@ public class SplashActivity extends AppCompatActivity {
             public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                 super.onAdLoaded(interstitialAd);
                 mInterSplash = interstitialAd;
-                Log.d(TAG, "LoadAds mInterSplash done");
             }
 
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
-                Log.d(TAG, "LoadAds mInterSplash fail" + loadAdError.getMessage());
                 interChecker++;
             }
         });
@@ -261,16 +253,12 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 timeChecker++;
-                Log.d(TAG, "check ShowAds schedule! at:" + timeChecker + " = " + isSplashAvailable());
                 if (isSplashAvailable()) {
-                    Log.d(TAG, "ShowAds Splash ads Success!");
                     showInterSplash();
 
                 } else if (timeChecker < TIME_OUT && interChecker < 3) {
                     handlerChecker.postDelayed(this, 1000);
                 } else {
-                    Log.d(TAG,"start from checkShowInterSplash");
-                    Log.d(TAG, "time limit check ads! time= " + timeChecker + " inter fail=" + interChecker);
                     startMain();
                 }
 
@@ -311,7 +299,6 @@ public class SplashActivity extends AppCompatActivity {
 
     void showInterSplash() {
         if (isSplashAvailable()) {
-            Log.d(TAG, "show splash inter ad in activity: ");
             if (mInterSplashHigh != null) {
                 showDialog();
                 mInterSplashHigh.setFullScreenContentCallback(fullScreenContentCallback);
@@ -379,9 +366,10 @@ public class SplashActivity extends AppCompatActivity {
                 },
                 (ConsentInformation.OnConsentInfoUpdateFailureListener) requestConsentError -> {
                     // Consent gathering failed.
-                    Log.w(TAG, "consent XXX " + String.format("%s: %s",
+                    Log.w(TAG, "consent requestConsentError " + String.format("%s: %s",
                             requestConsentError.getErrorCode(),
                             requestConsentError.getMessage()));
+                    startLoadAd();
                 });
 
     }
@@ -408,7 +396,6 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onNativeAdLoaded(@NonNull NativeAd nativeAd) {
                 super.onNativeAdLoaded(nativeAd);
-                Log.d("HAHA", "loadAds nativeLanguage onNativeAdLoaded");
                 FitnessApplication.getApplication().getStorageCommon().nativeAdLanguage.postValue(nativeAd);
             }
 
@@ -427,7 +414,6 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onNativeAdLoaded(@NonNull NativeAd nativeAd) {
                 super.onNativeAdLoaded(nativeAd);
-                Log.d("HAHA", "nativeOnBoard1 onNativeAdLoaded");
                 FitnessApplication.getApplication().getStorageCommon().nativeAdOnBoard.postValue(nativeAd);
             }
 
