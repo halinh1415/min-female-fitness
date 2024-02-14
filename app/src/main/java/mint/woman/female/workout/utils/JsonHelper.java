@@ -5,6 +5,7 @@ import android.content.res.AssetManager;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.model.DietObject;
 import mint.woman.female.workout.model.ExerciseObject;
@@ -116,7 +117,12 @@ public class JsonHelper {
 
     public String getLocaleApp() {
         String[] loc = myPreference.getLanguage().split("_");
-        Locale locale = new Locale(loc[0], loc[1]);
+        Locale locale;
+        if (loc.length > 1) {
+            locale = new Locale(loc[0], loc[1]);
+        } else {
+            locale = new Locale(loc[0]);
+        }
         if (locale.getLanguage().contains("zh") || locale.getLanguage().contains("in")) {
             return locale.getLanguage() + "_" + locale.getCountry();
         }
@@ -158,7 +164,7 @@ public class JsonHelper {
         if (discover == 0) {
             baseUrl = "i/language/";
         } else {
-            baseUrl = mContext.getFilesDir().getPath()+"/discover/" + discover + "/language/";
+            baseUrl = mContext.getFilesDir().getPath() + "/discover/" + discover + "/language/";
         }
         fileName = baseUrl + langCode;
         String jsonString = "";
@@ -274,13 +280,13 @@ public class JsonHelper {
             if (baseUrl.contains("custom_plan_")) {
                 jsonArray = new JSONArray(readFileFromData(fileName));
             } else if (discover == 0) {
-                if (!existsData(mContext.getFilesDir().getPath()+"/" + baseUrl) || myPreference.getVersionPlan(fileName) < VERSION_DAY_PLAN) {
+                if (!existsData(mContext.getFilesDir().getPath() + "/" + baseUrl) || myPreference.getVersionPlan(fileName) < VERSION_DAY_PLAN) {
 
                     byte[] decode = VideoEncryptor.decryptGif(mContext.getAssets(), baseUrl, "DesignMinFitness");
                     jsonArray = new JSONArray(new String(decode, StandardCharsets.UTF_8));
 
                 } else {
-                    byte[] decode = VideoEncryptor.decryptInput(mContext.getFilesDir() +"/"+ baseUrl, "DesignMinFitness");
+                    byte[] decode = VideoEncryptor.decryptInput(mContext.getFilesDir() + "/" + baseUrl, "DesignMinFitness");
                     jsonArray = new JSONArray(new String(decode, StandardCharsets.UTF_8));
                 }
             } else {
@@ -310,7 +316,7 @@ public class JsonHelper {
             }
         } catch (JSONException e) {
             e.printStackTrace();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;

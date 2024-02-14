@@ -231,7 +231,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
             notificationBuilder.setPriority(NotificationManager.IMPORTANCE_HIGH);
         }
-        notificationBuilder.setSmallIcon(R.drawable.ic_small_muay_thai, 1)
+        notificationBuilder.setSmallIcon(R.drawable.ic_exercise, 1)
                 .setContentTitle(context.getString(R.string.txt_time_to_workout))
                 .setContentIntent(notifyPendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -239,7 +239,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setAutoCancel(true);
         if (Build.VERSION.SDK_INT >= 23) {
 
-            notificationBuilder.setLargeIcon(BitmapFactory.decodeResource(context.getApplicationContext().getResources(), R.drawable.ic_muay_thai));
+            notificationBuilder.setLargeIcon(BitmapFactory.decodeResource(context.getApplicationContext().getResources(), R.drawable.ic_workout));
         }
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (notificationManager != null) {
@@ -330,7 +330,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         Builder notificationBuilder = new Builder(context, DefaultNotificationChannelId);
 
-        notificationBuilder.setSmallIcon(R.drawable.ic_small_muay_thai)
+        notificationBuilder.setSmallIcon(R.drawable.ic_exercise)
                 .setContentTitle(context.getString(R.string.app_name))
                 .setContentText(context.getString(R.string.txt_reminder_content_1))
                 .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
