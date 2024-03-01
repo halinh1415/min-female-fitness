@@ -154,7 +154,7 @@ public class HomeFragment extends Fragment implements ProgramClickListener {
         Intent intent = new Intent(getActivity(), ExploreDetailActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("PLAN_LIST_NAME", title);
-        bundle.putParcelableArrayList("PLAN_MORE", (ArrayList<? extends Parcelable>) programObjects);
+       // bundle.putParcelableArrayList("PLAN_MORE", (ArrayList<? extends Parcelable>) programObjects);
         intent.putExtras(bundle);
         startActivity(intent);
     }

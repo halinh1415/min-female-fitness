@@ -2,13 +2,21 @@ package mint.woman.female.workout.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.media.PlaybackParams;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +35,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.activity.ui.count.CountManagerActivity;
 import mint.woman.female.workout.activity.ui.workout.DoWorkoutActivity;
 import mint.woman.female.workout.activity.ui.workout.WorkoutViewModel;
 import mint.woman.female.workout.custom.CustomVideoView;
@@ -36,6 +45,7 @@ import mint.woman.female.workout.custom.DialogSound;
 import mint.woman.female.workout.custom.PauseDialog;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.PlanObject;
+import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.MyPreference;
 
 import java.util.List;
@@ -57,9 +67,9 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
     // @BindView(R.id.txt_pause)
     //ImageView mPause;
     @BindView(R.id.img_previous)
-    TextView mPrevious;
+    View mPrevious;
     @BindView(R.id.img_next)
-    TextView mNext;
+    View mNext;
     @BindView(R.id.progress_ready_bottom)
     ProgressBar mBottomProgressBar;
     @BindView(R.id.progress_ready)
@@ -68,7 +78,9 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.txt_speed)
     TextView mSpeed;
     @BindView(R.id.img_done)
-    ImageView mDoneImg;
+    View mDoneImg;
+    @BindView(R.id.btn_pause)
+    View btnPause;
 
     @BindView(R.id.tv_count_down)
     TextView mCountDownText;
@@ -83,6 +95,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
     private String path;
 
     private WorkoutViewModel mWorkoutViewModel;
+    private int REP = 12;
 
 
     public PlayFragment() {
@@ -117,6 +130,10 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
 //            path = "android.resource://" + getContext().getPackageName() + "/" + resourceId;
 //        }
         myPreference = new MyPreference(getContext());
+        REP = mActionObject.time;
+        if (mExerciseObject.getAlternation() && mActionObject.unit.isEmpty()) {
+            REP = mActionObject.time / 2;
+        }
 
     }
 
@@ -132,35 +149,58 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mCurrentTime = mActionObject.time;
+
         mTotalTime = mActionObject.time;
         mSpeed.setText("" + myPreference.getSpeed() + "x");
+        mVideoView.setVideoURI(Uri.parse(path));
+        mVideoView.setOnPreparedListener(mediaPlayer -> {
+            mediaPlayer.setLooping(true);
+
+        });
+
+        mExerciseName.setText(mExerciseObject.getName());
         if (mActionObject.unit.contains("s")) {
-            mDoneImg.setVisibility(View.INVISIBLE);
-            int minutes = (mActionObject.time) / 60;
-            int seconds = mCurrentTime % 60;
-            String timeString = String.format("%02d:%02d", minutes, seconds);
-            mExerciseName.setText(mExerciseObject.getName() + " x " + timeString);
-            mExerciseTime.setText(timeString);
+            mCurrentTime = mActionObject.time;
+            btnPause.setVisibility(View.VISIBLE);
+            mDoneImg.setVisibility(View.GONE);
+            mSub.setVisibility(View.INVISIBLE);
+            mExerciseTime.setText(FitnessConstUtils.toTime(REP));
             mBottomProgressBar.setMax(mActionObject.time * 1000);
             mBottomProgressBar.setProgress(0);
             mReadyProgress.setMax(mActionObject.time * 1000);
             mReadyProgress.setProgress(0);
         } else {
-            mDoneImg.setVisibility(View.VISIBLE);
+            mCurrentTime = 0;
+            if (mExerciseObject.getAlternation()) {
+                mSub.setVisibility(View.VISIBLE);
+                mSub.setText(getString(R.string.txt_each_side)+" x"+REP);
+            } else {
+                mSub.setVisibility(View.INVISIBLE);
+            }
+            mExerciseTime.setText("x" + REP);
+            if (myPreference.getCountOption() == 1) {
+                btnPause.setVisibility(View.VISIBLE);
+                mDoneImg.setVisibility(View.GONE);
+                mVideoView.setOnPreparedListener(mediaPlayer -> {
+                    mediaPlayer.setLooping(false);
+                });
+                mVideoView.setOnCompletionListener(mediaPlayer -> {
+                    new Handler().postDelayed(() -> mVideoView.start(), mExerciseObject.getSpeed());
+                });
+                mExerciseTime.setText(proToSpan(""+0,"/"+REP));
+                //mExerciseTime.setText("0/" + REP);
+            }else {
+                btnPause.setVisibility(View.GONE);
+                mDoneImg.setVisibility(View.VISIBLE);
+            }
             mExerciseName.setText(mExerciseObject.getName());
-            mExerciseTime.setText("x" + mActionObject.time);
-        }
-//        String fm = "Begin! %s %d time";
-//        if (mExerciseObject.getUnit().contains("s")) {
-//            fm = listVoice.get(4);
-//        } else {
-//            fm = listVoice.get(3);
-//        }
 
-//        if (mListener != null)
-//            mListener.onTextToSpeech(String.format(fm, mExerciseObject.getName(), mActionObject.time));
-        countDown();
+        }
+        mVideoView.start();
+        if (!myPreference.isSpeakerOn()) {
+            countDown();
+        }
+        //  countDown();
         if (progress == 0) {
             mPrevious.setEnabled(false);
             mPrevious.setAlpha(0.2f);
@@ -179,105 +219,108 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
-        mVideoView.pause();
+        if (mVideoView != null) {
+            mVideoView.setOnCompletionListener(null);
+            mVideoView.stopPlayback();
+        }
     }
 
-    @SuppressLint("SetTextI18n")
+    SpannableStringBuilder proToSpan(String pro, String total){
+        SpannableStringBuilder builder = new SpannableStringBuilder();
+        SpannableString span1 = new SpannableString(pro);
+        span1.setSpan(new RelativeSizeSpan(1.5f), 0, span1.length(), 0); // Adjust the size as needed
+      //  span1.setSpan(new StyleSpan(Typeface.BOLD), 0, span1.length(), 0);
+        builder.append(span1);
+        builder.append(total);
+
+        return builder;
+    }
     public void onResumeReady() {
+        Log.d("HAHA", "onResumeReady");
         mSpeed.setText("" + myPreference.getSpeed() + "x");
-        String textName = mExerciseObject.getName()  + "  x" + mActionObject.time + mExerciseObject.getUnit();
-        mExerciseName.setText(textName);
-
+        mExerciseName.setText(mExerciseObject.getName());
         mCountDownText.setVisibility(View.INVISIBLE);
-        if (mActionObject.unit.contains("s")) {
-            mVideoView.setVideoURI(Uri.parse(path));
-            mVideoView.setOnPreparedListener(mediaPlayer -> {
-                mediaPlayer.setLooping(true);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    mediaPlayer.setPlaybackParams(new PlaybackParams().setSpeed(myPreference.getSpeed()));
-                }
-            });
-            mVideoView.start();
-            initTimer(mCurrentTime);
-        } else {
-            if (!myPreference.isAutoNext()) {
-                mVideoView.setVideoURI(Uri.parse(path));
-                mVideoView.setOnPreparedListener(mediaPlayer -> {
-                    mediaPlayer.setLooping(true);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        mediaPlayer.setPlaybackParams(new PlaybackParams().setSpeed(myPreference.getSpeed()));
-                    }
-                });
-                mVideoView.setOnCompletionListener(null);
-            } else {
-                mVideoView.setVideoURI(Uri.parse(path));
-                mVideoView.setOnPreparedListener(mediaPlayer -> {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        mediaPlayer.setPlaybackParams(new PlaybackParams().setSpeed(myPreference.getSpeed()));
-                    }
-                    mediaPlayer.setLooping(false);
-                });
-                mBottomProgressBar.setMax(mActionObject.time);
-                mVideoView.setOnCompletionListener(mediaPlayer -> {
-                    mCurrentTime++;
-                    if (mCurrentTime >= mActionObject.time) {
-                        mListener.onFinishReady();
-                    } else {
-                        mBottomProgressBar.setProgress((mCurrentTime + 1));
-                        if (mListener != null) {
-                            mListener.updateReady(mCurrentTime + 1);
-                            mListener.updateProgressWorkout(((float) (mCurrentTime + 1) / mActionObject.time));
-                        }
-                        mExerciseTime.setText("" + (mCurrentTime + 1) + "/" + mActionObject.time);
 
+        playExercise();
 
-                        mVideoView.start();
-                    }
-                });
-                mBottomProgressBar.setProgress(mCurrentTime + 1);
-                if (mListener != null) mListener.updateReady(mCurrentTime + 1);
-            }
-            mVideoView.start();
-        }
     }
 
     public void playExercise() {
         mSpeed.setText("" + myPreference.getSpeed() + "x");
         mCountDownText.setVisibility(View.INVISIBLE);
+        mReadyProgress.setMax(REP);
+        mReadyProgress.setProgress((mCurrentTime));
+        mBottomProgressBar.setMax(REP);
+        mBottomProgressBar.setProgress((mCurrentTime));
+        mVideoView.setVideoURI(Uri.parse(path));
         if (mActionObject.unit.contains("s")) {
+
+            btnPause.setVisibility(View.VISIBLE);
+            mDoneImg.setVisibility(View.GONE);
+            mVideoView.setOnPreparedListener(mediaPlayer -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    mediaPlayer.setPlaybackParams(new PlaybackParams().setSpeed(myPreference.getSpeed()));
+                }
+                mediaPlayer.setLooping(true);
+            });
+            if (!mVideoView.isPlaying()) {
+                mVideoView.start();
+            }
             initTimer(mCurrentTime);
         } else {
-            if (myPreference.isAutoNext()) {
-                mVideoView.setVideoURI(Uri.parse(path));
+            if (mExerciseObject.getAlternation()) {
+                mSub.setVisibility(View.VISIBLE);
+                mSub.setText(getString(R.string.txt_each_side)+" x"+REP);
+            } else {
+                mSub.setVisibility(View.INVISIBLE);
+            }
+
+            if (myPreference.getCountOption() == 1) {
+                mExerciseTime.setText("" + (mCurrentTime + 1) + "/" + REP);
+                btnPause.setVisibility(View.VISIBLE);
+                mDoneImg.setVisibility(View.GONE);
+
                 mVideoView.setOnPreparedListener(mediaPlayer -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         mediaPlayer.setPlaybackParams(new PlaybackParams().setSpeed(myPreference.getSpeed()));
                     }
                     mediaPlayer.setLooping(false);
                 });
-                mBottomProgressBar.setMax(mActionObject.time);
-                mCurrentTime = 0;
-                mExerciseTime.setText("" + (mCurrentTime + 1) + "/" + mActionObject.time);
+                mExerciseTime.setText(proToSpan(""+mCurrentTime,"/"+REP));
                 mVideoView.setOnCompletionListener(mediaPlayer -> {
                     mCurrentTime++;
-
-                    if (mCurrentTime >= mActionObject.time) {
+                    if (mCurrentTime > REP) {
                         mListener.onFinishReady();
                     } else {
-                        mExerciseTime.setText("" + (mCurrentTime + 1) + "/" + mActionObject.time);
-                        mBottomProgressBar.setProgress((mCurrentTime + 1));
+                        mExerciseTime.setText(proToSpan(""+mCurrentTime,"/"+REP));
+                        mBottomProgressBar.setProgress((mCurrentTime));
+                        mReadyProgress.setProgress((mCurrentTime));
                         if (mListener != null) {
-                            mListener.updateReady(mCurrentTime + 1);
-                            mListener.updateProgressWorkout(((float) (mCurrentTime + 1) / mActionObject.time));
+                            mListener.updateReady(mCurrentTime);
+                            mListener.updateProgressWorkout(((float) (mCurrentTime) / REP));
                         }
-                        mVideoView.start();
+                        new Handler().postDelayed(() -> mVideoView.start(), mExerciseObject.getSpeed());
+                        // mVideoView.start();
                     }
                 });
+                //mListener.updateReady(mCurrentTime + 1);
                 mBottomProgressBar.setProgress(mCurrentTime + 1);
-                if (mListener != null) mListener.updateReady(mCurrentTime + 1);
-                mVideoView.start();
-            }else{
-                mExerciseTime.setText("x" + mActionObject.time);
+                if (!mVideoView.isPlaying()) {
+                    mVideoView.start();
+                }
+            } else {
+                mExerciseTime.setText("x" + REP);
+                mVideoView.setOnPreparedListener(mediaPlayer -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        mediaPlayer.setPlaybackParams(new PlaybackParams().setSpeed(myPreference.getSpeed()));
+                    }
+                    mediaPlayer.setLooping(true);
+                });
+                if (!mVideoView.isPlaying()) {
+                    mVideoView.start();
+                }
+                btnPause.setVisibility(View.GONE);
+                mDoneImg.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -285,16 +328,14 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
     public void initTimer(int time) {
         releaseTimer();
         mBottomProgressBar.setMax(mTotalTime * 1000);
+        mReadyProgress.setMax(mTotalTime * 1000);
         mBottomProgressBar.setProgress((mTotalTime - mCurrentTime) * 1000);
         countDownTimer = new CountDownTimer(time * 1000, 10) {
             @Override
             public void onTick(long l) {
                 if (mCurrentTime != (int) l / 1000) {
                     mCurrentTime = (int) l / 1000;
-                    int minutes = (mCurrentTime % 3600) / 60;
-                    int seconds = mCurrentTime % 60;
-                    String timeString = String.format("%02d:%02d", minutes, seconds);
-                    mExerciseTime.setText(timeString);
+                    mExerciseTime.setText(FitnessConstUtils.toTime(mCurrentTime));
                     float progress = (float) (mTotalTime - mCurrentTime) / mTotalTime;
                     if (mListener != null) {
                         mListener.updateProgressWorkout(progress);
@@ -317,15 +358,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         countDownTimer.start();
     }
 
-    private void countDown() {
-        mVideoView.setVideoURI(Uri.parse(path));
-        mVideoView.setOnPreparedListener(mediaPlayer -> {
-            mediaPlayer.setLooping(true);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                mediaPlayer.setPlaybackParams(new PlaybackParams().setSpeed(myPreference.getSpeed()));
-            }
-        });
-        mVideoView.start();
+    public void countDown() {
         crr = 0;
         //playExercise();
         //mCountDownText.setVisibility(View.VISIBLE);
@@ -448,8 +481,9 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.img_setting:
                 mWorkoutViewModel.setPause(true);
-                DialogSound soundSettings = new DialogSound();
-                soundSettings.show(getParentFragmentManager(), "sound_settings");
+                startActivity(new Intent(getActivity(), CountManagerActivity.class));
+//                DialogSound soundSettings = new DialogSound();
+//                soundSettings.show(getParentFragmentManager(), "sound_settings");
                 break;
             case R.id.img_rotate:
                 int currentOrientation = getActivity().getRequestedOrientation();
@@ -477,61 +511,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         super.onConfigurationChanged(newConfig);
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         populateViewForOrientation(inflater, (ViewGroup) getView());
-        String textName = mExerciseObject.getName() + "  x" + mActionObject.time + mExerciseObject.getUnit();
-        mExerciseName.setText(textName);
-        mSpeed.setText("" + myPreference.getSpeed() + "x");
-        mVideoView.setVideoURI(Uri.parse(path));
-        mVideoView.setOnPreparedListener(mediaPlayer -> {
-            mediaPlayer.setLooping(true);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                mediaPlayer.setPlaybackParams(new PlaybackParams().setSpeed(myPreference.getSpeed()));
-            }
-        });
-        mVideoView.start();
-        if (mActionObject.unit.contains("s")) {
-            mDoneImg.setVisibility(View.INVISIBLE);
-            initTimer(mCurrentTime);
-        } else {
-            mDoneImg.setVisibility(View.VISIBLE);
-            mExerciseTime.setText("x" + mActionObject.time);
-            if (myPreference.isAutoNext()) {
-                mVideoView.setVideoURI(Uri.parse(path));
-                mVideoView.setOnPreparedListener(mediaPlayer -> {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        mediaPlayer.setPlaybackParams(new PlaybackParams().setSpeed(myPreference.getSpeed()));
-                    }
-                    mediaPlayer.setLooping(false);
-                });
-                mBottomProgressBar.setMax(mActionObject.time);
-                mCurrentTime = 0;
-                mExerciseTime.setText("" + (mCurrentTime + 1) + "/" + mActionObject.time);
-                mVideoView.setOnCompletionListener(mediaPlayer -> {
-                    mCurrentTime++;
-                    mExerciseTime.setText("" + (mCurrentTime + 1) + "/" + mActionObject.time);
-                    if (mCurrentTime >= mActionObject.time) {
-                        mListener.onFinishReady();
-                    } else {
-                        mBottomProgressBar.setProgress((mCurrentTime + 1));
-                        if (mListener != null) {
-                            mListener.updateReady(mCurrentTime + 1);
-                            mListener.updateProgressWorkout(((float) (mCurrentTime + 1) / mActionObject.time));
-                        }
-
-                        mVideoView.start();
-                    }
-                });
-                mBottomProgressBar.setProgress(mCurrentTime + 1);
-                if (mListener != null) mListener.updateReady(mCurrentTime + 1);
-                mVideoView.start();
-            }
-
-        }
-        mCountDownText.setVisibility(View.GONE);
-        mBottomProgressBar.setMax(mActionObject.time * 1000);
-        mBottomProgressBar.setProgress(0);
-        mReadyProgress.setMax(mActionObject.time * 1000);
-        mReadyProgress.setProgress(0);
-        mVideoView.start();
+        onResumeReady();
         if (progress == 0) {
             mPrevious.setEnabled(false);
             mPrevious.setAlpha(0.2f);

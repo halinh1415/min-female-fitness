@@ -18,6 +18,7 @@ import mint.woman.female.workout.custom.ItemTouchHelperAdapter;
 import mint.woman.female.workout.custom.OnStartDragListener;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.PlanObject;
+import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.VideoEncryptor;
 
 public class PreviewAdapter extends RecyclerView.Adapter<ExerciseViewHolder> implements ItemTouchHelperAdapter {
@@ -55,14 +56,12 @@ public class PreviewAdapter extends RecyclerView.Adapter<ExerciseViewHolder> imp
     public void onBindViewHolder(@NonNull final ExerciseViewHolder holder, @SuppressLint("RecyclerView") int position) {
         PlanObject.ActionObject actionObject = mProvider.getItem(position);
         ExerciseObject exerciseObject = mProvider.getExerciseItem(actionObject.actionId);
-
+        if (exerciseObject == null)
+            return;
         holder.mExerciseName.setText(exerciseObject.getName());
 
-        int minutes = (actionObject.time) / 60;
-        int seconds = actionObject.time % 60;
-        String timeString = String.format("%02d:%02d", minutes, seconds);
         if (actionObject.unit.contains("s")){
-            holder.mReps.setText(timeString);
+            holder.mReps.setText(FitnessConstUtils.toTime(actionObject.time));
         }else {
             holder.mReps.setText("x "+actionObject.time);
         }

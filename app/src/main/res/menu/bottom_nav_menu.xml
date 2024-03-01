@@ -11,13 +11,13 @@
         android:visible="false"
         android:title="@string/txt_explore" />
     <item
-        android:id="@+id/nav_report2"
+        android:id="@+id/nav_report"
         android:icon="@drawable/ic_event_note_black_24dp"
         android:title="@string/txt_report" />
     <item
-        android:id="@+id/nav_diet"
+        android:id="@+id/nav_diet_fragment"
         android:icon="@drawable/ic_diet"
-        android:title="@string/txt_meal_plan" />
+        android:title="@string/txt_recipes" />
     <item
         android:id="@+id/nav_setting"
         android:tag="SETTING_FRAGMENT"

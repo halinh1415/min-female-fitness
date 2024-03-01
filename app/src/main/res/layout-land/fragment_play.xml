@@ -31,7 +31,7 @@
         android:padding="10dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_more_vert_24" />
+        app:srcCompat="@drawable/ic_whistle" />
 
     <TextView
         android:id="@+id/txt_speed"
@@ -93,6 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        android:textSize="@dimen/_12sdp"
         android:textColor="@color/Black"
         app:layout_constraintEnd_toEndOf="@+id/tv_exercise_name"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,24 +124,31 @@
         app:layout_constraintBottom_toTopOf="@+id/img_previous"
         app:layout_constraintLeft_toLeftOf="parent" />
 
-    <TextView
+    <LinearLayout
         android:id="@+id/img_previous"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="24dp"
-        android:clickable="true"
-        android:focusable="false"
-        android:foreground="?attr/selectableItemBackground"
+        android:orientation="horizontal"
         android:gravity="center"
-        android:text="@string/txt_previous"
-        android:textColor="@color/Black"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="24sp"
-        app:drawableLeftCompat="@drawable/ic_baseline_skip_previous_24"
+        android:background="@drawable/bg_transparent_btn_r_6"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginHorizontal="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:padding="@dimen/_5sdp">
+
+        <TextView
+            android:id="@+id/tv_pr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_baseline_skip_previous_24"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="@string/txt_previous"
+            android:textAlignment="center"
+            android:textSize="@dimen/_14sdp" />
+    </LinearLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btn_pause"
@@ -150,15 +158,15 @@
         android:layout_marginRight="16dp"
         android:clickable="true"
         android:focusable="false"
-        android:foreground="?attr/selectableItemBackground"
+        android:background="@drawable/bg_transparent_btn_ripple_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="@id/img_done">
 
         <ProgressBar
             android:id="@+id/progress_ready"
             style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_width="180dp"
-            android:layout_height="45dp"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="@dimen/_45sdp"
             android:max="100"
             android:progress="0"
             android:progressDrawable="@drawable/horizontal_blue_progress"
@@ -171,15 +179,13 @@
             android:id="@+id/txt_pause"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:drawableLeft="@drawable/ic_baseline_pause_circle_outline_24"
             android:drawablePadding="10dp"
             android:gravity="center"
             android:text="@string/txt_touch_to_pause"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/Black"
-            android:textSize="24sp"
+            android:textColor="@color/Gray"
+            android:textSize="@dimen/_18sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.54"
@@ -190,7 +196,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
+    <ImageButton
         android:id="@+id/img_done"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -198,32 +204,37 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:focusable="false"
+        android:background="@drawable/bg_round_oval_gradient_primary"
         android:foreground="?attr/selectableItemBackground"
-        android:src="@drawable/bg_done"
+        android:src="@drawable/ic_done_tick"
         app:layout_constraintBottom_toBottomOf="@+id/btn_pause"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btn_pause"
         tools:visibility="visible" />
-    <TextView
+
+    <LinearLayout
         android:id="@+id/img_next"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="24dp"
-        android:drawableLeft="@drawable/ic_baseline_skip_next_24"
-        android:drawablePadding="5dp"
+        android:background="@drawable/bg_transparent_btn_r_6"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginHorizontal="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
         android:gravity="center"
-        android:text="@string/txt_skip"
-        android:textColor="@color/Black"
-        android:clickable="true"
-        android:focusable="false"
-        android:foreground="?attr/selectableItemBackground"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="24sp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_previous" />
+        app:layout_constraintStart_toEndOf="@+id/img_previous">
+        <TextView
+            android:id="@+id/tv_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_baseline_skip_next_24"
+            android:gravity="center"
+            android:text="@string/txt_skip"
+            android:textSize="@dimen/_14sdp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_count_down"

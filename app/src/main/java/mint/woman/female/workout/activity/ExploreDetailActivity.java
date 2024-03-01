@@ -37,7 +37,8 @@ public class ExploreDetailActivity extends AppCompatActivity implements ProgramC
     private void initView() {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            list = bundle.getParcelableArrayList("PLAN_MORE");
+            // list = bundle.getParcelableArrayList("PLAN_MORE");
+            list = new ArrayList<>();
             setTitle(bundle.getString("PLAN_LIST_NAME"));
             mDetailExploreRc.setLayoutManager(new LinearLayoutManager(this));
         }
@@ -50,13 +51,13 @@ public class ExploreDetailActivity extends AppCompatActivity implements ProgramC
         if (mCurrentCategory.getType() == 1) {
             Intent intent = new Intent(ExploreDetailActivity.this, ProgramActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putParcelable("PLAN", mCurrentCategory);
+            bundle.putInt("PROGRAM_ID", mCurrentCategory.getId());
             intent.putExtras(bundle);
             startActivity(intent);
         } else if (mCurrentCategory.getType() == 2) {
             Intent intent2 = new Intent(ExploreDetailActivity.this, PreviewActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putParcelable("PLAN", mCurrentCategory);
+            bundle.putInt("PROGRAM_ID", mCurrentCategory.getId());
             bundle.putInt("DAY", 0);
             intent2.putExtras(bundle);
             startActivity(intent2);

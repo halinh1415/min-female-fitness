@@ -109,20 +109,12 @@ public class MyPreference {
     public boolean isKg() {
         return mSharedPreferences.getBoolean("IS_KG", true);
     }
-
-    public void changeKgUnit(boolean value) {
+    public void setUnitKg(boolean value){
         mEditor.putBoolean("IS_KG", value);
         mEditor.commit();
     }
 
-    public int uHeight() {
-        return mSharedPreferences.getInt("HEIGHT_UNIT", 0);
-    }
 
-    public void changeHeightUnit(int value) {
-        mEditor.putInt("HEIGHT_UNIT", value);
-        mEditor.commit();
-    }
 
     public float getCurrentWeightKG() {
         return mSharedPreferences.getFloat("CURRENT_WEIGHT", 65.0f);
@@ -154,20 +146,20 @@ public class MyPreference {
 //
 //        return value;
         float value = mSharedPreferences.getFloat("CURRENT_HEIGHT", 175f);
-        if (uHeight() == 0) return value;
-        else if (uHeight() == 1) {
+        if (isKg()){
+            return value;
+        }else{
             return (value / 30.48f);
         }
-        return (value / 2.54f);
     }
 
     public float getCurrentWaist() {
         float value = mSharedPreferences.getFloat("CURRENT_WAIST", 75f);
-        if (uHeight() == 0) return value;
-        else if (uHeight() == 1) {
+        if (isKg()){
+            return value;
+        }else {
             return (value / 30.48f);
         }
-        return (value / 2.54f);
     }
     public void setCurrentWaist(float value) {
 
@@ -184,14 +176,8 @@ public class MyPreference {
     }
 
     public String getHeightUnit() {
-        switch (uHeight()) {
-            case 1:
-                return "Ft";
-            case 2:
-                return "In";
-            default:
-                return "Cm";
-        }
+        return isKg()?"Cm":"Ft";
+
     }
 
     public String getTTScode() {
@@ -415,7 +401,7 @@ public class MyPreference {
         mEditor.commit();
     }
     public boolean isTick(){
-        return mSharedPreferences.getBoolean("IS_TICK", false);
+        return mSharedPreferences.getBoolean("IS_TICK", true);
     }
 
     public int getPagerSaved() {
@@ -492,4 +478,12 @@ public class MyPreference {
     }
 
 
+    public int getCountOption() {
+        return mSharedPreferences.getInt("COUNT_OPTION",0);
+    }
+    public void setCountOption(int option){
+        mEditor.putInt("COUNT_OPTION",option);
+        mEditor.commit();
+
+    }
 }

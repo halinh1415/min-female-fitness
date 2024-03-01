@@ -8,7 +8,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class ProgramObject implements Parcelable {
+public class ProgramObject  {
 
     @SerializedName("id")
     @Expose
@@ -53,55 +53,6 @@ public class ProgramObject implements Parcelable {
 
     }
 
-    protected ProgramObject(Parcel in) {
-        id = in.readInt();
-        name = in.readString();
-        type = in.readInt();
-        plan = in.readString();
-        level = in.readInt();
-        total = in.readInt();
-        premium = in.readInt();
-        body = in.readString();
-        focus = in.readString();
-        background = in.readString();
-        image = in.readString();
-        discover = in.readInt();
-        description = in.readString();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeString(name);
-        dest.writeInt(type);
-        dest.writeString(plan);
-        dest.writeInt(level);
-        dest.writeInt(total);
-        dest.writeInt(premium);
-        dest.writeString(body);
-        dest.writeString(focus);
-        dest.writeString(background);
-        dest.writeString(image);
-        dest.writeInt(discover);
-        dest.writeString(description);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<ProgramObject> CREATOR = new Creator<ProgramObject>() {
-        @Override
-        public ProgramObject createFromParcel(Parcel in) {
-            return new ProgramObject(in);
-        }
-
-        @Override
-        public ProgramObject[] newArray(int size) {
-            return new ProgramObject[size];
-        }
-    };
 
     public int getId() {
         return id;

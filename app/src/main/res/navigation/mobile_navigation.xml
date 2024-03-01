@@ -64,4 +64,8 @@
         android:name="mint.woman.female.workout.activity.ui.report.ReportActivity"
         android:label="@string/txt_report"
         tools:layout="@layout/activity_report" />
+    <fragment
+        android:id="@+id/nav_diet_fragment"
+        android:name="mint.woman.female.workout.activity.ui.diet.DietFragment"
+        android:label="@string/txt_recipes" />
 </navigation>

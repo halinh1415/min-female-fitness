@@ -80,7 +80,8 @@ public class CustomMyWorkoutActivity extends AppCompatActivity implements Dialog
             mCustomId = mBundle.getInt("CUSTOM_ID");
             mJsonHelper = FitnessApplication.getApplication().mJsonHelper;
             if (mCustomId <= 0) {
-                myWorkoutObject = mBundle.getParcelable("PLAN");
+                int id = mBundle.getInt("PROGRAM_ID",0);
+                myWorkoutObject = FitnessApplication.getApplication().getProgram(id);
             } else {
                 myWorkoutObject = mDatabase.getMyWorkoutObject(mCustomId);
             }

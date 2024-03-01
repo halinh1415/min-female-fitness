@@ -296,13 +296,15 @@ public class WeekGoalFragment extends Fragment implements ProgramClickListener, 
         if (programObject.getType() == 1) {
             Intent intent = new Intent(getActivity(), ChallengeActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putParcelable("PLAN", programObject);
+            //bundle.putParcelable("PLAN", programObject);
+            bundle.putInt("PROGRAM_ID", programObject.getId());
             intent.putExtras(bundle);
             startActivity(intent);
         } else if (programObject.getType() == 2) {
             Intent intent2 = new Intent(getActivity(), PreviewActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putParcelable("PLAN", programObject);
+           // bundle.putParcelable("PLAN", programObject);
+            bundle.putInt("PROGRAM_ID", programObject.getId());
             bundle.putInt("DAY_NUMBER", 0);
             intent2.putExtras(bundle);
             startActivity(intent2);

@@ -30,8 +30,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".activity.ui.count.CountManagerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="@string/txt_select_audio"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".activity.ui.preview.PreviewActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ui.preview.PreviewActivity" />
+        </activity>
+        <activity
             android:name=".activity.ui.workout.ChallengeActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:parentActivityName=".activity.ui.main.YogaActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

@@ -13,30 +13,39 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+
+import mint.woman.female.workout.R;
 
 public class AudioAppManager {
 
     private static final String TAG = "AudioAppManager";
     private  final String support_language ="ar@de@en@es@fa@fr@in_ID@it@ja@ko@nl@pl@pt@ru@tr@zh_CN@zh_TW";
     private Context context;
-    private List<String> audioResources;
+    private LinkedList<String> audioResources;
     private MediaPlayer mediaPlayer;
     private TextToSpeech tts;
     private int currentIndex;
     private boolean ttsReady = false, isMale = false;
     private Locale locale;
+    IAudioMangerFinishListener finishListener = null;
+    public boolean isPause = false;
 
     Runnable r = new Runnable() {
 
         public void run() {
-
-            if (!mediaPlayer.isPlaying()) {
-                if (currentIndex < audioResources.size()) {
-                    // currentIndex++;
-                   // Log.d(TAG, "Play audio check! ");
-                    playAssets();
+            if (!isPause) {
+                if (audioResources.size() > 0) {
+                    if (!mediaPlayer.isPlaying() && !tts.isSpeaking()) {
+                        playAssets();
+                    }
+                } else if (!mediaPlayer.isPlaying() && !tts.isSpeaking()) {
+                    if (finishListener != null) {
+                        finishListener.onFinish();
+                        finishListener = null;
+                    }
                 }
             }
             handler.postDelayed(this, 1000);
@@ -50,7 +59,7 @@ public class AudioAppManager {
 
     public AudioAppManager(Context context, String languageCode) {
         this.context = context;
-        this.audioResources = new ArrayList<>();
+        this.audioResources = new LinkedList<>();
         this.mediaPlayer = new MediaPlayer();
         this.currentIndex = 0;
         this.tts = new TextToSpeech(context, i -> {
@@ -87,10 +96,14 @@ public class AudioAppManager {
         audioResources.add(text);
     }
 
+    public void playTextWithListener(String text, IAudioMangerFinishListener finishListener) {
+        audioResources.add(text);
+        this.finishListener = finishListener;
+      //  Log.d("HAHA", "add with listener: " + text+" stack= "+audioResources.toString());
+    }
 
     public void addText(String... texts) {
-        audioResources.clear();
-        currentIndex = 0;
+
         audioResources.addAll(Arrays.asList(texts));
     }
 
@@ -98,11 +111,10 @@ public class AudioAppManager {
         if (tts!= null && tts.isSpeaking()){
             tts.stop();
         }
-        if (mediaPlayer != null && mediaPlayer.isPlaying()){
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
         }
         audioResources.clear();
-        currentIndex = 0;
         audioResources.add(text);
     }
 
@@ -115,18 +127,21 @@ public class AudioAppManager {
             return; // No audio resources to play
         }
 
-        if (mediaPlayer.isPlaying()) {
-           return;
-        }
-        if (tts.isSpeaking()) {
+        if (mediaPlayer.isPlaying() || tts.isSpeaking()) {
             return;
         }
-        Log.d(TAG, "Play voice: current =" +currentIndex+" in size="+audioResources.size());
+
+
+       // Log.d(TAG, "Play voice: current in size=" + audioResources.size());
         try {
-            if (audioResources.get(currentIndex).isEmpty()) {
+            String content = "";
+            if (audioResources.size() > 0) {
+                content = audioResources.pop();
+            }
+            if (content.isEmpty()) {
                 return;
             }
-            String filePath = getBasePath() + "/" + AppEncrypt.getName(audioResources.get(currentIndex)) + ".mp3";
+            String filePath = getBasePath() + "/" + AppEncrypt.getName(content) + ".mp3";
 
 
             if (isFilePresent(filePath)) {
@@ -138,25 +153,15 @@ public class AudioAppManager {
                 mediaPlayer.start();
                 mediaPlayer.setOnCompletionListener(mp -> {
                     // Play the next audio file when the current one completes
-                    currentIndex++;
-                    if (currentIndex < audioResources.size()) {
-                        playAssets();
-                    } else {
-                        currentIndex = 0;
-                        audioResources.clear();
-                    }
+                    playAssets();
                 });
             } else {
-
                 if (ttsReady) {
-                    tts.speak(audioResources.get(currentIndex), TextToSpeech.QUEUE_ADD, null, "");
-                    currentIndex++;
-                    if (currentIndex < audioResources.size()) {
-                    }else{
-                        currentIndex = 0;
-                        audioResources.clear();
-                    }
+                   // Log.d("HAHA","SPEAK :"+content+" size:"+audioResources.toString());
+                    tts.speak(content, TextToSpeech.QUEUE_ADD, null, "");
+
                 }
+
 
             }
 
@@ -214,5 +219,21 @@ public class AudioAppManager {
         }
     }
 
+    public void pause(){
+        isPause = true;
+        if (tts.isSpeaking()){
+            tts.stop();
+        }
+        if (mediaPlayer.isPlaying()){
+            mediaPlayer.stop();
+        }
+    }
+    public void resume(){
+        isPause = false;
 
+    }
+
+    public interface IAudioMangerFinishListener {
+        void onFinish();
+    }
 }

@@ -224,7 +224,7 @@ public class MyWorkoutActivity extends AppCompatActivity implements MyWorkoutAda
     @Override
     public void onGotoWorkout(ProgramObject myWorkoutObject) {
         Bundle mBundle = new Bundle();
-        mBundle.putParcelable("PLAN", myWorkoutObject);
+        mBundle.putInt("PROGRAM_ID", myWorkoutObject.getId());
         if (myWorkoutObject.getTotal() > 1) {
             Intent intent = new Intent(MyWorkoutActivity.this, ProgramActivity.class);
             intent.putExtras(mBundle);

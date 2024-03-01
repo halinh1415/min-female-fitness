@@ -86,7 +86,7 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
         // menu should be considered as top level destinations.
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_explore, R.id.nav_diet, R.id.nav_setting)
+                R.id.nav_home, R.id.nav_report2, R.id.nav_diet_fragment, R.id.nav_setting)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -339,13 +339,15 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
         if (mCurrentCategory.getType() == 1) {
             Intent intent = new Intent(YogaActivity.this, ChallengeActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putParcelable("PLAN", mCurrentCategory);
+            //bundle.putParcelable("PLAN", mCurrentCategory);
+            bundle.putInt("PROGRAM_ID", mCurrentCategory.getId());
             intent.putExtras(bundle);
             startActivity(intent);
         } else if (mCurrentCategory.getType() == 2) {
             Intent intent2 = new Intent(YogaActivity.this, PreviewActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putParcelable("PLAN", mCurrentCategory);
+            //bundle.putParcelable("PLAN", mCurrentCategory);
+            bundle.putInt("PROGRAM_ID", mCurrentCategory.getId());
             bundle.putInt("DAY_NUMBER", 0);
             intent2.putExtras(bundle);
             startActivity(intent2);

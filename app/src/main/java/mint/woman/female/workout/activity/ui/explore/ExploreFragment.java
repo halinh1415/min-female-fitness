@@ -112,13 +112,13 @@ public class ExploreFragment extends Fragment implements ProgramClickListener {
         if (mCurrentCategory.getType() == 1) {
             Intent intent = new Intent(getActivity(), ProgramActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putParcelable("PLAN", mCurrentCategory);
+            bundle.putInt("PROGRAM_ID", mCurrentCategory.getId());
             intent.putExtras(bundle);
             startActivity(intent);
         } else if (mCurrentCategory.getType() == 2) {
             Intent intent2 = new Intent(getActivity(), PreviewActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putParcelable("PLAN", mCurrentCategory);
+            bundle.putInt("PROGRAM_ID", mCurrentCategory.getId());
             bundle.putInt("DAY", 0);
             intent2.putExtras(bundle);
             startActivity(intent2);
@@ -130,7 +130,7 @@ public class ExploreFragment extends Fragment implements ProgramClickListener {
         Intent intent = new Intent(getActivity(), ExploreDetailActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("PLAN_LIST_NAME", title);
-        bundle.putParcelableArrayList("PLAN_MORE", (ArrayList<? extends Parcelable>) programObjects);
+     //   bundle.putParcelableArrayList("PLAN_MORE", (ArrayList<? extends Parcelable>) programObjects);
         intent.putExtras(bundle);
         startActivity(intent);
     }

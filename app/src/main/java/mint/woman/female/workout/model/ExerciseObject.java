@@ -53,7 +53,7 @@ public class ExerciseObject {
     private List<String> qicai;
   //  @SerializedName("customfields")
 //  @SerializedName("xxx")
-    private String customfields;
+  //  private String customfields;
     @SerializedName("tips")
     private List<Tip> tips;
     @SerializedName("groupactions")
@@ -224,13 +224,13 @@ public class ExerciseObject {
         this.qicai = qicai;
     }
 
-    public String getCustomfields() {
-        return customfields;
-    }
+//    public String getCustomfields() {
+//        return customfields;
+//    }
 
-    public void setCustomfields(String customfields) {
-        this.customfields = customfields;
-    }
+//    public void setCustomfields(String customfields) {
+//        this.customfields = customfields;
+//    }
 
     public List<Tip> getTips() {
         return tips;

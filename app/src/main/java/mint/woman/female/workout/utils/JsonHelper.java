@@ -239,8 +239,7 @@ public class JsonHelper {
                 jsonString = new String(decode, StandardCharsets.UTF_8);
             }
         }
-//            String[] urls = mContext.getResources().getStringArray(R.array.arr_vi_di);
-        // String decryptJson = mDecode.decrypt(jsonString);
+
 
         Gson gson = new Gson();
         return gson.fromJson(jsonString, new TypeToken<List<ExerciseObject>>() {
@@ -303,8 +302,14 @@ public class JsonHelper {
                     JSONObject subObj = subArr.getJSONObject(j);
                     int id = subObj.getInt("actionId");
                     int time = subObj.getInt("time");
-                    int rest = subObj.getInt("rest");
-                    String unit = subObj.getString("unit");
+                    int rest= 10;
+                    if (subObj.has("rest")) {
+                         rest = subObj.getInt("rest");
+                    }
+                    String unit ="";
+                    if (subObj.has("unit")) {
+                         unit = subObj.getString("unit");
+                    }
                     int actype = 0;
                     if (subObj.has("actype")) {
                         actype = subObj.getInt("actype");
@@ -348,9 +353,18 @@ public class JsonHelper {
                     JSONObject subObj = subArr.getJSONObject(j);
                     int id = subObj.getInt("actionId");
                     int time = subObj.getInt("time");
-                    int rest = subObj.getInt("rest");
-                    String unit = subObj.getString("unit");
-                    int actype = subObj.getInt("actype");
+                    int rest= 10;
+                    if (subObj.has("rest")) {
+                        rest = subObj.getInt("rest");
+                    }
+                    String unit ="";
+                    if (subObj.has("unit")) {
+                        unit = subObj.getString("unit");
+                    }
+                    int actype = 0;
+                    if (subObj.has("actype")) {
+                        actype = subObj.getInt("actype");
+                    }
                     planObject.addNewAction(new PlanObject.ActionObject(id, time, unit, actype, rest));
                 }
                 list.add(planObject);

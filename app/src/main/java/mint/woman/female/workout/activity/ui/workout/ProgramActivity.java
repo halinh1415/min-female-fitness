@@ -215,7 +215,7 @@ public class ProgramActivity extends AppCompatActivity implements DayAdapter.Cli
             case R.id.action_edit:
                 Intent intent = new Intent(ProgramActivity.this, CustomMyWorkoutActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("PLAN", mProgramObject);
+                bundle.putInt("PROGRAM_ID", mProgramObject.getId());
                 intent.putExtras(bundle);
                 startActivity(intent);
                 return true;

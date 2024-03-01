@@ -88,7 +88,7 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
     MyPreference myPreference;
     float goodWeight, goodWaist;
     WeightViewModel mWeightViewModel;
-    Context context;
+ //   Context context;
 
 
 
@@ -101,9 +101,9 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = getContext();
-        mHistoryViewModel = new ViewModelProvider(getActivity()).get(HistoryViewModel.class);
-        mWeightViewModel = new ViewModelProvider(getActivity()).get(WeightViewModel.class);
+       // context = getContext();
+
+
 
     }
 
@@ -119,23 +119,32 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         myPreference = MyPreference.newInstance(getContext());
-        initView();
-        initDataCalories();
-        initDataWeight();
-        initDataWaist();
+        mHistoryViewModel = new ViewModelProvider(getActivity()).get(HistoryViewModel.class);
+        mWeightViewModel = new ViewModelProvider(getActivity()).get(WeightViewModel.class);
+        myPreference = new MyPreference(getContext());
+        xAxisMonthFormatter = new ValueFormatter() {
+            private final SimpleDateFormat mFormat = new SimpleDateFormat("MMMM", Locale.getDefault());
 
-        mWeightViewModel.getIsKg().observe(getActivity(),isKg -> {
+            @Override
+            public String getFormattedValue(float value) {
+                long millis = TimeUnit.DAYS.toMillis((long) value);
+                return mFormat.format(new Date(millis));
+            }
+        };
+
+        initCaloriesChart();
+//        chartWeightInit();
+//        chartInitWaist();
+//        initDataWeight();
+//        initDataWaist();
+
+        mWeightViewModel.getIsKg().observe(getViewLifecycleOwner(),isKg -> {
             chartWeightInit();
             initDataWeight();
             chartInitWaist();
             initDataWaist();
         });
-    }
-
-
-    private void initDataCalories() {
-
-        mHistoryViewModel.getHistoryDate().observe(getActivity(), historyDateWithItems -> {
+        mHistoryViewModel.getHistoryDate().observe(getViewLifecycleOwner(), historyDateWithItems -> {
             ArrayList<BarEntry> values = new ArrayList<>();
 
 
@@ -153,7 +162,7 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
                 mCaloriesChart.notifyDataSetChanged();
 
             } else {
-                set1 = new BarDataSet(values, context.getResources().getString(R.string.txt_calories_burn));
+                set1 = new BarDataSet(values, getActivity().getResources().getString(R.string.txt_calories_burn));
                 set1.setColors(new int[] {Color.RED});
                 // set1.setDrawIcons(true);
                 //set1.setF
@@ -180,7 +189,7 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
             goodWeight *= 2.20462f;
         }
         mChartYUnit.setText(myPreference.getWeightUnit());
-        mHistoryViewModel.getAllUsers().observe(getActivity(), userObjects -> {
+        mHistoryViewModel.getAllUsers().observe(getViewLifecycleOwner(), userObjects -> {
             ArrayList<Entry> values = new ArrayList<>();
             List<Entry> valueGood = new ArrayList<>();
             Long nowDay  = TimeUnit.MILLISECONDS.toDays(Calendar.getInstance().getTimeInMillis());
@@ -197,23 +206,39 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
             if (values.size() == 0) {
                 values.add(new Entry(TimeUnit.MILLISECONDS.toDays(Calendar.getInstance().getTimeInMillis()), 65));
             }
-            LineDataSet setConst = new LineDataSet(valueGood,context.getResources().getString(R.string.txt_target_weight));
-            setConst.setColor(context.getResources().getColor(R.color.Green));
-            setConst.setLineWidth(3.f);
+            LineDataSet setConst = new LineDataSet(valueGood,getActivity().getResources().getString(R.string.txt_target_weight));
+            setConst.setColor(getActivity().getResources().getColor(R.color.Green));
+            setConst.setLineWidth(2.f);
+            setConst.setFormLineWidth(2f);
+            setConst.enableDashedLine(50f,10f,1f);
+            setConst.setDrawValues(false);
+
+            setConst.setMode(LineDataSet.Mode.STEPPED);
+
+            setConst.disableDashedHighlightLine();
+
+            setConst.setColor(getActivity().getResources().getColor(R.color.DeepPink));
             setConst.setDrawCircleHole(false);
+            setConst.setDrawCircles(false);
+
+
             LineDataSet set1 = new LineDataSet(values, getString(R.string.txt_weight_chart));
 
+
             set1.setAxisDependency(YAxis.AxisDependency.RIGHT);
-            set1.setColor(context.getResources().getColor(R.color.colorAccent));
-            set1.setValueTextColor(context.getResources().getColor(R.color.Red));
-            set1.setLineWidth(5.f);
+            set1.setColor(getActivity().getResources().getColor(R.color.Green));
+            set1.setValueTextColor(getActivity().getResources().getColor(R.color.colorDarkIcon));
+            set1.setLineWidth(3.f);
+
             set1.setDrawCircles(true);
             set1.setDrawValues(true);
-            set1.setCircleRadius(5);
-            set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+            set1.setCircleHoleRadius(3f);
+            set1.setCircleRadius(5f);
+            set1.setMode(LineDataSet.Mode.LINEAR);
             set1.setFillAlpha(100);
-            set1.setFillColor(context.getResources().getColor(R.color.Red));
-            set1.setHighLightColor(context.getResources().getColor(R.color.DarkGreen));
+
+            set1.setFillColor(getActivity().getResources().getColor(R.color.Red));
+            set1.setHighLightColor(getActivity().getResources().getColor(R.color.DarkGreen));
             set1.setDrawCircleHole(true);
             LineData data = new LineData(set1,setConst);
             data.setValueTextColor(Color.RED);
@@ -240,17 +265,11 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
         mWaistChartYUnit.setText(myPreference.getHeightUnit());
         float currentHeight = myPreference.getCurrentHeightCm();
         goodWaist = currentHeight *0.45f;
-        switch (myPreference.uHeight()){
-            case 0:
-                break;
-            case 1:
-                goodWaist = goodWaist/ 30.48f;
-                break;
-            case 2:
-                goodWaist = goodWaist / 2.54f;
-                break;
+        if (!myPreference.isKg()){
+            goodWaist = goodWaist/ 30.48f;
         }
-        mHistoryViewModel.getAllUsers().observe(getActivity(), userObjects -> {
+
+        mHistoryViewModel.getAllUsers().observe(getViewLifecycleOwner(), userObjects -> {
             List<Entry> values = new ArrayList<>();
             List<Entry> targetValue = new ArrayList<>();
             float min = 200.f, max = 0.0f;
@@ -259,19 +278,11 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
             targetValue.add(new Entry(nowDay - 365, goodWaist));
             targetValue.add(new Entry(nowDay, goodWaist));
             for (UserObject userObject : userObjects) {
-                float y = 0f;
-                switch (myPreference.uHeight()){
-                    case 1:
-                        y = userObject.getWaist()/ 30.48f;
-                        break;
-                    case 2:
-                        y = userObject.getWaist()/ 2.54f;
-                        break;
-                    default:
-                        y = userObject.getWaist();
-
-
+                float  y = userObject.getWaist();
+                if (!myPreference.isKg()){
+                    y = userObject.getWaist()/ 30.48f;
                 }
+
                 if (y > max) max = y;
                 if (y < min) min = y;
                 float from = userObject.getDate();
@@ -280,15 +291,19 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
             if (values.size() == 0) {
                 values.add(new Entry(TimeUnit.MILLISECONDS.toDays(Calendar.getInstance().getTimeInMillis()), 75));
             }
-            LineDataSet setConst = new LineDataSet(targetValue,context.getResources().getString(R.string.txt_target));
-            setConst.setColor(context.getResources().getColor(R.color.Lime));
-            setConst.setLineWidth(3.f);
+            LineDataSet setConst = new LineDataSet(targetValue,getActivity().getResources().getString(R.string.txt_target));
+
+            setConst.setColor(getActivity().getResources().getColor(R.color.Lime));
+            setConst.setLineWidth(2);
             setConst.setDrawCircleHole(false);
+            setConst.setDrawCircles(false);
+            setConst.setDrawValues(false);
+            setConst.enableDashedLine(20f,5f,1f);
             LineDataSet set1 = new LineDataSet(values, getString(R.string.txt_waist_chart));
 
             set1.setAxisDependency(YAxis.AxisDependency.RIGHT);
-            set1.setColor(context.getResources().getColor(R.color.Orange));
-            set1.setValueTextColor(context.getResources().getColor(R.color.Red));
+            set1.setColor(getActivity().getResources().getColor(R.color.Orange));
+            set1.setValueTextColor(getActivity().getResources().getColor(R.color.Red));
             set1.setLineWidth(2.f);
             set1.setLineWidth(5.f);
             set1.setDrawCircles(true);
@@ -296,8 +311,8 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
             set1.setCircleRadius(5);
             set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             set1.setFillAlpha(100);
-            set1.setFillColor(context.getResources().getColor(R.color.Red));
-            set1.setHighLightColor(context.getResources().getColor(R.color.DarkGreen));
+            set1.setFillColor(getActivity().getResources().getColor(R.color.Red));
+            set1.setHighLightColor(getActivity().getResources().getColor(R.color.DarkGreen));
             set1.setDrawCircleHole(true);
             LineData data = new LineData(set1,setConst);
             data.setValueTextColor(Color.RED);
@@ -307,10 +322,8 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
             mChartWaist.setVisibleXRangeMaximum(20);
             mChartWaist.moveViewToX(mChartWaist.getXChartMax());
             float currentWaist = myPreference.getCurrentWaist();
-            if (myPreference.uHeight() ==1){
+            if (!myPreference.isKg()){
                 currentWaist =currentWaist/ 30.48f;
-            }else if (myPreference.uHeight() ==2){
-                currentWaist =currentWaist/ 2.54f;
             }
 
 //update weight min,max
@@ -323,26 +336,12 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
         mGoodWaist.setText(getString(R.string.txt_good_weight) + " " + String.format("%.1f ", goodWaist) + myPreference.getHeightUnit());
     }
 
-
-    @SuppressLint({"SetTextI18n", "DefaultLocale"})
-    private void initView() {
-        myPreference = new MyPreference(getContext());
-        xAxisMonthFormatter = new ValueFormatter() {
-            private final SimpleDateFormat mFormat = new SimpleDateFormat("MMMM", Locale.getDefault());
-
-            @Override
-            public String getFormattedValue(float value) {
-                long millis = TimeUnit.DAYS.toMillis((long) value);
-                return mFormat.format(new Date(millis));
-            }
-        };
-
-        initCaloriesChart();
-        chartWeightInit();
-        chartInitWaist();
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
     }
+
+
     private void chartInitWaist() {// no description text
         mWaistChartYUnit.setText(myPreference.getHeightUnit());
         mChartWaist.getDescription().setEnabled(false);
@@ -370,7 +369,7 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
         mChartWaist.invalidate();
         // mChartWaist.animateX(200);
         XAxis xAxis = mChartWaist.getXAxis();
-        xAxis.setTextColor(context.getResources().getColor(R.color.colorDarkIcon));
+//        xAxis.setTextColor(context.getResources().getColor(R.color.colorDarkIcon));
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTextSize(10f);
         xAxis.enableGridDashedLine(20,5,5f);
@@ -392,7 +391,7 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
         };
         xAxis.setValueFormatter(xAxisFormatter);
         YAxis leftAxis = mChartWaist.getAxisLeft();
-        leftAxis.setTextColor(context.getResources().getColor(R.color.colorDarkIcon));
+        leftAxis.setTextColor(getActivity().getResources().getColor(R.color.colorDarkIcon));
         leftAxis.enableGridDashedLine(20,5,5f);
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         leftAxis.setTextColor(ColorTemplate.getHoloBlue());
@@ -406,7 +405,8 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
         mChartWaist.getLegend().setTextColor(R.color.colorDarkIcon);
         mChartWaist.getLegend().setTextSize(16f);
     }
-    private void chartWeightInit() { // no description text
+    private void chartWeightInit() {
+
         mChartWeight.getDescription().setEnabled(false);
         // enable touch gestures
         mChartWeight.setTouchEnabled(true);
@@ -415,19 +415,19 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
         mChartWeight.setDragEnabled(true);
         mChartWeight.setScaleEnabled(false);
         mChartWeight.setDrawGridBackground(false);
+
+       // mChartWeight.setGridBackgroundColor(getActivity().getColor(R.color.gray_600));
         mChartWeight.setHighlightPerDragEnabled(false);
         // set an alternative background color
 
         mChartWeight.setPinchZoom(false);
         mChartWeight.setMinimumWidth(5);
 
-        mChartWeight.setDrawGridBackground(false);
         // chart.setDrawYLabels(false);
 
 
         mChartWeight.setDragEnabled(true);
         mChartWeight.setScaleEnabled(false);
-        mChartWeight.setDrawGridBackground(false);
 
         //  mChartWeight.setBackgroundColor(Color.WHITE);
         // mChartWeight.animateX(500);
@@ -435,11 +435,11 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
         // mChartWeight.animateX(200);
         XAxis xAxis = mChartWeight.getXAxis();
         xAxis.enableGridDashedLine(20,5,5f);
+
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextColor(context.getResources().getColor(R.color.colorDarkIcon));
+        xAxis.setTextColor(getContext().getResources().getColor(R.color.colorDarkIcon));
         xAxis.setTextSize(10f);
         // xAxis.setTextColor(Color.RED);
-        // xAxis.setDrawAxisLine(false);
         //  xAxis.setTextColor(context.getResources().getColor(R.color.Black));
         xAxis.setCenterAxisLabels(true);
         xAxis.setDrawGridLines(true);
@@ -456,18 +456,19 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
         };
         xAxis.setValueFormatter(xAxisFormatter);
         YAxis leftAxis = mChartWeight.getAxisLeft();
-        leftAxis.setTextColor(context.getResources().getColor(R.color.colorDarkIcon));
+        leftAxis.setTextColor(getActivity().getResources().getColor(R.color.colorDarkIcon));
         leftAxis.enableGridDashedLine(20,5,5f);
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         leftAxis.setTextColor(ColorTemplate.getHoloBlue());
         //leftAxis.setAxisMinimum(20f);
         leftAxis.setDrawGridLines(true);
+        leftAxis.setGranularity(1);
         leftAxis.setGranularityEnabled(true);
         leftAxis.setYOffset(-9f);
         //  leftAxis.setTextColor(context.getResources().getColor(R.color.Black));
         YAxis rightAxis = mChartWeight.getAxisRight();
         rightAxis.setEnabled(false);
-        mChartWeight.getLegend().setTextColor(R.color.colorDarkIcon);
+      //  mChartWeight.getLegend().setTextColor(R.color.colorDarkIcon);
         mChartWeight.getLegend().setTextSize(16f);
     }
 
@@ -489,20 +490,17 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
 
         mCaloriesChart.setDrawGridBackground(false);
         // chart.setDrawYLabels(false);
-
-
         mCaloriesChart.setDragEnabled(true);
         mCaloriesChart.setScaleEnabled(false);
-        mCaloriesChart.setDrawGridBackground(false);
         // mCaloriesChart.setBackgroundColor(Color.WHITE);
 
         XAxis xAxis = mCaloriesChart.getXAxis();
 
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setDrawGridLines(true);
+        xAxis.setDrawGridLines(false);
         xAxis.setGranularity(1f); // only intervals of 1 day
         xAxis.setLabelCount(7);
-        xAxis.setTextColor(context.getResources().getColor(R.color.colorDarkIcon));
+        xAxis.setTextColor(getActivity().getResources().getColor(R.color.colorDarkIcon));
         xAxis.enableGridDashedLine(20,5,5f);
 
         ValueFormatter xAxisFormatter = new ValueFormatter() {
@@ -526,16 +524,12 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
         // leftAxis.setValueFormatter(custom);
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         leftAxis.setSpaceTop(15f);
-        leftAxis.setTextColor(context.getResources().getColor(R.color.colorDarkIcon));
+        leftAxis.setTextColor(getActivity().getResources().getColor(R.color.colorDarkIcon));
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
         YAxis rightAxis = mCaloriesChart.getAxisRight();
-        rightAxis.setDrawGridLines(false);
+        rightAxis.setEnabled(false);
 
-        rightAxis.setLabelCount(8, false);
-        rightAxis.setTextColor(context.getResources().getColor(R.color.colorDarkIcon));
-//        rightAxis.setSpaceTop(15f);
-        rightAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
         Legend l = mCaloriesChart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
@@ -552,7 +546,7 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
         mCaloriesChart.setMarker(mv);
         mCaloriesChart.setVisibleXRangeMaximum(10);
         mCaloriesChart.invalidate();
-        mCaloriesChart.getLegend().setTextColor(R.color.colorDarkIcon);
+        mCaloriesChart.getLegend().setTextColor(getActivity().getResources().getColor(R.color.colorDarkIcon));
         mCaloriesChart.getLegend().setTextSize(16f);
 
     }
@@ -586,10 +580,5 @@ public class ReportFragment extends Fragment implements  SeekBar.OnSeekBarChange
 
 
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        this.context= null;
-    }
 
 }

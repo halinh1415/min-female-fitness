@@ -35,25 +35,12 @@ import butterknife.OnTextChanged;
 public class DialogWeight extends DialogFragment {
 
 
-    @BindView(R.id.rgUnit)
-    RadioGroup rgUnit;
+
     @BindView(R.id.rdKg)
     RadioButton rdKg;
-    @BindView(R.id.rdKg1)
-    RadioButton rdKg1;
-    @BindView(R.id.rdKg2)
-    RadioButton rdKg2;
     @BindView(R.id.rdLb)
     RadioButton rdLb;
-    @BindView(R.id.rdLb1)
-    RadioButton rdLb1;
-    @BindView(R.id.rdLb2)
-    RadioButton rdLb2;
 
-    @BindView(R.id.rgUnit1)
-    RadioGroup rgUnit1;
-    @BindView(R.id.rgUnit2)
-    RadioGroup rgUnit2;
 
     @BindView(R.id.edt_weight)
     SuffixEditText edtWeight;
@@ -68,15 +55,14 @@ public class DialogWeight extends DialogFragment {
     HistoryViewModel mHistoryViewModel;
     WeightViewModel mWeightViewModel;
     MyPreference myPreference;
-    private boolean isKg = true;
     private float weight = 0.0f, height = 0.0f, waist = 0.0f;
+    boolean isKg;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_weight, container, false);
         ButterKnife.bind(this, view);
-        mHistoryViewModel = new ViewModelProvider(getActivity()).get(HistoryViewModel.class);
         return view;
     }
 
@@ -84,76 +70,70 @@ public class DialogWeight extends DialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mHistoryViewModel = new ViewModelProvider(getActivity()).get(HistoryViewModel.class);
         mWeightViewModel = new ViewModelProvider(getActivity()).get(WeightViewModel.class);
 
-        myPreference = new MyPreference(getActivity());
+        mWeightViewModel.getIsKg().observe(getViewLifecycleOwner(),isKgL->{
+            if (isKgL) {
+                edtWeight.setText(String.format("%.1f", weight).replace(",", "."));
+                edtHeight.setText(String.format("%.1f", height).replace(",", "."));
+                edtWaist.setText(String.format("%.1f", waist).replace(",", "."));
+                edtWaist2.setText("");
+                edtHeight2.setText("");
+                edtHeight2.setVisibility(View.GONE);
+                edtWaist2.setVisibility(View.GONE);
+                edtWeight.setSuffix("KG");
+                edtHeight.setSuffix("CM");
+                edtWaist.setSuffix("CM");
+                rdKg.setChecked(true);
+            } else {
+                rdLb.setChecked(true);
+                edtHeight2.setVisibility(View.VISIBLE);
+                edtWaist2.setVisibility(View.VISIBLE);
+                edtWeight.setText(String.format("%.1f", weight * 2.20462262f).replace(",", "."));
+                Log.d("HAHA","height = "+height);
+                int feetPart = (int) Math.floor(height / 12f / 2.54f);
+                float inchesPart = (float) Math.ceil((height / 2.54f) - (feetPart * 12f));
+                edtHeight.setText(String.format("%d", feetPart));
+                edtHeight2.setText(String.format("%.1f", inchesPart).replace(",", "."));
 
-        isKg = myPreference.isKg();
-        mWeightViewModel.setIsKg(isKg);
+                Log.d("HAHA","waist = "+waist);
+                int ft = (int) Math.floor(waist / 12f / 2.54f);
+                float in = (float) Math.ceil((waist / 2.54f) - (ft * 12f));
+
+
+                edtWaist.setText(String.format("%d", ft));
+                edtWaist2.setText(String.format("%.1f", in).replace(",", "."));
+                edtWeight.setSuffix("LB");
+                edtHeight.setSuffix("FT");
+                edtHeight2.setSuffix("IN");
+                edtWaist.setSuffix("FT");
+                edtWaist2.setSuffix("IN");
+            }
+        });
+        myPreference = new MyPreference(getActivity());
         weight = myPreference.getCurrentWeightKG();
         height = myPreference.getCurrentHeightCm();
         waist = myPreference.getCurrentWaistCm();
-        mWeightViewModel.setIsKg(isKg);
+        isKg = myPreference.isKg();
+        mWeightViewModel.setIsKg( myPreference.isKg());
         mWeightViewModel.setUser(new UserObject(1100,weight,height,waist));
-
-        if (isKg) {
-            edtWeight.setText(String.format("%.1f", weight).replace(",","."));
-            edtHeight.setText(String.format("%.1f", height).replace(",","."));
-            edtWaist.setText(String.format("%.1f", waist).replace(",","."));
-            edtWeight.setSuffix("KG");
-            edtHeight.setSuffix("CM");
-            edtWaist.setSuffix("CM");
-            edtHeight2.setVisibility(View.GONE);
-            edtWaist2.setVisibility(View.GONE);
-        } else {
-
-            edtHeight2.setVisibility(View.VISIBLE);
-            edtWaist2.setVisibility(View.VISIBLE);
-            edtWeight.setText(String.format("%.1f LBS", weight * 2.20462262f).replace(",", "."));
-
-            int feetPart = (int) Math.floor(height / 12 / 2.54f);
-            float inchesPart = (float) Math.ceil((height / 2.54) - (feetPart * 12));
-
-            edtHeight.setText(String.format("%d", feetPart));
-            edtHeight2.setText(String.format("%.1f", inchesPart).replace(",", "."));
-
-
-            int ft = (int) Math.floor(waist / 12 / 2.54f);
-            float in = (float) Math.ceil((waist / 2.54) - (ft * 12));
-
-            edtWaist.setText(String.format("%d", ft));
-            edtWaist2.setText(String.format("%.1f", in).replace(",", "."));
-
-            edtWeight.setSuffix("LB");
-            edtHeight.setSuffix("FT");
-            edtHeight2.setSuffix("IN");
-            edtWaist.setSuffix("FT");
-            edtWaist2.setSuffix("IN");
-        }
 
 
     }
 
-    @OnClick({R.id.rdKg, R.id.rdKg1, R.id.rdKg2, R.id.rdLb, R.id.rdLb1, R.id.rdLb2})
+    @OnClick({R.id.rdKg, R.id.rdLb})
     void onClickUnit(View view) {
         updateValue();
         switch (view.getId()) {
             case R.id.rdKg:
-            case R.id.rdKg1:
-            case R.id.rdKg2:
                 rdKg.setChecked(true);
-                rdKg2.setChecked(true);
-                rdKg1.setChecked(true);
                 if (!isKg){
                     changeUnit();
                 }
                 break;
             case R.id.rdLb:
-            case R.id.rdLb1:
-            case R.id.rdLb2:
                 rdLb.setChecked(true);
-                rdLb1.setChecked(true);
-                rdLb2.setChecked(true);
                 if (isKg){
                     changeUnit();
                 }
@@ -176,8 +156,9 @@ public class DialogWeight extends DialogFragment {
             edtWeight.setSuffix("KG");
             edtHeight.setSuffix("CM");
             edtWaist.setSuffix("CM");
+            rdKg.setChecked(true);
         } else {
-
+            rdLb.setChecked(true);
             edtHeight2.setVisibility(View.VISIBLE);
             edtWaist2.setVisibility(View.VISIBLE);
             edtWeight.setText(String.format("%.1f", weight * 2.20462262f).replace(",", "."));
@@ -286,8 +267,8 @@ public class DialogWeight extends DialogFragment {
                 myPreference.setCurrentWeight(weight);
                 myPreference.setCurrentHeight(height);
                 myPreference.setCurrentWaist(waist);
-                BMIFragment bmiFragment = (BMIFragment) getActivity().getSupportFragmentManager().findFragmentByTag("BMI_FRAGMENT");
-                bmiFragment.updateColor();
+//                BMIFragment bmiFragment = (BMIFragment) getActivity().getSupportFragmentManager().findFragmentByTag("BMI_FRAGMENT");
+//                bmiFragment.updateColor();
                 UserObject userObject = new UserObject();
                 userObject.setDate(TimeUnit.MILLISECONDS.toDays(Calendar.getInstance().getTimeInMillis()));
                 userObject.setWeight(myPreference.getCurrentWeightKG());
@@ -295,6 +276,7 @@ public class DialogWeight extends DialogFragment {
                 userObject.setWaist(myPreference.getCurrentWaistCm());
                 mHistoryViewModel.insertUser(userObject);
                 mWeightViewModel.setIsKg(isKg);
+                myPreference.setUnitKg(isKg);
                 mWeightViewModel.setUser(userObject);
                 this.dismiss();
                 break;

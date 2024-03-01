@@ -109,7 +109,8 @@ public class FinishedActivity extends AppCompatActivity  {
        // Glide.with(this).load(R.drawable.finished_banner).into(mBanner);
         if (mBundle != null) {
             mPlanObject = mBundle.getParcelable("PLAN_OBJECT");
-            mProgramObject = mBundle.getParcelable("PLAN");
+            int id = mBundle.getInt("PROGRAM_ID",0);
+            mProgramObject = FitnessApplication.getApplication().getProgram(id);
             mHistoryItem = mBundle.getParcelable("HISTORY");
 
             mReminderSet.setText(mDatabase.getReminderSet());
@@ -143,7 +144,7 @@ public class FinishedActivity extends AppCompatActivity  {
             }
         }
         if (mCongratulationPlayer != null) mCongratulationPlayer.release();
-        if (myPreference.isMusicOn()) {
+        if (myPreference.isRingOn()) {
             mCongratulationPlayer = MediaPlayer.create(this, R.raw.cheer);
             mCongratulationPlayer.setLooping(false);
             mCongratulationPlayer.start();

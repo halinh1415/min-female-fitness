@@ -1,41 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:id="@+id/view_item"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="@dimen/_8sdp"
+    app:cardElevation="@dimen/_2sdp"
+    app:cardUseCompatPadding="false">
 
-    <RelativeLayout
+    <FrameLayout
         android:id="@+id/rl_diet"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginBottom="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/background_frame"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/_60sdp">
 
         <TextView
             android:id="@+id/txt_diet_day"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:gravity="center"
             android:text="Day 1"
-            android:textColor="@color/White"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/img_diet_done"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="2dp"
-            android:layout_marginRight="2dp"
-            app:srcCompat="@drawable/img_done" />
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_gravity="bottom|right"
+            android:background="@drawable/bg_round_bottom" />
 
-    </RelativeLayout>
-</LinearLayout>
+    </FrameLayout>
+</androidx.cardview.widget.CardView>

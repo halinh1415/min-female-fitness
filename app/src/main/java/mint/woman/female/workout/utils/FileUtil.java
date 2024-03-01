@@ -25,6 +25,16 @@ public class FileUtil {
         // Check if the file exists
         return file.exists();
     }
+    public static boolean doesVideoExist(Context context, String fileName) {
+        // Get the path to the app's internal files directory
+        File internalFilesDir = context.getCacheDir();
+
+        // Create a File object with the desired file name
+        File file = new File(internalFilesDir, fileName);
+
+        // Check if the file exists
+        return file.exists();
+    }
     public static void unzipFromAssets(Context context, String zipFileName, String outputDirectory) {
 
         try {

@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:gravity="center"
         android:background="@drawable/bg_week_item"
         android:orientation="vertical">
 
@@ -55,40 +56,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <RadioGroup
-                    android:id="@+id/rgUnit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/_5sdp"
-                    android:orientation="horizontal">
 
-                    <RadioButton
-                        android:id="@+id/rdKg"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/tab_color_selector"
-                        android:button="@android:color/transparent"
-                        android:checked="true"
-                        android:paddingHorizontal="@dimen/_5sdp"
-                        android:paddingVertical="@dimen/_5sdp"
-                        android:text="KG"
-                        android:textColor="@drawable/radio_button_text_selector"
-                        android:textSize="16sp" />
-
-                    <RadioButton
-                        android:id="@+id/rdLb"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:background="@drawable/tab_color_selector"
-                        android:button="@android:color/transparent"
-                        android:checked="false"
-                        android:paddingHorizontal="@dimen/_5sdp"
-                        android:paddingVertical="@dimen/_5sdp"
-                        android:text="LB"
-                        android:textColor="@drawable/radio_button_text_selector"
-                        android:textSize="16sp" />
-                </RadioGroup>
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
@@ -142,40 +110,6 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <RadioGroup
-                    android:id="@+id/rgUnit1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/_5sdp"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rdKg1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/tab_color_selector"
-                        android:button="@android:color/transparent"
-                        android:checked="true"
-                        android:paddingHorizontal="@dimen/_5sdp"
-                        android:paddingVertical="@dimen/_5sdp"
-                        android:text="CM"
-                        android:textColor="@drawable/radio_button_text_selector"
-                        android:textSize="16sp" />
-
-                    <RadioButton
-                        android:id="@+id/rdLb1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:background="@drawable/tab_color_selector"
-                        android:button="@android:color/transparent"
-                        android:checked="false"
-                        android:paddingHorizontal="@dimen/_5sdp"
-                        android:paddingVertical="@dimen/_5sdp"
-                        android:text="IN"
-                        android:textColor="@drawable/radio_button_text_selector"
-                        android:textSize="16sp" />
-                </RadioGroup>
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
@@ -224,43 +158,42 @@
                     android:inputType="numberDecimal"
                     android:textSize="20sp" />
 
-                <RadioGroup
-                    android:id="@+id/rgUnit2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/_5sdp"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rdKg2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/tab_color_selector"
-                        android:button="@android:color/transparent"
-                        android:checked="true"
-                        android:paddingHorizontal="@dimen/_5sdp"
-                        android:paddingVertical="@dimen/_5sdp"
-                        android:text="CM"
-                        android:textColor="@drawable/radio_button_text_selector"
-                        android:textSize="16sp" />
-
-                    <RadioButton
-                        android:id="@+id/rdLb2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:background="@drawable/tab_color_selector"
-                        android:button="@android:color/transparent"
-                        android:checked="false"
-                        android:paddingHorizontal="@dimen/_5sdp"
-                        android:paddingVertical="@dimen/_5sdp"
-                        android:text="IN"
-                        android:textColor="@drawable/radio_button_text_selector"
-                        android:textSize="16sp" />
-                </RadioGroup>
             </LinearLayout>
         </LinearLayout>
+        <RadioGroup
+            android:id="@+id/rgUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_5sdp"
+            android:orientation="horizontal">
 
+            <RadioButton
+                android:id="@+id/rdKg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tab_color_selector"
+                android:button="@android:color/transparent"
+                android:checked="true"
+                android:paddingHorizontal="@dimen/_5sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:text="cm/KG"
+                android:textColor="@drawable/radio_button_text_selector"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/rdLb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:background="@drawable/tab_color_selector"
+                android:button="@android:color/transparent"
+                android:checked="false"
+                android:paddingHorizontal="@dimen/_5sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:text=".ft/Lb"
+                android:textColor="@drawable/radio_button_text_selector"
+                android:textSize="16sp" />
+        </RadioGroup>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

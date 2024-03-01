@@ -44,6 +44,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.activity.ui.count.CountManagerActivity;
 import mint.woman.female.workout.activity.ui.workout.DoWorkoutActivity;
 import mint.woman.female.workout.activity.ui.workout.ExerciseDetailActivity;
 import mint.woman.female.workout.activity.ui.workout.ReplaceActivity;
@@ -154,7 +155,8 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         mBundle = getIntent().getExtras();
         mPreviewViewModel = new ViewModelProvider(this).get(PreviewViewModel.class);
         if (mBundle != null) {
-            mProgramObject = mBundle.getParcelable("PLAN");
+            int id = mBundle.getInt("PROGRAM_ID",0);
+            mProgramObject = FitnessApplication.getApplication().getProgram(id);
             mIndexDay = mBundle.getInt("DAY_NUMBER");
             mProgramDescription.setVisibility(View.GONE);
             mJsonHelper = FitnessApplication.getApplication().mJsonHelper;
@@ -447,6 +449,17 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
             mProgressTxt.setText(getString(R.string.txt_go_to));
             mResetBtn.setVisibility(View.GONE);
         }
+    }
+    ActivityResultLauncher<Intent> resultCount = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    updateData();
+                }
+            });
+    @OnClick(R.id.fab_audio)
+    void goAudioOptions() {
+        resultCount.launch(new Intent(PreviewActivity.this, CountManagerActivity.class));
     }
 
     @Override

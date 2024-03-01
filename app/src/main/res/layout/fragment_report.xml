@@ -13,6 +13,12 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <fragment
+                android:id="@+id/a3"
+                class="mint.woman.female.workout.activity.ui.weekgoal.WeekGoalFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:tag="WEEK_GOAL_FRAGMENT" />
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

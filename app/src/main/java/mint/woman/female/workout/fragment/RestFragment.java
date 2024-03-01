@@ -21,6 +21,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.workout.DoWorkoutActivity;
@@ -29,13 +33,10 @@ import mint.woman.female.workout.custom.CustomVideoView;
 import mint.woman.female.workout.custom.DialogDemoWorkout;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.PlanObject;
+import mint.woman.female.workout.utils.FileUtil;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.MyPreference;
 import mint.woman.female.workout.utils.VideoEncryptor;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 @SuppressLint("NonConstantResourceId")
 public class RestFragment extends Fragment implements View.OnClickListener {
@@ -117,22 +118,29 @@ public class RestFragment extends Fragment implements View.OnClickListener {
 //        if (resourceId > 0) {
 //            videoPath = "android.resource://" + getContext().getPackageName() + "/" + resourceId;
 //        }
-        videoPath = getContext().getCacheDir() + "/temp.mp4";
-        mVideoView.setVideoURI(Uri.parse(videoPath));
-        mVideoView.setOnPreparedListener(mediaPlayer -> {
-            mediaPlayer.setLooping(true);
-        });
-        mVideoView.start();
-        mSub.setVisibility(View.GONE);
-        mExerciseName.setText(mExerciseObject.getName());
 
-        int minutes = (mActionObject.time) / 60;
-        int seconds = mActionObject.time % 60;
-        String timeString = String.format("%02d:%02d", minutes, seconds);
+        videoPath = getContext().getCacheDir() + "/temp.mp4";
+        if (FileUtil.doesVideoExist(getContext(),"temp.mp4")){
+            mVideoView.setVideoURI(Uri.parse(videoPath));
+            mVideoView.setOnPreparedListener(mediaPlayer -> {
+                mediaPlayer.setLooping(true);
+            });
+            mVideoView.start();
+        }
+
+
+        mExerciseName.setText(mExerciseObject.getName());
         if (mActionObject.unit.contains("s")) {
-            mExerciseCount.setText(timeString);
+            mSub.setVisibility(View.GONE);
+            mExerciseCount.setText(FitnessConstUtils.toTime(mActionObject.time));
         } else {
             mExerciseCount.setText("x " + mActionObject.time);
+            if (mExerciseObject.getAlternation()) {
+                mSub.setVisibility(View.VISIBLE);
+                mSub.setText(getString(R.string.txt_each_side) + " x" + (mActionObject.time / 2));
+            } else {
+                mSub.setVisibility(View.GONE);
+            }
         }
         mProgressCount.setText(exerciseProgressCount);
 
@@ -203,7 +211,6 @@ public class RestFragment extends Fragment implements View.OnClickListener {
             mediaPlayer.setLooping(true);
         });
         mVideoView.start();
-        mSub.setVisibility(View.GONE);
         mExerciseName.setText(mExerciseObject.getName());
         int minutes = (mActionObject.time) / 60;
         int seconds = mActionObject.time % 60;
@@ -280,14 +287,18 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         populateViewForOrientation(inflater, (ViewGroup) getView());
         mExerciseName.setText(mExerciseObject.getName());
 
-        mSub.setVisibility(View.GONE);
-        int minutes = (mActionObject.time) / 60;
-        int seconds = mActionObject.time % 60;
-        String timeString = String.format("%02d:%02d", minutes, seconds);
+        mExerciseName.setText(mExerciseObject.getName());
         if (mActionObject.unit.contains("s")) {
-            mExerciseCount.setText(timeString);
+            mSub.setVisibility(View.GONE);
+            mExerciseCount.setText(FitnessConstUtils.toTime(mActionObject.time));
         } else {
             mExerciseCount.setText("x " + mActionObject.time);
+            if (mExerciseObject.getAlternation()) {
+                mSub.setVisibility(View.VISIBLE);
+                mSub.setText(getString(R.string.txt_each_side) + " x" + (mActionObject.time / 2));
+            } else {
+                mSub.setVisibility(View.GONE);
+            }
         }
         //   mRestTimeProgress.setMax(mRestTime);
         //  mRestTimeProgress.setProgress(mCurrentTime);

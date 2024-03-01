@@ -48,6 +48,7 @@
             android:id="@+id/img_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_alignParentRight="true"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_icon_circle"
@@ -56,7 +57,7 @@
             app:layout_constraintBottom_toTopOf="@+id/img_rotate"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txt_speed"
-            app:srcCompat="@drawable/ic_baseline_more_vert_24" />
+            app:srcCompat="@drawable/ic_whistle" />
 
         <ImageView
             android:id="@+id/img_rotate"
@@ -99,154 +100,190 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <TextView
-        android:id="@+id/tv_exercise_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:clickable="true"
-        android:drawableRight="@drawable/ic_info_outline_black_24dp"
-        android:drawablePadding="10dp"
-        android:foreground="?attr/selectableItemBackground"
-        android:gravity="center"
-        android:maxLines="2"
-        android:padding="10dp"
-        android:text="Easy Pose"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="@dimen/_20sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progress_ready_bottom" />
-
-    <TextView
-        android:id="@+id/tv_sub"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="@+id/progress_ready_bottom"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_exercise_name" />
-
-    <TextView
-        android:id="@+id/txt_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text='00:00'
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_pause"
-        app:layout_constraintEnd_toEndOf="@+id/progress_ready_bottom"
-        app:layout_constraintStart_toStartOf="@+id/progress_ready_bottom"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sub" />
-
-
-    <ImageView
-        android:id="@+id/img_done"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:focusable="false"
-        android:foreground="?attr/selectableItemBackground"
-        android:src="@drawable/bg_done"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_pause"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
-        app:layout_constraintStart_toEndOf="@+id/btn_pause"
-        app:layout_constraintTop_toTopOf="@+id/btn_pause"
-        tools:visibility="visible" />
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/ln_pause"
+        app:layout_constraintTop_toBottomOf="@+id/progress_ready_bottom">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/btn_pause"
-        android:layout_width="200dp"
+        <TextView
+            android:id="@+id/tv_exercise_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:drawableRight="@drawable/ic_info_outline_black_24dp"
+            android:drawablePadding="10dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:maxLines="2"
+            android:padding="10dp"
+            android:text="Easy Pose"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="@dimen/_20sdp" />
+
+        <TextView
+            android:id="@+id/tv_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Each side"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text='00:00'
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="48sp" />
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/ln_pause"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:clickable="true"
-        android:focusable="false"
-        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/img_previous"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <ProgressBar
-            android:id="@+id/progress_ready"
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_width="0dp"
-            android:layout_height="45dp"
-            android:max="100"
-            android:progress="0"
-            android:progressDrawable="@drawable/horizontal_blue_progress"
-            app:layout_constraintBottom_toBottomOf="@id/txt_pause"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/txt_pause" />
-
-        <TextView
-            android:id="@+id/txt_pause"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btn_pause"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:drawableLeft="@drawable/ic_baseline_pause_circle_outline_24"
-            android:drawablePadding="10dp"
-            android:gravity="center"
-            android:text="@string/txt_touch_to_pause"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_transparent_btn_ripple_white"
+            android:clickable="true"
+            android:focusable="false"
+            android:minWidth="@dimen/_150sdp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/img_previous"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ProgressBar
+                android:id="@+id/progress_ready"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_45sdp"
+                android:max="100"
+                android:progress="0"
+                android:progressDrawable="@drawable/horizontal_blue_progress"
+                app:layout_constraintBottom_toBottomOf="@id/txt_pause"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txt_pause" />
+
+            <TextView
+                android:id="@+id/txt_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:drawableLeft="@drawable/ic_baseline_pause_circle_outline_24"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:text="@string/txt_touch_to_pause"
+                android:textColor="#A6A5A5"
+                android:textSize="@dimen/_18sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <ImageButton
+            android:id="@+id/img_done"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_round_corner_gradient_primary_100"
+            android:focusable="false"
+            android:foreground="?attr/selectableItemBackground"
+            android:src="@drawable/ic_done_tick"
+            tools:visibility="visible" />
 
-    <TextView
+    </FrameLayout>
+
+
+    <LinearLayout
         android:id="@+id/img_previous"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:clickable="true"
-        android:drawableLeft="@drawable/ic_baseline_skip_previous_24"
-        android:drawablePadding="10dp"
-        android:focusable="false"
-        android:foreground="?attr/selectableItemBackground"
+        android:orientation="horizontal"
         android:gravity="center"
-        android:text="@string/txt_previous"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="18sp"
+        android:background="@drawable/bg_transparent_btn_r_6"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/divider"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginHorizontal="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tv_pr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_baseline_skip_previous_24"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="@string/txt_previous"
+            android:textAlignment="center"
+            android:textSize="@dimen/_14sdp" />
+    </LinearLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider"
+        android:layout_width="@dimen/_1sdp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_previous"
         app:layout_constraintEnd_toStartOf="@+id/img_next"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/img_previous"
+        app:layout_constraintTop_toTopOf="@+id/img_previous" />
 
-    <TextView
+    <LinearLayout
         android:id="@+id/img_next"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="8dp"
-        android:clickable="true"
-        android:drawableLeft="@drawable/ic_baseline_skip_next_24"
-        android:drawablePadding="10dp"
-        android:focusable="false"
-        android:foreground="?attr/selectableItemBackground"
+        android:background="@drawable/bg_transparent_btn_r_6"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginHorizontal="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
         android:gravity="center"
-        android:text="@string/txt_skip"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="18sp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/img_previous" />
+        app:layout_constraintStart_toEndOf="@+id/divider">
+        <TextView
+            android:id="@+id/tv_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_baseline_skip_next_24"
+            android:gravity="center"
+            android:text="@string/txt_skip"
+            android:textSize="@dimen/_14sdp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

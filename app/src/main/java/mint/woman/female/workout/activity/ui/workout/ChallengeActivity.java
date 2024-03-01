@@ -30,6 +30,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import mint.woman.female.workout.BuildConfig;
+import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.custom.CustomMyWorkoutActivity;
 import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
@@ -88,7 +89,9 @@ public class ChallengeActivity extends AppCompatActivity implements IDayClickLis
         myPreference = new MyPreference(this);
         mBundle = getIntent().getExtras();
         if (mBundle != null) {
-            mProgramObject = mBundle.getParcelable("PLAN");
+            int id = mBundle.getInt("PROGRAM_ID",0);
+            mProgramObject = FitnessApplication.getApplication().getProgram(id);
+          //  mProgramObject = mBundle.getParcelable("PLAN");
         }
         setTitle(mProgramObject.getName().toUpperCase());
         progress = myPreference.getPlanProgress(mProgramObject.getId());
@@ -221,7 +224,8 @@ public class ChallengeActivity extends AppCompatActivity implements IDayClickLis
             case R.id.action_edit:
                 Intent intent = new Intent(ChallengeActivity.this, CustomMyWorkoutActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("PLAN", mProgramObject);
+                bundle.putInt("PROGRAM_ID",mProgramObject.getId());
+             //   bundle.putParcelable("PLAN", mProgramObject);
                 intent.putExtras(bundle);
                 startActivity(intent);
                 return true;

@@ -211,7 +211,7 @@ public class HistoryActivity extends AppCompatActivity implements HistorySection
         if (programObject != null){
             Intent intent = new Intent(HistoryActivity.this, PreviewActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putParcelable("PLAN", programObject);
+            bundle.putInt("PROGRAM_ID", historyItem.getProgramId());
             bundle.putInt("DAY_NUMBER", historyItem.getDayIndex());
             intent.putExtras(bundle);
             startActivity(intent);
