@@ -61,7 +61,7 @@ import java.util.Locale;
 public class SplashActivity extends AppCompatActivity {
 
     private static final String TAG = "SplashActivity";
-    private static final int TIME_OUT = 10;
+    private static final int TIME_OUT = 6;
     MyPreference myPreference;
     ImageView mSplash;
     private Handler mHandler = new Handler();
@@ -195,7 +195,7 @@ public class SplashActivity extends AppCompatActivity {
             mHandler.postDelayed(() -> {
                 startMain();
 
-            }, 5000);
+            }, 3000);
         }
     }
 
