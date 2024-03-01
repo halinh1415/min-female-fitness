@@ -17,24 +17,23 @@ import java.text.DecimalFormat;
 public class XYMarkerView extends MarkerView {
 
     private final TextView tvContent;
-    private final ValueFormatter xAxisValueFormatter;
 
     private final DecimalFormat format;
 
-    public XYMarkerView(Context context, ValueFormatter xAxisValueFormatter) {
+    public XYMarkerView(Context context) {
         super(context, R.layout.custom_marker_view);
 
-        this.xAxisValueFormatter = xAxisValueFormatter;
         tvContent = findViewById(R.id.tvContent);
         format = new DecimalFormat("####");
     }
 
     // runs every time the MarkerView is redrawn, can be used to update the
     // content (user-interface)
+    @SuppressLint("DefaultLocale")
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
 
-        tvContent.setText(String.format("%s - %s cal", xAxisValueFormatter.getFormattedValue(e.getX()), format.format(e.getY())));
+        tvContent.setText(String.format("%.1f", e.getY()));
 
         super.refreshContent(e, highlight);
     }

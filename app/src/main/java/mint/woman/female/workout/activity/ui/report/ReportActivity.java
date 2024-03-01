@@ -568,7 +568,7 @@ public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekB
         l.setTextSize(11f);
         l.setXEntrySpace(4f);
 
-        XYMarkerView mv = new XYMarkerView(this, xAxisFormatter);
+        XYMarkerView mv = new XYMarkerView(this);
         mv.setChartView(mCaloriesChart); // For bounds control
         mCaloriesChart.setMarker(mv);
         mCaloriesChart.setVisibleXRangeMaximum(10);

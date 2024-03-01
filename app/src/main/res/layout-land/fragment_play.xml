@@ -144,6 +144,7 @@
             android:drawableLeft="@drawable/ic_baseline_skip_previous_24"
             android:drawablePadding="10dp"
             android:gravity="center"
+            android:textColor="@color/gray_600"
             android:text="@string/txt_previous"
             android:textAlignment="center"
             android:textSize="@dimen/_12sdp" />
@@ -230,6 +231,7 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_baseline_skip_next_24"
             android:gravity="center"
+            android:textColor="@color/gray_600"
             android:text="@string/txt_skip"
             android:textSize="@dimen/_12sdp" />
     </LinearLayout>
