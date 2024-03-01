@@ -262,4 +262,19 @@
     <string name="txt_start_day">当日からスタート</string>
     <string name="txt_choose_day">日を選択してください:</string>
     <string name="txt_set_progress">進行状況を設定する</string>
-</resources>
+<string name="txt_rest_day">休日</string>
+    <string name="txt_select_audio">サウンドオプション</string>
+    <string name="txt_count_down_info_1">時間制限付きで自分のペースでトレーニング</string>
+    <string name="txt_count_down_title_1">秒読み</string>
+    <string name="txt_count_down_title_3">テンポとカウンティング</string>
+    <string name="txt_mute">ミュート</string>
+    <string name="txt_coach_tip">コーチのヒント</string>
+    <string name="txt_meal_plan_30">30日間の食事プラン</string>
+    <string name="txt_meal_plan_info">参考になるレシピ</string>
+    <string name="txt_recipes">レシピ</string>
+    <string name="txt_are_you_want_to_reset">リセットしたいですか？</string>
+    <string name="txt_count_down_info_2">数を数えずに、自分のペースで練習してください</string>
+    <string name="txt_count_down_info_3">カウントを記録してペースをコントロールし、制限時間内にワークアウトを完了します。</string>
+    <string name="txt_sound">音</string>
+<string name="txt_count_down_title_2">ノーカウント</string>
+    </resources>

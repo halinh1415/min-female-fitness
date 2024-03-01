@@ -157,7 +157,7 @@ public class AudioAppManager {
                 });
             } else {
                 if (ttsReady) {
-                   // Log.d("HAHA","SPEAK :"+content+" size:"+audioResources.toString());
+                    Log.d("HAHA","SPEAK :"+content+" size:"+audioResources.toString());
                     tts.speak(content, TextToSpeech.QUEUE_ADD, null, "");
 
                 }

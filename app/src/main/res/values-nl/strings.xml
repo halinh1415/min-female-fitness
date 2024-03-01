@@ -262,4 +262,19 @@
     <string name="txt_start_day">Begin vanaf de dag</string>
     <string name="txt_choose_day">Kies een dag:</string>
     <string name="txt_set_progress">Voortgang instellen</string>
-</resources>
+<string name="txt_rest_day">Rustdag</string>
+    <string name="txt_select_audio">Geluidsopties</string>
+    <string name="txt_count_down_info_1">Train met tijdslimieten en in uw eigen tempo</string>
+    <string name="txt_count_down_title_1">Aftellen</string>
+    <string name="txt_count_down_title_3">Tempo en tellen</string>
+    <string name="txt_mute">Stom</string>
+    <string name="txt_coach_tip">Coachtips</string>
+    <string name="txt_meal_plan_30">Maaltijdplan in 30 dagen</string>
+    <string name="txt_meal_plan_info">Recepten voor uw referentie</string>
+    <string name="txt_recipes">Recepten</string>
+    <string name="txt_are_you_want_to_reset">Wilt u resetten?</string>
+    <string name="txt_count_down_info_2">Tel niet mee, oefen in je eigen tempo</string>
+    <string name="txt_count_down_info_3">Houd de telling bij om het tempo te controleren en voltooi de training binnen de tijdslimiet</string>
+    <string name="txt_sound">Geluid</string>
+<string name="txt_count_down_title_2">Geen tel</string>
+    </resources>

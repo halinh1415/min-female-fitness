@@ -253,7 +253,7 @@
     <string name="txt_download">Télécharger</string>
     <string name="txt_retry">Recommencez</string>
     <string name="txt_each_side">De chaque côté</string>
-    <string name="belly">Ventre</string>
+<string name="belly">Ventre</string>
     <string name="arm">Bras</string>
     <string name="butt">Bout</string>
     <string name="thigh">Cuisse</string>
@@ -262,4 +262,19 @@
     <string name="txt_start_day">Commencer le jour</string>
     <string name="txt_choose_day">Choisissez un jour :</string>
     <string name="txt_set_progress">Définir la progression</string>
-</resources>
+<string name="txt_rest_day">Jour de repos</string>
+    <string name="txt_select_audio">Options sonores</string>
+    <string name="txt_count_down_info_1">Entraînez-vous avec des limites de temps et à votre rythme</string>
+    <string name="txt_count_down_title_1">Compte à rebours</string>
+    <string name="txt_count_down_title_3">Tempo et comptage</string>
+    <string name="txt_mute">Muet</string>
+    <string name="txt_coach_tip">Conseils d\'entraîneur</string>
+    <string name="txt_meal_plan_30">Plan de repas en 30 jours</string>
+    <string name="txt_meal_plan_info">Recettes pour votre référence</string>
+    <string name="txt_recipes">Recettes</string>
+    <string name="txt_are_you_want_to_reset">Voulez-vous réinitialiser ?</string>
+    <string name="txt_count_down_info_2">Ne comptez pas, entraînez-vous à votre rythme</string>
+    <string name="txt_count_down_info_3">Gardez une trace du décompte pour contrôler le rythme et terminer l\'entraînement dans le temps imparti</string>
+    <string name="txt_sound">Son</string>
+<string name="txt_count_down_title_2">Pas de compte</string>
+    </resources>

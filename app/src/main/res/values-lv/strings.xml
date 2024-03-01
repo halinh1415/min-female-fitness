@@ -262,4 +262,19 @@
     <string name="txt_start_day">Sāciet no dienas</string>
     <string name="txt_choose_day">Izvēlieties dienu:</string>
     <string name="txt_set_progress">Iestatīt progresu</string>
-</resources>
+<string name="txt_rest_day">Atpūtas diena</string>
+    <string name="txt_select_audio">Skaņas iespējas</string>
+    <string name="txt_count_down_info_1">Trenējies ar laika ierobežojumiem un savā tempā</string>
+    <string name="txt_count_down_title_1">Atpakaļskaitīšana</string>
+    <string name="txt_count_down_title_3">Temps un skaitīšana</string>
+    <string name="txt_mute">Izslēgt skaņu</string>
+    <string name="txt_coach_tip">Trenera padomi</string>
+    <string name="txt_meal_plan_30">Ēdināšanas plāns 30 dienu laikā</string>
+    <string name="txt_meal_plan_info">Receptes jūsu uzziņai</string>
+    <string name="txt_recipes">Receptes</string>
+    <string name="txt_are_you_want_to_reset">Vai vēlaties atiestatīt?</string>
+    <string name="txt_count_down_info_2">Neskaiti, trenējies savā tempā</string>
+    <string name="txt_count_down_info_3">Sekojiet līdzi skaitam, lai kontrolētu tempu un pabeigtu treniņu noteiktajā laikā</string>
+    <string name="txt_sound">Skaņa</string>
+<string name="txt_count_down_title_2">Neskaita</string>
+    </resources>

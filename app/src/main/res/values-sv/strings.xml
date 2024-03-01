@@ -262,4 +262,19 @@
     <string name="txt_start_day">Börja från dagen</string>
     <string name="txt_choose_day">Välj en dag:</string>
     <string name="txt_set_progress">Ställ in framsteg</string>
-</resources>
+<string name="txt_rest_day">Vilodag</string>
+    <string name="txt_select_audio">Ljudalternativ</string>
+    <string name="txt_count_down_info_1">Träna med tidsgränser och i din egen takt</string>
+    <string name="txt_count_down_title_1">Nedräkning</string>
+    <string name="txt_count_down_title_3">Tempo och räkning</string>
+    <string name="txt_mute">Stum</string>
+    <string name="txt_coach_tip">Coach tips</string>
+    <string name="txt_meal_plan_30">Måltidsplan om 30 dagar</string>
+    <string name="txt_meal_plan_info">Recept för din referens</string>
+    <string name="txt_recipes">Recept</string>
+    <string name="txt_are_you_want_to_reset">Vill du återställa?</string>
+    <string name="txt_count_down_info_2">Räkna inte, träna i din egen takt</string>
+    <string name="txt_count_down_info_3">Håll koll på räkningen för att kontrollera tempot och slutföra passet inom tidsgränsen</string>
+    <string name="txt_sound">Ljud</string>
+<string name="txt_count_down_title_2">Ingen räkning</string>
+    </resources>

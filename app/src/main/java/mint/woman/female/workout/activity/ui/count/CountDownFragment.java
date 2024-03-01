@@ -114,23 +114,13 @@ public class CountDownFragment extends Fragment {
     }
 
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        if (countDownTimer!= null)
+    public void onDestroy() {
+        super.onDestroy();
+        if (countDownTimer!= null) {
             countDownTimer.cancel();
-        Log.d("HAHA","option= "+option+" onDetach");
+            countDownTimer = null;
+        }
+
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (countDownTimer!= null)
-            countDownTimer.start();
-        Log.d("HAHA","option= "+option+" onAttach");
-    }
 }

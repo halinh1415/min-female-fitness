@@ -262,4 +262,19 @@
     <string name="txt_start_day">Počni od dana</string>
     <string name="txt_choose_day">Odaberite dan:</string>
     <string name="txt_set_progress">Postavite napredak</string>
-</resources>
+<string name="txt_rest_day">Dan počinka</string>
+    <string name="txt_select_audio">Mogućnosti zvuka</string>
+    <string name="txt_count_down_info_1">Vježbajte s vremenskim ograničenjima i vlastitim tempom</string>
+    <string name="txt_count_down_title_1">Odbrojavanje</string>
+    <string name="txt_count_down_title_3">Tempo i brojanje</string>
+    <string name="txt_mute">Isključi zvuk</string>
+    <string name="txt_coach_tip">Savjeti trenera</string>
+    <string name="txt_meal_plan_30">Plan obroka za 30 dana</string>
+    <string name="txt_meal_plan_info">Recepti za vašu referencu</string>
+    <string name="txt_recipes">Recepti</string>
+    <string name="txt_are_you_want_to_reset">Želite li resetirati?</string>
+    <string name="txt_count_down_info_2">Ne brojite, vježbajte svojim tempom</string>
+    <string name="txt_count_down_info_3">Pratite brojanje kako biste kontrolirali tempo i završili vježbu unutar vremenskog ograničenja</string>
+    <string name="txt_sound">Zvuk</string>
+<string name="txt_count_down_title_2">Nema brojanja</string>
+    </resources>

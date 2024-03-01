@@ -253,7 +253,7 @@
     <string name="txt_download">İndirmek</string>
     <string name="txt_retry">Yeniden dene</string>
     <string name="txt_each_side">Her tarafı</string>
-<string name="belly">Karın</string>
+    <string name="belly">Karın</string>
     <string name="arm">Kol</string>
     <string name="butt">popo</string>
     <string name="thigh">Uyluk</string>
@@ -262,4 +262,19 @@
     <string name="txt_start_day">Günden başla</string>
     <string name="txt_choose_day">Bir gün seçin:</string>
     <string name="txt_set_progress">İlerlemeyi ayarla</string>
+    <string name="txt_rest_day">Dinlenme günü</string>
+    <string name="txt_select_audio">Ses seçenekleri</string>
+    <string name="txt_count_down_info_1">Zaman sınırlarıyla ve kendi hızınızda egzersiz yapın</string>
+    <string name="txt_count_down_title_1">geri sayım</string>
+    <string name="txt_count_down_title_3">Tempo ve Sayma</string>
+    <string name="txt_mute">Sesini kapatmak</string>
+    <string name="txt_coach_tip">Antrenör ipuçları</string>
+    <string name="txt_meal_plan_30">30 gün içinde yemek planı</string>
+    <string name="txt_meal_plan_info">Referansınız için tarifler</string>
+    <string name="txt_recipes">Tarifler</string>
+    <string name="txt_are_you_want_to_reset">Sıfırlamak mı istiyorsunuz?</string>
+    <string name="txt_count_down_info_2">Saymayın, kendi hızınızda pratik yapın</string>
+    <string name="txt_count_down_info_3">Hızı kontrol etmek ve antrenmanı zaman sınırı içinde tamamlamak için sayımı takip edin</string>
+    <string name="txt_sound">Ses</string>
+    <string name="txt_count_down_title_2">Sayılmaz</string>
 </resources>

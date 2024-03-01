@@ -262,4 +262,19 @@
     <string name="txt_start_day">Inizia dal giorno</string>
     <string name="txt_choose_day">Scegli un giorno:</string>
     <string name="txt_set_progress">Imposta l\'avanzamento</string>
-</resources>
+<string name="txt_rest_day">Giorno di riposo</string>
+    <string name="txt_select_audio">Opzioni audio</string>
+    <string name="txt_count_down_info_1">Allenati con limiti di tempo e al tuo ritmo</string>
+    <string name="txt_count_down_title_1">Conto alla rovescia</string>
+    <string name="txt_count_down_title_3">Tempo e conteggio</string>
+    <string name="txt_mute">Muto</string>
+    <string name="txt_coach_tip">Consigli dell\'allenatore</string>
+    <string name="txt_meal_plan_30">Piano alimentare in 30 giorni</string>
+    <string name="txt_meal_plan_info">Ricette per il vostro riferimento</string>
+    <string name="txt_recipes">Ricette</string>
+    <string name="txt_are_you_want_to_reset">Vuoi reimpostare?</string>
+    <string name="txt_count_down_info_2">Non contare, esercitati al tuo ritmo</string>
+    <string name="txt_count_down_info_3">Tieni traccia del conteggio per controllare il ritmo e completare l\'allenamento entro il limite di tempo</string>
+    <string name="txt_sound">Suono</string>
+<string name="txt_count_down_title_2">Nessun conteggio</string>
+    </resources>

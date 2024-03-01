@@ -262,4 +262,19 @@
     <string name="txt_start_day">Начать с дня</string>
     <string name="txt_choose_day">Выберите день:</string>
     <string name="txt_set_progress">Установить прогресс</string>
-</resources>
+<string name="txt_rest_day">День отдыха</string>
+    <string name="txt_select_audio">Звуковые параметры</string>
+    <string name="txt_count_down_info_1">Тренируйтесь с ограничениями по времени и в своем темпе</string>
+    <string name="txt_count_down_title_1">Обратный отсчет</string>
+    <string name="txt_count_down_title_3">Темп и счет</string>
+    <string name="txt_mute">Немой</string>
+    <string name="txt_coach_tip">Советы тренера</string>
+    <string name="txt_meal_plan_30">План питания на 30 дней</string>
+    <string name="txt_meal_plan_info">Рецепты для вашей справки</string>
+    <string name="txt_recipes">Рецепты</string>
+    <string name="txt_are_you_want_to_reset">Вы хотите сбросить настройки?</string>
+    <string name="txt_count_down_info_2">Не считайте, тренируйтесь в своем темпе</string>
+    <string name="txt_count_down_info_3">Следите за счетом, чтобы контролировать темп и завершить тренировку в установленные сроки.</string>
+    <string name="txt_sound">Звук</string>
+<string name="txt_count_down_title_2">Нет счета</string>
+    </resources>

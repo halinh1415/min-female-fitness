@@ -262,4 +262,19 @@
     <string name="txt_start_day">Aloita päivästä</string>
     <string name="txt_choose_day">Valitse päivä:</string>
     <string name="txt_set_progress">Aseta edistyminen</string>
-</resources>
+<string name="txt_rest_day">Lepopäivä</string>
+    <string name="txt_select_audio">Äänivaihtoehdot</string>
+    <string name="txt_count_down_info_1">Harjoittele aikarajoilla ja omaan tahtiisi</string>
+    <string name="txt_count_down_title_1">Lähtölaskenta</string>
+    <string name="txt_count_down_title_3">Tempo ja laskenta</string>
+    <string name="txt_mute">Mykistä</string>
+    <string name="txt_coach_tip">Valmentajan vinkkejä</string>
+    <string name="txt_meal_plan_30">Ateriasuunnitelma 30 päivässä</string>
+    <string name="txt_meal_plan_info">Reseptejä viitteellesi</string>
+    <string name="txt_recipes">Reseptit</string>
+    <string name="txt_are_you_want_to_reset">Haluatko nollata?</string>
+    <string name="txt_count_down_info_2">Älä laske, vaan harjoittele omaan tahtiisi</string>
+    <string name="txt_count_down_info_3">Seuraa määrää, jotta voit hallita vauhtia ja suorittaa harjoituksen määräajassa</string>
+    <string name="txt_sound">Ääni</string>
+<string name="txt_count_down_title_2">Ei laskentaa</string>
+    </resources>

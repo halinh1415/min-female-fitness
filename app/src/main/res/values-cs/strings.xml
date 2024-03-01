@@ -253,7 +253,7 @@
     <string name="txt_download">Stažení</string>
     <string name="txt_retry">Zkuste to znovu</string>
     <string name="txt_each_side">Každá strana</string>
-    <string name="belly">Břicho</string>
+<string name="belly">Břicho</string>
     <string name="arm">Paže</string>
     <string name="butt">Zadek</string>
     <string name="thigh">Stehno</string>
@@ -262,4 +262,19 @@
     <string name="txt_start_day">Začněte ode dne</string>
     <string name="txt_choose_day">Vyberte den:</string>
     <string name="txt_set_progress">Nastavte průběh</string>
-</resources>
+<string name="txt_rest_day">Odpočinkový den</string>
+    <string name="txt_select_audio">Možnosti zvuku</string>
+    <string name="txt_count_down_info_1">Cvičte s časovými limity a svým vlastním tempem</string>
+    <string name="txt_count_down_title_1">Odpočítávání</string>
+    <string name="txt_count_down_title_3">Tempo a počítání</string>
+    <string name="txt_mute">Ztlumit</string>
+    <string name="txt_coach_tip">Trenérské tipy</string>
+    <string name="txt_meal_plan_30">Stravovací plán do 30 dnů</string>
+    <string name="txt_meal_plan_info">Recepty pro vaši referenci</string>
+    <string name="txt_recipes">Recepty</string>
+    <string name="txt_are_you_want_to_reset">Chcete provést reset?</string>
+    <string name="txt_count_down_info_2">Nepočítejte, cvičte svým vlastním tempem</string>
+    <string name="txt_count_down_info_3">Sledujte počet, abyste kontrolovali tempo a dokončili cvičení v časovém limitu</string>
+    <string name="txt_sound">Zvuk</string>
+<string name="txt_count_down_title_2">Bez počítání</string>
+    </resources>

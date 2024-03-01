@@ -262,4 +262,19 @@
     <string name="txt_start_day">از روز شروع کن</string>
     <string name="txt_choose_day">یک روز را انتخاب کنید:</string>
     <string name="txt_set_progress">پیشرفت را تنظیم کنید</string>
-</resources>
+<string name="txt_rest_day">روز استراحت</string>
+    <string name="txt_select_audio">گزینه های صدا</string>
+    <string name="txt_count_down_info_1">با محدودیت زمانی و با سرعت خود تمرین کنید</string>
+    <string name="txt_count_down_title_1">شمارش معکوس</string>
+    <string name="txt_count_down_title_3">تمپو و شمارش</string>
+    <string name="txt_mute">بی صدا</string>
+    <string name="txt_coach_tip">نکات مربی</string>
+    <string name="txt_meal_plan_30">برنامه غذایی در 30 روز</string>
+    <string name="txt_meal_plan_info">دستور العمل برای مرجع شما</string>
+    <string name="txt_recipes">دستور پخت</string>
+    <string name="txt_are_you_want_to_reset">آیا می خواهید ریست کنید؟</string>
+    <string name="txt_count_down_info_2">حساب نکنید، با سرعت خودتان تمرین کنید</string>
+    <string name="txt_count_down_info_3">تعداد را پیگیری کنید تا سرعت را کنترل کنید و تمرین را در محدوده زمانی کامل کنید</string>
+    <string name="txt_sound">صدا</string>
+<string name="txt_count_down_title_2">بدون شمارش</string>
+    </resources>

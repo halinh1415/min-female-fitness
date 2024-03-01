@@ -262,4 +262,19 @@
     <string name="txt_start_day">Start fra dagen</string>
     <string name="txt_choose_day">Vælg en dag:</string>
     <string name="txt_set_progress">Indstil fremskridt</string>
-</resources>
+<string name="txt_rest_day">Hviledag</string>
+    <string name="txt_select_audio">Lydmuligheder</string>
+    <string name="txt_count_down_info_1">Træn med tidsbegrænsninger og i dit eget tempo</string>
+    <string name="txt_count_down_title_1">Nedtælling</string>
+    <string name="txt_count_down_title_3">Tempo og tælling</string>
+    <string name="txt_mute">Stum</string>
+    <string name="txt_coach_tip">Træner tips</string>
+    <string name="txt_meal_plan_30">Madplan om 30 dage</string>
+    <string name="txt_meal_plan_info">Opskrifter til din reference</string>
+    <string name="txt_recipes">Opskrifter</string>
+    <string name="txt_are_you_want_to_reset">Vil du nulstille?</string>
+    <string name="txt_count_down_info_2">Tæl ikke, øv dig i dit eget tempo</string>
+    <string name="txt_count_down_info_3">Hold styr på optællingen for at kontrollere tempoet og fuldføre træningen inden for tidsfristen</string>
+    <string name="txt_sound">Lyd</string>
+<string name="txt_count_down_title_2">Ingen tæller</string>
+    </resources>

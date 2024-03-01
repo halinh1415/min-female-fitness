@@ -83,7 +83,7 @@
     <string name="txt_advanced">Trình độ cao</string>
     <string name="txt_recommend_app">Đề xuất ứng dụng</string>
     <string name="txt_my_custom_workout">Phong tục</string>
-    <string name="txt_save">Cứu</string>
+    <string name="txt_save">Lưu lại</string>
     <string name="txt_select_exercise">Lựa chọn bài tập</string>
     <string name="txt_my_workout_name">Tên</string>
     <string name="txt_total_day">Số ngày</string>
@@ -137,7 +137,7 @@
     <string name="txt_explore">Phát hiện</string>=
     <string name="txt_see_more">Xem thêm</string>
     <string name="txt_for_home_workout">Để tập luyện tại nhà</string>
-    <string name="txt_saved_money">Đã lưu</string>
+    <string name="txt_saved_money">Tiết kiệm</string>
     <string name="txt_all_exercise">Tất cả các bài tập</string>
     <string name="txt_x2_workout">Tập luyện x2</string>
     <string name="txt_dark">Tối</string>
@@ -249,17 +249,32 @@
     <string name="txt_challenge_7x4">Thử thách 7x4</string>
     <string name="txt_replace">Thay thế</string>
     <string name="txt_replace_with">Thay bằng</string>
-    <string name="text_current">Hiện tại</string>
+    <string name="text_current">Hiện hành</string>
     <string name="txt_download">Tải xuống</string>
     <string name="txt_retry">Thử lại</string>
     <string name="txt_each_side">Mỗi bên</string>
     <string name="belly">Bụng</string>
     <string name="arm">Cánh tay</string>
-    <string name="butt">Mông</string>
+    <string name="butt">mông</string>
     <string name="thigh">Đùi</string>
     <string name="focus_part">Phần trọng tâm của bạn là gì?</string>
     <string name="full_body">Toàn cơ thể</string>
     <string name="txt_start_day">Bắt đầu từ ngày</string>
     <string name="txt_choose_day">Chọn một ngày:</string>
     <string name="txt_set_progress">Đặt tiến độ</string>
-</resources>
+    <string name="txt_rest_day">Ngày nghỉ</string>
+    <string name="txt_select_audio">Tùy chọn âm thanh</string>
+    <string name="txt_count_down_info_1">Tập luyện với giới hạn thời gian và theo tốc độ của riêng bạn</string>
+    <string name="txt_count_down_title_1">Đếm ngược</string>
+    <string name="txt_count_down_title_3">Nhịp độ và đếm</string>
+    <string name="txt_mute">Tắt tiếng</string>
+    <string name="txt_coach_tip">Lời khuyên của huấn luyện viên</string>
+    <string name="txt_meal_plan_30">Kế hoạch bữa ăn trong 30 ngày</string>
+    <string name="txt_meal_plan_info">Công thức nấu ăn để bạn tham khảo</string>
+    <string name="txt_recipes">Công thức nấu ăn</string>
+    <string name="txt_are_you_want_to_reset">Bạn có muốn thiết lập lại không?</string>
+    <string name="txt_count_down_info_2">Đừng đếm, hãy luyện tập theo tốc độ của riêng bạn</string>
+    <string name="txt_count_down_info_3">Theo dõi số lượng để kiểm soát tốc độ và hoàn thành bài tập trong thời gian giới hạn</string>
+    <string name="txt_sound">Âm thanh</string>
+    <string name="txt_count_down_title_2">Không đếm</string>
+    </resources>

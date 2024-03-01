@@ -262,4 +262,19 @@
     <string name="txt_start_day">تبدأ من اليوم</string>
     <string name="txt_choose_day">اختر يومًا:</string>
     <string name="txt_set_progress">ضبط التقدم</string>
-</resources>
+    <string name="txt_rest_day">يوم الراحة</string>
+    <string name="txt_select_audio">خيارات الصوت</string>
+    <string name="txt_count_down_info_1">تجريب مع حدود زمنية وبالسرعة التي تناسبك</string>
+    <string name="txt_count_down_title_1">العد التنازلي</string>
+    <string name="txt_count_down_title_3">الإيقاع والعد</string>
+    <string name="txt_mute">صامت</string>
+    <string name="txt_coach_tip">نصائح المدرب</string>
+    <string name="txt_meal_plan_30">خطة وجبة في 30 يوما</string>
+    <string name="txt_meal_plan_info">وصفات للرجوع اليها</string>
+    <string name="txt_recipes">وصفات</string>
+    <string name="txt_are_you_want_to_reset">هل تريد إعادة التعيين؟</string>
+    <string name="txt_count_down_info_2">لا تحسب، تدرب بالسرعة التي تناسبك</string>
+    <string name="txt_count_down_info_3">تتبع العد للتحكم في الوتيرة وإكمال التمرين خلال الوقت المحدد</string>
+    <string name="txt_sound">صوت</string>
+<string name="txt_count_down_title_2">لا يوجد عد</string>
+    </resources>

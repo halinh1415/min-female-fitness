@@ -262,4 +262,19 @@
     <string name="txt_start_day">Mulai dari hari</string>
     <string name="txt_choose_day">Pilih hari:</string>
     <string name="txt_set_progress">Tetapkan kemajuan</string>
-</resources>
+<string name="txt_rest_day">Hari istirahat</string>
+    <string name="txt_select_audio">Pilihan suara</string>
+    <string name="txt_count_down_info_1">Berolahraga dengan batas waktu dan kecepatan Anda sendiri</string>
+    <string name="txt_count_down_title_1">Hitung mundur</string>
+    <string name="txt_count_down_title_3">Tempo dan Berhitung</string>
+    <string name="txt_mute">Bisu</string>
+    <string name="txt_coach_tip">Kiat pelatih</string>
+    <string name="txt_meal_plan_30">Paket makan dalam 30 hari</string>
+    <string name="txt_meal_plan_info">Resep untuk referensi Anda</string>
+    <string name="txt_recipes">Resep</string>
+    <string name="txt_are_you_want_to_reset">Apakah Anda ingin mengatur ulang?</string>
+    <string name="txt_count_down_info_2">Jangan dihitung, berlatihlah dengan kecepatan Anda sendiri</string>
+    <string name="txt_count_down_info_3">Pantau hitungan untuk mengontrol kecepatan dan menyelesaikan latihan dalam batas waktu</string>
+    <string name="txt_sound">Suara</string>
+<string name="txt_count_down_title_2">Tidak terhitung</string>
+    </resources>

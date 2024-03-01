@@ -262,4 +262,19 @@
     <string name="txt_start_day">從當天開始</string>
     <string name="txt_choose_day">選擇一天：</string>
     <string name="txt_set_progress">設定進度</string>
-</resources>
+<string name="txt_rest_day">休息日</string>
+    <string name="txt_select_audio">聲音選項</string>
+    <string name="txt_count_down_info_1">按照您自己的步調進行有時間限制的鍛煉</string>
+    <string name="txt_count_down_title_1">倒數</string>
+    <string name="txt_count_down_title_3">節奏和計數</string>
+    <string name="txt_mute">沉默的</string>
+    <string name="txt_coach_tip">教練提示</string>
+    <string name="txt_meal_plan_30">30天內的飲食計劃</string>
+    <string name="txt_meal_plan_info">食譜供你參考</string>
+    <string name="txt_recipes">食譜</string>
+    <string name="txt_are_you_want_to_reset">您想重置嗎？</string>
+    <string name="txt_count_down_info_2">不要數數，按照自己的步調練習</string>
+    <string name="txt_count_down_info_3">追蹤計數以控制節奏並在時限內完成鍛煉</string>
+    <string name="txt_sound">聲音</string>
+<string name="txt_count_down_title_2">沒有計數</string>
+    </resources>

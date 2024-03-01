@@ -262,4 +262,19 @@
     <string name="txt_start_day">Comença des del dia</string>
     <string name="txt_choose_day">Tria un dia:</string>
     <string name="txt_set_progress">Estableix el progrés</string>
-</resources>
+<string name="txt_rest_day">Dia de descans</string>
+    <string name="txt_select_audio">Opcions de so</string>
+    <string name="txt_count_down_info_1">Entrena amb límits de temps i al teu ritme</string>
+    <string name="txt_count_down_title_1">Compte enrere</string>
+    <string name="txt_count_down_title_3">Tempo i recompte</string>
+    <string name="txt_mute">Silenciar</string>
+    <string name="txt_coach_tip">Consells d\'entrenador</string>
+    <string name="txt_meal_plan_30">Pla d\'àpats en 30 dies</string>
+    <string name="txt_meal_plan_info">Receptes per a la vostra referència</string>
+    <string name="txt_recipes">Receptes</string>
+    <string name="txt_are_you_want_to_reset">Vols restablir?</string>
+    <string name="txt_count_down_info_2">No comptis, practica al teu ritme</string>
+    <string name="txt_count_down_info_3">Feu un seguiment del recompte per controlar el ritme i completar l\'entrenament dins del límit de temps</string>
+    <string name="txt_sound">So</string>
+<string name="txt_count_down_title_2">Sense comptar</string>
+    </resources>

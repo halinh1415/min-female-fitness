@@ -262,4 +262,19 @@
     <string name="txt_start_day">दिन से शुरू करें</string>
     <string name="txt_choose_day">एक दिन चुनें:</string>
     <string name="txt_set_progress">प्रगति निर्धारित करें</string>
-</resources>
+<string name="txt_rest_day">विश्राम का दिन</string>
+    <string name="txt_select_audio">ध्वनि विकल्प</string>
+    <string name="txt_count_down_info_1">समय सीमा के साथ और अपनी गति से वर्कआउट करें</string>
+    <string name="txt_count_down_title_1">उलटी गिनती</string>
+    <string name="txt_count_down_title_3">गति और गिनती</string>
+    <string name="txt_mute">आवाज़ बंद करना</string>
+    <string name="txt_coach_tip">कोच युक्तियाँ</string>
+    <string name="txt_meal_plan_30">30 दिनों में भोजन योजना</string>
+    <string name="txt_meal_plan_info">आपके संदर्भ के लिए व्यंजन विधि</string>
+    <string name="txt_recipes">व्यंजनों</string>
+    <string name="txt_are_you_want_to_reset">क्या आप रीसेट करना चाहते हैं?</string>
+    <string name="txt_count_down_info_2">गिनती मत करो, अपनी गति से अभ्यास करो</string>
+    <string name="txt_count_down_info_3">गति को नियंत्रित करने और समय सीमा के भीतर वर्कआउट पूरा करने के लिए गिनती का ध्यान रखें</string>
+    <string name="txt_sound">आवाज़</string>
+<string name="txt_count_down_title_2">कोई गिनती नहीं</string>
+    </resources>
