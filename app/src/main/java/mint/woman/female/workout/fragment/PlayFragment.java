@@ -252,7 +252,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         mReadyProgress.setProgress((mCurrentTime));
         mBottomProgressBar.setMax(REP);
         mBottomProgressBar.setProgress((mCurrentTime));
-        mVideoView.setVideoURI(Uri.parse(path));
+     //   mVideoView.setVideoURI(Uri.parse(path));
         if (mActionObject.unit.contains("s")) {
 
             btnPause.setVisibility(View.VISIBLE);
