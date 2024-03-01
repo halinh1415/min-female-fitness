@@ -68,8 +68,15 @@ public class AudioAppManager {
     }
 
     public String getLocaleApp() {
-        if (locale.getLanguage().contains("zh")) {
-            return locale.getLanguage();
+        String[] loc = locale.getLanguage().split("_");
+        Locale locale;
+        if (loc.length>1){
+            locale = new Locale(loc[0], loc[1]);
+        }else{
+            locale = new Locale(loc[0]);
+        }
+        if (locale.getLanguage().contains("zh") || locale.getLanguage().contains("in")) {
+            return locale.getLanguage() + "_" + locale.getCountry();
         }
         String language = locale.getLanguage();
         return language.substring(0, 2);
