@@ -240,7 +240,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         mSpeed.setText("" + myPreference.getSpeed() + "x");
         mExerciseName.setText(mExerciseObject.getName());
         mCountDownText.setVisibility(View.INVISIBLE);
-
+        mVideoView.setVideoURI(Uri.parse(path));
         playExercise();
 
     }

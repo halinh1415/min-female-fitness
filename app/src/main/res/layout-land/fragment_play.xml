@@ -146,7 +146,7 @@
             android:gravity="center"
             android:text="@string/txt_previous"
             android:textAlignment="center"
-            android:textSize="@dimen/_14sdp" />
+            android:textSize="@dimen/_12sdp" />
     </LinearLayout>
 
 
@@ -154,19 +154,20 @@
         android:id="@+id/btn_pause"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_transparent_btn_ripple_white"
         android:clickable="true"
         android:focusable="false"
-        android:background="@drawable/bg_transparent_btn_ripple_white"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="@id/img_done">
 
         <ProgressBar
             android:id="@+id/progress_ready"
             style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_width="@dimen/_180sdp"
-            android:layout_height="@dimen/_45sdp"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_40sdp"
             android:max="100"
             android:progress="0"
             android:progressDrawable="@drawable/horizontal_blue_progress"
@@ -185,7 +186,7 @@
             android:text="@string/txt_touch_to_pause"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/Gray"
-            android:textSize="@dimen/_18sdp"
+            android:textSize="@dimen/_14sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.54"
@@ -198,21 +199,18 @@
 
     <ImageButton
         android:id="@+id/img_done"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:focusable="false"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/bg_round_oval_gradient_primary"
+        android:focusable="false"
         android:foreground="?attr/selectableItemBackground"
         android:src="@drawable/ic_done_tick"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_pause"
-        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_pause"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/img_next"
@@ -233,7 +231,7 @@
             android:drawableLeft="@drawable/ic_baseline_skip_next_24"
             android:gravity="center"
             android:text="@string/txt_skip"
-            android:textSize="@dimen/_14sdp" />
+            android:textSize="@dimen/_12sdp" />
     </LinearLayout>
 
     <TextView
