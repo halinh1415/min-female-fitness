@@ -183,7 +183,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                             mProgressReady.setMax(mDemoDataProvider.getItemCount());
                             mProgressReady.setProgress(saveProgress);
                             float percent = saveProgress * 100f / mDemoDataProvider.getItemCount();
-                            mProgressTxt.setText(getString(R.string.txt_continue) + String.format(" %.0f", percent) + "%");
+                            mProgressTxt.setText(getString(R.string.continue_text) + String.format(" %.0f", percent) + "%");
                         } else {
                             mProgressReady.setMax(100);
                             mProgressReady.setProgress(100);
@@ -196,7 +196,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                         mGoBtn.setEnabled(true);
                         mProgressReady.setProgress(100);
                         mProgressTxt.setCompoundDrawablesWithIntrinsicBounds(R.drawable.baseline_settings_backup_restore_24, 0, 0, 0);
-                        mProgressTxt.setText(getString(R.string.txt_retry));
+                        mProgressTxt.setText(getString(R.string.retry));
                         mGoBtn.setVisibility(View.VISIBLE);
                         break;
                     case NEED_DOWNLOAD:
@@ -204,7 +204,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                         mProgressReady.setMax(100);
                         mProgressTxt.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cloud_download_black_24dp, 0, 0, 0);
                     case DOWNLOADING:
-                        mProgressTxt.setText(getString(R.string.txt_download));
+                        mProgressTxt.setText(getString(R.string.download));
                         mResetBtn.setVisibility(View.GONE);
                         mGoBtn.setVisibility(View.VISIBLE);
 
@@ -278,7 +278,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
             int value = progress.getInt("PROGRESS", 0);
             mProgressReady.setProgress(value);
 
-            mProgressTxt.setText(getString(R.string.txt_download) + "..." + value + "%");
+            mProgressTxt.setText(getString(R.string.download) + "..." + value + "%");
             if (workInfo.getState() == WorkInfo.State.SUCCEEDED) {
                 mPreviewViewModel.setDownloadStatus(DownloadStatus.DONE);
                 updateData();
@@ -433,7 +433,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
     private void updatePlan() {
         int totalTimeEstimate = mDemoDataProvider.getTotalTime() + mDemoDataProvider.getItemCount() * myPreference.getRestTime();
         int minutes = totalTimeEstimate / 60;
-        String htmlContent = "<h>" + minutes + " " + getString(R.string.txt_minutes) + " &#8226; " + mDemoDataProvider.getItemCount() + " " + getString(R.string.txt_exercises) + "<h>";
+        String htmlContent = "<h>" + minutes + " " + getString(R.string.minutes) + " &#8226; " + mDemoDataProvider.getItemCount() + " " + getString(R.string.txt_exercises) + "<h>";
         tvWorkoutIntro.setText(Html.fromHtml(htmlContent));
         float cal = (mDemoDataProvider.getTotalTime() / 3600.0f) * FitnessConstUtils.CALORIES_CONST * (myPreference.getCurrentWeightKG() / 65.0f);
         saveProgress = myPreference.getSaveProgress(mProgramObject.getId(), mIndexDay);
@@ -442,7 +442,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
             mProgressReady.setMax(mDemoDataProvider.getItemCount());
             mProgressReady.setProgress(saveProgress);
             float percent = saveProgress * 100f / mDemoDataProvider.getItemCount();
-            mProgressTxt.setText(getString(R.string.txt_continue) + String.format(" %.0f", percent) + "%");
+            mProgressTxt.setText(getString(R.string.continue_text) + String.format(" %.0f", percent) + "%");
         } else {
             mProgressReady.setMax(100);
             mProgressReady.setProgress(100);

@@ -165,7 +165,7 @@ public class DietActivity extends AppCompatActivity {
     private void showFullDiet() {
         AlertDialog.Builder doneAlert = new AlertDialog.Builder(this);
         doneAlert.setTitle("Finish!!!\nAre you want to reset?");
-        doneAlert.setPositiveButton(getString(R.string.txt_ok), (dialogInterface, i) -> {
+        doneAlert.setPositiveButton(getString(R.string.OK), (dialogInterface, i) -> {
             myPreference.resetDietProgress();
             onRestart();
         });

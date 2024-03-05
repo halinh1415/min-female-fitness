@@ -20,7 +20,7 @@
             app:defaultValue="true"
             app:icon="@drawable/ic_access_time_black_24dp"
             app:key="IS_TICK"
-            app:title="@string/txt_sound" />
+            app:title="@string/sound" />
         <SwitchPreference
             app:defaultValue="true"
             app:icon="@drawable/ic_music_note_black_24dp"

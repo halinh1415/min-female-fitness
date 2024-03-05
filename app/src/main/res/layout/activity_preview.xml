@@ -195,7 +195,11 @@
                 android:text="Continue 87%"
                 android:textAllCaps="true"
                 android:textColor="@color/White"
-                android:textSize="18sp" />
+                android:lines="1"
+                app:autoSizeMaxTextSize="18sp"
+                app:autoSizeMinTextSize="1sp"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform" />
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <LinearLayout

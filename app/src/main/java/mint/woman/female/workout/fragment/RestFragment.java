@@ -137,7 +137,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
             mExerciseCount.setText("x " + mActionObject.time);
             if (mExerciseObject.getAlternation()) {
                 mSub.setVisibility(View.VISIBLE);
-                mSub.setText(getString(R.string.txt_each_side) + " x" + (mActionObject.time / 2));
+                mSub.setText(getString(R.string.td_each_side) + " x" + (mActionObject.time / 2));
             } else {
                 mSub.setVisibility(View.GONE);
             }
@@ -295,7 +295,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
             mExerciseCount.setText("x " + mActionObject.time);
             if (mExerciseObject.getAlternation()) {
                 mSub.setVisibility(View.VISIBLE);
-                mSub.setText(getString(R.string.txt_each_side) + " x" + (mActionObject.time / 2));
+                mSub.setText(getString(R.string.td_each_side) + " x" + (mActionObject.time / 2));
             } else {
                 mSub.setVisibility(View.GONE);
             }

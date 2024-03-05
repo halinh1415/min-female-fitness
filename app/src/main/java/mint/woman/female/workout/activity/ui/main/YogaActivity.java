@@ -11,7 +11,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -25,6 +24,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -32,9 +32,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.preference.PreferenceManager;
 
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.fitness.FitnessOptions;
 import com.google.android.gms.fitness.data.DataType;
@@ -45,21 +42,22 @@ import com.google.android.ump.ConsentInformation;
 import com.google.android.ump.ConsentRequestParameters;
 import com.google.android.ump.UserMessagingPlatform;
 
+import java.util.Locale;
+
 import mint.woman.female.workout.R;
-import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
-import mint.woman.female.workout.activity.ui.workout.ChallengeActivity;
-import mint.woman.female.workout.activity.ui.workout.ProgramActivity;
 import mint.woman.female.workout.activity.SplashActivity;
+import mint.woman.female.workout.activity.premium.PremiumActivity;
+import mint.woman.female.workout.activity.premium.PremiumViewModel;
 import mint.woman.female.workout.activity.ui.custom.MyWorkoutActivity;
 import mint.woman.female.workout.activity.ui.home.HomeFragment;
+import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
 import mint.woman.female.workout.activity.ui.settings.SettingFragment;
+import mint.woman.female.workout.activity.ui.workout.ChallengeActivity;
 import mint.woman.female.workout.custom.DialogRating;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.receiver.AlarmReceiver;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
-
-import java.util.Locale;
 
 
 public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHomeFragmentInteractionListener, SettingFragment.OnSettingsListener {
@@ -75,6 +73,7 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
     ConsentInformation consentInformation;
 
     TextToSpeech tts;
+    PremiumViewModel premiumViewModel;
 
     //   GoogleSignInClient mGoogleSignInClient;
     @Override
@@ -99,11 +98,15 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
     }
 
     private void initView() {
+        premiumViewModel = new ViewModelProvider(this).get(PremiumViewModel.class);
 
         flagAds = 0;
         myPreference = MyPreference.newInstance(this);
         myPreference.increaseOpenCount();
 
+        premiumViewModel.isPremium.observe(this, isPremium -> {
+            myPreference.setPremiumMember(isPremium);
+        });
         if (isFirst) {
             isFirst = false;
 
@@ -119,6 +122,7 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
         if (myPreference.isRemind()) {
             createDailyNotify();
         }
+
         //checkAccount();
     }
 
@@ -440,6 +444,9 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
                 return true;
             case R.id.action_my_workout:
                 startActivity(new Intent(YogaActivity.this, MyWorkoutActivity.class));
+                return true;
+            case R.id.action_premium:
+                startActivity(new Intent(YogaActivity.this, PremiumActivity.class));
                 return true;
 
         }

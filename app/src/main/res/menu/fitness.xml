@@ -8,4 +8,12 @@
         android:title="@string/txt_my_custom_workout"
         android:visible="false"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_premium"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_diamond"
+        android:title="@string/txt_go_premium"
+        android:visible="true"
+        app:showAsAction="always" />
 </menu>

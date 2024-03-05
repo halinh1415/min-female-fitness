@@ -126,15 +126,42 @@ public class UserInfoFragment extends Fragment {
         if (isKg) {
             mUserWeight.setSuffix("kg");
             mUserHeight.setSuffix("cm");
-
+            if (weight >200f){
+                weight = 180f;
+            }
+            if (weight < 35f){
+                weight = 40f;
+            }
+            if (weight > 80){
+                weight = 180f;
+            }
+            if (height < 80f){
+                height = 81f;
+            }
+            if (height > 250f){
+                height = 200f;
+            }
             mRuleWeight.setValue(35f, 200f, weight, 0.1f, 10);
-            mRuleHeight.setValue(35f, 1000f, height, 0.1f, 10);
+            mRuleHeight.setValue(80f, 250f, height, 0.1f, 10);
         } else {
             mUserWeight.setSuffix("lb");
             mUserHeight.setSuffix("ft");
+            if (weight > 440){
+                weight = 400f;
+            }
+            if (weight < 2.5f){
+                weight = 2.5f;
+            }
+            if (height < 2.5f){
+                height = 2.6f;
+            }
+            if (height > 10f){
+                height = 9.9f;
+            }
+
             mRuleWeight.setValue(35f, 440f, weight, 0.1f, 10);
            // mRuleHeight.setValue(2.5f, 8.2f, height, 0.1f, 10);
-            mRuleHeight.setValue(2.5f, 1000f, height, 0.1f, 10);
+            mRuleHeight.setValue(2.5f, 10f, height, 0.1f, 10);
         }
     }
 

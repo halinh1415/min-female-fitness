@@ -57,7 +57,7 @@ public class ProgramGoalAdapter extends RecyclerView.Adapter<ProgramGoalAdapter.
         if (programObject.getType() == 1) {
             float percent =  (progress*100f/programObject.getTotal());
             holder.mPercent.setText(String.format("%.0f",percent)+"%");
-            holder.mDayLeft.setText("" + (programObject.getTotal() / 7) + " " + mContext.getString(R.string.txt_week));
+            holder.mDayLeft.setText("" + (programObject.getTotal() / 7) + " " + mContext.getString(R.string.weeks));
             holder.mProgress.setVisibility(View.VISIBLE);
             holder.mProgress.setProgress(progress);
             holder.mProgress.setMax(programObject.getTotal());

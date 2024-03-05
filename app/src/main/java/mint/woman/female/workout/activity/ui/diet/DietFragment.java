@@ -1,12 +1,10 @@
 package mint.woman.female.workout.activity.ui.diet;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -14,7 +12,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -82,7 +79,7 @@ public class DietFragment extends Fragment implements DietAdapter.IDietClick {
         doneAlert.setTitle(getString(R.string.txt_finish));
         doneAlert.setMessage(getString(R.string.txt_are_you_want_to_reset));
 
-        doneAlert.setPositiveButton(getString(R.string.txt_ok), (dialogInterface, i) -> {
+        doneAlert.setPositiveButton(getString(R.string.OK), (dialogInterface, i) -> {
             myPreference.resetDietProgress();
 
         });

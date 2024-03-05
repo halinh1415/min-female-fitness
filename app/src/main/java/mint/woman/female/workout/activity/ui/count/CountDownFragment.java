@@ -1,7 +1,6 @@
 package mint.woman.female.workout.activity.ui.count;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,19 +92,19 @@ public class CountDownFragment extends Fragment {
                 btnPause.setVisibility(View.VISIBLE);
                 btnDone.setVisibility(View.GONE);
                 tvCountDown.setText("00:20");
-                tvCountTitle.setText(R.string.txt_count_down_title_1);
+                tvCountTitle.setText(R.string.countdown);
                 break;
             case 0:
                 btnPause.setVisibility(View.GONE);
                 btnDone.setVisibility(View.VISIBLE);
-                tvCountTitle.setText(R.string.txt_count_down_title_2);
+                tvCountTitle.setText(R.string.no_counting);
                 tvCountDown.setText("x20");
                 break;
             case 1:
                 tvCountDown.setText("8/10");
                 btnDone.setVisibility(View.GONE);
                 btnPause.setVisibility(View.VISIBLE);
-                tvCountTitle.setText(R.string.txt_count_down_title_3);
+                tvCountTitle.setText(R.string.tempo_counting);
                 break;
         }
 

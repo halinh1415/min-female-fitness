@@ -78,7 +78,7 @@ public class ProgramAdapter extends RecyclerView.Adapter<ProgramViewHolder> {
             }
 
         }else {
-            holder.mSubTitle.setText(""+programObject.getTotal()+" "+holder.mSubTitle.getContext().getString(R.string.txt_minutes));
+            holder.mSubTitle.setText(""+programObject.getTotal()+" "+holder.mSubTitle.getContext().getString(R.string.minutes));
         }
         holder.itemView.setOnClickListener(view -> {
             if (programClickListener!= null){

@@ -34,8 +34,8 @@ import java.util.Locale;
 public class JsonHelper {
     public final static int VERSION_DAY_PLAN = 7;
     public static JsonHelper mHelper;
-    Integer[] meals = new Integer[]{R.string.txt_breakfast, R.string.txt_snack, R.string.txt_lunch, R.string.txt_dinner};
-    Integer[] levels = new Integer[]{R.string.txt_beginner, R.string.txt_intermediate, R.string.txt_advanced};
+    Integer[] meals = new Integer[]{R.string.recipes_breakfast, R.string.recipes_snack, R.string.recipes_lunch, R.string.recipes_dinner};
+    Integer[] levels = new Integer[]{R.string.beginner, R.string.intermediate, R.string.advanced};
     Context mContext;
     MyPreference myPreference;
     Decode mDecode;

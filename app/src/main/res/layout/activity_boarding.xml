@@ -57,7 +57,7 @@
                 android:layout_margin="3dp"
                 android:paddingHorizontal="@dimen/_10sdp"
                 android:paddingVertical="@dimen/_2sdp"
-                android:text="@string/txt_next"
+                android:text="@string/td_next"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="@dimen/_18sdp" />

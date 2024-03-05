@@ -9,11 +9,11 @@
         android:id="@+id/nav_explore"
         android:icon="@drawable/ic_boxing_gloves"
         android:visible="false"
-        android:title="@string/txt_explore" />
+        android:title="@string/tab_discover" />
     <item
         android:id="@+id/nav_report"
         android:icon="@drawable/ic_event_note_black_24dp"
-        android:title="@string/txt_report" />
+        android:title="@string/report_center_title" />
     <item
         android:id="@+id/nav_diet_fragment"
         android:icon="@drawable/ic_diet"

@@ -284,7 +284,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             mAudioAppManager.playText(getExerciseObjectCurrent().getName());
             if (getExerciseObjectCurrent().getAlternation()&& getActionObjectCurrent().unit.isEmpty()){
                 mAudioAppManager.playText(""+getActionObjectCurrent().time/2);
-                mAudioAppManager.playText(getString(R.string.txt_each_side));
+                mAudioAppManager.playText(getString(R.string.td_each_side));
             }
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance( mPlanObject.mActionList.get(currentExerciseCount), 123, progress), "Rest").commitAllowingStateLoss();
@@ -403,7 +403,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             } else if (getExerciseObjectCurrent().getAlternation() && getActionObjectCurrent().unit.isEmpty()) {
                 mAudioAppManager.playText(getExerciseObjectCurrent().getName());
                 mAudioAppManager.playText("" + getActionObjectCurrent().time / 2);
-                mAudioAppManager.playTextWithListener(getString(R.string.txt_each_side), () -> {
+                mAudioAppManager.playTextWithListener(getString(R.string.td_each_side), () -> {
                     Log.d("HAHA", "FINISH audio! each side");
                     PlayFragment playFragment = (PlayFragment) getSupportFragmentManager().findFragmentByTag("Ready");
                     if (playFragment != null) {
@@ -469,7 +469,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                 }
             } else {
                 if (timeLeft == getActionObjectCurrent().time / 2) {
-                    mAudioAppManager.playText(getString(R.string.txt_half_time));
+                    mAudioAppManager.playText(getString(R.string.td_v_half_time));
                 }
                 if (getActionObjectCurrent().time - timeLeft == 5) {
                     String lang = myPreference.getLanguage();
@@ -561,7 +561,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                 mAudioAppManager.playText(getExerciseObjectCurrent().getName());
                 if (getExerciseObjectCurrent().getAlternation()&& getActionObjectCurrent().unit.isEmpty()){
                     mAudioAppManager.playText(""+getActionObjectCurrent().time/2);
-                    mAudioAppManager.playText(getString(R.string.txt_each_side));
+                    mAudioAppManager.playText(getString(R.string.td_each_side));
                 }
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance( mPlanObject.mActionList.get(currentExerciseCount), rest, progress), "Rest").commitAllowingStateLoss();

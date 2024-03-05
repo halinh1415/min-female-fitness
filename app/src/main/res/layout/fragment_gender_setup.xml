@@ -18,7 +18,7 @@
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txt_what_is_gender"
+        android:text="@string/what_your_gender"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="@dimen/_15sdp" />
@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10sdp"
-                android:text="@string/txt_female"
+                android:text="@string/female"
                 android:textSize="@dimen/_18sdp"
                 android:textColor="@color/DeepPink" />
         </LinearLayout>
@@ -77,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10sdp"
-                android:text="@string/txt_male"
+                android:text="@string/male"
                 android:textSize="@dimen/_18sdp"
                 android:textColor="@color/DodgerBlue" />
         </LinearLayout>

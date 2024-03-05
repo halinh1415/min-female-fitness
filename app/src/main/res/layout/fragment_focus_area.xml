@@ -133,7 +133,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="60dp"
-                android:text="@string/butt"
+                android:text="@string/ass"
                 android:textAllCaps="true"
                 android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/position_butt_y"
@@ -145,7 +145,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="60dp"
-                android:text="@string/butt"
+                android:text="@string/ass"
                 android:textAllCaps="true"
                 app:layout_constraintBottom_toTopOf="@+id/position_butt_y"
                 app:layout_constraintLeft_toRightOf="@+id/position_center_x" />
