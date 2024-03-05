@@ -171,7 +171,7 @@
                         android:drawableLeft="@drawable/ic_google_fit"
                         android:drawablePadding="20dp"
                         android:visibility="gone"
-                        android:text="@string/txt_sync_to_google_fit"
+                        android:text="@string/rp_syn_with_google_fit"
                         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
                 </LinearLayout>

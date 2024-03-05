@@ -112,8 +112,8 @@
         <item>85</item>
     </string-array>
     <string-array name="user_gender_name">
-        <item>@string/txt_male</item>
-        <item>@string/txt_female</item>
+        <item>@string/male</item>
+        <item>@string/female</item>
     </string-array>
     <string-array name="user_gender_value">
         <item>0</item>

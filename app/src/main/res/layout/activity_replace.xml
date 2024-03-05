@@ -88,7 +88,7 @@
                     android:id="@+id/tv_new"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_current"
+                    android:text="@string/current"
                     android:textAllCaps="true"
                     android:textColor="@color/White"
                     android:textSize="@dimen/_10sdp" />
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="@dimen/_16sdp"
-                android:text="@string/txt_replace_with"
+                android:text="@string/replace_with"
                 android:textAllCaps="false" />
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
@@ -124,7 +124,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/background_button_bound"
         android:layout_margin="@dimen/_10sdp"
-        android:text="@string/txt_replace"
+        android:text="@string/replace"
         android:layout_alignParentBottom="true"
         android:textColor="@color/White"/>
 </RelativeLayout>

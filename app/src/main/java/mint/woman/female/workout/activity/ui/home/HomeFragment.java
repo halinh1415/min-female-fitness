@@ -4,22 +4,17 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ExploreDetailActivity;
@@ -31,15 +26,12 @@ import mint.woman.female.workout.model.Section;
 import mint.woman.female.workout.utils.MyPreference;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
 
 @SuppressLint({"NonConstantResourceId", "DefaultLocale"})
 public class HomeFragment extends Fragment implements ProgramClickListener {
@@ -97,12 +89,12 @@ public class HomeFragment extends Fragment implements ProgramClickListener {
     private void initData() {
         hashMap = FitnessApplication.getApplication().mJsonHelper.getAllCategoryHashMap();
         List<Section> sections = new ArrayList<>();
-        sections.add(new Section(getString(R.string.txt_challenge), getProgram(mListChallenge),R.layout.item_child_recent_challenge));
+        sections.add(new Section(getString(R.string.challenge), getProgram(mListChallenge),R.layout.item_child_recent_challenge));
         sections.add(new Section(getString(R.string.txt_abs), getProgram(mListAbs),R.layout.item_child_recent_rect));
         sections.add(new Section(getString(R.string.txt_arm), getProgram(mListArm),R.layout.item_child_recent_rect));
         sections.add(new Section(getString(R.string.txt_butt), getProgram(mListButt),R.layout.item_child_recent_rect));
         sections.add(new Section(getString(R.string.txt_thigh), getProgram(mListThigh),R.layout.item_child_recent_rect));
-        sections.add(new Section(getString(R.string.txt_explore), getProgram(mListSplit),R.layout.item_child_recent_rect));
+        sections.add(new Section(getString(R.string.tab_discover), getProgram(mListSplit),R.layout.item_child_recent_rect));
 //        final GridLayoutManager glm = new GridLayoutManager(getContext(), 2);
 //        glm.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
 //            @Override

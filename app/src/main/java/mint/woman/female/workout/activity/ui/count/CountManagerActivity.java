@@ -37,7 +37,7 @@ public class CountManagerActivity extends AppCompatActivity {
     TextView tvCountTitle;
     MyPreference myPreference;
     int currentOption = 0;
-    int[] titleCountIds = new int[]{ R.string.txt_count_down_title_2, R.string.txt_count_down_title_3,R.string.txt_count_down_title_1};
+    int[] titleCountIds = new int[]{ R.string.no_counting, R.string.tempo_counting,R.string.countdown};
     int[] infoCountIds = new int[]{ R.string.txt_count_down_info_2, R.string.txt_count_down_info_3,R.string.txt_count_down_info_1};
 
 

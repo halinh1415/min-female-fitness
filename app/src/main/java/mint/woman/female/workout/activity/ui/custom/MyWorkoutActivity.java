@@ -107,7 +107,7 @@ public class MyWorkoutActivity extends AppCompatActivity implements MyWorkoutAda
         daysNumber.setWrapSelectorWheel(true);
         final EditText workoutName = view.findViewById(R.id.edt_my_workout_name);
         dialogAdd.setView(view);
-        dialogAdd.setPositiveButton(getString(R.string.txt_ok), (dialogInterface, i) -> {
+        dialogAdd.setPositiveButton(getString(R.string.OK), (dialogInterface, i) -> {
             mCustomWorkoutDataProvider.generateDefaultPlan(daysNumber.getValue());
             if (workoutName.getText().toString().isEmpty()) {
                 Toast.makeText(MyWorkoutActivity.this, "Please enter workout name!!!", Toast.LENGTH_SHORT).show();

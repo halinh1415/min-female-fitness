@@ -196,7 +196,7 @@ public class CustomMyWorkoutActivity extends AppCompatActivity implements Dialog
                     Toast.makeText(this, "Update plan " + myWorkoutObject.getName(), Toast.LENGTH_SHORT).show();
                 } else {
                     menuItem.setVisible(true);
-                    item.setTitle(R.string.txt_save);
+                    item.setTitle(R.string.save);
                 }
                 customWorkoutAdapter.setFlagEdit(flagEdit);
                 return true;

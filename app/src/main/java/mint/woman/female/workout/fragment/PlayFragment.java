@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.Typeface;
 import android.media.PlaybackParams;
 import android.net.Uri;
 import android.os.Build;
@@ -15,7 +14,6 @@ import android.os.Handler;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.RelativeSizeSpan;
-import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +22,6 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -41,14 +38,11 @@ import mint.woman.female.workout.activity.ui.workout.WorkoutViewModel;
 import mint.woman.female.workout.custom.CustomVideoView;
 import mint.woman.female.workout.custom.DialogDemoWorkout;
 import mint.woman.female.workout.custom.DialogSelectSpeed;
-import mint.woman.female.workout.custom.DialogSound;
 import mint.woman.female.workout.custom.PauseDialog;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.PlanObject;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.MyPreference;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -173,7 +167,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
             mCurrentTime = 0;
             if (mExerciseObject.getAlternation()) {
                 mSub.setVisibility(View.VISIBLE);
-                mSub.setText(getString(R.string.txt_each_side)+" x"+REP);
+                mSub.setText(getString(R.string.td_each_side)+" x"+REP);
             } else {
                 mSub.setVisibility(View.INVISIBLE);
             }
@@ -270,7 +264,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         } else {
             if (mExerciseObject.getAlternation()) {
                 mSub.setVisibility(View.VISIBLE);
-                mSub.setText(getString(R.string.txt_each_side)+" x"+REP);
+                mSub.setText(getString(R.string.td_each_side)+" x"+REP);
             } else {
                 mSub.setVisibility(View.INVISIBLE);
             }

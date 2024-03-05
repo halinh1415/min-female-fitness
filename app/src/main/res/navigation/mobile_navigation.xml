@@ -51,18 +51,18 @@
     <fragment
         android:id="@+id/nav_explore"
         android:name="mint.woman.female.workout.activity.ui.explore.ExploreFragment"
-        android:label="@string/txt_explore"
+        android:label="@string/tab_discover"
         tools:layout="@layout/fragment_explore" />
     <fragment
         android:id="@+id/nav_report"
         android:name="mint.woman.female.workout.activity.ui.report.ReportFragment"
-        android:label="@string/txt_report"
+        android:label="@string/report_center_title"
         tools:layout="@layout/fragment_report" >
     </fragment>
     <activity
         android:id="@+id/nav_report2"
         android:name="mint.woman.female.workout.activity.ui.report.ReportActivity"
-        android:label="@string/txt_report"
+        android:label="@string/report_center_title"
         tools:layout="@layout/activity_report" />
     <fragment
         android:id="@+id/nav_diet_fragment"

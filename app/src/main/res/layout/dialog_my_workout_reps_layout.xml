@@ -50,6 +50,6 @@
             android:layout_margin="10dp"
             android:textColor="@color/White"
             android:background="@drawable/background_button_bound"
-            android:text="@string/txt_ok" />
+            android:text="@string/OK" />
     </LinearLayout>
 </LinearLayout>

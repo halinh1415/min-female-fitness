@@ -2,7 +2,6 @@ package mint.woman.female.workout.activity.ui.explore;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,7 +82,7 @@ public class ExploreFragment extends Fragment implements ProgramClickListener {
     private void initData() {
         hashMap = FitnessApplication.getApplication().mJsonHelper.getAllCategoryHashMap();
         List<Section> sections = new ArrayList<>();
-        sections.add(new Section(getString(R.string.txt_challenge), getProgram(mListChallenge),R.layout.item_child_recent_challenge));
+        sections.add(new Section(getString(R.string.challenge), getProgram(mListChallenge),R.layout.item_child_recent_challenge));
         sections.add(new Section(getString(R.string.txt_abs), getProgram(mListAbs),R.layout.item_child_recent_rect));
         sections.add(new Section(getString(R.string.txt_arm), getProgram(mListArm),R.layout.item_child_recent_rect));
         sections.add(new Section(getString(R.string.txt_butt), getProgram(mListButt),R.layout.item_child_recent_rect));

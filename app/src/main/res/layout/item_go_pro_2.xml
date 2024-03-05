@@ -20,7 +20,7 @@
             android:layout_marginHorizontal="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_5sdp"
             android:background="@drawable/background_button_bound"
-            android:text="@string/txt_continue" />
+            android:text="@string/continue_text" />
         <LinearLayout
             android:id="@+id/tv_des_content"
             android:layout_width="match_parent"

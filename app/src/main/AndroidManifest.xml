@@ -109,7 +109,7 @@
         <activity
             android:name=".activity.ui.workout.ReplaceActivity"
             android:exported="false"
-            android:label="@string/txt_replace"
+            android:label="@string/replace"
             android:parentActivityName=".activity.ui.preview.PreviewActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -145,7 +145,7 @@
         </activity>
         <activity
             android:name=".activity.ExploreDetailActivity"
-            android:label="@string/txt_explore"
+            android:label="@string/tab_discover"
             android:parentActivityName=".activity.ui.main.YogaActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -181,7 +181,7 @@
             android:name=".activity.ui.report.ReportActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:hardwareAccelerated="true"
-            android:label="@string/txt_report"
+            android:label="@string/report_center_title"
             android:parentActivityName=".activity.ui.main.YogaActivity"
             android:screenOrientation="portrait">
             <meta-data
