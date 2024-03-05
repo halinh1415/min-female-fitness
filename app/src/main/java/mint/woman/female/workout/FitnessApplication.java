@@ -11,6 +11,10 @@ import androidx.preference.PreferenceManager;
 import com.google.firebase.FirebaseApp;
 import com.google.gson.Gson;
 
+import mint.woman.female.workout.activity.SplashActivity;
+import mint.woman.female.workout.activity.premium.PremiumActivity;
+import mint.woman.female.workout.admodule.AppOpenManager;
+import mint.woman.female.workout.admodule.MaticAdKeys;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.utils.Database;
 import mint.woman.female.workout.utils.JsonHelper;
@@ -64,6 +68,12 @@ public class FitnessApplication extends Application {
         context = this;
         NetworkUtil.initNetwork(this);
         FirebaseApp.initializeApp(this);
+        AppOpenManager.getInstance().init(this, MaticAdKeys.OPEN_RESUME);
+        AppOpenManager.getInstance().disableAppResumeWithActivity(SplashActivity.class);
+        AppOpenManager.getInstance().disableAppResumeWithActivity(PremiumActivity.class);
+        //AppOpenManager.getInstance().disableAppResumeWithActivity(LockScreenActivity.class);
+        AppOpenManager.getInstance().setAdResumeHighId(MaticAdKeys.OPEN_RESUME_HIGH);
+        AppOpenManager.getInstance().setAdResumeMediumId(MaticAdKeys.OPEN_RESUME_MEDIUM);
         storageCommon = new StorageCommon();
         mGSon = new Gson();
         mJsonHelper = JsonHelper.newInstance(getApplicationContext(), getKey(getPackageName()));
