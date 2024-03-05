@@ -66,7 +66,7 @@
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
                 android:layout_marginLeft="@dimen/_41sdp"
-                android:src="@drawable/ic_pro_muay" />
+                android:src="@drawable/ic_pro_1" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:maxLines="1"
-                    android:text="@string/txt_pro_muay_thai_workout"
+                    android:text="@string/txt_pro_female_lose_weight_workout"
                     android:textColor="#de000000"
                     android:textSize="@dimen/_18sdp"
                     app:autoSizeMaxTextSize="@dimen/_18sdp"
@@ -93,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:maxLines="1"
-                    android:text="@string/txt_workout_muay_thai"
+                    android:text="@string/txt_workout_home"
                     android:textColor="#797979"
                     android:textSize="@dimen/_14sdp"
                     app:autoSizeMaxTextSize="@dimen/_14sdp"
@@ -112,7 +112,7 @@
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
                 android:layout_marginLeft="@dimen/_41sdp"
-                android:src="@drawable/ic_pro_2" />
+                android:src="@drawable/ic_pro_facial" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -126,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:maxLines="1"
-                    android:text="@string/txt_pro_self_defense"
+                    android:text="@string/txt_pro_item_title_2"
                     android:textColor="#de000000"
                     android:textSize="@dimen/_18sdp"
                     app:autoSizeMaxTextSize="@dimen/_18sdp"
@@ -139,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:maxLines="1"
-                    android:text="@string/txt_pro_self_defense_info"
+                    android:text="@string/txt_pro_item_info_2"
                     android:textColor="#797979"
                     android:textSize="@dimen/_14sdp"
                     app:autoSizeMaxTextSize="@dimen/_14sdp"

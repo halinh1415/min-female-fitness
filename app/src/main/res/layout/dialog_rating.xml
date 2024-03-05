@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:background="@drawable/bg_week_item"
@@ -16,34 +16,40 @@
 
         <ImageView
             android:id="@+id/img_rate"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="15dp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_margin="@dimen/_10sdp"
             android:src="@drawable/ic_rate_five" />
 
         <TextView
             android:id="@+id/txt_pre_rate_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:minWidth="250dp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:autoSizeMaxTextSize="@dimen/_16sdp"
+            android:autoSizeMinTextSize="@dimen/_3sdp"
+            android:lines="1"
             android:text="@string/txt_do_you_like"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="18sp" />
+            android:textSize="@dimen/_16sdp"
+            app:autoSizeStepGranularity="1sp"
+            app:autoSizeTextType="uniform" />
 
 
         <TextView
             android:id="@+id/txt_pre_rate_feedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:lines="3"
-            android:maxLines="3"
-            android:minLines="3"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:autoSizeMaxTextSize="@dimen/_12sdp"
+            android:autoSizeMinTextSize="@dimen/_3sdp"
+            android:lines="2"
             android:text="@string/txt_pre_rate_feedback_default"
             android:textAlignment="center"
-            android:textSize="12sp" />
+            android:textSize="@dimen/_12sdp"
+            app:autoSizeStepGranularity="1sp"
+            app:autoSizeTextType="uniform" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -52,8 +58,8 @@
 
             <ImageView
                 android:id="@+id/highLight"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="-5dp"
                 android:src="@drawable/ic_high_light"
                 app:layout_constraintStart_toEndOf="@+id/ratingBar"
@@ -74,8 +80,8 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:ratingStarHeight="50dp"
-                app:ratingStarWidth="50dp" />
+                app:ratingStarHeight="@dimen/_40sdp"
+                app:ratingStarWidth="@dimen/_40sdp" />
 
             <TextView
                 android:id="@+id/txt_rate_des"
@@ -83,9 +89,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:autoSizeMaxTextSize="@dimen/_12sdp"
+                android:autoSizeMinTextSize="@dimen/_3sdp"
+                android:lines="1"
                 android:text="@string/txt_pre_rate_can_get"
                 android:textAlignment="center"
                 android:textColor="@color/colorAccent"
+                android:textSize="@dimen/_12sdp"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/img_arrow_curved"
                 app:layout_constraintHorizontal_bias="0.77"
@@ -94,8 +106,8 @@
 
             <ImageView
                 android:id="@+id/img_arrow_curved"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:paddingRight="15dp"
                 android:paddingBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"

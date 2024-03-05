@@ -13,7 +13,16 @@
         <item name="windowNoTitle">true</item>
         <item name="android:fontFamily">@font/fonts</item>
     </style>
-
+    <style name="AppTheme.FullScreen2">
+        <item name="colorPrimaryDark">@color/Black</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowBackground">@color/notesBackgroundColor</item>
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:fontFamily">@font/fonts</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
     <style name="app_theme" parent="@style/base_theme">
         <item name="android:windowBackground">@color/White</item>
         <item name="android:windowIsTranslucent">false</item>

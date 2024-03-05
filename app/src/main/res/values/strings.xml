@@ -2,13 +2,15 @@
     <string name="app_name" translatable="false">Female Workout</string>
     <string name="ad_banner_unit_id" translatable="false">ca-app-pub-9959217683006097/731250286</string>
     <string name="txt_app_id" translatable="false">ca-app-pub-9959217683006097~3177816739</string>
+    <string name="default_notification_channel_id" translatable="false">female_workout_notification_id</string>
     <string name="roboto_black" translatable="false">sans-serif-black</string>
     <string name="roboto_condensed" translatable="false">sans-serif-condensed</string>
     <string name="roboto_light" translatable="false">sans-serif-light</string>
     <string name="roboto_medium" translatable="false">sans-serif-medium</string>
     <string name="roboto_regular" translatable="false">sans-serif</string>
-    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
-    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+
+
+
     <string name="txt_rate" translatable="false">Rate us</string>
     <string name="txt_action_settings">Settings</string>
     <string name="txt_very_severely_underweight">Very Severely Underweight</string>
@@ -302,10 +304,10 @@
     <string name="txt_million_choice">1 Millions User\'s Choice</string>
     <string name="change_start_today">Your change starts today!</string>
     <string name="txt_fitness_home">Fitness at home</string>
-    <string name="txt_workout_muay_thai">50+ Muay Thai workout</string>
-    <string name="txt_pro_muay_thai_workout">Pro Muay Thai workout</string>
-    <string name="txt_pro_self_defense">Self defense workout</string>
-    <string name="txt_pro_self_defense_info">Practice self-defense</string>
+    <string name="txt_workout_home">50+ Home workout</string>
+    <string name="txt_pro_female_lose_weight_workout">Lose weight at home</string>
+    <string name="txt_pro_item_title_2">Facial care</string>
+    <string name="txt_pro_item_info_2">For better skin</string>
     <string name="txt_pro_diet_meal">Meal healthy plan</string>
     <string name="txt_pro_diet_meal_info">30 recipes for you</string>
     <string name="iap_detail">1. All payments made through Play Store are controlled and managed by Google.\n2. Payments will be charged to your Play Store Account at confirmation of purchase.\n3. Subscription automatically renews, unless auto-renew is turned off at least 24 hours before the end of the current period.\n4. Account will be charged for renewal within 24 hours prior to the end of the current period.\n5. You may manage your subscriptions and auto-renewal may be turned off by going to your Play Store account settings after purchase.\n6. Any unused portion of a free trial period, if offered, will be forfeited if you purchase a subscription to the publication, where applicable.</string>
