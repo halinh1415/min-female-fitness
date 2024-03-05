@@ -2,6 +2,11 @@
     <string name="app_name" translatable="false">Female Workout</string>
     <string name="ad_banner_unit_id" translatable="false">ca-app-pub-9959217683006097/731250286</string>
     <string name="txt_app_id" translatable="false">ca-app-pub-9959217683006097~3177816739</string>
+    <string name="roboto_black" translatable="false">sans-serif-black</string>
+    <string name="roboto_condensed" translatable="false">sans-serif-condensed</string>
+    <string name="roboto_light" translatable="false">sans-serif-light</string>
+    <string name="roboto_medium" translatable="false">sans-serif-medium</string>
+    <string name="roboto_regular" translatable="false">sans-serif</string>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="txt_rate" translatable="false">Rate us</string>
@@ -281,4 +286,35 @@
     <string name="txt_count_down_info_2">Don\'t count, practice at your own pace</string>
     <string name="txt_count_down_info_3">Keep track of the count to control the pace and complete the workout within the time limit</string>
     <string name="txt_sound">Sound</string>
+    <string name="cancel_via_google_play">Cancel anytime via Google Play.</string>
+    <string name="free_7_days_trial_then_xx_year">Free 7 days trial, then %s/year</string>
+    <string name="txt_pay_monthly">Monthly</string>
+    <string name="abbr_x_mth_gpt">%s/Mth</string>
+    <string name="txt_pay_yearly">Yearly</string>
+    <string name="txt_x_year_gpt">%s/year</string>
+    <string name="txt_x_sale_off">%s/year</string>
+    <string name="iap_only_x_per_mth_gpt">Only %s/Mth</string>
+    <string name="iap_only_x_per_week">Only %s/week</string>
+    <string name="txt_pay_life_time">Lifetime</string>
+    <string name="price_per_year">%s/Year</string>
+    <string name="money_per_month">%s/Month</string>
+    <string name="txt_pay_life_time_info">Pay once for lifetime use</string>
+    <string name="txt_million_choice">1 Millions User\'s Choice</string>
+    <string name="change_start_today">Your change starts today!</string>
+    <string name="txt_fitness_home">Fitness at home</string>
+    <string name="txt_workout_muay_thai">50+ Muay Thai workout</string>
+    <string name="txt_pro_muay_thai_workout">Pro Muay Thai workout</string>
+    <string name="txt_pro_self_defense">Self defense workout</string>
+    <string name="txt_pro_self_defense_info">Practice self-defense</string>
+    <string name="txt_pro_diet_meal">Meal healthy plan</string>
+    <string name="txt_pro_diet_meal_info">30 recipes for you</string>
+    <string name="iap_detail">1. All payments made through Play Store are controlled and managed by Google.\n2. Payments will be charged to your Play Store Account at confirmation of purchase.\n3. Subscription automatically renews, unless auto-renew is turned off at least 24 hours before the end of the current period.\n4. Account will be charged for renewal within 24 hours prior to the end of the current period.\n5. You may manage your subscriptions and auto-renewal may be turned off by going to your Play Store account settings after purchase.\n6. Any unused portion of a free trial period, if offered, will be forfeited if you purchase a subscription to the publication, where applicable.</string>
+    <string name="iap_detail_review">1. All payments made through Play Store are controlled and managed by Google.\n2. Payments will be charged to your Play Store Account at confirmation of purchase.\n3. Subscription automatically renews, unless auto-renew is turned off at least 24 hours before the end of the current period.\n4. Account will be charged for renewal within 24 hours prior to the end of the current period at the price of %1$s/year or %2$s/month.\n5. You may manage your subscriptions and auto-renewal may be turned off by going to your Play Store account settings after purchase.\n6. Any unused portion of a free trial period, if offered, will be forfeited if you purchase a subscription to the publication, where applicable.</string>
+    <string name="txt_day_free_trial">7 Day Free Trail</string>
+    <string name="premium_price_save_2">%s\noff </string>
+    <string name="iap_discount_card_title_gpt">Get access to all premium features</string>
+    <string name="txt_iap_feature_info_1">Explore Unlimited Exercise: Meet all your needs</string>
+    <string name="txt_iap_feature_info_4">Ads Free Forever</string>
+    <string name="txt_iap_feature_info_3">Personalized Plan &amp; Future Update</string>
+    <string name="txt_iap_feature_info_2">Achieve Amazing Results in Only 4 Weeks</string>
 </resources>

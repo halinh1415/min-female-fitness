@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/WhiteSmoke"
+    android:fitsSystemWindows="true"
+    tools:context=".activity.premium.PremiumActivity">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc_premium"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_pro_intro_1"/>
+
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="@dimen/_36sdp"
+        android:layout_height="@dimen/_36sdp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginRight="@dimen/_16sdp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_close"
+        android:visibility="visible" />
+
+
+    <include
+        layout="@layout/item_go_pro_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:showIn="@layout/activity_premium"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:id="@+id/ll_product"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_250sdp"
+        android:background="@drawable/bg_pro_go">
+
+        <LinearLayout
+            android:id="@+id/ll_life_time"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_90sdp"
+            android:layout_above="@id/ll_year"
+            android:layout_marginStart="@dimen/_22sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_22sdp"
+            android:tag="LL_CHOICE"
+            android:background="@drawable/background_pro_selected"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/cl_lifetime_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:tag="LL_TOP"
+                android:background="@drawable/background_pro_title_top_bound_unselected"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <ImageView
+                    android:layout_width="@dimen/_14sdp"
+                    android:layout_height="@dimen/_14sdp"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:tag="IMG_GIFT"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_lifetime2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:layout_marginTop="@dimen/_9sdp"
+                    android:layout_marginEnd="@dimen/_9sdp"
+                    android:layout_marginBottom="@dimen/_9sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@string/roboto_medium"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:text="@string/txt_pay_life_time_info"
+                    android:textColor="#de000000"
+                    android:textSize="@dimen/_14sdp"
+                    app:autoSizeMaxTextSize="@dimen/_14sdp"
+                    app:autoSizeMinTextSize="@dimen/_1sdp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_flower_2"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:background="@drawable/ic_discount_3"
+                    android:padding="@dimen/_3sdp"
+                    android:visibility="visible">
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_off_year"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:lines="2"
+                        android:padding="@dimen/_6sdp"
+                        android:text="Bestseller"
+                        android:textColor="@color/White"
+                        android:textStyle="italic"
+                        app:autoSizeMaxTextSize="@dimen/_16sdp"
+                        app:autoSizeMinTextSize="@dimen/_1sdp"
+                        app:autoSizeStepGranularity="1sp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_life_time0"
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:layout_marginStart="@dimen/_11sdp"
+                    android:clickable="false"
+                    android:tag="IMG_CHOICE"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_selected" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_life_time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:fontFamily="@string/roboto_medium"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="@string/txt_pay_life_time"
+                    android:textColor="#80000000"
+                    android:textSize="@dimen/_13sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/img_life_time0"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_lifetime_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_23sdp"
+                    android:text="100$"
+                    android:textColor="#80000000"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_year"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_90sdp"
+            android:layout_marginStart="@dimen/_22sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="vertical"
+            android:layout_above="@id/ll_month"
+            android:layout_marginEnd="@dimen/_22sdp"
+            android:tag="LL_CHOICE"
+            android:background="@drawable/background_text_unselected">
+            <LinearLayout
+                android:id="@+id/cl_year_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_pro_title_top_bound"
+                android:tag="LL_TOP"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <ImageView
+                    android:layout_width="@dimen/_14sdp"
+                    android:layout_height="@dimen/_14sdp"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:src="@drawable/ic_gift_box"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_year2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:layout_marginTop="@dimen/_9sdp"
+                    android:layout_marginEnd="@dimen/_9sdp"
+                    android:layout_marginBottom="@dimen/_9sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@string/roboto_medium"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:text="@string/txt_day_free_trial"
+                    android:textColor="#de000000"
+                    android:textSize="@dimen/_14sdp"
+                    app:autoSizeMaxTextSize="@dimen/_14sdp"
+                    app:autoSizeMinTextSize="@dimen/_1sdp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform" />
+
+
+            </LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/img_year0"
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:layout_marginStart="@dimen/_11sdp"
+                    android:clickable="false"
+                    android:tag="IMG_CHOICE"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_unselected" />
+
+                <LinearLayout
+                    android:id="@+id/ll_year_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/img_year0"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_year1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:fontFamily="@string/roboto_medium"
+                        android:text="@string/txt_pay_yearly"
+                        android:textColor="#80000000"
+                        android:textSize="@dimen/_13sdp"
+                        app:autoSizeMaxTextSize="@dimen/_13sdp"
+                        app:autoSizeMinTextSize="@dimen/_1sdp"
+                        app:autoSizeStepGranularity="1sp"
+                        app:autoSizeTextType="uniform" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_year_price"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:text="@string/price_per_year"
+                        android:textColor="@color/black_50"
+                        android:fontFamily="@string/roboto_medium"
+                        android:textSize="@dimen/_12sdp"
+                        app:autoSizeMaxTextSize="@dimen/_12sdp"
+                        app:autoSizeMinTextSize="@dimen/_1sdp"
+                        app:autoSizeStepGranularity="1sp"
+                        app:autoSizeTextType="uniform" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_year_to_month"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:fontFamily="@string/roboto_medium"
+                    android:gravity="end"
+                    android:includeFontPadding="false"
+                    android:lines="1"
+                    android:text="@string/abbr_x_mth_gpt"
+                    android:textColor="@color/black_50"
+                    android:textSize="@dimen/_18sdp"
+                    app:autoSizeMaxTextSize="@dimen/_18sdp"
+                    app:autoSizeMinTextSize="1sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ll_year_1"
+                    app:layout_constraintTop_toTopOf="parent" /> />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:id="@+id/ll_month"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_22sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_22sdp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:tag="LL_CHOICE"
+            android:layout_above="@id/btn_continue"
+            android:background="@drawable/background_text_unselected">
+
+            <ImageView
+                android:id="@+id/img_month0"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/_11sdp"
+                android:clickable="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:tag="IMG_CHOICE"
+                app:srcCompat="@drawable/ic_unselected" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_month1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/txt_pay_monthly"
+                android:textColor="#80000000"
+                android:fontFamily="@string/roboto_medium"
+                android:textSize="@dimen/_13sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_month0"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_month_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_23sdp"
+                android:fontFamily="@string/roboto_medium"
+                android:text="@string/abbr_x_mth_gpt"
+                android:textColor="#80000000"
+                android:textSize="@dimen/_14sdp"
+                android:gravity="end"
+                android:includeFontPadding="false"
+                android:lines="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_month1"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_flower"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_14sdp"
+            android:layout_below="@id/ll_life_time"
+            android:background="@drawable/ic_discount"
+            android:padding="@dimen/_3sdp"
+            android:visibility="visible">
+
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_off2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:lines="2"
+                android:padding="@dimen/_6sdp"
+                android:text="20%\nOFF"
+
+                android:textColor="@color/White"
+                android:textStyle="italic"
+                app:autoSizeMaxTextSize="@dimen/_16sdp"
+                app:autoSizeMinTextSize="@dimen/_1sdp"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/btn_continue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_des_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:background="@drawable/background_button_bound"
+            android:text="@string/txt_continue" />
+        <LinearLayout
+            android:id="@+id/tv_des_content"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:gravity="top|center_horizontal"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_des_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom|center_horizontal"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="@string/free_7_days_trial_then_xx_year"
+                android:textColor="#0c1d10"
+                android:textSize="12sp"
+                android:visibility="visible"
+                app:autoSizeMaxTextSize="12sp"
+                app:autoSizeMinTextSize="1sp"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_des_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|center_horizontal"
+                android:includeFontPadding="false"
+                android:maxLines="2"
+                android:text="@string/cancel_via_google_play"
+                android:textColor="#0c1d10"
+                android:textSize="12sp"
+                app:autoSizeMaxTextSize="12sp"
+                app:autoSizeMinTextSize="1sp"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>
