@@ -19,4 +19,7 @@ public class MaticAdKeys {
     public static final String INTER_FIRST_OPEN_HIGH = "ca-app-pub-9959217683006097/4683821166" ;
     public static final String INTER_FIRST_OPEN_MEDIUM = "ca-app-pub-9959217683006097/6218913047" ;
     public static final String INTER_FIRST_OPEN= "ca-app-pub-9959217683006097/2395218106" ;
+    public static final String OPEN_RESUME = "";
+    public static final String OPEN_RESUME_HIGH = "";
+    public static final String OPEN_RESUME_MEDIUM = "";
 }
