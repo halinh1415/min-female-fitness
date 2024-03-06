@@ -421,7 +421,9 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
         if (mVideoView != null) {
             mVideoView.stopPlayback();
         }

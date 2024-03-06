@@ -259,6 +259,9 @@ public class RestFragment extends Fragment implements View.OnClickListener {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
         if (mVideoView != null) {
             mVideoView.stopPlayback();
         }
