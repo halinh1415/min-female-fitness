@@ -155,7 +155,7 @@
         android:id="@+id/btn_pause"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/bg_transparent_btn_ripple_white"
         android:clickable="true"
@@ -200,15 +200,14 @@
 
     <ImageView
         android:id="@+id/img_done"
-        android:background="?attr/selectableItemBackgroundBorderless"
         android:layout_width="@dimen/_72sdp"
         android:layout_height="@dimen/_72sdp"
         android:layout_gravity="center"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/ic_checked"
-        tools:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        tools:visibility="visible" />
 
     <LinearLayout
         android:id="@+id/img_next"
