@@ -409,6 +409,9 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                     if (playFragment != null) {
                         playFragment.playExercise();
                     }
+                    if (myPreference.getCountOption() ==0){
+                        playTip();
+                    }
                 });
             } else {
                 mAudioAppManager.playTextWithListener(getExerciseObjectCurrent().getName(), () -> {
@@ -416,6 +419,9 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                     PlayFragment playFragment = (PlayFragment) getSupportFragmentManager().findFragmentByTag("Ready");
                     if (playFragment != null) {
                         playFragment.playExercise();
+                    }
+                    if (myPreference.getCountOption() ==0){
+                        playTip();
                     }
                 });
             }
@@ -472,13 +478,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                     mAudioAppManager.playText(getString(R.string.td_v_half_time));
                 }
                 if (getActionObjectCurrent().time - timeLeft == 5) {
-                    String lang = myPreference.getLanguage();
-                    if (lang.length()>2){
-                        lang = lang.substring(0,2);
-                    }
-                    if (support_language.contains(lang)){
-                        playTip();
-                    }
+                    playTip();
                 }
                 if (myPreference.isTick()) {
                     if (tickPlayer != null) {
@@ -495,11 +495,18 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     }
 
     void playTip() {
-        List<Tip> tips = getExerciseObjectCurrent().getTips();
-        if (tips.size() > 0) {
-            int rand = new Random().nextInt(tips.size());
-            mAudioAppManager.playText(tips.get(rand).getText());
+        String lang = myPreference.getLanguage();
+        if (lang.length()>2){
+            lang = lang.substring(0,2);
         }
+        if (support_language.contains(lang)){
+            List<Tip> tips = getExerciseObjectCurrent().getTips();
+            if (!tips.isEmpty()) {
+                int rand = new Random().nextInt(tips.size());
+                mAudioAppManager.playText(tips.get(rand).getText());
+            }
+        }
+
     }
 
 

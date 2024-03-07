@@ -208,16 +208,13 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageButton
+        <ImageView
             android:id="@+id/img_done"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_width="@dimen/_72sdp"
+            android:layout_height="@dimen/_72sdp"
             android:layout_gravity="center"
-            android:background="@drawable/bg_round_corner_gradient_primary_100"
-            android:focusable="false"
-            android:foreground="?attr/selectableItemBackground"
-            android:src="@drawable/ic_done_tick"
+            android:src="@drawable/ic_checked"
             tools:visibility="visible" />
 
     </FrameLayout>
