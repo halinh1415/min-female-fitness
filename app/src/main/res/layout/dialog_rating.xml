@@ -9,7 +9,7 @@
 
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -18,10 +18,21 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_alignParentRight="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="@dimen/_5sdp"
+            app:srcCompat="@drawable/ic_close" />
+
+        <ImageView
             android:id="@+id/img_rate"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             android:layout_margin="@dimen/_10sdp"
+            android:layout_centerHorizontal="true"
             android:src="@drawable/ic_rate_five" />
 
         <TextView
@@ -30,8 +41,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:minWidth="250dp"
+            android:layout_below="@id/img_rate"
             android:text="@string/txt_do_you_like"
             android:textAlignment="center"
+            android:layout_centerHorizontal="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="18sp" />
 
@@ -44,6 +57,7 @@
             android:lines="3"
             android:maxLines="3"
             android:minLines="3"
+            android:layout_below="@id/txt_pre_rate_title"
             android:text="@string/txt_pre_rate_feedback_default"
             android:textAlignment="center"
             android:textSize="12sp" />
@@ -51,6 +65,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/content_rate"
+            android:layout_below="@id/txt_pre_rate_feedback"
             android:layout_marginHorizontal="@dimen/_5sdp">
 
             <LinearLayout
@@ -170,7 +186,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/content_rate"
             android:layout_margin="@dimen/_10sdp"
             android:orientation="vertical">
 
@@ -195,15 +212,7 @@
 
 
         </LinearLayout>
-    </LinearLayout>
-    <ImageView
-        android:id="@+id/img_close"
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_margin="@dimen/_5sdp"
-        android:padding="@dimen/_5sdp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        app:srcCompat="@drawable/ic_close" />
+    </RelativeLayout>
 
 
 </LinearLayout>
