@@ -191,19 +191,19 @@ public class SplashActivity extends AppCompatActivity {
                 .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
         mFirebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults);
-//        mFirebaseRemoteConfig.fetchAndActivate()
-//                .addOnCompleteListener(this, task -> {
-//                    if (task.isSuccessful()) {
-//                        boolean updated = task.getResult();
-////                            Log.d(TAG, "Config params updated: " + updated);
-////                            Toast.makeText(SplashActivity.this, "Fetch and activate succeeded",
-////                                    Toast.LENGTH_SHORT).show();
-//
-//                    } else {
-////                            Toast.makeText(SplashActivity.this, "Fetch failed",
-////                                    Toast.LENGTH_SHORT).show();
-//                    }
-//                });
+        mFirebaseRemoteConfig.fetchAndActivate()
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        boolean updated = task.getResult();
+//                            Log.d(TAG, "Config params updated: " + updated);
+//                            Toast.makeText(SplashActivity.this, "Fetch and activate succeeded",
+//                                    Toast.LENGTH_SHORT).show();
+
+                    } else {
+//                            Toast.makeText(SplashActivity.this, "Fetch failed",
+//                                    Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     @Override
