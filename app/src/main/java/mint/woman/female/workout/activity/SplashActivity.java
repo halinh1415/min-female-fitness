@@ -136,8 +136,52 @@ public class SplashActivity extends AppCompatActivity {
 //        anim.setDuration(2000);
 //        mSplash.startAnimation(anim);
 
-       startLoadAd();
+       requestTCM();
     }
+    private void requestTCM() {
+        ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this)
+                .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
+                .build();
+
+        ConsentRequestParameters params = new ConsentRequestParameters
+                .Builder()
+
+                .setConsentDebugSettings(debugSettings)
+                .setTagForUnderAgeOfConsent(false)
+                .build();
+
+        consentInformation = UserMessagingPlatform.getConsentInformation(this);
+        //  consentInformation.reset();
+        consentInformation.requestConsentInfoUpdate(
+                this,
+                params,
+                (ConsentInformation.OnConsentInfoUpdateSuccessListener) () -> {
+                    UserMessagingPlatform.loadAndShowConsentFormIfRequired(
+                            this,
+                            (ConsentForm.OnConsentFormDismissedListener) loadAndShowError -> {
+                                if (loadAndShowError != null) {
+                                    // Consent gathering failed.
+                                    Log.w(TAG, String.format("%s: %s",
+                                            loadAndShowError.getErrorCode(),
+                                            loadAndShowError.getMessage()));
+                                }
+
+                                startLoadAd();
+                            }
+                    );
+
+                },
+                (ConsentInformation.OnConsentInfoUpdateFailureListener) requestConsentError -> {
+                    // Consent gathering failed.
+                    Log.w(TAG, "consent requestConsentError " + String.format("%s: %s",
+                            requestConsentError.getErrorCode(),
+                            requestConsentError.getMessage()));
+                    startLoadAd();
+                });
+
+    }
+
+
 
     void updateRemoteConfig() {
 
@@ -147,19 +191,19 @@ public class SplashActivity extends AppCompatActivity {
                 .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
         mFirebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults);
-        mFirebaseRemoteConfig.fetchAndActivate()
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        boolean updated = task.getResult();
-//                            Log.d(TAG, "Config params updated: " + updated);
-//                            Toast.makeText(SplashActivity.this, "Fetch and activate succeeded",
-//                                    Toast.LENGTH_SHORT).show();
-
-                    } else {
-//                            Toast.makeText(SplashActivity.this, "Fetch failed",
-//                                    Toast.LENGTH_SHORT).show();
-                    }
-                });
+//        mFirebaseRemoteConfig.fetchAndActivate()
+//                .addOnCompleteListener(this, task -> {
+//                    if (task.isSuccessful()) {
+//                        boolean updated = task.getResult();
+////                            Log.d(TAG, "Config params updated: " + updated);
+////                            Toast.makeText(SplashActivity.this, "Fetch and activate succeeded",
+////                                    Toast.LENGTH_SHORT).show();
+//
+//                    } else {
+////                            Toast.makeText(SplashActivity.this, "Fetch failed",
+////                                    Toast.LENGTH_SHORT).show();
+//                    }
+//                });
     }
 
     @Override
@@ -333,48 +377,6 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
-    private void requestTCM() {
-        ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this)
-                .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
-                .build();
-
-        ConsentRequestParameters params = new ConsentRequestParameters
-                .Builder()
-
-                .setConsentDebugSettings(debugSettings)
-                .setTagForUnderAgeOfConsent(false)
-                .build();
-
-        consentInformation = UserMessagingPlatform.getConsentInformation(this);
-        //  consentInformation.reset();
-        consentInformation.requestConsentInfoUpdate(
-                this,
-                params,
-                (ConsentInformation.OnConsentInfoUpdateSuccessListener) () -> {
-                    UserMessagingPlatform.loadAndShowConsentFormIfRequired(
-                            this,
-                            (ConsentForm.OnConsentFormDismissedListener) loadAndShowError -> {
-                                if (loadAndShowError != null) {
-                                    // Consent gathering failed.
-                                    Log.w(TAG, String.format("%s: %s",
-                                            loadAndShowError.getErrorCode(),
-                                            loadAndShowError.getMessage()));
-                                }
-
-                                startLoadAd();
-                            }
-                    );
-
-                },
-                (ConsentInformation.OnConsentInfoUpdateFailureListener) requestConsentError -> {
-                    // Consent gathering failed.
-                    Log.w(TAG, "consent requestConsentError " + String.format("%s: %s",
-                            requestConsentError.getErrorCode(),
-                            requestConsentError.getMessage()));
-                    startLoadAd();
-                });
-
-    }
 
     private void loadInterStart() {
         if (myPreference.isShowAds() && myPreference.getOK()) {

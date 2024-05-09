@@ -26,6 +26,7 @@ import mint.woman.female.workout.BuildConfig;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.PolicyActivity;
+import mint.woman.female.workout.admodule.AppOpenManager;
 
 
 public class SettingFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
@@ -75,12 +76,15 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
                 shareApp();
                 break;
             case "TTS_INSTALL_VOICE":
+                AppOpenManager.getInstance().disableAdResumeByClickAction();
                 installVoiceData();
                 break;
             case "TTS_ENGINE":
+                AppOpenManager.getInstance().disableAdResumeByClickAction();
                 openTTSSettings();
                 break;
             case "PRIVACY_POLICY":
+                AppOpenManager.getInstance().disableAdResumeByClickAction();
                 startActivity(new Intent(getActivity(), PolicyActivity.class));
                 break;
             case "ST_REMINDER":
@@ -173,6 +177,7 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
     }
 
     public void shareApp() {
+        AppOpenManager.getInstance().disableAdResumeByClickAction();
         try {
             Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");

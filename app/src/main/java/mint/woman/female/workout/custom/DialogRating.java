@@ -22,6 +22,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.admodule.AppOpenManager;
 import mint.woman.female.workout.admodule.CustomRatingBar;
 import mint.woman.female.workout.utils.MyPreference;
 
@@ -249,6 +250,7 @@ public class DialogRating extends DialogFragment {
     }
 
     public void gotoRate() {
+        AppOpenManager.getInstance().disableAdResumeByClickAction();
         MyPreference myPreference = new MyPreference(getActivity());
         myPreference.setRated();
         Uri uri = Uri.parse("market://details?id=" + getActivity().getPackageName());

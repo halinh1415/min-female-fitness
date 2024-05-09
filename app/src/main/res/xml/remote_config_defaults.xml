@@ -2,11 +2,11 @@
 <defaults>
   <entry>
     <key>inter_splash</key>
-    <value>false</value>
+    <value>true</value>
   </entry>
   <entry>
     <key>native_onboard</key>
-    <value>false</value>
+    <value>true</value>
   </entry>
   <entry>
     <key>native_setup</key>
@@ -14,11 +14,11 @@
   </entry>
   <entry>
     <key>inter_start</key>
-    <value>false</value>
+    <value>true</value>
   </entry>
   <entry>
     <key>native_language</key>
-    <value>false</value>
+    <value>true</value>
   </entry>
   <entry>
     <key>banner</key>
@@ -30,6 +30,6 @@
   </entry>
   <entry>
     <key>app_open_resume</key>
-    <value>false</value>
+    <value>true</value>
   </entry>
 </defaults>

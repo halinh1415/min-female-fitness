@@ -70,7 +70,6 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
     ProgramObject mCurrentCategory;
     private MyPreference myPreference;
     int flagAds;
-    ConsentInformation consentInformation;
 
     TextToSpeech tts;
     PremiumViewModel premiumViewModel;
@@ -91,8 +90,6 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
         initView();
-
-        requestTCM();
 
 
     }
@@ -126,47 +123,6 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
         //checkAccount();
     }
 
-    private void requestTCM() {
-        ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this)
-                .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
-                .build();
-
-        ConsentRequestParameters params = new ConsentRequestParameters
-                .Builder()
-
-                .setConsentDebugSettings(debugSettings)
-                .setTagForUnderAgeOfConsent(false)
-                .build();
-
-        consentInformation = UserMessagingPlatform.getConsentInformation(this);
-        //  consentInformation.reset();
-        consentInformation.requestConsentInfoUpdate(
-                this,
-                params,
-                (ConsentInformation.OnConsentInfoUpdateSuccessListener) () -> {
-                    UserMessagingPlatform.loadAndShowConsentFormIfRequired(
-                            this,
-                            (ConsentForm.OnConsentFormDismissedListener) loadAndShowError -> {
-                                if (loadAndShowError != null) {
-                                    // Consent gathering failed.
-                                    Log.w(TAG, String.format("%s: %s",
-                                            loadAndShowError.getErrorCode(),
-                                            loadAndShowError.getMessage()));
-                                }
-
-                                //  startLoadAd();
-                            }
-                    );
-
-                },
-                (ConsentInformation.OnConsentInfoUpdateFailureListener) requestConsentError -> {
-                    // Consent gathering failed.
-                    Log.w(TAG, "consent XXX " + String.format("%s: %s",
-                            requestConsentError.getErrorCode(),
-                            requestConsentError.getMessage()));
-                });
-
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
