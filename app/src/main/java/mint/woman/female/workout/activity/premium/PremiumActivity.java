@@ -53,6 +53,8 @@ public class PremiumActivity extends AppCompatActivity {
     TextView tvYearPrice;
     @BindView(R.id.tv_month_price)
     TextView tvMonthPrice;
+    @BindView(R.id.tv_lifetime_price)
+    TextView tvLifeTimePrice;
     @BindView(R.id.tv_off2)
     TextView tvOffYear;
     @BindView(R.id.tv_year_to_month)
@@ -62,7 +64,9 @@ public class PremiumActivity extends AppCompatActivity {
     @BindView(R.id.tv_des_2)
     TextView tvDes2;
     @BindView(R.id.cl_flower)
-    View clFlower;
+    View clFlower1;
+    @BindView(R.id.cl_flower_2)
+    View clFlower2;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -83,12 +87,21 @@ public class PremiumActivity extends AppCompatActivity {
             changeTextColorOfTextViews((ViewGroup) llLifetime, selected == 0);
             changeTextColorOfTextViews((ViewGroup) llYearly, selected == 1);
             changeTextColorOfTextViews((ViewGroup) llMonthly, selected == 2);
-            if (selected == 1){
-                clFlower.setBackgroundResource(R.drawable.ic_discount_2);
-                tvDes1.setVisibility(View.VISIBLE);
-            }else {
-                clFlower.setBackgroundResource(R.drawable.ic_discount);
+            if (selected == 0){
                 tvDes1.setVisibility(View.INVISIBLE);
+                tvDes2.setVisibility(View.INVISIBLE);
+                clFlower2.setBackgroundResource(R.drawable.ic_discount_2);
+                clFlower1.setBackgroundResource(R.drawable.ic_discount);
+            }else  if (selected == 1){
+                tvDes1.setVisibility(View.VISIBLE);
+                tvDes2.setVisibility(View.VISIBLE);
+                clFlower2.setBackgroundResource(R.drawable.ic_discount);
+                clFlower1.setBackgroundResource(R.drawable.ic_discount_2);
+            }else {
+                clFlower2.setBackgroundResource(R.drawable.ic_discount);
+                clFlower1.setBackgroundResource(R.drawable.ic_discount);
+                tvDes1.setVisibility(View.VISIBLE);
+                tvDes2.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -126,6 +139,12 @@ public class PremiumActivity extends AppCompatActivity {
             }
             else {
                 Log.d("HAHA", "skuDetailsYearly!= null");
+            }
+        });
+        premiumViewModel.productDetailInApps.observe(this,inAppProducts->{
+            ProductDetails productLifetime = inAppProducts.get(InAppKey.PREMIUM_LIFETIME);
+            if (productLifetime != null){
+                tvLifeTimePrice.setText(productLifetime.getOneTimePurchaseOfferDetails().getFormattedPrice());
             }
         });
 

@@ -1,4 +1,4 @@
-package mint.woman.female.workout.utils;
+package mint.woman.female.workout.activity.ui.workout;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Locale;
 
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.utils.AppEncrypt;
 
 public class AudioAppManager {
 
@@ -231,7 +232,6 @@ public class AudioAppManager {
     }
     public void resume(){
         isPause = false;
-
     }
 
     public interface IAudioMangerFinishListener {

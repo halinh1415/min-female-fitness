@@ -8,8 +8,10 @@
     <RelativeLayout
         android:id="@+id/ll_product"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_250sdp"
+        android:layout_height="@dimen/_320sdp"
         android:background="@drawable/bg_pro_go">
+
+
 
         <LinearLayout
             android:id="@+id/ll_life_time"
@@ -22,7 +24,7 @@
             android:tag="LL_CHOICE"
             android:background="@drawable/background_pro_selected"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <LinearLayout
                 android:id="@+id/cl_lifetime_top"
@@ -49,12 +51,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_6sdp"
                     android:layout_marginTop="@dimen/_9sdp"
-                    android:layout_marginEnd="@dimen/_9sdp"
+                    android:layout_marginEnd="@dimen/_40sdp"
                     android:layout_marginBottom="@dimen/_9sdp"
                     android:layout_weight="1"
                     android:fontFamily="@string/roboto_medium"
                     android:gravity="center_vertical"
                     android:lines="1"
+                    android:maxLines="1"
                     android:text="@string/txt_pay_life_time_info"
                     android:textColor="#de000000"
                     android:textSize="@dimen/_14sdp"
@@ -63,35 +66,6 @@
                     app:autoSizeStepGranularity="1sp"
                     app:autoSizeTextType="uniform" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cl_flower_2"
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:background="@drawable/ic_discount_3"
-                    android:padding="@dimen/_3sdp"
-                    android:visibility="visible">
-
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_off_year"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:gravity="center"
-                        android:includeFontPadding="false"
-                        android:lines="2"
-                        android:padding="@dimen/_6sdp"
-                        android:text="Bestseller"
-                        android:textColor="@color/White"
-                        android:textStyle="italic"
-                        app:autoSizeMaxTextSize="@dimen/_16sdp"
-                        app:autoSizeMinTextSize="@dimen/_1sdp"
-                        app:autoSizeStepGranularity="1sp"
-                        app:autoSizeTextType="uniform"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -130,7 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_23sdp"
-                    android:text="100$"
+                    android:text="N/A"
                     android:textColor="#80000000"
                     android:textSize="@dimen/_14sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -138,7 +112,38 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_flower_2"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_14sdp"
+            android:background="@drawable/ic_discount_2"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/_3sdp"
+            android:visibility="visible">
 
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_off_year"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:lines="2"
+                android:padding="@dimen/_6sdp"
+                android:text="Bestseller"
+                android:textColor="@color/White"
+                android:textStyle="italic"
+                app:autoSizeMaxTextSize="@dimen/_16sdp"
+                app:autoSizeMinTextSize="@dimen/_1sdp"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/ll_year"
@@ -166,6 +171,7 @@
                     android:layout_height="@dimen/_14sdp"
                     android:layout_marginStart="@dimen/_12sdp"
                     android:src="@drawable/ic_gift_box"
+                    android:tag="IMG_GIFT"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -339,6 +345,7 @@
             android:layout_height="@dimen/_50sdp"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/_14sdp"
+            android:tag="CL_FLOWER"
             android:layout_below="@id/ll_life_time"
             android:background="@drawable/ic_discount"
             android:padding="@dimen/_3sdp"

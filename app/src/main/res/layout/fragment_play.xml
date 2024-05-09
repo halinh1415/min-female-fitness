@@ -211,8 +211,8 @@
         <ImageView
             android:id="@+id/img_done"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_width="@dimen/_72sdp"
-            android:layout_height="@dimen/_72sdp"
+            android:layout_width="@dimen/_56sdp"
+            android:layout_height="@dimen/_56sdp"
             android:layout_gravity="center"
             android:src="@drawable/ic_checked"
             tools:visibility="visible" />

@@ -34,7 +34,6 @@ import mint.woman.female.workout.model.HistoryItem;
 import mint.woman.female.workout.model.PlanObject;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.model.Tip;
-import mint.woman.female.workout.utils.AudioAppManager;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;

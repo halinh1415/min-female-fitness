@@ -4,9 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center"
     android:orientation="vertical">
 
-    <LinearLayout
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -15,73 +18,143 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_alignParentRight="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="@dimen/_5sdp"
+            app:srcCompat="@drawable/ic_close" />
+
+        <ImageView
             android:id="@+id/img_rate"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             android:layout_margin="@dimen/_10sdp"
+            android:layout_centerHorizontal="true"
             android:src="@drawable/ic_rate_five" />
 
         <TextView
             android:id="@+id/txt_pre_rate_title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:autoSizeMaxTextSize="@dimen/_16sdp"
-            android:autoSizeMinTextSize="@dimen/_3sdp"
-            android:lines="1"
+            android:layout_margin="5dp"
+            android:minWidth="250dp"
+            android:layout_below="@id/img_rate"
             android:text="@string/txt_do_you_like"
             android:textAlignment="center"
+            android:layout_centerHorizontal="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="@dimen/_16sdp"
-            app:autoSizeStepGranularity="1sp"
-            app:autoSizeTextType="uniform" />
+            android:textSize="18sp" />
 
 
         <TextView
             android:id="@+id/txt_pre_rate_feedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_5sdp"
-            android:autoSizeMaxTextSize="@dimen/_12sdp"
-            android:autoSizeMinTextSize="@dimen/_3sdp"
-            android:lines="2"
+            android:layout_marginHorizontal="10dp"
+            android:lines="3"
+            android:maxLines="3"
+            android:minLines="3"
+            android:layout_below="@id/txt_pre_rate_title"
             android:text="@string/txt_pre_rate_feedback_default"
             android:textAlignment="center"
-            android:textSize="@dimen/_12sdp"
-            app:autoSizeStepGranularity="1sp"
-            app:autoSizeTextType="uniform" />
+            android:textSize="12sp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp">
+            android:id="@+id/content_rate"
+            android:layout_below="@id/txt_pre_rate_feedback"
+            android:layout_marginHorizontal="@dimen/_5sdp">
+
+            <LinearLayout
+                android:id="@+id/star_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:clipChildren="false"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <mint.woman.female.workout.custom.StarCheckedImageView
+                    android:id="@+id/rate_star_1"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_ratingbar_star_off"
+                    android:tag="1" />
+
+                <mint.woman.female.workout.custom.StarCheckedImageView
+                    android:id="@+id/rate_star_2"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_ratingbar_star_off"
+                    android:tag="2" />
+
+                <mint.woman.female.workout.custom.StarCheckedImageView
+                    android:id="@+id/rate_star_3"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_ratingbar_star_off"
+                    android:tag="3" />
+
+                <mint.woman.female.workout.custom.StarCheckedImageView
+                    android:id="@+id/rate_star_4"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_ratingbar_star_off"
+                    android:tag="4" />
+
+                <mint.woman.female.workout.custom.StarCheckedImageView
+                    android:id="@+id/rate_star_5"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_ratingbar_star_off"
+                    android:tag="5" />
+            </LinearLayout>
 
             <ImageView
-                android:id="@+id/highLight"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_marginStart="-5dp"
-                android:src="@drawable/ic_high_light"
-                app:layout_constraintStart_toEndOf="@+id/ratingBar"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <mint.woman.female.workout.admodule.CustomRatingBar
-                android:id="@+id/ratingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:isIndicator="false"
-                android:numStars="5"
-                android:rating="3.0"
-                android:stepSize="1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/im_high_light"
+                android:layout_width="@dimen/_12sdp"
+                android:layout_height="@dimen/_12sdp"
                 app:layout_constraintTop_toTopOf="parent"
-                app:ratingStarHeight="@dimen/_40sdp"
-                app:ratingStarWidth="@dimen/_40sdp" />
+                app:layout_constraintRight_toRightOf="@id/star_layout"
+                android:src="@drawable/ic_high_light" />
+
+            <!--            <weightloss.loseweight.female.workout.admodule.CustomRatingBar-->
+<!--                android:id="@+id/ratingBar"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="32dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="32dp"-->
+<!--                android:isIndicator="false"-->
+<!--                android:numStars="5"-->
+<!--                android:rating="3.0"-->
+<!--                android:stepSize="1"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:ratingStarHeight="50dp"-->
+<!--                app:ratingStarWidth="50dp" />-->
 
             <TextView
                 android:id="@+id/txt_rate_des"
@@ -89,39 +162,33 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:autoSizeMaxTextSize="@dimen/_12sdp"
-                android:autoSizeMinTextSize="@dimen/_3sdp"
-                android:lines="1"
                 android:text="@string/txt_pre_rate_can_get"
                 android:textAlignment="center"
                 android:textColor="@color/colorAccent"
-                android:textSize="@dimen/_12sdp"
-                app:autoSizeStepGranularity="1sp"
-                app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/img_arrow_curved"
                 app:layout_constraintHorizontal_bias="0.77"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+                app:layout_constraintTop_toBottomOf="@+id/star_layout" />
 
             <ImageView
                 android:id="@+id/img_arrow_curved"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:paddingRight="15dp"
                 android:paddingBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/ratingBar"
-                app:layout_constraintTop_toBottomOf="@+id/ratingBar"
+                app:layout_constraintEnd_toEndOf="@+id/star_layout"
+                app:layout_constraintTop_toBottomOf="@+id/star_layout"
                 app:srcCompat="@drawable/ic_curved_arrow" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/content_rate"
+            android:layout_margin="@dimen/_10sdp"
             android:orientation="vertical">
 
             <Button
@@ -140,12 +207,12 @@
                 android:layout_margin="5dp"
                 android:background="@drawable/background_text_workout"
                 android:text="@string/txt_later_rate"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:visibility="gone" />
 
 
         </LinearLayout>
-    </LinearLayout>
-
+    </RelativeLayout>
 
 
 </LinearLayout>
