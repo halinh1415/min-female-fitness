@@ -36,6 +36,8 @@
     <color name="colorDarkIcon">#68070707</color>
     <color name="colorTransparent">#5E252424</color>
     <color name="colorAds">#068abf</color>
+    <color name="colorBackgroundOnBoard">#C3C1C1</color>
+    <color name="colorBackgroundAds">#f4f4f4</color>
     <color name="lightTransparent">#16000000</color>
     <color name="White">#FFFFFF</color>
     <color name="Ivory">#FFFFF0</color>

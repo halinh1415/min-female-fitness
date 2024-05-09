@@ -35,6 +35,8 @@
     <color name="no_color">#00000000</color>
     <color name="colorTransparent">#5E252424</color>
     <color name="colorAds">#068abf</color>
+    <color name="colorBackgroundAds">#222222</color>
+    <color name="colorBackgroundAds2">#1E1C1C</color>
     <color name="lightTransparent">#16000000</color>
     <color name="White">#FFFFFF</color>
     <color name="Ivory">#FFFFF0</color>

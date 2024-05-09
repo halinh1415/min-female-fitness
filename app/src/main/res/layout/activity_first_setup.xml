@@ -63,7 +63,6 @@
             android:id="@+id/layoutAdNative"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_frame"
             android:orientation="vertical"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
