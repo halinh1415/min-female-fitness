@@ -100,8 +100,8 @@ public class PremiumActivity extends AppCompatActivity {
             }else {
                 clFlower2.setBackgroundResource(R.drawable.ic_discount);
                 clFlower1.setBackgroundResource(R.drawable.ic_discount);
-                tvDes1.setVisibility(View.VISIBLE);
-                tvDes2.setVisibility(View.INVISIBLE);
+                tvDes1.setVisibility(View.INVISIBLE);
+                tvDes2.setVisibility(View.VISIBLE);
             }
         });
 
