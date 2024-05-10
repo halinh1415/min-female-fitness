@@ -68,6 +68,7 @@ public class PremiumActivity extends AppCompatActivity {
     @BindView(R.id.cl_flower_2)
     View clFlower2;
 
+    PremiumAdapter premiumAdapter;
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +82,7 @@ public class PremiumActivity extends AppCompatActivity {
 
     private void initView() {
         premiumViewModel = new ViewModelProvider(this).get(PremiumViewModel.class);
-
+        premiumAdapter = new PremiumAdapter();
 
         premiumViewModel.selected.observe(this, selected -> {
             changeTextColorOfTextViews((ViewGroup) llLifetime, selected == 0);
@@ -105,7 +106,7 @@ public class PremiumActivity extends AppCompatActivity {
             }
         });
 
-        rcPremium.setAdapter(new PremiumAdapter());
+        rcPremium.setAdapter(premiumAdapter);
         rcPremium.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         premiumViewModel.productSkuDetailsMap.observe(this,productDetailsMap -> {
             ProductDetails productDetailsMonthly = productDetailsMap.get(InAppKey.PREMIUM_MONTHLY);
@@ -114,15 +115,15 @@ public class PremiumActivity extends AppCompatActivity {
             long yPrice ,mPrice =2;
             int discount = 0;
             if (productDetailsMonthly != null) {
+                String monthPrice = productDetailsMonthly.getSubscriptionOfferDetails().get(0).getPricingPhases().getPricingPhaseList().get(0).getFormattedPrice();
                 mPrice = productDetailsMonthly.getSubscriptionOfferDetails().get(0).getPricingPhases().getPricingPhaseList().get(0).getPriceAmountMicros();
-                tvMonthPrice.setText(String.format(getString(R.string.abbr_x_mth_gpt), productDetailsMonthly.getSubscriptionOfferDetails().get(0).getPricingPhases().getPricingPhaseList().get(0).getFormattedPrice()));
+                tvMonthPrice.setText(String.format(getString(R.string.abbr_x_mth_gpt), monthPrice));
+                premiumAdapter.setMonthPrice(monthPrice);
             }
             else {
                 Log.d("HAHA", "skuDetailsMonthly!= null");
                 // return;
             }
-
-
 
             ProductDetails skuDetailsYearly = productDetailsMap.get(InAppKey.PREMIUM_YEARLY);
             if (skuDetailsYearly != null){
@@ -136,10 +137,12 @@ public class PremiumActivity extends AppCompatActivity {
                 tvDes1.setText(String.format(getString(R.string.free_7_days_trial_then_xx_year),yPriceString));
                 tvYearToMonth.setText(String.format(getString(R.string.iap_only_x_per_mth_gpt),getAnnualMonthlyPrice(skuDetailsYearly)));
                 tvYearPrice.setText(String.format(getString(R.string.txt_x_year_gpt),yPriceString));
+                premiumAdapter.setYearPrice(yPriceString);
             }
             else {
                 Log.d("HAHA", "skuDetailsYearly!= null");
             }
+
         });
         premiumViewModel.productDetailInApps.observe(this,inAppProducts->{
             ProductDetails productLifetime = inAppProducts.get(InAppKey.PREMIUM_LIFETIME);
@@ -234,6 +237,18 @@ public class PremiumActivity extends AppCompatActivity {
     }
 
     class PremiumAdapter extends RecyclerView.Adapter<PremiumAdapter.PremiumIntroViewHolder> {
+        String yearPrice ="", monthPrice ="";
+
+
+        public void setYearPrice(String yearPrice) {
+            this.yearPrice = yearPrice;
+            notifyDataSetChanged();
+        }
+
+        public void setMonthPrice(String monthPrice) {
+            this.monthPrice = monthPrice;
+            notifyDataSetChanged();
+        }
 
         @NonNull
         @Override
@@ -261,6 +276,9 @@ public class PremiumActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull PremiumIntroViewHolder holder, int position) {
 
+            if (holder.iapDetail!= null){
+                holder.iapDetail.setText(String.format(getString(R.string.iap_detail_review),yearPrice,monthPrice));
+            }
         }
 
 
@@ -275,8 +293,10 @@ public class PremiumActivity extends AppCompatActivity {
         }
 
         class PremiumIntroViewHolder extends RecyclerView.ViewHolder {
+            TextView iapDetail;
             public PremiumIntroViewHolder(@NonNull View itemView) {
                 super(itemView);
+                iapDetail = itemView.findViewById(R.id.iap_detail);
             }
         }
     }

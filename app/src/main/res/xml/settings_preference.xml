@@ -12,7 +12,7 @@
             android:entries="@array/app_theme_name"
             android:entryValues="@array/app_theme_value"
             android:key="THEME"
-            android:defaultValue="dark"
+            android:defaultValue="light"
             android:icon="@drawable/ic_baseline_dark_mode_24"
             android:title="@string/txt_theme"
             app:useSimpleSummaryProvider="true"/>
