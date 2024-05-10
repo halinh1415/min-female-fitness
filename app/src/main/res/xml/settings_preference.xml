@@ -122,12 +122,11 @@
             android:key="ST_FEEDBACK"
             android:title="@string/txt_feedback" />
         <Preference
-            android:icon="@drawable/ic_version"
-            android:key="VERSION_APP"
-            android:title="Version" />
-        <Preference
             android:icon="@drawable/ic_security_black_24dp"
             android:key="PRIVACY_POLICY"
             android:title="Privacy Policy" />
+        <Preference
+            android:key="VERSION_APP"
+            android:title="Version" />
     </PreferenceCategory>
 </PreferenceScreen>
