@@ -2,6 +2,7 @@ package mint.woman.female.workout.activity.premium;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ import butterknife.OnClick;
 import kotlin.text.Regex;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.utils.LanguageHelper;
+import mint.woman.female.workout.utils.MyPreference;
 
 public class PremiumActivity extends AppCompatActivity {
     PremiumViewModel premiumViewModel;
@@ -68,7 +70,8 @@ public class PremiumActivity extends AppCompatActivity {
     @BindView(R.id.cl_flower_2)
     View clFlower2;
 
-    PremiumAdapter premiumAdapter;
+    MyPreference myPreference;
+	PremiumAdapter premiumAdapter;
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +84,7 @@ public class PremiumActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        myPreference = new MyPreference(this);
         premiumViewModel = new ViewModelProvider(this).get(PremiumViewModel.class);
         premiumAdapter = new PremiumAdapter();
 
@@ -142,7 +146,13 @@ public class PremiumActivity extends AppCompatActivity {
             else {
                 Log.d("HAHA", "skuDetailsYearly!= null");
             }
-
+        });
+		    premiumViewModel.isPremium.observe(this, isPremium -> {
+            if (isPremium) {
+                myPreference.setPremiumMember(true);
+            } else {
+                myPreference.setPremiumMember(false);
+            }
         });
         premiumViewModel.productDetailInApps.observe(this,inAppProducts->{
             ProductDetails productLifetime = inAppProducts.get(InAppKey.PREMIUM_LIFETIME);
@@ -234,6 +244,16 @@ public class PremiumActivity extends AppCompatActivity {
     @OnClick(R.id.iv_close)
     void close() {
         finish();
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = getIntent();
+        Bundle b = new Bundle();
+        b.putBoolean("PREMIUM_MEMBER", myPreference.isPremiumMember());
+        intent.putExtras(b);
+        setResult(RESULT_OK, intent);
+        finish();
+        super.onBackPressed();
     }
 
     class PremiumAdapter extends RecyclerView.Adapter<PremiumAdapter.PremiumIntroViewHolder> {
