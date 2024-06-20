@@ -136,8 +136,9 @@ public class SplashActivity extends AppCompatActivity {
 //        anim.setDuration(2000);
 //        mSplash.startAnimation(anim);
 
-       requestTCM();
+        requestTCM();
     }
+
     private void requestTCM() {
         ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this)
                 .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
@@ -180,7 +181,6 @@ public class SplashActivity extends AppCompatActivity {
                 });
 
     }
-
 
 
     void updateRemoteConfig() {
@@ -233,7 +233,12 @@ public class SplashActivity extends AppCompatActivity {
             requestNativeSetup();
             loadInterStart();
         }
-        if (myPreference.isShowAds() && !myPreference.isFirstOpen() && FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.INTER_SPLASH)) {
+        if (myPreference.isFirstOpen()) {
+            mHandler.postDelayed(() -> {
+                startMain();
+
+            }, 8000);
+        } else if (myPreference.isShowAds()  && FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.INTER_SPLASH)) {
             loadInterSplash3SameTime();
             checkShowInterSplash();
 
