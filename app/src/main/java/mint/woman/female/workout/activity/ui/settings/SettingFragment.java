@@ -22,6 +22,8 @@ import androidx.preference.SwitchPreference;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import mint.woman.female.workout.BuildConfig;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
@@ -106,6 +108,7 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         return false;
     }
     public void openYoutubeChannel() {
+        FirebaseAnalytics.getInstance(getContext()).logEvent("click_open_youtube_channel", new Bundle());
         AppOpenManager.getInstance().disableAdResumeByClickAction();
 
         String youtubeChannelId = "UCIUIxNiBFEqjHmnoPgpeKUw";
