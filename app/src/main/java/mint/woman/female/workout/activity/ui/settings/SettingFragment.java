@@ -108,7 +108,7 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         return false;
     }
     public void openYoutubeChannel() {
-        FirebaseAnalytics.getInstance(getContext()).logEvent("click_open_youtube_channel", new Bundle());
+        FirebaseAnalytics.getInstance(getContext()).logEvent("click_open_youtube_channel_st", new Bundle());
         AppOpenManager.getInstance().disableAdResumeByClickAction();
 
         String youtubeChannelId = "UCIUIxNiBFEqjHmnoPgpeKUw";
@@ -127,7 +127,6 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         }catch (Exception e){
             e.printStackTrace();
         }
-
 
     }
     public void updateAccount(GoogleSignInAccount account) {

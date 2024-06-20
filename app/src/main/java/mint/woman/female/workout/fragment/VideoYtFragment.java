@@ -1,10 +1,13 @@
 package mint.woman.female.workout.fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,7 +16,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.admodule.AppOpenManager;
 import mint.woman.female.workout.utils.FitnessConstUtils;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -40,6 +46,8 @@ public class VideoYtFragment extends Fragment {
     private String mExerciseUrl;
     @BindView(R.id.youtube_player_view)
     YouTubePlayerView youTubePlayerView;
+    @BindView(R.id.btn_open_yt)
+    Button mOpenYtBtn;
 
 
     public VideoYtFragment() {
@@ -96,9 +104,37 @@ public class VideoYtFragment extends Fragment {
                 }
             }
         });
+        mOpenYtBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openYoutubeChannel();
+            }
+        });
+
         //  YouTubePlayerFragment youTubePlayerFragment = (YouTubePlayerFragment) view.findViewById(R.id.youtube_fragment);
     }
+    public void openYoutubeChannel() {
+        FirebaseAnalytics.getInstance(getContext()).logEvent("click_open_youtube_channel_dm", new Bundle());
+        AppOpenManager.getInstance().disableAdResumeByClickAction();
 
+        String youtubeChannelId = "UCIUIxNiBFEqjHmnoPgpeKUw";
+
+        // Try to open the YouTube app directly
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("vnd.youtube://channel/" + youtubeChannelId));
+
+        // If YouTube app is not installed, open in browser
+        if (intent.resolveActivity(getContext().getPackageManager()) == null) {
+            intent.setData(Uri.parse("https://www.youtube.com/channel/" + youtubeChannelId));
+        }
+
+        try {
+            startActivity(intent);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 
 
     @Override
