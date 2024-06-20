@@ -27,6 +27,7 @@ import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.PolicyActivity;
 import mint.woman.female.workout.admodule.AppOpenManager;
+import mint.woman.female.workout.utils.MyPreference;
 
 
 public class SettingFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
@@ -45,6 +46,7 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         findPreference("TTS_INSTALL_VOICE").setOnPreferenceClickListener(this);
         //findPreference("SYNC_GOOGLE_FIT").setOnPreferenceClickListener(this);
         findPreference("ST_REMINDER").setOnPreferenceClickListener(this);
+        findPreference("ST_YOUTUBE").setOnPreferenceClickListener(this);
         //  findPreference("BACK_UP").setOnPreferenceClickListener(this);
         Preference reminder = findPreference("ST_REMINDER");
         reminder.setSummary(FitnessApplication.getApplication().mDatabase.getReminderSet());
@@ -90,6 +92,9 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
             case "ST_REMINDER":
                 Navigation.findNavController(getView()).navigate(R.id.action_nav_setting_to_nav_reminder);
                 break;
+            case "ST_YOUTUBE":
+                openYoutubeChannel();
+                break;
 //            case "BACK_UP":
 //                if (mListener != null) {
 //                    mListener.singIn();
@@ -100,7 +105,28 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         }
         return false;
     }
+    public void openYoutubeChannel() {
+        AppOpenManager.getInstance().disableAdResumeByClickAction();
 
+        String youtubeChannelId = "UCIUIxNiBFEqjHmnoPgpeKUw";
+
+        // Try to open the YouTube app directly
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("vnd.youtube://channel/" + youtubeChannelId));
+
+        // If YouTube app is not installed, open in browser
+        if (intent.resolveActivity(getContext().getPackageManager()) == null) {
+            intent.setData(Uri.parse("https://www.youtube.com/channel/" + youtubeChannelId));
+        }
+
+        try {
+            startActivity(intent);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
     public void updateAccount(GoogleSignInAccount account) {
 //        Preference preference = findPreference("BACK_UP");
 //        if (account!= null){

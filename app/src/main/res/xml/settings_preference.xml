@@ -8,6 +8,10 @@
 <!--        android:title="Back up"-->
 <!--        android:visibility="gone" />-->
     <PreferenceCategory android:title="General">
+        <Preference
+            android:icon="@drawable/ic_youtube"
+            android:key="ST_YOUTUBE"
+            android:title="Youtube Channel (Ad)"/>
         <ListPreference
             android:entries="@array/app_theme_name"
             android:entryValues="@array/app_theme_value"
