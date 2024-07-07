@@ -22,5 +22,5 @@ public class MaticAdKeys {
     public static final String OPEN_RESUME = "ca-app-pub-9959217683006097/5319173967";
     public static final String OPEN_RESUME_HIGH = "ca-app-pub-9959217683006097/6632255637";
     public static final String OPEN_RESUME_MEDIUM = "ca-app-pub-9959217683006097/5063775672";
-    public static final String REWARD_AD = "ca-app-pub-3940256099942544/5224354917";
+    public static final String REWARD_AD = "ca-app-pub-9959217683006097/3248503229";
 }
