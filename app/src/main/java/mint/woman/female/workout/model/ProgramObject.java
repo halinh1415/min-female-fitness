@@ -1,8 +1,6 @@
 package mint.woman.female.workout.model;
 
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -49,10 +47,23 @@ public class ProgramObject  {
     @SerializedName("description")
     @Expose
     private String description;
+    @SerializedName("subtitle")
+    @Expose
+    private String subtitle;
+    @SerializedName("version")
+    @Expose
+    private int version;
     public ProgramObject(){
 
     }
 
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
+    }
 
     public int getId() {
         return id;
@@ -158,4 +169,11 @@ public class ProgramObject  {
         this.description = description;
     }
 
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
 }

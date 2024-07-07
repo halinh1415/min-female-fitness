@@ -82,7 +82,7 @@ public class SelectExerciseActivity extends AppCompatActivity implements SelectA
                 setTitle(getString(R.string.txt_exercise));
             }
             mJsonHelper = FitnessApplication.getApplication().mJsonHelper;
-            mAllExercise = mJsonHelper.getAllExercise(0);
+            mAllExercise = mJsonHelper.getAllExercise(0,1001);
             mAdapter = new SelectAdapter(this, parentType, this);
             mRecyclerView.setAdapter(mAdapter);
 

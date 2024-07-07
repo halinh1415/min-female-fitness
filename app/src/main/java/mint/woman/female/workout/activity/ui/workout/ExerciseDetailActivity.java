@@ -21,6 +21,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+import com.minfitness.decode.Decoder;
+
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
@@ -30,7 +32,6 @@ import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
-import mint.woman.female.workout.utils.VideoEncryptor;
 
 import java.util.Locale;
 
@@ -77,11 +78,11 @@ public class ExerciseDetailActivity extends AppCompatActivity {
         try {
             if (mBundle != null) {
                 actionId = mBundle.getInt("actionId");
-                mExerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(PreviewActivity.discover).get(actionId);
-                if (PreviewActivity.discover == 0) {
-                    VideoEncryptor.decryptVideoFromAssets(ExerciseDetailActivity.this, "i/v/video_" + actionId, getCacheDir() + "/temp.mp4", "DesignMinFitness");
+                mExerciseObject = FitnessApplication.getApplication().getHashMapExercise().get(actionId);
+                if (FitnessApplication.getApplication().getDiscover() == 0) {
+                    Decoder.decryptToFile(getAssets(),"i/v/video_" + actionId,getCacheDir() + "/temp.mp4");
                 } else {
-                    VideoEncryptor.decryptVideo(getFilesDir() + "/discover/" + PreviewActivity.discover + "/v/video_" + actionId, getCacheDir() + "/temp.mp4", "DesignMinFitness");
+                    Decoder.decryptInputToFile(getFilesDir() + "/discover/" +FitnessApplication.getApplication().getDiscover()+"/"+FitnessApplication.getApplication().getVersion()  + "/v/video_" + actionId, getCacheDir() + "/temp.mp4");
                 }
 
 

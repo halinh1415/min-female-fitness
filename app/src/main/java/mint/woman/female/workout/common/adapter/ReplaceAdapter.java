@@ -15,8 +15,7 @@ import com.bumptech.glide.Glide;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.Replace;
-import mint.woman.female.workout.utils.VideoEncryptor;
-
+import com.minfitness.decode.Decoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -83,7 +82,7 @@ public class ReplaceAdapter extends RecyclerView.Adapter<ReplaceAdapter.ReplaceV
                 exerciseClickListener.onExerciseClick(replace);
             }
         });
-        byte[] encrypt = VideoEncryptor.decryptGif(holder.itemView.getContext().getAssets(), "i/g/video_" +replace.getId(),"ASDFGHJKLASDFGHJ");
+        byte[] encrypt = Decoder.decryptFromAssets(holder.itemView.getContext().getAssets(), "i/g/video_" +replace.getId());
         Glide.with(holder.itemView).asGif().load(encrypt).into(holder.mDemoExercise);
        // Glide.with(holder.itemView).load(Uri.parse("file:///android_asset/exercises/" + AppEncrypt.getName("video_" + exerciseObject.getId()) + ".webp")).into(holder.mDemoExercise);
 

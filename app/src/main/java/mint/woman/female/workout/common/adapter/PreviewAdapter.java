@@ -2,6 +2,7 @@ package mint.woman.female.workout.common.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,14 +13,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.minfitness.decode.Decoder;
+
+import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.common.data.DemoDataProvider;
 import mint.woman.female.workout.custom.ItemTouchHelperAdapter;
 import mint.woman.female.workout.custom.OnStartDragListener;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.PlanObject;
-import mint.woman.female.workout.utils.FitnessConstUtils;
-import mint.woman.female.workout.utils.VideoEncryptor;
 
 public class PreviewAdapter extends RecyclerView.Adapter<ExerciseViewHolder> implements ItemTouchHelperAdapter {
     private final OnStartDragListener mDragStartListener;
@@ -56,20 +58,26 @@ public class PreviewAdapter extends RecyclerView.Adapter<ExerciseViewHolder> imp
     public void onBindViewHolder(@NonNull final ExerciseViewHolder holder, @SuppressLint("RecyclerView") int position) {
         PlanObject.ActionObject actionObject = mProvider.getItem(position);
         ExerciseObject exerciseObject = mProvider.getExerciseItem(actionObject.actionId);
-        if (exerciseObject == null)
+
+        if (exerciseObject == null) {
+            Log.d("HAHA",""+actionObject.actionId+"not found!");
             return;
+        }
         holder.mExerciseName.setText(exerciseObject.getName());
 
+        int minutes = (actionObject.time) / 60;
+        int seconds = actionObject.time % 60;
+        String timeString = String.format("%02d:%02d", minutes, seconds);
         if (actionObject.unit.contains("s")){
-            holder.mReps.setText(FitnessConstUtils.toTime(actionObject.time));
+            holder.mReps.setText(timeString);
         }else {
             holder.mReps.setText("x "+actionObject.time);
         }
         byte[] encrypt;
         if (mDiscover == 0){
-            encrypt = VideoEncryptor.decryptGif(holder.itemView.getContext().getAssets(), "i/g/video_" +actionObject.actionId,"ASDFGHJKLASDFGHJ");
+            encrypt = Decoder.decryptFromAssets(holder.itemView.getContext().getAssets(), "i/g/video_" +actionObject.actionId);
         }else{
-            encrypt = VideoEncryptor.decryptInput( mContext.getFilesDir().getPath()+"/discover/"+mDiscover+"/g/video_" +actionObject.actionId,"ASDFGHJKLASDFGHJ");
+            encrypt = Decoder.decryptInput( mContext.getFilesDir().getPath()+"/discover/"+mDiscover+"/"+ FitnessApplication.getApplication().getVersion() +"/g/video_" +actionObject.actionId);
         }
 
 

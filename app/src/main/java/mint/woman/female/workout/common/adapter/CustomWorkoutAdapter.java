@@ -2,6 +2,7 @@ package mint.woman.female.workout.common.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import com.h6ah4i.android.widget.advrecyclerview.utils.AbstractDraggableItemView
 import com.h6ah4i.android.widget.advrecyclerview.utils.AbstractExpandableItemAdapter;
 import com.h6ah4i.android.widget.advrecyclerview.utils.RecyclerViewAdapterUtils;
 import com.h6ah4i.android.widget.advrecyclerview.utils.WrapperAdapterUtils;
+import com.minfitness.decode.Decoder;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.common.data.CustomWorkoutDataProvider;
@@ -32,7 +34,6 @@ import mint.woman.female.workout.common.utils.ViewUtils;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.PlanObject;
 import mint.woman.female.workout.utils.MyPreference;
-import mint.woman.female.workout.utils.VideoEncryptor;
 
 @SuppressLint("SetTextI18n")
 public class CustomWorkoutAdapter extends AbstractExpandableItemAdapter<CustomWorkoutAdapter.MyGroupViewHolder, CustomWorkoutAdapter.MyChildViewHolder>
@@ -185,7 +186,10 @@ public class CustomWorkoutAdapter extends AbstractExpandableItemAdapter<CustomWo
     @Override
     public void onBindChildViewHolder(MyChildViewHolder holder, int groupPosition, int childPosition, int viewType) {
         PlanObject.ActionObject actionObject = mProvider.getChildItem(groupPosition, childPosition);
-        ExerciseObject exerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(0).get(actionObject.actionId);
+        ExerciseObject exerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(0,1001).get(actionObject.actionId);
+        if (exerciseObject == null){
+            Log.d("HAHA","not found id ="+actionObject.actionId);
+        }
         holder.mExerciseName.setText(exerciseObject.getName());
 
         if (!actionObject.unit.isEmpty()) {
@@ -200,7 +204,8 @@ public class CustomWorkoutAdapter extends AbstractExpandableItemAdapter<CustomWo
 
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.centerCrop().transform(new RoundedCorners(30));
-        byte[] encrypt = VideoEncryptor.decryptGif(holder.itemView.getContext().getAssets(), "i/g/video_" +actionObject.actionId,"ASDFGHJKLASDFGHJ");
+        byte[] encrypt = Decoder.decryptFromAssets(holder.itemView.getContext().getAssets(), "i/g/video_" +actionObject.actionId);
+     //   byte[] encrypt = VideoEncryptor.decryptGif(holder.itemView.getContext().getAssets(), "i/g/video_" +actionObject.actionId,"ASDFGHJKLASDFGHJ");
 
         Glide.with(holder.itemView).asGif().load(encrypt).into(holder.mDemoExercise);
 

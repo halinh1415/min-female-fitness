@@ -10,7 +10,6 @@
     <string name="roboto_regular" translatable="false">sans-serif</string>
 
 
-
     <string name="txt_rate" translatable="false">Rate us</string>
     <string name="txt_action_settings">Settings</string>
     <string name="txt_very_severely_underweight">Very Severely Underweight</string>
@@ -316,4 +315,17 @@
     <string name="txt_iap_feature_info_4">Ads Free Forever</string>
     <string name="txt_iap_feature_info_3">Personalized Plan &amp; Future Update</string>
     <string name="txt_iap_feature_info_2">Achieve Amazing Results in Only 4 Weeks</string>
+    <string name="training">Training</string>
+    <string name="training_goal">Training Goal</string>
+    <string name="random_workout">Random workouts</string>
+    <string name="for_summer">For summer</string>
+    <string name="tip_pro_instruction_3">Face firming Yoga</string>
+    <string name="at_home">Routines</string>
+    <string name="txt_7_minutes">7 Minutes</string>
+    <string name="reach_goal_fast">Fast</string>
+    <string name="seven_min_get_fit_des">In just 7 minutes a day, quick and effective workouts can enhance your fitness and health. Stay fit and shed those extra pounds!</string>
+    <string name="upper_body_stretching_short_des">Stretch your arms, shoulders, chest, and back. Loosen muscles and increase flexibility.</string>
+    <string name="explore_tag_hot">Hot</string>
+    <string name="downloading">Downloading</string>
+    <string name="loading">Loading...</string>
 </resources>

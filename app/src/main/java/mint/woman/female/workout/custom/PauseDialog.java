@@ -73,7 +73,7 @@ public class PauseDialog extends DialogFragment {
         if (getArguments() != null) {
             mProgressWorkoutString = getArguments().getString("progress");
             mActionObject = getArguments().getParcelable("action_object");
-            mExerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(DoWorkoutActivity.discover).get(mActionObject.actionId);
+            mExerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(DoWorkoutActivity.discover,DoWorkoutActivity.version).get(mActionObject.actionId);
         }
         return dialog;
     }

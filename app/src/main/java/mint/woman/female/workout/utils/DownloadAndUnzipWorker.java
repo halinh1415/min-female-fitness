@@ -114,6 +114,7 @@ public class DownloadAndUnzipWorker extends Worker {
             }
         }
         catch (Exception e){
+            Log.d(TAG,"unzip except:"+e.toString());
             e.printStackTrace();
         }
     }

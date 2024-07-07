@@ -37,8 +37,7 @@ import mint.woman.female.workout.utils.Database;
 import mint.woman.female.workout.utils.JsonHelper;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
-import mint.woman.female.workout.utils.VideoEncryptor;
-
+import com.minfitness.decode.Decoder;
 import java.util.List;
 import java.util.Locale;
 
@@ -121,7 +120,7 @@ public class MyWorkoutActivity extends AppCompatActivity implements MyWorkoutAda
                 //myWorkoutObject.setPlan("custom_plan_" + newId + ".json");
                // myWorkoutObject.setId(newId);
                // mDatabase.updateMyWorkout(myWorkoutObject);
-                VideoEncryptor.encryptByte(mCustomWorkoutDataProvider.convertPlanToJsonString().getBytes(), getFilesDir().getPath() + "/i/" + myWorkoutObject.getPlan(), "DesignMinFitness");
+                Decoder.encryptStringToFile(mCustomWorkoutDataProvider.convertPlanToJsonString().getBytes(),getFilesDir().getPath() + "/i/" + myWorkoutObject.getPlan());
                 //mJsonHelper.writeFileToData(myWorkoutObject.getPlan(), mCustomWorkoutDataProvider.convertPlanToJsonString());
                 flagRefresh = true;
                 Intent intent = new Intent(MyWorkoutActivity.this, CustomMyWorkoutActivity.class);
@@ -230,7 +229,7 @@ public class MyWorkoutActivity extends AppCompatActivity implements MyWorkoutAda
             intent.putExtras(mBundle);
             startActivity(intent);
         } else if (myWorkoutObject.getTotal() == 1) {
-            List<PlanObject> dayPlanObjectList = mJsonHelper.getListPlan(myWorkoutObject.getPlan(),0);
+            List<PlanObject> dayPlanObjectList = mJsonHelper.getListPlan(myWorkoutObject.getPlan(),0,1001);
             if (dayPlanObjectList.get(0).mActionList.size() == 0) {
                 flagRefresh = true;
                 mBundle.putInt("DAY_NUMBER", 1);

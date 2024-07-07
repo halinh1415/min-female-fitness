@@ -15,6 +15,7 @@ import mint.woman.female.workout.activity.SplashActivity;
 import mint.woman.female.workout.activity.premium.PremiumActivity;
 import mint.woman.female.workout.admodule.AppOpenManager;
 import mint.woman.female.workout.admodule.MaticAdKeys;
+import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.utils.Database;
 import mint.woman.female.workout.utils.JsonHelper;
@@ -23,7 +24,9 @@ import mint.woman.female.workout.utils.MyPreference;
 import mint.woman.female.workout.utils.NetworkUtil;
 import mint.woman.female.workout.utils.StorageCommon;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 public class FitnessApplication extends Application {
@@ -34,7 +37,8 @@ public class FitnessApplication extends Application {
     private Gson mGSon;
     private static FitnessApplication sInstance;
     private static FitnessApplication context;
-     private HashMap<Integer, ProgramObject> allProgram =null;
+    private HashMap<Integer, ProgramObject> allProgram = null;
+    private int version =1001,discover =0;
     protected StorageCommon storageCommon;
 
     public StorageCommon  getStorageCommon() {
@@ -53,12 +57,33 @@ public class FitnessApplication extends Application {
         }
         return allProgram.get(id);
     }
+
     public static FitnessApplication getApplication() {
         return context;
     }
 
+    public HashMap<Integer, ExerciseObject> getHashMapExercise(){
+        return mJsonHelper.getHashMapExercise(discover,version);
+    }
     public static FitnessApplication self() {
         return sInstance;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
+    public int getDiscover() {
+        return discover;
+    }
+
+    public void setDiscover(int discover) {
+        this.discover = discover;
     }
 
     @Override

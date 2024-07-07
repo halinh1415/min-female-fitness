@@ -14,9 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+
+import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.custom.ProgramClickListener;
 import mint.woman.female.workout.model.ProgramObject;
+import mint.woman.female.workout.retrofit.ApiUtils;
 import mint.woman.female.workout.utils.MyPreference;
 
 import java.util.ArrayList;
@@ -69,7 +72,11 @@ public class ProgramGoalAdapter extends RecyclerView.Adapter<ProgramGoalAdapter.
             holder.mProgress.setVisibility(View.GONE);
         }
 
-        Glide.with(mContext).load(Uri.parse("file:///android_asset/images/" + programObject.getImage())).optionalFitCenter().into(holder.imgProgram);
+        String baseUrl = "file:///android_asset/images/";
+        if (programObject.getDiscover() >0){
+            baseUrl = ApiUtils.BASE_URL_IMAGES;
+        }
+        Glide.with(mContext).load(Uri.parse(baseUrl + programObject.getImage())).optionalFitCenter().into(holder.imgProgram);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

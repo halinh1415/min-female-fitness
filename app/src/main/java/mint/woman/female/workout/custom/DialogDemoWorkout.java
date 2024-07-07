@@ -86,7 +86,7 @@ public class DialogDemoWorkout extends DialogFragment implements View.OnClickLis
         mWorkoutViewModel = new ViewModelProvider(getActivity()).get(WorkoutViewModel.class);
         if (getArguments() != null) {
             int id = getArguments().getInt("actionId");
-            mExerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(DoWorkoutActivity.discover).get(id);
+            mExerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(DoWorkoutActivity.discover,DoWorkoutActivity.version).get(id);
         }
 //        dialog.setOnShowListener(dialogInterface -> {
 //            BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) dialogInterface;

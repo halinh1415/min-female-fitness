@@ -78,7 +78,18 @@ public class MyPreference {
     }
 
     public String getMusicName() {
-        return mSharedPreferences.getString("BACK_GROUND_MUSIC", "song_1");
+        return mSharedPreferences.getString("BACK_GROUND_MUSIC", "Default");
+    }
+    public void setMusicName(String name){
+        mEditor.putString("BACK_GROUND_MUSIC", name);
+        mEditor.commit();
+    }
+    public void setMusicFile(String file){
+        mEditor.putString("BACK_GROUND_MUSIC_FILE", file);
+        mEditor.commit();
+    }
+    public String getMusicFile(){
+        return mSharedPreferences.getString("BACK_GROUND_MUSIC_FILE", "Default.mp3");
     }
 
     public float getSpeakerVolume() {

@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.utils.MyPreference;
-import mint.woman.female.workout.utils.VideoEncryptor;
+import com.minfitness.decode.Decoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +64,7 @@ public class SelectAdapter extends RecyclerView.Adapter<SelectAdapter.SelectView
 
         holder.mExerciseName.setText(exerciseObject.getName());
         //String videoPath = "android.resource://" + getPackageName() + "/" + resourceId;
-        byte[] encrypt = VideoEncryptor.decryptGif(holder.itemView.getContext().getAssets(), "i/d/video_" +exerciseObject.getId(),"ASDFGHJKLASDFGHJ");
+        byte[] encrypt = Decoder.decryptFromAssets(holder.itemView.getContext().getAssets(), "i/g/video_" +exerciseObject.getId());
 
         Glide.with(holder.itemView).asGif().load(encrypt).into(holder.mDemoExercise);
         if (ptype == 0) {

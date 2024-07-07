@@ -3,27 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="@dimen/_5sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+    <View
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_5sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:background="@drawable/bg_ad_btn_common"/>
 
     <TextView
         android:id="@+id/tv_section_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:text="Section"
         android:textAllCaps="true"
-        android:textColor="@color/colorAccent"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textSize="@dimen/_14sdp" />
+
+    <TextView
+        android:id="@+id/tv_section_subtitle"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/horizontalRecyclerView"
+        android:layout_marginTop="@dimen/_5sdp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:itemCount="3"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_child_recent_rect"
-        />
+        tools:itemCount="3"
+        tools:listitem="@layout/item_child_recent_rect" />
 </LinearLayout>

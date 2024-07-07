@@ -22,6 +22,8 @@ import com.h6ah4i.android.widget.advrecyclerview.animator.DraggableItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.animator.GeneralItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.RecyclerViewDragDropManager;
 import com.h6ah4i.android.widget.advrecyclerview.expandable.RecyclerViewExpandableItemManager;
+import com.minfitness.decode.Decoder;
+
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.workout.ExerciseDetailActivity;
@@ -36,7 +38,6 @@ import mint.woman.female.workout.utils.Database;
 import mint.woman.female.workout.utils.JsonHelper;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
-import mint.woman.female.workout.utils.VideoEncryptor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +63,7 @@ public class CustomMyWorkoutActivity extends AppCompatActivity implements Dialog
     Database mDatabase;
     ProgramObject myWorkoutObject;
     MenuItem menuItem;
+    int version;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,8 +88,9 @@ public class CustomMyWorkoutActivity extends AppCompatActivity implements Dialog
                 myWorkoutObject = mDatabase.getMyWorkoutObject(mCustomId);
             }
 
-            mAllExercise = mJsonHelper.getAllExercise(myWorkoutObject.getDiscover());
-            mPlanObjects = mJsonHelper.getListPlan(myWorkoutObject.getPlan(),myWorkoutObject.getDiscover());
+            version = myWorkoutObject.getVersion();
+            mAllExercise = mJsonHelper.getAllExercise(myWorkoutObject.getDiscover(),version);
+            mPlanObjects = mJsonHelper.getListPlan(myWorkoutObject.getPlan(),myWorkoutObject.getDiscover(),version);
             mProvider = new CustomWorkoutDataProvider();
             mProvider.setData(mPlanObjects);
             GeneralItemAnimator animator = new DraggableItemAnimator();
@@ -192,7 +195,7 @@ public class CustomMyWorkoutActivity extends AppCompatActivity implements Dialog
                     menuItem.setVisible(false);
                     item.setTitle(R.string.txt_edit);
                   //  mJsonHelper.writeFileToData(myWorkoutObject.getPlan(), mProvider.convertPlanToJsonString());
-                    VideoEncryptor.encryptByte(mProvider.convertPlanToJsonString().getBytes(), getFilesDir().getPath() + "/i/" + myWorkoutObject.getPlan(), "DesignMinFitness");
+                    Decoder.encryptStringToFile(mProvider.convertPlanToJsonString().getBytes(),getFilesDir().getPath() + "/i/" + myWorkoutObject.getPlan());
                     Toast.makeText(this, "Update plan " + myWorkoutObject.getName(), Toast.LENGTH_SHORT).show();
                 } else {
                     menuItem.setVisible(true);

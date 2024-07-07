@@ -7,9 +7,9 @@
         android:title="@string/txt_home" />
     <item
         android:id="@+id/nav_explore"
-        android:icon="@drawable/ic_boxing_gloves"
-        android:visible="false"
-        android:title="@string/tab_discover" />
+        android:icon="@drawable/ic_heat"
+        android:visible="true"
+        android:title="@string/training" />
     <item
         android:id="@+id/nav_report"
         android:icon="@drawable/ic_event_note_black_24dp"

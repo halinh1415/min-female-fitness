@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.zip.ZipEntry;
@@ -80,6 +81,40 @@ public class FileUtil {
     private static String convertByteArrayToString(byte[] byteArray) {
         // Use the String constructor that takes a byte array and character encoding
         return new String(byteArray, StandardCharsets.UTF_8);
+    }
+    public static void copyAssetToInternalStorage(Context context, String assetFileName, String internalFileName) {
+        InputStream in = null;
+        OutputStream out = null;
+        try {
+            // Open the asset file
+            in = context.getAssets().open(assetFileName);
+            // Create a new file in the internal storage
+            out = new FileOutputStream(context.getFilesDir() + "/" + internalFileName);
+
+            byte[] buffer = new byte[1024];
+            int read;
+            while ((read = in.read(buffer)) != -1) {
+                out.write(buffer, 0, read);
+            }
+            out.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
 }

@@ -1,15 +1,44 @@
 package mint.woman.female.workout.model;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class Section {
-    public String sectionName;
-    public List<ProgramObject> programObjectList;
-    public int layout;
+public class Section{
+    public String sectionName,subtitle;
+    public List<Object> items = new ArrayList<>();
+    public String background;
+    public int viewType = 1;
 
-    public Section(String sectionName, List<ProgramObject> programObjectList,int layout) {
+    public Section(String sectionName, List<Object> items, int viewType) {
         this.sectionName = sectionName;
-        this.programObjectList = programObjectList;
-        this.layout = layout;
+        this.items = items;
+        this.viewType = viewType;
+        this.background ="";
+        this.subtitle ="";
+
     }
+    public Section(String sectionName,String subtitle, List<Object> items, int viewType) {
+        this.sectionName = sectionName;
+        this.items = items;
+        this.viewType = viewType;
+        this.background ="";
+        this.subtitle = subtitle;
+
+    }
+
+//    public Section(String sectionName, List<CategoryObject> categoryObjectList,int viewType) {
+//        this.sectionName = sectionName;
+//        this.programObjectList.addAll(programObjectList);
+//        this.viewType = viewType;
+//        this.background ="";
+//
+//    }
+//    public Section(String sectionName, List<ProgramObject> programObjectList,int viewType,String background) {
+//        this.sectionName = sectionName;
+//        this.programObjectList.addAll(programObjectList);
+//        this.viewType = viewType;
+//        this.background =background;
+//    }
+
 }

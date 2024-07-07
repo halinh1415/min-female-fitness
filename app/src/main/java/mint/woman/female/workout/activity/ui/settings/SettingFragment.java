@@ -17,17 +17,16 @@ import androidx.navigation.Navigation;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.SwitchPreference;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import mint.woman.female.workout.BuildConfig;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.PolicyActivity;
+import mint.woman.female.workout.activity.ui.sounds.SoundsActivity;
 import mint.woman.female.workout.admodule.AppOpenManager;
 import mint.woman.female.workout.utils.MyPreference;
 
@@ -35,7 +34,7 @@ import mint.woman.female.workout.utils.MyPreference;
 public class SettingFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
     private OnSettingsListener mListener;
 
-    GoogleApiClient mGoogleSignInClient;
+
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -49,6 +48,9 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         //findPreference("SYNC_GOOGLE_FIT").setOnPreferenceClickListener(this);
         findPreference("ST_REMINDER").setOnPreferenceClickListener(this);
         findPreference("ST_YOUTUBE").setOnPreferenceClickListener(this);
+        Preference music = findPreference("BACK_GROUND_MUSIC");
+        music.setSummary(MyPreference.newInstance(getContext()).getMusicName());
+        findPreference("BACK_GROUND_MUSIC").setOnPreferenceClickListener(this);
         //  findPreference("BACK_UP").setOnPreferenceClickListener(this);
         Preference reminder = findPreference("ST_REMINDER");
         reminder.setSummary(FitnessApplication.getApplication().mDatabase.getReminderSet());
@@ -96,6 +98,9 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
                 break;
             case "ST_YOUTUBE":
                 openYoutubeChannel();
+                break;
+            case "BACK_GROUND_MUSIC":
+                startActivity(new Intent(getActivity(), SoundsActivity.class));
                 break;
 //            case "BACK_UP":
 //                if (mListener != null) {

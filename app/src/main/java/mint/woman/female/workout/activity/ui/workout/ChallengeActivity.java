@@ -37,6 +37,7 @@ import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
 import mint.woman.female.workout.common.adapter.ChallengeAdapter;
 import mint.woman.female.workout.common.adapter.IDayClickListener;
 import mint.woman.female.workout.model.ProgramObject;
+import mint.woman.female.workout.retrofit.ApiUtils;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 
@@ -99,9 +100,13 @@ public class ChallengeActivity extends AppCompatActivity implements IDayClickLis
         challengeAdapter.setProgress(progress);
         rcChallenge.setLayoutManager(new GridLayoutManager(this, 1));
         rcChallenge.setAdapter(challengeAdapter);
-        Glide.with(ChallengeActivity.this).load(Uri.parse("file:///android_asset/images/" + mProgramObject.getBackground())).into(mBanner);
+        String baseUrl = "file:///android_asset/images/";
+        if (mProgramObject.getDiscover() >0){
+            baseUrl = ApiUtils.BASE_URL_IMAGES;
+        }
+        Glide.with(ChallengeActivity.this).load(Uri.parse(baseUrl + mProgramObject.getBackground())).into(mBanner);
 
-        Glide.with(ChallengeActivity.this).load(Uri.parse("file:///android_asset/images/" + mProgramObject.getImage())).into(mImageWorkout);
+        Glide.with(ChallengeActivity.this).load(Uri.parse(baseUrl + mProgramObject.getImage())).into(mImageWorkout);
         mPlanProgress.setMax(mProgramObject.getTotal());
         mPlanProgress.setProgress(progress);
         mPlanCount.setText("" + (mProgramObject.getTotal() - progress) + " " + getString(R.string.txt_day_left));

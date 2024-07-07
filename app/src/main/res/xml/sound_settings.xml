@@ -34,10 +34,8 @@
             app:title="@string/txt_music_volume"
             android:max="100"
             app:defaultValue="90" />
-        <ListPreference
+        <Preference
             app:dependency="MUSIC_ON"
-            app:entries="@array/arr_music_name"
-            app:entryValues="@array/arr_music_value"
             app:icon="@drawable/ic_music_note"
             app:key="BACK_GROUND_MUSIC"
             app:summary="Background 1"

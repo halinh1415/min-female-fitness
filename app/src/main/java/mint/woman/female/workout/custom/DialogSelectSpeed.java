@@ -89,7 +89,7 @@ public class DialogSelectSpeed extends BottomSheetDialogFragment {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
         if (getArguments() != null) {
             int id = getArguments().getInt("actionId");
-            mExerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(mWorkoutViewModel.getDiscover()).get(id);
+            mExerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(mWorkoutViewModel.getDiscover(),DoWorkoutActivity.version).get(id);
         }
         dialog.setOnShowListener(dialogInterface -> {
             BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) dialogInterface;

@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.minfitness.decode.Decoder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,7 +37,6 @@ import mint.woman.female.workout.model.PlanObject;
 import mint.woman.female.workout.utils.FileUtil;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.MyPreference;
-import mint.woman.female.workout.utils.VideoEncryptor;
 
 @SuppressLint("NonConstantResourceId")
 public class RestFragment extends Fragment implements View.OnClickListener {
@@ -86,7 +86,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         mWorkoutViewModel = new ViewModelProvider(getActivity()).get(WorkoutViewModel.class);
         if (getArguments() != null) {
             mActionObject = getArguments().getParcelable("action_object");
-            mExerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(DoWorkoutActivity.discover).get(mActionObject.actionId);
+            mExerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(DoWorkoutActivity.discover,DoWorkoutActivity.version).get(mActionObject.actionId);
             mRestTime = getArguments().getInt("rest");
             mCurrentTime = mRestTime;
             exerciseProgressCount = getArguments().getString("count");
@@ -108,9 +108,9 @@ public class RestFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (DoWorkoutActivity.discover == 0) {
-            VideoEncryptor.decryptVideoFromAssets(getContext(), "i/v/video_" + mActionObject.actionId, getContext().getCacheDir() + "/temp.mp4", "DesignMinFitness");
+            Decoder.decryptToFile(getContext().getAssets(), "i/v/video_" + mActionObject.actionId, getContext().getCacheDir() + "/temp.mp4");
         } else {
-            VideoEncryptor.decryptVideo(getContext().getFilesDir() + "/discover/" + DoWorkoutActivity.discover + "/v/video_" + mActionObject.actionId, getContext().getCacheDir() + "/temp.mp4", "DesignMinFitness");
+            Decoder.decryptInputToFile(getContext().getFilesDir() + "/discover/" + DoWorkoutActivity.discover +"/"+FitnessApplication.getApplication().getVersion()+ "/v/video_" + mActionObject.actionId, getContext().getCacheDir() + "/temp.mp4");
         }
 
 
@@ -167,7 +167,6 @@ public class RestFragment extends Fragment implements View.OnClickListener {
 
     private void initTimer(int time) {
 
-        //  mRestTimeProgress.setSuffixText("\"");
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
@@ -177,7 +176,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
                 if (mCurrentTime != (int) (l / 1000)) {
                     mCurrentTime = (int) (l / 1000);
 
-                    mRestTimeProgress.setText("" + FitnessConstUtils.toTime(mCurrentTime));
+                    mRestTimeProgress.setText(FitnessConstUtils.toTime(mCurrentTime));
                     if (mListener != null) {
                         mListener.updateRestTime(mCurrentTime);
                     }
@@ -187,7 +186,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onFinish() {
-                mRestTimeProgress.setText("" + FitnessConstUtils.toTime(0));
+                mRestTimeProgress.setText(FitnessConstUtils.toTime(0));
                 if (mListener != null) {
                     mListener.onFinishRest();
                 }
@@ -342,7 +341,5 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         void onFinishRest();
 
         void updateRestTime(int time);
-
-        void startRestTime(int time);
     }
 }

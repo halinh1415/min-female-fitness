@@ -10,6 +10,8 @@ public class PlanObject implements Parcelable, Cloneable {
 
     public List<ActionObject> mActionList;
     public String name;
+
+    private Rule rule;
     public int mNextActionId;
 
     public PlanObject() {
@@ -17,7 +19,6 @@ public class PlanObject implements Parcelable, Cloneable {
         name = "";
         mNextActionId = 0;
     }
-
 
     protected PlanObject(Parcel in) {
         mActionList = in.createTypedArrayList(ActionObject.CREATOR);
@@ -30,6 +31,14 @@ public class PlanObject implements Parcelable, Cloneable {
         dest.writeTypedList(mActionList);
         dest.writeString(name);
         dest.writeInt(mNextActionId);
+    }
+
+    public Rule getRule() {
+        return rule;
+    }
+
+    public void setRule(Rule rule) {
+        this.rule = rule;
     }
 
     @Override
@@ -48,12 +57,6 @@ public class PlanObject implements Parcelable, Cloneable {
             return new PlanObject[size];
         }
     };
-
-    @Override
-    public PlanObject clone() throws CloneNotSupportedException {
-        return (PlanObject) super.clone();
-    }
-
 
     public int generateNewActionId() {
         int id = mNextActionId;

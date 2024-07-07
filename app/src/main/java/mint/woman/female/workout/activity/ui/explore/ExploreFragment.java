@@ -1,6 +1,7 @@
 package mint.woman.female.workout.activity.ui.explore;
 
 import android.content.Intent;
+import android.icu.lang.UCharacter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,15 +18,20 @@ import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ExploreDetailActivity;
 import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
+import mint.woman.female.workout.activity.ui.workout.CategoryDetailActivity;
+import mint.woman.female.workout.activity.ui.workout.ChallengeActivity;
 import mint.woman.female.workout.activity.ui.workout.ProgramActivity;
 import mint.woman.female.workout.common.adapter.ProgramClickListener;
 import mint.woman.female.workout.common.adapter.SectionAdapter;
+import mint.woman.female.workout.model.CategoryObject;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.model.Section;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,13 +42,10 @@ public class ExploreFragment extends Fragment implements ProgramClickListener {
     RecyclerView mExploreRc;
     SectionAdapter mAdapter;
     HashMap<Integer, ProgramObject> hashMap;
-    int[] mListChallenge = new int[]{1};
-    int[] mListAbs = new int[]{4, 5, 6,7};
-    int[] mListArm = new int[]{8, 9, 10,11};
-    int[] mListButt = new int[]{12, 13, 14,15};
-
-    int[] mListThigh = new int[]{16, 17, 18,19,20,21};
-    int[] mListSplit = new int[]{22, 23, 24,25,26,27,28,29};
+    int[] mListStretch = new int[]{18, 19, 16, 17, 959};
+    int[] mList7Minute = new int[]{24, 41, 37, 32, 45};
+    int[] mListSummer = new int[]{47,39,46,30,34,38};
+    int[] mListFaceYoga = new int[]{10, 11};
     boolean flagAds;
 
     public ExploreFragment() {
@@ -69,7 +73,16 @@ public class ExploreFragment extends Fragment implements ProgramClickListener {
         initData();
     }
 
-    private List<ProgramObject> getProgram(int[] list) {
+    private List<Object> getProgram(int[] list) {
+        List<Object> programs = new ArrayList<>();
+        for (int id : list
+        ) {
+            ProgramObject programObject = hashMap.get(id);
+            if (programObject != null) programs.add(programObject);
+        }
+        return programs;
+    }
+    private List<ProgramObject> getProgramObject(int[] list) {
         List<ProgramObject> programs = new ArrayList<>();
         for (int id : list
         ) {
@@ -82,12 +95,24 @@ public class ExploreFragment extends Fragment implements ProgramClickListener {
     private void initData() {
         hashMap = FitnessApplication.getApplication().mJsonHelper.getAllCategoryHashMap();
         List<Section> sections = new ArrayList<>();
-        sections.add(new Section(getString(R.string.challenge), getProgram(mListChallenge),R.layout.item_child_recent_challenge));
-        sections.add(new Section(getString(R.string.txt_abs), getProgram(mListAbs),R.layout.item_child_recent_rect));
-        sections.add(new Section(getString(R.string.txt_arm), getProgram(mListArm),R.layout.item_child_recent_rect));
-        sections.add(new Section(getString(R.string.txt_butt), getProgram(mListButt),R.layout.item_child_recent_rect));
-        sections.add(new Section(getString(R.string.txt_thigh), getProgram(mListThigh),R.layout.item_child_recent_rect));
-        sections.add(new Section(getString(R.string.txt_split), getProgram(mListSplit),R.layout.item_child_recent_rect));
+        List<Object> fatHiitWorkouts = new ArrayList<>();
+        fatHiitWorkouts.add(new CategoryObject(getProgramObject(new int[]{345,346,347})));
+        sections.add(new Section(getString(R.string.explore_tag_hot), fatHiitWorkouts,2));
+        List<Object> randomWorkouts = new ArrayList<>();
+        randomWorkouts.add(new CategoryObject(getProgramObject(new int[]{351,352,353})));
+        randomWorkouts.add(new CategoryObject(getProgramObject(new int[]{348,349,350})));
+        sections.add(new Section(getString(R.string.random_workout), randomWorkouts,4));
+        List<Object> trainingGoals = new ArrayList<>();
+        trainingGoals.add(new CategoryObject(getProgramObject(new int[]{354,355,356})));
+        trainingGoals.add(new CategoryObject(getProgramObject(new int[]{357,358,359})));
+        trainingGoals.add(new CategoryObject(getProgramObject(new int[]{360,361,362})));
+        trainingGoals.add(new CategoryObject(getProgramObject(new int[]{363,365,366})));
+        sections.add(new Section(getString(R.string.training_goal), trainingGoals,4));
+
+        sections.add(new Section(getString(R.string.reach_goal_fast),getString(R.string.seven_min_get_fit_des), getProgram(mList7Minute), 8));
+        sections.add(new Section(getString(R.string.at_home),getString(R.string.upper_body_stretching_short_des), getProgram(mListStretch), 6));
+        sections.add(new Section(getString(R.string.for_summer), getProgram(mListSummer), 8));
+        sections.add(new Section(getString(R.string.tip_pro_instruction_3), getProgram(mListFaceYoga), 7));
 //        final GridLayoutManager glm = new GridLayoutManager(getContext(), 2);
 //        glm.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
 //            @Override
@@ -98,18 +123,18 @@ public class ExploreFragment extends Fragment implements ProgramClickListener {
 //                return 1;
 //            }
 //        });
-     //   mExploreRc.setLayoutManager(glm);
-        SectionAdapter sectionAdapter = new SectionAdapter(sections,this);
-        mExploreRc.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-       // mExploreRc.setLayoutManager(new LinearLayoutManager(getContext()));
+        //   mExploreRc.setLayoutManager(glm);
+        SectionAdapter sectionAdapter = new SectionAdapter(sections, this);
+        mExploreRc.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        // mExploreRc.setLayoutManager(new LinearLayoutManager(getContext()));
         mExploreRc.setAdapter(sectionAdapter);
-       // rcSection.setAdapter(mSectionAdapter);
+        // rcSection.setAdapter(mSectionAdapter);
     }
 
     @Override
     public void onItemRootViewClicked(@NonNull ProgramObject mCurrentCategory) {
         if (mCurrentCategory.getType() == 1) {
-            Intent intent = new Intent(getActivity(), ProgramActivity.class);
+            Intent intent = new Intent(getActivity(), ChallengeActivity.class);
             Bundle bundle = new Bundle();
             bundle.putInt("PROGRAM_ID", mCurrentCategory.getId());
             intent.putExtras(bundle);
@@ -125,11 +150,18 @@ public class ExploreFragment extends Fragment implements ProgramClickListener {
     }
 
     @Override
+    public void onGroupClickListener(CategoryObject categoryObject) {
+        Intent intent = new Intent(getContext(), CategoryDetailActivity.class);
+        FitnessApplication.getApplication().getStorageCommon().category.postValue(categoryObject);
+        getActivity().startActivity(intent);
+    }
+
+    @Override
     public void onFooterRootViewClicked(@NonNull String title, List<ProgramObject> programObjects) {
         Intent intent = new Intent(getActivity(), ExploreDetailActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("PLAN_LIST_NAME", title);
-     //   bundle.putParcelableArrayList("PLAN_MORE", (ArrayList<? extends Parcelable>) programObjects);
+        //   bundle.putParcelableArrayList("PLAN_MORE", (ArrayList<? extends Parcelable>) programObjects);
         intent.putExtras(bundle);
         startActivity(intent);
     }

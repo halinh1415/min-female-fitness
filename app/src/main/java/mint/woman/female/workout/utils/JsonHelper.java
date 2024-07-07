@@ -2,6 +2,8 @@ package mint.woman.female.workout.utils;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -14,6 +16,9 @@ import mint.woman.female.workout.model.PlanObject;
 import mint.woman.female.workout.model.ProductObject;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.model.Replace;
+import mint.woman.female.workout.model.Rule;
+
+import com.minfitness.decode.Decoder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -84,10 +89,6 @@ public class JsonHelper {
             is.read(buffer);
             is.close();
             json = new String(buffer, StandardCharsets.UTF_8);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -110,9 +111,7 @@ public class JsonHelper {
         }
     }
 
-    public void copyPlanToData(String fileName) {
-        writeFileToData(fileName, loadJSONFromAsset("data/" + fileName));
-    }
+
 
 
     public String getLocaleApp() {
@@ -129,6 +128,7 @@ public class JsonHelper {
         String language = locale.getLanguage();
         return language.substring(0, 2);
     }
+
 
 
     public HashMap<Integer, ProgramObject> getAllCategoryHashMap() {
@@ -155,7 +155,7 @@ public class JsonHelper {
         return hashMap;
     }
 
-    public HashMap<Integer, ExerciseObject> getHashMapExercise(int discover) {
+    public HashMap<Integer, ExerciseObject> getHashMapExercise(int discover,int version) {
         HashMap<Integer, ExerciseObject> hashMap = new HashMap<>();
 
         String langCode = getLocaleApp();
@@ -164,7 +164,7 @@ public class JsonHelper {
         if (discover == 0) {
             baseUrl = "i/language/";
         } else {
-            baseUrl = mContext.getFilesDir().getPath() + "/discover/" + discover + "/language/";
+            baseUrl = mContext.getFilesDir().getPath() + "/discover/" + discover+"/"+version+"/" + "/language/";
         }
         fileName = baseUrl + langCode;
         String jsonString = "";
@@ -175,18 +175,18 @@ public class JsonHelper {
         try {
             if (discover == 0) {
                 if (isAssetExists(fileName)) {
-                    byte[] decode = VideoEncryptor.decryptGif(mContext.getAssets(), fileName, "DesignMinFitness");
+                    byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), fileName);
                     jsonString = new String(decode, StandardCharsets.UTF_8);
                 } else {
-                    byte[] decode = VideoEncryptor.decryptGif(mContext.getAssets(), baseUrl + "en", "DesignMinFitness");
+                    byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), baseUrl + "en");
                     jsonString = new String(decode, StandardCharsets.UTF_8);
                 }
             } else {
                 if (existsData(fileName)) {
-                    byte[] decode = VideoEncryptor.decryptInput(fileName, "DesignMinFitness");
+                    byte[] decode = Decoder.decryptInput(fileName);
                     jsonString = new String(decode, StandardCharsets.UTF_8);
                 } else {
-                    byte[] decode = VideoEncryptor.decryptInput(baseUrl + "en", "DesignMinFitness");
+                    byte[] decode = Decoder.decryptInput(baseUrl + "en");
                     jsonString = new String(decode, StandardCharsets.UTF_8);
                 }
             }
@@ -209,7 +209,7 @@ public class JsonHelper {
     }
 
 
-    public List<ExerciseObject> getAllExercise(int discover) {
+    public List<ExerciseObject> getAllExercise(int discover,int version) {
         List<ExerciseObject> list = new ArrayList<>();
 
         String langCode = getLocaleApp();
@@ -218,24 +218,25 @@ public class JsonHelper {
         if (discover == 0) {
             baseUrl = "i/language/";
         } else {
-            baseUrl = "/discover/" + discover + "/language/";
+            baseUrl = mContext.getFilesDir().getPath() + "/discover/" + discover+"/"+version+"/" + "/language/";
         }
         fileName = baseUrl + langCode;
         String jsonString = "";
         if (discover == 0) {
             if (isAssetExists(fileName)) {
-                byte[] decode = VideoEncryptor.decryptGif(mContext.getAssets(), fileName, "DesignMinFitness");
+                byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), fileName);
+                //  jsonString = Decoder.getAllData(mContext.getAssets(), fileName);
                 jsonString = new String(decode, StandardCharsets.UTF_8);
             } else {
-                byte[] decode = VideoEncryptor.decryptGif(mContext.getAssets(), baseUrl + "en", "DesignMinFitness");
+                byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), baseUrl + "en");
                 jsonString = new String(decode, StandardCharsets.UTF_8);
             }
         } else {
             if (existsData(fileName)) {
-                byte[] decode = VideoEncryptor.decryptInput(fileName, "DesignMinFitness");
+                byte[] decode = Decoder.decryptInput(fileName);
                 jsonString = new String(decode, StandardCharsets.UTF_8);
             } else {
-                byte[] decode = VideoEncryptor.decryptInput(baseUrl + "en", "DesignMinFitness");
+                byte[] decode = Decoder.decryptInput(baseUrl + "en");
                 jsonString = new String(decode, StandardCharsets.UTF_8);
             }
         }
@@ -250,23 +251,9 @@ public class JsonHelper {
     }
 
 
-    public List<Replace> getGroupList(int id) {
-        List<Replace> list = new ArrayList<>();
-        try {
-            JSONArray jsonArray = new JSONArray(loadJSONFromAsset("js/g_" + id + ".json"));
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                Replace replace = new Replace(jsonObject.getInt("id"), jsonObject.getInt("maxValue"), jsonObject.getInt("minValue"));
-                list.add(replace);
-            }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
 
-    public List<PlanObject> getListPlan(String fileName, int discover) {
+    public List<PlanObject> getListPlan(String fileName, int discover,int version) {
         List<PlanObject> list = new ArrayList<>();
         try {
             JSONArray jsonArray;
@@ -274,29 +261,38 @@ public class JsonHelper {
             if (discover == 0) {
                 baseUrl = "i/" + fileName;
             } else {
-                baseUrl = "/discover/" + discover + "/workout";
+                baseUrl = mContext.getFilesDir().getPath() + "/discover/" + discover+"/"+version+"/workout";
             }
-            if (baseUrl.contains("custom_plan_")) {
+            if (baseUrl.contains("custom_plan_new_")) {
                 jsonArray = new JSONArray(readFileFromData(fileName));
             } else if (discover == 0) {
-                if (!existsData(mContext.getFilesDir().getPath() + "/" + baseUrl) || myPreference.getVersionPlan(fileName) < VERSION_DAY_PLAN) {
+                if (!existsData(baseUrl) || myPreference.getVersionPlan(fileName) < VERSION_DAY_PLAN) {
 
-                    byte[] decode = VideoEncryptor.decryptGif(mContext.getAssets(), baseUrl, "DesignMinFitness");
-                    jsonArray = new JSONArray(new String(decode, StandardCharsets.UTF_8));
+                    byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), baseUrl);
+                    String json = new String(decode, StandardCharsets.UTF_8);
+                    jsonArray = new JSONArray(json);
 
                 } else {
-                    byte[] decode = VideoEncryptor.decryptInput(mContext.getFilesDir() + "/" + baseUrl, "DesignMinFitness");
-                    jsonArray = new JSONArray(new String(decode, StandardCharsets.UTF_8));
+                    byte[] decode = Decoder.decryptInput(baseUrl);
+                    String json = new String(decode, StandardCharsets.UTF_8);
+                    jsonArray = new JSONArray(json);
                 }
             } else {
-                byte[] decode = VideoEncryptor.decryptInput(mContext.getFilesDir() + baseUrl, "DesignMinFitness");
-                jsonArray = new JSONArray(new String(decode, StandardCharsets.UTF_8));
+                byte[] decode = Decoder.decryptInput(baseUrl);
+                String json = new String(decode, StandardCharsets.UTF_8);
+                jsonArray = new JSONArray(json);
             }
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 PlanObject planObject = new PlanObject();
                 planObject.mNextActionId = i * 25;
                 planObject.name = jsonObject.getString("name");
+
+                if (jsonObject.has("rule")) {
+                    int type = jsonObject.getJSONObject("rule").getInt("type");
+                    int value = jsonObject.getJSONObject("rule").getInt("value");
+                    planObject.setRule( new Rule(type,value));
+                }
                 JSONArray subArr = jsonObject.getJSONArray("exercise");
                 for (int j = 0; j < subArr.length(); j++) {
                     JSONObject subObj = subArr.getJSONObject(j);
@@ -327,17 +323,24 @@ public class JsonHelper {
         return list;
     }
 
-    public List<PlanObject> getResetPlan(String fileName, int discover) {
+    public List<PlanObject> getResetPlan(String fileName, int discover,int version) {
         List<PlanObject> list = new ArrayList<>();
         try {
             String baseUrl;
             if (discover == 0) {
-                baseUrl = "i/";
+                baseUrl = "i/" + fileName;
             } else {
-                baseUrl = "d/" + discover + "/";
+                baseUrl = mContext.getFilesDir().getPath() + "/discover/" + discover+"/"+version+"/workout";
             }
-            byte[] decode = VideoEncryptor.decryptGif(mContext.getAssets(), baseUrl + fileName, "DesignMinFitness");
-            JSONArray jsonArray = new JSONArray(new String(decode, StandardCharsets.UTF_8));
+            String json = "";
+            byte[] decode;
+            if (discover == 0) {
+                decode = Decoder.decryptFromAssets(mContext.getAssets(), baseUrl);
+            } else {
+                decode = Decoder.decryptInput( baseUrl);
+            }
+            json = new String(decode, StandardCharsets.UTF_8);
+            JSONArray jsonArray = new JSONArray(json);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 PlanObject planObject = new PlanObject();

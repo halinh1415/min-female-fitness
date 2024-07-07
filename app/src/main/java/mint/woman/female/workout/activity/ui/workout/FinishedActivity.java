@@ -22,6 +22,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.preference.PreferenceManager;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -44,6 +45,7 @@ import mint.woman.female.workout.custom.SelectReminderEveryDayDialog;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.model.HistoryItem;
 import mint.woman.female.workout.model.PlanObject;
+import mint.woman.female.workout.retrofit.ApiUtils;
 import mint.woman.female.workout.utils.Database;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
@@ -58,6 +60,7 @@ import butterknife.OnClick;
 
 @SuppressLint({"NonConstantResourceId", "UseSwitchCompatOrMaterialCode"})
 public class FinishedActivity extends AppCompatActivity  {
+
 
     @BindView(R.id.adView)
     AdView mAdBanner;
@@ -106,6 +109,7 @@ public class FinishedActivity extends AppCompatActivity  {
         lottieAnimationView.setAnimation("success.json");
         lottieAnimationView.playAnimation();
 
+        Glide.with(this).load(Uri.parse("file:///android_asset/images/img_done.webp")).into(mBanner);
        // Glide.with(this).load(R.drawable.finished_banner).into(mBanner);
         if (mBundle != null) {
             mPlanObject = mBundle.getParcelable("PLAN_OBJECT");
@@ -143,6 +147,7 @@ public class FinishedActivity extends AppCompatActivity  {
                 }
             }
         }
+
         if (mCongratulationPlayer != null) mCongratulationPlayer.release();
         if (myPreference.isRingOn()) {
             mCongratulationPlayer = MediaPlayer.create(this, R.raw.cheer);

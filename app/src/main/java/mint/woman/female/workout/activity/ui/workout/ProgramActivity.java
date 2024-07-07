@@ -109,7 +109,7 @@ public class ProgramActivity extends AppCompatActivity implements DayAdapter.Cli
             }
 
 
-            mPlanObjectList = FitnessApplication.getApplication().mJsonHelper.getListPlan(mProgramObject.getPlan(), mProgramObject.getDiscover());
+            mPlanObjectList = FitnessApplication.getApplication().mJsonHelper.getListPlan(mProgramObject.getPlan(), mProgramObject.getDiscover(),mProgramObject.getVersion());
             sizePlan = mPlanObjectList.size();
             progress = myPreference.getPlanProgress(mProgramObject.getId());
             setTitle(getString(R.string.txt_challenge_7x4));

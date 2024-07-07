@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.main.YogaActivity;
 import mint.woman.female.workout.activity.ui.report.ReportActivity;
+import mint.woman.female.workout.activity.ui.sounds.SoundsActivity;
 import mint.woman.female.workout.custom.DialogQuit;
 import mint.woman.female.workout.custom.ProgressLineView;
 import mint.woman.female.workout.fragment.PlayFragment;
@@ -38,6 +40,7 @@ import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -54,8 +57,10 @@ import butterknife.OnClick;
 public class DoWorkoutActivity extends AppCompatActivity implements RestFragment.OnRestFragmentInteractionListener, PlayFragment.OnReadyFragmentInteractionListener, DialogQuit.OnQuitListener {
     private final SimpleDateFormat mFormatDateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
     public static int discover = 0;
+    public static int version = 1001;
     private  final String support_language ="ar@de@en@es@fa@fr@in_ID@it@ja@ko@nl@pl@pt@ru@tr@zh_CN@zh_TW";
-    PlanObject mPlanObject;
+
+
     ProgramObject mProgramObject;
     Bundle mBundle;
     int currentExerciseCount = 0, totalExercise;
@@ -75,6 +80,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     TextView mWorkoutTime;
 
     HashMap<Integer,ExerciseObject> hashMap;
+    List<PlanObject.ActionObject> actionObjectList;
 
     WorkoutViewModel mWorkoutViewModel;
     HistoryItem mHistoryItem;
@@ -161,25 +167,50 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         frequency_ads = myPreference.openCount() > 10 ? 5 : FitnessConstUtils.FREQUENCY_AD;
         mBundle = getIntent().getExtras();
         if (mBundle != null) {
-            mPlanObject = mBundle.getParcelable("PLAN_OBJECT");
+            //mPlanObject = mBundle.getParcelable("PLAN_OBJECT");
             int id = mBundle.getInt("PROGRAM_ID",0);
             mProgramObject = FitnessApplication.getApplication().getProgram(id);
             discover = mProgramObject.getDiscover();
+            version = mProgramObject.getVersion();
             mDayIndex = mBundle.getInt("DAY_NUMBER", 0);
             currentExerciseCount = mBundle.getInt("PROGRESS", 0);
         }
         discover = mProgramObject.getDiscover();
-        hashMap = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(discover);
+        hashMap = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(discover,mProgramObject.getVersion());
 
         startTime = System.currentTimeMillis();
         timerHandler.postDelayed(timerRunnable, 0);
 
+        String progress = getString(R.string.txt_next_of_exercise) + " " + (currentExerciseCount + 1) + "/" + totalExercise;
 
-        totalExercise = mPlanObject.getActionList().size();
         Glide.with(this).load(Uri.parse("file:///android_asset/images/img_rest.webp")).into(mWorkoutImg);
+        FitnessApplication.getApplication().getStorageCommon().actionList.observe(this,actionObjects -> {
+            actionObjectList = actionObjects;
+            totalExercise = actionObjects.size();
+            if (currentExerciseCount> actionObjects.size()){
+                currentExerciseCount =0;
+            }
+            mProgressLineView.setProgress((float) currentExerciseCount);
+            mProgressLineView.setMax(actionObjects.size());
 
-        mProgressLineView.setProgress((float) currentExerciseCount);
-        mProgressLineView.setMax(mPlanObject.getActionList().size());
+            if (myPreference.isSpeakerOn()) {
+                mAudioAppManager.playText(getString(R.string.txt_ready_to_go_the_next));
+                if (getActionObjectCurrent().unit.contains("s")) {
+                    mAudioAppManager.playText("" + getActionObjectCurrent().time);
+                    mAudioAppManager.playText(getString(R.string.txt_seconds));
+                } else {
+                    mAudioAppManager.playText("" + getActionObjectCurrent().time);
+                }
+                mAudioAppManager.playText(getExerciseObjectCurrent().getName());
+                if (getExerciseObjectCurrent().getAlternation()&& getActionObjectCurrent().unit.isEmpty()){
+                    mAudioAppManager.playText(""+getActionObjectCurrent().time/2);
+                    mAudioAppManager.playText(getString(R.string.td_each_side));
+                }
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance(getActionObjectCurrent(), 123, progress), "Rest").commitAllowingStateLoss();
+        });
+
+
 
 
         mIsReady = false;
@@ -229,23 +260,30 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             if (musicPlayer != null) {
                 musicPlayer.release();
             }
-            int resourceId = getResources().getIdentifier(musicSong, "raw", getPackageName());
-            if (resourceId > 0) {
-                musicPlayer = MediaPlayer.create(this, resourceId);
-                musicPlayer.setLooping(true);
+            String musicPath =  getFilesDir()+"/music/"+musicSong;
+            if (existsData(musicPath)) {
+                if (musicPlayer != null) {
+                    musicPlayer.release();
+                }
+                musicPlayer = MediaPlayer.create(DoWorkoutActivity.this, Uri.parse(musicPath));
                 musicPlayer.setVolume(myPreference.getMusicVolume(), myPreference.getMusicVolume());
+                musicPlayer.setLooping(true);
                 musicPlayer.start();
             }
+
         });
         mWorkoutViewModel.getMusicVolume().observe(this, volume -> {
             if (musicPlayer != null) {
                 musicPlayer.release();
             }
-            int resourceId = getResources().getIdentifier(myPreference.getMusicName(), "raw", getPackageName());
-            if (resourceId > 0) {
-                musicPlayer = MediaPlayer.create(this, resourceId);
-                musicPlayer.setLooping(true);
+            String musicPath =  getFilesDir()+"/music/"+myPreference.getMusicFile();
+            if (existsData(musicPath)) {
+                if (musicPlayer != null) {
+                    musicPlayer.release();
+                }
+                musicPlayer = MediaPlayer.create(DoWorkoutActivity.this, Uri.parse(musicPath));
                 musicPlayer.setVolume(myPreference.getMusicVolume(), myPreference.getMusicVolume());
+                musicPlayer.setLooping(true);
                 musicPlayer.start();
             }
         });
@@ -254,11 +292,16 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                 if (musicPlayer != null) {
                     musicPlayer.release();
                 }
-                int songId = getResources().getIdentifier(myPreference.getMusicName(), "raw", getPackageName());
-                musicPlayer = MediaPlayer.create(this, songId);
-                musicPlayer.setLooping(true);
-                musicPlayer.setVolume(myPreference.getMusicVolume(), myPreference.getMusicVolume());
-                musicPlayer.start();
+                String musicPath =  getFilesDir()+"/music/"+myPreference.getMusicFile();
+                if (existsData(musicPath)) {
+                    if (musicPlayer != null) {
+                        musicPlayer.release();
+                    }
+                    musicPlayer = MediaPlayer.create(DoWorkoutActivity.this, Uri.parse(musicPath));
+                    musicPlayer.setVolume(myPreference.getMusicVolume(), myPreference.getMusicVolume());
+                    musicPlayer.setLooping(true);
+                    musicPlayer.start();
+                }
             } else {
                 if (musicPlayer != null) {
                     musicPlayer.release();
@@ -270,26 +313,16 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         mQuitDialog = new DialogQuit();
         mQuitDialog.setQuitListener(this);
         mProgress.setText("" + (currentExerciseCount + 1) + "/" + totalExercise);
-        String progress = getString(R.string.txt_next_of_exercise) + " " + (currentExerciseCount + 1) + "/" + totalExercise;
+
         mAudioAppManager.setMale(myPreference.getGender() == 0);
-        if (myPreference.isSpeakerOn()) {
-            mAudioAppManager.playText(getString(R.string.txt_ready_to_go_the_next));
-            if (getActionObjectCurrent().unit.contains("s")) {
-                mAudioAppManager.playText("" + getActionObjectCurrent().time);
-                mAudioAppManager.playText(getString(R.string.txt_seconds));
-            } else {
-                mAudioAppManager.playText("" + getActionObjectCurrent().time);
-            }
-            mAudioAppManager.playText(getExerciseObjectCurrent().getName());
-            if (getExerciseObjectCurrent().getAlternation()&& getActionObjectCurrent().unit.isEmpty()){
-                mAudioAppManager.playText(""+getActionObjectCurrent().time/2);
-                mAudioAppManager.playText(getString(R.string.td_each_side));
-            }
-        }
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance( mPlanObject.mActionList.get(currentExerciseCount), 123, progress), "Rest").commitAllowingStateLoss();
+
+
 
     }
-
+    private boolean existsData(String fileName) {
+        File file = new File(fileName);
+        return file.exists();
+    }
     @Override
     public void onBackPressed() {
         mWorkoutViewModel.setPause(true);
@@ -361,11 +394,16 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             if (musicPlayer != null) {
                 musicPlayer.release();
             }
-            int songId = getResources().getIdentifier(myPreference.getMusicName(), "raw", getPackageName());
-            musicPlayer = MediaPlayer.create(this, songId);
-            musicPlayer.setLooping(true);
-            musicPlayer.setVolume(myPreference.getMusicVolume(), myPreference.getMusicVolume());
-            musicPlayer.start();
+            String musicPath =  getFilesDir()+"/music/"+myPreference.getMusicFile();
+            if (existsData(musicPath)) {
+                if (musicPlayer != null) {
+                    musicPlayer.release();
+                }
+                musicPlayer = MediaPlayer.create(DoWorkoutActivity.this, Uri.parse(musicPath));
+                musicPlayer.setVolume(myPreference.getMusicVolume(), myPreference.getMusicVolume());
+                musicPlayer.setLooping(true);
+                musicPlayer.start();
+            }
         }
         if (currentExerciseCount < totalExercise) {
             mWorkoutViewModel.setPause(false);
@@ -386,7 +424,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         }
         pauseTime = 0;
         startExercise = Calendar.getInstance().getTimeInMillis();
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, PlayFragment.newInstance(mPlanObject.getActionList().get(currentExerciseCount), currentExerciseCount, totalExercise), "Ready").commitAllowingStateLoss();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, PlayFragment.newInstance(getActionObjectCurrent(), currentExerciseCount, totalExercise), "Ready").commitAllowingStateLoss();
         if (myPreference.isSpeakerOn()) {
             mAudioAppManager.addTextAndClear(getString(R.string.txt_start));
             mAudioAppManager.playText("" + getActionObjectCurrent().time);
@@ -451,11 +489,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
 
     }
 
-    @Override
-    public void startRestTime(int time) {
 
-
-    }
 
     @Override
     public void updateReady(int timeLeft) {
@@ -557,7 +591,6 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
 
             mProgress.setText("" + (currentExerciseCount + 1) + "/" + totalExercise);
             String progress = getString(R.string.txt_next_of_exercise) + " " + (currentExerciseCount + 1) + "/" + totalExercise;
-            int rest = myPreference.getRestTime() + 1;
             if (myPreference.isSpeakerOn()) {
                 mAudioAppManager.addTextAndClear(getString(R.string.txt_take_a_rest_the_next));
                 mAudioAppManager.playText("" + getActionObjectCurrent().time);
@@ -570,7 +603,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                     mAudioAppManager.playText(getString(R.string.td_each_side));
                 }
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance( mPlanObject.mActionList.get(currentExerciseCount), rest, progress), "Rest").commitAllowingStateLoss();
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance( getActionObjectCurrent(), getActionObjectCurrent().rest, progress), "Rest").commitAllowingStateLoss();
         } else {
             myPreference.saveProgressWorkout(mProgramObject.getId(), mDayIndex, 0);
             myPreference.setSaveProgressPercent(mProgramObject.getId(), mDayIndex, 1);
@@ -583,7 +616,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             if (mDayIndex + 1 > myPreference.getPlanProgress(mProgramObject.getId())) {
                 myPreference.setPlanProgress(mProgramObject.getId(), mDayIndex + 1);
             }
-
+            myPreference.setSaveProgress(mProgramObject.getId(), mDayIndex, 0);
             Intent homeIntent = new Intent(DoWorkoutActivity.this, YogaActivity.class);
             homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(homeIntent);
@@ -613,9 +646,8 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             currentExerciseCount--;
             mProgressLineView.setProgress(currentExerciseCount);
             String progress = getString(R.string.txt_next_of_exercise) + " " + (currentExerciseCount + 1) + "/" + totalExercise;
-            int rest = myPreference.getRestTime();
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance(   getActionObjectCurrent(), rest, progress), "Rest").commitAllowingStateLoss();
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance(   getActionObjectCurrent(), getActionObjectCurrent().rest, progress), "Rest").commitAllowingStateLoss();
         }
     }
 
@@ -631,16 +663,12 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     }
 
 
-    private ExerciseObject getExerciseObject(PlanObject.ActionObject actionObject) {
-        return hashMap.get(actionObject.actionId);
-    }
-
     private ExerciseObject getExerciseObjectCurrent() {
-        return hashMap.get( mPlanObject.mActionList.get(currentExerciseCount).actionId);
+        return hashMap.get( actionObjectList.get(currentExerciseCount).actionId);
     }
 
     private PlanObject.ActionObject getActionObjectCurrent() {
-        return mPlanObject.mActionList.get(currentExerciseCount);
+        return actionObjectList.get(currentExerciseCount);
     }
 
 

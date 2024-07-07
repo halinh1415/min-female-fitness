@@ -114,7 +114,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
             mActionObject = getArguments().getParcelable("action_object");
             progress = getArguments().getInt("progress");
             totalExercise = getArguments().getInt("total");
-            mExerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(DoWorkoutActivity.discover).get(mActionObject.actionId);
+            mExerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(DoWorkoutActivity.discover,DoWorkoutActivity.version).get(mActionObject.actionId);
         }
         setRetainInstance(false);
         mWorkoutViewModel = new ViewModelProvider(getActivity()).get(WorkoutViewModel.class);

@@ -19,10 +19,10 @@ import androidx.fragment.app.DialogFragment;
 import com.bumptech.glide.Glide;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.utils.FitnessConstUtils;
-import mint.woman.female.workout.utils.VideoEncryptor;
-
+import com.minfitness.decode.Decoder;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -108,9 +108,9 @@ public class DialogEditExercise extends DialogFragment {
 //            mediaPlayer.setLooping(true);
 //        });
 //        videoView.start();
-        byte[] encrypt = VideoEncryptor.decryptGif(getContext().getAssets(), "i/g/video_" + actionId, "ASDFGHJKLASDFGHJ");
+        byte[] encrypt = Decoder.decryptFromAssets(getContext().getAssets(), "i/g/video_" +actionId);
         Glide.with(getContext()).asGif().load(encrypt).into(videoView);
-        mExerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(0).get(actionId);
+        mExerciseObject = FitnessApplication.getApplication().getHashMapExercise().get(actionId);
         tvExerciseName.setText(mExerciseObject.getName());
         if (mExerciseObject.getAlternation() && mExerciseObject.getUnit().isEmpty()){
 

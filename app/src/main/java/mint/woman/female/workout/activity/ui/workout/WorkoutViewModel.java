@@ -29,7 +29,7 @@ public class WorkoutViewModel extends AndroidViewModel {
         this.mRepository = new HistoryRepository(application);
         myPreference = MyPreference.newInstance(application);
         mMusicSong = new MutableLiveData<>();
-        mMusicSong.setValue(myPreference.getMusicName());
+        mMusicSong.setValue(myPreference.getMusicFile());
         mMusicVolume = new MutableLiveData<>();
         mMusicVolume.setValue(myPreference.getMusicVolume());
 

@@ -12,6 +12,7 @@ import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
 import mint.woman.female.workout.activity.ui.workout.ProgramActivity;
 import mint.woman.female.workout.common.adapter.ProgramClickListener;
+import mint.woman.female.workout.model.CategoryObject;
 import mint.woman.female.workout.model.ProgramObject;
 
 import java.util.ArrayList;
@@ -62,6 +63,11 @@ public class ExploreDetailActivity extends AppCompatActivity implements ProgramC
             intent2.putExtras(bundle);
             startActivity(intent2);
         }
+    }
+
+    @Override
+    public void onGroupClickListener(CategoryObject categoryObject) {
+
     }
 
     @Override

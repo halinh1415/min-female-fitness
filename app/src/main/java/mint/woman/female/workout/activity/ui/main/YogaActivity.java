@@ -42,6 +42,7 @@ import com.google.android.ump.ConsentInformation;
 import com.google.android.ump.ConsentRequestParameters;
 import com.google.android.ump.UserMessagingPlatform;
 
+import java.io.File;
 import java.util.Locale;
 
 import mint.woman.female.workout.R;
@@ -56,6 +57,7 @@ import mint.woman.female.workout.activity.ui.workout.ChallengeActivity;
 import mint.woman.female.workout.custom.DialogRating;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.receiver.AlarmReceiver;
+import mint.woman.female.workout.utils.FileUtil;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 
@@ -90,6 +92,11 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
         initView();
+        File file = new File(getFilesDir(), "music");
+        if (!file.exists()) {
+            file.mkdirs();
+            FileUtil.copyAssetToInternalStorage(YogaActivity.this,"music/Default.mp3","music/Default.mp3");
+        }
 
 
     }

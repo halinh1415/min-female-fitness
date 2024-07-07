@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.preference.PreferenceManager;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -52,6 +53,7 @@ import mint.woman.female.workout.activity.ui.main.YogaActivity;
 import mint.woman.female.workout.admodule.MaticAd;
 import mint.woman.female.workout.admodule.MaticAdCallBack;
 import mint.woman.female.workout.admodule.MaticAdKeys;
+import mint.woman.female.workout.custom.LoadingDialogFragment;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 import mint.woman.female.workout.utils.NetworkUtil;
@@ -318,19 +320,15 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-    KProgressHUD hud;
+    LoadingDialogFragment loadingDialog;
 
     void showDialog() {
         try {
-            if (!(SplashActivity.this).isFinishing()) {
-                hud = KProgressHUD.create(SplashActivity.this)
-                        .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-                        .setLabel("Loading ad...")
-                        .setCancellable(false)
-                        .setAnimationSpeed(1)
-                        .setDimAmount(0.5f)
-                        .show();
+            if (loadingDialog == null) {
+                loadingDialog = new LoadingDialogFragment();
             }
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            loadingDialog.show(fragmentManager, "loading_dialog");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -338,9 +336,8 @@ public class SplashActivity extends AppCompatActivity {
 
     void hideDialog() {
         try {
-            if (hud != null && hud.isShowing()) {
-                hud.dismiss();
-                hud = null;
+            if (loadingDialog != null) {
+                loadingDialog.dismiss();
             }
         } catch (Exception e) {
             e.printStackTrace();

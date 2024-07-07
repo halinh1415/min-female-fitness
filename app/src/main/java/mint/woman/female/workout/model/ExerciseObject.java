@@ -21,7 +21,7 @@ public class ExerciseObject {
     private String videoUrl;
     @SerializedName("introduce")
     private String introduce;
-//    @SerializedName("imagePath")
+    @SerializedName("imagePath")
     private String imagePath;
     @SerializedName("name")
     private String name;
