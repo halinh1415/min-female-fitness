@@ -1,5 +1,5 @@
 <resources report_center_title="Relatório" OK="OK" challenge="Desafio" beginner="Iniciante" intermediate="INTERMEDIÁRIO" advanced="AVANÇADO" today="Hoje" female="Feminino" male="Masculino" pay_monthly="Mensal" yearly="Anual" rp_syn_with_google_fit="Sincronizar com o Google Fit" close="FECHAR" minutes="Minutos" recipes_breakfast="Café da manhã" recipes_snack="Lanche" recipes_lunch="Almoço" recipes_dinner="Jantar" weeks="Semanas" tab_discover="Descubra" explore_more="Mais" save="Salvar" td_next="Próximo" what_your_gender="Qual é o seu sexo?" how_old="Quantos anos você tem?" continue_text="Continuar" td_v_half_time="metade do tempo" explore_tag_new="Novo" replace="Substituir" replace_with="SUBSTITUIR POR" current="Atual" download="Baixar" retry="Tentar novamente" td_each_side="Cada Lado" belly="Barriga" arm="Braço" ass="Nádega" focus_part="Qual parte do corpo é o seu foco?" countdown="Contagem regressiva" no_counting="Sem contagem" tempo_counting="Ritmo e contagem" td_mute="Silenciar" sound="Som" cancel_via_google_play="Cancele quando quiser via Google Play." free_7_days_trial_then_xx_year="Grátis teste de 7 dias, depois %s/ano" abbr_x_mth_gpt="%s/mês" iap_only_x_per_mth_gpt="Apenas %s/mês" iap_only_x_per_week="Apenas %s/semana" price_per_year="%s/Ano" money_per_month="%s/mês" change_start_today="Sua mudança começa hoje!" premium_price_save_2="%sde \ndesconto " iap_discount_card_title_gpt="Tenha acesso a todas as funcionalidades premium">
-    <string name="app_name" translatable="false">Treino feminino</string>
+    <string name="app_name" translatable="false">Treino Feminino</string>
     <string name="txt_rate" translatable="false">Nos avalie</string>
     <string name="txt_action_settings">Configurações</string>
     <string name="txt_very_severely_underweight">Muito abaixo do peso</string>
@@ -73,12 +73,12 @@
     <string name="txt_meal_plan">Plano de refeições</string>
     <string name="txt_completed">Concluído</string>
     <string name="txt_donate_coffee">Convide uma xícara de café para o desenvolvedor</string>
-    <string name="OK">Ok</string>
+    <string name="OK">OK</string>
     <string name="txt_cancel">Cancelar</string>
     <string name="txt_create_reminder">Lembre-se de treinar diariamente</string>
     <string name="txt_rm_everyday">Diariamente</string>
     <string name="challenge">Desafio</string>
-    <string name="beginner">Principiante</string>
+    <string name="beginner">Iniciante</string>
     <string name="intermediate">Intermediário</string>
     <string name="advanced">Avançado</string>
     <string name="txt_recommend_app">Recomendar aplicativo</string>
@@ -97,8 +97,8 @@
     <string name="txt_age">Idade</string>
     <string name="txt_gender">Gênero</string>
     <string name="txt_choose_your_info">Escolha suas informações</string>
-    <string name="female">Fêmea</string>
-    <string name="male">Macho</string>
+    <string name="female">Feminino</string>
+    <string name="male">Masculino</string>
     <string name="txt_ad_attribution">De anúncios</string>
     <string name="pay_monthly">Por mês</string>
     <string name="yearly">Anual</string>
@@ -111,7 +111,7 @@
     <string name="txt_go_premium">Torne-se premium</string>
     <string name="txt_watch_video">Assista vídeo</string>
     <string name="txt_this_week">Essa semana</string>
-    <string name="rp_syn_with_google_fit">Sincronizar com o google fit</string>
+    <string name="rp_syn_with_google_fit">Sincronizar com o Google Fit</string>
     <string name="txt_not_remind">Não lembre novamente</string>
     <string name="close">Fechar</string>
     <string name="recipes_breakfast">Café da manhã</string>
@@ -134,7 +134,7 @@
     <string name="weeks">Semanas</string>
     <string name="txt_daily">Diário</string>
     <string name="tab_discover">Descobrir</string>=
-    <string name="explore_more">Ver mais</string>
+    <string name="explore_more">Mais</string>
     <string name="txt_for_home_workout">Para treino em casa</string>
     <string name="txt_saved_money">Salvou</string>
     <string name="txt_all_exercise">Todos os exercícios</string>
@@ -243,17 +243,17 @@
     <string name="txt_split">Treino dividido</string>
     <string name="txt_challenge_7x4">Desafio 7x4</string>
     <string name="replace">Substituir</string>
-    <string name="replace_with">Substituir com</string>
+    <string name="replace_with">SUBSTITUIR POR</string>
     <string name="current">Atual</string>
-    <string name="download">Download</string>
+    <string name="download">Baixar</string>
     <string name="retry">Tentar novamente</string>
-    <string name="td_each_side">Cada lado</string>
+    <string name="td_each_side">Cada Lado</string>
 <string name="belly">Barriga</string>
     <string name="arm">Braço</string>
     <string name="ass">Bunda</string>
     <string name="thigh">Coxa</string>
-    <string name="focus_part">Qual é a sua parte de foco?</string>
-    <string name="full_body">Corpo todo</string>
+    <string name="focus_part">Qual parte do corpo é o seu foco?</string>
+    <string name="full_body">Todo o corpo</string>
     <string name="txt_start_day">Comece do dia</string>
     <string name="txt_choose_day">Escolha um dia:</string>
     <string name="txt_set_progress">Definir progresso</string>
@@ -262,7 +262,7 @@
     <string name="txt_count_down_info_1">Treine com limites de tempo e no seu próprio ritmo</string>
     <string name="countdown">Contagem regressiva</string>
     <string name="tempo_counting">Tempo e contagem</string>
-    <string name="td_mute">Mudo</string>
+    <string name="td_mute">Silenciar</string>
     <string name="txt_coach_tip">Dicas de treinador</string>
     <string name="txt_meal_plan_30">Plano de refeições em 30 dias</string>
     <string name="txt_meal_plan_info">Receitas para sua referência</string>
@@ -272,7 +272,7 @@
     <string name="txt_count_down_info_3">Acompanhe a contagem para controlar o ritmo e completar o treino dentro do prazo</string>
     <string name="sound">Som</string>
 <string name="no_counting">Não conta</string>
-    <string name="minutes">Minutos</string>
+    <string name="minutes">minutos</string>
     <string name="save">Salvar</string>
     <string name="cancel_via_google_play">Cancele quando quiser via Google Play.</string>
     <string name="free_7_days_trial_then_xx_year">Grátis teste de 7 dias, depois %s/ano</string>
@@ -305,4 +305,17 @@
     <string name="txt_iap_feature_info_4">Anúncios grátis para sempre</string>
     <string name="txt_iap_feature_info_3">Plano personalizado e atualização futura</string>
     <string name="txt_iap_feature_info_2">Obtenha resultados surpreendentes em apenas 4 semanas</string>
-</resources>
+<string name="training">Treino</string>
+    <string name="training_goal">Objetivo do treino</string>
+    <string name="random_workout">Exercícios aleatórios</string>
+    <string name="for_summer">Para o verão</string>
+    <string name="tip_pro_instruction_3">Yoga para firmar o rosto</string>
+    <string name="at_home">Rotina</string>
+    <string name="txt_7_minutes">7 minutos</string>
+    <string name="reach_goal_fast">Rápido</string>
+    <string name="seven_min_get_fit_des">Em apenas 7 minutos por dia, treinos simples, rápidos e eficazes ajudam a melhorar sua forma física e sua saúde. Mantenha a forma e perca peso!</string>
+    <string name="upper_body_stretching_short_des">Alongue braços, ombros, peito e costas. Relaxe os músculos e melhore sua flexibilidade.</string>
+    <string name="explore_tag_hot">Popular</string>
+    <string name="downloading">Baixando...</string>
+    <string name="loading">Carregando…</string>
+    </resources>

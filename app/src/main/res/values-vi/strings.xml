@@ -1,5 +1,5 @@
 <resources report_center_title="Báo cáo" OK="OK" challenge="Thử thách" beginner="Người bắt đầu" intermediate="Trung bình" advanced="Nâng cao" today="Hôm nay" female="Nữ" male="Nam" pay_monthly="Hàng tháng" yearly="Hàng năm" rp_syn_with_google_fit="Đồng bộ vào Google Fit" close="ĐÓNG" recipes_breakfast="Bữa ăn sáng" recipes_snack="Bữa ăn nhẹ" recipes_lunch="Bữa trưa" recipes_dinner="Bữa tối" weeks="Tuần" tab_discover="Khám phá" explore_more="Thêm" save="Lưu" minutes="Phút" td_next="Tiếp theo" what_your_gender="Giới tính của bạn là gì?" how_old="Bạn bao nhiêu tuổi?" continue_text="Tiếp tục" td_v_half_time="Nửa thời gian" explore_tag_new="Mới" replace="Thay thế" replace_with="Thay thế bằng" current="Hiện tại" download="Tải về" retry="Thử lại" td_each_side="Mỗi bên" belly="Bụng" arm="Cánh tay" ass="Mông" focus_part="Phần tập trung của bạn là gì?" countdown="Đếm ngược" no_counting="Không đếm" tempo_counting="Nhịp độ &amp; Đếm" td_mute="Tắt tiếng" sound="Âm thanh" cancel_via_google_play="Hủy bất kỳ lúc nào qua Google Play." free_7_days_trial_then_xx_year="Dùng thử 7 ngày miễn phí, sau đó %s/năm" abbr_x_mth_gpt="%s/tháng" iap_only_x_per_mth_gpt="Chỉ %s/tháng" iap_only_x_per_week="chỉ có %s/tuần" price_per_year="%s/Năm" money_per_month="%s/tháng" change_start_today="Thay đổi của bạn bắt đầu từ hôm nay!" premium_price_save_2="Giảm \n%s" iap_discount_card_title_gpt="Truy cập tất cả các tính năng cao cấp">
-    <string name="app_name" translatable="false">Tập luyện nữ</string>
+    <string name="app_name" translatable="false">tập luyện nữ</string>
     <string name="txt_rate" translatable="false">Đánh giá chúng tôi</string>
     <string name="txt_action_settings">Cài đặt</string>
     <string name="txt_very_severely_underweight">Thiếu cân rất trầm trọng</string>
@@ -305,4 +305,17 @@
     <string name="txt_iap_feature_info_4">Quảng cáo miễn phí mãi mãi</string>
     <string name="txt_iap_feature_info_3">Kế hoạch cá nhân hóa và cập nhật trong tương lai</string>
     <string name="txt_iap_feature_info_2">Đạt được kết quả đáng kinh ngạc chỉ sau 4 tuần</string>
+    <string name="training">Tập luyện</string>
+    <string name="training_goal">Mục tiêu tập luyện</string>
+    <string name="random_workout">Tập luyện ngẫu nhiên</string>
+    <string name="for_summer">Cho mùa hè</string>
+    <string name="tip_pro_instruction_3">Yoga làm săn chắc da mặt</string>
+    <string name="at_home">Thói quen</string>
+    <string name="txt_7_minutes">7 phút</string>
+    <string name="reach_goal_fast">Nhanh</string>
+    <string name="seven_min_get_fit_des">Chỉ với 7 phút mỗi ngày, tập luyện nhanh chóng và hiệu quả có thể nâng cao thể lực và sức khỏe của bạn. Giữ dáng và giảm số cân thừa đó!</string>
+    <string name="upper_body_stretching_short_des">Duỗi thẳng cánh tay, vai, ngực và lưng. Nới lỏng cơ bắp và tăng tính linh hoạt.</string>
+    <string name="explore_tag_hot">Nóng</string>
+    <string name="downloading">Đang tải xuống</string>
+    <string name="loading">Đang tải...</string>
 </resources>

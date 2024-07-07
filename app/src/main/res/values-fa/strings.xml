@@ -73,13 +73,13 @@
     <string name="txt_meal_plan">برنامه غذایی</string>
     <string name="txt_completed">تکمیل شد</string>
     <string name="txt_donate_coffee">یک فنجان قهوه برای توسعه دهنده دعوت کنید</string>
-    <string name="OK">خوب</string>
+    <string name="OK">تأیید</string>
     <string name="txt_cancel">لغو کنید</string>
     <string name="txt_create_reminder">تمرین روزانه را به خود یادآوری کنید</string>
     <string name="txt_rm_everyday">هر روز</string>
     <string name="challenge">چالش</string>
     <string name="beginner">مبتدی</string>
-    <string name="intermediate">حد واسط</string>
+    <string name="intermediate">متوسط</string>
     <string name="advanced">پیشرفته</string>
     <string name="txt_recommend_app">برنامه را توصیه کنید</string>
     <string name="txt_my_custom_workout">سفارشی</string>
@@ -97,8 +97,8 @@
     <string name="txt_age">سن</string>
     <string name="txt_gender">جنسیت</string>
     <string name="txt_choose_your_info">اطلاعات خود را انتخاب کنید</string>
-    <string name="female">مونث</string>
-    <string name="male">نر</string>
+    <string name="female">زن</string>
+    <string name="male">مرد</string>
     <string name="txt_ad_attribution">آگهی</string>
     <string name="pay_monthly">ماهانه</string>
     <string name="yearly">سالانه</string>
@@ -111,7 +111,7 @@
     <string name="txt_go_premium">برو پریمیوم</string>
     <string name="txt_watch_video">تماشای ویدیو</string>
     <string name="txt_this_week">این هفته</string>
-    <string name="rp_syn_with_google_fit">همگام سازی با google fit</string>
+    <string name="rp_syn_with_google_fit">همگام سازی Google Fit</string>
     <string name="txt_not_remind">دوباره یادآوری نکن</string>
     <string name="close">بستن</string>
     <string name="recipes_breakfast">صبحانه</string>
@@ -134,7 +134,7 @@
     <string name="weeks">هفته ها</string>
     <string name="txt_daily">روزانه</string>
     <string name="tab_discover">كشف كردن</string>=
-    <string name="explore_more">بیشتر ببین</string>
+    <string name="explore_more">بیشتر</string>
     <string name="txt_for_home_workout">برای تمرین در منزل</string>
     <string name="txt_saved_money">ذخیره</string>
     <string name="txt_all_exercise">تمام تمرینات</string>
@@ -222,7 +222,7 @@
     <string name="txt_workout_time_level_3">بیش از 45 دقیقه</string>
     <string name="txt_step">گام</string>
     <string name="txt_tell_us_more_info">از خودتان بیشتر بگویید</string>
-    <string name="continue_text">ادامه هید</string>
+    <string name="continue_text">ادامه دادن</string>
     <string name="txt_calories_chart">نمودار کالری</string>
     <string name="txt_warm_up">دست گرمی بازی کردن</string>
     <string name="txt_reminder_content_1">چربی مشعل، منحنی شکل!</string>
@@ -243,8 +243,8 @@
     <string name="txt_split">تمرین اسپلیت</string>
     <string name="txt_challenge_7x4">چالش 7×4</string>
     <string name="replace">جایگزین کردن</string>
-    <string name="replace_with">تعویض با</string>
-    <string name="current">جاری</string>
+    <string name="replace_with">عوض کردن با</string>
+    <string name="current">فعلی</string>
     <string name="download">دانلود</string>
     <string name="retry">دوباره امتحان کنید</string>
     <string name="td_each_side">هر طرف</string>
@@ -252,8 +252,8 @@
     <string name="arm">بازو</string>
     <string name="ass">لب به لب</string>
     <string name="thigh">ران</string>
-    <string name="focus_part">بخش تمرکز شما چیست؟</string>
-    <string name="full_body">تمام قد</string>
+    <string name="focus_part">تمرکزتان روی چه قسمتی است؟</string>
+    <string name="full_body">کل بدن</string>
     <string name="txt_start_day">از روز شروع کن</string>
     <string name="txt_choose_day">یک روز را انتخاب کنید:</string>
     <string name="txt_set_progress">پیشرفت را تنظیم کنید</string>
@@ -262,7 +262,7 @@
     <string name="txt_count_down_info_1">با محدودیت زمانی و با سرعت خود تمرین کنید</string>
     <string name="countdown">شمارش معکوس</string>
     <string name="tempo_counting">تمپو و شمارش</string>
-    <string name="td_mute">بی صدا</string>
+    <string name="td_mute">قطع صدا</string>
     <string name="txt_coach_tip">نکات مربی</string>
     <string name="txt_meal_plan_30">برنامه غذایی در 30 روز</string>
     <string name="txt_meal_plan_info">دستور العمل برای مرجع شما</string>
@@ -305,4 +305,17 @@
     <string name="txt_iap_feature_info_4">تبلیغات رایگان برای همیشه</string>
     <string name="txt_iap_feature_info_3">برنامه شخصی و به روز رسانی آینده</string>
     <string name="txt_iap_feature_info_2">تنها در 4 هفته به نتایج شگفت انگیزی دست یابید</string>
-</resources>
+<string name="training">تمرین</string>
+    <string name="training_goal">هدف ورزش</string>
+    <string name="random_workout">تمرین تصادفی</string>
+    <string name="for_summer">برای تابستان</string>
+    <string name="tip_pro_instruction_3">یوگای سفت کردن صورت</string>
+    <string name="at_home">برنامه روزانه</string>
+    <string name="txt_7_minutes">7 دقیقه</string>
+    <string name="reach_goal_fast">سریع</string>
+    <string name="seven_min_get_fit_des">ورزش‌های ساده، سریع و مؤثر، فقط با ۷ دقیقه در روز، به بهبود تناسب اندام و سلامت شما کمک می‌کنند. حفظ تناسب اندام و کاهش وزن</string>
+    <string name="upper_body_stretching_short_des">کشش بازو، شانه، سینه و پشت. رها کردن عضلات و بهبود انعطاف‌پذیری.</string>
+    <string name="explore_tag_hot">داغ</string>
+    <string name="downloading">بارگیری ...</string>
+    <string name="loading">درحال بارگذاری…</string>
+    </resources>

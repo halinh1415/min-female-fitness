@@ -1,5 +1,5 @@
 <resources report_center_title="Bildiriler" OK="TAMAM" challenge="Zorlu Görev" beginner="Başlangiç düzeyİ" intermediate="Orta düzey" advanced="Gelişmiş" today="Bugün" female="Kadın" male="Erkek" pay_monthly="Aylık" yearly="Yıllık" rp_syn_with_google_fit="Google Fit\'le eşzamanla" close="KAPAT" minutes="Dakika" recipes_breakfast="Kahvaltı" recipes_snack="Atıştırmalık" recipes_lunch="Öğle Yemeği" recipes_dinner="Akşam Yemeği" weeks="Hafta" tab_discover="Keşfet" explore_more="Daha" save="Kaydet" td_next="Sonraki" what_your_gender="Cinsiyetiniz nedir?" how_old="Kaç yaşındasınız?" continue_text="Devam Et" td_v_half_time="zamanın yarısında" explore_tag_new="Yeni" replace="Değiştir" replace_with="ŞUNUNLA DEĞİŞTİR" current="Şu an" download="Indir" retry="Yeniden Dene" td_each_side="Her İki Taraf" belly="Göbek" arm="Kol" ass="Kaba et" focus_part="Odak bölgeniz neresi?" countdown="Geri sayım" no_counting="Sayma yok" tempo_counting="Tempo ve Sayma" td_mute="Sessize Al" sound="Ses" cancel_via_google_play="Google Play\'den dilediğiniz zaman iptal edin." free_7_days_trial_then_xx_year="Ücretsiz 7 günlük deneme, sonra yıllık %s" abbr_x_mth_gpt="%s/ay" iap_only_x_per_mth_gpt="Sadece %s/ay" iap_only_x_per_week="Yalnızca %s/hafta" price_per_year="Yıllık %s" money_per_month="%s/ay" change_start_today="Değişiminiz bugün başlıyor!" premium_price_save_2="%s \nindirimli " iap_discount_card_title_gpt="Tüm premium özelliklere erişim sağlayın">
-    <string name="app_name" translatable="false">Kadın egzersizi</string>
+    <string name="app_name" translatable="false">Kadın Egzersizi</string>
     <string name="txt_rate" translatable="false">Bizi değerlendirin</string>
     <string name="txt_action_settings">Ayarlar</string>
     <string name="txt_very_severely_underweight">Çok ciddi zayıflık</string>
@@ -77,9 +77,9 @@
     <string name="txt_cancel">İptal etmek</string>
     <string name="txt_create_reminder">Kendinize günlük egzersiz yapmayı hatırlatın</string>
     <string name="txt_rm_everyday">Her gün</string>
-    <string name="challenge">Meydan okumak</string>
-    <string name="beginner">Acemi</string>
-    <string name="intermediate">Orta seviye</string>
+    <string name="challenge">Zorlu Görev</string>
+    <string name="beginner">Başlangiç düzeyİ</string>
+    <string name="intermediate">Orta düzey</string>
     <string name="advanced">Gelişmiş</string>
     <string name="txt_recommend_app">Uygulamayı tavsiye et</string>
     <string name="txt_my_custom_workout">Gelenek</string>
@@ -97,7 +97,7 @@
     <string name="txt_age">Yaş</string>
     <string name="txt_gender">Cinsiyet</string>
     <string name="txt_choose_your_info">Bilgilerinizi seçin</string>
-    <string name="female">Dişi</string>
+    <string name="female">Kadın</string>
     <string name="male">Erkek</string>
     <string name="txt_ad_attribution">Reklam</string>
     <string name="pay_monthly">Aylık</string>
@@ -111,7 +111,7 @@
     <string name="txt_go_premium">Premium\'a geç</string>
     <string name="txt_watch_video">Video izle</string>
     <string name="txt_this_week">Bu hafta</string>
-    <string name="rp_syn_with_google_fit">Google fit\'e senkronize et</string>
+    <string name="rp_syn_with_google_fit">Google Fit ile Eşzamanla</string>
     <string name="txt_not_remind">Tekrar hatırlatmama</string>
     <string name="close">Kapalı</string>
     <string name="recipes_breakfast">Kahvaltı</string>
@@ -134,7 +134,7 @@
     <string name="weeks">Haftalar</string>
     <string name="txt_daily">Günlük</string>
     <string name="tab_discover">Keşfetmek</string>=
-    <string name="explore_more">Daha fazla gör</string>
+    <string name="explore_more">Daha</string>
     <string name="txt_for_home_workout">Evde egzersiz için</string>
     <string name="txt_saved_money">Kaydedildi</string>
     <string name="txt_all_exercise">Tüm egzersizler</string>
@@ -222,7 +222,7 @@
     <string name="txt_workout_time_level_3">45 dakikadan fazla</string>
     <string name="txt_step">Adım</string>
     <string name="txt_tell_us_more_info">Bize kendiniz hakkında daha fazla bilgi verin</string>
-    <string name="continue_text">Devam etmek</string>
+    <string name="continue_text">Devam Et</string>
     <string name="txt_calories_chart">Kalori tablosu</string>
     <string name="txt_warm_up">Isınmak</string>
     <string name="txt_reminder_content_1">Yağları yak, kıvrımları şekillendir!</string>
@@ -235,24 +235,24 @@
     <string name="txt_ready_to_go_the_next">Gitmeye hazır! sonraki</string>
     <string name="txt_start">Başlangıç</string>
     <string name="td_v_half_time">Zamanın yarısı</string>
-    <string name="explore_tag_new">Yeni̇</string>
+    <string name="explore_tag_new">Yeni</string>
     <string name="txt_abs">Karın egzersizi</string>
     <string name="txt_arm">Kol egzersizi</string>
     <string name="txt_butt">Popo egzersizi</string>
     <string name="txt_thigh">Uyluk egzersizi</string>
     <string name="txt_split">Bölünmüş antrenman</string>
     <string name="txt_challenge_7x4">7x4 mücadelesi</string>
-    <string name="replace">Yer değiştirmek</string>
-    <string name="replace_with">İle değiştirin</string>
-    <string name="current">Akım</string>
-    <string name="download">İndirmek</string>
+    <string name="replace">Değiştir</string>
+    <string name="replace_with">ŞUNUNLA DEĞİŞTİR</string>
+    <string name="current">Şu an</string>
+    <string name="download">Indir</string>
     <string name="retry">Yeniden dene</string>
-    <string name="td_each_side">Her tarafı</string>
-    <string name="belly">Karın</string>
+    <string name="td_each_side">Her İki Taraf</string>
+    <string name="belly">Göbek</string>
     <string name="arm">Kol</string>
     <string name="ass">popo</string>
     <string name="thigh">Uyluk</string>
-    <string name="focus_part">Odaklandığınız kısım nedir?</string>
+    <string name="focus_part">Odak bölgeniz neresi?</string>
     <string name="full_body">Tüm vücut</string>
     <string name="txt_start_day">Günden başla</string>
     <string name="txt_choose_day">Bir gün seçin:</string>
@@ -262,7 +262,7 @@
     <string name="txt_count_down_info_1">Zaman sınırlarıyla ve kendi hızınızda egzersiz yapın</string>
     <string name="countdown">geri sayım</string>
     <string name="tempo_counting">Tempo ve Sayma</string>
-    <string name="td_mute">Sesini kapatmak</string>
+    <string name="td_mute">Sessize Al</string>
     <string name="txt_coach_tip">Antrenör ipuçları</string>
     <string name="txt_meal_plan_30">30 gün içinde yemek planı</string>
     <string name="txt_meal_plan_info">Referansınız için tarifler</string>
@@ -272,7 +272,7 @@
     <string name="txt_count_down_info_3">Hızı kontrol etmek ve antrenmanı zaman sınırı içinde tamamlamak için sayımı takip edin</string>
     <string name="sound">Ses</string>
     <string name="no_counting">Sayılmaz</string>
-<string name="minutes">Dakika</string>
+<string name="minutes">dakikada</string>
     <string name="save">Kaydet</string>
     <string name="cancel_via_google_play">Google Play\'den dilediğiniz zaman iptal edin.</string>
     <string name="free_7_days_trial_then_xx_year">Ücretsiz 7 günlük deneme, sonra yıllık %s</string>
@@ -305,4 +305,17 @@
     <string name="txt_iap_feature_info_4">Reklamlar Sonsuza Kadar Ücretsiz</string>
     <string name="txt_iap_feature_info_3">Kişiselleştirilmiş Plan ve Gelecek Güncelleme</string>
     <string name="txt_iap_feature_info_2">Sadece 4 Haftada Muhteşem Sonuçlara Ulaşın</string>
-</resources>
+    <string name="training">Antrenman</string>
+    <string name="training_goal">Antrenman hedefi</string>
+    <string name="random_workout">Rastgele egzersiz</string>
+    <string name="for_summer">Yaz için</string>
+    <string name="tip_pro_instruction_3">Yüz sıkılaştırıcı yoga</string>
+    <string name="at_home">Rutin</string>
+    <string name="txt_7_minutes">7 Dakika</string>
+    <string name="reach_goal_fast">Hızlı</string>
+    <string name="seven_min_get_fit_des">Basit, hızlı ve etkili egzersizler günde yalnızca 7 dakikada formunuzu geliştirmeye ve sağlığınızı korumaya yardımcı olur. Formda kalın ve kilo verin!</string>
+    <string name="upper_body_stretching_short_des">Kolunuzu, omzunuzu, göğsünüzü ve sırtınızı esnetin. Kaslarınızı gevşetin ve esnekliğinizi geliştirin.</string>
+    <string name="explore_tag_hot">Popüler</string>
+    <string name="downloading">İndiriliyor...</string>
+    <string name="loading">Yükleniyor …</string>
+    </resources>

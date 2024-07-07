@@ -73,14 +73,14 @@
     <string name="txt_meal_plan">Maaltijden plan</string>
     <string name="txt_completed">Voltooid</string>
     <string name="txt_donate_coffee">Nodig een kop koffie uit voor de ontwikkelaar</string>
-    <string name="OK">Ok</string>
+    <string name="OK">OK</string>
     <string name="txt_cancel">Annuleren</string>
     <string name="txt_create_reminder">Herinner jezelf eraan om dagelijks te trainen</string>
     <string name="txt_rm_everyday">Elke dag</string>
     <string name="challenge">Uitdaging</string>
     <string name="beginner">Beginner</string>
-    <string name="intermediate">Tussenliggend</string>
-    <string name="advanced">Geavanceerd</string>
+    <string name="intermediate">Gemiddeld</string>
+    <string name="advanced">Gevorderd</string>
     <string name="txt_recommend_app">Aanbevolen app</string>
     <string name="txt_my_custom_workout">Aangepast</string>
     <string name="txt_select_exercise">Oefeningen kiezen</string>
@@ -97,8 +97,8 @@
     <string name="txt_age">Leeftijd</string>
     <string name="txt_gender">Geslacht</string>
     <string name="txt_choose_your_info">Kies uw informatie</string>
-    <string name="female">Vrouwelijk</string>
-    <string name="male">Mannelijk</string>
+    <string name="female">Vrouw</string>
+    <string name="male">Man</string>
     <string name="txt_ad_attribution">Advertentie</string>
     <string name="pay_monthly">Maandelijks</string>
     <string name="yearly">Jaarlijks</string>
@@ -111,7 +111,7 @@
     <string name="txt_go_premium">Ga voor premium</string>
     <string name="txt_watch_video">Bekijk video</string>
     <string name="txt_this_week">Deze week</string>
-    <string name="rp_syn_with_google_fit">Synchroniseren met google fit</string>
+    <string name="rp_syn_with_google_fit">Synchroniseren met Google Fit</string>
     <string name="txt_not_remind">Niet opnieuw herinneren</string>
     <string name="close">Dichtbij</string>
     <string name="recipes_breakfast">Ontbijt</string>
@@ -134,7 +134,7 @@
     <string name="weeks">Weken</string>
     <string name="txt_daily">Dagelijks</string>
     <string name="tab_discover">Ontdekken</string>=
-    <string name="explore_more">Bekijk meer</string>
+    <string name="explore_more">Meer</string>
     <string name="txt_for_home_workout">Voor thuistraining</string>
     <string name="txt_saved_money">Opgeslagen</string>
     <string name="txt_all_exercise">Alle oefeningen</string>
@@ -222,7 +222,7 @@
     <string name="txt_workout_time_level_3">Ruim 45 minuten</string>
     <string name="txt_step">Stap</string>
     <string name="txt_tell_us_more_info">Vertel ons meer over jezelf</string>
-    <string name="continue_text">Doorgaan</string>
+    <string name="continue_text">Verdergaan</string>
     <string name="txt_calories_chart">Calorieën grafiek</string>
     <string name="txt_warm_up">Opwarmen</string>
     <string name="txt_reminder_content_1">Fakkelvet, vorm rondingen!</string>
@@ -243,17 +243,17 @@
     <string name="txt_split">Gesplitste training</string>
     <string name="txt_challenge_7x4">7x4 uitdaging</string>
     <string name="replace">Vervangen</string>
-    <string name="replace_with">Vervangen door</string>
-    <string name="current">Huidig</string>
+    <string name="replace_with">VERVANG MET</string>
+    <string name="current">Huidige</string>
     <string name="download">Downloaden</string>
     <string name="retry">Opnieuw proberen</string>
     <string name="td_each_side">Elke kant</string>
 <string name="belly">Buik</string>
     <string name="arm">Arm</string>
     <string name="ass">Kont</string>
-    <string name="thigh">Dij</string>
-    <string name="focus_part">Wat is jouw focusgedeelte?</string>
-    <string name="full_body">Volledige lichaam</string>
+    <string name="thigh">Dijen</string>
+    <string name="focus_part">Waar wil je je op richten?</string>
+    <string name="full_body">Hele lichaam</string>
     <string name="txt_start_day">Begin vanaf de dag</string>
     <string name="txt_choose_day">Kies een dag:</string>
     <string name="txt_set_progress">Voortgang instellen</string>
@@ -262,7 +262,7 @@
     <string name="txt_count_down_info_1">Train met tijdslimieten en in uw eigen tempo</string>
     <string name="countdown">Aftellen</string>
     <string name="tempo_counting">Tempo en tellen</string>
-    <string name="td_mute">Stom</string>
+    <string name="td_mute">Dempen</string>
     <string name="txt_coach_tip">Coachtips</string>
     <string name="txt_meal_plan_30">Maaltijdplan in 30 dagen</string>
     <string name="txt_meal_plan_info">Recepten voor uw referentie</string>
@@ -272,7 +272,7 @@
     <string name="txt_count_down_info_3">Houd de telling bij om het tempo te controleren en voltooi de training binnen de tijdslimiet</string>
     <string name="sound">Geluid</string>
 <string name="no_counting">Geen tel</string>
-    <string name="minutes">Notulen</string>
+    <string name="minutes">minuten</string>
     <string name="save">Opslaan</string>
     <string name="cancel_via_google_play">Altijd annuleren via Google Play.</string>
     <string name="free_7_days_trial_then_xx_year">Gratis 7-daagse proefperiode, daarna %s per jaar</string>
@@ -305,4 +305,17 @@
     <string name="txt_iap_feature_info_4">Advertenties voor altijd gratis</string>
     <string name="txt_iap_feature_info_3">Gepersonaliseerd plan en toekomstige update</string>
     <string name="txt_iap_feature_info_2">Bereik verbluffende resultaten in slechts 4 weken</string>
-</resources>
+<string name="training">Training</string>
+    <string name="training_goal">Trainingsdoel</string>
+    <string name="random_workout">Willekeurige work-out</string>
+    <string name="for_summer">Voor de zomer</string>
+    <string name="tip_pro_instruction_3">Gezichtsverstevigende yoga</string>
+    <string name="at_home">Oefening</string>
+    <string name="txt_7_minutes">7 minuten</string>
+    <string name="reach_goal_fast">Snel</string>
+    <string name="seven_min_get_fit_des">Eenvoudige, snelle en doeltreffende work-outs kunnen je in slechts 7 minuten per dag helpen om je conditie en gezondheid te verbeteren. Blijf fit en val af!</string>
+    <string name="upper_body_stretching_short_des">Rek je armen, schouders, borst en rug. Maak je spieren los en verbeter je flexibiliteit.</string>
+    <string name="explore_tag_hot">Populair</string>
+    <string name="downloading">Aan het downloaden...</string>
+    <string name="loading">Het laden...</string>
+    </resources>

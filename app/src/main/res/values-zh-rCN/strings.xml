@@ -73,14 +73,14 @@
     <string name="txt_meal_plan">膳食计划</string>
     <string name="txt_completed">完全的</string>
     <string name="txt_donate_coffee">邀请开发者喝杯咖啡</string>
-    <string name="OK">好的</string>
+    <string name="OK">确定</string>
     <string name="txt_cancel">取消</string>
     <string name="txt_create_reminder">每天提醒自己锻炼身体</string>
     <string name="txt_rm_everyday">每天</string>
     <string name="challenge">挑战</string>
-    <string name="beginner">初学者</string>
-    <string name="intermediate">中间的</string>
-    <string name="advanced">先进的</string>
+    <string name="beginner">初级</string>
+    <string name="intermediate">中级</string>
+    <string name="advanced">高级</string>
     <string name="txt_recommend_app">推荐应用程序</string>
     <string name="txt_my_custom_workout">风俗</string>
     <string name="txt_select_exercise">选择练习</string>
@@ -111,7 +111,7 @@
     <string name="txt_go_premium">升级至高级版</string>
     <string name="txt_watch_video">看视频</string>
     <string name="txt_this_week">本星期</string>
-    <string name="rp_syn_with_google_fit">同步到 google 健身</string>
+    <string name="rp_syn_with_google_fit">同步到Google健身</string>
     <string name="txt_not_remind">不再提醒</string>
     <string name="close">关闭</string>
     <string name="recipes_breakfast">早餐</string>
@@ -134,7 +134,7 @@
     <string name="weeks">周数</string>
     <string name="txt_daily">日常的</string>
     <string name="tab_discover">发现</string>=
-    <string name="explore_more">查看更多</string>
+    <string name="explore_more">更多</string>
     <string name="txt_for_home_workout">适合家庭锻炼</string>
     <string name="txt_saved_money">已保存</string>
     <string name="txt_all_exercise">所有练习</string>
@@ -235,24 +235,24 @@
     <string name="txt_ready_to_go_the_next">准备好出发！下一个</string>
     <string name="txt_start">开始</string>
     <string name="td_v_half_time">一半的时间</string>
-    <string name="explore_tag_new">新的</string>
+    <string name="explore_tag_new">新</string>
     <string name="txt_abs">腹肌锻炼</string>
     <string name="txt_arm">手臂锻炼</string>
     <string name="txt_butt">臀部锻炼</string>
     <string name="txt_thigh">大腿锻炼</string>
     <string name="txt_split">分次锻炼</string>
     <string name="txt_challenge_7x4">7x4 挑战</string>
-    <string name="replace">代替</string>
-    <string name="replace_with">用。。。来代替</string>
-    <string name="current">当前的</string>
+    <string name="replace">替换</string>
+    <string name="replace_with">替换为</string>
+    <string name="current">目前</string>
     <string name="download">下载</string>
     <string name="retry">重试</string>
-    <string name="td_each_side">每一面</string>
+    <string name="td_each_side">每一边</string>
 <string name="belly">腹部</string>
     <string name="arm">手臂</string>
     <string name="ass">屁股</string>
     <string name="thigh">大腿</string>
-    <string name="focus_part">你的重点是什么？</string>
+    <string name="focus_part">您想专注于哪个部位？</string>
     <string name="full_body">全身</string>
     <string name="txt_start_day">从当天开始</string>
     <string name="txt_choose_day">选择一天：</string>
@@ -262,7 +262,7 @@
     <string name="txt_count_down_info_1">按照您自己的节奏进行有时间限制的锻炼</string>
     <string name="countdown">倒数</string>
     <string name="tempo_counting">节奏和计数</string>
-    <string name="td_mute">沉默的</string>
+    <string name="td_mute">静音</string>
     <string name="txt_coach_tip">教练提示</string>
     <string name="txt_meal_plan_30">30天内的膳食计划</string>
     <string name="txt_meal_plan_info">菜谱供你参考</string>
@@ -305,4 +305,17 @@
     <string name="txt_iap_feature_info_4">永远无广告</string>
     <string name="txt_iap_feature_info_3">个性化计划和未来更新</string>
     <string name="txt_iap_feature_info_2">仅 4 周即可取得惊人成果</string>
-</resources>
+<string name="training">锻炼</string>
+    <string name="training_goal">锻炼目的</string>
+    <string name="random_workout">随机运动</string>
+    <string name="for_summer">沙滩身材</string>
+    <string name="tip_pro_instruction_3">面部紧致提拉瑜伽</string>
+    <string name="at_home">每日拉伸</string>
+    <string name="txt_7_minutes">7分钟</string>
+    <string name="reach_goal_fast">有点难</string>
+    <string name="seven_min_get_fit_des">简单，快速，高效的健身运动，每天仅需7分钟，有助于增强体质，减肥瘦身。</string>
+    <string name="upper_body_stretching_short_des">拉伸你的手臂，肩膀，胸和背。有效放松肌肉，增加柔韧性。</string>
+    <string name="explore_tag_hot">热门</string>
+    <string name="downloading">下载中......</string>
+    <string name="loading">加载中…</string>
+    </resources>

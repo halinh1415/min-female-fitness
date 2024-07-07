@@ -272,4 +272,18 @@
     <string name="txt_count_down_info_3">Feu un seguiment del recompte per controlar el ritme i completar l\'entrenament dins del límit de temps</string>
     <string name="sound">So</string>
     <string name="no_counting">Sense comptar</string>
+    <string name="minutes">Minuts</string>
+    <string name="save">Desa</string>
+    <string name="cancel_via_google_play">Cancel·la en qualsevol moment mitjançant Google Play.</string>
+    <string name="free_7_days_trial_then_xx_year">Prova gratuïta de 7 dies, després %s/any</string>
+    <string name="txt_pay_monthly">Mensual</string>
+    <string name="abbr_x_mth_gpt">%s/mes</string>
+    <string name="txt_pay_yearly">Anualment</string>
+    <string name="txt_x_year_gpt">%s/any</string>
+    <string name="txt_x_sale_off">%s/any</string>
+    <string name="iap_only_x_per_mth_gpt">Només %s/mes</string>
+    <string name="iap_only_x_per_week">Només %a/setmana</string>
+    <string name="txt_pay_life_time">Tota una vida</string>
+    <string name="price_per_year">%s/any</string>
+    <string name="money_per_month">%s/mes</string>
 </resources>

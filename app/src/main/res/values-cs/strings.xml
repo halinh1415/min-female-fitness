@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Žena cvičení</string>
+    <string name="app_name" translatable="false">Ženské cvičení</string>
     <string name="txt_rate" translatable="false">Ohodnoťte nás</string>
     <string name="txt_action_settings">Nastavení</string>
     <string name="txt_very_severely_underweight">Velmi těžká podváha</string>
@@ -272,4 +272,47 @@
     <string name="txt_count_down_info_3">Sledujte počet, abyste kontrolovali tempo a dokončili cvičení v časovém limitu</string>
     <string name="sound">Zvuk</string>
 <string name="no_counting">Bez počítání</string>
-    </resources>
+    <string name="minutes">Minut</string>
+    <string name="save">Uložit</string>
+    <string name="cancel_via_google_play">Zrušit kdykoli prostřednictvím Google Play.</string>
+    <string name="free_7_days_trial_then_xx_year">Zdarma 7denní zkušební verze, poté %s/rok</string>
+    <string name="txt_pay_monthly">Měsíční</string>
+    <string name="abbr_x_mth_gpt">%s/Mth</string>
+    <string name="txt_pay_yearly">Roční</string>
+    <string name="txt_x_year_gpt">%s/rok</string>
+    <string name="txt_x_sale_off">%s/rok</string>
+    <string name="iap_only_x_per_mth_gpt">Pouze %s/Mth</string>
+    <string name="iap_only_x_per_week">Pouze %a/týden</string>
+    <string name="txt_pay_life_time">Život</string>
+    <string name="price_per_year">%s/rok</string>
+    <string name="money_per_month">%s/měsíc</string>
+    <string name="txt_pay_life_time_info">Zaplaťte jednou za celoživotní použití</string>
+    <string name="txt_million_choice">Volba 1 milionů uživatelů</string>
+    <string name="change_start_today">Vaše změna začíná dnes!</string>
+    <string name="txt_fitness_home">Fitness doma</string>
+    <string name="txt_workout_home">50+ Domácí cvičení</string>
+    <string name="txt_pro_female_lose_weight_workout">Zhubněte doma</string>
+    <string name="txt_pro_item_title_2">Péče o obličej</string>
+    <string name="txt_pro_item_info_2">Pro lepší pleť</string>
+    <string name="txt_pro_diet_meal">Zdravý plán jídla</string>
+    <string name="txt_pro_diet_meal_info">30 receptů pro vás</string>
+    <string name="premium_price_save_2">%s\nvypnuto </string>
+    <string name="iap_discount_card_title_gpt">Získejte přístup ke všem prémiovým funkcím</string>
+    <string name="txt_iap_feature_info_1">Prozkoumejte neomezené cvičení: Splňte všechny své potřeby</string>
+    <string name="txt_iap_feature_info_4">Reklamy navždy zdarma</string>
+    <string name="txt_iap_feature_info_3">Personalizovaný plán a aktualizace budoucnosti</string>
+    <string name="txt_iap_feature_info_2">Dosáhněte úžasných výsledků za pouhé 4 týdny</string>
+    <string name="training">Výcvik</string>
+    <string name="training_goal">Cíl školení</string>
+    <string name="random_workout">Náhodné tréninky</string>
+    <string name="for_summer">Na léto</string>
+    <string name="tip_pro_instruction_3">Jóga na zpevnění obličeje</string>
+    <string name="at_home">Rutiny</string>
+    <string name="txt_7_minutes">7 minut</string>
+    <string name="reach_goal_fast">Rychle</string>
+    <string name="seven_min_get_fit_des">Za pouhých 7 minut denně může rychlé a efektivní cvičení zlepšit vaši kondici a zdraví. Zůstaňte fit a shoďte přebytečná kila!</string>
+    <string name="upper_body_stretching_short_des">Protáhněte ruce, ramena, hrudník a záda. Uvolněte svaly a zvyšte flexibilitu.</string>
+    <string name="explore_tag_hot">Horký</string>
+    <string name="downloading">Stahování</string>
+    <string name="loading">Načítání...</string>
+</resources>

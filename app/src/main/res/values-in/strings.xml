@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Latihan wanita</string>
+    <string name="app_name" translatable="false">Latihan Wanita</string>
     <string name="txt_rate" translatable="false">Nilai kami</string>
     <string name="txt_action_settings">Pengaturan</string>
     <string name="txt_very_severely_underweight">Sangat sangat kurang berat badannya</string>
@@ -305,4 +305,17 @@
     <string name="txt_iap_feature_info_4">Iklan Gratis Selamanya</string>
     <string name="txt_iap_feature_info_3">Paket yang Dipersonalisasi &amp; Pembaruan di Masa Mendatang</string>
     <string name="txt_iap_feature_info_2">Raih Hasil Luar Biasa Hanya dalam 4 Minggu</string>
+<string name="training">Pelatihan</string>
+    <string name="training_goal">Tujuan Pelatihan</string>
+    <string name="random_workout">Latihan acak</string>
+    <string name="for_summer">Untuk musim panas</string>
+    <string name="tip_pro_instruction_3">Yoga pengencangan wajah</string>
+    <string name="at_home">Rutinitas</string>
+    <string name="txt_7_minutes">7 Menit</string>
+    <string name="reach_goal_fast">Cepat</string>
+    <string name="seven_min_get_fit_des">Hanya dalam 7 menit sehari, olahraga cepat dan efektif dapat meningkatkan kebugaran dan kesehatan Anda. Tetap bugar dan turunkan berat badan ekstra itu!</string>
+    <string name="upper_body_stretching_short_des">Regangkan lengan, bahu, dada, dan punggung Anda. Kendurkan otot dan tingkatkan fleksibilitas.</string>
+    <string name="explore_tag_hot">Panas</string>
+    <string name="downloading">Mengunduh</string>
+    <string name="loading">Memuat...</string>
 </resources>

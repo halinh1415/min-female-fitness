@@ -73,7 +73,7 @@
     <string name="txt_meal_plan">خطة الوجبات</string>
     <string name="txt_completed">مكتمل</string>
     <string name="txt_donate_coffee">دعوة فنجان قهوة للمطور</string>
-    <string name="OK">نعم</string>
+    <string name="OK">موافق</string>
     <string name="txt_cancel">يلغي</string>
     <string name="txt_create_reminder">ذكّر نفسك بممارسة التمارين يوميًا</string>
     <string name="txt_rm_everyday">كل يوم</string>
@@ -111,7 +111,7 @@
     <string name="txt_go_premium">احصل على الاشتراك الرئيسي</string>
     <string name="txt_watch_video">شاهد الفيديو</string>
     <string name="txt_this_week">هذا الاسبوع</string>
-    <string name="rp_syn_with_google_fit">المزامنة مع google fit</string>
+    <string name="rp_syn_with_google_fit">مزامنة مع حساب جوجل فيت</string>
     <string name="txt_not_remind">لا أذكر مرة أخرى</string>
     <string name="close">يغلق</string>
     <string name="recipes_breakfast">إفطار</string>
@@ -134,7 +134,7 @@
     <string name="weeks">أسابيع</string>
     <string name="txt_daily">يوميًا</string>
     <string name="tab_discover">يكتشف</string>=
-    <string name="explore_more">شاهد المزيد</string>
+    <string name="explore_more">أكثر</string>
     <string name="txt_for_home_workout">للتمرين المنزلي</string>
     <string name="txt_saved_money">أنقذ</string>
     <string name="txt_all_exercise">جميع التمارين</string>
@@ -222,7 +222,7 @@
     <string name="txt_workout_time_level_3">أكثر من 45 دقيقة</string>
     <string name="txt_step">خطوة</string>
     <string name="txt_tell_us_more_info">اخبرنا المزيد عنك</string>
-    <string name="continue_text">يكمل</string>
+    <string name="continue_text">استمرار</string>
     <string name="txt_calories_chart">مخطط السعرات الحرارية</string>
     <string name="txt_warm_up">تسخين</string>
     <string name="txt_reminder_content_1">شعل الدهون، وشكل منحنيات!</string>
@@ -242,18 +242,18 @@
     <string name="txt_thigh">تمرين الفخذ</string>
     <string name="txt_split">تجريب الانقسام</string>
     <string name="txt_challenge_7x4">تحدي 7×4</string>
-    <string name="replace">يستبدل</string>
-    <string name="replace_with">استبدل ب</string>
-    <string name="current">حاضِر</string>
-    <string name="download">تحميل</string>
+    <string name="replace">استبدال</string>
+    <string name="replace_with">استبدال بـ</string>
+    <string name="current">الحالي</string>
+    <string name="download">تنزيل</string>
     <string name="retry">أعد المحاولة</string>
     <string name="td_each_side">كل جانب</string>
-<string name="belly">بطن</string>
-    <string name="arm">ذراع</string>
+<string name="belly">البطن</string>
+    <string name="arm">الذراع</string>
     <string name="ass">بعقب</string>
-    <string name="thigh">فخذ</string>
-    <string name="focus_part">ما هو الجزء الذي تركز عليه؟</string>
-    <string name="full_body">جسم كامل</string>
+    <string name="thigh">الفخذ</string>
+    <string name="focus_part">ما الجزء الذي تريدين التركيز عليه؟</string>
+    <string name="full_body">الجسم بالكامل</string>
     <string name="txt_start_day">تبدأ من اليوم</string>
     <string name="txt_choose_day">اختر يومًا:</string>
     <string name="txt_set_progress">ضبط التقدم</string>
@@ -262,7 +262,7 @@
     <string name="txt_count_down_info_1">تجريب مع حدود زمنية وبالسرعة التي تناسبك</string>
     <string name="countdown">العد التنازلي</string>
     <string name="tempo_counting">الإيقاع والعد</string>
-    <string name="td_mute">صامت</string>
+    <string name="td_mute">صمت</string>
     <string name="txt_coach_tip">نصائح المدرب</string>
     <string name="txt_meal_plan_30">خطة وجبة في 30 يوما</string>
     <string name="txt_meal_plan_info">وصفات للرجوع اليها</string>
@@ -272,7 +272,7 @@
     <string name="txt_count_down_info_3">تتبع العد للتحكم في الوتيرة وإكمال التمرين خلال الوقت المحدد</string>
     <string name="sound">صوت</string>
 <string name="no_counting">لا يوجد عد</string>
-    <string name="minutes">دقيقة</string>
+    <string name="minutes">دقائق</string>
     <string name="save">حفظ</string>
     <string name="cancel_via_google_play">إلغاء في أي وقت عبر Google Play.</string>
     <string name="free_7_days_trial_then_xx_year">مجانًا تجربة 7 أيام، ثم تصبح مقابل %s اً في سنة</string>
@@ -305,4 +305,17 @@
     <string name="txt_iap_feature_info_4">إعلانات مجانية إلى الأبد</string>
     <string name="txt_iap_feature_info_3">الخطة الشخصية والتحديث المستقبلي</string>
     <string name="txt_iap_feature_info_2">حققي نتائج مذهلة خلال 4 أسابيع فقط</string>
-</resources>
+<string name="training">تدريبي</string>
+    <string name="training_goal">الهدف من التدريب</string>
+    <string name="random_workout">التمارين العشوائية</string>
+    <string name="for_summer">للصيف</string>
+    <string name="tip_pro_instruction_3">تمارين يوغا لشد الوجه</string>
+    <string name="at_home">الروتين</string>
+    <string name="txt_7_minutes">7 دقائق</string>
+    <string name="reach_goal_fast">سريعة</string>
+    <string name="seven_min_get_fit_des">في 7 دقائق فقط في اليوم، تساعد التمارين البسيطة والسريعة والفعالة على تحسين لياقتك وصحتك. حافظ على لياقتك واخسر الوزن!</string>
+    <string name="upper_body_stretching_short_des">تمارين الإطالة للذراع والكتف والصدر والظهر. أرخي العضلات وحسّن مرونة جسمك.</string>
+    <string name="explore_tag_hot">شائع</string>
+    <string name="downloading">جاري التحميل</string>
+    <string name="loading">تحميل…</string>
+    </resources>

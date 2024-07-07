@@ -305,4 +305,17 @@
     <string name="txt_iap_feature_info_4">Annoncer gratis for evigt</string>
     <string name="txt_iap_feature_info_3">Personlig plan og fremtidsopdatering</string>
     <string name="txt_iap_feature_info_2">Opnå fantastiske resultater på kun 4 uger</string>
+<string name="training">Uddannelse</string>
+    <string name="training_goal">Træningsmål</string>
+    <string name="random_workout">Tilfældige træninger</string>
+    <string name="for_summer">Til sommer</string>
+    <string name="tip_pro_instruction_3">Ansigtsopstrammende yoga</string>
+    <string name="at_home">Rutiner</string>
+    <string name="txt_7_minutes">7 minutter</string>
+    <string name="reach_goal_fast">Hurtig</string>
+    <string name="seven_min_get_fit_des">På kun 7 minutter om dagen kan hurtig og effektiv træning forbedre din kondition og sundhed. Hold dig i form og smid de ekstra kilo!</string>
+    <string name="upper_body_stretching_short_des">Stræk dine arme, skuldre, bryst og ryg. Løsn musklerne og øg fleksibiliteten.</string>
+    <string name="explore_tag_hot">Hed</string>
+    <string name="downloading">Downloader</string>
+    <string name="loading">Indlæser...</string>
 </resources>

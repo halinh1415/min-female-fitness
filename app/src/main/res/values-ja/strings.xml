@@ -73,14 +73,14 @@
     <string name="txt_meal_plan">お食事プラン</string>
     <string name="txt_completed">完了</string>
     <string name="txt_donate_coffee">開発者にコーヒーを招待する</string>
-    <string name="OK">わかりました</string>
+    <string name="OK">OK</string>
     <string name="txt_cancel">キャンセル</string>
     <string name="txt_create_reminder">毎日トレーニングするよう自分に言い聞かせる</string>
     <string name="txt_rm_everyday">毎日</string>
     <string name="challenge">チャレンジ</string>
-    <string name="beginner">初心者</string>
+    <string name="beginner">初級</string>
     <string name="intermediate">中級</string>
-    <string name="advanced">高度な</string>
+    <string name="advanced">上級</string>
     <string name="txt_recommend_app">おすすめアプリ</string>
     <string name="txt_my_custom_workout">カスタム</string>
     <string name="txt_select_exercise">エクササイズの選択</string>
@@ -98,7 +98,7 @@
     <string name="txt_gender">性別</string>
     <string name="txt_choose_your_info">情報を選択してください</string>
     <string name="female">女性</string>
-    <string name="male">男</string>
+    <string name="male">男性</string>
     <string name="txt_ad_attribution">広告</string>
     <string name="pay_monthly">毎月</string>
     <string name="yearly">毎年</string>
@@ -111,7 +111,7 @@
     <string name="txt_go_premium">プレミアムに行く</string>
     <string name="txt_watch_video">ビデオを見る</string>
     <string name="txt_this_week">今週</string>
-    <string name="rp_syn_with_google_fit">Google fitと同期する</string>
+    <string name="rp_syn_with_google_fit">Google Fitと同期化する</string>
     <string name="txt_not_remind">二度と思い出させない</string>
     <string name="close">近い</string>
     <string name="recipes_breakfast">朝食</string>
@@ -134,7 +134,7 @@
     <string name="weeks">週間</string>
     <string name="txt_daily">毎日</string>
     <string name="tab_discover">発見する</string>=
-    <string name="explore_more">続きを見る</string>
+    <string name="explore_more">その他</string>
     <string name="txt_for_home_workout">自宅トレーニング用</string>
     <string name="txt_saved_money">保存されました</string>
     <string name="txt_all_exercise">すべての演習</string>
@@ -222,7 +222,7 @@
     <string name="txt_workout_time_level_3">45分以上</string>
     <string name="txt_step">ステップ</string>
     <string name="txt_tell_us_more_info">あなた自身についてもっと詳しく教えてください</string>
-    <string name="continue_text">続く</string>
+    <string name="continue_text">続行</string>
     <string name="txt_calories_chart">カロリーチャート</string>
     <string name="txt_warm_up">準備し始める</string>
     <string name="txt_reminder_content_1">トーチの太さ、シェイプカーブ！</string>
@@ -235,24 +235,24 @@
     <string name="txt_ready_to_go_the_next">準備完了！次は</string>
     <string name="txt_start">始める</string>
     <string name="td_v_half_time">半分の時間</string>
-    <string name="explore_tag_new">新しい</string>
+    <string name="explore_tag_new">新規</string>
     <string name="txt_abs">腹筋エクササイズ</string>
     <string name="txt_arm">腕のトレーニング</string>
     <string name="txt_butt">お尻のトレーニング</string>
     <string name="txt_thigh">太もものトレーニング</string>
     <string name="txt_split">スプリットワークアウト</string>
     <string name="txt_challenge_7x4">7x4 チャレンジ</string>
-    <string name="replace">交換する</string>
-    <string name="replace_with">と置換する</string>
+    <string name="replace">差し替える</string>
+    <string name="replace_with">変更希望のエクササイズ</string>
     <string name="current">現在</string>
     <string name="download">ダウンロード</string>
     <string name="retry">リトライ</string>
-    <string name="td_each_side">各面</string>
-<string name="belly">腹</string>
+    <string name="td_each_side">左右それぞれ</string>
+<string name="belly">お腹</string>
     <string name="arm">腕</string>
     <string name="ass">お尻</string>
-    <string name="thigh">大腿</string>
-    <string name="focus_part">重点を置いている部分は何ですか?</string>
+    <string name="thigh">太もも</string>
+    <string name="focus_part">ターゲットの部位はどこですか？</string>
     <string name="full_body">全身</string>
     <string name="txt_start_day">当日からスタート</string>
     <string name="txt_choose_day">日を選択してください:</string>
@@ -305,4 +305,17 @@
     <string name="txt_iap_feature_info_4">永久に広告なし</string>
     <string name="txt_iap_feature_info_3">パーソナライズされたプランと今後のアップデート</string>
     <string name="txt_iap_feature_info_2">わずか 4 週間で驚くべき結果を達成</string>
-</resources>
+<string name="training">トレーニング</string>
+    <string name="training_goal">トレーニングの目的</string>
+    <string name="random_workout">ランダムワークアウト</string>
+    <string name="for_summer">夏の準備</string>
+    <string name="tip_pro_instruction_3">顔引き締めヨガ</string>
+    <string name="at_home">ルーチン</string>
+    <string name="txt_7_minutes">7分</string>
+    <string name="reach_goal_fast">クイック</string>
+    <string name="seven_min_get_fit_des">一日わずか7分間のシンプルで素早い、効果的なワークアウトがあなたの体力と健康を促進し、減量を助けます！</string>
+    <string name="upper_body_stretching_short_des">腕、肩、胸、背中をストレッチ。筋肉を緩めて柔軟性を向上させます。</string>
+    <string name="explore_tag_hot">人気</string>
+    <string name="downloading">ダウンロード中...</string>
+    <string name="loading">をロード中…</string>
+    </resources>

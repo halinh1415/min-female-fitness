@@ -136,12 +136,19 @@ public class JsonHelper {
 
         String langCode = getLocaleApp();
         String fileName;
-        fileName = "programs/all_program_" + langCode + ".json";
+        fileName = "programs/all_program_" + langCode ;
         String jsonString = "";
         if (isAssetExists(fileName)) {
-            jsonString = loadJSONFromAsset(fileName);
+            //jsonString = loadJSONFromAsset(fileName);
+            byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), fileName);
+            //  jsonString = Decoder.getAllData(mContext.getAssets(), fileName);
+            jsonString = new String(decode, StandardCharsets.UTF_8);
+
         } else {
-            jsonString = loadJSONFromAsset("programs/all_program_en.json");
+           // jsonString = loadJSONFromAsset("programs/all_program_en.json");
+            byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), "programs/all_program_en");
+            //  jsonString = Decoder.getAllData(mContext.getAssets(), fileName);
+            jsonString = new String(decode, StandardCharsets.UTF_8);
         }
 
         Gson gson = new Gson();

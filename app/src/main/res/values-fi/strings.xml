@@ -271,5 +271,4 @@
     <string name="txt_count_down_info_2">Älä laske, vaan harjoittele omaan tahtiisi</string>
     <string name="txt_count_down_info_3">Seuraa määrää, jotta voit hallita vauhtia ja suorittaa harjoituksen määräajassa</string>
     <string name="sound">Ääni</string>
-<string name="no_counting">Ei laskentaa</string>
-    </resources>
+</resources>
