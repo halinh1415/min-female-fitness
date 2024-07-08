@@ -99,6 +99,7 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
         }
 
 
+
     }
 
     private void initView() {
@@ -107,6 +108,22 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
         flagAds = 0;
         myPreference = MyPreference.newInstance(this);
         myPreference.increaseOpenCount();
+        if (myPreference.getPlanProgress(20) >0){
+            myPreference.setPlanProgress(879, myPreference.getPlanProgress(20));
+            myPreference.setPlanProgress(20,0);
+        }
+        if (myPreference.getPlanProgress(21) >0){
+            myPreference.setPlanProgress(881, myPreference.getPlanProgress(21));
+            myPreference.setPlanProgress(21,0);
+        }
+        if (myPreference.getPlanProgress(22) >0){
+            myPreference.setPlanProgress(880, myPreference.getPlanProgress(22));
+            myPreference.setPlanProgress(22,0);
+        }
+        if (myPreference.getPlanProgress(23) >0){
+            myPreference.setPlanProgress(882, myPreference.getPlanProgress(23));
+            myPreference.setPlanProgress(23,0);
+        }
 
         premiumViewModel.isPremium.observe(this, isPremium -> {
             myPreference.setPremiumMember(isPremium);
