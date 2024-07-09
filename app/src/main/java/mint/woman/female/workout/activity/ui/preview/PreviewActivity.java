@@ -174,6 +174,10 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         if (mBundle != null) {
             int id = mBundle.getInt("PROGRAM_ID",0);
             mProgramObject = FitnessApplication.getApplication().getProgram(id);
+            if (mProgramObject == null) {
+                Toast.makeText(this, "This program is removed", Toast.LENGTH_SHORT).show();
+                return;
+            }
             mIndexDay = mBundle.getInt("DAY_NUMBER");
             FitnessApplication.getApplication().setDiscover(mProgramObject.getDiscover());
             FitnessApplication.getApplication().setVersion(mProgramObject.getVersion());
