@@ -94,6 +94,10 @@ public class ChallengeActivity extends AppCompatActivity implements IDayClickLis
             mProgramObject = FitnessApplication.getApplication().getProgram(id);
           //  mProgramObject = mBundle.getParcelable("PLAN");
         }
+        if (mProgramObject == null) {
+            Toast.makeText(this, "This program is removed", Toast.LENGTH_SHORT).show();
+            return;
+        }
         setTitle(mProgramObject.getName().toUpperCase());
         progress = myPreference.getPlanProgress(mProgramObject.getId());
         challengeAdapter = new ChallengeAdapter(this,mProgramObject.getTotal());
