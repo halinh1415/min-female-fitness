@@ -21,6 +21,9 @@
 -keep class org.jsoup.**
 -keep class com.android.vending.billing.**
 -keep public class * implements androidx.versionedparcelable.VersionedParcelable
+-keepclasseswithmembernames,includedescriptorclasses class * {
+    native <methods>;
+}
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
