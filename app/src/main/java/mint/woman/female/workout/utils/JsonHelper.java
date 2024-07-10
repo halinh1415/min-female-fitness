@@ -242,9 +242,11 @@ public class JsonHelper {
             if (existsData(fileName)) {
                 byte[] decode = Decoder.decryptInput(fileName);
                 jsonString = new String(decode, StandardCharsets.UTF_8);
-            } else {
+            } else if (existsData(baseUrl + "en")){
                 byte[] decode = Decoder.decryptInput(baseUrl + "en");
                 jsonString = new String(decode, StandardCharsets.UTF_8);
+            }else{
+                return null;
             }
         }
 

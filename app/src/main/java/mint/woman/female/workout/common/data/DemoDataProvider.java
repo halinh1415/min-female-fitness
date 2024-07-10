@@ -42,7 +42,7 @@ public class DemoDataProvider extends AbstractDemoDataProvider {
         actionObjectList = new ArrayList<>();
         if (day < mData.size()) {
             max = mData.get(index).mActionList.size();
-            if (mData.get(day).getRule() != null) {
+            if (mData.get(day).getRule() != null && allExercises!= null) {
                 max = mData.get(day).getRule().getValue();
                 boolean[] map = new boolean[1000];
                 while (actionObjectList.size() < max) {
