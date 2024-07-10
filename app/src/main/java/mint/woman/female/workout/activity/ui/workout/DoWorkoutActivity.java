@@ -413,14 +413,18 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     @Override
     public void onFinishRest() {
         mIsReady = true;
-        if (myPreference.isRingOn()) {
-            if (ringPlayer != null) {
-                ringPlayer.release();
+        try {
+            if (myPreference.isRingOn()) {
+                if (ringPlayer != null) {
+                    ringPlayer.release();
+                }
+                ringPlayer = MediaPlayer.create(this, R.raw.start);
+                ringPlayer.setVolume(0.6f, 0.6f);
+                ringPlayer.setLooping(false);
+                ringPlayer.start();
             }
-            ringPlayer = MediaPlayer.create(this, R.raw.start);
-            ringPlayer.setVolume(0.6f, 0.6f);
-            ringPlayer.setLooping(false);
-            ringPlayer.start();
+        }catch (Exception e){
+            e.printStackTrace();
         }
         pauseTime = 0;
         startExercise = Calendar.getInstance().getTimeInMillis();
