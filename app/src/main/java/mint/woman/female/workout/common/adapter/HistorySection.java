@@ -101,7 +101,7 @@ public class HistorySection extends Section {
             int minutes = (duration) / 60;
             int seconds = (duration) % 60;
             holder.mPlanName.setText(historyItem.getName());
-           String timeString = String.format("%02d:%02d", minutes, seconds);
+            String timeString = String.format("%02d:%02d", minutes, seconds);
             holder.mDurations.setText(timeString);
             holder.mCalories.setText(String.format("%d kcal", historyItem.getCalories()));
             if (historyItem.isPassed()) {

@@ -52,8 +52,17 @@ public class FitnessApplication extends Application {
         return allProgram;
     }
     public ProgramObject getProgram(int id){
-        if (allProgram ==null){
+        if (allProgram == null ){
             allProgram = mJsonHelper.getAllCategoryHashMap();
+        }
+        if (id == 20){
+            id = 879;
+        }else if (id ==21){
+            id = 881;
+        }else if (id == 22){
+            id = 880;
+        }else if (id ==23){
+            id = 882;
         }
         return allProgram.get(id);
     }
