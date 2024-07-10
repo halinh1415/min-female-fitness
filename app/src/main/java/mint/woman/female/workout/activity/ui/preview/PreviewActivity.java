@@ -1,7 +1,5 @@
 package mint.woman.female.workout.activity.ui.preview;
 
-import static mint.woman.female.workout.retrofit.RetrofitClient.isNetworkAvailable;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -51,7 +49,6 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.minfitness.decode.Decoder;
 
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
@@ -239,56 +236,43 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                         break;
                 }
             });
+
+            DividerItemDecoration divider = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+            mPreviewRc.addItemDecoration(divider);
             if (mProgramObject.getPremium() ==1 && !myPreference.isPremiumMember()) {
                 DialogUnlockTraining dialogUnlockTraining = new DialogUnlockTraining();
                 dialogUnlockTraining.show(getSupportFragmentManager(), "UnlockTraining");
                 //loadRewardedVideoAd();
             }
-            DividerItemDecoration divider = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-            mPreviewRc.addItemDecoration(divider);
             mPreviewRc.setLayoutManager(new GridLayoutManager(this, 1));
             if (mProgramObject.getDiscover()> 0) {
                 File file = new File(getFilesDir(), "discover" + mProgramObject.getDiscover() +"/"+mProgramObject.getVersion());
                 if (file.exists()) {
                     file.mkdirs();
                 }
-                if (!existsData(getFilesDir().getPath() + "/discover/" + mProgramObject.getDiscover() +"/"+mProgramObject.getVersion()+ "/workout")) {
 
-                    mPreviewViewModel.setDownloadStatus(DownloadStatus.NEED_DOWNLOAD);
-
-                    ExercisePreAdapter exercisePreAdapter = new ExercisePreAdapter();
-                    mPreviewRc.setAdapter(exercisePreAdapter);
-                    return;
-                }
             }
-
-
             updateData();
-
-
         }
     }
+    boolean checkExploreData(){
+        return !existsData(FitnessApplication.getApplication().getExploreBasePath()+ "/workout") || !existsData(FitnessApplication.getApplication().getExploreBasePath()+ "/language/en");
+    }
+
 
     void updateData() {
-
+        if (mProgramObject.getDiscover()> 0 && checkExploreData()) {
+            mPreviewViewModel.setDownloadStatus(DownloadStatus.NEED_DOWNLOAD);
+            ExercisePreAdapter exercisePreAdapter = new ExercisePreAdapter();
+            mPreviewRc.setAdapter(exercisePreAdapter);
+            return;
+        }
         mDemoDataProvider = new DemoDataProvider(mJsonHelper, mProgramObject.getDiscover(),mProgramObject.getVersion());
         mDemoDataProvider.setData(mProgramObject.getPlan(), mIndexDay);
-
         mPreviewAdapter = new PreviewAdapter(this, this, this, mDemoDataProvider, mProgramObject.getDiscover());
-
-
         mPreviewRc.setAdapter(mPreviewAdapter);
         mPreviewRc.setNestedScrollingEnabled(false);
         updatePlan();
-//        mCbX2.setOnCheckedChangeListener((compoundButton, value) -> {
-//            if (value) {
-//                mDemoDataProvider.x2Workout();
-//            } else {
-//                mDemoDataProvider.x1Workout();
-//            }
-//            mPreviewAdapter.notifyDataSetChanged();
-//            updatePlan();
-//        });
     }
 
 
