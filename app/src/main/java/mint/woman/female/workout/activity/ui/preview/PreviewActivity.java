@@ -112,8 +112,6 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
     TextView mPlanLevel;
     @BindView(R.id.tv_workout_description)
     TextView mWorkoutDescription;
-    @BindView(R.id.cb_x2)
-    Switch mCbX2;
 
     @BindView(R.id.progress_ready_bottom)
     ProgressBar mProgressReady;
@@ -129,20 +127,34 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
     DemoDataProvider mDemoDataProvider;
     MyPreference myPreference;
     Bundle mBundle;
-    boolean flagEdit = false;
+    boolean flagEdit = false,flagUnlock = false;
     Menu menu;
     int saveProgress = 0;
     private ProgramObject mProgramObject;
     private int mIndexDay, currentActionIndex;
     private JsonHelper mJsonHelper;
     private ItemTouchHelper mItemTouchHelper;
+    private DialogUnlockTraining dialogUnlockTraining;
 
     PreviewViewModel mPreviewViewModel;
     // Called when ad is dismissed.
 // Don't forget to set the ad reference to null so you
 // don't show the ad a second time.
     private RewardedAd mRewardedVideoAd = null;
-
+    ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Bundle bundle = result.getData().getExtras();
+                    if (bundle != null) {
+                        int id = bundle.getInt("actionId");
+                        int time = bundle.getInt("time");
+                        String unit = bundle.getString("unit");
+                        mDemoDataProvider.replaceAction(currentActionIndex, new PlanObject.ActionObject(id, time, unit, 0, 10));
+                        mPreviewAdapter.notifyItemChanged(currentActionIndex);
+                    }
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -240,8 +252,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
             DividerItemDecoration divider = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
             mPreviewRc.addItemDecoration(divider);
             if (mProgramObject.getPremium() ==1 && !myPreference.isPremiumMember()) {
-                DialogUnlockTraining dialogUnlockTraining = new DialogUnlockTraining();
-                dialogUnlockTraining.show(getSupportFragmentManager(), "UnlockTraining");
+                showUnlock();
                 //loadRewardedVideoAd();
             }
             mPreviewRc.setLayoutManager(new GridLayoutManager(this, 1));
@@ -524,11 +535,10 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         }
 
         if (resultCode == RESULT_OK && requestCode == 1112) {
-            DialogUnlockTraining dialogUnlockTraining = (DialogUnlockTraining) getSupportFragmentManager().findFragmentByTag("UnlockTraining");
             Bundle extras = data.getExtras();
             boolean premiumMember = extras.getBoolean("PREMIUM_MEMBER", false);
             if (premiumMember) {
-                dialogUnlockTraining.dismiss();
+                dismissUnlock();
             }
         }
     }
@@ -542,20 +552,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         dialogEditWorkout.show(getSupportFragmentManager(), "Edit");
     }
 
-    ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    Bundle bundle = result.getData().getExtras();
-                    if (bundle != null) {
-                        int id = bundle.getInt("actionId");
-                        int time = bundle.getInt("time");
-                        String unit = bundle.getString("unit");
-                        mDemoDataProvider.replaceAction(currentActionIndex, new PlanObject.ActionObject(id, time, unit, 0, 10));
-                        mPreviewAdapter.notifyItemChanged(currentActionIndex);
-                    }
-                }
-            });
+
 
     @Override
     public void onReplace(int position, PlanObject.ActionObject actionObject) {
@@ -713,13 +710,30 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                 mRewardedVideoAd = null;
             }
         });
-        Activity activityContext = PreviewActivity.this;
-        mRewardedVideoAd.show(activityContext, rewardItem -> {
+        mRewardedVideoAd.show(PreviewActivity.this, rewardItem -> {
             // Handle the reward.
-            Log.d("TAG", "The user earned the reward.");
-            DialogUnlockTraining dialogUnlockTraining = (DialogUnlockTraining) getSupportFragmentManager().findFragmentByTag("UnlockTraining");
-            dialogUnlockTraining.dismiss();
+            Log.d(TAG, "The user earned the reward.");
+            dismissUnlock();
+
         });
+    }
+    void showUnlock(){
+        try {
+            if (dialogUnlockTraining == null) {
+                dialogUnlockTraining = new DialogUnlockTraining();
+            }
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            dialogUnlockTraining.show(fragmentManager, "UnlockTraining");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    void dismissUnlock(){
+        flagUnlock = true;
+        if (dialogUnlockTraining != null){
+            dialogUnlockTraining.dismiss();
+        }
+
     }
 
     @Override
@@ -729,11 +743,24 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
 
 
     }
-
+    ActivityResultLauncher<Intent> resultPremium = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Bundle bundle = result.getData().getExtras();
+                    if (bundle != null) {
+                        boolean premiumMember = bundle.getBoolean("PREMIUM_MEMBER", false);
+                        if (premiumMember) {
+                            dismissUnlock();
+                        }
+                    }
+                }
+            });
     @Override
     public void goPremium() {
         Intent goPremium = new Intent(PreviewActivity.this, PremiumActivity.class);
-        startActivityForResult(goPremium, 1112);
+        resultPremium.launch(goPremium);
+        //startActivityForResult(goPremium, 1112);
     }
 
     @Override

@@ -307,7 +307,7 @@ public class JsonHelper {
                     JSONObject subObj = subArr.getJSONObject(j);
                     int id = subObj.getInt("actionId");
                     int time = subObj.getInt("time");
-                    int rest= 10;
+                    int rest = 10;
                     if (subObj.has("rest")) {
                          rest = subObj.getInt("rest");
                     }
