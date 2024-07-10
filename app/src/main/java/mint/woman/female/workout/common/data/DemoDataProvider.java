@@ -44,7 +44,6 @@ public class DemoDataProvider extends AbstractDemoDataProvider {
             max = mData.get(index).mActionList.size();
             if (mData.get(day).getRule() != null) {
                 max = mData.get(day).getRule().getValue();
-                int size = mData.get(index).mActionList.size();
                 boolean[] map = new boolean[1000];
                 while (actionObjectList.size() < max) {
                     Random random = new Random();

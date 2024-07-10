@@ -1,10 +1,14 @@
 package mint.woman.female.workout.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,9 +21,11 @@ import mint.woman.female.workout.model.ProgramObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import mint.woman.female.workout.utils.LanguageHelper;
 
 public class ExploreDetailActivity extends AppCompatActivity implements ProgramClickListener {
 
@@ -74,6 +80,30 @@ public class ExploreDetailActivity extends AppCompatActivity implements ProgramC
     public void onFooterRootViewClicked(String title, List<ProgramObject> programObjects) {
 
     }
+    @Override
+    protected void attachBaseContext(Context newBase) {
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(newBase);
+        String lang = preferences.getString("ST_LANGUAGE", "");
+        if (!lang.isEmpty() && lang.length() > 2) {
+            lang = lang.substring(0, 2);
+        } else {
+            lang = Locale.getDefault().getLanguage();
+        }
+        super.attachBaseContext(LanguageHelper.setLanguage(newBase, lang));
+
+    }
+
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
+    }
+
 
 
 }

@@ -1,6 +1,9 @@
 package mint.woman.female.workout.activity.ui.sounds;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
@@ -19,6 +23,7 @@ import androidx.work.WorkManager;
 
 import java.io.File;
 import java.util.List;
+import java.util.Locale;
 
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.premium.PremiumActivity;
@@ -32,6 +37,7 @@ import mint.woman.female.workout.retrofit.SOService;
 import mint.woman.female.workout.utils.DownloadAndUnzipWorker;
 import mint.woman.female.workout.utils.DownloadFileWorker;
 import mint.woman.female.workout.utils.DownloadVideoWorker;
+import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -198,4 +204,28 @@ public class SoundsActivity extends AppCompatActivity implements MusicClickListe
         }
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    protected void attachBaseContext(Context newBase) {
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(newBase);
+        String lang = preferences.getString("ST_LANGUAGE", "");
+        if (!lang.isEmpty() && lang.length() > 2) {
+            lang = lang.substring(0, 2);
+        } else {
+            lang = Locale.getDefault().getLanguage();
+        }
+        super.attachBaseContext(LanguageHelper.setLanguage(newBase, lang));
+
+    }
+
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
+    }
+
 }

@@ -448,7 +448,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                     file.mkdirs();
                 }
                 myPreference.setVersionPlan(mProgramObject.getPlan(), JsonHelper.VERSION_DAY_PLAN);
-                Decoder.encryptStringToFile(mDemoDataProvider.convertPlanToJsonString().getBytes(), getFilesDir().getPath() + "/i/" + mProgramObject.getPlan());
+               //Decoder.encryptStringToFile(mDemoDataProvider.convertPlanToJsonString().getBytes(), getFilesDir().getPath() + "/i/" + mProgramObject.getPlan());
                 updatePlan();
                 Toast.makeText(this, "Save!!!", Toast.LENGTH_SHORT).show();
 
