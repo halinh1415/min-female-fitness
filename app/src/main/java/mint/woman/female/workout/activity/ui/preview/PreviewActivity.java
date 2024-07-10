@@ -318,7 +318,6 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         //  Toast.makeText(PreviewActivity.this, "Download Fail!", Toast.LENGTH_SHORT).show();
         View view = findViewById(R.id.preview_layout);
         Snackbar.make(view, "Download Fail!", Snackbar.LENGTH_SHORT);
-
     }
 
 
