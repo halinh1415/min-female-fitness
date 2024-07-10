@@ -31,13 +31,13 @@ public class DemoDataProvider extends AbstractDemoDataProvider {
         this.mJsonHelper = jsonHelper;
         this.version = version;
         hashMap = mJsonHelper.getHashMapExercise(discover, version);
-        allExercises = mJsonHelper.getAllExercise(discover, version);
         mData = new ArrayList<>();
         this.discover = discover;
     }
 
     public void setData(String fileName, int day) {
         mData = mJsonHelper.getListPlan(fileName, discover, version);
+        allExercises = mJsonHelper.getAllExercise(discover, version);
         index = day;
         actionObjectList = new ArrayList<>();
         if (day < mData.size()) {

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.lifecycle.MutableLiveData;
 import androidx.preference.PreferenceManager;
 
 import com.google.firebase.FirebaseApp;
@@ -24,9 +23,7 @@ import mint.woman.female.workout.utils.MyPreference;
 import mint.woman.female.workout.utils.NetworkUtil;
 import mint.woman.female.workout.utils.StorageCommon;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 
 public class FitnessApplication extends Application {
@@ -73,6 +70,9 @@ public class FitnessApplication extends Application {
 
     public HashMap<Integer, ExerciseObject> getHashMapExercise(){
         return mJsonHelper.getHashMapExercise(discover,version);
+    }
+    public String getExploreBasePath(){
+        return getFilesDir().getPath()+"/discover/" + discover +"/"+version;
     }
     public static FitnessApplication self() {
         return sInstance;
