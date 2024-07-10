@@ -478,7 +478,6 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
 
     @SuppressLint("DefaultLocale")
     private void updatePlan() {
-      //  int totalTimeEstimate = mDemoDataProvider.getTotalTime() + mDemoDataProvider.getItemCount() * myPreference.getRestTime();
         int minutes = mDemoDataProvider.getTotalTime() / 60;
         String htmlContent = "<h>" + minutes + " " + getString(R.string.minutes) + " &#8226; " + mDemoDataProvider.getItemCount() + " " + getString(R.string.txt_exercises) + "<h>";
         tvWorkoutIntro.setText(Html.fromHtml(htmlContent));
@@ -599,7 +598,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         if (planObject != null) {
             mBundle.putParcelable("PLAN_OBJECT", mDemoDataProvider.getPlanObject());
             mBundle.putInt("PROGRESS", saveProgress);
-            if (MaticAd.getInstance().isAvailableInter()) {
+            if (MaticAd.getInstance().isAvailableInter() && mProgramObject.getPremium()!= 1) {
                 MaticAd.getInstance().showPriorityInterstitialAd(PreviewActivity.this, new MaticAdCallBack() {
                     @Override
                     public void onNextAction() {
