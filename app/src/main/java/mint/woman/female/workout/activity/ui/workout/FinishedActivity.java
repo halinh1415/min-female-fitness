@@ -80,7 +80,7 @@ public class FinishedActivity extends AppCompatActivity  {
     TextView mReminderSet;
     @BindView(R.id.lottieView)
     LottieAnimationView lottieAnimationView;
-    PlanObject mPlanObject;
+   // PlanObject mPlanObject;
     ProgramObject mProgramObject;
     HistoryItem mHistoryItem;
     MediaPlayer mCongratulationPlayer;
@@ -112,7 +112,7 @@ public class FinishedActivity extends AppCompatActivity  {
         Glide.with(this).load(Uri.parse("file:///android_asset/images/img_done.webp")).into(mBanner);
        // Glide.with(this).load(R.drawable.finished_banner).into(mBanner);
         if (mBundle != null) {
-            mPlanObject = mBundle.getParcelable("PLAN_OBJECT");
+            //mPlanObject = mBundle.getParcelable("PLAN_OBJECT");
             int id = mBundle.getInt("PROGRAM_ID",0);
             mProgramObject = FitnessApplication.getApplication().getProgram(id);
             mHistoryItem = mBundle.getParcelable("HISTORY");
@@ -123,7 +123,10 @@ public class FinishedActivity extends AppCompatActivity  {
                 kCalories = (float) mHistoryItem.getCalories();
                 txtCalCount.setText(String.format("%.0f", kCalories));
                 txtCompleted.setText(mHistoryItem.getName()+"\n" + getString(R.string.txt_completed));
-                txtExerciseCount.setText("" + mPlanObject.getActionList().size());
+                FitnessApplication.getApplication().getStorageCommon().actionList.observe(this,actionObjects -> {
+                    txtExerciseCount.setText("" + actionObjects.size());
+                });
+
                 int time = mHistoryItem.getRealDuration();
                 int minutes = time / 60;
                 int seconds = time % 60;
