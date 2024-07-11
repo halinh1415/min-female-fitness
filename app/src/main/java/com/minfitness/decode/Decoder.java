@@ -17,11 +17,9 @@ public class Decoder {
     static {
         try {
             System.loadLibrary("workout");
-            Log.d("HAHA","load workout success!");
             isSuccess = true;
         } catch (Throwable th) {
             isSuccess = false;
-            Log.d("HAHA","load workout  failed!");
             th.printStackTrace();
         }
     }

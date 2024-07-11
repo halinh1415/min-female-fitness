@@ -2,7 +2,7 @@
 <resources>
 
     <style name="AppTheme.FullScreen">
-        <item name="colorPrimaryDark">@color/Black</item>
+        <item name="colorPrimaryDark">@color/colorTransparent</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="colorPrimary">@android:color/transparent</item>
