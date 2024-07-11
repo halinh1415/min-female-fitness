@@ -184,6 +184,9 @@ public class SoundsActivity extends AppCompatActivity implements MusicClickListe
                 musicPlayer.release();
             }
             musicPlayer = MediaPlayer.create(SoundsActivity.this, Uri.parse(musicPath));
+            if (musicPlayer == null){
+                return;
+            }
             musicPlayer.setLooping(true);
             musicPlayer.start();
         }else {

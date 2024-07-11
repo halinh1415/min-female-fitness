@@ -344,7 +344,7 @@ Java_com_minfitness_decode_Decoder_getAllData(JNIEnv *env, jclass clazz, jobject
 //    jbyte *encryptedBytes = env->GetByteArrayElements(result, 0);
     // Decrypt file data
     for (int i = 0; i < fileSize; i++) {
-      //  fileData[i] ^= XOR_KEY;
+        //  fileData[i] ^= XOR_KEY;
         fileData[i] = (jbyte) table[(unsigned char) fileData[i]];
         fileData[i] ^= XOR_KEY; // Simple XOR decryption
 
@@ -357,7 +357,7 @@ Java_com_minfitness_decode_Decoder_getAllData(JNIEnv *env, jclass clazz, jobject
     // Convert decrypted data to Java byte array
     jbyteArray decryptedData = env->NewByteArray(fileSize);
     env->SetByteArrayRegion(decryptedData, 0, fileSize, (jbyte *) fileData);
-   // env->ReleaseByteArrayElements(result, encryptedBytes, 0);
+    // env->ReleaseByteArrayElements(result, encryptedBytes, 0);
     jstring encrypted_content = env->NewStringUTF((char *) fileData);
     // Free allocated memory
     free(fileData);
@@ -367,56 +367,56 @@ Java_com_minfitness_decode_Decoder_getAllData(JNIEnv *env, jclass clazz, jobject
 extern "C"
 JNIEXPORT jstring JNICALL
 Java_com_minfitness_decode_Decoder_getKey(JNIEnv *env, jclass clazz) {
-        // Application object
-        jobject application = getApp(env);
-        if (application == NULL) {
-            return NULL;
-        }
-        // Context(ContextWrapper) class
-        jclass context_clz = env->GetObjectClass(application);
-        // getPackageManager()
-        jmethodID getPackageManager = env->GetMethodID(context_clz, "getPackageManager",
-                                                       "()Landroid/content/pm/PackageManager;");
-        // android.content.pm.PackageManager object
-        jobject package_manager = env->CallObjectMethod(application, getPackageManager);
-        // PackageManager class
-        jclass package_manager_clz = env->GetObjectClass(package_manager);
-        // getPackageInfo()
-        jmethodID getPackageInfo = env->GetMethodID(package_manager_clz, "getPackageInfo",
-                                                    "(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;");
-        // context.getPackageName()
-        jmethodID getPackageName = env->GetMethodID(context_clz, "getPackageName",
-                                                    "()Ljava/lang/String;");
-        // call getPackageName() and cast from jobject to jstring
-        jstring package_name = (jstring) (env->CallObjectMethod(application, getPackageName));
-        // PackageInfo object
-        jobject package_info = env->CallObjectMethod(package_manager, getPackageInfo, package_name, 64);
-        // class PackageInfo
-        jclass package_info_clz = env->GetObjectClass(package_info);
-        // field signatures
-        jfieldID signatures_field = env->GetFieldID(package_info_clz, "signatures",
-                                                    "[Landroid/content/pm/Signature;");
-        jobject signatures = env->GetObjectField(package_info, signatures_field);
-        jobjectArray signatures_array = (jobjectArray) signatures;
-        jobject signature0 = env->GetObjectArrayElement(signatures_array, 0);
-        jclass signature_clz = env->GetObjectClass(signature0);
+    // Application object
+    jobject application = getApp(env);
+    if (application == NULL) {
+        return NULL;
+    }
+    // Context(ContextWrapper) class
+    jclass context_clz = env->GetObjectClass(application);
+    // getPackageManager()
+    jmethodID getPackageManager = env->GetMethodID(context_clz, "getPackageManager",
+                                                   "()Landroid/content/pm/PackageManager;");
+    // android.content.pm.PackageManager object
+    jobject package_manager = env->CallObjectMethod(application, getPackageManager);
+    // PackageManager class
+    jclass package_manager_clz = env->GetObjectClass(package_manager);
+    // getPackageInfo()
+    jmethodID getPackageInfo = env->GetMethodID(package_manager_clz, "getPackageInfo",
+                                                "(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;");
+    // context.getPackageName()
+    jmethodID getPackageName = env->GetMethodID(context_clz, "getPackageName",
+                                                "()Ljava/lang/String;");
+    // call getPackageName() and cast from jobject to jstring
+    jstring package_name = (jstring) (env->CallObjectMethod(application, getPackageName));
+    // PackageInfo object
+    jobject package_info = env->CallObjectMethod(package_manager, getPackageInfo, package_name, 64);
+    // class PackageInfo
+    jclass package_info_clz = env->GetObjectClass(package_info);
+    // field signatures
+    jfieldID signatures_field = env->GetFieldID(package_info_clz, "signatures",
+                                                "[Landroid/content/pm/Signature;");
+    jobject signatures = env->GetObjectField(package_info, signatures_field);
+    jobjectArray signatures_array = (jobjectArray) signatures;
+    jobject signature0 = env->GetObjectArrayElement(signatures_array, 0);
+    jclass signature_clz = env->GetObjectClass(signature0);
 
-        jmethodID toCharsString = env->GetMethodID(signature_clz, "toCharsString",
-                                                   "()Ljava/lang/String;");
-        // call toCharsString()
-        jstring signature_str = (jstring) (env->CallObjectMethod(signature0, toCharsString));
+    jmethodID toCharsString = env->GetMethodID(signature_clz, "toCharsString",
+                                               "()Ljava/lang/String;");
+    // call toCharsString()
+    jstring signature_str = (jstring) (env->CallObjectMethod(signature0, toCharsString));
 
-        // release
-        env->DeleteLocalRef(application);
-        env->DeleteLocalRef(context_clz);
-        env->DeleteLocalRef(package_manager);
-        env->DeleteLocalRef(package_manager_clz);
-        env->DeleteLocalRef(package_name);
-        env->DeleteLocalRef(package_info);
-        env->DeleteLocalRef(package_info_clz);
-        env->DeleteLocalRef(signatures);
-        env->DeleteLocalRef(signature0);
-        env->DeleteLocalRef(signature_clz);
+    // release
+    env->DeleteLocalRef(application);
+    env->DeleteLocalRef(context_clz);
+    env->DeleteLocalRef(package_manager);
+    env->DeleteLocalRef(package_manager_clz);
+    env->DeleteLocalRef(package_name);
+    env->DeleteLocalRef(package_info);
+    env->DeleteLocalRef(package_info_clz);
+    env->DeleteLocalRef(signatures);
+    env->DeleteLocalRef(signature0);
+    env->DeleteLocalRef(signature_clz);
 
-        return signature_str;
+    return signature_str;
 }

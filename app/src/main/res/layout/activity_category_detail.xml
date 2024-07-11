@@ -12,13 +12,15 @@
     <FrameLayout
         android:fitsSystemWindows="true"
         android:layout_width="match_parent"
+
         android:layout_height="@dimen/_150sdp">
 
         <ImageView
             android:id="@+id/iv_workout_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitCenter"
+            android:fitsSystemWindows="true"
+            android:scaleType="centerCrop"
             />
 
         <ImageView
