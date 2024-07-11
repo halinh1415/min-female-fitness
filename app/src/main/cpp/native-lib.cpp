@@ -126,7 +126,6 @@ JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
 
     // Find your class. JNI_OnLoad is called from the correct class loader context for this to work.
     jclass c = env->FindClass("com/minfitness/decode/Decoder");
-    jclass c = env->FindClass("com/minfitness/decode/Decoder");
 
     if (c == nullptr) return JNI_ERR;
 //    if (vfF101211(env) == JNI_OK) {
