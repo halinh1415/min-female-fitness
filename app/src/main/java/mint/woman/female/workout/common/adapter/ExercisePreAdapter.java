@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import mint.woman.female.workout.R;
-import mint.woman.female.workout.custom.ItemTouchHelperAdapter;
 
 public class ExercisePreAdapter extends RecyclerView.Adapter<ExerciseViewHolder> {
 
@@ -18,7 +17,7 @@ public class ExercisePreAdapter extends RecyclerView.Adapter<ExerciseViewHolder>
     @Override
     public ExerciseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         mContext = parent.getContext();
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.demo_item_layout, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.preview_item_layout, null);
         return new ExerciseViewHolder(view);
     }
 

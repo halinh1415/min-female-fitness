@@ -49,7 +49,7 @@ public class PreviewAdapter extends RecyclerView.Adapter<ExerciseViewHolder> imp
     @NonNull
     @Override
     public ExerciseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.demo_item_layout, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.preview_item_layout, null);
         return new ExerciseViewHolder(view);
     }
 
