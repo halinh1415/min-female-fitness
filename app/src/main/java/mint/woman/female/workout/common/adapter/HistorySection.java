@@ -17,6 +17,7 @@ import com.bumptech.glide.request.RequestOptions;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.model.HistoryItem;
+import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.retrofit.ApiUtils;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -110,7 +111,8 @@ public class HistorySection extends Section {
                 holder.mStatus.setColorFilter(Color.GRAY);
             }
             String baseUrl = "file:///android_asset/images/";
-            if (FitnessApplication.getApplication().getProgram(historyItem.getProgramId()).getDiscover() >0){
+            ProgramObject programObject = FitnessApplication.getApplication().getProgram(historyItem.getProgramId());
+            if (programObject!= null && programObject.getDiscover() >0){
                 baseUrl = ApiUtils.BASE_URL_IMAGES;
             }
             Glide.with(mContext).load(Uri.parse(baseUrl + historyItem.getImage())).apply(requestOptions).into(holder.mIcon);
