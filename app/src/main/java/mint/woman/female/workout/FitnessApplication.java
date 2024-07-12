@@ -54,7 +54,7 @@ public class FitnessApplication extends Application {
         }
         if (id == 20){
             id = 879;
-        }else if (id ==21){
+        }else if (id == 21){
             id = 881;
         }else if (id == 22){
             id = 880;
