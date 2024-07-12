@@ -144,6 +144,7 @@ public class FirstSetupActivity extends AppCompatActivity {
                 Log.d(TAG,"onRequestPermissionsResult PERMISSION_GRANTED");
                 finishSetup();
             } else {
+                finishSetup();
                 Log.d(TAG,"onRequestPermissionsResult PERMISSION_DENIED");
 
             }
