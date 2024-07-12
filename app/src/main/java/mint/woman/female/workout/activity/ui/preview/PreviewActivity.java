@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
@@ -590,29 +591,22 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
             Toast.makeText(this, "Downloading!", Toast.LENGTH_SHORT).show();
             return;
         }
-        PlanObject planObject = mDemoDataProvider.getPlanObject();
-        if (planObject != null) {
-            mBundle.putParcelable("PLAN_OBJECT", mDemoDataProvider.getPlanObject());
-            mBundle.putInt("PROGRESS", saveProgress);
-            if (MaticAd.getInstance().isAvailableInter() && mProgramObject.getPremium()!= 1) {
-                MaticAd.getInstance().showPriorityInterstitialAd(PreviewActivity.this, new MaticAdCallBack() {
-                    @Override
-                    public void onNextAction() {
-                        super.onNextAction();
-                        goWorkout();
-                    }
-                });
-            } else {
-                goWorkout();
-            }
+        mBundle.putInt("PROGRESS", saveProgress);
+        if (MaticAd.getInstance().isAvailableInter() && mProgramObject.getPremium()!= 1) {
+            MaticAd.getInstance().showPriorityInterstitialAd(PreviewActivity.this, new MaticAdCallBack() {
+                @Override
+                public void onNextAction() {
+                    super.onNextAction();
+                    goWorkout();
+                }
+            });
         } else {
-            Toast.makeText(this, "No workout!", Toast.LENGTH_SHORT).show();
+            goWorkout();
         }
     }
 
     @OnClick(R.id.txt_reset)
     void reset() {
-        mBundle.putParcelable("PLAN_OBJECT", mDemoDataProvider.getPlanObject());
         mBundle.putInt("PROGRESS", 0);
         if (MaticAd.getInstance().isAvailableInter()) {
             MaticAd.getInstance().showPriorityInterstitialAd(PreviewActivity.this, new MaticAdCallBack() {
@@ -628,9 +622,14 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
     }
 
     void goWorkout() {
-        Intent intent = new Intent(PreviewActivity.this, DoWorkoutActivity.class);
-        intent.putExtras(mBundle);
-        startActivity(intent);
+        if (mDemoDataProvider.getActionObjectList() != null && !mDemoDataProvider.getActionObjectList().isEmpty()){
+            Intent intent = new Intent(PreviewActivity.this, DoWorkoutActivity.class);
+            intent.putExtras(mBundle);
+            startActivity(intent);
+        }else {
+            Toast.makeText(this, "No workout!", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override

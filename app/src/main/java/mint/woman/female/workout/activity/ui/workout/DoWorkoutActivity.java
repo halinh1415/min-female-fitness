@@ -81,8 +81,6 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     TextView mWorkoutTime;
 
     HashMap<Integer, ExerciseObject> hashMap;
-    List<PlanObject.ActionObject> actionObjectList;
-    PlanObject planObject;
 
     WorkoutViewModel mWorkoutViewModel;
     HistoryItem mHistoryItem;
@@ -164,7 +162,6 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             //mPlanObject = mBundle.getParcelable("PLAN_OBJECT");
             int id = mBundle.getInt("PROGRAM_ID", 0);
             mProgramObject = FitnessApplication.getApplication().getProgram(id);
-            planObject = mBundle.getParcelable("PLAN_OBJECT");
             discover = mProgramObject.getDiscover();
             version = mProgramObject.getVersion();
             mDayIndex = mBundle.getInt("DAY_NUMBER", 0);
@@ -179,36 +176,20 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         String progress = getString(R.string.txt_next_of_exercise) + " " + (currentExerciseCount + 1) + "/" + totalExercise;
 
         Glide.with(this).load(Uri.parse("file:///android_asset/images/img_rest.webp")).into(mWorkoutImg);
-        FitnessApplication.getApplication().getStorageCommon().actionList.observe(this, actionObjects -> {
 
-            actionObjectList = actionObjects;
-            totalExercise = actionObjects.size();
-            if (currentExerciseCount > actionObjects.size()) {
-                currentExerciseCount = 0;
-            }
-            mProgressLineView.setProgress((float) currentExerciseCount);
-            mProgressLineView.setMax(actionObjects.size());
+        totalExercise = FitnessApplication.getApplication().getActionList().size();
+        if (currentExerciseCount > FitnessApplication.getApplication().getActionList().size()) {
+            currentExerciseCount = 0;
+        }
+        mAudioAppManager = new AudioAppManager(DoWorkoutActivity.this, myPreference.getLanguage());
+        mProgressLineView.setProgress((float) currentExerciseCount);
+        mProgressLineView.setMax(FitnessApplication.getApplication().getActionList().size());
 
-            if (myPreference.isSpeakerOn()) {
-                mAudioAppManager.playText(getString(R.string.txt_ready_to_go_the_next));
-                if (getActionObjectCurrent().unit.contains("s")) {
-                    mAudioAppManager.playText("" + getActionObjectCurrent().time);
-                    mAudioAppManager.playText(getString(R.string.txt_seconds));
-                } else {
-                    mAudioAppManager.playText("" + getActionObjectCurrent().time);
-                }
-                mAudioAppManager.playText(getExerciseObjectCurrent().getName());
-                if (getExerciseObjectCurrent().getAlternation() && getActionObjectCurrent().unit.isEmpty()) {
-                    mAudioAppManager.playText("" + getActionObjectCurrent().time / 2);
-                    mAudioAppManager.playText(getString(R.string.td_each_side));
-                }
-            }
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance(getActionObjectCurrent(), 123, progress), "Rest").commitAllowingStateLoss();
-        });
+
 
 
         mIsReady = false;
-        mAudioAppManager = new AudioAppManager(DoWorkoutActivity.this, myPreference.getLanguage());
+
 
         mWorkoutViewModel.isPause().observe(this, isPause -> {
             if (isPause) {
@@ -308,6 +289,21 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         mQuitDialog.setQuitListener(this);
         mProgress.setText("" + (currentExerciseCount + 1) + "/" + totalExercise);
         mAudioAppManager.setMale(myPreference.getGender() == 0);
+        if (myPreference.isSpeakerOn()) {
+            mAudioAppManager.playText(getString(R.string.txt_ready_to_go_the_next));
+            if (getActionObjectCurrent().unit.contains("s")) {
+                mAudioAppManager.playText("" + getActionObjectCurrent().time);
+                mAudioAppManager.playText(getString(R.string.txt_seconds));
+            } else {
+                mAudioAppManager.playText("" + getActionObjectCurrent().time);
+            }
+            mAudioAppManager.playText(getExerciseObjectCurrent().getName());
+            if (getExerciseObjectCurrent().getAlternation() && getActionObjectCurrent().unit.isEmpty()) {
+                mAudioAppManager.playText("" + getActionObjectCurrent().time / 2);
+                mAudioAppManager.playText(getString(R.string.td_each_side));
+            }
+        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance(getActionObjectCurrent(), 123, progress), "Rest").commitAllowingStateLoss();
 
 
     }
@@ -666,10 +662,11 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     }
 
     private PlanObject.ActionObject getActionObjectCurrent() {
-        if (actionObjectList == null){
-            return planObject.mActionList.get(currentExerciseCount);
+        if (currentExerciseCount < FitnessApplication.getApplication().getActionList().size()){
+            return FitnessApplication.getApplication().getActionList().get(currentExerciseCount);
+        }else {
+            return null;
         }
-        return actionObjectList.get(currentExerciseCount);
     }
 
 

@@ -87,8 +87,8 @@ public class DemoDataProvider extends AbstractDemoDataProvider {
                     actionObjectList.add(action.clone());
                 }
             }
+            FitnessApplication.getApplication().setActionList(actionObjectList);
         }
-        FitnessApplication.getApplication().getStorageCommon().actionList.postValue(actionObjectList);
     }
 
     private ExerciseObject findPair(String imageName) {
@@ -206,6 +206,10 @@ public class DemoDataProvider extends AbstractDemoDataProvider {
     public PlanObject getPlanObject() {
         if (index >= mData.size()) return null;
         return mData.get(index);
+    }
+    public List<PlanObject.ActionObject> getActionObjectList()
+    {
+        return actionObjectList;
     }
 
 }

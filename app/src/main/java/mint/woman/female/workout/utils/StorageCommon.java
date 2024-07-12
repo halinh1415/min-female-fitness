@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.ads.nativead.NativeAd;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,6 +18,5 @@ public class StorageCommon {
     public MutableLiveData<NativeAd> nativeSetup = new MutableLiveData<>();
     public MutableLiveData<CategoryObject> category = new MutableLiveData<>();
     public MutableLiveData<ProgramObject> programObject = new MutableLiveData<>();
-    public MutableLiveData<List<PlanObject.ActionObject>> actionList = new MutableLiveData<>();
 
 }

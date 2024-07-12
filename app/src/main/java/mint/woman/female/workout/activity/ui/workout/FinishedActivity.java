@@ -50,6 +50,7 @@ import mint.woman.female.workout.utils.Database;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -123,9 +124,7 @@ public class FinishedActivity extends AppCompatActivity  {
                 kCalories = (float) mHistoryItem.getCalories();
                 txtCalCount.setText(String.format("%.0f", kCalories));
                 txtCompleted.setText(mHistoryItem.getName()+"\n" + getString(R.string.txt_completed));
-                FitnessApplication.getApplication().getStorageCommon().actionList.observe(this,actionObjects -> {
-                    txtExerciseCount.setText("" + actionObjects.size());
-                });
+                txtExerciseCount.setText("" + FitnessApplication.getApplication().getActionList().size());
 
                 int time = mHistoryItem.getRealDuration();
                 int minutes = time / 60;
@@ -368,4 +367,9 @@ public class FinishedActivity extends AppCompatActivity  {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        FitnessApplication.getApplication().setActionList(new ArrayList<>());
+    }
 }
