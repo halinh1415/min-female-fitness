@@ -475,7 +475,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                     tickPlayer.release();
                 }
                 tickPlayer = MediaPlayer.create(this, R.raw.tick);
-                tickPlayer.start();
+                if (tickPlayer!= null)tickPlayer.start();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -497,7 +497,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                         tickPlayer.release();
                     }
                     tickPlayer = MediaPlayer.create(this, R.raw.beep);
-                    tickPlayer.start();
+                    if (tickPlayer!= null) tickPlayer.start();
                 }
             } else {
                 if (timeLeft == getActionObjectCurrent().time / 2) {
@@ -511,7 +511,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                         tickPlayer.release();
                     }
                     tickPlayer = MediaPlayer.create(this, R.raw.tick);
-                    tickPlayer.start();
+                    if (tickPlayer!= null) tickPlayer.start();
                 }
             }
 
