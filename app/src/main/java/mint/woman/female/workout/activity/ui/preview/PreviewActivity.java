@@ -623,6 +623,8 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
 
     void goWorkout() {
         if (mDemoDataProvider.getActionObjectList() != null && !mDemoDataProvider.getActionObjectList().isEmpty()){
+            mBundle.putParcelableArrayList("ACTION_LIST", (ArrayList<? extends Parcelable>) mDemoDataProvider.getActionObjectList());
+            mBundle.putInt("SIZE", mDemoDataProvider.getActionObjectList().size());
             Intent intent = new Intent(PreviewActivity.this, DoWorkoutActivity.class);
             intent.putExtras(mBundle);
             startActivity(intent);

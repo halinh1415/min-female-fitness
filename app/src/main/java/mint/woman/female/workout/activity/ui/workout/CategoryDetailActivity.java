@@ -49,9 +49,11 @@ public class CategoryDetailActivity extends AppCompatActivity {
                     .into(binding.ivWorkout);
             binding.tvTitle.setText(categoryObject.getName());
             binding.tvWorkoutIntro.setText(categoryObject.getFirstProgramObject().getDescription());
-            binding.tvDurationLevel1.setText(""+mCategoryObject.getProgramObjectList().get(0).getTotal() +" "+CategoryDetailActivity.this.getString(R.string.minutes));
-            binding.tvDurationLevel2.setText(""+mCategoryObject.getProgramObjectList().get(1).getTotal() +" "+CategoryDetailActivity.this.getString(R.string.minutes));
-            binding.tvDurationLevel3.setText(""+mCategoryObject.getProgramObjectList().get(2).getTotal() +" "+CategoryDetailActivity.this.getString(R.string.minutes));
+            if (categoryObject.getProgramObjectList()!= null && categoryObject.getProgramObjectList().size() ==3) {
+                binding.tvDurationLevel1.setText("" + mCategoryObject.getProgramObjectList().get(0).getTotal() + " " + CategoryDetailActivity.this.getString(R.string.minutes));
+                binding.tvDurationLevel2.setText("" + mCategoryObject.getProgramObjectList().get(1).getTotal() + " " + CategoryDetailActivity.this.getString(R.string.minutes));
+                binding.tvDurationLevel3.setText("" + mCategoryObject.getProgramObjectList().get(2).getTotal() + " " + CategoryDetailActivity.this.getString(R.string.minutes));
+            }
         });
 
         binding.llBeginner.setOnClickListener(view -> {
@@ -87,5 +89,15 @@ public class CategoryDetailActivity extends AppCompatActivity {
         binding.imBack.setOnClickListener(view -> {
             CategoryDetailActivity.this.finish();
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mCategoryObject== null){
+            FitnessApplication.getApplication().getStorageCommon().category.observe(CategoryDetailActivity.this,categoryObject -> {
+                mCategoryObject = categoryObject;
+            });
+        }
     }
 }
