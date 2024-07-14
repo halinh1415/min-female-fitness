@@ -81,6 +81,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     TextView mWorkoutTime;
 
     HashMap<Integer, ExerciseObject> hashMap;
+    List<PlanObject.ActionObject> actionObjectList;
 
     WorkoutViewModel mWorkoutViewModel;
     HistoryItem mHistoryItem;
@@ -166,6 +167,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             version = mProgramObject.getVersion();
             mDayIndex = mBundle.getInt("DAY_NUMBER", 0);
             currentExerciseCount = mBundle.getInt("PROGRESS", 0);
+            actionObjectList = mBundle.getParcelableArrayList("ACTION_LIST");
         }
         discover = mProgramObject.getDiscover();
         hashMap = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(discover, mProgramObject.getVersion());
@@ -177,13 +179,13 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
 
         Glide.with(this).load(Uri.parse("file:///android_asset/images/img_rest.webp")).into(mWorkoutImg);
 
-        totalExercise = FitnessApplication.getApplication().getActionList().size();
-        if (currentExerciseCount > FitnessApplication.getApplication().getActionList().size()) {
+        totalExercise = actionObjectList.size();
+        if (currentExerciseCount >= actionObjectList.size()) {
             currentExerciseCount = 0;
         }
         mAudioAppManager = new AudioAppManager(DoWorkoutActivity.this, myPreference.getLanguage());
         mProgressLineView.setProgress((float) currentExerciseCount);
-        mProgressLineView.setMax(FitnessApplication.getApplication().getActionList().size());
+        mProgressLineView.setMax(actionObjectList.size());
 
 
 
@@ -662,8 +664,8 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     }
 
     private PlanObject.ActionObject getActionObjectCurrent() {
-        if (currentExerciseCount < FitnessApplication.getApplication().getActionList().size()){
-            return FitnessApplication.getApplication().getActionList().get(currentExerciseCount);
+        if (currentExerciseCount < actionObjectList.size()){
+            return actionObjectList.get(currentExerciseCount);
         }else {
             return null;
         }

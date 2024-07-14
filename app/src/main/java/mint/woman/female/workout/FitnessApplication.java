@@ -38,7 +38,6 @@ public class FitnessApplication extends Application {
     private static FitnessApplication context;
     private int version =1001,discover =0;
     protected StorageCommon storageCommon;
-    private List<PlanObject.ActionObject> actionList = new ArrayList<>();
 
     public StorageCommon  getStorageCommon() {
         return storageCommon;
@@ -46,14 +45,8 @@ public class FitnessApplication extends Application {
 
 
 
-    public List<PlanObject.ActionObject> getActionList() {
-        return actionList;
-    }
 
-    public void setActionList(List<PlanObject.ActionObject> actionList) {
-        this.actionList.clear();
-        this.actionList.addAll(actionList);
-    }
+
 
     public ProgramObject getProgram(int id){
 

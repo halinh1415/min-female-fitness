@@ -115,6 +115,7 @@ public class FinishedActivity extends AppCompatActivity  {
         if (mBundle != null) {
             //mPlanObject = mBundle.getParcelable("PLAN_OBJECT");
             int id = mBundle.getInt("PROGRAM_ID",0);
+            int size = mBundle.getInt("SIZE");
             mProgramObject = FitnessApplication.getApplication().getProgram(id);
             mHistoryItem = mBundle.getParcelable("HISTORY");
 
@@ -124,7 +125,7 @@ public class FinishedActivity extends AppCompatActivity  {
                 kCalories = (float) mHistoryItem.getCalories();
                 txtCalCount.setText(String.format("%.0f", kCalories));
                 txtCompleted.setText(mHistoryItem.getName()+"\n" + getString(R.string.txt_completed));
-                txtExerciseCount.setText("" + FitnessApplication.getApplication().getActionList().size());
+                txtExerciseCount.setText("" + size);
 
                 int time = mHistoryItem.getRealDuration();
                 int minutes = time / 60;
@@ -370,6 +371,5 @@ public class FinishedActivity extends AppCompatActivity  {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        FitnessApplication.getApplication().setActionList(new ArrayList<>());
     }
 }

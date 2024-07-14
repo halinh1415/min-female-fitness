@@ -87,7 +87,6 @@ public class DemoDataProvider extends AbstractDemoDataProvider {
                     actionObjectList.add(action.clone());
                 }
             }
-            FitnessApplication.getApplication().setActionList(actionObjectList);
         }
     }
 
