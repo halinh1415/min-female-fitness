@@ -314,24 +314,31 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         File file = new File(fileName);
         return file.exists();
     }
+    boolean quitShow = false;
 
     @Override
     public void onBackPressed() {
         mWorkoutViewModel.setPause(true);
-
-        if (!mQuitDialog.isAdded()) {
-            try {
-                mQuitDialog.show(getSupportFragmentManager(), "Quit");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        } else {
+        if (!quitShow){
+            showQuitDialog();
+        }else{
             super.onBackPressed();
         }
 
 
         //  super.onBackPressed();
+    }
+    void showQuitDialog(){
+        try{
+            quitShow = true;
+            if (mQuitDialog == null){
+                mQuitDialog = new DialogQuit();
+                mQuitDialog.setQuitListener(this);
+            }
+            mQuitDialog.show(getSupportFragmentManager(), "Quit");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -683,6 +690,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
 
     @Override
     public void onQuitWorkout() {
+        quitShow = false;
         mWorkoutViewModel.setPause(false);
         mHistoryItem.setEndTime(Calendar.getInstance().getTimeInMillis());
         mHistoryItem.setPassed(false);
@@ -692,13 +700,13 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         mWorkoutViewModel.insertDate(mHistoryItem.getDate());
         myPreference.setSaveProgress(mProgramObject.getId(), mDayIndex, currentExerciseCount);
         float percent = (float) currentExerciseCount / totalExercise;
-        Log.d("HAHA", "save percent =" + percent);
         myPreference.setSaveProgressPercent(mProgramObject.getId(), mDayIndex, percent);
         finish();
     }
 
     @Override
     public void onNoQuitWorkout() {
+        quitShow = false;
         mWorkoutViewModel.setPause(false);
         try {
             RestFragment restFragment = (RestFragment) getSupportFragmentManager().findFragmentByTag("Rest");
