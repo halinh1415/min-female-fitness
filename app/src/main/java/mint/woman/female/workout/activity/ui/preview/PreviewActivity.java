@@ -279,7 +279,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
             mPreviewRc.setAdapter(exercisePreAdapter);
             return;
         }
-        mDemoDataProvider = new DemoDataProvider(mJsonHelper, mProgramObject.getDiscover(),mProgramObject.getVersion());
+        mDemoDataProvider = new DemoDataProvider(PreviewActivity.this, mProgramObject.getDiscover(),mProgramObject.getVersion());
         mDemoDataProvider.setData(mProgramObject.getPlan(), mIndexDay);
         mPreviewAdapter = new PreviewAdapter(this, this, this, mDemoDataProvider, mProgramObject.getDiscover());
         mPreviewRc.setAdapter(mPreviewAdapter);

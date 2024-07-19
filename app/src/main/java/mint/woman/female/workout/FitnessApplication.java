@@ -35,7 +35,6 @@ public class FitnessApplication extends Application {
     public JsonHelper mJsonHelper;
     public Database mDatabase;
     private static FitnessApplication sInstance;
-    private static FitnessApplication context;
     private int version =1001,discover =0;
     protected StorageCommon storageCommon;
 
@@ -63,7 +62,7 @@ public class FitnessApplication extends Application {
     }
 
     public static FitnessApplication getApplication() {
-        return context;
+        return sInstance;
     }
 
     public HashMap<Integer, ExerciseObject> getHashMapExercise(){
@@ -97,7 +96,6 @@ public class FitnessApplication extends Application {
     public void onCreate() {
         super.onCreate();
         sInstance = this;
-        context = this;
         NetworkUtil.initNetwork(this);
         FirebaseApp.initializeApp(this);
         AppOpenManager.getInstance().init(this, MaticAdKeys.OPEN_RESUME);
@@ -107,7 +105,7 @@ public class FitnessApplication extends Application {
         AppOpenManager.getInstance().setAdResumeHighId(MaticAdKeys.OPEN_RESUME_HIGH);
         AppOpenManager.getInstance().setAdResumeMediumId(MaticAdKeys.OPEN_RESUME_MEDIUM);
         storageCommon = new StorageCommon();
-        mJsonHelper = JsonHelper.newInstance(getApplicationContext(), getKey(getPackageName()));
+        mJsonHelper = JsonHelper.newInstance(getApplicationContext());
         mDatabase = Database.newInstance(getApplicationContext(), "workout.db");
         setTheme();
 

@@ -39,27 +39,28 @@ import java.util.Locale;
 public class JsonHelper {
     public final static int VERSION_DAY_PLAN = 7;
     public static JsonHelper mHelper;
+    private HashMap<Integer, ExerciseObject> hashMapExercises;
+    private HashMap<Integer, ProgramObject> programHashMap;
+    private String key = "aaBALAXIbuaa9988";
     Integer[] meals = new Integer[]{R.string.recipes_breakfast, R.string.recipes_snack, R.string.recipes_lunch, R.string.recipes_dinner};
     Integer[] levels = new Integer[]{R.string.beginner, R.string.intermediate, R.string.advanced};
     Context mContext;
     MyPreference myPreference;
     Decode mDecode;
+    private int currentDiscover = -1;
 
-    public JsonHelper(Context context) {
-        this.mContext = context;
-        this.myPreference = new MyPreference(context);
-    }
 
-    public JsonHelper(Context context, String key) {
+
+    private JsonHelper(Context context) {
         this.mContext = context;
         this.myPreference = new MyPreference(context);
         this.mDecode = new Decode("by_MATICS_studio", key);
         // this.absExercise = new ArrayList<>();
     }
 
-    public static JsonHelper newInstance(Context context, String key) {
+    public static synchronized JsonHelper  newInstance(Context context) {
         if (mHelper == null) {
-            mHelper = new JsonHelper(context, key);
+            mHelper = new JsonHelper(context);
         }
         return mHelper;
     }
@@ -132,87 +133,88 @@ public class JsonHelper {
 
 
     public HashMap<Integer, ProgramObject> getAllCategoryHashMap() {
-        HashMap<Integer, ProgramObject> hashMap = new HashMap<>();
+        if (programHashMap == null){
+            programHashMap = new HashMap<>();
+            String langCode = getLocaleApp();
+            String fileName;
+            fileName = "programs/all_program_" + langCode ;
+            String jsonString = "";
+            if (isAssetExists(fileName)) {
+                //jsonString = loadJSONFromAsset(fileName);
+                byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), fileName);
+                //  jsonString = Decoder.getAllData(mContext.getAssets(), fileName);
+                jsonString = new String(decode, StandardCharsets.UTF_8);
 
-        String langCode = getLocaleApp();
-        String fileName;
-        fileName = "programs/all_program_" + langCode ;
-        String jsonString = "";
-        if (isAssetExists(fileName)) {
-            //jsonString = loadJSONFromAsset(fileName);
-            byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), fileName);
-            //  jsonString = Decoder.getAllData(mContext.getAssets(), fileName);
-            jsonString = new String(decode, StandardCharsets.UTF_8);
+            } else {
+                // jsonString = loadJSONFromAsset("programs/all_program_en.json");
+                byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), "programs/all_program_en");
+                //  jsonString = Decoder.getAllData(mContext.getAssets(), fileName);
+                jsonString = new String(decode, StandardCharsets.UTF_8);
+            }
 
-        } else {
-           // jsonString = loadJSONFromAsset("programs/all_program_en.json");
-            byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), "programs/all_program_en");
-            //  jsonString = Decoder.getAllData(mContext.getAssets(), fileName);
-            jsonString = new String(decode, StandardCharsets.UTF_8);
+            Gson gson = new Gson();
+            List<ProgramObject> list = gson.fromJson(jsonString, new TypeToken<List<ProgramObject>>() {
+            }.getType());
+            for (ProgramObject pr : list
+            ) {
+                programHashMap.put(pr.getId(), pr);
+            }
         }
 
-        Gson gson = new Gson();
-        List<ProgramObject> list = gson.fromJson(jsonString, new TypeToken<List<ProgramObject>>() {
-        }.getType());
-        for (ProgramObject pr : list
-        ) {
-            hashMap.put(pr.getId(), pr);
-        }
-
-        return hashMap;
+        return programHashMap;
     }
 
     public HashMap<Integer, ExerciseObject> getHashMapExercise(int discover,int version) {
-        HashMap<Integer, ExerciseObject> hashMap = new HashMap<>();
+        if (hashMapExercises == null || discover != currentDiscover) {
+            hashMapExercises = new HashMap<>();
 
-        String langCode = getLocaleApp();
-        String fileName;
-        String baseUrl;
-        if (discover == 0) {
-            baseUrl = "i/language/";
-        } else {
-            baseUrl = mContext.getFilesDir().getPath() + "/discover/" + discover+"/"+version+"/" + "/language/";
-        }
-        fileName = baseUrl + langCode;
-        String jsonString = "";
-
-//            String[] urls = mContext.getResources().getStringArray(R.array.arr_vi_di);
-        //  String decryptJson = mDecode.decrypt(jsonString);
-
-        try {
+            String langCode = getLocaleApp();
+            String fileName;
+            String baseUrl;
             if (discover == 0) {
-                if (isAssetExists(fileName)) {
-                    byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), fileName);
-                    jsonString = new String(decode, StandardCharsets.UTF_8);
-                } else {
-                    byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), baseUrl + "en");
-                    jsonString = new String(decode, StandardCharsets.UTF_8);
-                }
+                baseUrl = "i/language/";
             } else {
-                if (existsData(fileName)) {
-                    byte[] decode = Decoder.decryptInput(fileName);
-                    jsonString = new String(decode, StandardCharsets.UTF_8);
+                baseUrl = mContext.getFilesDir().getPath() + "/discover/" + discover+"/"+version+"/" + "/language/";
+            }
+            fileName = baseUrl + langCode;
+            String jsonString = "";
+
+            try {
+                if (discover == 0) {
+                    if (isAssetExists(fileName)) {
+                        byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), fileName);
+                        jsonString = new String(decode, StandardCharsets.UTF_8);
+                    } else {
+                        byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), baseUrl + "en");
+                        jsonString = new String(decode, StandardCharsets.UTF_8);
+                    }
                 } else {
-                    byte[] decode = Decoder.decryptInput(baseUrl + "en");
-                    jsonString = new String(decode, StandardCharsets.UTF_8);
+                    if (existsData(fileName)) {
+                        byte[] decode = Decoder.decryptInput(fileName);
+                        jsonString = new String(decode, StandardCharsets.UTF_8);
+                    } else {
+                        byte[] decode = Decoder.decryptInput(baseUrl + "en");
+                        jsonString = new String(decode, StandardCharsets.UTF_8);
+                    }
                 }
-            }
-            Gson gson = new Gson();
-            List<ExerciseObject> list = gson.fromJson(jsonString, new TypeToken<List<ExerciseObject>>() {
-            }.getType());
-            for (ExerciseObject exe : list
-            ) {
-                hashMap.put(exe.getId(), exe);
-            }
+                Gson gson = new Gson();
+                List<ExerciseObject> list = gson.fromJson(jsonString, new TypeToken<List<ExerciseObject>>() {
+                }.getType());
+                for (ExerciseObject exe : list
+                ) {
+                    hashMapExercises.put(exe.getId(), exe);
+                }
 
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
 //        Gson gson = new Gson();
 //        list = gson.fromJson(decryptJson, new TypeToken<List<ExerciseObject>>() {}.getType());
 
-        return hashMap;
+        return hashMapExercises;
     }
 
 
@@ -276,7 +278,6 @@ public class JsonHelper {
                 jsonArray = new JSONArray(readFileFromData(fileName));
             } else if (discover == 0) {
                 if (!existsData(baseUrl) || myPreference.getVersionPlan(fileName) < VERSION_DAY_PLAN) {
-
                     byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), baseUrl);
                     String json = new String(decode, StandardCharsets.UTF_8);
                     jsonArray = new JSONArray(json);
@@ -518,6 +519,17 @@ public class JsonHelper {
             e.printStackTrace();
         }
         return productObjects;
+    }
+    public void resetData() {
+        if (hashMapExercises != null) {
+            hashMapExercises.clear();
+            hashMapExercises = null;
+
+        }
+        if (programHashMap != null) {
+            programHashMap.clear();
+            programHashMap = null;
+        }
     }
 
 }
