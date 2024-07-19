@@ -509,13 +509,10 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                         tickPlayer.release();
                     }
                     tickPlayer = MediaPlayer.create(this, R.raw.beep);
-<<<<<<< HEAD
-                    if (tickPlayer!= null) tickPlayer.start();
-=======
+
                     if (tickPlayer != null) {
                         tickPlayer.start();
                     }
->>>>>>> 666f42ddb7dbbb64e6cf360ac25c42adf32b52df
                 }
             } else {
                 if (timeLeft == getActionObjectCurrent().time / 2) {
@@ -529,13 +526,9 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                         tickPlayer.release();
                     }
                     tickPlayer = MediaPlayer.create(this, R.raw.tick);
-<<<<<<< HEAD
-                    if (tickPlayer!= null) tickPlayer.start();
-=======
                     if (tickPlayer != null) {
                         tickPlayer.start();
                     }
->>>>>>> 666f42ddb7dbbb64e6cf360ac25c42adf32b52df
                 }
             }
 
