@@ -121,6 +121,7 @@ public class ExerciseObject {
     }
 
     public Boolean getAlternation() {
+        if (alternation == null) return false;
         return alternation;
     }
 
@@ -169,6 +170,7 @@ public class ExerciseObject {
     }
 
     public String getMuscle() {
+        if (muscle == null) return "";
         return muscle;
     }
 

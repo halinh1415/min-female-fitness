@@ -2,6 +2,8 @@ package mint.woman.female.workout.common.data;
 
 
 
+import android.content.Context;
+
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.PlanObject;
@@ -22,13 +24,15 @@ public class DemoDataProvider extends AbstractDemoDataProvider {
     private int index;
     private int max;
     private JsonHelper mJsonHelper;
+    private Context mContext;
     HashMap<Integer, ExerciseObject> hashMap;
     List<ExerciseObject> allExercises;
     int discover = 0;
     int version = 1001;
 
-    public DemoDataProvider(JsonHelper jsonHelper, int discover, int version) {
-        this.mJsonHelper = jsonHelper;
+    public DemoDataProvider(Context context, int discover, int version) {
+        this.mContext = context;
+        this.mJsonHelper = JsonHelper.newInstance(mContext);
         this.version = version;
         hashMap = mJsonHelper.getHashMapExercise(discover, version);
         mData = new ArrayList<>();
@@ -37,12 +41,15 @@ public class DemoDataProvider extends AbstractDemoDataProvider {
 
     public void setData(String fileName, int day) {
         mData = mJsonHelper.getListPlan(fileName, discover, version);
-        allExercises = mJsonHelper.getAllExercise(discover, version);
         index = day;
         actionObjectList = new ArrayList<>();
         if (day < mData.size()) {
             max = mData.get(index).mActionList.size();
-            if (mData.get(day).getRule() != null && allExercises!= null) {
+            if (mData.get(day).getRule() != null) {
+                allExercises = mJsonHelper.getAllExercise(discover, version);
+                if (allExercises == null){
+                    actionObjectList.addAll(mData.get(day).mActionList);
+                }
                 max = mData.get(day).getRule().getValue();
                 boolean[] map = new boolean[1000];
                 while (actionObjectList.size() < max) {

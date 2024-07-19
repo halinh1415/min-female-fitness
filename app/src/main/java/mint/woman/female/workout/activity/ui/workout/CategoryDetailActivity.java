@@ -20,7 +20,6 @@ import mint.woman.female.workout.retrofit.ApiUtils;
 
 public class CategoryDetailActivity extends AppCompatActivity {
     ActivityCategoryDetailBinding binding;
-    CategoryObject mCategoryObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,6 @@ public class CategoryDetailActivity extends AppCompatActivity {
     private void initView() {
         FitnessApplication.getApplication().getStorageCommon().category.observe(this, categoryObject -> {
             String baseUrl = "file:///android_asset/images/";
-            mCategoryObject = categoryObject;
             if (categoryObject.getFirstProgramObject().getDiscover() > 0) {
                 baseUrl = ApiUtils.BASE_URL_IMAGES;
             }
@@ -53,39 +51,38 @@ public class CategoryDetailActivity extends AppCompatActivity {
                 binding.tvDurationLevel1.setText("" + categoryObject.getProgramObjectList().get(0).getTotal() + " " + CategoryDetailActivity.this.getString(R.string.minutes));
                 binding.tvDurationLevel2.setText("" + categoryObject.getProgramObjectList().get(1).getTotal() + " " + CategoryDetailActivity.this.getString(R.string.minutes));
                 binding.tvDurationLevel3.setText("" + categoryObject.getProgramObjectList().get(2).getTotal() + " " + CategoryDetailActivity.this.getString(R.string.minutes));
+                binding.llBeginner.setOnClickListener(view -> {
+                            Intent intent2 = new Intent(CategoryDetailActivity.this, PreviewActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("PROGRAM_ID", categoryObject.getProgramObjectList().get(0).getId());
+                            bundle.putInt("DAY_NUMBER", 0);
+                            intent2.putExtras(bundle);
+                            startActivity(intent2);
+                        }
+                );
+                binding.llIntermediate.setOnClickListener(view -> {
+                            Intent intent2 = new Intent(CategoryDetailActivity.this, PreviewActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("PROGRAM_ID", categoryObject.getProgramObjectList().get(1).getId());
+                            bundle.putInt("DAY_NUMBER", 0);
+                            intent2.putExtras(bundle);
+                            startActivity(intent2);
+                        }
+                );
+                binding.llAdvanced.setOnClickListener(view -> {
+                            Intent intent2 = new Intent(CategoryDetailActivity.this, PreviewActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("PROGRAM_ID", categoryObject.getProgramObjectList().get(2).getId());
+                            bundle.putInt("DAY_NUMBER", 0);
+                            intent2.putExtras(bundle);
+                            startActivity(intent2);
+                        }
+                );
             }
+
         });
 
-        binding.llBeginner.setOnClickListener(view -> {
-                    Intent intent2 = new Intent(CategoryDetailActivity.this, PreviewActivity.class);
-                    Bundle bundle = new Bundle();
-                    //bundle.putParcelable("PLAN", mCurrentCategory);
-                    bundle.putInt("PROGRAM_ID", mCategoryObject.getProgramObjectList().get(0).getId());
-                    bundle.putInt("DAY_NUMBER", 0);
-                    intent2.putExtras(bundle);
-                    startActivity(intent2);
-                }
-        );
-        binding.llIntermediate.setOnClickListener(view -> {
-                    Intent intent2 = new Intent(CategoryDetailActivity.this, PreviewActivity.class);
-                    Bundle bundle = new Bundle();
-                    //bundle.putParcelable("PLAN", mCurrentCategory);
-                    bundle.putInt("PROGRAM_ID", mCategoryObject.getProgramObjectList().get(1).getId());
-                    bundle.putInt("DAY_NUMBER", 0);
-                    intent2.putExtras(bundle);
-                    startActivity(intent2);
-                }
-        );
-        binding.llAdvanced.setOnClickListener(view -> {
-                    Intent intent2 = new Intent(CategoryDetailActivity.this, PreviewActivity.class);
-                    Bundle bundle = new Bundle();
-                    //bundle.putParcelable("PLAN", mCurrentCategory);
-                    bundle.putInt("PROGRAM_ID", mCategoryObject.getProgramObjectList().get(2).getId());
-                    bundle.putInt("DAY_NUMBER", 0);
-                    intent2.putExtras(bundle);
-                    startActivity(intent2);
-                }
-        );
+
         binding.imBack.setOnClickListener(view -> {
             CategoryDetailActivity.this.finish();
         });
@@ -94,10 +91,6 @@ public class CategoryDetailActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (mCategoryObject == null) {
-            FitnessApplication.getApplication().getStorageCommon().category.observe(CategoryDetailActivity.this, categoryObject -> {
-                mCategoryObject = categoryObject;
-            });
-        }
+
     }
 }

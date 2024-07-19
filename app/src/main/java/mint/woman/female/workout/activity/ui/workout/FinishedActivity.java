@@ -154,8 +154,10 @@ public class FinishedActivity extends AppCompatActivity  {
         if (mCongratulationPlayer != null) mCongratulationPlayer.release();
         if (myPreference.isRingOn()) {
             mCongratulationPlayer = MediaPlayer.create(this, R.raw.cheer);
-            mCongratulationPlayer.setLooping(false);
-            mCongratulationPlayer.start();
+            if (mCongratulationPlayer != null) {
+                mCongratulationPlayer.setLooping(false);
+                mCongratulationPlayer.start();
+            }
         }
         if (!myPreference.isRated() && myPreference.getShowRate() && myPreference.openCount() % 3 == 1) {
             DialogRating dialogPreRating = new DialogRating();

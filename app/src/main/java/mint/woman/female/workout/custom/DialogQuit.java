@@ -70,6 +70,7 @@ public class DialogQuit extends DialogFragment {
     public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
         mWorkoutViewModel.setPause(false);
+        if (mListener != null) mListener.onNoQuitWorkout();
     }
 
 

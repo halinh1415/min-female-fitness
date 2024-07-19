@@ -115,24 +115,20 @@ public class ExerciseDetailActivity extends AppCompatActivity {
 
                     }
                 });
-
+                String muscle = mExerciseObject.getMuscle();
+                String[] dd = muscle.split("-");
+                Bitmap body = BitmapFactory.decodeResource(getResources(),
+                        R.drawable.img_body);
+                for (int i = 0; i < dd.length; i++) {
+                    int mus = FitnessConstUtils.getMuscle(Integer.valueOf(dd[i]),i==0);
+                    body = overlay(body,BitmapFactory.decodeResource(getResources(), mus));
+                }
+                imMuscle.setImageBitmap(body);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        Bitmap bitmap1 = ((BitmapDrawable) getResources().getDrawable(R.drawable.img_abs_1)).getBitmap();
-//
-//        Bitmap bitmap2 = ((BitmapDrawable) getResources().getDrawable(R.drawable.img_body)).getBitmap();
-//        Bitmap combine = combineImages(bitmap1,bitmap2);
-        String muscle = mExerciseObject.getMuscle();
-        String[] dd = muscle.split("-");
-        Bitmap body = BitmapFactory.decodeResource(getResources(),
-                R.drawable.img_body);
-        for (int i = 0; i < dd.length; i++) {
-            int mus = FitnessConstUtils.getMuscle(Integer.valueOf(dd[i]),i==0);
-            body = overlay(body,BitmapFactory.decodeResource(getResources(), mus));
-        }
-        imMuscle.setImageBitmap(body);
+
 
 
     }

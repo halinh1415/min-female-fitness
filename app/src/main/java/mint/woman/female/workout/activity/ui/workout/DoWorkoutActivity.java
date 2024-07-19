@@ -314,23 +314,31 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         File file = new File(fileName);
         return file.exists();
     }
+    boolean quitShow = false;
 
     @Override
     public void onBackPressed() {
         mWorkoutViewModel.setPause(true);
-        if (!mQuitDialog.isAdded()) {
-            try {
-                mQuitDialog.show(getSupportFragmentManager(), "Quit");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        } else {
+        if (!quitShow){
+            showQuitDialog();
+        }else{
             super.onBackPressed();
         }
 
 
         //  super.onBackPressed();
+    }
+    void showQuitDialog(){
+        try{
+            quitShow = true;
+            if (mQuitDialog == null){
+                mQuitDialog = new DialogQuit();
+                mQuitDialog.setQuitListener(this);
+            }
+            mQuitDialog.show(getSupportFragmentManager(), "Quit");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -477,7 +485,9 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                     tickPlayer.release();
                 }
                 tickPlayer = MediaPlayer.create(this, R.raw.tick);
-                if (tickPlayer!= null)tickPlayer.start();
+                if (tickPlayer!= null){
+                    tickPlayer.start();
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -499,7 +509,13 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                         tickPlayer.release();
                     }
                     tickPlayer = MediaPlayer.create(this, R.raw.beep);
+<<<<<<< HEAD
                     if (tickPlayer!= null) tickPlayer.start();
+=======
+                    if (tickPlayer != null) {
+                        tickPlayer.start();
+                    }
+>>>>>>> 666f42ddb7dbbb64e6cf360ac25c42adf32b52df
                 }
             } else {
                 if (timeLeft == getActionObjectCurrent().time / 2) {
@@ -513,7 +529,13 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                         tickPlayer.release();
                     }
                     tickPlayer = MediaPlayer.create(this, R.raw.tick);
+<<<<<<< HEAD
                     if (tickPlayer!= null) tickPlayer.start();
+=======
+                    if (tickPlayer != null) {
+                        tickPlayer.start();
+                    }
+>>>>>>> 666f42ddb7dbbb64e6cf360ac25c42adf32b52df
                 }
             }
 
@@ -570,8 +592,10 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                 ringPlayer.release();
             }
             ringPlayer = MediaPlayer.create(this, R.raw.start);
-            ringPlayer.setLooping(false);
-            ringPlayer.start();
+            if (ringPlayer != null) {
+                ringPlayer.setLooping(false);
+                ringPlayer.start();
+            }
         }
         endExercise = Calendar.getInstance().getTimeInMillis();
         int durationTimeTemp = (int) Math.abs((endExercise - startExercise - pauseTime) / 1000);
@@ -674,6 +698,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
 
     @Override
     public void onQuitWorkout() {
+        quitShow = false;
         mWorkoutViewModel.setPause(false);
         mHistoryItem.setEndTime(Calendar.getInstance().getTimeInMillis());
         mHistoryItem.setPassed(false);
@@ -683,13 +708,13 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         mWorkoutViewModel.insertDate(mHistoryItem.getDate());
         myPreference.setSaveProgress(mProgramObject.getId(), mDayIndex, currentExerciseCount);
         float percent = (float) currentExerciseCount / totalExercise;
-        Log.d("HAHA", "save percent =" + percent);
         myPreference.setSaveProgressPercent(mProgramObject.getId(), mDayIndex, percent);
         finish();
     }
 
     @Override
     public void onNoQuitWorkout() {
+        quitShow = false;
         mWorkoutViewModel.setPause(false);
         try {
             RestFragment restFragment = (RestFragment) getSupportFragmentManager().findFragmentByTag("Rest");

@@ -28,6 +28,7 @@ import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.PolicyActivity;
 import mint.woman.female.workout.activity.ui.sounds.SoundsActivity;
 import mint.woman.female.workout.admodule.AppOpenManager;
+import mint.woman.female.workout.utils.JsonHelper;
 import mint.woman.female.workout.utils.MyPreference;
 
 
@@ -154,6 +155,7 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
                 }
                 break;
             case "ST_LANGUAGE":
+                JsonHelper.newInstance(getContext()).resetData();
                 if (mListener != null) {
                     mListener.onLanguageChange();
                 }
