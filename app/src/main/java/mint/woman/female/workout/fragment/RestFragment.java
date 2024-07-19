@@ -107,17 +107,15 @@ public class RestFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (DoWorkoutActivity.discover == 0) {
-            Decoder.decryptToFile(getContext().getAssets(), "i/v/video_" + mActionObject.actionId, getContext().getCacheDir() + "/temp.mp4");
-        } else {
-            Decoder.decryptInputToFile(getContext().getFilesDir() + "/discover/" + DoWorkoutActivity.discover +"/"+FitnessApplication.getApplication().getVersion()+ "/v/video_" + mActionObject.actionId, getContext().getCacheDir() + "/temp.mp4");
+        try {
+            if (DoWorkoutActivity.discover == 0) {
+                Decoder.decryptToFile(getContext().getAssets(), "i/v/video_" + mActionObject.actionId, getContext().getCacheDir() + "/temp.mp4");
+            } else {
+                Decoder.decryptInputToFile(getContext().getFilesDir() + "/discover/" + DoWorkoutActivity.discover + "/" + FitnessApplication.getApplication().getVersion() + "/v/video_" + mActionObject.actionId, getContext().getCacheDir() + "/temp.mp4");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
-
-
-//        int resourceId = getContext().getResources().getIdentifier("video_" + mExerciseObject.getId(), "raw", getContext().getPackageName());
-//        if (resourceId > 0) {
-//            videoPath = "android.resource://" + getContext().getPackageName() + "/" + resourceId;
-//        }
 
         videoPath = getContext().getCacheDir() + "/temp.mp4";
         if (FileUtil.doesVideoExist(getContext(),"temp.mp4")){

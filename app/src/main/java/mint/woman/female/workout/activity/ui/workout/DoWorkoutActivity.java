@@ -318,6 +318,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     @Override
     public void onBackPressed() {
         mWorkoutViewModel.setPause(true);
+
         if (!mQuitDialog.isAdded()) {
             try {
                 mQuitDialog.show(getSupportFragmentManager(), "Quit");
@@ -477,7 +478,9 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                     tickPlayer.release();
                 }
                 tickPlayer = MediaPlayer.create(this, R.raw.tick);
-                tickPlayer.start();
+                if (tickPlayer!= null){
+                    tickPlayer.start();
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -499,7 +502,9 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                         tickPlayer.release();
                     }
                     tickPlayer = MediaPlayer.create(this, R.raw.beep);
-                    tickPlayer.start();
+                    if (tickPlayer != null) {
+                        tickPlayer.start();
+                    }
                 }
             } else {
                 if (timeLeft == getActionObjectCurrent().time / 2) {
@@ -513,7 +518,9 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                         tickPlayer.release();
                     }
                     tickPlayer = MediaPlayer.create(this, R.raw.tick);
-                    tickPlayer.start();
+                    if (tickPlayer != null) {
+                        tickPlayer.start();
+                    }
                 }
             }
 
@@ -570,8 +577,10 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                 ringPlayer.release();
             }
             ringPlayer = MediaPlayer.create(this, R.raw.start);
-            ringPlayer.setLooping(false);
-            ringPlayer.start();
+            if (ringPlayer != null) {
+                ringPlayer.setLooping(false);
+                ringPlayer.start();
+            }
         }
         endExercise = Calendar.getInstance().getTimeInMillis();
         int durationTimeTemp = (int) Math.abs((endExercise - startExercise - pauseTime) / 1000);
