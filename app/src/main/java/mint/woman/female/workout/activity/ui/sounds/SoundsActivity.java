@@ -78,7 +78,6 @@ public class SoundsActivity extends AppCompatActivity implements MusicClickListe
             @Override
             public void onResponse(Call<List<MusicItem>> call, Response<List<MusicItem>> response) {
                 if (response.isSuccessful()){
-                    Log.d("HAHA","music list: "+response.body().toString());
                     hideDialog();
                     musicAdapter.setMusicItemList(response.body());
                 }
