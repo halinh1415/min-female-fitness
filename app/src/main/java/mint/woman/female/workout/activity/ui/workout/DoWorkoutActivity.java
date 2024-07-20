@@ -508,6 +508,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                         tickPlayer.release();
                     }
                     tickPlayer = MediaPlayer.create(this, R.raw.beep);
+
                     if (tickPlayer != null) {
                         tickPlayer.start();
                     }
