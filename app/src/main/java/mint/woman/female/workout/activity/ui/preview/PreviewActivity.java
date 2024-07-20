@@ -657,24 +657,31 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
     }
     LoadingDialogFragment loadingDialog;
 
+    boolean isShowLoading = false;
     void showDialog() {
         try {
-            if (loadingDialog == null) {
-                loadingDialog = new LoadingDialogFragment();
+            if (!isShowLoading) {
+                if (loadingDialog == null) {
+                    loadingDialog = new LoadingDialogFragment();
+                }
+                isShowLoading = true;
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                loadingDialog.show(fragmentManager, "loading_dialog");
             }
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            loadingDialog.show(fragmentManager, "loading_dialog");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     void showDownloadDialog() {
         try {
-            if (loadingDialog == null) {
-                loadingDialog = LoadingDialogFragment.newInstance("download.json",getString(R.string.downloading));
+            if (!isShowLoading) {
+                if (loadingDialog == null) {
+                    loadingDialog = LoadingDialogFragment.newInstance("download.json", getString(R.string.downloading));
+                }
+                isShowLoading = true;
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                loadingDialog.show(fragmentManager, "loading_dialog");
             }
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            loadingDialog.show(fragmentManager, "loading_dialog");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -682,6 +689,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
 
     void hideDialog() {
         try {
+            isShowLoading = false;
             if (loadingDialog != null) {
                 loadingDialog.dismiss();
             }
