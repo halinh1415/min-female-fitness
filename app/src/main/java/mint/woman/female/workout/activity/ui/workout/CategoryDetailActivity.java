@@ -33,6 +33,7 @@ public class CategoryDetailActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void initView() {
         FitnessApplication.getApplication().getStorageCommon().category.observe(this, categoryObject -> {
+            if (categoryObject == null) return;
             String baseUrl = "file:///android_asset/images/";
             if (categoryObject.getFirstProgramObject().getDiscover() > 0) {
                 baseUrl = ApiUtils.BASE_URL_IMAGES;
