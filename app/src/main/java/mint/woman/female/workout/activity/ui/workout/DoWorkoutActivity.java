@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 
@@ -334,7 +335,9 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                 mQuitDialog = new DialogQuit();
                 mQuitDialog.setQuitListener(this);
             }
-            mQuitDialog.show(getSupportFragmentManager(), "Quit");
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.executePendingTransactions();
+            mQuitDialog.show(fragmentManager, "Quit");
         }catch (Exception e){
             e.printStackTrace();
         }

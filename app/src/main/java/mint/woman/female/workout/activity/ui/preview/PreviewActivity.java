@@ -666,6 +666,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                 }
                 isShowLoading = true;
                 FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.executePendingTransactions();
                 loadingDialog.show(fragmentManager, "loading_dialog");
             }
         } catch (Exception e) {
@@ -680,6 +681,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                 }
                 isShowLoading = true;
                 FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.executePendingTransactions();
                 loadingDialog.show(fragmentManager, "loading_dialog");
             }
         } catch (Exception e) {
