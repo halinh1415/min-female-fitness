@@ -116,7 +116,6 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
             totalExercise = getArguments().getInt("total");
             mExerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(DoWorkoutActivity.discover,DoWorkoutActivity.version).get(mActionObject.actionId);
         }
-        setRetainInstance(false);
         mWorkoutViewModel = new ViewModelProvider(getActivity()).get(WorkoutViewModel.class);
         path = getContext().getCacheDir() + "/temp.mp4";
         myPreference = new MyPreference(getContext());
@@ -138,6 +137,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         if (mExerciseObject == null){
             mListener.onFinishReady();
+            return;
         }
         REP = mActionObject.time;
         if (mExerciseObject.getAlternation() && mActionObject.unit.isEmpty()) {
