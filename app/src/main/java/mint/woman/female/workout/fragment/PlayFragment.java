@@ -119,15 +119,8 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         setRetainInstance(false);
         mWorkoutViewModel = new ViewModelProvider(getActivity()).get(WorkoutViewModel.class);
         path = getContext().getCacheDir() + "/temp.mp4";
-//        int resourceId = getContext().getResources().getIdentifier("video_" + mExerciseObject.getId(), "raw", getContext().getPackageName());
-//        if (resourceId > 0) {
-//            path = "android.resource://" + getContext().getPackageName() + "/" + resourceId;
-//        }
         myPreference = new MyPreference(getContext());
-        REP = mActionObject.time;
-        if (mExerciseObject.getAlternation() && mActionObject.unit.isEmpty()) {
-            REP = mActionObject.time / 2;
-        }
+
 
     }
 
@@ -143,7 +136,13 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        if (mExerciseObject == null){
+            mListener.onFinishReady();
+        }
+        REP = mActionObject.time;
+        if (mExerciseObject.getAlternation() && mActionObject.unit.isEmpty()) {
+            REP = mActionObject.time / 2;
+        }
         mTotalTime = mActionObject.time;
         mSpeed.setText("" + myPreference.getSpeed() + "x");
         mVideoView.setVideoURI(Uri.parse(path));
