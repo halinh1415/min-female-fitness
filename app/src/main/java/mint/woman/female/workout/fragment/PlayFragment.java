@@ -121,7 +121,6 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
             crashlytics.setCustomKey("ACTION_ID", mActionObject.actionId);
             crashlytics.setCustomKey("TIME", mActionObject.time);
         }
-        setRetainInstance(false);
         mWorkoutViewModel = new ViewModelProvider(getActivity()).get(WorkoutViewModel.class);
         path = getContext().getCacheDir() + "/temp.mp4";
         myPreference = new MyPreference(getContext());
@@ -143,6 +142,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         if (mExerciseObject == null){
             mListener.onFinishReady();
+            return;
         }
         REP = mActionObject.time;
         if (mExerciseObject.getAlternation() && mActionObject.unit.isEmpty()) {
