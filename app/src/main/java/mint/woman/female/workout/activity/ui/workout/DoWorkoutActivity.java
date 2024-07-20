@@ -27,7 +27,6 @@ import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.main.YogaActivity;
 import mint.woman.female.workout.activity.ui.report.ReportActivity;
-import mint.woman.female.workout.activity.ui.sounds.SoundsActivity;
 import mint.woman.female.workout.custom.DialogQuit;
 import mint.woman.female.workout.custom.ProgressLineView;
 import mint.woman.female.workout.fragment.PlayFragment;
