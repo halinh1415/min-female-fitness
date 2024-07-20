@@ -30,6 +30,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
+
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.count.CountManagerActivity;
@@ -115,6 +117,9 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
             progress = getArguments().getInt("progress");
             totalExercise = getArguments().getInt("total");
             mExerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(DoWorkoutActivity.discover,DoWorkoutActivity.version).get(mActionObject.actionId);
+            FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
+            crashlytics.setCustomKey("ACTION_ID", mActionObject.actionId);
+            crashlytics.setCustomKey("TIME", mActionObject.time);
         }
         setRetainInstance(false);
         mWorkoutViewModel = new ViewModelProvider(getActivity()).get(WorkoutViewModel.class);

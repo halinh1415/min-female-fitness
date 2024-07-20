@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
@@ -168,6 +169,8 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             mDayIndex = mBundle.getInt("DAY_NUMBER", 0);
             currentExerciseCount = mBundle.getInt("PROGRESS", 0);
             actionObjectList = mBundle.getParcelableArrayList("ACTION_LIST");
+            FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
+            crashlytics.setCustomKey("ACTION_SIZE", actionObjectList.size());
         }
         discover = mProgramObject.getDiscover();
         hashMap = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(discover, mProgramObject.getVersion());

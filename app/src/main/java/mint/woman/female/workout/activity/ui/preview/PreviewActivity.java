@@ -49,6 +49,7 @@ import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 
 import mint.woman.female.workout.FitnessApplication;
@@ -208,6 +209,11 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
             tvWorkoutIntro.setText(htmlContent);
             mWorkoutDescription.setText(mProgramObject.getDescription());
             setTitle(mProgramObject.getName().toUpperCase());
+            FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
+            crashlytics.setCustomKey("PROGRAM_ID", mProgramObject.getId());
+            crashlytics.setCustomKey("VERSION", mProgramObject.getVersion());
+            crashlytics.setCustomKey("PROGRAM_DAY", mIndexDay);
+            crashlytics.setCustomKey("LANGUAGE", myPreference.getLanguage());
             mPreviewViewModel.getDownloadStatus().observe(PreviewActivity.this, downloadStatus -> {
                 switch (downloadStatus) {
                     case DONE:

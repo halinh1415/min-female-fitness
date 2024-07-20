@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.minfitness.decode.Decoder;
 
 import butterknife.BindView;
@@ -90,7 +91,11 @@ public class RestFragment extends Fragment implements View.OnClickListener {
             mRestTime = getArguments().getInt("rest");
             mCurrentTime = mRestTime;
             exerciseProgressCount = getArguments().getString("count");
+            FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
+            crashlytics.setCustomKey("ACTION_ID", mActionObject.actionId);
+            crashlytics.setCustomKey("TIME", mActionObject.time);
         }
+
 
         myPreference = new MyPreference(getContext());
     }
