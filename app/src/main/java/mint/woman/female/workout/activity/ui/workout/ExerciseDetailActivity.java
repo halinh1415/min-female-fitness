@@ -21,6 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.minfitness.decode.Decoder;
 
 import mint.woman.female.workout.FitnessApplication;
@@ -84,7 +85,8 @@ public class ExerciseDetailActivity extends AppCompatActivity {
                 } else {
                     Decoder.decryptInputToFile(getFilesDir() + "/discover/" +FitnessApplication.getApplication().getDiscover()+"/"+FitnessApplication.getApplication().getVersion()  + "/v/video_" + actionId, getCacheDir() + "/temp.mp4");
                 }
-
+                FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
+                crashlytics.setCustomKey("ACTION_ID", actionId);
 
                 mExerciseName.setText(mExerciseObject.getName());
 
