@@ -191,11 +191,12 @@
             android:layout_margin="@dimen/_10sdp"
             android:orientation="vertical">
 
-            <Button
+            <TextView
                 android:id="@+id/btn_rate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_margin="5dp"
+                android:gravity="center"
                 android:background="@drawable/background_button_bound"
                 android:text="@string/txt_rate"
                 android:textColor="@color/White" />
@@ -203,8 +204,9 @@
             <Button
                 android:id="@+id/btn_close"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_margin="5dp"
+                android:gravity="center"
                 android:background="@drawable/background_text_workout"
                 android:text="@string/txt_later_rate"
                 android:textColor="@color/colorAccent"

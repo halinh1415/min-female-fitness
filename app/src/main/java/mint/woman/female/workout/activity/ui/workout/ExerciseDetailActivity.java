@@ -9,7 +9,10 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -20,6 +23,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.tabs.TabLayout;
 import com.minfitness.decode.Decoder;
 
@@ -28,12 +33,15 @@ import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
 import mint.woman.female.workout.common.adapter.VideoDemoAdapter;
 import mint.woman.female.workout.custom.CustomViewPager;
+import mint.woman.female.workout.model.Customfields;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,6 +66,9 @@ public class ExerciseDetailActivity extends AppCompatActivity {
     VideoDemoAdapter mAdapter;
     MyPreference myPreference;
     Boolean flagAds = false;
+    ExecutorService executor = Executors.newSingleThreadExecutor();
+    Handler handler = new Handler(Looper.getMainLooper());
+    Bitmap body;
     int actionId = 0;
 
     @Override
@@ -80,16 +91,16 @@ public class ExerciseDetailActivity extends AppCompatActivity {
                 actionId = mBundle.getInt("actionId");
                 mExerciseObject = FitnessApplication.getApplication().getHashMapExercise().get(actionId);
                 if (FitnessApplication.getApplication().getDiscover() == 0) {
-                    Decoder.decryptToFile(getAssets(),"i/v/video_" + actionId,getCacheDir() + "/temp.mp4");
+                    Decoder.decryptToFile(getAssets(), "i/v/video_" + actionId, getCacheDir() + "/temp.mp4");
                 } else {
-                    Decoder.decryptInputToFile(getFilesDir() + "/discover/" +FitnessApplication.getApplication().getDiscover()+"/"+FitnessApplication.getApplication().getVersion()  + "/v/video_" + actionId, getCacheDir() + "/temp.mp4");
+                    Decoder.decryptInputToFile(getFilesDir() + "/discover/" + FitnessApplication.getApplication().getDiscover() + "/" + FitnessApplication.getApplication().getVersion() + "/v/video_" + actionId, getCacheDir() + "/temp.mp4");
                 }
 
 
                 mExerciseName.setText(mExerciseObject.getName());
 
                 //mBenefits.setText(mExerciseObject.getBenefits());
-                setTitle( mExerciseObject.getName());
+                setTitle(mExerciseObject.getName());
 
                 mExerciseDescription.setText(mExerciseObject.getIntroduce());
 
@@ -115,29 +126,65 @@ public class ExerciseDetailActivity extends AppCompatActivity {
 
                     }
                 });
-                String muscle = mExerciseObject.getMuscle();
-                String[] dd = muscle.split("-");
-                Bitmap body = BitmapFactory.decodeResource(getResources(),
-                        R.drawable.img_body);
-                for (int i = 0; i < dd.length; i++) {
-                    int mus = FitnessConstUtils.getMuscle(Integer.valueOf(dd[i]),i==0);
-                    body = overlay(body,BitmapFactory.decodeResource(getResources(), mus));
+                Customfields customfields = mExerciseObject.getCustomfields();
+                if (customfields == null) {
+                    return;
                 }
+                ChipGroup chipGroup = findViewById(R.id.chipGroup);
+                for (String major : customfields.getMuscleMajor()) {
+                    Chip chip = (Chip) LayoutInflater.from(this).inflate(R.layout.chip_item, chipGroup, false);
+
+                    int resId = FitnessConstUtils.getMuscleId(Integer.parseInt(major));
+                    if (resId >0){
+                        chip.setText(getString(resId));
+                        chipGroup.addView(chip);
+                    }
+
+                }
+                for (String minor : customfields.getMuscleMinor()) {
+                    Chip chip = (Chip) LayoutInflater.from(this).inflate(R.layout.chip_item, chipGroup, false);
+                    chip.setChipIconResource(R.drawable.ic_red_2);
+                    int resId = FitnessConstUtils.getMuscleId(Integer.parseInt(minor));
+                    if (resId >0){
+                        chip.setText(getString(resId));
+                        chipGroup.addView(chip);
+                    }
+                }
+                body = BitmapFactory.decodeResource(getResources(),
+                        R.drawable.img_body);
+
                 imMuscle.setImageBitmap(body);
+                executor.execute(() -> {
+                    body = BitmapFactory.decodeResource(getResources(), R.drawable.img_body);
+                    for (String major : customfields.getMuscleMajor()) {
+                        int mus = FitnessConstUtils.getMuscle(Integer.parseInt(major), true);
+                        body = overlay(body, BitmapFactory.decodeResource(getResources(), mus));
+
+                    }
+                    for (String minor : customfields.getMuscleMinor()) {
+                        int mus = FitnessConstUtils.getMuscle(Integer.parseInt(minor), false);
+                        body = overlay(body, BitmapFactory.decodeResource(getResources(), mus));
+                    }
+                    handler.post(() -> {
+                        imMuscle.setImageBitmap(body);
+                    });
+                });
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
 
-
     }
+
     public Bitmap overlay(Bitmap bmp1, Bitmap bmp2) {
         Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());
         Canvas canvas = new Canvas(bmOverlay);
         canvas.drawBitmap(bmp1, new Matrix(), null);
         canvas.drawBitmap(bmp2, 0, 0, null);
-        return bmOverlay; }
+        return bmOverlay;
+    }
+
     private Bitmap combineImages(Bitmap bitmap1, Bitmap bitmap2) {
 
         int width = Math.max(bitmap1.getWidth(), bitmap2.getWidth());

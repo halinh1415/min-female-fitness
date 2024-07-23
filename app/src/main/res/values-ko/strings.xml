@@ -1,5 +1,5 @@
 <resources report_center_title="보고서" OK="확인" challenge="챌린지" beginner="초급" intermediate="중급" advanced="상급" today="오늘" female="여성" male="남성" pay_monthly="월간" yearly="연간" rp_syn_with_google_fit="Google 피트니스 동기화" close="닫기" minutes="분" recipes_breakfast="아침식사" recipes_snack="간식" recipes_lunch="점심식사" recipes_dinner="저녁식사" weeks="주" tab_discover="탐험" explore_more="더 보기" save="저장하기" td_next="다음" what_your_gender="성별이 무엇인가요?" how_old="당신의 나이는?" continue_text="계속" td_v_half_time="하프타임" explore_tag_new="신규" replace="교체" replace_with="다음 운동과 대체" current="현재" download="다운로드" retry="재시도" td_each_side="양쪽" belly="배" arm="팔" ass="엉덩이" focus_part="집중 부위가 어디인가요?" countdown="카운트다운" no_counting="카운팅 없음" tempo_counting="템포 &amp; 카운팅" td_mute="무음" sound="소리" cancel_via_google_play="Google Play를 통해 언제든지 취소 가능." free_7_days_trial_then_xx_year="무료 7일 체험, 후 %s/연" abbr_x_mth_gpt="%s/월" iap_only_x_per_mth_gpt="월 %s만" iap_only_x_per_week="단 %s/주에" price_per_year="%s/연" money_per_month="월/%s" change_start_today="오늘부터 바꾸세요!" premium_price_save_2="%s\n할인 " iap_discount_card_title_gpt="모든 프리미엄 기능에 액세스하세요">
-    <string name="app_name" translatable="false">여성 운동</string>
+    <string name="app_name" translatable="false">여성 피트니스 - 여성 운동</string>
     <string name="txt_rate" translatable="false">우리를 평가해 주세요</string>
     <string name="txt_action_settings">설정</string>
     <string name="txt_very_severely_underweight">매우 심각한 저체중</string>
@@ -113,7 +113,7 @@
     <string name="txt_this_week">이번 주</string>
     <string name="rp_syn_with_google_fit">Google 피트니스 동기화</string>
     <string name="txt_not_remind">다시 알림 안함</string>
-    <string name="close">닫다</string>
+    <string name="close">닫기</string>
     <string name="recipes_breakfast">아침</string>
     <string name="recipes_snack">간식</string>
     <string name="recipes_lunch">점심</string>
@@ -213,7 +213,7 @@
     <string name="txt_description_onboard_3">당신을 통제할 수 있는 피트니스 앱을 찾아보세요. 귀하가 초보자이든 노련한 프로이든 이 플랫폼은 귀하의 속도, 선호도 및 목표에 맞춰 조정됩니다. 유연하고 직관적이며 사용자 친화적이므로 이제 거실을 최고의 체육관으로 만들고 피트니스 여정을 나만의 것으로 만들 시간입니다.</string>
     <string name="txt_description_onboard_4">웰빙을 향한 길에서 서로를 지원하는 활기찬 여성 커뮤니티에 참여하세요. 귀하의 여정을 이해하는 네트워크 내에서 성과를 공유하고, 조언을 구하고, 영감을 얻으세요. 피트니스는 단지 육체적인 힘에 관한 것이 아니라 우리가 서로에게서 얻는 힘에 관한 것이기 때문입니다.</string>
     <string name="txt_description_onboard_5">신체 활동을 뛰어넘는 피트니스 여행을 떠나보세요. 이 앱은 권한 부여를 위한 촉매제로서, 귀하의 힘, 탄력성 및 웰빙을 포용하도록 권장합니다. 당신의 집을 피트니스의 안식처로 바꾸고 이 앱을 가장 건강하고 행복하며 가장 힘차게 살아가는 삶의 가이드로 삼으세요.</string>
-    <string name="what_your_gender">성별은 무엇입니까?</string>
+    <string name="what_your_gender">성별이 무엇인가요?</string>
     <string name="how_old">몇 살이에요?</string>
     <string name="txt_user_setup_description">운동 결과를 높이는 데 도움이 되도록 더 나은 정보를 알려주세요.</string>
     <string name="txt_how_long_workout">매일 얼마나 오랫동안 운동할 수 있나요?</string>
@@ -246,7 +246,7 @@
     <string name="replace_with">다음 운동과 대체</string>
     <string name="current">현재</string>
     <string name="download">다운로드</string>
-    <string name="retry">다시 해 보다</string>
+    <string name="retry">재시도</string>
     <string name="td_each_side">양쪽</string>
 <string name="belly">배</string>
     <string name="arm">팔</string>
@@ -318,4 +318,20 @@
     <string name="explore_tag_hot">핫</string>
     <string name="downloading">다운로드 중...</string>
     <string name="loading">로딩 중…</string>
+    <string name="abs">복근</string>
+    <string name="traps">승모근</string>
+    <string name="triceps">삼두근</string>
+    <string name="biceps">이두박근</string>
+    <string name="forearms">팔뚝</string>
+    <string name="shoulders">어깨</string>
+    <string name="chest">가슴</string>
+    <string name="leg">다리</string>
+    <string name="glutes">둔근</string>
+    <string name="quadriceps">사두근</string>
+    <string name="hamstrings">햄스트링</string>
+    <string name="back">등</string>
+    <string name="calves">장딴지근</string>
+    <string name="lower_back">허리</string>
+    <string name="adductors">내전근</string>
+    <string name="neck">목</string>
     </resources>

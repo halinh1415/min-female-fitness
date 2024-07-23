@@ -1,5 +1,5 @@
 <resources report_center_title="Báo cáo" OK="OK" challenge="Thử thách" beginner="Người bắt đầu" intermediate="Trung bình" advanced="Nâng cao" today="Hôm nay" female="Nữ" male="Nam" pay_monthly="Hàng tháng" yearly="Hàng năm" rp_syn_with_google_fit="Đồng bộ vào Google Fit" close="ĐÓNG" recipes_breakfast="Bữa ăn sáng" recipes_snack="Bữa ăn nhẹ" recipes_lunch="Bữa trưa" recipes_dinner="Bữa tối" weeks="Tuần" tab_discover="Khám phá" explore_more="Thêm" save="Lưu" minutes="Phút" td_next="Tiếp theo" what_your_gender="Giới tính của bạn là gì?" how_old="Bạn bao nhiêu tuổi?" continue_text="Tiếp tục" td_v_half_time="Nửa thời gian" explore_tag_new="Mới" replace="Thay thế" replace_with="Thay thế bằng" current="Hiện tại" download="Tải về" retry="Thử lại" td_each_side="Mỗi bên" belly="Bụng" arm="Cánh tay" ass="Mông" focus_part="Phần tập trung của bạn là gì?" countdown="Đếm ngược" no_counting="Không đếm" tempo_counting="Nhịp độ &amp; Đếm" td_mute="Tắt tiếng" sound="Âm thanh" cancel_via_google_play="Hủy bất kỳ lúc nào qua Google Play." free_7_days_trial_then_xx_year="Dùng thử 7 ngày miễn phí, sau đó %s/năm" abbr_x_mth_gpt="%s/tháng" iap_only_x_per_mth_gpt="Chỉ %s/tháng" iap_only_x_per_week="chỉ có %s/tuần" price_per_year="%s/Năm" money_per_month="%s/tháng" change_start_today="Thay đổi của bạn bắt đầu từ hôm nay!" premium_price_save_2="Giảm \n%s" iap_discount_card_title_gpt="Truy cập tất cả các tính năng cao cấp">
-    <string name="app_name" translatable="false">tập luyện nữ</string>
+    <string name="app_name" translatable="false">Tập luyện cho nữ</string>
     <string name="txt_rate" translatable="false">Đánh giá chúng tôi</string>
     <string name="txt_action_settings">Cài đặt</string>
     <string name="txt_very_severely_underweight">Thiếu cân rất trầm trọng</string>
@@ -73,14 +73,14 @@
     <string name="txt_meal_plan">Kế hoạch bữa ăn</string>
     <string name="txt_completed">Hoàn thành</string>
     <string name="txt_donate_coffee">Mời một tách cà phê cho nhà phát triển</string>
-    <string name="OK">Được rồi</string>
+    <string name="OK">OK</string>
     <string name="txt_cancel">Hủy bỏ</string>
     <string name="txt_create_reminder">Nhắc nhở bản thân tập luyện hàng ngày</string>
     <string name="txt_rm_everyday">Hằng ngày</string>
     <string name="challenge">Thử thách</string>
     <string name="beginner">Người bắt đầu</string>
-    <string name="intermediate">Trung cấp</string>
-    <string name="advanced">Trình độ cao</string>
+    <string name="intermediate">Trung bình</string>
+    <string name="advanced">Nâng cao</string>
     <string name="txt_recommend_app">Đề xuất ứng dụng</string>
     <string name="txt_my_custom_workout">Phong tục</string>
     <string name="txt_select_exercise">Lựa chọn bài tập</string>
@@ -97,8 +97,8 @@
     <string name="txt_age">Tuổi</string>
     <string name="txt_gender">Giới tính</string>
     <string name="txt_choose_your_info">Chọn thông tin của bạn</string>
-    <string name="female">Nữ giới</string>
-    <string name="male">Nam giới</string>
+    <string name="female">Nữ</string>
+    <string name="male">Nam</string>
     <string name="txt_ad_attribution">Quảng cáo</string>
     <string name="pay_monthly">Hàng tháng</string>
     <string name="yearly">Hàng năm</string>
@@ -111,7 +111,7 @@
     <string name="txt_go_premium">Đi trả phí</string>
     <string name="txt_watch_video">Xem video</string>
     <string name="txt_this_week">Tuần này</string>
-    <string name="rp_syn_with_google_fit">Đồng bộ hóa với google fit</string>
+    <string name="rp_syn_with_google_fit">Đồng bộ vào Google Fit</string>
     <string name="txt_not_remind">Không nhắc lại</string>
     <string name="close">Đóng</string>
     <string name="recipes_breakfast">Bữa sáng</string>
@@ -134,7 +134,7 @@
     <string name="weeks">Tuần</string>
     <string name="txt_daily">Hằng ngày</string>
     <string name="tab_discover">Phát hiện</string>=
-    <string name="explore_more">Xem thêm</string>
+    <string name="explore_more">Thêm</string>
     <string name="txt_for_home_workout">Để tập luyện tại nhà</string>
     <string name="txt_saved_money">Tiết kiệm</string>
     <string name="txt_all_exercise">Tất cả các bài tập</string>
@@ -245,16 +245,16 @@
     <string name="txt_challenge_7x4">Thử thách 7x4</string>
     <string name="replace">Thay thế</string>
     <string name="replace_with">Thay bằng</string>
-    <string name="current">Hiện hành</string>
-    <string name="download">Tải xuống</string>
-    <string name="retry">Thử lại</string>
+    <string name="current">Hiện tại</string>
+    <string name="download">Tải về</string>
+    <string name="retry">Thử lại</string>
     <string name="td_each_side">Mỗi bên</string>
     <string name="belly">Bụng</string>
-    <string name="arm">Cánh tay</string>
+    <string name="arm">CÁNH TAY</string>
     <string name="ass">mông</string>
     <string name="thigh">Đùi</string>
     <string name="focus_part">Phần trọng tâm của bạn là gì?</string>
-    <string name="full_body">Toàn cơ thể</string>
+    <string name="full_body">Toàn thân</string>
     <string name="txt_start_day">Bắt đầu từ ngày</string>
     <string name="txt_choose_day">Chọn một ngày:</string>
     <string name="txt_set_progress">Đặt tiến độ</string>
@@ -314,8 +314,24 @@
     <string name="txt_7_minutes">7 phút</string>
     <string name="reach_goal_fast">Nhanh</string>
     <string name="seven_min_get_fit_des">Chỉ với 7 phút mỗi ngày, tập luyện nhanh chóng và hiệu quả có thể nâng cao thể lực và sức khỏe của bạn. Giữ dáng và giảm số cân thừa đó!</string>
-    <string name="upper_body_stretching_short_des">Duỗi thẳng cánh tay, vai, ngực và lưng. Nới lỏng cơ bắp và tăng tính linh hoạt.</string>
-    <string name="explore_tag_hot">Nóng</string>
-    <string name="downloading">Đang tải xuống</string>
-    <string name="loading">Đang tải...</string>
+    <string name="upper_body_stretching_short_des">Duỗi cánh tay, vai, ngực và lưng. Nới lỏng cơ bắp và cải thiện tính linh hoạt.</string>
+    <string name="explore_tag_hot">Hấp dẫn</string>
+    <string name="downloading">Đang tải xuống...</string>
+    <string name="loading">Đang tải …</string>
+    <string name="abs">Bụng</string>
+    <string name="traps">Cơ cầu vai</string>
+    <string name="triceps">Cơ tay sau</string>
+    <string name="biceps">Cơ tay trước</string>
+    <string name="forearms">Cẳng tay</string>
+    <string name="shoulders">Vai</string>
+    <string name="chest">Ngực</string>
+    <string name="leg">Chân</string>
+    <string name="glutes">Cơ mông</string>
+    <string name="quadriceps">Cơ đùi trước</string>
+    <string name="hamstrings">Cơ đùi sau</string>
+    <string name="back">Lưng</string>
+    <string name="calves">Cơ bắp chân</string>
+    <string name="lower_back">Lưng dưới</string>
+    <string name="adductors">Cơ đùi trong</string>
+    <string name="neck">Cổ</string>
 </resources>

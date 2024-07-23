@@ -48,7 +48,7 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         findPreference("TTS_INSTALL_VOICE").setOnPreferenceClickListener(this);
         //findPreference("SYNC_GOOGLE_FIT").setOnPreferenceClickListener(this);
         findPreference("ST_REMINDER").setOnPreferenceClickListener(this);
-        findPreference("ST_YOUTUBE").setOnPreferenceClickListener(this);
+        //findPreference("ST_YOUTUBE").setOnPreferenceClickListener(this);
         Preference music = findPreference("BACK_GROUND_MUSIC");
         music.setSummary(MyPreference.newInstance(getContext()).getMusicName());
         findPreference("BACK_GROUND_MUSIC").setOnPreferenceClickListener(this);

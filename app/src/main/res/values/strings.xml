@@ -328,4 +328,20 @@
     <string name="explore_tag_hot">Hot</string>
     <string name="downloading">Downloading</string>
     <string name="loading">Loading...</string>
+    <string name="abs">Abs</string>
+    <string name="traps">Traps</string>
+    <string name="triceps">Triceps</string>
+    <string name="biceps">Biceps</string>
+    <string name="forearms">Forearms</string>
+    <string name="shoulders">Shoulders</string>
+    <string name="chest">Chest</string>
+    <string name="leg">Leg</string>
+    <string name="glutes">Glutes</string>
+    <string name="quadriceps">Quadriceps</string>
+    <string name="hamstrings">Hamstrings</string>
+    <string name="back">Back</string>
+    <string name="calves">Calves</string>
+    <string name="lower_back">Lower back</string>
+    <string name="adductors">Adductors</string>
+    <string name="neck">Neck</string>
 </resources>

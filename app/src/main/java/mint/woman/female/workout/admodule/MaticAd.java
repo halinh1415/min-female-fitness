@@ -219,18 +219,16 @@ public class MaticAd {
                         // The mInterstitialAd reference will be null until
                         // an ad is loaded.
 
-                        maticAdCallBack.onInterstitialLoad(interstitialAd);
-                        Log.i(TAG, "onAdLoaded");
+                        mInterNormal = interstitialAd;
+                        maticAdCallBack.onInterstitialLoaded(interstitialAd);
+
                     }
 
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        // Handle the error
-                        Log.d(TAG, loadAdError.toString());
                         maticAdCallBack.onAdFailedToLoad(loadAdError);
                     }
                 });
-
 
     }
 
@@ -248,7 +246,7 @@ public class MaticAd {
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                         super.onAdLoaded(interstitialAd);
                         mInterNormal = interstitialAd;
-                        maticAdCallBack.onInterstitialLoad(interstitialAd);
+                        maticAdCallBack.onInterstitialLoaded(interstitialAd);
                         Log.i(TAG, "loadAds Inter Normal onAdLoaded");
                     }
 
@@ -295,6 +293,67 @@ public class MaticAd {
 
     }
 
+    public void loadInterstitialAd3Alternative(Activity activity, String idInterHigh, String idInterMedium, String idInterNormal, MaticAdCallBack maticAdCallBack) {
+        this.idInterHigh = idInterHigh;
+        this.idInterMedium = idInterMedium;
+        this.idInterNormal = idInterNormal;
+        mInterHigh = null;
+        mInterNormal = null;
+        mInterMedium = null;
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        InterstitialAd.load(activity, idInterHigh, adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                super.onAdLoaded(interstitialAd);
+                mInterHigh = interstitialAd;
+                maticAdCallBack.onInterstitialLoaded(interstitialAd);
+
+
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                InterstitialAd.load(activity, idInterMedium, adRequest, new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        super.onAdLoaded(interstitialAd);
+                        mInterMedium = interstitialAd;
+                        maticAdCallBack.onInterstitialLoaded(interstitialAd);
+
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        super.onAdFailedToLoad(loadAdError);
+                        InterstitialAd.load(activity, idInterNormal, adRequest,
+                                new InterstitialAdLoadCallback() {
+                                    @Override
+                                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                        super.onAdLoaded(interstitialAd);
+                                        mInterNormal = interstitialAd;
+                                        maticAdCallBack.onInterstitialLoaded(interstitialAd);
+
+                                    }
+
+                                    @Override
+                                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                        // Handle the error
+                                        maticAdCallBack.onAdFailedToLoad(loadAdError);
+
+                                    }
+                                });
+                    }
+                });
+
+            }
+        });
+
+
+
+
+    }
     void showDialog(Activity activity) {
 
         try {

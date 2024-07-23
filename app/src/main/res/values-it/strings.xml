@@ -1,5 +1,5 @@
 <resources report_center_title="Resoconto" OK="OK" challenge="Sfida" beginner="Principiante" intermediate="INTERMEDIO" advanced="AVANZATO" today="Oggi" female="Donna" male="Uomo" pay_monthly="Mensile" yearly="Annuale" rp_syn_with_google_fit="Sincronizza to Google Fit" close="CHIUDI" minutes="Minuti" recipes_breakfast="Colazione" recipes_snack="Merenda" recipes_lunch="Pranzo" recipes_dinner="Cena" weeks="Settim." tab_discover="Scopri" explore_more="Altro" save="Salva" td_next="Prossimo" what_your_gender="Di che sesso sei?" how_old="Quanti anni hai?" continue_text="Continua" td_v_half_time="metà tempo" explore_tag_new="Nuovo" replace="Cambia" replace_with="SOSTITUISCI CON" current="Attuale" download="il Download" retry="Riprova" td_each_side="Ciascun lato" belly="Pancia" arm="Braccio" ass="Glutei" focus_part="Su cosa ti vuoi concentrare?" countdown="Countdown" no_counting="Nessun conteggio" tempo_counting="Ritmo e conteggio" td_mute="Silenzioso" sound="Suono" cancel_via_google_play="Annulla quando vuoi su Google Play." free_7_days_trial_then_xx_year="Gratis 7 giorni di prova, poi %s/anno" abbr_x_mth_gpt="%s/mese" iap_only_x_per_mth_gpt="Solo %s/mese" iap_only_x_per_week="Soli %s/settim." price_per_year="%s/Anno" money_per_month="%s/mese" change_start_today="Inizia a cambiare oggi stesso!" premium_price_save_2="%sdi \nsconto " iap_discount_card_title_gpt="Ottieni accesso a tutte le funzionalità premium">
-    <string name="app_name" translatable="false">Allenamento femminile</string>
+    <string name="app_name" translatable="false">Fitness Femminile - Allenamento Donne</string>
     <string name="txt_rate" translatable="false">Valutaci</string>
     <string name="txt_action_settings">Impostazioni</string>
     <string name="txt_very_severely_underweight">Molto gravemente sottopeso</string>
@@ -113,7 +113,7 @@
     <string name="txt_this_week">Questa settimana</string>
     <string name="rp_syn_with_google_fit">Sincronizza to Google Fit</string>
     <string name="txt_not_remind">Non ricordarlo di nuovo</string>
-    <string name="close">Vicino</string>
+    <string name="close">Chiudi</string>
     <string name="recipes_breakfast">Colazione</string>
     <string name="recipes_snack">Merenda</string>
     <string name="recipes_lunch">Pranzo</string>
@@ -213,7 +213,7 @@
     <string name="txt_description_onboard_3">Scopri un\'app per il fitness che ti dà il controllo. che tu sia un principiante o un professionista esperto, questa piattaforma si adatta al tuo ritmo, alle tue preferenze e ai tuoi obiettivi. flessibile, intuitivo e facile da usare, è il momento di rendere il tuo salotto la palestra definitiva e il tuo percorso di fitness unicamente tuo.</string>
     <string name="txt_description_onboard_4">Unisciti a una vivace comunità di donne che si sostengono a vicenda nel percorso verso il benessere. condividi i risultati, chiedi consigli e trova ispirazione all\'interno di una rete che comprende il tuo viaggio. perché il fitness non è solo una questione di forza fisica, ma riguarda la forza che otteniamo gli uni dagli altri.</string>
     <string name="txt_description_onboard_5">Intraprendi un viaggio di fitness che va oltre l\'aspetto fisico. questa app è un catalizzatore di empowerment, incoraggiandoti ad abbracciare la tua forza, resilienza e benessere. trasforma la tua casa in un santuario del fitness e lascia che questa app sia la tua guida per una vita vissuta nel modo più sano, felice e potente.</string>
-    <string name="what_your_gender">Qual è il tuo genere?</string>
+    <string name="what_your_gender">Di che sesso sei?</string>
     <string name="how_old">Quanti anni hai?</string>
     <string name="txt_user_setup_description">Facci sapere meglio per aiutarti a migliorare i risultati del tuo allenamento</string>
     <string name="txt_how_long_workout">Per quanto tempo puoi allenarti ogni giorno?</string>
@@ -253,7 +253,7 @@
     <string name="ass">Culo</string>
     <string name="thigh">Cosce</string>
     <string name="focus_part">Su cosa ti vuoi concentrare?</string>
-    <string name="full_body">Tutto il corpo</string>
+    <string name="full_body">TUTTO IL CORPO</string>
     <string name="txt_start_day">Inizia dal giorno</string>
     <string name="txt_choose_day">Scegli un giorno:</string>
     <string name="txt_set_progress">Imposta l\'avanzamento</string>
@@ -272,7 +272,7 @@
     <string name="txt_count_down_info_3">Tieni traccia del conteggio per controllare il ritmo e completare l\'allenamento entro il limite di tempo</string>
     <string name="sound">Suono</string>
 <string name="no_counting">Nessun conteggio</string>
-    <string name="minutes">minuti</string>
+    <string name="minutes">Minuti</string>
     <string name="save">Salva</string>
     <string name="cancel_via_google_play">Annulla quando vuoi su Google Play.</string>
     <string name="free_7_days_trial_then_xx_year">Gratis 7 giorni di prova, poi %s/anno</string>
@@ -318,4 +318,20 @@
     <string name="explore_tag_hot">Più richiesto</string>
     <string name="downloading">Download in corso...</string>
     <string name="loading">Caricamento in corso…</string>
+    <string name="abs">Addominali</string>
+    <string name="traps">Trapezio</string>
+    <string name="triceps">Tricipite</string>
+    <string name="biceps">Bicipite</string>
+    <string name="forearms">Avambracci</string>
+    <string name="shoulders">Spalle</string>
+    <string name="chest">Torace</string>
+    <string name="leg">Gambe</string>
+    <string name="glutes">Glutei</string>
+    <string name="quadriceps">Quadricipite</string>
+    <string name="hamstrings">Bicipite femorale</string>
+    <string name="back">Schiena</string>
+    <string name="calves">Polpacci</string>
+    <string name="lower_back">Parte bassa della schiena</string>
+    <string name="adductors">Adduttori</string>
+    <string name="neck">Collo</string>
     </resources>

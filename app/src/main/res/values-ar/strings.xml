@@ -1,5 +1,5 @@
 <resources report_center_title="التقرير" OK="موافق" challenge="تحدي" beginner="مبتدئ" intermediate="متوسط" advanced="متقدم" today="اليوم" female="أنثى" male="ذكر" pay_monthly="شهريًا" yearly="سنوي" rp_syn_with_google_fit="مزامنة مع حساب جوجل فيت" close="إغلاق" minutes="دقيقة" recipes_breakfast="الإفطار" recipes_snack="وجبة خفيفة" recipes_lunch="الغداء" recipes_dinner="العشاء" weeks="أسابيع" tab_discover="اكتشف" explore_more="أكثر" save="حفظ" td_next="التالي" what_your_gender="ما جنسك؟" how_old="ما عمرك؟" continue_text="استمرار" td_v_half_time="نصف المدة" explore_tag_new="جديد" replace="استبدال" replace_with="استبدال بـ" current="الحالي" download="تنزيل" retry="إعادة محاولة" td_each_side="كل جانب" belly="البطن" arm="الذراع" ass="ردف" focus_part="ما الجزء الذي تريدين التركيز عليه؟" countdown="العد التنازلي" no_counting="بدون عدّ" tempo_counting="الوتيرة والعدّ" td_mute="صامت" sound="صوت" cancel_via_google_play="إلغاء في أي وقت عبر Google Play." free_7_days_trial_then_xx_year="مجانًا تجربة 7 أيام، ثم تصبح مقابل %s اً في سنة" abbr_x_mth_gpt="%s/شهر" iap_only_x_per_mth_gpt="فقط %s/شهر" iap_only_x_per_week="%s/أسبوع فقط" price_per_year="%s اً في السنة" money_per_month="%s/شهر" change_start_today="ستبدئي تغيير شكل جسمك اليوم!" premium_price_save_2="%s\nخصم " iap_discount_card_title_gpt="الحصول على وصول إلى جميع الميزات بريميوم">
-    <string name="app_name" translatable="false">تجريب الإناث</string>
+    <string name="app_name" translatable="false">اللياقة البدنية للسيدات - تمارين رياضية للسيدات</string>
     <string name="txt_rate" translatable="false">قيمنا</string>
     <string name="txt_action_settings">إعدادات</string>
     <string name="txt_very_severely_underweight">نقص الوزن الشديد جداً</string>
@@ -113,7 +113,7 @@
     <string name="txt_this_week">هذا الاسبوع</string>
     <string name="rp_syn_with_google_fit">مزامنة مع حساب جوجل فيت</string>
     <string name="txt_not_remind">لا أذكر مرة أخرى</string>
-    <string name="close">يغلق</string>
+    <string name="close">إغلاق</string>
     <string name="recipes_breakfast">إفطار</string>
     <string name="recipes_snack">وجبة خفيفة</string>
     <string name="recipes_lunch">غداء</string>
@@ -213,7 +213,7 @@
     <string name="txt_description_onboard_3">اكتشف تطبيقًا للياقة البدنية يتيح لك التحكم. سواء كنت مبتدئًا أو محترفًا متمرسًا، فإن هذه المنصة تتكيف مع سرعتك وتفضيلاتك وأهدافك. مرنة وبديهية وسهلة الاستخدام، حان الوقت لجعل غرفة المعيشة الخاصة بك صالة الألعاب الرياضية المثالية ورحلة اللياقة البدنية الخاصة بك فريدة من نوعها.</string>
     <string name="txt_description_onboard_4">انضمي إلى مجتمع نابض بالحياة من النساء اللواتي يدعمن بعضهن البعض على طريق العافية. شارك الإنجازات، واطلب النصيحة، وابحث عن الإلهام ضمن شبكة تتفهم رحلتك. لأن اللياقة البدنية لا تتعلق فقط بالقوة البدنية، بل تتعلق بالقوة التي نكتسبها من بعضنا البعض.</string>
     <string name="txt_description_onboard_5">انطلق في رحلة لياقة بدنية تتجاوز المستوى الجسدي. يعد هذا التطبيق بمثابة حافز للتمكين، ويشجعك على احتضان قوتك ومرونتك ورفاهيتك. قم بتحويل منزلك إلى ملاذ للياقة البدنية، ودع هذا التطبيق يكون دليلك لحياة تعيشها في أفضل حالاتها، وأكثر صحة وسعادة وتمكينًا.</string>
-    <string name="what_your_gender">ما هو جنسك؟</string>
+    <string name="what_your_gender">ما جنسك؟</string>
     <string name="how_old">كم عمرك؟</string>
     <string name="txt_user_setup_description">أخبرنا بما هو أفضل لك للمساعدة في تعزيز نتائج التمرين</string>
     <string name="txt_how_long_workout">كم من الوقت يمكنك تجريب كل يوم؟</string>
@@ -246,7 +246,7 @@
     <string name="replace_with">استبدال بـ</string>
     <string name="current">الحالي</string>
     <string name="download">تنزيل</string>
-    <string name="retry">أعد المحاولة</string>
+    <string name="retry">إعادة المحاولة</string>
     <string name="td_each_side">كل جانب</string>
 <string name="belly">البطن</string>
     <string name="arm">الذراع</string>
@@ -272,7 +272,7 @@
     <string name="txt_count_down_info_3">تتبع العد للتحكم في الوتيرة وإكمال التمرين خلال الوقت المحدد</string>
     <string name="sound">صوت</string>
 <string name="no_counting">لا يوجد عد</string>
-    <string name="minutes">دقائق</string>
+    <string name="minutes">دقيقة</string>
     <string name="save">حفظ</string>
     <string name="cancel_via_google_play">إلغاء في أي وقت عبر Google Play.</string>
     <string name="free_7_days_trial_then_xx_year">مجانًا تجربة 7 أيام، ثم تصبح مقابل %s اً في سنة</string>
@@ -318,4 +318,20 @@
     <string name="explore_tag_hot">شائع</string>
     <string name="downloading">جاري التحميل</string>
     <string name="loading">تحميل…</string>
+    <string name="abs">عضلات البطن</string>
+    <string name="traps">الترابس</string>
+    <string name="triceps">العضلة العضدية الثلاثية الخلفية (تراي)</string>
+    <string name="biceps">العضلة العضدية الثنائية الأمامية (باي)</string>
+    <string name="forearms">الساعدان</string>
+    <string name="shoulders">الكتفين</string>
+    <string name="chest">الصدر</string>
+    <string name="leg">الساقين</string>
+    <string name="glutes">العضلات الألوية</string>
+    <string name="quadriceps">العضلة الرباعية الفخذية الأمامية</string>
+    <string name="hamstrings">عضلات باطن الركبة</string>
+    <string name="back">الظهر</string>
+    <string name="calves">ربلات الساق</string>
+    <string name="lower_back">أسفل الظهر</string>
+    <string name="adductors">العضلات الضامة</string>
+    <string name="neck">الرقبة</string>
     </resources>

@@ -1,5 +1,5 @@
 <resources report_center_title="Rapport" OK="OK" challenge="Défi" beginner="Débutant" intermediate="INTERMÉDIAIRE" advanced="AVANCÉ" today="Auj." female="Femme" male="Homme" pay_monthly="Par mois" yearly="Annuel" rp_syn_with_google_fit="Synchroniser vers Google Fit" close="FERMER" minutes="Minutes" recipes_breakfast="Petit-déjeuner" recipes_snack="Encas" recipes_lunch="Déjeuner" recipes_dinner="Dîner" weeks="Sem." tab_discover="Découvrir" explore_more="Plus" save="Enregistrer" td_next="Prochain" what_your_gender="Quel est votre sexe ?" how_old="Quel âge avez-vous ?" continue_text="Continuer" td_v_half_time="mi temps" explore_tag_new="Nouveau" replace="Remplacer" replace_with="REMPLACER PAR" current="Actuel" download="Téléchargez" retry="Réessayer" td_each_side="Chaque côté" belly="Ventre" arm="Bras" ass="Fesse" focus_part="Sur quoi voulez-vous vous concentrer ?" countdown="Compte à rebours" no_counting="Pas de comptage" tempo_counting="Rythme et comptage" td_mute="Silencieux" sound="Sonner" cancel_via_google_play="Résiliation à tout moment via Google Play." free_7_days_trial_then_xx_year="Essai gratuit de 7 jours, puis %s/an" abbr_x_mth_gpt="%s/mois" iap_only_x_per_mth_gpt="Seulement %s/mois" iap_only_x_per_week="Seulement %s/sem." price_per_year="%s/An" money_per_month="%s/mois" change_start_today="Le changement commence dès aujourd\'hui !" premium_price_save_2="- %s" iap_discount_card_title_gpt="Accédez à toutes les fonctionnalités premium">
-    <string name="app_name" translatable="false">Entraînement féminin</string>
+    <string name="app_name" translatable="false">Fitness femme - Entraînement pour femmes</string>
     <string name="txt_rate" translatable="false">Évaluez nous</string>
     <string name="txt_action_settings">Paramètres</string>
     <string name="txt_very_severely_underweight">Très grave insuffisance pondérale</string>
@@ -202,7 +202,7 @@
     <string name="txt_kick">Coup</string>
     <string name="txt_block">Blocage et défense</string>
     <string name="txt_combo">Combo</string>
-    <string name="td_next">Suivant</string>
+    <string name="td_next">Prochain</string>
     <string name="txt_title_onboard_1">Révolutionner le fitness à domicile</string>
     <string name="txt_title_onboard_2">Entraînements sur mesure, résultats réels</string>
     <string name="txt_title_onboard_3">Votre forme physique, à votre façon</string>
@@ -246,14 +246,14 @@
     <string name="replace_with">REMPLACER PAR</string>
     <string name="current">Actuel</string>
     <string name="download">Téléchargez</string>
-    <string name="retry">Recommencez</string>
+    <string name="retry">Réessayez</string>
     <string name="td_each_side">Chaque côté</string>
 <string name="belly">Ventre</string>
     <string name="arm">Bras</string>
     <string name="ass">Bout</string>
     <string name="thigh">Cuisses</string>
     <string name="focus_part">Sur quoi voulez-vous vous concentrer ?</string>
-    <string name="full_body">Corps en entier</string>
+    <string name="full_body">CORPS COMPLET</string>
     <string name="txt_start_day">Commencer le jour</string>
     <string name="txt_choose_day">Choisissez un jour :</string>
     <string name="txt_set_progress">Définir la progression</string>
@@ -270,9 +270,9 @@
     <string name="txt_are_you_want_to_reset">Voulez-vous réinitialiser ?</string>
     <string name="txt_count_down_info_2">Ne comptez pas, entraînez-vous à votre rythme</string>
     <string name="txt_count_down_info_3">Gardez une trace du décompte pour contrôler le rythme et terminer l\'entraînement dans le temps imparti</string>
-    <string name="sound">Son</string>
+    <string name="sound">Sonner</string>
 <string name="no_counting">Pas de compte</string>
-    <string name="minutes">minutes</string>
+    <string name="minutes">Minutes</string>
     <string name="save">Sauvegarder</string>
     <string name="cancel_via_google_play">Résiliation à tout moment via Google Play.</string>
     <string name="free_7_days_trial_then_xx_year">Essai gratuit de 7 jours, puis %s/an</string>
@@ -305,7 +305,7 @@
     <string name="txt_iap_feature_info_4">Annonces gratuites pour toujours</string>
     <string name="txt_iap_feature_info_3">Plan personnalisé et mise à jour future</string>
     <string name="txt_iap_feature_info_2">Obtenez des résultats étonnants en seulement 4 semaines</string>
-<string name="training">Entraînement</string>
+<string name="training">Exercices</string>
     <string name="training_goal">Objectif d\'entraînement</string>
     <string name="random_workout">Exercices aléatoires</string>
     <string name="for_summer">Pour l\'été</string>
@@ -318,4 +318,20 @@
     <string name="explore_tag_hot">Populaire</string>
     <string name="downloading">Téléchargement...</string>
     <string name="loading">Chargement…</string>
+    <string name="abs">Abdos</string>
+    <string name="traps">Trapèze</string>
+    <string name="triceps">Triceps</string>
+    <string name="biceps">Biceps</string>
+    <string name="forearms">Avant-bras</string>
+    <string name="shoulders">Épaules</string>
+    <string name="chest">Poitrine</string>
+    <string name="leg">Jambes</string>
+    <string name="glutes">Fessier</string>
+    <string name="quadriceps">Quadriceps</string>
+    <string name="hamstrings">Ischio-jambiers</string>
+    <string name="back">Dos</string>
+    <string name="calves">Mollets</string>
+    <string name="lower_back">Bas du dos</string>
+    <string name="adductors">Adducteurs</string>
+    <string name="neck">Cou</string>
     </resources>

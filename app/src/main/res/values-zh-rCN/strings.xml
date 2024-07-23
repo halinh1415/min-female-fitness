@@ -1,5 +1,5 @@
 <resources report_center_title="报告" OK="确定" challenge="挑战" beginner="初级" intermediate="中级" advanced="高级" today="今天" female="女性" male="男性" pay_monthly="每月" yearly="每年" rp_syn_with_google_fit="同步到Google健身" close="关闭" minutes="分钟" recipes_breakfast="早餐" recipes_snack="零食" recipes_lunch="午餐" recipes_dinner="晚餐" weeks="周" tab_discover="发现" explore_more="更多" save="保存" td_next="下一个" what_your_gender="你的性别？" how_old="你的年龄？" continue_text="继续" td_v_half_time="一半时间" explore_tag_new="新" replace="替换" replace_with="替换为" current="目前" download="下载" retry="重试" td_each_side="每一边" belly="腹部" arm="手臂" ass="臀部" focus_part="您想专注于哪个部位？" countdown="倒计时" no_counting="不计数" tempo_counting="节奏&amp;计数" td_mute="静音" sound="提示音" cancel_via_google_play="随时通过Google Play取消。" free_7_days_trial_then_xx_year="免费7天试用，之后%s/年" abbr_x_mth_gpt="%s/月" iap_only_x_per_mth_gpt="仅%s/月" iap_only_x_per_week="仅需%s/周" price_per_year="每年%s" money_per_month="%s/月" change_start_today="蜕变从今天开始！" premium_price_save_2="优惠 \n%s" iap_discount_card_title_gpt="获取所有高级功能">
-    <string name="app_name" translatable="false">女性锻炼</string>
+    <string name="app_name" translatable="false">女性健身-女性锻炼</string>
     <string name="txt_rate" translatable="false">评价我们</string>
     <string name="txt_action_settings">设置</string>
     <string name="txt_very_severely_underweight">体重严重不足</string>
@@ -213,7 +213,7 @@
     <string name="txt_description_onboard_3">探索一款让您掌控一切的健身应用程序。无论您是初学者还是经验丰富的专业人士，该平台都会适应您的节奏、偏好和目标。灵活、直观且用户友好，是时候将您的客厅打造成终极健身房，让您的健身之旅独一无二。</string>
     <string name="txt_description_onboard_4">加入充满活力的女性社区，在健康之路上互相支持。在了解您的旅程的网络中分享成就、寻求建议并寻找灵感。因为健身不仅仅关乎身体力量，还关乎我们从彼此身上获得的力量。</string>
     <string name="txt_description_onboard_5">踏上超越身体的健身之旅。这个应用程序是赋权的催化剂，鼓励您拥抱自己的力量、韧性和幸福。将您的家变成健身圣地，让这个应用程序成为您过上最健康、最快乐和最有力量的生活的指南。</string>
-    <string name="what_your_gender">你的性别是什么？</string>
+    <string name="what_your_gender">你的性别？</string>
     <string name="how_old">你今年多大？</string>
     <string name="txt_user_setup_description">让我们更好地了解您，以帮助提高您的锻炼效果</string>
     <string name="txt_how_long_workout">每天可以锻炼多长时间？</string>
@@ -270,7 +270,7 @@
     <string name="txt_are_you_want_to_reset">您想重置吗？</string>
     <string name="txt_count_down_info_2">不要数数，按照自己的节奏练习</string>
     <string name="txt_count_down_info_3">跟踪计数以控制节奏并在时限内完成锻炼</string>
-    <string name="sound">声音</string>
+    <string name="sound">提示音</string>
     <string name="no_counting">没有计数</string>
     <string name="minutes">分钟</string>
     <string name="save">保存</string>
@@ -318,4 +318,20 @@
     <string name="explore_tag_hot">热门</string>
     <string name="downloading">下载中......</string>
     <string name="loading">加载中…</string>
+    <string name="abs">腹部</string>
+    <string name="traps">斜方肌</string>
+    <string name="triceps">肱三头肌</string>
+    <string name="biceps">肱二头肌</string>
+    <string name="forearms">前臂</string>
+    <string name="shoulders">肩膀</string>
+    <string name="chest">胸部</string>
+    <string name="leg">腿部</string>
+    <string name="glutes">臀肌</string>
+    <string name="quadriceps">股四头肌</string>
+    <string name="hamstrings">腘绳肌</string>
+    <string name="back">背部</string>
+    <string name="calves">小腿肌</string>
+    <string name="lower_back">腰</string>
+    <string name="adductors">内收肌</string>
+    <string name="neck">脖子</string>
     </resources>

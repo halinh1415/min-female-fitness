@@ -1,0 +1,15 @@
+<!-- res/layout/chip_item.xml -->
+<com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="false"
+    android:checkable="false"
+    app:chipIcon="@drawable/ic_red_1"
+    app:chipIconSize="12dp"
+    app:iconStartPadding="@dimen/_5sdp"
+    app:chipIconEnabled="true"
+    app:chipIconVisible="true"
+    app:closeIconVisible="false"
+    style="@style/Widget.MaterialComponents.Chip.Choice" />
