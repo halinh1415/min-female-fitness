@@ -70,6 +70,8 @@ public class DialogDemoWorkout extends DialogFragment implements View.OnClickLis
     ChipGroup chipGroup;
     @BindView(R.id.img_muscle)
     ImageView imgMuscle;
+    @BindView(R.id.cv_muscle)
+    View cvMuscle;
     private WorkoutViewModel mWorkoutViewModel;
     ExecutorService executor = Executors.newSingleThreadExecutor();
     Handler handler = new Handler(Looper.getMainLooper());
@@ -181,49 +183,54 @@ public class DialogDemoWorkout extends DialogFragment implements View.OnClickLis
         mTabLayout.setupWithViewPager(mViewPager);
         mExerciseName.setText(mExerciseObject.getName());
         mExerciseDescription.setText(mExerciseObject.getIntroduce());
-        Customfields customfields = mExerciseObject.getCustomfields();
-        if (customfields == null) {
-            return;
-        }
-
-        for (String major : customfields.getMuscleMajor()) {
-            Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_item, chipGroup, false);
-
-            int resId = FitnessConstUtils.getMuscleId(Integer.parseInt(major));
-            if (resId >0){
-                chip.setText(getString(resId));
-                chipGroup.addView(chip);
+        try {
+            Customfields customfields = mExerciseObject.getCustomfields();
+            if (customfields == null) {
+                cvMuscle.setVisibility(View.GONE);
+                return;
             }
 
-        }
-        for (String minor : customfields.getMuscleMinor()) {
-            Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_item, chipGroup, false);
-            chip.setChipIconResource(R.drawable.ic_red_2);
-            int resId = FitnessConstUtils.getMuscleId(Integer.parseInt(minor));
-            if (resId >0){
-                chip.setText(getString(resId));
-                chipGroup.addView(chip);
-            }
-        }
-        body = BitmapFactory.decodeResource(getResources(),
-                R.drawable.img_body);
-
-        imgMuscle.setImageBitmap(body);
-        executor.execute(() -> {
-            body = BitmapFactory.decodeResource(getResources(), R.drawable.img_body);
             for (String major : customfields.getMuscleMajor()) {
-                int mus = FitnessConstUtils.getMuscle(Integer.parseInt(major), true);
-                body = overlay(body, BitmapFactory.decodeResource(getResources(), mus));
+                Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_item, chipGroup, false);
+
+                int resId = FitnessConstUtils.getMuscleId(Integer.parseInt(major));
+                if (resId > 0) {
+                    chip.setText(getString(resId));
+                    chipGroup.addView(chip);
+                }
 
             }
             for (String minor : customfields.getMuscleMinor()) {
-                int mus = FitnessConstUtils.getMuscle(Integer.parseInt(minor), false);
-                body = overlay(body, BitmapFactory.decodeResource(getResources(), mus));
+                Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_item, chipGroup, false);
+                chip.setChipIconResource(R.drawable.ic_red_2);
+                int resId = FitnessConstUtils.getMuscleId(Integer.parseInt(minor));
+                if (resId > 0) {
+                    chip.setText(getString(resId));
+                    chipGroup.addView(chip);
+                }
             }
-            handler.post(() -> {
-                imgMuscle.setImageBitmap(body);
+            body = BitmapFactory.decodeResource(getResources(),
+                    R.drawable.img_body);
+
+            imgMuscle.setImageBitmap(body);
+            executor.execute(() -> {
+                body = BitmapFactory.decodeResource(getResources(), R.drawable.img_body);
+                for (String major : customfields.getMuscleMajor()) {
+                    int mus = FitnessConstUtils.getMuscle(Integer.parseInt(major), true);
+                    body = overlay(body, BitmapFactory.decodeResource(getResources(), mus));
+
+                }
+                for (String minor : customfields.getMuscleMinor()) {
+                    int mus = FitnessConstUtils.getMuscle(Integer.parseInt(minor), false);
+                    body = overlay(body, BitmapFactory.decodeResource(getResources(), mus));
+                }
+                handler.post(() -> {
+                    imgMuscle.setImageBitmap(body);
+                });
             });
-        });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public Bitmap overlay(Bitmap bmp1, Bitmap bmp2) {

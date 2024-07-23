@@ -62,6 +62,8 @@ public class ExerciseDetailActivity extends AppCompatActivity {
     FrameLayout frameNativeAds;
     @BindView(R.id.img_muscle)
     ImageView imMuscle;
+    @BindView(R.id.cv_muscle)
+    View cvMuscle;
     ExerciseObject mExerciseObject;
     VideoDemoAdapter mAdapter;
     MyPreference myPreference;
@@ -128,6 +130,7 @@ public class ExerciseDetailActivity extends AppCompatActivity {
                 });
                 Customfields customfields = mExerciseObject.getCustomfields();
                 if (customfields == null) {
+                    cvMuscle.setVisibility(View.GONE);
                     return;
                 }
                 ChipGroup chipGroup = findViewById(R.id.chipGroup);
