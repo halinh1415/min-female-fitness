@@ -49,15 +49,18 @@
         android:layout_alignParentBottom="true"
         android:gravity="center"
         android:orientation="vertical">
-        <Button
+
+        <TextView
             android:id="@+id/btnNext"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_button_bound"
-            android:text="@string/td_next"
-            android:textSize="@dimen/_14sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_margin="10dp"
-            android:textColor="@color/White" />
+            android:background="@drawable/background_button_bound"
+            android:gravity="center"
+            android:text="@string/td_next"
+            android:textAllCaps="true"
+            android:textColor="@color/White"
+            android:textSize="@dimen/_14sdp" />
 
         <FrameLayout
             android:id="@+id/layoutAdNative"

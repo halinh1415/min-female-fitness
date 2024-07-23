@@ -424,9 +424,11 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                     ringPlayer.release();
                 }
                 ringPlayer = MediaPlayer.create(this, R.raw.start);
-                ringPlayer.setVolume(0.6f, 0.6f);
-                ringPlayer.setLooping(false);
-                ringPlayer.start();
+                if (ringPlayer != null) {
+                    ringPlayer.setVolume(0.6f, 0.6f);
+                    ringPlayer.setLooping(false);
+                    ringPlayer.start();
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

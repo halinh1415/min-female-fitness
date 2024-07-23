@@ -32,7 +32,7 @@ public class MaticAdCallBack {
     public void onAdSplashReady() {
     }
 
-    public void onInterstitialLoad(@Nullable InterstitialAd interstitialAd) {
+    public void onInterstitialLoaded(@Nullable InterstitialAd interstitialAd) {
     }
 
     public void onAdClicked() {

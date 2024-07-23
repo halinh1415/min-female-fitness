@@ -26,7 +26,6 @@ public class DemoDataProvider extends AbstractDemoDataProvider {
     private JsonHelper mJsonHelper;
     private Context mContext;
     HashMap<Integer, ExerciseObject> hashMap;
-    List<ExerciseObject> allExercises;
     int discover = 0;
     int version = 1001;
 
@@ -46,10 +45,10 @@ public class DemoDataProvider extends AbstractDemoDataProvider {
         if (day < mData.size()) {
             max = mData.get(index).mActionList.size();
             if (mData.get(day).getRule() != null) {
-                allExercises = mJsonHelper.getAllExercise(discover, version);
-                if (allExercises == null){
-                    actionObjectList.addAll(mData.get(day).mActionList);
-                }
+//                allExercises = mJsonHelper.getAllExercise(discover, version);
+//                if (allExercises == null){
+//                    actionObjectList.addAll(mData.get(day).mActionList);
+//                }
                 max = mData.get(day).getRule().getValue();
                 boolean[] map = new boolean[1000];
                 while (actionObjectList.size() < max) {
@@ -57,32 +56,43 @@ public class DemoDataProvider extends AbstractDemoDataProvider {
                     int id = random.nextInt(mData.get(index).mActionList.size());
                     PlanObject.ActionObject actionObject = mData.get(index).mActionList.get(id);
                     ExerciseObject exerciseObject = hashMap.get(actionObject.actionId);
-                    int a = 1;
-                    if (!map[actionObject.actionId]) {
+
+                    if (!map[actionObject.actionId] && exerciseObject != null) {
                         map[actionObject.actionId] = true;
-                        if (exerciseObject.getImagePath().contains("left")) {
-                            String rightName = exerciseObject.getImagePath().replace("left", "right");
-                            ExerciseObject exerciseObjectRight = findPair(rightName);
-                            actionObjectList.add(actionObject.clone());
-                            if (exerciseObjectRight != null) {
-                                map[exerciseObjectRight.getId()] = true;
-                                PlanObject.ActionObject rightAction = actionObject.clone();
-                                rightAction.actionId = exerciseObjectRight.getId();
-                                actionObjectList.add(rightAction);
-                            }
-                        } else if (hashMap.get(actionObject.actionId).getImagePath().contains("right")) {
-                            String leftName = exerciseObject.getImagePath().replace("right", "left");
-                            ExerciseObject exerciseObjectLeft = findPair(leftName);
-                            if (exerciseObjectLeft != null) {
-                                map[exerciseObjectLeft.getId()] = true;
-                                PlanObject.ActionObject leftAction = actionObject.clone();
-                                leftAction.actionId = exerciseObjectLeft.getId();
+                        List<Integer> list = exerciseObject.getGroupactions();
+                        if (list!= null && !list.isEmpty()){
+                            PlanObject.ActionObject leftAction = actionObject.clone();
+                            leftAction.actionId = list.get(0);
+                            map[leftAction.actionId] = true;
+                            ExerciseObject exerciseLeft = hashMap.get(leftAction.actionId);
+                            if (exerciseLeft!= null) {
                                 actionObjectList.add(leftAction);
                             }
-                            actionObjectList.add(actionObject.clone());
-                        } else {
-                            actionObjectList.add(actionObject.clone());
                         }
+                        actionObjectList.add(actionObject.clone());
+//                        if (exerciseObject.getImagePath().contains("left")) {
+//                            String rightName = exerciseObject.getImagePath().replace("left", "right");
+//                            ExerciseObject exerciseObjectRight = findPair(rightName);
+//                            actionObjectList.add(actionObject.clone());
+//                            if (exerciseObjectRight != null) {
+//                                map[exerciseObjectRight.getId()] = true;
+//                                PlanObject.ActionObject rightAction = actionObject.clone();
+//                                rightAction.actionId = exerciseObjectRight.getId();
+//                                actionObjectList.add(rightAction);
+//                            }
+//                        } else if (hashMap.get(actionObject.actionId).getImagePath().contains("right")) {
+//                            String leftName = exerciseObject.getImagePath().replace("right", "left");
+//                            ExerciseObject exerciseObjectLeft = findPair(leftName);
+//                            if (exerciseObjectLeft != null) {
+//                                map[exerciseObjectLeft.getId()] = true;
+//                                PlanObject.ActionObject leftAction = actionObject.clone();
+//                                leftAction.actionId = exerciseObjectLeft.getId();
+//                                actionObjectList.add(leftAction);
+//                            }
+//                            actionObjectList.add(actionObject.clone());
+//                        } else {
+//                            actionObjectList.add(actionObject.clone());
+//                        }
                     }
 
                 }
@@ -97,15 +107,15 @@ public class DemoDataProvider extends AbstractDemoDataProvider {
         }
     }
 
-    private ExerciseObject findPair(String imageName) {
-        for (ExerciseObject ex : allExercises
-        ) {
-            if (ex.getImagePath().equals(imageName)) {
-                return ex;
-            }
-        }
-        return null;
-    }
+//    private ExerciseObject findPair(String imageName) {
+//        for (ExerciseObject ex : allExercises
+//        ) {
+//            if (ex.getImagePath().equals(imageName)) {
+//                return ex;
+//            }
+//        }
+//        return null;
+//    }
 
     public void resetData(String fileName) {
        // mData = mJsonHelper.getResetPlan(fileName, discover, version);

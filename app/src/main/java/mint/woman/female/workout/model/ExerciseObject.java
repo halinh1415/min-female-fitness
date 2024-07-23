@@ -51,9 +51,8 @@ public class ExerciseObject {
     private Integer strength;
     @SerializedName("qicai")
     private List<String> qicai;
-  //  @SerializedName("customfields")
-//  @SerializedName("xxx")
-  //  private String customfields;
+    @SerializedName("customfields")
+    private Customfields customfields;
     @SerializedName("tips")
     private List<Tip> tips;
     @SerializedName("groupactions")
@@ -62,10 +61,7 @@ public class ExerciseObject {
     @SerializedName("playspeeds")
     private PlaySpeeds playspeeds;
 //    @SerializedName("imgs")
-    private List<String> imgs;
-//    @SerializedName("wmimgs")
-    private List<String> wmimgs;
-//    @SerializedName("mankaluli")
+
     private float mankaluli;
 //    @SerializedName("womankaluli")
     private float womankaluli;
@@ -226,13 +222,13 @@ public class ExerciseObject {
         this.qicai = qicai;
     }
 
-//    public String getCustomfields() {
-//        return customfields;
-//    }
+    public Customfields getCustomfields() {
+        return customfields;
+    }
 
-//    public void setCustomfields(String customfields) {
-//        this.customfields = customfields;
-//    }
+    public void setCustomfields(Customfields customfields) {
+        this.customfields = customfields;
+    }
 
     public List<Tip> getTips() {
         return tips;
@@ -250,21 +246,7 @@ public class ExerciseObject {
         this.playspeeds = playspeeds;
     }
 
-    public List<String> getImgs() {
-        return imgs;
-    }
 
-    public void setImgs(List<String> imgs) {
-        this.imgs = imgs;
-    }
-
-    public List<String> getWmimgs() {
-        return wmimgs;
-    }
-
-    public void setWmimgs(List<String> wmimgs) {
-        this.wmimgs = wmimgs;
-    }
 
     public float getMankaluli() {
         return mankaluli;

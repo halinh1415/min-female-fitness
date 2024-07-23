@@ -1,5 +1,5 @@
 <resources report_center_title="Melden" OK="OK" challenge="Herausforderung" beginner="Anfänger" intermediate="FORTGESCHRITTEN" advanced="PROFI" today="Heute" female="Frau" male="Mann" pay_monthly="Monatlich" yearly="Jährlich" rp_syn_with_google_fit="Sync. mit Google Fit" close="SCHLIESSEN" minutes="Minuten" recipes_breakfast="Frühstück" recipes_snack="Snack" recipes_lunch="Mittagessen" recipes_dinner="Abendessen" weeks="Wochen" tab_discover="Entdecken" explore_more="Mehr" save="Speichern" td_next="Als Nächstes" what_your_gender="Was ist Ihr Geschlecht?" how_old="Wie alt sind Sie?" continue_text="Weiter" td_v_half_time="Halbzeit" explore_tag_new="Neu" replace="Ersetzen" replace_with="ERSETZEN MIT" current="Aktuell" download="Herunterladen" retry="Wiederholen" td_each_side="Auf jeder Seite" belly="Bauch" arm="Arm" ass="Pomuskulatur" focus_part="Um welche Zone geht es Ihnen?" countdown="Countdown" no_counting="Kein Zählen" tempo_counting="Tempo &amp; Zählen" td_mute="Stummschalten" sound="Ton" cancel_via_google_play="Jederzeit über Google Play kündigen." free_7_days_trial_then_xx_year="Kostenlose 7-tägige Testversion, danach %s/Jahr" abbr_x_mth_gpt="%s/Monat" iap_only_x_per_mth_gpt="Nur %s/Monat" iap_only_x_per_week="Nur %s/Woche" price_per_year="%s/Jahr" money_per_month="%s/Monat" change_start_today="Ihre Veränderung beginnt noch heute!" premium_price_save_2="%s\nRabatt " iap_discount_card_title_gpt="Zugriff auf alle Premium-Funktionen erhalten">
-    <string name="app_name" translatable="false">Weibliches Training</string>
+    <string name="app_name" translatable="false">Frauen Fitness - Trainingsplan für Frauen</string>
     <string name="txt_rate" translatable="false">Bewerten sie uns</string>
     <string name="txt_action_settings">Einstellungen</string>
     <string name="txt_very_severely_underweight">Sehr starkes untergewicht</string>
@@ -113,7 +113,7 @@
     <string name="txt_this_week">Diese woche</string>
     <string name="rp_syn_with_google_fit">Sync. mit Google Fit</string>
     <string name="txt_not_remind">Nicht mehr daran erinnern</string>
-    <string name="close">Schließen</string>
+    <string name="close">Schliessen</string>
     <string name="recipes_breakfast">Frühstück</string>
     <string name="recipes_snack">Snack</string>
     <string name="recipes_lunch">Mittagessen</string>
@@ -202,7 +202,7 @@
     <string name="txt_kick">Trete</string>
     <string name="txt_block">Block und verteidigung</string>
     <string name="txt_combo">Combo</string>
-    <string name="td_next">Nächste</string>
+    <string name="td_next">Als Nächstes</string>
     <string name="txt_title_onboard_1">Revolutionierung der heimfitness</string>
     <string name="txt_title_onboard_2">Maßgeschneiderte workouts, echte ergebnisse</string>
     <string name="txt_title_onboard_3">Ihre fitness, ihr weg</string>
@@ -213,7 +213,7 @@
     <string name="txt_description_onboard_3">Entdecken sie eine fitness-app, die ihnen die kontrolle gibt. egal, ob sie anfänger oder erfahrener profi sind, diese plattform passt sich ihrem tempo, ihren vorlieben und zielen an. flexibel, intuitiv und benutzerfreundlich – es ist an der zeit, ihr wohnzimmer zum ultimativen fitnessstudio und ihre fitnessreise zu ihrer einzigartigen zu machen.</string>
     <string name="txt_description_onboard_4">Treten sie einer lebendigen gemeinschaft von frauen bei, die sich gegenseitig auf dem weg zum wohlbefinden unterstützen. teilen sie erfolge, lassen sie sich beraten und finden sie inspiration in einem netzwerk, das ihre reise versteht. denn bei fitness geht es nicht nur um körperliche stärke – es geht um die kraft, die wir voneinander gewinnen.</string>
     <string name="txt_description_onboard_5">Begeben sie sich auf eine fitnessreise, die über das körperliche hinausgeht. diese app ist ein katalysator für empowerment und ermutigt sie, ihre stärke, belastbarkeit und ihr wohlbefinden zu nutzen. verwandeln sie ihr zuhause in einen zufluchtsort der fitness und lassen sie sich von dieser app zu einem gesündesten, glücklichsten und kraftvollsten leben führen.</string>
-    <string name="what_your_gender">Was ist dein geschlecht?</string>
+    <string name="what_your_gender">Was ist Ihr Geschlecht?</string>
     <string name="how_old">Wie alt bist du?</string>
     <string name="txt_user_setup_description">Lassen sie es uns besser wissen, um ihre trainingsergebnisse zu steigern</string>
     <string name="txt_how_long_workout">Wie lange kannst du jeden tag trainieren?</string>
@@ -253,7 +253,7 @@
     <string name="ass">Hintern</string>
     <string name="thigh">Oberschenkel</string>
     <string name="focus_part">Um welche Zone geht es Ihnen?</string>
-    <string name="full_body">Ganzer Körper</string>
+    <string name="full_body">GANZER KÖRPER</string>
     <string name="txt_start_day">Beginnen Sie am Tag</string>
     <string name="txt_choose_day">Wählen Sie einen Tag:</string>
     <string name="txt_set_progress">Fortschritt festlegen</string>
@@ -270,9 +270,9 @@
     <string name="txt_are_you_want_to_reset">Möchten Sie zurücksetzen?</string>
     <string name="txt_count_down_info_2">Zählen Sie nicht, üben Sie in Ihrem eigenen Tempo</string>
     <string name="txt_count_down_info_3">Behalten Sie die Zählung im Auge, um das Tempo zu kontrollieren und das Training innerhalb des Zeitlimits abzuschließen</string>
-    <string name="sound">Klang</string>
+    <string name="sound">Klingen</string>
 <string name="no_counting">Keine Zählung</string>
-    <string name="minutes">minuten</string>
+    <string name="minutes">Minuten</string>
     <string name="save">Speichern</string>
     <string name="cancel_via_google_play">Jederzeit über Google Play kündigen.</string>
     <string name="free_7_days_trial_then_xx_year">Kostenlose 7-tägige Testversion, danach %s/Jahr</string>
@@ -318,4 +318,20 @@
     <string name="explore_tag_hot">Beliebt</string>
     <string name="downloading">Download...</string>
     <string name="loading">Wird geladen…</string>
+    <string name="abs">Bauchmuskeln</string>
+    <string name="traps">Trapezmuskeln</string>
+    <string name="triceps">Trizeps</string>
+    <string name="biceps">Bizeps</string>
+    <string name="forearms">Unterarme</string>
+    <string name="shoulders">Schultern</string>
+    <string name="chest">Brust</string>
+    <string name="leg">Bein</string>
+    <string name="glutes">Pobacken</string>
+    <string name="quadriceps">Quadrizeps</string>
+    <string name="hamstrings">Hamstrings</string>
+    <string name="back">Rücken</string>
+    <string name="calves">Waden</string>
+    <string name="lower_back">Unterer Rücken</string>
+    <string name="adductors">Adduktoren</string>
+    <string name="neck">Hals</string>
     </resources>

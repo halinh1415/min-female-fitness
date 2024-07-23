@@ -1,5 +1,5 @@
 <resources report_center_title="Bildiriler" OK="TAMAM" challenge="Zorlu Görev" beginner="Başlangiç düzeyİ" intermediate="Orta düzey" advanced="Gelişmiş" today="Bugün" female="Kadın" male="Erkek" pay_monthly="Aylık" yearly="Yıllık" rp_syn_with_google_fit="Google Fit\'le eşzamanla" close="KAPAT" minutes="Dakika" recipes_breakfast="Kahvaltı" recipes_snack="Atıştırmalık" recipes_lunch="Öğle Yemeği" recipes_dinner="Akşam Yemeği" weeks="Hafta" tab_discover="Keşfet" explore_more="Daha" save="Kaydet" td_next="Sonraki" what_your_gender="Cinsiyetiniz nedir?" how_old="Kaç yaşındasınız?" continue_text="Devam Et" td_v_half_time="zamanın yarısında" explore_tag_new="Yeni" replace="Değiştir" replace_with="ŞUNUNLA DEĞİŞTİR" current="Şu an" download="Indir" retry="Yeniden Dene" td_each_side="Her İki Taraf" belly="Göbek" arm="Kol" ass="Kaba et" focus_part="Odak bölgeniz neresi?" countdown="Geri sayım" no_counting="Sayma yok" tempo_counting="Tempo ve Sayma" td_mute="Sessize Al" sound="Ses" cancel_via_google_play="Google Play\'den dilediğiniz zaman iptal edin." free_7_days_trial_then_xx_year="Ücretsiz 7 günlük deneme, sonra yıllık %s" abbr_x_mth_gpt="%s/ay" iap_only_x_per_mth_gpt="Sadece %s/ay" iap_only_x_per_week="Yalnızca %s/hafta" price_per_year="Yıllık %s" money_per_month="%s/ay" change_start_today="Değişiminiz bugün başlıyor!" premium_price_save_2="%s \nindirimli " iap_discount_card_title_gpt="Tüm premium özelliklere erişim sağlayın">
-    <string name="app_name" translatable="false">Kadın Egzersizi</string>
+    <string name="app_name" translatable="false">Kadın Egzersizi - Kadınlar İçin En Uygun Spor App</string>
     <string name="txt_rate" translatable="false">Bizi değerlendirin</string>
     <string name="txt_action_settings">Ayarlar</string>
     <string name="txt_very_severely_underweight">Çok ciddi zayıflık</string>
@@ -80,7 +80,7 @@
     <string name="challenge">Zorlu Görev</string>
     <string name="beginner">Başlangiç düzeyİ</string>
     <string name="intermediate">Orta düzey</string>
-    <string name="advanced">Gelişmiş</string>
+    <string name="advanced">Gelİşmİş</string>
     <string name="txt_recommend_app">Uygulamayı tavsiye et</string>
     <string name="txt_my_custom_workout">Gelenek</string>
     <string name="txt_select_exercise">Egzersiz seçimi</string>
@@ -113,7 +113,7 @@
     <string name="txt_this_week">Bu hafta</string>
     <string name="rp_syn_with_google_fit">Google Fit ile Eşzamanla</string>
     <string name="txt_not_remind">Tekrar hatırlatmama</string>
-    <string name="close">Kapalı</string>
+    <string name="close">Kapat</string>
     <string name="recipes_breakfast">Kahvaltı</string>
     <string name="recipes_snack">Atıştırmalık</string>
     <string name="recipes_lunch">Öğle yemeği</string>
@@ -213,7 +213,7 @@
     <string name="txt_description_onboard_3">Kontrolün sizde olmasını sağlayan bir fitness uygulamasını keşfedin. i̇ster yeni başlayan ister deneyimli bir profesyonel olun, bu platform hızınıza, tercihlerinize ve hedeflerinize uyum sağlar. esnek, sezgisel ve kullanıcı dostu, oturma odanızı en iyi spor salonuna ve fitness yolculuğunuzu benzersiz bir şekilde kendinize ait hale getirmenin zamanı geldi.</string>
     <string name="txt_description_onboard_4">Sağlıklı yaşama giden yolda birbirini destekleyen kadınların oluşturduğu canlı bir topluluğa katılın. yolculuğunuzu anlayan bir ağda başarıları paylaşın, tavsiye alın ve ilham alın. çünkü kondisyon sadece fiziksel güçle ilgili değildir; birbirimizden kazandığımız güçle de ilgilidir.</string>
     <string name="txt_description_onboard_5">Fizikselliğin ötesine geçen bir fitness yolculuğuna çıkın. bu uygulama, gücünüzü, dayanıklılığınızı ve refahınızı kucaklamanızı teşvik eden, güçlenme için bir katalizördür. evinizi bir fitness sığınağına dönüştürün ve bu uygulamanın en sağlıklı, en mutlu ve en güçlü şekilde yaşanacak bir hayat için rehberiniz olmasına izin verin.</string>
-    <string name="what_your_gender">Cinsiyetin ne?</string>
+    <string name="what_your_gender">Cinsiyetiniz nedir?</string>
     <string name="how_old">Kaç yaşındasın?</string>
     <string name="txt_user_setup_description">Egzersiz sonuçlarınızı artırmanıza yardımcı olmak için daha iyi olduğunuzu bize bildirin</string>
     <string name="txt_how_long_workout">Her gün ne kadar süre egzersiz yapabilirsiniz?</string>
@@ -246,14 +246,14 @@
     <string name="replace_with">ŞUNUNLA DEĞİŞTİR</string>
     <string name="current">Şu an</string>
     <string name="download">Indir</string>
-    <string name="retry">Yeniden dene</string>
+    <string name="retry">Tekrar dene</string>
     <string name="td_each_side">Her İki Taraf</string>
     <string name="belly">Göbek</string>
     <string name="arm">Kol</string>
     <string name="ass">popo</string>
     <string name="thigh">Uyluk</string>
     <string name="focus_part">Odak bölgeniz neresi?</string>
-    <string name="full_body">Tüm vücut</string>
+    <string name="full_body">TÜM VÜCUT</string>
     <string name="txt_start_day">Günden başla</string>
     <string name="txt_choose_day">Bir gün seçin:</string>
     <string name="txt_set_progress">İlerlemeyi ayarla</string>
@@ -272,7 +272,7 @@
     <string name="txt_count_down_info_3">Hızı kontrol etmek ve antrenmanı zaman sınırı içinde tamamlamak için sayımı takip edin</string>
     <string name="sound">Ses</string>
     <string name="no_counting">Sayılmaz</string>
-<string name="minutes">dakikada</string>
+<string name="minutes">Dakika</string>
     <string name="save">Kaydet</string>
     <string name="cancel_via_google_play">Google Play\'den dilediğiniz zaman iptal edin.</string>
     <string name="free_7_days_trial_then_xx_year">Ücretsiz 7 günlük deneme, sonra yıllık %s</string>
@@ -318,4 +318,20 @@
     <string name="explore_tag_hot">Popüler</string>
     <string name="downloading">İndiriliyor...</string>
     <string name="loading">Yükleniyor …</string>
+    <string name="abs">Karin kaslari</string>
+    <string name="traps">Trapez Kaslar</string>
+    <string name="triceps">Üç Başlı Kol Kası</string>
+    <string name="biceps">İki Başlı Kol Kası</string>
+    <string name="forearms">Ön kollar</string>
+    <string name="shoulders">Omuzlar</string>
+    <string name="chest">Göğüs</string>
+    <string name="leg">Bacak</string>
+    <string name="glutes">Kalça Kasları</string>
+    <string name="quadriceps">Dört başlı kas</string>
+    <string name="hamstrings">Diz Ardı Kirişi</string>
+    <string name="back">Arka</string>
+    <string name="calves">Baldır Kasları</string>
+    <string name="lower_back">Bel</string>
+    <string name="adductors">Addüktör Kaslar</string>
+    <string name="neck">Boyun</string>
     </resources>

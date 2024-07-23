@@ -318,4 +318,20 @@
     <string name="explore_tag_hot">Panas</string>
     <string name="downloading">Mengunduh</string>
     <string name="loading">Memuat...</string>
+<string name="abs">Abs</string>
+    <string name="traps">Perangkap</string>
+    <string name="triceps">Trisep</string>
+    <string name="biceps">Bisep</string>
+    <string name="forearms">lengan bawah</string>
+    <string name="shoulders">Bahu</string>
+    <string name="chest">Dada</string>
+    <string name="leg">Kaki</string>
+    <string name="glutes">otot bokong</string>
+    <string name="quadriceps">paha depan</string>
+    <string name="hamstrings">paha belakang</string>
+    <string name="back">Kembali</string>
+    <string name="calves">Betis</string>
+    <string name="lower_back">Punggung bawah</string>
+    <string name="adductors">adduktor</string>
+    <string name="neck">Leher</string>
 </resources>

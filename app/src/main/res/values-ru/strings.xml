@@ -1,5 +1,5 @@
 <resources report_center_title="Отчет" OK="OK" challenge="Программа" beginner="Новичок" intermediate="ПРОДОЛЖАЮЩИЙ" advanced="ПРОДВИНУТЫЙ" today="Сегодня" female="Женский" male="Мужской" pay_monthly="Месячная" yearly="Ежегодно" rp_syn_with_google_fit="Синхронизация с приложением Google" close="ЗАКРЫТЬ" minutes="Минут" recipes_breakfast="Завтрак" recipes_snack="Перекус" recipes_lunch="Обед" recipes_dinner="Ужин" weeks="Недель" tab_discover="Открытия" explore_more="Еще" save="Сохранить" td_next="СЛЕДУЮЩИЕ" what_your_gender="Какого вы пола?" how_old="Сколько вам лет?" continue_text="Продолжить" td_v_half_time="половина времени" explore_tag_new="Новинка" replace="Заменить" replace_with="ЧЕМ ЗАМЕНИТЬ" current="Текущий" download="Скачать" retry="Повторить" td_each_side="Для каждой стороны" belly="Живот" arm="Руки" ass="Ягодицы" focus_part="Над чем хотите поработать?" countdown="Отсчет" no_counting="Без счета" tempo_counting="Темп и счет" td_mute="Беззвучный режим" sound="Звук" cancel_via_google_play="Отмените когда угодно в Google Play." free_7_days_trial_then_xx_year="Бесплатно пробная версия на 7 дней, затем %s в год" abbr_x_mth_gpt="%s/месяц" iap_only_x_per_mth_gpt="Только %s/месяц" iap_only_x_per_week="Всего %s в неделя" price_per_year="%s/Год" money_per_month="%s/месяц" change_start_today="Начните меняться сегодня!" premium_price_save_2="-%s" iap_discount_card_title_gpt="Получите доступ ко всем премиум-функциям">
-    <string name="app_name" translatable="false">Женская тренировка</string>
+    <string name="app_name" translatable="false">Фитнес для женщин: женская тренировка</string>
     <string name="txt_rate" translatable="false">Оцените нас</string>
     <string name="txt_action_settings">Настройки</string>
     <string name="txt_very_severely_underweight">Очень сильно недостаточный вес</string>
@@ -113,7 +113,7 @@
     <string name="txt_this_week">На этой неделе</string>
     <string name="rp_syn_with_google_fit">Синхронизация с приложением Google</string>
     <string name="txt_not_remind">Больше не напоминать</string>
-    <string name="close">Закрывать</string>
+    <string name="close">Закрыть</string>
     <string name="recipes_breakfast">Завтрак</string>
     <string name="recipes_snack">Закуска</string>
     <string name="recipes_lunch">Обед</string>
@@ -202,7 +202,7 @@
     <string name="txt_kick">Пинать</string>
     <string name="txt_block">Блок и защита</string>
     <string name="txt_combo">Комбо</string>
-    <string name="td_next">Следующий</string>
+    <string name="td_next">СЛЕДУЮЩИЕ</string>
     <string name="txt_title_onboard_1">Революция в домашнем фитнесе</string>
     <string name="txt_title_onboard_2">Индивидуальные тренировки, реальные результаты</string>
     <string name="txt_title_onboard_3">Ваш фитнес, ваш путь</string>
@@ -246,14 +246,14 @@
     <string name="replace_with">ЧЕМ ЗАМЕНИТЬ</string>
     <string name="current">Текущий</string>
     <string name="download">Скачать</string>
-    <string name="retry">Повторить попытку</string>
+    <string name="retry">Повторить</string>
     <string name="td_each_side">Для каждой стороны</string>
 <string name="belly">Живот</string>
     <string name="arm">Руки</string>
     <string name="ass">Задница</string>
     <string name="thigh">Бедра</string>
     <string name="focus_part">Над чем хотите поработать?</string>
-    <string name="full_body">Всё тело</string>
+    <string name="full_body">ВСЁ ТЕЛО</string>
     <string name="txt_start_day">Начать с дня</string>
     <string name="txt_choose_day">Выберите день:</string>
     <string name="txt_set_progress">Установить прогресс</string>
@@ -272,7 +272,7 @@
     <string name="txt_count_down_info_3">Следите за счетом, чтобы контролировать темп и завершить тренировку в установленные сроки.</string>
     <string name="sound">Звук</string>
 <string name="no_counting">Нет счета</string>
-    <string name="minutes">минут</string>
+    <string name="minutes">Минут</string>
     <string name="save">Сохранить</string>
     <string name="cancel_via_google_play">Отмените когда угодно в Google Play.</string>
     <string name="free_7_days_trial_then_xx_year">Бесплатно пробная версия на 7 дней, затем %s в год</string>
@@ -318,4 +318,20 @@
     <string name="explore_tag_hot">Популярно</string>
     <string name="downloading">Загрузка...</string>
     <string name="loading">Загрузка…</string>
+    <string name="abs">Пресс</string>
+    <string name="traps">Трапециевидные</string>
+    <string name="triceps">Трицепсы</string>
+    <string name="biceps">Бицепсы</string>
+    <string name="forearms">Предплечья</string>
+    <string name="shoulders">Плечи</string>
+    <string name="chest">Грудь</string>
+    <string name="leg">Ног</string>
+    <string name="glutes">Ягодичные</string>
+    <string name="quadriceps">Четырехглавые</string>
+    <string name="hamstrings">Задние мышцы бедра</string>
+    <string name="back">Спина</string>
+    <string name="calves">Икроножные</string>
+    <string name="lower_back">Нижняя часть спины</string>
+    <string name="adductors">Аддукторы</string>
+    <string name="neck">Шея</string>
     </resources>
