@@ -296,9 +296,9 @@ public class PremiumActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull PremiumIntroViewHolder holder, int position) {
 
-            if (holder.iapDetail!= null){
-                holder.iapDetail.setText(String.format(getString(R.string.iap_detail_review),yearPrice,monthPrice));
-            }
+//            if (holder.iapDetail!= null){
+//                holder.iapDetail.setText(String.format(getString(R.string.iap_detail_review),yearPrice,monthPrice));
+//            }
         }
 
 

@@ -11,7 +11,7 @@
        android:layout_marginHorizontal="@dimen/_17sdp"
        android:layout_marginTop="@dimen/_20sdp"
        android:layout_marginBottom="@dimen/_50sdp"
-       android:text="@string/iap_detail_review"
+       android:text="@string/iap_detail"
        android:textColor="#9b9b9b"
        android:textSize="@dimen/_12sdp"/>
 </RelativeLayout>
