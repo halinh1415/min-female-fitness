@@ -334,4 +334,5 @@
     <string name="lower_back">Parte bassa della schiena</string>
     <string name="adductors">Adduttori</string>
     <string name="neck">Collo</string>
-    </resources>
+    <string name="txt_most_popular">Più popolare</string>
+</resources>

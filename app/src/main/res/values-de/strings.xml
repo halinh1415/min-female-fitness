@@ -334,4 +334,5 @@
     <string name="lower_back">Unterer Rücken</string>
     <string name="adductors">Adduktoren</string>
     <string name="neck">Hals</string>
-    </resources>
+    <string name="txt_most_popular">Am beliebtesten</string>
+</resources>

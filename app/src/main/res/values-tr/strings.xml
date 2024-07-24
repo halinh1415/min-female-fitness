@@ -334,4 +334,5 @@
     <string name="lower_back">Bel</string>
     <string name="adductors">Addüktör Kaslar</string>
     <string name="neck">Boyun</string>
-    </resources>
+    <string name="txt_most_popular">En popüler</string>
+</resources>

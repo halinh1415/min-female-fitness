@@ -334,4 +334,5 @@
     <string name="lower_back">Región lumbar</string>
     <string name="adductors">Aductores</string>
     <string name="neck">Cuello</string>
-    </resources>
+    <string name="txt_most_popular">Más popular</string>
+</resources>

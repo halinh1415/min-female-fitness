@@ -334,4 +334,5 @@
     <string name="lower_back">腰</string>
     <string name="adductors">内転筋</string>
     <string name="neck">首</string>
-    </resources>
+    <string name="txt_most_popular">最も人気のある</string>
+</resources>

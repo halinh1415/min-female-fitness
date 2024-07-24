@@ -71,7 +71,8 @@ public class PremiumActivity extends AppCompatActivity {
     View clFlower2;
 
     MyPreference myPreference;
-	PremiumAdapter premiumAdapter;
+    PremiumAdapter premiumAdapter;
+
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,17 +93,17 @@ public class PremiumActivity extends AppCompatActivity {
             changeTextColorOfTextViews((ViewGroup) llLifetime, selected == 0);
             changeTextColorOfTextViews((ViewGroup) llYearly, selected == 1);
             changeTextColorOfTextViews((ViewGroup) llMonthly, selected == 2);
-            if (selected == 0){
+            if (selected == 0) {
                 tvDes1.setVisibility(View.INVISIBLE);
                 tvDes2.setVisibility(View.INVISIBLE);
                 clFlower2.setBackgroundResource(R.drawable.ic_discount_2);
                 clFlower1.setBackgroundResource(R.drawable.ic_discount);
-            }else  if (selected == 1){
-                tvDes1.setVisibility(View.VISIBLE);
+            } else if (selected == 1) {
+                tvDes1.setVisibility(View.INVISIBLE);
                 tvDes2.setVisibility(View.VISIBLE);
                 clFlower2.setBackgroundResource(R.drawable.ic_discount);
                 clFlower1.setBackgroundResource(R.drawable.ic_discount_2);
-            }else {
+            } else {
                 clFlower2.setBackgroundResource(R.drawable.ic_discount);
                 clFlower1.setBackgroundResource(R.drawable.ic_discount);
                 tvDes1.setVisibility(View.INVISIBLE);
@@ -112,71 +113,71 @@ public class PremiumActivity extends AppCompatActivity {
 
         rcPremium.setAdapter(premiumAdapter);
         rcPremium.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        premiumViewModel.productSkuDetailsMap.observe(this,productDetailsMap -> {
+        premiumViewModel.productSkuDetailsMap.observe(this, productDetailsMap -> {
             ProductDetails productDetailsMonthly = productDetailsMap.get(InAppKey.PREMIUM_MONTHLY);
             Log.d("HAHA", "skuDetailsYearly check");
 
-            long yPrice ,mPrice =2;
+            long yPrice, mPrice = 2;
             int discount = 0;
             if (productDetailsMonthly != null) {
                 String monthPrice = productDetailsMonthly.getSubscriptionOfferDetails().get(0).getPricingPhases().getPricingPhaseList().get(0).getFormattedPrice();
                 mPrice = productDetailsMonthly.getSubscriptionOfferDetails().get(0).getPricingPhases().getPricingPhaseList().get(0).getPriceAmountMicros();
                 tvMonthPrice.setText(String.format(getString(R.string.abbr_x_mth_gpt), monthPrice));
                 premiumAdapter.setMonthPrice(monthPrice);
-            }
-            else {
+            } else {
                 Log.d("HAHA", "skuDetailsMonthly!= null");
                 // return;
             }
 
             ProductDetails skuDetailsYearly = productDetailsMap.get(InAppKey.PREMIUM_YEARLY);
-            if (skuDetailsYearly != null){
+            if (skuDetailsYearly != null) {
                 yPrice = getAnnualPrice(skuDetailsYearly).getPriceAmountMicros();
-                if (mPrice >0) {
+                if (mPrice > 0) {
                     discount = (int) ((12 * mPrice - yPrice) * 100 / 12 / mPrice);
                 }
-                String saleOff = ""+discount+"%";
+                String saleOff = "" + discount + "%";
                 String yPriceString = getAnnualPrice(skuDetailsYearly).getFormattedPrice();
-                tvOffYear.setText(String.format(getString(R.string.premium_price_save_2),saleOff));
-                tvDes1.setText(String.format(getString(R.string.free_7_days_trial_then_xx_year),yPriceString));
-                tvYearToMonth.setText(String.format(getString(R.string.iap_only_x_per_mth_gpt),getAnnualMonthlyPrice(skuDetailsYearly)));
-                tvYearPrice.setText(String.format(getString(R.string.txt_x_year_gpt),yPriceString));
+                tvOffYear.setText(String.format(getString(R.string.premium_price_save_2), saleOff));
+                tvDes1.setText(String.format(getString(R.string.free_7_days_trial_then_xx_year), yPriceString));
+                tvYearToMonth.setText(String.format(getString(R.string.iap_only_x_per_mth_gpt), getAnnualMonthlyPrice(skuDetailsYearly)));
+                tvYearPrice.setText(String.format(getString(R.string.txt_x_year_gpt), yPriceString));
                 premiumAdapter.setYearPrice(yPriceString);
-            }
-            else {
+            } else {
                 Log.d("HAHA", "skuDetailsYearly!= null");
             }
         });
-		    premiumViewModel.isPremium.observe(this, isPremium -> {
+        premiumViewModel.isPremium.observe(this, isPremium -> {
             if (isPremium) {
                 myPreference.setPremiumMember(true);
             } else {
                 myPreference.setPremiumMember(false);
             }
         });
-        premiumViewModel.productDetailInApps.observe(this,inAppProducts->{
+        premiumViewModel.productDetailInApps.observe(this, inAppProducts -> {
             ProductDetails productLifetime = inAppProducts.get(InAppKey.PREMIUM_LIFETIME);
-            if (productLifetime != null){
+            if (productLifetime != null) {
                 tvLifeTimePrice.setText(productLifetime.getOneTimePurchaseOfferDetails().getFormattedPrice());
             }
         });
 
     }
+
     @SuppressLint("DefaultLocale")
-    public String getAnnualMonthlyPrice(ProductDetails productDetails){
+    public String getAnnualMonthlyPrice(ProductDetails productDetails) {
         Regex regex = new Regex("[0-9.,]");
         ProductDetails.PricingPhase pricingPhase = getAnnualPrice(productDetails);
-        String currency = regex.replace(pricingPhase.getFormattedPrice(),"");
-        float priceMicro = (float)(pricingPhase.getPriceAmountMicros()/12/1000000);
-        return String.format("%s%.2f",currency,priceMicro);
+        String currency = regex.replace(pricingPhase.getFormattedPrice(), "");
+        float priceMicro = (float) (pricingPhase.getPriceAmountMicros() / 12 / 1000000);
+        return String.format("%s%.2f", currency, priceMicro);
     }
-    public ProductDetails.PricingPhase getAnnualPrice(ProductDetails productDetails){
+
+    public ProductDetails.PricingPhase getAnnualPrice(ProductDetails productDetails) {
 
         List<ProductDetails.PricingPhase> list = productDetails.getSubscriptionOfferDetails().get(0).getPricingPhases().getPricingPhaseList();
-        if (list.size() ==1){
+        if (list.size() == 1) {
             return list.get(0);
-        }else{
-            return  list.get(1);
+        } else {
+            return list.get(1);
         }
     }
 
@@ -245,6 +246,7 @@ public class PremiumActivity extends AppCompatActivity {
     void close() {
         finish();
     }
+
     @Override
     public void onBackPressed() {
         Intent intent = getIntent();
@@ -257,7 +259,7 @@ public class PremiumActivity extends AppCompatActivity {
     }
 
     class PremiumAdapter extends RecyclerView.Adapter<PremiumAdapter.PremiumIntroViewHolder> {
-        String yearPrice ="", monthPrice ="";
+        String yearPrice = "", monthPrice = "";
 
 
         public void setYearPrice(String yearPrice) {
@@ -314,12 +316,14 @@ public class PremiumActivity extends AppCompatActivity {
 
         class PremiumIntroViewHolder extends RecyclerView.ViewHolder {
             TextView iapDetail;
+
             public PremiumIntroViewHolder(@NonNull View itemView) {
                 super(itemView);
                 iapDetail = itemView.findViewById(R.id.iap_detail);
             }
         }
     }
+
     @Override
     protected void attachBaseContext(Context newBase) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(newBase);
@@ -332,6 +336,7 @@ public class PremiumActivity extends AppCompatActivity {
         super.attachBaseContext(LanguageHelper.setLanguage(newBase, lang));
 
     }
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

@@ -188,7 +188,7 @@
                     android:fontFamily="@string/roboto_medium"
                     android:gravity="center_vertical"
                     android:lines="1"
-                    android:text="@string/txt_day_free_trial"
+                    android:text="@string/txt_most_popular"
                     android:textColor="#de000000"
                     android:textSize="@dimen/_14sdp"
                     app:autoSizeMaxTextSize="@dimen/_14sdp"
@@ -375,15 +375,19 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
+        <TextView
             android:id="@+id/btn_continue"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_40sdp"
             android:layout_above="@+id/tv_des_content"
             android:layout_marginHorizontal="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_5sdp"
             android:background="@drawable/background_button_bound"
-            android:text="@string/continue_text" />
+            android:gravity="center"
+            android:textColor="@color/White"
+            android:text="@string/continue_text"
+            android:textAllCaps="true"
+            android:textSize="@dimen/_14sdp" />
         <LinearLayout
             android:id="@+id/tv_des_content"
             android:layout_width="match_parent"

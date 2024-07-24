@@ -334,4 +334,5 @@
     <string name="lower_back">Нижняя часть спины</string>
     <string name="adductors">Аддукторы</string>
     <string name="neck">Шея</string>
-    </resources>
+    <string name="txt_most_popular">Самый популярный</string>
+</resources>
