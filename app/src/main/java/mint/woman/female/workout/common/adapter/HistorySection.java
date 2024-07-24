@@ -1,7 +1,5 @@
 package mint.woman.female.workout.common.adapter;
 
-
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
@@ -31,7 +29,6 @@ import java.util.Locale;
 import io.github.luizgrp.sectionedrecyclerviewadapter.Section;
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionParameters;
 
-@SuppressLint({"DefaultLocale", "CheckResult"})
 public class HistorySection extends Section {
     private final SimpleDateFormat mFormat = new SimpleDateFormat("dd MMM, HH:mm", Locale.getDefault());
 
