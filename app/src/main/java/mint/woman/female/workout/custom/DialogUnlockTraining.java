@@ -15,18 +15,39 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.databinding.DialogUnlockTrainingBinding;
 
-public class DialogUnlockTraining extends DialogFragment implements View.OnClickListener {
+public class DialogUnlockTraining extends DialogFragment {
     private OnUnlockTrainingListener mListener;
+    DialogUnlockTrainingBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_unlock_training, container, false);
-        view.findViewById(R.id.img_back_activity).setOnClickListener(this);
-        view.findViewById(R.id.ln_go_premium).setOnClickListener(this);
-        view.findViewById(R.id.ln_watch_video).setOnClickListener(this);
-        return view;
+        binding = DialogUnlockTrainingBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        binding.imgBackActivity.setOnClickListener(view1 -> {
+            if (mListener != null) {
+                dismiss();
+                mListener.backActivity();
+            }
+        });
+        binding.lnWatchVideo.setOnClickListener(view1 -> {
+            if (mListener != null) {
+                mListener.watchVideo();
+                binding.lnWatchVideo.setEnabled(false);
+            }
+        });
+        binding.lnGoPremium.setOnClickListener(view1 -> {
+            if (mListener != null) {
+                mListener.goPremium();
+            }
+        });
     }
 
     @Override
@@ -68,36 +89,13 @@ public class DialogUnlockTraining extends DialogFragment implements View.OnClick
         if (dialog != null) {
             dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public void onCancel(DialogInterface dialogInterface) {
-                    if (mListener != null) mListener.onCancel();
-                }
+            dialog.setOnCancelListener(dialogInterface -> {
+                if (mListener != null) mListener.onCancel();
             });
         }
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.img_back_activity:
-                if (mListener != null) {
-                    dismiss();
-                    mListener.backActivity();
-                }
-                break;
-            case R.id.ln_go_premium:
-                if (mListener != null) {
-                    mListener.goPremium();
-                }
-                break;
-            case R.id.ln_watch_video:
-                if (mListener != null) {
-                    mListener.watchVideo();
-                }
-                break;
-        }
-    }
+
 
     public interface OnUnlockTrainingListener {
         void watchVideo();

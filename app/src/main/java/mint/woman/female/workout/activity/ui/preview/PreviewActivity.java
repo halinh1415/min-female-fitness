@@ -381,19 +381,20 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                 @Override
                 public void onInterstitialLoaded(@Nullable InterstitialAd interstitialAd) {
                     super.onInterstitialLoaded(interstitialAd);
-                    hideDialog();
                     showInterReward();
                 }
 
                 @Override
                 public void onAdFailedToLoad(@Nullable AdError adError) {
                     super.onAdFailedToLoad(adError);
+                    hideDialog();
                     Toast.makeText(PreviewActivity.this, "Failed to load!", Toast.LENGTH_SHORT).show();
                 }
             });
         }
     }
     public void showInterReward(){
+        hideDialog();
         MaticAd.getInstance().showPriorityInterstitialAd(PreviewActivity.this,new MaticAdCallBack(){
             @Override
             public void onNextAction() {
@@ -630,7 +631,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
             return;
         }
         mBundle.putInt("PROGRESS", saveProgress);
-        if (MaticAd.getInstance().isAvailableInter() && mProgramObject.getPremium() != 1) {
+        if (MaticAd.getInstance().isAvailableInter() && mProgramObject.getPremium() != 1 && FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.GO_BEFORE)) {
             MaticAd.getInstance().showPriorityInterstitialAd(PreviewActivity.this, new MaticAdCallBack() {
                 @Override
                 public void onNextAction() {
@@ -646,7 +647,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
     @OnClick(R.id.txt_reset)
     void reset() {
         mBundle.putInt("PROGRESS", 0);
-        if (MaticAd.getInstance().isAvailableInter()) {
+        if (MaticAd.getInstance().isAvailableInter()&& mProgramObject.getPremium() != 1 && FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.GO_BEFORE) ) {
             MaticAd.getInstance().showPriorityInterstitialAd(PreviewActivity.this, new MaticAdCallBack() {
                 @Override
                 public void onNextAction() {
@@ -793,9 +794,11 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
     @Override
     public void watchVideo() {
         showDialog();
-        loadRewardedVideoAd();
-
-
+        if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.PRO_VIDEO_REWARD)){
+            loadRewardedVideoAd();
+        }else{
+            loadInterReward();
+        }
     }
 
     ActivityResultLauncher<Intent> resultPremium = registerForActivityResult(

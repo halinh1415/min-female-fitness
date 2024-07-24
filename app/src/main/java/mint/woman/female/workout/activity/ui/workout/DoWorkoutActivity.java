@@ -29,6 +29,8 @@ import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.main.YogaActivity;
 import mint.woman.female.workout.activity.ui.report.ReportActivity;
+import mint.woman.female.workout.admodule.MaticAd;
+import mint.woman.female.workout.admodule.MaticAdCallBack;
 import mint.woman.female.workout.custom.DialogQuit;
 import mint.woman.female.workout.custom.ProgressLineView;
 import mint.woman.female.workout.fragment.PlayFragment;
@@ -709,7 +711,18 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         myPreference.setSaveProgress(mProgramObject.getId(), mDayIndex, currentExerciseCount);
         float percent = (float) currentExerciseCount / totalExercise;
         myPreference.setSaveProgressPercent(mProgramObject.getId(), mDayIndex, percent);
-        finish();
+        if (MaticAd.getInstance().isAvailableInter()){
+            MaticAd.getInstance().showPriorityInterstitialAd(DoWorkoutActivity.this,new MaticAdCallBack(){
+                @Override
+                public void onNextAction() {
+                    super.onNextAction();
+                    finish();
+                }
+            });
+        }else{
+            finish();
+        }
+
     }
 
     @Override

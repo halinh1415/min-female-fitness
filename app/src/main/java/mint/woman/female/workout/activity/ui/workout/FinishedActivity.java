@@ -18,6 +18,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.preference.PreferenceManager;
 
@@ -40,12 +41,12 @@ import com.google.android.gms.fitness.request.SessionInsertRequest;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.reminder.ReminderActivity;
+import mint.woman.female.workout.admodule.MaticAd;
+import mint.woman.female.workout.admodule.MaticAdCallBack;
 import mint.woman.female.workout.custom.DialogRating;
 import mint.woman.female.workout.custom.SelectReminderEveryDayDialog;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.model.HistoryItem;
-import mint.woman.female.workout.model.PlanObject;
-import mint.woman.female.workout.retrofit.ApiUtils;
 import mint.woman.female.workout.utils.Database;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
@@ -59,7 +60,7 @@ import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
-@SuppressLint({"NonConstantResourceId", "UseSwitchCompatOrMaterialCode"})
+
 public class FinishedActivity extends AppCompatActivity  {
 
 
@@ -74,7 +75,7 @@ public class FinishedActivity extends AppCompatActivity  {
     @BindView(R.id.txt_time_count)
     TextView txtTimeCount;
     @BindView(R.id.sw_google_fit)
-    Switch mSWGoogleFit;
+    SwitchCompat mSWGoogleFit;
     @BindView(R.id.img_finished_banner)
     ImageView mBanner;
     @BindView(R.id.txt_reminder_set)
@@ -86,7 +87,6 @@ public class FinishedActivity extends AppCompatActivity  {
     HistoryItem mHistoryItem;
     MediaPlayer mCongratulationPlayer;
     MyPreference myPreference;
-    int flagAds;
     Database mDatabase;
 
     @Override
@@ -210,15 +210,22 @@ public class FinishedActivity extends AppCompatActivity  {
 
 
 
-
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             //Home Button!
             case android.R.id.home:
-                finish();
+                if (MaticAd.getInstance().isAvailableInter()){
+                    MaticAd.getInstance().showPriorityInterstitialAd(FinishedActivity.this,new MaticAdCallBack(){
+                        @Override
+                        public void onNextAction() {
+                            super.onNextAction();
+                            finish();
+                        }
+                    });
+                }else{
+                    finish();
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -228,14 +235,7 @@ public class FinishedActivity extends AppCompatActivity  {
     @Override
     protected void onResume() {
         super.onResume();
-        if (flagAds == 1) {
-            flagAds = 0;
-            finish();
-        }
-        if (flagAds == 2) {
-            flagAds = 0;
-            goAgain();
-        }
+
     }
 
     @OnClick({R.id.btn_share,R.id.txt_feedback,R.id.txt_edit_reminder,R.id.btn_finish})
@@ -259,7 +259,17 @@ public class FinishedActivity extends AppCompatActivity  {
                 startActivity(new Intent(FinishedActivity.this, ReminderActivity.class));
                 break;
             case R.id.btn_finish:
-                finish();
+                if (MaticAd.getInstance().isAvailableInter()){
+                    MaticAd.getInstance().showPriorityInterstitialAd(FinishedActivity.this,new MaticAdCallBack(){
+                        @Override
+                        public void onNextAction() {
+                            super.onNextAction();
+                            finish();
+                        }
+                    });
+                }else{
+                    finish();
+                }
                 break;
         }
     }

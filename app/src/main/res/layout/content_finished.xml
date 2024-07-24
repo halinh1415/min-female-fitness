@@ -95,17 +95,19 @@
                     app:layout_constraintStart_toEndOf="@+id/txt_just_fine"
                     app:layout_constraintTop_toBottomOf="@id/txt_how_do_feel" />
 
-                <Button
+                <TextView
                     android:id="@+id/btn_finish"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_margin="16dp"
                     android:background="@drawable/background_button_bound"
+                    android:gravity="center"
                     android:text="@string/txt_finish"
+                    android:textAllCaps="true"
                     android:textColor="@color/White"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txt_too_easy" />
 
 
