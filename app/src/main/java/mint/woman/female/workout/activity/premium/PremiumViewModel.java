@@ -289,7 +289,7 @@ public class PremiumViewModel extends AndroidViewModel implements PurchasesUpdat
         ProductDetails productDetails = productSkuDetailsMap.getValue().get(sku);
         if (productDetails != null) {
             List<ProductDetails.SubscriptionOfferDetails> list = productDetails.getSubscriptionOfferDetails();
-            String selectedOfferToken  = list.get(1).getOfferToken();
+            String selectedOfferToken  = list.get(0).getOfferToken();
             List<BillingFlowParams.ProductDetailsParams> productDetailsParamsList1 = new ArrayList<>();
             productDetailsParamsList1.add(   BillingFlowParams.ProductDetailsParams.newBuilder()
                     // retrieve a value for "productDetails" by calling queryProductDetailsAsync()
