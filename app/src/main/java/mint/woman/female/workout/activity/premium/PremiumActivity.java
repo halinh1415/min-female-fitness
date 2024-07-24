@@ -167,7 +167,7 @@ public class PremiumActivity extends AppCompatActivity {
         Regex regex = new Regex("[0-9.,]");
         ProductDetails.PricingPhase pricingPhase = getAnnualPrice(productDetails);
         String currency = regex.replace(pricingPhase.getFormattedPrice(), "");
-        float priceMicro = (float) (pricingPhase.getPriceAmountMicros() / 12 / 1000000);
+        float priceMicro = (float) (pricingPhase.getPriceAmountMicros() / 12000000.0f);
         return String.format("%s%.2f", currency, priceMicro);
     }
 
