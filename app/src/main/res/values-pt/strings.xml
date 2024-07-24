@@ -334,4 +334,5 @@
     <string name="lower_back">Parte inferior das costas</string>
     <string name="adductors">Adutores</string>
     <string name="neck">Pescoço</string>
-    </resources>
+    <string name="txt_most_popular">Mais popular</string>
+</resources>

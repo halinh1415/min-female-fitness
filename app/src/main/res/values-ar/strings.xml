@@ -334,4 +334,5 @@
     <string name="lower_back">أسفل الظهر</string>
     <string name="adductors">العضلات الضامة</string>
     <string name="neck">الرقبة</string>
-    </resources>
+    <string name="txt_most_popular">الأكثر شعبية</string>
+</resources>

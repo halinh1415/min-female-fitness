@@ -334,4 +334,5 @@
     <string name="lower_back">허리</string>
     <string name="adductors">내전근</string>
     <string name="neck">목</string>
-    </resources>
+    <string name="txt_most_popular">가장 인기 많은</string>
+</resources>

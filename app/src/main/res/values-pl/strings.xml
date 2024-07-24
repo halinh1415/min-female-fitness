@@ -334,4 +334,5 @@
     <string name="lower_back">Dół pleców</string>
     <string name="adductors">Przywodziciele</string>
     <string name="neck">Szyja</string>
-    </resources>
+    <string name="txt_most_popular">Najbardziej popularny</string>
+</resources>

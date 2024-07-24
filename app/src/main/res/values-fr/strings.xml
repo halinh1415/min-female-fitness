@@ -334,4 +334,5 @@
     <string name="lower_back">Bas du dos</string>
     <string name="adductors">Adducteurs</string>
     <string name="neck">Cou</string>
-    </resources>
+    <string name="txt_most_popular">Le plus populaire</string>
+</resources>

@@ -334,4 +334,5 @@
     <string name="lower_back">بخش پایینی کمر</string>
     <string name="adductors">عضلات نزدیک‌کننده</string>
     <string name="neck">گردن</string>
-    </resources>
+    <string name="txt_most_popular">محبوبترین</string>
+</resources>

@@ -334,4 +334,5 @@
     <string name="lower_back">Onderrug</string>
     <string name="adductors">Adductors</string>
     <string name="neck">Nek</string>
-    </resources>
+    <string name="txt_most_popular">Meest populair</string>
+</resources>
