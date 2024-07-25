@@ -309,6 +309,44 @@ public class PremiumViewModel extends AndroidViewModel implements PurchasesUpdat
 
         return 0;
     }
+    public int launchBillingFlowYearly(Activity activity, String sku) {
+        if (!isReady()) {
+            Log.e(TAG, "launchBillingFlow: BillingClient is not ready");
+        }
+        if (productSkuDetailsMap.getValue() == null) return 1;
+        AppOpenManager.getInstance().disableAppResume();
+        ProductDetails productDetails = productSkuDetailsMap.getValue().get(sku);
+        if (productDetails != null) {
+            List<ProductDetails.SubscriptionOfferDetails> list = productDetails.getSubscriptionOfferDetails();
+            String selectedOfferToken;
+            if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.ENABLE_TRIAL)) {
+                selectedOfferToken = list.get(0).getOfferToken();
+            }else{
+                if (list.size() >1){
+                    selectedOfferToken = list.get(1).getOfferToken();
+                }else {
+                    selectedOfferToken = list.get(0).getOfferToken();
+                }
+            }
+            List<BillingFlowParams.ProductDetailsParams> productDetailsParamsList1 = new ArrayList<>();
+            productDetailsParamsList1.add(   BillingFlowParams.ProductDetailsParams.newBuilder()
+                    // retrieve a value for "productDetails" by calling queryProductDetailsAsync()
+                    .setProductDetails(productDetails)
+                    // to get an offer token, call ProductDetails.getSubscriptionOfferDetails()
+                    // for a list of offers that are available to the user
+                    .setOfferToken(selectedOfferToken)
+                    .build());
+
+            BillingFlowParams params = BillingFlowParams.newBuilder()
+                    .setProductDetailsParamsList(productDetailsParamsList1)
+                    .build();
+            BillingResult billingResult = billingClient.launchBillingFlow(activity, params);
+            int responseCode = billingResult.getResponseCode();
+            return responseCode;
+        }
+
+        return 0;
+    }
     public int launchBillingFlowInApp(Activity activity,String sku) {
         if (!isReady()) {
             Log.e(TAG, "launchBillingFlow: BillingClient is not ready");

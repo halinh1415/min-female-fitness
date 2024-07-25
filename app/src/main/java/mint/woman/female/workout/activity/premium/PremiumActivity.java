@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.billingclient.api.ProductDetails;
 import com.google.android.material.internal.EdgeToEdgeUtils;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 
 import java.util.List;
 import java.util.Locale;
@@ -33,6 +34,7 @@ import kotlin.text.Regex;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
+import mint.woman.female.workout.utils.RemoteConfigKeys;
 
 public class PremiumActivity extends AppCompatActivity {
     PremiumViewModel premiumViewModel;
@@ -65,6 +67,8 @@ public class PremiumActivity extends AppCompatActivity {
     TextView tvDes1;
     @BindView(R.id.tv_des_2)
     TextView tvDes2;
+    @BindView(R.id.tv_year2)
+    TextView tvYear2;
     @BindView(R.id.cl_flower)
     View clFlower1;
     @BindView(R.id.cl_flower_2)
@@ -99,7 +103,12 @@ public class PremiumActivity extends AppCompatActivity {
                 clFlower2.setBackgroundResource(R.drawable.ic_discount_2);
                 clFlower1.setBackgroundResource(R.drawable.ic_discount);
             } else if (selected == 1) {
-                tvDes1.setVisibility(View.INVISIBLE);
+                if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.ENABLE_TRIAL)){
+                    tvDes1.setVisibility(View.VISIBLE);
+                }else{
+                    tvDes1.setVisibility(View.INVISIBLE);
+                }
+
                 tvDes2.setVisibility(View.VISIBLE);
                 clFlower2.setBackgroundResource(R.drawable.ic_discount);
                 clFlower1.setBackgroundResource(R.drawable.ic_discount_2);
@@ -110,6 +119,11 @@ public class PremiumActivity extends AppCompatActivity {
                 tvDes2.setVisibility(View.VISIBLE);
             }
         });
+        if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.ENABLE_TRIAL)){
+            tvYear2.setText(getString(R.string.txt_day_free_trial));
+        }else {
+            tvYear2.setText(getString(R.string.txt_most_popular));
+        }
 
         rcPremium.setAdapter(premiumAdapter);
         rcPremium.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -238,7 +252,7 @@ public class PremiumActivity extends AppCompatActivity {
         } else if (premiumViewModel.getSelected().getValue() == 2) {
             premiumViewModel.launchBillingFlow(this, InAppKey.PREMIUM_MONTHLY);
         } else {
-            premiumViewModel.launchBillingFlow(this, InAppKey.PREMIUM_YEARLY);
+            premiumViewModel.launchBillingFlowYearly(this, InAppKey.PREMIUM_YEARLY);
         }
     }
 
