@@ -56,8 +56,8 @@ public class FitnessConstUtils {
                 case 15:
                 case 16:
                     return R.drawable.img_adductors_1;
-//                case 17:
-//                    return R.drawable.img_neck_1;
+                case 17:
+                    return R.drawable.img_neck_1;
             }
         }
         switch (group) {
@@ -91,8 +91,8 @@ public class FitnessConstUtils {
             case 15:
             case 16:
                 return R.drawable.img_adductors_2;
-//            case 17:
-//                return R.drawable.img_neck_2;
+            case 17:
+                return R.drawable.img_neck_2;
         }
     }
 
