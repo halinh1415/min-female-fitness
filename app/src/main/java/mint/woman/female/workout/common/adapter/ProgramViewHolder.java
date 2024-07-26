@@ -18,7 +18,7 @@ final class ProgramViewHolder extends RecyclerView.ViewHolder {
     TextView mSubTitle;
     TextView mProgressTxt;
     ProgressBar mProgressBar;
-    Button mStartBtn;
+    TextView mStartBtn;
     View mContainer;
 
     ProgramViewHolder(View itemView) {

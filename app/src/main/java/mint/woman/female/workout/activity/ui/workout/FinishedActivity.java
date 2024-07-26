@@ -105,6 +105,8 @@ public class FinishedActivity extends AppCompatActivity  {
     private void initView() {
         myPreference = new MyPreference(this);
         mSWGoogleFit.setChecked(myPreference.isSyncGoogleFit());
+        mSWGoogleFit.setVisibility(View.GONE);
+
         Bundle mBundle = getIntent().getExtras();
         mDatabase = FitnessApplication.getApplication().mDatabase;
         lottieAnimationView.setAnimation("success.json");

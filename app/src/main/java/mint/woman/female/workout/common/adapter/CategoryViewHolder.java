@@ -17,13 +17,11 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
     AppCompatTextView mProgramName;
     TextView mSubTitle;
     TextView mProgressTxt;
-    Button mStartBtn;
     View mContainer;
 
     CategoryViewHolder(View itemView) {
         super(itemView);
         mBackground = itemView.findViewById(R.id.iv_workout_bg);
-        mStartBtn = itemView.findViewById(R.id.btn_start);
         mWorkout = itemView.findViewById(R.id.iv_workout);
         mNew = itemView.findViewById(R.id.ll_workout_new);
         mProgramName = itemView.findViewById(R.id.tv_title);
