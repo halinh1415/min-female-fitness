@@ -335,7 +335,6 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
             Data progress = workInfo.getProgress();
             int value = progress.getInt("PROGRESS", 0);
             mProgressReady.setProgress(value);
-
             mProgressTxt.setText(getString(R.string.download) + "..." + value + "%");
             if (workInfo.getState() == WorkInfo.State.SUCCEEDED) {
                // hideDialog();
