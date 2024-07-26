@@ -40,6 +40,8 @@ public class DialogUnlockTraining extends DialogFragment {
         binding.lnWatchVideo.setOnClickListener(view1 -> {
             if (mListener != null) {
                 mListener.watchVideo();
+                binding.imWatch.setVisibility(View.GONE);
+                binding.pgLoading.setVisibility(View.VISIBLE);
                 binding.lnWatchVideo.setEnabled(false);
             }
         });
@@ -50,6 +52,11 @@ public class DialogUnlockTraining extends DialogFragment {
         });
     }
 
+    public void loadDone(){
+        binding.imWatch.setVisibility(View.VISIBLE);
+        binding.pgLoading.setVisibility(View.GONE);
+        binding.lnWatchVideo.setEnabled(true);
+    }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -280,6 +280,23 @@ public class FinishedActivity extends AppCompatActivity  {
         emailIntent.putExtra(Intent.EXTRA_TEXT, "");
         startActivity(Intent.createChooser(emailIntent, "Send Email"));
     }
+
+    @Override
+    public void onBackPressed() {
+        if (MaticAd.getInstance().isAvailableInter()){
+            MaticAd.getInstance().showPriorityInterstitialAd(FinishedActivity.this,new MaticAdCallBack(){
+                @Override
+                public void onNextAction() {
+                    super.onNextAction();
+                    finish();
+                }
+            });
+        }else{
+            super.onBackPressed();
+        }
+
+    }
+
     private void goAgain() {
         finish();
     }

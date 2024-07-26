@@ -86,9 +86,17 @@
             android:visibility="visible">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/im_watch"
+                android:layout_width="@dimen/_26sdp"
+                android:layout_height="@dimen/_26sdp"
                 app:srcCompat="@android:drawable/ic_media_play" />
+
+            <ProgressBar
+                android:id="@+id/pg_loading"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="@dimen/_26sdp"
+                android:layout_height="@dimen/_26sdp"
+                android:visibility="gone"/>
 
             <TextView
                 android:layout_width="wrap_content"

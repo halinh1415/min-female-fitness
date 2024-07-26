@@ -260,10 +260,6 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
 
             DividerItemDecoration divider = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
             mPreviewRc.addItemDecoration(divider);
-            if (mProgramObject.getPremium() == 1 && !myPreference.isPremiumMember()) {
-                showUnlock();
-                //loadRewardedVideoAd();
-            }
             mPreviewRc.setLayoutManager(new GridLayoutManager(this, 1));
             if (mProgramObject.getDiscover() > 0) {
                 File file = new File(getFilesDir(), "discover" + mProgramObject.getDiscover() + "/" + mProgramObject.getVersion());
@@ -271,6 +267,27 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                     file.mkdirs();
                 }
 
+            }
+            if (mProgramObject.getPremium() == 1 ) {
+                if (myPreference.isPremiumMember()){
+                    if (mProgramObject.getDiscover() > 0 && checkExploreData()) {
+                        mPreviewViewModel.setDownloadStatus(DownloadStatus.NEED_DOWNLOAD);
+                        ExercisePreAdapter exercisePreAdapter = new ExercisePreAdapter();
+                        mPreviewRc.setAdapter(exercisePreAdapter);
+                        startDownload();
+                        return;
+                    }
+                }else{
+                    showUnlock();
+                }
+            }else{
+                if (mProgramObject.getDiscover() > 0 && checkExploreData()) {
+                    mPreviewViewModel.setDownloadStatus(DownloadStatus.NEED_DOWNLOAD);
+                    ExercisePreAdapter exercisePreAdapter = new ExercisePreAdapter();
+                    mPreviewRc.setAdapter(exercisePreAdapter);
+                    startDownload();
+                    return;
+                }
             }
             updateData();
         }
@@ -298,7 +315,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
 
 
     void startDownload() {
-        showDownloadDialog();
+       // showDownloadDialog();
         Data.Builder data = new Data.Builder();
         data.putString("audio_url", "https://min-fitness.uk/min-fitness/female_workout/discover_3d/" + mProgramObject.getDiscover() + "_" + mProgramObject.getVersion() + ".zip");
         data.putString("destination_folder", "discover/" + mProgramObject.getDiscover() + "/" + mProgramObject.getVersion());
@@ -321,7 +338,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
 
             mProgressTxt.setText(getString(R.string.download) + "..." + value + "%");
             if (workInfo.getState() == WorkInfo.State.SUCCEEDED) {
-                hideDialog();
+               // hideDialog();
                 mPreviewViewModel.setDownloadStatus(DownloadStatus.DONE);
                 updateData();
                 Toast.makeText(PreviewActivity.this, "Download Done!", Toast.LENGTH_SHORT).show();
@@ -330,7 +347,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
             if (workInfo.getState() == WorkInfo.State.FAILED) {
                 mPreviewViewModel.setDownloadStatus(DownloadStatus.FAIL);
                 showAlertInternetConnect();
-                hideDialog();
+                //hideDialog();
             }
         });
     }
@@ -346,8 +363,6 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         currentActionIndex = exerciseIndex;
         DialogEditWorkout dialogEditWorkout = DialogEditWorkout.newInstance(actionObject);
         dialogEditWorkout.show(getSupportFragmentManager(), "ACTION_EDITOR");
-
-
     }
 
     private void loadRewardedVideoAd() {
@@ -387,14 +402,14 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                 @Override
                 public void onAdFailedToLoad(@Nullable AdError adError) {
                     super.onAdFailedToLoad(adError);
-                    hideDialog();
-                    Toast.makeText(PreviewActivity.this, "Failed to load!", Toast.LENGTH_SHORT).show();
+                    loadRewardFail();
+
                 }
             });
         }
     }
     public void showInterReward(){
-        hideDialog();
+       // hideDialog();
         MaticAd.getInstance().showPriorityInterstitialAd(PreviewActivity.this,new MaticAdCallBack(){
             @Override
             public void onNextAction() {
@@ -695,56 +710,8 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         return file.exists();
     }
 
-    LoadingDialogFragment loadingDialog;
-
-    boolean isShowLoading = false;
-
-    void showDialog() {
-        try {
-            if (!isShowLoading) {
-                if (loadingDialog == null) {
-                    loadingDialog = new LoadingDialogFragment();
-                }
-                isShowLoading = true;
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.executePendingTransactions();
-                loadingDialog.show(fragmentManager, "loading_dialog");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    void showDownloadDialog() {
-        try {
-            if (!isShowLoading) {
-                if (loadingDialog == null) {
-                    loadingDialog = LoadingDialogFragment.newInstance("download.json", getString(R.string.downloading));
-                }
-                isShowLoading = true;
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.executePendingTransactions();
-                loadingDialog.show(fragmentManager, "loading_dialog");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    void hideDialog() {
-        try {
-            isShowLoading = false;
-            if (loadingDialog != null) {
-                loadingDialog.dismiss();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 
     void showReward() {
-        hideDialog();
         if (mRewardedVideoAd == null) {
             Toast.makeText(this, "No ads to show!", Toast.LENGTH_SHORT).show();
             return;
@@ -771,6 +738,13 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         });
     }
 
+    void loadRewardFail(){
+        Toast.makeText(PreviewActivity.this, getString(R.string.load_video_fail), Toast.LENGTH_SHORT).show();
+        if (dialogUnlockTraining != null){
+            dialogUnlockTraining.loadDone();
+        }
+
+    }
     void showUnlock() {
         try {
             if (dialogUnlockTraining == null) {
@@ -788,12 +762,14 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         if (dialogUnlockTraining != null) {
             dialogUnlockTraining.dismiss();
         }
+        if (mProgramObject.getDiscover() > 0 && checkExploreData()) {
+            startDownload();
+        }
 
     }
 
     @Override
     public void watchVideo() {
-        showDialog();
         if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.PRO_VIDEO_REWARD)){
             loadRewardedVideoAd();
         }else{

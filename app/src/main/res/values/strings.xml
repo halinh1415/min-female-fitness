@@ -345,4 +345,5 @@
     <string name="adductors">Adductors</string>
     <string name="neck">Neck</string>
     <string name="txt_most_popular">Most Popular</string>
+    <string name="load_video_fail">Load video fail, check your internet and retry!</string>
 </resources>
