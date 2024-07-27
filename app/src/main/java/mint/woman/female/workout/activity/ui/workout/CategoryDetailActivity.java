@@ -1,14 +1,20 @@
 package mint.woman.female.workout.activity.ui.workout;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import com.bumptech.glide.Glide;
+
+import java.util.Locale;
 
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
@@ -17,6 +23,7 @@ import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
 import mint.woman.female.workout.databinding.ActivityCategoryDetailBinding;
 import mint.woman.female.workout.model.CategoryObject;
 import mint.woman.female.workout.retrofit.ApiUtils;
+import mint.woman.female.workout.utils.LanguageHelper;
 
 public class CategoryDetailActivity extends AppCompatActivity {
     ActivityCategoryDetailBinding binding;
@@ -93,5 +100,27 @@ public class CategoryDetailActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+    }
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(newBase);
+        String lang = preferences.getString("ST_LANGUAGE", "");
+        if (!lang.isEmpty() && lang.length() > 2) {
+            lang = lang.substring(0, 2);
+        } else {
+            lang = Locale.getDefault().getLanguage();
+        }
+        super.attachBaseContext(LanguageHelper.setLanguage(newBase, lang));
+
+    }
+
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
     }
 }
