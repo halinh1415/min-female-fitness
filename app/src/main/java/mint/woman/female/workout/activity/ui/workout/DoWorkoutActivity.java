@@ -239,56 +239,13 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             }
         });
         mWorkoutViewModel.getMusicSong().observe(this, musicSong -> {
-            if (musicPlayer != null) {
-                musicPlayer.release();
-            }
-            String musicPath = getFilesDir() + "/music/" + musicSong;
-            if (existsData(musicPath)) {
-                if (musicPlayer != null) {
-                    musicPlayer.release();
-                }
-                musicPlayer = MediaPlayer.create(DoWorkoutActivity.this, Uri.parse(musicPath));
-                musicPlayer.setVolume(myPreference.getMusicVolume(), myPreference.getMusicVolume());
-                musicPlayer.setLooping(true);
-                musicPlayer.start();
-            }
-
+            changeMusic();
         });
         mWorkoutViewModel.getMusicVolume().observe(this, volume -> {
-            if (musicPlayer != null) {
-                musicPlayer.release();
-            }
-            String musicPath = getFilesDir() + "/music/" + myPreference.getMusicFile();
-            if (existsData(musicPath)) {
-                if (musicPlayer != null) {
-                    musicPlayer.release();
-                }
-                musicPlayer = MediaPlayer.create(DoWorkoutActivity.this, Uri.parse(musicPath));
-                musicPlayer.setVolume(myPreference.getMusicVolume(), myPreference.getMusicVolume());
-                musicPlayer.setLooping(true);
-                musicPlayer.start();
-            }
+            changeMusic();
         });
         mWorkoutViewModel.isMusicOn().observe(this, isMusicOn -> {
-            if (isMusicOn) {
-                if (musicPlayer != null) {
-                    musicPlayer.release();
-                }
-                String musicPath = getFilesDir() + "/music/" + myPreference.getMusicFile();
-                if (existsData(musicPath)) {
-                    if (musicPlayer != null) {
-                        musicPlayer.release();
-                    }
-                    musicPlayer = MediaPlayer.create(DoWorkoutActivity.this, Uri.parse(musicPath));
-                    musicPlayer.setVolume(myPreference.getMusicVolume(), myPreference.getMusicVolume());
-                    musicPlayer.setLooping(true);
-                    musicPlayer.start();
-                }
-            } else {
-                if (musicPlayer != null) {
-                    musicPlayer.release();
-                }
-            }
+           changeMusic();
         });
 
         createHistory();
@@ -313,6 +270,29 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance(getActionObjectCurrent(), 123, progress), "Rest").commitAllowingStateLoss();
 
 
+    }
+    void changeMusic(){
+        if (myPreference.isMusicOn()) {
+            if (musicPlayer != null) {
+                musicPlayer.release();
+            }
+            String musicPath = getFilesDir() + "/music/" + myPreference.getMusicFile();
+            if (existsData(musicPath)) {
+                if (musicPlayer != null) {
+                    musicPlayer.release();
+                }
+                musicPlayer = MediaPlayer.create(DoWorkoutActivity.this, Uri.parse(musicPath));
+                if (musicPlayer!= null){
+                    musicPlayer.setVolume(myPreference.getMusicVolume(), myPreference.getMusicVolume());
+                    musicPlayer.setLooping(true);
+                    musicPlayer.start();
+                }
+            }
+        } else {
+            if (musicPlayer != null) {
+                musicPlayer.release();
+            }
+        }
     }
 
     private boolean existsData(String fileName) {
