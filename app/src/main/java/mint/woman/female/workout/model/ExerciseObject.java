@@ -69,6 +69,7 @@ public class ExerciseObject {
 
 
     public String getUnit() {
+        if (unit == null) return "";
         return unit;
     }
 
