@@ -13,4 +13,11 @@
         tools:itemCount="5"
         tools:listitem="@layout/music_item_layout"/>
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lt_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_loop="true"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        android:layout_marginVertical="@dimen/_50sdp"/>
 </RelativeLayout>

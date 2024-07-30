@@ -72,13 +72,16 @@ public class SoundsActivity extends AppCompatActivity implements MusicClickListe
 
         binding.rcMusic.setAdapter(musicAdapter);
         mService = ApiUtils.getSOService(SoundsActivity.this);
+        binding.ltLoading.setVisibility(View.VISIBLE);
+        binding.ltLoading.setAnimation("loading.json");
+        binding.ltLoading.playAnimation();
 
-        showDialog();
         mService.getMusic().enqueue(new Callback<List<MusicItem>>() {
             @Override
             public void onResponse(Call<List<MusicItem>> call, Response<List<MusicItem>> response) {
                 if (response.isSuccessful()){
-                    hideDialog();
+                    binding.ltLoading.cancelAnimation();
+                    binding.ltLoading.setVisibility(View.GONE);
                     musicAdapter.setMusicItemList(response.body());
                 }
             }
@@ -91,30 +94,8 @@ public class SoundsActivity extends AppCompatActivity implements MusicClickListe
        playMusic(myPreference.getMusicFile());
 
     }
-    LoadingDialogFragment loadingDialog;
 
-    void showDialog() {
-        try {
-            if (loadingDialog == null) {
-                loadingDialog = new LoadingDialogFragment();
-            }
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            loadingDialog.show(fragmentManager, "loading_dialog");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
-    void hideDialog() {
-        try {
-            if (loadingDialog != null) {
-                loadingDialog.dismiss();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 
 
     @Override
