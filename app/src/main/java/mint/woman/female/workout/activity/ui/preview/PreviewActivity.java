@@ -391,8 +391,10 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                         @Override
                         public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                             super.onAdFailedToLoad(loadAdError);
-                            handler.removeCallbacks(timeoutRunnable);
-                            loadInterReward();
+                            if (isRewardedAdLoading) {
+                                handler.removeCallbacks(timeoutRunnable);
+                                loadInterReward();
+                            }
                         }
                     });
 
