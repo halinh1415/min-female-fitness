@@ -98,8 +98,6 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
             FileUtil.copyAssetToInternalStorage(YogaActivity.this,"music/Default.mp3","music/Default.mp3");
         }
 
-
-
     }
 
     private void initView() {

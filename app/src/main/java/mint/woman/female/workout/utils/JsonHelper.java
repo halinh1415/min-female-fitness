@@ -133,6 +133,9 @@ public class JsonHelper {
 
 
     public HashMap<Integer, ProgramObject> getAllCategoryHashMap() {
+        if (!Decoder.isSuccess){
+            return new HashMap<>();
+        }
         if (programHashMap == null){
             programHashMap = new HashMap<>();
             String langCode = getLocaleApp();
@@ -165,6 +168,9 @@ public class JsonHelper {
     }
 
     public HashMap<Integer, ExerciseObject> getHashMapExercise(int discover,int version) {
+        if (!Decoder.isSuccess){
+            return new HashMap<>();
+        }
         if (hashMapExercises == null || discover != currentDiscover) {
             hashMapExercises = new HashMap<>();
 
@@ -220,7 +226,9 @@ public class JsonHelper {
 
     public List<ExerciseObject> getAllExercise(int discover,int version) {
         List<ExerciseObject> list = new ArrayList<>();
-
+        if (!Decoder.isSuccess){
+            return new ArrayList<>();
+        }
         String langCode = getLocaleApp();
         String fileName;
         String baseUrl;
@@ -265,6 +273,9 @@ public class JsonHelper {
 
 
     public List<PlanObject> getListPlan(String fileName, int discover,int version) {
+        if (!Decoder.isSuccess){
+            return new ArrayList<>();
+        }
         List<PlanObject> list = new ArrayList<>();
         try {
             JSONArray jsonArray;

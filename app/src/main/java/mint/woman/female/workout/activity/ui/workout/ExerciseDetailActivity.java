@@ -140,7 +140,7 @@ public class ExerciseDetailActivity extends AppCompatActivity {
                     Chip chip = (Chip) LayoutInflater.from(this).inflate(R.layout.chip_item, chipGroup, false);
 
                     int resId = FitnessConstUtils.getMuscleId(Integer.parseInt(major));
-                    if (resId >0){
+                    if (resId > 0) {
                         chip.setText(getString(resId));
                         chipGroup.addView(chip);
                     }
@@ -150,7 +150,7 @@ public class ExerciseDetailActivity extends AppCompatActivity {
                     Chip chip = (Chip) LayoutInflater.from(this).inflate(R.layout.chip_item, chipGroup, false);
                     chip.setChipIconResource(R.drawable.ic_red_2);
                     int resId = FitnessConstUtils.getMuscleId(Integer.parseInt(minor));
-                    if (resId >0){
+                    if (resId > 0) {
                         chip.setText(getString(resId));
                         chipGroup.addView(chip);
                     }

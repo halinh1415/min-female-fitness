@@ -115,7 +115,7 @@ public class PlanObject implements Parcelable, Cloneable {
         public boolean isSelected = false;
 
         public ActionObject() {
-
+            unit ="";
         }
 
         public ActionObject(int actionId, int time, String unit, int actype, int rest) {
