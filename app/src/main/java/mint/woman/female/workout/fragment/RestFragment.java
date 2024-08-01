@@ -87,7 +87,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         mWorkoutViewModel = new ViewModelProvider(getActivity()).get(WorkoutViewModel.class);
         if (getArguments() != null) {
             mActionObject = getArguments().getParcelable("action_object");
-            mExerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(DoWorkoutActivity.discover,DoWorkoutActivity.version).get(mActionObject.actionId);
+            mExerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(DoWorkoutActivity.discover, DoWorkoutActivity.version).get(mActionObject.actionId);
             mRestTime = getArguments().getInt("rest");
             mCurrentTime = mRestTime;
             exerciseProgressCount = getArguments().getString("count");
@@ -118,34 +118,35 @@ public class RestFragment extends Fragment implements View.OnClickListener {
             } else {
                 Decoder.decryptInputToFile(getContext().getFilesDir() + "/discover/" + DoWorkoutActivity.discover + "/" + FitnessApplication.getApplication().getVersion() + "/v/video_" + mActionObject.actionId, getContext().getCacheDir() + "/temp.mp4");
             }
-        }catch (Exception e){
+
+
+            videoPath = getContext().getCacheDir() + "/temp.mp4";
+            if (FileUtil.doesVideoExist(getContext(), "temp.mp4")) {
+                mVideoView.setVideoURI(Uri.parse(videoPath));
+                mVideoView.setOnPreparedListener(mediaPlayer -> {
+                    mediaPlayer.setLooping(true);
+                });
+                mVideoView.start();
+            }
+
+
+            mExerciseName.setText(mExerciseObject.getName());
+            if (mActionObject.unit.contains("s")) {
+                mSub.setVisibility(View.GONE);
+                mExerciseCount.setText(FitnessConstUtils.toTime(mActionObject.time));
+            } else {
+                mExerciseCount.setText("x " + mActionObject.time);
+                if (mExerciseObject.getAlternation()) {
+                    mSub.setVisibility(View.VISIBLE);
+                    mSub.setText(getString(R.string.td_each_side) + " x" + (mActionObject.time / 2));
+                } else {
+                    mSub.setVisibility(View.GONE);
+                }
+            }
+            mProgressCount.setText(exerciseProgressCount);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-        videoPath = getContext().getCacheDir() + "/temp.mp4";
-        if (FileUtil.doesVideoExist(getContext(),"temp.mp4")){
-            mVideoView.setVideoURI(Uri.parse(videoPath));
-            mVideoView.setOnPreparedListener(mediaPlayer -> {
-                mediaPlayer.setLooping(true);
-            });
-            mVideoView.start();
-        }
-
-
-        mExerciseName.setText(mExerciseObject.getName());
-        if (mActionObject.unit.contains("s")) {
-            mSub.setVisibility(View.GONE);
-            mExerciseCount.setText(FitnessConstUtils.toTime(mActionObject.time));
-        } else {
-            mExerciseCount.setText("x " + mActionObject.time);
-            if (mExerciseObject.getAlternation()) {
-                mSub.setVisibility(View.VISIBLE);
-                mSub.setText(getString(R.string.td_each_side) + " x" + (mActionObject.time / 2));
-            } else {
-                mSub.setVisibility(View.GONE);
-            }
-        }
-        mProgressCount.setText(exerciseProgressCount);
 
         if (mRestTime == 123) {
             mBreak.setText(getString(R.string.txt_ready_to_go));
