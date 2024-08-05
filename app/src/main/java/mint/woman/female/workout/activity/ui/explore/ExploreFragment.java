@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.minfitness.decode.Decoder;
+
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ExploreDetailActivity;
@@ -96,34 +98,25 @@ public class ExploreFragment extends Fragment implements ProgramClickListener {
         hashMap = FitnessApplication.getApplication().mJsonHelper.getAllCategoryHashMap();
         List<Section> sections = new ArrayList<>();
         List<Object> fatHiitWorkouts = new ArrayList<>();
-        fatHiitWorkouts.add(new CategoryObject(getProgramObject(new int[]{345,346,347})));
-        sections.add(new Section(getString(R.string.explore_tag_hot), fatHiitWorkouts,2));
-        List<Object> randomWorkouts = new ArrayList<>();
-        randomWorkouts.add(new CategoryObject(getProgramObject(new int[]{351,352,353})));
-        randomWorkouts.add(new CategoryObject(getProgramObject(new int[]{348,349,350})));
-        sections.add(new Section(getString(R.string.random_workout), randomWorkouts,4));
-        List<Object> trainingGoals = new ArrayList<>();
-        trainingGoals.add(new CategoryObject(getProgramObject(new int[]{354,355,356})));
-        trainingGoals.add(new CategoryObject(getProgramObject(new int[]{357,358,359})));
-        trainingGoals.add(new CategoryObject(getProgramObject(new int[]{360,361,362})));
-        trainingGoals.add(new CategoryObject(getProgramObject(new int[]{363,365,366})));
-        sections.add(new Section(getString(R.string.training_goal), trainingGoals,4));
+        if (Decoder.isSuccess) {
+            fatHiitWorkouts.add(new CategoryObject(getProgramObject(new int[]{345, 346, 347})));
+            sections.add(new Section(getString(R.string.explore_tag_hot), fatHiitWorkouts, 2));
+            List<Object> randomWorkouts = new ArrayList<>();
+            randomWorkouts.add(new CategoryObject(getProgramObject(new int[]{351, 352, 353})));
+            randomWorkouts.add(new CategoryObject(getProgramObject(new int[]{348, 349, 350})));
+            sections.add(new Section(getString(R.string.random_workout), randomWorkouts, 4));
+            List<Object> trainingGoals = new ArrayList<>();
+            trainingGoals.add(new CategoryObject(getProgramObject(new int[]{354, 355, 356})));
+            trainingGoals.add(new CategoryObject(getProgramObject(new int[]{357, 358, 359})));
+            trainingGoals.add(new CategoryObject(getProgramObject(new int[]{360, 361, 362})));
+            trainingGoals.add(new CategoryObject(getProgramObject(new int[]{363, 365, 366})));
+            sections.add(new Section(getString(R.string.training_goal), trainingGoals, 4));
 
-        sections.add(new Section(getString(R.string.reach_goal_fast),getString(R.string.seven_min_get_fit_des), getProgram(mList7Minute), 8));
-        sections.add(new Section(getString(R.string.at_home),getString(R.string.upper_body_stretching_short_des), getProgram(mListStretch), 6));
-        sections.add(new Section(getString(R.string.for_summer), getProgram(mListSummer), 8));
-        sections.add(new Section(getString(R.string.tip_pro_instruction_3), getProgram(mListFaceYoga), 7));
-//        final GridLayoutManager glm = new GridLayoutManager(getContext(), 2);
-//        glm.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-//            @Override
-//            public int getSpanSize(final int position) {
-//                if (mAdapter.getSectionItemViewType(position) == SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER || mAdapter.getSectionItemViewType(position) == SectionedRecyclerViewAdapter.VIEW_TYPE_FOOTER || position <4) {
-//                    return 2;
-//                }
-//                return 1;
-//            }
-//        });
-        //   mExploreRc.setLayoutManager(glm);
+            sections.add(new Section(getString(R.string.reach_goal_fast), getString(R.string.seven_min_get_fit_des), getProgram(mList7Minute), 8));
+            sections.add(new Section(getString(R.string.at_home), getString(R.string.upper_body_stretching_short_des), getProgram(mListStretch), 6));
+            sections.add(new Section(getString(R.string.for_summer), getProgram(mListSummer), 8));
+            sections.add(new Section(getString(R.string.tip_pro_instruction_3), getProgram(mListFaceYoga), 7));
+        }
         SectionAdapter sectionAdapter = new SectionAdapter(sections, this);
         mExploreRc.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         // mExploreRc.setLayoutManager(new LinearLayoutManager(getContext()));

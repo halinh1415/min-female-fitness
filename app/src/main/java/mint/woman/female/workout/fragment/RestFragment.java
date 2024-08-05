@@ -209,6 +209,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
 
     public void onResumeRest() {
         initTimer(mCurrentTime);
+        videoPath = getContext().getCacheDir() + "/temp.mp4";
         mVideoView.setVideoURI(Uri.parse(videoPath));
         mVideoView.setOnPreparedListener(mediaPlayer -> {
             mediaPlayer.setLooping(true);
@@ -233,13 +234,18 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
-        mVideoView.pause();
-        initTimer(mCurrentTime);
-        mVideoView.setVideoURI(Uri.parse(videoPath));
-        mVideoView.setOnPreparedListener(mediaPlayer -> {
-            mediaPlayer.setLooping(true);
-        });
-        mVideoView.start();
+//        initTimer(mCurrentTime);
+//        try {
+//            mVideoView.pause();
+//            videoPath = getContext().getCacheDir() + "/temp.mp4";
+//            mVideoView.setVideoURI(Uri.parse(videoPath));
+//            mVideoView.setOnPreparedListener(mediaPlayer -> {
+//                mediaPlayer.setLooping(true);
+//            });
+//            mVideoView.start();
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
     }
 
     @Override
