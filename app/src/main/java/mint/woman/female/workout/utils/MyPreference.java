@@ -497,4 +497,11 @@ public class MyPreference {
         mEditor.commit();
 
     }
+    public long getBackUpTime(){
+        return mSharedPreferences.getLong("BACKUP_TIME",0);
+    }
+    public void setBackUpTime(long time){
+        mEditor.putLong("BACKUP_TIME",time);
+        mEditor.commit();
+    }
 }

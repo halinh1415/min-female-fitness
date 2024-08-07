@@ -1,4 +1,4 @@
-<resources report_center_title="گزارشات" OK="تأیید" challenge="چالش" beginner="مبتدی" intermediate="متوسط" advanced="پیشرفته" today="امروز" female="زن" male="مرد" pay_monthly="ماهانه" yearly="سالانه" rp_syn_with_google_fit="همگام سازی Google Fit" close="بستن" minutes="دقیقه" recipes_breakfast="صبحانه" recipes_snack="میان وعده" recipes_lunch="ناهار" recipes_dinner="شام" weeks="هفته" tab_discover="کاوش" explore_more="بیشتر" save="ذخیره" td_next="بعدی" what_your_gender="جنسیت شما چیست؟" how_old="چند سال دارید؟" continue_text="ادامه" td_v_half_time="نیمی از زمان" explore_tag_new="جدید" replace="جایگزین کردن" replace_with="عوض کردن با" current="فعلی" download="دانلود" retry="سعیمجدد" td_each_side="هر طرف" belly="شکم" arm="بازو" ass="کپل" focus_part="تمرکزتان روی چه قسمتی است؟" countdown="شمارش معکوس" no_counting="بدون شمارش" tempo_counting="سرعت و شمارش" td_mute="بی‌صدا" sound="صدا" cancel_via_google_play="لغو در هر زمان از طریق Google Play." free_7_days_trial_then_xx_year="نسخه آزمایشی ۷ روزه رایگان، سپس %s سالانه" abbr_x_mth_gpt="%s/ماه" iap_only_x_per_mth_gpt="فقط %s/ماه" iap_only_x_per_week="فقط %s هفتگی" price_per_year="%s سالانه" money_per_month="%s/ماه" change_start_today="تغییر از امروز شروع می‌شود!" premium_price_save_2="%s\nتخفیف " iap_discount_card_title_gpt="دسترسی به تمام ویژگی‌های ویژه را بگیرید">
+<resources>
     <string name="app_name" translatable="false">تناسب اندام برای بانوان - ورزش بانوان</string>
     <string name="txt_rate" translatable="false">به ما رای دهید</string>
     <string name="txt_action_settings">تنظیمات</string>
@@ -335,4 +335,18 @@
     <string name="adductors">عضلات نزدیک‌کننده</string>
     <string name="neck">گردن</string>
     <string name="txt_most_popular">محبوبترین</string>
+<string name="oops">اوه!</string>
+    <string name="oops_network_error">اوه! خطای شبکه</string>
+    <string name="oops_sync_failed">اوه! همگا‌م‌سازی انجام نشد</string>
+    <string name="oops_unlock_failed">ای وای! قفل باز نشد</string>
+    <string name="oops_unlock_failed_des">لطفاً برای قفل‌گشایی موفقیت‌آمیز، این ویدئو را تا انتها تماشا کنید.</string>
+    <string name="load_video_fail">بارگیری ویدیو انجام نشد، اینترنت خود را بررسی کنید و دوباره امتحان کنید!</string>
+    <string name="last_sync">آخرین همگام‌سازی: %s</string>
+    <string name="last_time">آخرین بار:</string>
+    <string name="log_out">خروج از سیستم</string>
+    <string name="login_out_sure">آیا مطمئنید که می‌خواهید از سیستم خارج شوید؟</string>
+    <string name="set_backup">پشتیبان و بازیابی داده ها</string>
+    <string name="sign_in_tips">وارد حساب شوید و اطلاعات خود را همگام‌سازی کنید</string>
+    <string name="continue_with_google">ادامه با گوگل</string>
+    <string name="data_sync_done">همگام سازی داده ها تکمیل شد!</string>
 </resources>

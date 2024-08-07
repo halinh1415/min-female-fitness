@@ -312,9 +312,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
                 mSub.setVisibility(View.GONE);
             }
         }
-        //   mRestTimeProgress.setMax(mRestTime);
-        //  mRestTimeProgress.setProgress(mCurrentTime);
-        //mRestTimeProgress.setSuffixText("\"");
+        videoPath = getContext().getCacheDir() + "/temp.mp4";
         mVideoView.setVideoURI(Uri.parse(videoPath));
         mVideoView.setOnPreparedListener(mediaPlayer -> {
             mediaPlayer.setLooping(true);

@@ -27,7 +27,6 @@ import mint.woman.female.workout.activity.ui.workout.ChallengeActivity;
 import mint.woman.female.workout.activity.ui.workout.ProgramActivity;
 import mint.woman.female.workout.custom.ProgramClickListener;
 import mint.woman.female.workout.custom.SpanningLinearLayoutManager;
-import mint.woman.female.workout.model.HistoryDateWithItem;
 import mint.woman.female.workout.model.HistoryItem;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.utils.MyPreference;
@@ -144,15 +143,13 @@ public class WeekGoalFragment extends Fragment implements ProgramClickListener, 
 
         homeViewModel.findHistoryFromTo(first, last).observe(getViewLifecycleOwner(), historyItemList -> {
             int times = 0, calories = 0, total = 0, count = 0;
-            for (HistoryDateWithItem history : historyItemList) {
-                times += history.totalDuration();
-                calories += history.totalCalories();
-                total += history.totalWorkout();
-                for (HistoryItem historyItem : history.historyItems) {
-                    int programId = historyItem.getProgramId();
-                    if (!mProgramHistory.contains(programId)) {
-                        mProgramHistory.add(programId);
-                    }
+            for (HistoryItem historyItem : historyItemList) {
+                times += historyItem.getDuration();
+                calories += historyItem.getCalories();
+
+                int programId = historyItem.getProgramId();
+                if (!mProgramHistory.contains(programId)) {
+                    mProgramHistory.add(programId);
                 }
 
             }
@@ -163,7 +160,7 @@ public class WeekGoalFragment extends Fragment implements ProgramClickListener, 
             }
 
             int minute = (times) / 60;
-            mWorkouts.setText(String.valueOf(total));
+            mWorkouts.setText(String.valueOf(historyItemList.size()));
             mTotalTime.setText(String.format("%d", minute));
             mCalories.setText(String.format("%d", calories));
         });
@@ -211,18 +208,15 @@ public class WeekGoalFragment extends Fragment implements ProgramClickListener, 
 
 
         homeViewModel.findHistoryFromTo(first, first + 7).observe(getViewLifecycleOwner(), historyItemList -> {
-            int times = 0, calories = 0, total = 0, count = 0;
-            for (HistoryDateWithItem history : historyItemList) {
-                times += history.totalDuration();
-                calories += history.totalCalories();
-                total += history.totalWorkout();
-                for (HistoryItem historyItem : history.historyItems) {
-                    int programId = historyItem.getProgramId();
-                    if (!mProgramHistory.contains(programId)) {
-                        mProgramHistory.add(programId);
-                    }
+            int times = 0, calories = 0, count = 0;
+            for (HistoryItem historyItem : historyItemList) {
+                times += historyItem.getDuration();
+                calories += historyItem.getCalories();
+                int programId = historyItem.getProgramId();
+                if (!mProgramHistory.contains(programId)) {
+                    mProgramHistory.add(programId);
                 }
-                int index = (int) (history.date.getDate() - first);
+                int index = (int) (historyItem.getDate() - first);
                 if (index < 7) {
                     status[index] = true;
                 }
@@ -234,7 +228,7 @@ public class WeekGoalFragment extends Fragment implements ProgramClickListener, 
             }
 
             int minute = (times) / 60;
-            mWorkouts.setText(String.valueOf(total));
+            mWorkouts.setText(String.valueOf(historyItemList.size()));
             mTotalTime.setText(String.format("%d", minute));
             mCalories.setText(String.format("%d", calories));
             for (Boolean dayStatus : status) {

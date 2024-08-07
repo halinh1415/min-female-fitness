@@ -1,4 +1,4 @@
-<resources report_center_title="Rapport" OK="OK" challenge="Uitdaging" beginner="Beginner" intermediate="GEMIDDELD" advanced="GEVORDERD" today="Vandaag" female="Vrouw" male="Man" pay_monthly="Maandelijks" yearly="Jaarlijks" rp_syn_with_google_fit="Synchroniseren met Google Fit" close="SLUITEN" minutes="Notulen" recipes_breakfast="Ontbijt" recipes_snack="Snack" recipes_lunch="Lunch" recipes_dinner="Avondeten" weeks="Weken" tab_discover="Ontdekken" explore_more="Meer" save="Opslaan" td_next="volgende" what_your_gender="Wat is je geslacht?" how_old="Hoe oud ben je?" continue_text="Verdergaan" td_v_half_time="Helft van de tijd" explore_tag_new="Nieuw" replace="Vervangen" replace_with="VERVANG MET" current="Huidige" retry="opnieuw proberen" td_each_side="Elke kant" belly="Buik" arm="Arm" ass="Billen" focus_part="Waar wil je je op richten?" countdown="Aftelling" no_counting="Niet tellen" tempo_counting="Tempo en tellen" td_mute="Dempen" sound="Geluid" cancel_via_google_play="Altijd annuleren via Google Play." free_7_days_trial_then_xx_year="Gratis 7-daagse proefperiode, daarna %s per jaar" abbr_x_mth_gpt="%s/maand" iap_only_x_per_mth_gpt="Slechts %s/maand" iap_only_x_per_week="Slechts %s/week" price_per_year="%s Per Jaar" money_per_month="%s/maand" change_start_today="Je transformatie begint vandaag!" premium_price_save_2="%s\nkorting " iap_discount_card_title_gpt="Krijg toegang tot alle premium functies">
+<resources>
     <string name="app_name" translatable="false">Vrouwenfitness - Workout Dames</string>
     <string name="txt_rate" translatable="false">Beoordeel ons</string>
     <string name="txt_action_settings">Instellingen</string>
@@ -305,7 +305,7 @@
     <string name="txt_iap_feature_info_4">Advertenties voor altijd gratis</string>
     <string name="txt_iap_feature_info_3">Gepersonaliseerd plan en toekomstige update</string>
     <string name="txt_iap_feature_info_2">Bereik verbluffende resultaten in slechts 4 weken</string>
-<string name="training">Training</string>
+    <string name="training">Training</string>
     <string name="training_goal">Trainingsdoel</string>
     <string name="random_workout">Willekeurige work-out</string>
     <string name="for_summer">Voor de zomer</string>
@@ -335,4 +335,18 @@
     <string name="adductors">Adductors</string>
     <string name="neck">Nek</string>
     <string name="txt_most_popular">Meest populair</string>
+    <string name="oops">Oeps!</string>
+    <string name="oops_network_error">Oeps! Netwerkfout</string>
+    <string name="oops_sync_failed">Oeps! Synchroniseren is mislukt</string>
+    <string name="oops_unlock_failed">Oeps! Ontgrendelen is mislukt</string>
+    <string name="oops_unlock_failed_des">Kijk de video helemaal uit tot het einde, anders werkt de ontgrendeling niet.</string>
+    <string name="load_video_fail">Laad video mislukt, controleer uw internet en probeer het opnieuw!</string>
+    <string name="last_sync">Laatste synchronisatie: %s</string>
+    <string name="last_time">Laatste tijd:</string>
+    <string name="log_out">uitloggen</string>
+    <string name="login_out_sure">Weet je zeker dat je je wilt afmelden?</string>
+    <string name="set_backup">Databackup &amp; Herstel</string>
+    <string name="sign_in_tips">Meld u aan en synchroniseer uw gegevens</string>
+    <string name="continue_with_google">Doorgaan met Google</string>
+    <string name="data_sync_done">Gegevenssynchronisatie voltooid!</string>
 </resources>

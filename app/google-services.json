@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1045104445248",
+    "firebase_url": "https://female-workout-78582-default-rtdb.firebaseio.com",
     "project_id": "female-workout-78582",
     "storage_bucket": "female-workout-78582.appspot.com"
   },
@@ -12,7 +13,28 @@
           "package_name": "mint.woman.female.workout"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1045104445248-eq96km5pce0681jffkf9gbrp7gpbdupm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mint.woman.female.workout",
+            "certificate_hash": "224b64cbe766241159cebe5394eb5d30114db9dd"
+          }
+        },
+        {
+          "client_id": "1045104445248-hg4tcc0nc171fukjijrnmvgsqt0pe647.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mint.woman.female.workout",
+            "certificate_hash": "ad966feef841e2113f1d986902eaa0e10059177c"
+          }
+        },
+        {
+          "client_id": "1045104445248-75m0r31b4h0rf83a5ubd7698ir4p63pn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyByOAZ_uDss7NG7-dSkhaiMIZO1fHN5l_0"
@@ -20,9 +42,15 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045104445248-75m0r31b4h0rf83a5ubd7698ir4p63pn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-9959217683006097~3177816739"
     }
   ],
   "configuration_version": "1"

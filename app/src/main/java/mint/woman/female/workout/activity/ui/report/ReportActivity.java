@@ -37,7 +37,7 @@ import mint.woman.female.workout.activity.ui.history.HistoryViewModel;
 import mint.woman.female.workout.activity.ui.weekgoal.WeekGoalFragment;
 import mint.woman.female.workout.custom.RoundedBarChart;
 import mint.woman.female.workout.fragment.WeightViewModel;
-import mint.woman.female.workout.model.HistoryDateWithItem;
+import mint.woman.female.workout.model.HistoryItem;
 import mint.woman.female.workout.model.UserObject;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
@@ -46,8 +46,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
@@ -107,7 +109,7 @@ public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekB
     protected void attachBaseContext(Context newBase) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(newBase);
         String lang = preferences.getString("ST_LANGUAGE", "");
-        if (!lang.isEmpty() && lang.length() > 2) {
+        if (!lang.isEmpty() ) {
             lang = lang.substring(0, 2);
         } else {
             lang = Locale.getDefault().getLanguage();
@@ -173,12 +175,30 @@ public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekB
             chartInitWaist();
             initDataWaist();
         });
-        mHistoryViewModel.getHistoryDate().observe(this, historyDateWithItems -> {
+        Long nowDay = TimeUnit.MILLISECONDS.toDays(Calendar.getInstance().getTimeInMillis());
+        mHistoryViewModel.findFromTo(nowDay - 30,nowDay).observe(this, historyItems -> {
             ArrayList<BarEntry> values = new ArrayList<>();
+            Map<Long, List<HistoryItem>> groupedItems = new HashMap<>();
+            Map<Long,Integer> caloriesMap = new HashMap<>();
+            for (HistoryItem item : historyItems) {
+                long date = item.getDate();
+                if (!groupedItems.containsKey(date)) {
+                    groupedItems.put(date, new ArrayList<>());
+                    caloriesMap.put(date,0);
+                }
+                groupedItems.get(date).add(item);
+                int currentCalories = caloriesMap.get(date);
+                caloriesMap.put(date,currentCalories+ item.getCalories());
+            }
 
+            // Convert to List<List<Item>>
+            List<List<HistoryItem>> historyDateWithItems = new ArrayList<>(groupedItems.values());
 
-            for (HistoryDateWithItem historyDateWithItem : historyDateWithItems) {
-                values.add(new BarEntry(historyDateWithItem.date.getDate(), historyDateWithItem.totalCalories()));
+            for (List<HistoryItem> historyDateWithItem : historyDateWithItems) {
+                if (historyDateWithItem.size() >0){
+                    long date = historyDateWithItem.get(0).getDate();
+                    values.add(new BarEntry(date, caloriesMap.get(date)));
+                }
 
             }
             BarDataSet set1;

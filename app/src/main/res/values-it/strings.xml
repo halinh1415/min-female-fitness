@@ -1,4 +1,4 @@
-<resources report_center_title="Resoconto" OK="OK" challenge="Sfida" beginner="Principiante" intermediate="INTERMEDIO" advanced="AVANZATO" today="Oggi" female="Donna" male="Uomo" pay_monthly="Mensile" yearly="Annuale" rp_syn_with_google_fit="Sincronizza to Google Fit" close="CHIUDI" minutes="Minuti" recipes_breakfast="Colazione" recipes_snack="Merenda" recipes_lunch="Pranzo" recipes_dinner="Cena" weeks="Settim." tab_discover="Scopri" explore_more="Altro" save="Salva" td_next="Prossimo" what_your_gender="Di che sesso sei?" how_old="Quanti anni hai?" continue_text="Continua" td_v_half_time="metà tempo" explore_tag_new="Nuovo" replace="Cambia" replace_with="SOSTITUISCI CON" current="Attuale" download="il Download" retry="Riprova" td_each_side="Ciascun lato" belly="Pancia" arm="Braccio" ass="Glutei" focus_part="Su cosa ti vuoi concentrare?" countdown="Countdown" no_counting="Nessun conteggio" tempo_counting="Ritmo e conteggio" td_mute="Silenzioso" sound="Suono" cancel_via_google_play="Annulla quando vuoi su Google Play." free_7_days_trial_then_xx_year="Gratis 7 giorni di prova, poi %s/anno" abbr_x_mth_gpt="%s/mese" iap_only_x_per_mth_gpt="Solo %s/mese" iap_only_x_per_week="Soli %s/settim." price_per_year="%s/Anno" money_per_month="%s/mese" change_start_today="Inizia a cambiare oggi stesso!" premium_price_save_2="%sdi \nsconto " iap_discount_card_title_gpt="Ottieni accesso a tutte le funzionalità premium">
+<resources>
     <string name="app_name" translatable="false">Fitness Femminile - Allenamento Donne</string>
     <string name="txt_rate" translatable="false">Valutaci</string>
     <string name="txt_action_settings">Impostazioni</string>
@@ -335,4 +335,18 @@
     <string name="adductors">Adduttori</string>
     <string name="neck">Collo</string>
     <string name="txt_most_popular">Più popolare</string>
+<string name="oops">Ops!</string>
+    <string name="oops_network_error">Ops! Errore di rete</string>
+    <string name="oops_sync_failed">Ops! Impossibile sincronizzare</string>
+    <string name="oops_unlock_failed">Ops! Sblocco non riuscito</string>
+    <string name="oops_unlock_failed_des">Guarda il video fino alla fine per sbloccare.</string>
+    <string name="load_video_fail">Il caricamento del video non è riuscito, controlla la connessione Internet e riprova!</string>
+    <string name="last_sync">Ultima sincronizzazione: %s</string>
+    <string name="last_time">Ultimo allenamento:</string>
+    <string name="log_out">Esci</string>
+    <string name="login_out_sure">Vuoi uscire?</string>
+    <string name="set_backup">Backup &amp; Ripristino</string>
+    <string name="sign_in_tips">Accedi e sincronizza i tuoi dati</string>
+    <string name="continue_with_google">Continua con Google</string>
+    <string name="data_sync_done">Sincronizzazione dei dati completata!</string>
 </resources>

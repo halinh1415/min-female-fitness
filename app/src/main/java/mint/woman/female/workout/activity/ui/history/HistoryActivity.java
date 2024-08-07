@@ -26,7 +26,6 @@ import mint.woman.female.workout.common.adapter.EventDecorator;
 import mint.woman.female.workout.common.adapter.HistorySection;
 import mint.woman.female.workout.custom.HighlightWeekendsDecorator;
 import mint.woman.female.workout.model.ProgramObject;
-import mint.woman.female.workout.model.HistoryDateWithItem;
 import mint.woman.female.workout.model.HistoryItem;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.LanguageHelper;
@@ -40,6 +39,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
@@ -112,21 +112,18 @@ public class HistoryActivity extends AppCompatActivity implements HistorySection
         long dayLong = TimeUnit.MILLISECONDS.toDays(calendar.getTimeInMillis());
         Log.d("HAHA", "get history on :" + dayLong);
         mProgressHistory.setVisibility(View.VISIBLE);
-        mHistoryViewModel.findHistoryDateItemOnDay(dayLong).observe(this, historyDateWithItem -> {
+        mHistoryViewModel.findInDay(dayLong).observe(HistoryActivity.this, historyItems -> {
             mProgressHistory.setVisibility(View.GONE);
-            if (historyDateWithItem != null) {
+            if (historyItems != null) {
                 mNoWorkoutText.setVisibility(View.GONE);
-                Log.d("HAHA", "Get history on date");
                 mAdapter.removeAllSections();
-                long millis = TimeUnit.DAYS.toMillis(historyDateWithItem.date.getDate());
-
-                mAdapter.addSection(new HistorySection(this,mFormatDate.format(millis), historyDateWithItem.historyItems,this));
+                long millis = TimeUnit.DAYS.toMillis(dayLong);
+                mAdapter.addSection(new HistorySection(HistoryActivity.this,mFormatDate.format(millis), historyItems,this));
                 mAdapter.notifyDataSetChanged();
             } else {
                 mAdapter.removeAllSections();
                 mAdapter.notifyDataSetChanged();
                 mNoWorkoutText.setVisibility(View.VISIBLE);
-                Log.d("HAHA", "Get history on date = null");
             }
         });
     }
@@ -141,21 +138,34 @@ public class HistoryActivity extends AppCompatActivity implements HistorySection
         calendar.add(Calendar.DATE, -1);
         long end = TimeUnit.MILLISECONDS.toDays(calendar.getTimeInMillis());
         mProgressHistory.setVisibility(View.VISIBLE);
-        mHistoryViewModel.findHistoryDateItemFromTo(from, end).observe(this, historyDateWithItems -> {
+        mHistoryViewModel.findFromTo(from, end).observe(HistoryActivity.this, historyItems -> {
             mProgressHistory.setVisibility(View.GONE);
-            if (historyDateWithItems.size() > 0) {
+            if (historyItems.size() > 0) {
                 mNoWorkoutText.setVisibility(View.GONE);
                 mAdapter.removeAllSections();
+                Map<Long, List<HistoryItem>> groupedItems = new HashMap<>();
+                for (HistoryItem item : historyItems) {
+                    long date = item.getDate();
+                    if (!groupedItems.containsKey(date)) {
+                        groupedItems.put(date, new ArrayList<HistoryItem>());
+                    }
+                    groupedItems.get(date).add(item);
+                }
+
+                // Convert to List<List<Item>>
+                List<List<HistoryItem>> historyDateWithItems = new ArrayList<>(groupedItems.values());
                 Collections.reverse(historyDateWithItems);
                 List<CalendarDay> calendarDayList = new ArrayList<>();
-                for (HistoryDateWithItem date : historyDateWithItems
-                ) {
-                    long millis = TimeUnit.DAYS.toMillis(date.date.getDate());
+
+                for (List<HistoryItem> historyItemList : historyDateWithItems) {
+                    long millis = Calendar.getInstance().getTimeInMillis();
+                    if (historyItemList.size()>0){
+                        millis = TimeUnit.DAYS.toMillis(historyItemList.get(0).getDate());
+                    }
                     Calendar today = Calendar.getInstance();
                     today.setTimeInMillis(millis);
                     calendarDayList.add(FitnessConstUtils.convertFromCalendar(today));
-                    Collections.reverse(date.historyItems);
-                    mAdapter.addSection(new HistorySection(this,mFormatDate.format(millis), date.historyItems,this));
+                    mAdapter.addSection(new HistorySection(HistoryActivity.this,mFormatDate.format(millis),historyItemList,this));
                 }
                 EventDecorator eventDecorator = new EventDecorator(calendarDayList);
                 calendarView.addDecorator(eventDecorator);
@@ -221,7 +231,7 @@ public class HistoryActivity extends AppCompatActivity implements HistorySection
     protected void attachBaseContext(Context newBase) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(newBase);
         String lang = preferences.getString("ST_LANGUAGE", "");
-        if (!lang.isEmpty() && lang.length() > 2) {
+        if (!lang.isEmpty() ) {
             lang = lang.substring(0, 2);
         } else {
             lang = Locale.getDefault().getLanguage();

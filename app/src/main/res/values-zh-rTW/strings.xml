@@ -1,4 +1,4 @@
-<resources report_center_title="報告" OK="確定" challenge="挑戰" beginner="初階" intermediate="中階" advanced="高階" today="今天" female="女性" male="男性" pay_monthly="每月" yearly="每年" rp_syn_with_google_fit="同步到Google健身" close="關閉" minutes="分鐘" recipes_breakfast="早餐" recipes_snack="點心" recipes_lunch="午餐" recipes_dinner="晚餐" weeks="週" tab_discover="探索" explore_more="更多" save="保存" td_next="下一個" what_your_gender="您的性別？" how_old="您的年紀？" continue_text="繼續" td_v_half_time="一半時間" explore_tag_new="新" replace="替換" replace_with="替換為" current="目前體重" download="下載" retry="重試" td_each_side="每一邊" belly="腹部" arm="手臂" ass="臀部" focus_part="您想專注哪個部位？" countdown="倒計時" no_counting="不計數" tempo_counting="節奏與計數" td_mute="靜音" sound="提示音" cancel_via_google_play="可隨時透過 Google Play 取消。" free_7_days_trial_then_xx_year="免費 7 天試用期，之後 %s/年" abbr_x_mth_gpt="%s/月" iap_only_x_per_mth_gpt="僅 %s/月" iap_only_x_per_week="每週只要 %s" price_per_year="%s/年" money_per_month="%s/月" change_start_today="改變從今天開始！" premium_price_save_2="省下 \n%s" iap_discount_card_title_gpt="獲得所有高級功能">
+<resources>
     <string name="app_name" translatable="false">女性健身—女性鍛鍊</string>
     <string name="txt_rate" translatable="false">評價我們</string>
     <string name="txt_action_settings">設定</string>
@@ -335,4 +335,18 @@
     <string name="adductors">內收肌</string>
     <string name="neck">頸部</string>
     <string name="txt_most_popular">最受歡迎</string>
+    <string name="oops">哎喲！</string>
+    <string name="oops_network_error">哎喲！網絡出錯</string>
+    <string name="oops_sync_failed">哎喲！同步失敗</string>
+    <string name="oops_unlock_failed">糟糕！解鎖失敗</string>
+    <string name="oops_unlock_failed_des">請將影片觀看完畢以解鎖。</string>
+    <string name="load_video_fail">載入影片失敗，請檢查您的網路並重試！</string>
+    <string name="last_sync">上次同步：%s</string>
+    <string name="last_time">上次訓練時間：</string>
+    <string name="log_out">退出</string>
+    <string name="login_out_sure">您確定要登出嗎？</string>
+    <string name="set_backup">數據備份和恢復</string>
+    <string name="sign_in_tips">登錄賬戶後同步數據</string>
+    <string name="continue_with_google">使用 Google 繼續</string>
+    <string name="data_sync_done">資料同步完成！</string>
 </resources>

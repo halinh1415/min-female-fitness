@@ -1,4 +1,4 @@
-<resources report_center_title="Bildiriler" OK="TAMAM" challenge="Zorlu Görev" beginner="Başlangiç düzeyİ" intermediate="Orta düzey" advanced="Gelişmiş" today="Bugün" female="Kadın" male="Erkek" pay_monthly="Aylık" yearly="Yıllık" rp_syn_with_google_fit="Google Fit\'le eşzamanla" close="KAPAT" minutes="Dakika" recipes_breakfast="Kahvaltı" recipes_snack="Atıştırmalık" recipes_lunch="Öğle Yemeği" recipes_dinner="Akşam Yemeği" weeks="Hafta" tab_discover="Keşfet" explore_more="Daha" save="Kaydet" td_next="Sonraki" what_your_gender="Cinsiyetiniz nedir?" how_old="Kaç yaşındasınız?" continue_text="Devam Et" td_v_half_time="zamanın yarısında" explore_tag_new="Yeni" replace="Değiştir" replace_with="ŞUNUNLA DEĞİŞTİR" current="Şu an" download="Indir" retry="Yeniden Dene" td_each_side="Her İki Taraf" belly="Göbek" arm="Kol" ass="Kaba et" focus_part="Odak bölgeniz neresi?" countdown="Geri sayım" no_counting="Sayma yok" tempo_counting="Tempo ve Sayma" td_mute="Sessize Al" sound="Ses" cancel_via_google_play="Google Play\'den dilediğiniz zaman iptal edin." free_7_days_trial_then_xx_year="Ücretsiz 7 günlük deneme, sonra yıllık %s" abbr_x_mth_gpt="%s/ay" iap_only_x_per_mth_gpt="Sadece %s/ay" iap_only_x_per_week="Yalnızca %s/hafta" price_per_year="Yıllık %s" money_per_month="%s/ay" change_start_today="Değişiminiz bugün başlıyor!" premium_price_save_2="%s \nindirimli " iap_discount_card_title_gpt="Tüm premium özelliklere erişim sağlayın">
+<resources>
     <string name="app_name" translatable="false">Kadın Egzersizi - Kadınlar İçin En Uygun Spor App</string>
     <string name="txt_rate" translatable="false">Bizi değerlendirin</string>
     <string name="txt_action_settings">Ayarlar</string>
@@ -335,4 +335,18 @@
     <string name="adductors">Addüktör Kaslar</string>
     <string name="neck">Boyun</string>
     <string name="txt_most_popular">En popüler</string>
+<string name="oops">Hay aksi!</string>
+    <string name="oops_network_error">Hay aksi! Ağ hatası</string>
+    <string name="oops_sync_failed">Hay aksi! Eşlenemedi</string>
+    <string name="oops_unlock_failed">Hay aksi! Kilit açma başarısız</string>
+    <string name="oops_unlock_failed_des">Kilidi başarıyla açmak için lütfen videoyu sonuna kadar izleyin.</string>
+    <string name="load_video_fail">Video yükleme başarısız oldu, internetinizi kontrol edip tekrar deneyin!</string>
+    <string name="last_sync">Son eşitleme: %s</string>
+    <string name="last_time">Son yapılma:</string>
+    <string name="log_out">Çıkış yap</string>
+    <string name="login_out_sure">Oturumu kapatmak istediğinizden emin misiniz?</string>
+    <string name="set_backup">Yedekle ve Kurtar</string>
+    <string name="sign_in_tips">Giriş yaparak verilerinizi eşleyin</string>
+    <string name="continue_with_google">Google ile devam et</string>
+    <string name="data_sync_done">Veri senkronizasyonu tamamlandı!</string>
 </resources>

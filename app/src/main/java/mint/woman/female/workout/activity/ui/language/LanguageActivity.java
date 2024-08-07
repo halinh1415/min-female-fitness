@@ -143,22 +143,23 @@ public class LanguageActivity extends AppCompatActivity implements IChangeLangua
 
     private void initLanguage() {
         languages = new ArrayList<>();
-        languages.add(new Language("en_US", "English", R.drawable.ic_language_english, false));
-        languages.add(new Language("de_DE", "Deutsch", R.drawable.ic_language_german, false));
-        languages.add(new Language("fr_FR", "Français", R.drawable.ic_language_french, false));
-        languages.add(new Language("es_US", "Español", R.drawable.ic_language_spain, false));
-        languages.add(new Language("pt_PT", "Português", R.drawable.ic_language_portuguese, false));
-        languages.add(new Language("zh_CN", "Chinese", R.drawable.ic_language_chinese, false));
-        languages.add(new Language("it_IT", "Italiano", R.drawable.ic_language_italian, false));
-        languages.add(new Language("pl_PL", "Polski", R.drawable.ic_language_poland, false));
-        languages.add(new Language("nl_NL", "Nederlands", R.drawable.ic_language_netherlands, false));
-        languages.add(new Language("ja_JP", "日本語", R.drawable.ic_language_japanese, false));
-        languages.add(new Language("ko_KR", "한국어", R.drawable.ic_language_south_korea, false));
-        languages.add(new Language("tr_TR", "Türkçe", R.drawable.ic_language_turkey, false));
-        languages.add(new Language("ar_EG", "العربية", R.drawable.ic_language_arabic, false));
+        languages.add(new Language("en", "English", R.drawable.ic_language_english, false));
+        languages.add(new Language("de", "Deutsch", R.drawable.ic_language_german, false));
+        languages.add(new Language("fr", "Français", R.drawable.ic_language_french, false));
+        languages.add(new Language("es", "Español", R.drawable.ic_language_spain, false));
+        languages.add(new Language("pt", "Português", R.drawable.ic_language_portuguese, false));
+        languages.add(new Language("zh_CN", "简体中文", R.drawable.ic_language_chinese, false));
+        languages.add(new Language("zh_TW", "繁体中文", R.drawable.ic_language_taiwan, false));
+        languages.add(new Language("it", "Italiano", R.drawable.ic_language_italian, false));
+        languages.add(new Language("pl", "Polski", R.drawable.ic_language_poland, false));
+        languages.add(new Language("nlL", "Nederlands", R.drawable.ic_language_netherlands, false));
+        languages.add(new Language("ja", "日本語", R.drawable.ic_language_japanese, false));
+        languages.add(new Language("ko", "한국어", R.drawable.ic_language_south_korea, false));
+        languages.add(new Language("tr", "Türkçe", R.drawable.ic_language_turkey, false));
+        languages.add(new Language("ar", "العربية", R.drawable.ic_language_arabic, false));
         languages.add(new Language("in_ID", "Indonesia", R.drawable.ic_language_indonesia, false));
-        languages.add(new Language("ru_RU", "Русский", R.drawable.ic_language_russia, false));
-        languages.add(new Language("vi_VN", "Tiếng Việt", R.drawable.ic_language_vietnamese, false));
+        languages.add(new Language("ru", "Русский", R.drawable.ic_language_russia, false));
+        languages.add(new Language("vi", "Tiếng Việt", R.drawable.ic_language_vietnamese, false));
 
         String lang = Locale.getDefault().getLanguage();
         int checkLanguage = -1;
@@ -188,7 +189,7 @@ public class LanguageActivity extends AppCompatActivity implements IChangeLangua
     protected void attachBaseContext(Context newBase) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(newBase);
         String lang = preferences.getString("ST_LANGUAGE", "");
-        if (!lang.isEmpty() && lang.length() > 2) {
+        if (!lang.isEmpty() ) {
             lang = lang.substring(0, 2);
         } else {
             lang = Locale.getDefault().getLanguage();

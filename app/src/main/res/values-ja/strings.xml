@@ -1,4 +1,4 @@
-<resources report_center_title="レポート" OK="OK" challenge="チャレンジ" beginner="初級" intermediate="中級" advanced="上級" today="今日" female="女性" male="男性" pay_monthly="月間" yearly="毎年" rp_syn_with_google_fit="Google Fitと同期化する" close="閉じる" minutes="分" recipes_breakfast="朝食" recipes_snack="軽食" recipes_lunch="昼食" recipes_dinner="夕食" weeks="週間" tab_discover="その他" explore_more="その他" save="保存" td_next="次へ" what_your_gender="あなたの性別は？" how_old="あなたの年齢は？" continue_text="続行" td_v_half_time="半分の時間" explore_tag_new="新規" replace="差し替える" replace_with="変更希望のエクササイズ" current="現在" retry="再試行" td_each_side="左右それぞれ" belly="お腹" arm="腕" ass="ヒップ" focus_part="ターゲットの部位はどこですか？" countdown="カウントダウン" no_counting="カウントなし" tempo_counting="テンポとカウント" td_mute="ミュート" sound="サウンド" cancel_via_google_play="Google Playからいつでもキャンセルできます。" free_7_days_trial_then_xx_year="無料7日間トライアル、その後年間%s" abbr_x_mth_gpt="%s/月" iap_only_x_per_mth_gpt="月額%sのみ" iap_only_x_per_week="週額%sのみ" price_per_year="年々%s" money_per_month="%s/月" change_start_today="あなたは今日から変わります！" premium_price_save_2="%s\nオフ " iap_discount_card_title_gpt="すべてのプレミアム機能にアクセス">
+<resources>
     <string name="app_name" translatable="false">女性のフィットネス - 女性のためのワークアウト</string>
     <string name="txt_rate" translatable="false">私たちを評価してください</string>
     <string name="txt_action_settings">設定</string>
@@ -335,4 +335,18 @@
     <string name="adductors">内転筋</string>
     <string name="neck">首</string>
     <string name="txt_most_popular">最も人気のある</string>
+<string name="oops">おっと！</string>
+    <string name="oops_network_error">おっと！ネットワークエラー</string>
+    <string name="oops_sync_failed">おっと！同期に失敗しました</string>
+    <string name="oops_unlock_failed">おっと！アンロックに失敗しました</string>
+    <string name="oops_unlock_failed_des">動画を最後まで見てアンロックしてください。</string>
+    <string name="load_video_fail">ビデオの読み込みに失敗しました。インターネットを確認して再試行してください。</string>
+    <string name="last_sync">最終同期日時：%s</string>
+    <string name="last_time">前回：</string>
+    <string name="log_out">ログアウト</string>
+    <string name="login_out_sure">本当にログアウトしますか？</string>
+    <string name="set_backup">データのバックアップ＆復元</string>
+    <string name="sign_in_tips">サインインしてデータを同期する</string>
+    <string name="continue_with_google">Googleで継続する</string>
+    <string name="data_sync_done">データの同期が完了しました！</string>
 </resources>

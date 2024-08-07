@@ -43,7 +43,6 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:text="@string/offline_notification_text"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textSize="@dimen/_14sdp" />
 
@@ -59,7 +58,6 @@
                         android:layout_weight="1"
                         android:gravity="bottom"
                         android:lines="1"
-                        android:text="@string/bottom_sheet_behavior"
                         android:textColor="@color/colorAds"
                         android:textSize="@dimen/_8sdp"
                         android:textStyle="bold" />

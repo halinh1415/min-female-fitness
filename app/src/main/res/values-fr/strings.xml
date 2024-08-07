@@ -1,4 +1,4 @@
-<resources report_center_title="Rapport" OK="OK" challenge="Défi" beginner="Débutant" intermediate="INTERMÉDIAIRE" advanced="AVANCÉ" today="Auj." female="Femme" male="Homme" pay_monthly="Par mois" yearly="Annuel" rp_syn_with_google_fit="Synchroniser vers Google Fit" close="FERMER" minutes="Minutes" recipes_breakfast="Petit-déjeuner" recipes_snack="Encas" recipes_lunch="Déjeuner" recipes_dinner="Dîner" weeks="Sem." tab_discover="Découvrir" explore_more="Plus" save="Enregistrer" td_next="Prochain" what_your_gender="Quel est votre sexe ?" how_old="Quel âge avez-vous ?" continue_text="Continuer" td_v_half_time="mi temps" explore_tag_new="Nouveau" replace="Remplacer" replace_with="REMPLACER PAR" current="Actuel" download="Téléchargez" retry="Réessayer" td_each_side="Chaque côté" belly="Ventre" arm="Bras" ass="Fesse" focus_part="Sur quoi voulez-vous vous concentrer ?" countdown="Compte à rebours" no_counting="Pas de comptage" tempo_counting="Rythme et comptage" td_mute="Silencieux" sound="Sonner" cancel_via_google_play="Résiliation à tout moment via Google Play." free_7_days_trial_then_xx_year="Essai gratuit de 7 jours, puis %s/an" abbr_x_mth_gpt="%s/mois" iap_only_x_per_mth_gpt="Seulement %s/mois" iap_only_x_per_week="Seulement %s/sem." price_per_year="%s/An" money_per_month="%s/mois" change_start_today="Le changement commence dès aujourd\'hui !" premium_price_save_2="- %s" iap_discount_card_title_gpt="Accédez à toutes les fonctionnalités premium">
+<resources>
     <string name="app_name" translatable="false">Fitness femme - Entraînement pour femmes</string>
     <string name="txt_rate" translatable="false">Évaluez nous</string>
     <string name="txt_action_settings">Paramètres</string>
@@ -335,4 +335,18 @@
     <string name="adductors">Adducteurs</string>
     <string name="neck">Cou</string>
     <string name="txt_most_popular">Le plus populaire</string>
+<string name="oops">Oups !</string>
+    <string name="oops_network_error">Oups ! Erreur réseau</string>
+    <string name="oops_sync_failed">Oups ! Échec de synchronisation</string>
+    <string name="oops_unlock_failed">Oups ! Échec du déblocage</string>
+    <string name="oops_unlock_failed_des">Veuillez regarder la vidéo jusqu\'à la fin pour débloquer avec succès.</string>
+    <string name="load_video_fail">Échec du chargement de la vidéo, vérifiez votre connexion Internet et réessayez !</string>
+    <string name="last_sync">Dernière synchronisation : %s</string>
+    <string name="last_time">Dernière fois:</string>
+    <string name="log_out">Déconnexion</string>
+    <string name="login_out_sure">Voulez-vous vraiment vous déconnecter ?</string>
+    <string name="set_backup">Sauvegarder et restaurer</string>
+    <string name="sign_in_tips">Connectez-vous et synchronisez vos données</string>
+    <string name="continue_with_google">Continuer avec Google</string>
+    <string name="data_sync_done">Synchronisation des données terminée !</string>
 </resources>

@@ -5,7 +5,7 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import mint.woman.female.workout.model.HistoryDateWithItem;
+import mint.woman.female.workout.model.HistoryItem;
 import mint.woman.female.workout.utils.HistoryRepository;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public class HomeViewModel extends AndroidViewModel {
         mHistoryRepository = new HistoryRepository(application);
     }
 
-    public LiveData<List<HistoryDateWithItem>> findHistoryFromTo(long from, long end) {
-        return mHistoryRepository.findHistoryDateItemFromTo(from, end);
+    public LiveData<List<HistoryItem>> findHistoryFromTo(long from, long end) {
+        return mHistoryRepository.findFromTo(from, end);
     }
 }
