@@ -75,7 +75,7 @@ public class SoundsActivity extends AppCompatActivity implements MusicClickListe
         binding.ltLoading.setVisibility(View.VISIBLE);
         binding.ltLoading.setAnimation("loading.json");
         binding.ltLoading.playAnimation();
-
+        setTitle(getString(R.string.txt_select_audio));
         mService.getMusic().enqueue(new Callback<List<MusicItem>>() {
             @Override
             public void onResponse(Call<List<MusicItem>> call, Response<List<MusicItem>> response) {
@@ -192,7 +192,7 @@ public class SoundsActivity extends AppCompatActivity implements MusicClickListe
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(newBase);
         String lang = preferences.getString("ST_LANGUAGE", "");
-        if (!lang.isEmpty() && lang.length() > 2) {
+        if (!lang.isEmpty() ) {
             lang = lang.substring(0, 2);
         } else {
             lang = Locale.getDefault().getLanguage();

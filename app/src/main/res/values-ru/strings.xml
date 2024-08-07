@@ -1,4 +1,4 @@
-<resources report_center_title="Отчет" OK="OK" challenge="Программа" beginner="Новичок" intermediate="ПРОДОЛЖАЮЩИЙ" advanced="ПРОДВИНУТЫЙ" today="Сегодня" female="Женский" male="Мужской" pay_monthly="Месячная" yearly="Ежегодно" rp_syn_with_google_fit="Синхронизация с приложением Google" close="ЗАКРЫТЬ" minutes="Минут" recipes_breakfast="Завтрак" recipes_snack="Перекус" recipes_lunch="Обед" recipes_dinner="Ужин" weeks="Недель" tab_discover="Открытия" explore_more="Еще" save="Сохранить" td_next="СЛЕДУЮЩИЕ" what_your_gender="Какого вы пола?" how_old="Сколько вам лет?" continue_text="Продолжить" td_v_half_time="половина времени" explore_tag_new="Новинка" replace="Заменить" replace_with="ЧЕМ ЗАМЕНИТЬ" current="Текущий" download="Скачать" retry="Повторить" td_each_side="Для каждой стороны" belly="Живот" arm="Руки" ass="Ягодицы" focus_part="Над чем хотите поработать?" countdown="Отсчет" no_counting="Без счета" tempo_counting="Темп и счет" td_mute="Беззвучный режим" sound="Звук" cancel_via_google_play="Отмените когда угодно в Google Play." free_7_days_trial_then_xx_year="Бесплатно пробная версия на 7 дней, затем %s в год" abbr_x_mth_gpt="%s/месяц" iap_only_x_per_mth_gpt="Только %s/месяц" iap_only_x_per_week="Всего %s в неделя" price_per_year="%s/Год" money_per_month="%s/месяц" change_start_today="Начните меняться сегодня!" premium_price_save_2="-%s" iap_discount_card_title_gpt="Получите доступ ко всем премиум-функциям">
+<resources>
     <string name="app_name" translatable="false">Фитнес для женщин: женская тренировка</string>
     <string name="txt_rate" translatable="false">Оцените нас</string>
     <string name="txt_action_settings">Настройки</string>
@@ -335,4 +335,18 @@
     <string name="adductors">Аддукторы</string>
     <string name="neck">Шея</string>
     <string name="txt_most_popular">Самый популярный</string>
+<string name="oops">Возникла ошибка!</string>
+    <string name="oops_network_error">Возникла ошибка! Ошибка сети</string>
+    <string name="oops_sync_failed">Ой! Не удалось синхронизировать</string>
+    <string name="oops_unlock_failed">Ой! Не удалось открыть</string>
+    <string name="oops_unlock_failed_des">Посмотрите видео до конца, чтобы открыть.</string>
+    <string name="load_video_fail">Не удалось загрузить видео. Проверьте Интернет и повторите попытку!</string>
+    <string name="last_sync">Посл. синхр.: %s</string>
+    <string name="last_time">Последний раз:</string>
+    <string name="log_out">Выйти</string>
+    <string name="login_out_sure">Вы действительно хотите выйти?</string>
+    <string name="set_backup">Резервная копия и восстановление</string>
+    <string name="sign_in_tips">Выполните вход и синхронизируйте свои данные</string>
+    <string name="continue_with_google">Продолжить через Google</string>
+    <string name="data_sync_done">Синхронизация данных завершена!</string>
 </resources>

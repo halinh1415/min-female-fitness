@@ -4,8 +4,8 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import mint.woman.female.workout.model.HistoryDate;
-import mint.woman.female.workout.model.HistoryDateWithItem;
+//import homeworkout.noequipment.workout.athome.model.HistoryDate;
+//import homeworkout.noequipment.workout.athome.model.HistoryDateWithItem;
 import mint.woman.female.workout.model.HistoryItem;
 
 import java.util.List;
@@ -48,29 +48,13 @@ public class HistoryRepository {
     public LiveData<List<HistoryItem>> findFromTo(long from, long to) {
         return mHistoryDao.findHistoryFromTo(from, to);
     }
-
-    public void insertHistoryDate(HistoryDate date) {
-        HistoryDatabase.databaseWriteExecutor.execute(() -> {
-            mHistoryDao.insertHistoryDate(date);
-        });
-    }
-
-    public LiveData<List<HistoryDateWithItem>> getAllHistoryByDate() {
-        return mHistoryDao.getAllHistoryByDate();
-    }
-
-    public LiveData<List<HistoryDateWithItem>> findHistoryDateItemFromTo(long from, long end) {
-        return mHistoryDao.findHistoryDateItemFromTo(from, end);
-    }
-
-    public LiveData<HistoryDateWithItem> findHistoryDateItemOnDay(long day) {
-        return mHistoryDao.findHistoryDateItemOnDay(day);
+    public LiveData<List<HistoryItem>> findInDay(long day) {
+        return mHistoryDao.findHistoryInDate(day);
     }
 
     public void deleteAllHistory() {
         HistoryDatabase.databaseWriteExecutor.execute(() -> {
             mHistoryDao.deleteAllHistoryItem();
-            mHistoryDao.deleteAllHistoryDate();
         });
 
     }

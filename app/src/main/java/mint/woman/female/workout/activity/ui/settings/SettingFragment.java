@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.navigation.Navigation;
@@ -21,6 +22,13 @@ import androidx.preference.PreferenceFragmentCompat;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import mint.woman.female.workout.BuildConfig;
 import mint.woman.female.workout.FitnessApplication;
@@ -28,18 +36,29 @@ import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.PolicyActivity;
 import mint.woman.female.workout.activity.ui.sounds.SoundsActivity;
 import mint.woman.female.workout.admodule.AppOpenManager;
+import mint.woman.female.workout.custom.CustomPreference;
+import mint.woman.female.workout.custom.DialogUserLogIn;
+import mint.woman.female.workout.custom.DialogUserLogOut;
 import mint.woman.female.workout.utils.JsonHelper;
 import mint.woman.female.workout.utils.MyPreference;
+import mint.woman.female.workout.utils.RemoteConfigKeys;
 
 
 public class SettingFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
     private OnSettingsListener mListener;
+    private final SimpleDateFormat mFormatDateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+    public final static String SUPPORT_LANGUAGES = "ar@de@en@es@fa@fr@in_ID@it@ja@ko@nl@pl@pt@ru@tr@vi@zh_CN@zh_TW@th@uk";
 
-
+    CustomPreference preferenceBackUp;
+    MyPreference myPreference;
+    DialogUserLogOut dialogUserLogOut;
+    DialogUserLogIn dialogUserLogIn;
+    boolean isSync = false;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.settings_preference, rootKey);
+        myPreference = new MyPreference(getContext());
         findPreference("ST_RATE").setOnPreferenceClickListener(this);
         findPreference("ST_FEEDBACK").setOnPreferenceClickListener(this);
         findPreference("ST_SHARE").setOnPreferenceClickListener(this);
@@ -48,19 +67,72 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         findPreference("TTS_INSTALL_VOICE").setOnPreferenceClickListener(this);
         //findPreference("SYNC_GOOGLE_FIT").setOnPreferenceClickListener(this);
         findPreference("ST_REMINDER").setOnPreferenceClickListener(this);
-        //findPreference("ST_YOUTUBE").setOnPreferenceClickListener(this);
+        findPreference("BACK_UP").setOnPreferenceClickListener(this);
         Preference music = findPreference("BACK_GROUND_MUSIC");
         music.setSummary(MyPreference.newInstance(getContext()).getMusicName());
         findPreference("BACK_GROUND_MUSIC").setOnPreferenceClickListener(this);
-        //  findPreference("BACK_UP").setOnPreferenceClickListener(this);
+        preferenceBackUp = findPreference("BACK_UP");
         Preference reminder = findPreference("ST_REMINDER");
         reminder.setSummary(FitnessApplication.getApplication().mDatabase.getReminderSet());
         Preference version = findPreference("VERSION_APP");
+        ListPreference languagePreference = findPreference("ST_LANGUAGE");
+        String[] languageEntryValues = SUPPORT_LANGUAGES.split("@");
+        String[] languageEntries = new String[languageEntryValues.length];
+        for (int i = 0; i < languageEntryValues.length; i++) {
+            languageEntries[i] = getLanguageName(languageEntryValues[i]);
+        }
+        languagePreference.setEntryValues(languageEntryValues);
+        languagePreference.setEntries(languageEntries);
         version.setTitle("Version App: " + BuildConfig.VERSION_NAME);
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
-        updateAccount(account);
+        if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.ENABLE_SYNC)){
+            preferenceBackUp.setVisible(true);
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) {
+                preferenceBackUp.setTitle(user.getDisplayName());
+                preferenceBackUp.setUrl(user.getPhotoUrl(),true);
+                if (myPreference.getBackUpTime() > 0) {
+                    preferenceBackUp.setSummary(String.format(getString(R.string.last_sync), mFormatDateTime.format(myPreference.getBackUpTime())));
+                }
+            }
+            preferenceBackUp.setClickListener(() -> {
+                if (user != null) {
+                    showDialogLogOut();
+                }
+            });
+        }else {
+            preferenceBackUp.setVisible(false);
+        }
+
+    }
+    void showDialogLogOut(){
+        if (dialogUserLogOut == null){
+            dialogUserLogOut = new DialogUserLogOut();
+        }
+        if (!dialogUserLogOut.isAdded()){
+            dialogUserLogOut.show(getParentFragmentManager(), "logout");
+        }
+        updateAccount(FirebaseAuth.getInstance().getCurrentUser());
+
+    }
+    void showDialogLogIn(){
+        if (dialogUserLogIn == null){
+            dialogUserLogIn = new DialogUserLogIn();
+        }
+        if (!dialogUserLogIn.isAdded()){
+            dialogUserLogIn.show(getParentFragmentManager(), "log_in");
+        }
     }
 
+    String getLanguageName(String lng) {
+        String[] loc = lng.split("[_-]");
+        Locale locale;
+        if (loc.length > 1) {
+            locale = new Locale(loc[0], loc[1]);
+        } else {
+            locale = new Locale(loc[0]);
+        }
+        return locale.getDisplayLanguage(locale);
+    }
 
     public void initValue(boolean value) {
      //   SwitchPreference swGoogleFit = (SwitchPreference) findPreference("SYNC_GOOGLE_FIT");
@@ -97,51 +169,48 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
             case "ST_REMINDER":
                 Navigation.findNavController(getView()).navigate(R.id.action_nav_setting_to_nav_reminder);
                 break;
-            case "ST_YOUTUBE":
-                openYoutubeChannel();
-                break;
             case "BACK_GROUND_MUSIC":
                 startActivity(new Intent(getActivity(), SoundsActivity.class));
                 break;
-//            case "BACK_UP":
-//                if (mListener != null) {
-//                    mListener.singIn();
-//                }
-//
-//                break;
+            case "BACK_UP":
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user == null) {
+                    showDialogLogIn();
+                } else {
+                    if (!isSync) {
+                        isSync = true;
+                        myPreference.setBackUpTime(Calendar.getInstance().getTimeInMillis());
+                        preferenceBackUp.setSummary(String.format(getString(R.string.last_sync), mFormatDateTime.format(myPreference.getBackUpTime())));
+                        preferenceBackUp.setUrl(user.getPhotoUrl(), true);
+                        if (mListener != null)
+                            mListener.syncData();
+                    } else {
+                        Toast.makeText(getContext(), getString(R.string.data_sync_done), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                break;
 
         }
         return false;
     }
-    public void openYoutubeChannel() {
-        FirebaseAnalytics.getInstance(getContext()).logEvent("click_open_youtube_channel_st", new Bundle());
-        AppOpenManager.getInstance().disableAdResumeByClickAction();
 
-        String youtubeChannelId = "UCIUIxNiBFEqjHmnoPgpeKUw";
-
-        // Try to open the YouTube app directly
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("vnd.youtube://channel/" + youtubeChannelId));
-
-        // If YouTube app is not installed, open in browser
-        if (intent.resolveActivity(getContext().getPackageManager()) == null) {
-            intent.setData(Uri.parse("https://www.youtube.com/channel/" + youtubeChannelId));
+    public void updateAccount(FirebaseUser firebaseUser) {
+        if (firebaseUser != null) {
+            preferenceBackUp.setTitle(firebaseUser.getDisplayName());
+            myPreference.setBackUpTime(Calendar.getInstance().getTimeInMillis());
+            preferenceBackUp.setSummary(String.format(getString(R.string.last_sync), mFormatDateTime.format(myPreference.getBackUpTime())));
+            preferenceBackUp.setUrl(firebaseUser.getPhotoUrl(),true);
+        } else {
+            preferenceBackUp.setTitle(getString(R.string.set_backup));
+            preferenceBackUp.setSummary(getString(R.string.sign_in_tips));
+            preferenceBackUp.setUrl(null,false);
         }
-
-        try {
-            startActivity(intent);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
-    public void updateAccount(GoogleSignInAccount account) {
-//        Preference preference = findPreference("BACK_UP");
-//        if (account!= null){
-//            preference.setTitle(account.getDisplayName());
-//        }else {
-//            preference.setTitle("Back up!");
-//        }
+        preferenceBackUp.setClickListener(() -> {
+            if (firebaseUser != null) {
+                showDialogLogOut();
+            }
+        });
 
     }
 
@@ -270,5 +339,7 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         void onLanguageChange();
 
         void onGetGoogleFit();
+
+        void syncData();
     }
 }

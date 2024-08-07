@@ -23,7 +23,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
@@ -119,7 +123,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     protected void attachBaseContext(Context newBase) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(newBase);
         String lang = preferences.getString("ST_LANGUAGE", "");
-        if (!lang.isEmpty() && lang.length() > 2) {
+        if (!lang.isEmpty() ) {
             lang = lang.substring(0, 2);
         } else {
             lang = Locale.getDefault().getLanguage();
@@ -387,9 +391,11 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                     musicPlayer.release();
                 }
                 musicPlayer = MediaPlayer.create(DoWorkoutActivity.this, Uri.parse(musicPath));
-                musicPlayer.setVolume(myPreference.getMusicVolume(), myPreference.getMusicVolume());
-                musicPlayer.setLooping(true);
-                musicPlayer.start();
+                if (musicPlayer != null) {
+                    musicPlayer.setVolume(myPreference.getMusicVolume(), myPreference.getMusicVolume());
+                    musicPlayer.setLooping(true);
+                    musicPlayer.start();
+                }
             }
         }
         if (currentExerciseCount < totalExercise) {
@@ -610,13 +616,18 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             myPreference.saveProgressWorkout(mProgramObject.getId(), mDayIndex, 0);
             myPreference.setSaveProgressPercent(mProgramObject.getId(), mDayIndex, 1);
             mHistoryItem.setEndTime(Calendar.getInstance().getTimeInMillis());
+
             float cal = (mHistoryItem.getDuration() / 3600.0f) * FitnessConstUtils.CALORIES_CONST * (myPreference.getCurrentWeightKG() / 65.0f);
             mHistoryItem.setCalories((int) cal);
             mHistoryItem.setPassed(true);
             mWorkoutViewModel.insertHistory(mHistoryItem);
-            mWorkoutViewModel.insertDate(mHistoryItem.getDate());
-            if (mDayIndex + 1 > myPreference.getPlanProgress(mProgramObject.getId())) {
+            if (mDayIndex + 1 > myPreference.getPlanProgress(mProgramObject.getId()) && mProgramObject.getType()== 1) {
                 myPreference.setPlanProgress(mProgramObject.getId(), mDayIndex + 1);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user!= null){
+                    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).child("programs");
+                    userRef.child(String.valueOf(mProgramObject.getId())).setValue(mDayIndex+1);
+                }
             }
             myPreference.setSaveProgress(mProgramObject.getId(), mDayIndex, 0);
             Intent homeIntent = new Intent(DoWorkoutActivity.this, YogaActivity.class);
@@ -687,7 +698,6 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         float cal = (mHistoryItem.getDuration() / 3600.0f) * FitnessConstUtils.CALORIES_CONST * (myPreference.getCurrentWeightKG() / 65.0f);
         mHistoryItem.setCalories((int) cal);
         mWorkoutViewModel.insertHistory(mHistoryItem);
-        mWorkoutViewModel.insertDate(mHistoryItem.getDate());
         myPreference.setSaveProgress(mProgramObject.getId(), mDayIndex, currentExerciseCount);
         float percent = (float) currentExerciseCount / totalExercise;
         myPreference.setSaveProgressPercent(mProgramObject.getId(), mDayIndex, percent);

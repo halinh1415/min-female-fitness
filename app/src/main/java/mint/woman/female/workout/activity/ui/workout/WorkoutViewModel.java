@@ -7,7 +7,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import mint.woman.female.workout.model.HistoryDate;
 import mint.woman.female.workout.model.HistoryItem;
 import mint.woman.female.workout.utils.HistoryRepository;
 import mint.woman.female.workout.utils.MyPreference;
@@ -54,9 +53,7 @@ public class WorkoutViewModel extends AndroidViewModel {
         mRepository.insert(historyItem);
     }
 
-    public void insertDate(long date) {
-        mRepository.insertHistoryDate(new HistoryDate(date));
-    }
+
 
     public LiveData<List<HistoryItem>> getAllHistory() {
         return mRepository.getAllHistory();

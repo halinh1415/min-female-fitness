@@ -1,4 +1,4 @@
-<resources report_center_title="报告" OK="确定" challenge="挑战" beginner="初级" intermediate="中级" advanced="高级" today="今天" female="女性" male="男性" pay_monthly="每月" yearly="每年" rp_syn_with_google_fit="同步到Google健身" close="关闭" minutes="分钟" recipes_breakfast="早餐" recipes_snack="零食" recipes_lunch="午餐" recipes_dinner="晚餐" weeks="周" tab_discover="发现" explore_more="更多" save="保存" td_next="下一个" what_your_gender="你的性别？" how_old="你的年龄？" continue_text="继续" td_v_half_time="一半时间" explore_tag_new="新" replace="替换" replace_with="替换为" current="目前" download="下载" retry="重试" td_each_side="每一边" belly="腹部" arm="手臂" ass="臀部" focus_part="您想专注于哪个部位？" countdown="倒计时" no_counting="不计数" tempo_counting="节奏&amp;计数" td_mute="静音" sound="提示音" cancel_via_google_play="随时通过Google Play取消。" free_7_days_trial_then_xx_year="免费7天试用，之后%s/年" abbr_x_mth_gpt="%s/月" iap_only_x_per_mth_gpt="仅%s/月" iap_only_x_per_week="仅需%s/周" price_per_year="每年%s" money_per_month="%s/月" change_start_today="蜕变从今天开始！" premium_price_save_2="优惠 \n%s" iap_discount_card_title_gpt="获取所有高级功能">
+<resources>
     <string name="app_name" translatable="false">女性健身-女性锻炼</string>
     <string name="txt_rate" translatable="false">评价我们</string>
     <string name="txt_action_settings">设置</string>
@@ -305,7 +305,7 @@
     <string name="txt_iap_feature_info_4">永远无广告</string>
     <string name="txt_iap_feature_info_3">个性化计划和未来更新</string>
     <string name="txt_iap_feature_info_2">仅 4 周即可取得惊人成果</string>
-<string name="training">锻炼</string>
+    <string name="training">锻炼</string>
     <string name="training_goal">锻炼目的</string>
     <string name="random_workout">随机运动</string>
     <string name="for_summer">沙滩身材</string>
@@ -335,4 +335,18 @@
     <string name="adductors">内收肌</string>
     <string name="neck">脖子</string>
     <string name="txt_most_popular">最受欢迎</string>
+    <string name="oops">哎呦！</string>
+    <string name="oops_network_error">哎呦！网络出错</string>
+    <string name="oops_sync_failed">哎呀！同步失败</string>
+    <string name="oops_unlock_failed">糟糕！解锁失败</string>
+    <string name="oops_unlock_failed_des">请将视频看完以解锁。</string>
+    <string name="load_video_fail">加载视频失败，请检查您的网络并重试！</string>
+    <string name="last_sync">上次同步：%s</string>
+    <string name="last_time">上次训练时间：</string>
+    <string name="log_out">退出</string>
+    <string name="login_out_sure">确定要退出吗？</string>
+    <string name="set_backup">数据备份和恢复</string>
+    <string name="sign_in_tips">登录账户后同步数据</string>
+    <string name="continue_with_google">使用Google继续</string>
+    <string name="data_sync_done">数据同步完成！</string>
 </resources>

@@ -1,4 +1,4 @@
-<resources report_center_title="Raport" OK="OK" challenge="Wyzwanie" beginner="Początkujący" intermediate="ŚREDNIO ZAAWANSOWANY" advanced="ZAAWANSOWANY" today="Dzisiaj" female="Kobieta" male="Mężczyzna" pay_monthly="Miesięcznie" yearly="Rocznie" rp_syn_with_google_fit="Zsynchronizowane z Google Fit" close="ZAMKNIJ" minutes="Minuty" recipes_breakfast="Śniadanie" recipes_snack="Przekąska" recipes_lunch="Lunch" recipes_dinner="Obiad" weeks="Tygodnie" tab_discover="Odkryj" explore_more="Więcej" save="Zapisz" td_next="Następny" what_your_gender="Twoja płeć?" how_old="Ile masz lat?" continue_text="Kontynuuj" td_v_half_time="połowa czasu" explore_tag_new="Nowy" replace="Zmień" replace_with="ZAMIEŃ NA" current="Obecna" download="Pobierz" retry="Ponów próbę" td_each_side="Każda strona" belly="Brzuch" arm="Ramiona" ass="Pośladek" focus_part="Na czym chcesz się skupić?" countdown="Odliczanie" no_counting="Bez liczenia" tempo_counting="Tempo i liczenie" td_mute="Wycisz" sound="Dźwięk" cancel_via_google_play="Możesz anulować w dowolnym czasie przez Google Play." free_7_days_trial_then_xx_year="Darmowa 7-dniowa wersja próbna, później %s rok" abbr_x_mth_gpt="%s/miesiąc" iap_only_x_per_mth_gpt="Tylko %s/miesiąc" iap_only_x_per_week="Za %s/tydzień" price_per_year="%s Na rok" money_per_month="%s/miesiąc" change_start_today="Twoja przemiana zaczyna się dzisiaj!" premium_price_save_2="%s\nrabatu " iap_discount_card_title_gpt="Zdobądź dostęp do wszystkich funkcji premium">
+<resources>
     <string name="app_name" translatable="false">Fitness kobiet - Ćwiczenia dla kobiet</string>
     <string name="txt_rate" translatable="false">Oceń nas</string>
     <string name="txt_action_settings">Ustawienia</string>
@@ -335,4 +335,18 @@
     <string name="adductors">Przywodziciele</string>
     <string name="neck">Szyja</string>
     <string name="txt_most_popular">Najbardziej popularny</string>
+<string name="oops">Ups!</string>
+    <string name="oops_network_error">Ups! Błąd sieci</string>
+    <string name="oops_sync_failed">Ups! Synchronizacja nie powiodła się</string>
+    <string name="oops_unlock_failed">Ups! Odblokowanie nie powiodło się</string>
+    <string name="oops_unlock_failed_des">Obejrzyj film do końca, aby odblokować pomyślnie.</string>
+    <string name="load_video_fail">Załaduj wideo nie powiodło się, sprawdź połączenie internetowe i spróbuj ponownie!</string>
+    <string name="last_sync">Ostatnia synchronizacja: %s</string>
+    <string name="last_time">Ostatnio:</string>
+    <string name="log_out">Wyloguj się</string>
+    <string name="login_out_sure">Na pewno chcesz się wylogować?</string>
+    <string name="set_backup">Kopia zap. i przywracanie</string>
+    <string name="sign_in_tips">Zaloguj się i synchronizuj swoje dane</string>
+    <string name="continue_with_google">Kontynuuj z Google</string>
+    <string name="data_sync_done">Synchronizacja danych zakończona!</string>
 </resources>

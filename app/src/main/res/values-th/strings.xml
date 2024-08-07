@@ -1,4 +1,4 @@
-<resources OK="โอเค" beginner="ผู้เริ่มฝึก" intermediate="ปานกลาง" advanced="ขั้นสูง" today="วันนี้" female="หญิง" male="ชาย" rp_syn_with_google_fit="ซิงค์ไปยัง Google Fit" close="ปิด" minutes="นาที" explore_more="เพิ่มเติม" save="บันทึก" what_your_gender="คุณเพศอะไร?" continue_text="ดำเนินการต่อ" explore_tag_new="ใหม่" replace="ลบ" current="ปัจจุบัน" retry="ลองใหม่" td_each_side="แต่ละด้าน" arm="แขน" full_body="ร่างกายทั้งตัว" td_mute="ปิดเสียง" sound="เสียง" free_7_days_trial_then_xx_year="ทดลองใช้ฟรี 7 วัน หลังจากนั้น %s/ป" money_per_month="%s/เดือน">
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">การออกกำลังกายหญิง</string>
     <string name="txt_rate" translatable="false">ให้คะแนนเรา</string>
     <string name="txt_action_settings">การตั้งค่า</string>

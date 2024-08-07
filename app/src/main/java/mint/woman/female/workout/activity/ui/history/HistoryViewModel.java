@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import mint.woman.female.workout.model.HistoryDateWithItem;
 import mint.woman.female.workout.model.HistoryItem;
 import mint.woman.female.workout.model.UserObject;
 import mint.woman.female.workout.utils.HistoryRepository;
@@ -28,21 +27,17 @@ public class HistoryViewModel extends AndroidViewModel {
         return mHistoryRepository.getAllHistory();
     }
 
+    public void insertHistory(HistoryItem historyItem) {
+        mHistoryRepository.insert(historyItem);
+    }
     public LiveData<List<HistoryItem>> findFromTo(long from, long end) {
         return mHistoryRepository.findFromTo(from, end);
     }
 
-    public LiveData<List<HistoryDateWithItem>> getAllDateHistory() {
-        return mHistoryRepository.getAllHistoryByDate();
+    public LiveData<List<HistoryItem>> findInDay(long day){
+        return mHistoryRepository.findInDay(day);
     }
 
-    public LiveData<List<HistoryDateWithItem>> findHistoryDateItemFromTo(long from, long end) {
-        return mHistoryRepository.findHistoryDateItemFromTo(from, end);
-    }
-
-    public LiveData<HistoryDateWithItem> findHistoryDateItemOnDay(long day) {
-        return mHistoryRepository.findHistoryDateItemOnDay(day);
-    }
 
     public void deleteAllHistory() {
         mHistoryRepository.deleteAllHistory();
@@ -55,9 +50,4 @@ public class HistoryViewModel extends AndroidViewModel {
     public void insertUser(UserObject userObject) {
         mUserRepository.insert(userObject);
     }
-
-    public LiveData<List<HistoryDateWithItem>> getHistoryDate() {
-        return mHistoryRepository.getAllHistoryByDate();
-    }
-
 }

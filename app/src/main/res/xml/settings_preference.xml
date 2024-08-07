@@ -2,11 +2,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:icon="@drawable/ic_music_note_black_24dp">
 
-<!--    <Preference-->
-<!--        android:icon="@drawable/googleg_disabled_color_18"-->
-<!--        android:key="BACK_UP"-->
-<!--        android:title="Back up"-->
-<!--        android:visibility="gone" />-->
+    <mint.woman.female.workout.custom.CustomPreference
+        android:icon="@drawable/googleg_disabled_color_18"
+        android:key="BACK_UP"
+        android:summary="@string/sign_in_tips"
+        android:title="@string/set_backup"
+        android:visibility="visible" />
     <PreferenceCategory android:title="General">
 <!--        <Preference-->
 <!--            android:icon="@drawable/ic_youtube"-->

@@ -58,7 +58,13 @@ public class LanguageHelper {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private static Context updateResources(Context context, String language) {
 
-        Locale locale = new Locale(language);
+        String[] loc = language.split("[_-]");
+        Locale locale;
+        if (loc.length > 1) {
+            locale = new Locale(loc[0], loc[1]);
+        } else {
+            locale = new Locale(loc[0]);
+        }
 
         Configuration configuration = new Configuration();
 
@@ -79,7 +85,13 @@ public class LanguageHelper {
 
     private static Context updateResourcesLegacy(Context context, String language) {
 
-        Locale locale = new Locale(language);
+        String[] loc = language.split("[_-]");
+        Locale locale;
+        if (loc.length > 1) {
+            locale = new Locale(loc[0], loc[1]);
+        } else {
+            locale = new Locale(loc[0]);
+        }
         Locale.setDefault(locale);
 
         Resources resources = context.getResources();

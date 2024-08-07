@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <defaults>
   <entry>
-    <key>inter_splash</key>
+    <key>enable_sync</key>
     <value>true</value>
   </entry>
   <entry>
@@ -9,8 +9,24 @@
     <value>true</value>
   </entry>
   <entry>
+    <key>inter_go_before</key>
+    <value>false</value>
+  </entry>
+  <entry>
     <key>native_setup</key>
     <value>false</value>
+  </entry>
+  <entry>
+    <key>banner</key>
+    <value>true</value>
+  </entry>
+  <entry>
+    <key>inter_first_open</key>
+    <value>true</value>
+  </entry>
+  <entry>
+    <key>pro_video_reward</key>
+    <value>true</value>
   </entry>
   <entry>
     <key>inter_start</key>
@@ -21,11 +37,7 @@
     <value>true</value>
   </entry>
   <entry>
-    <key>banner</key>
-    <value>true</value>
-  </entry>
-  <entry>
-    <key>inter_first_open</key>
+    <key>inter_splash</key>
     <value>true</value>
   </entry>
   <entry>

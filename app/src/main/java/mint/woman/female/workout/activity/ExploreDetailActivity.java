@@ -85,7 +85,7 @@ public class ExploreDetailActivity extends AppCompatActivity implements ProgramC
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(newBase);
         String lang = preferences.getString("ST_LANGUAGE", "");
-        if (!lang.isEmpty() && lang.length() > 2) {
+        if (!lang.isEmpty() ) {
             lang = lang.substring(0, 2);
         } else {
             lang = Locale.getDefault().getLanguage();

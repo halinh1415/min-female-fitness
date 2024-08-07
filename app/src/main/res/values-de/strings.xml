@@ -1,4 +1,4 @@
-<resources report_center_title="Melden" OK="OK" challenge="Herausforderung" beginner="Anfänger" intermediate="FORTGESCHRITTEN" advanced="PROFI" today="Heute" female="Frau" male="Mann" pay_monthly="Monatlich" yearly="Jährlich" rp_syn_with_google_fit="Sync. mit Google Fit" close="SCHLIESSEN" minutes="Minuten" recipes_breakfast="Frühstück" recipes_snack="Snack" recipes_lunch="Mittagessen" recipes_dinner="Abendessen" weeks="Wochen" tab_discover="Entdecken" explore_more="Mehr" save="Speichern" td_next="Als Nächstes" what_your_gender="Was ist Ihr Geschlecht?" how_old="Wie alt sind Sie?" continue_text="Weiter" td_v_half_time="Halbzeit" explore_tag_new="Neu" replace="Ersetzen" replace_with="ERSETZEN MIT" current="Aktuell" download="Herunterladen" retry="Wiederholen" td_each_side="Auf jeder Seite" belly="Bauch" arm="Arm" ass="Pomuskulatur" focus_part="Um welche Zone geht es Ihnen?" countdown="Countdown" no_counting="Kein Zählen" tempo_counting="Tempo &amp; Zählen" td_mute="Stummschalten" sound="Ton" cancel_via_google_play="Jederzeit über Google Play kündigen." free_7_days_trial_then_xx_year="Kostenlose 7-tägige Testversion, danach %s/Jahr" abbr_x_mth_gpt="%s/Monat" iap_only_x_per_mth_gpt="Nur %s/Monat" iap_only_x_per_week="Nur %s/Woche" price_per_year="%s/Jahr" money_per_month="%s/Monat" change_start_today="Ihre Veränderung beginnt noch heute!" premium_price_save_2="%s\nRabatt " iap_discount_card_title_gpt="Zugriff auf alle Premium-Funktionen erhalten">
+<resources>
     <string name="app_name" translatable="false">Frauen Fitness - Trainingsplan für Frauen</string>
     <string name="txt_rate" translatable="false">Bewerten sie uns</string>
     <string name="txt_action_settings">Einstellungen</string>
@@ -335,4 +335,18 @@
     <string name="adductors">Adduktoren</string>
     <string name="neck">Hals</string>
     <string name="txt_most_popular">Am beliebtesten</string>
+<string name="oops">Ups!</string>
+    <string name="oops_network_error">Ups! Netzwerk-Fehler</string>
+    <string name="oops_sync_failed">Ups! Synchronisieren fehlgeschlagen</string>
+    <string name="oops_unlock_failed">Oh! Fehler beim Freischalten!</string>
+    <string name="oops_unlock_failed_des">Bitte sehen Sie sich das Video bis zum Ende an, um dieses Training freizuschalten.</string>
+    <string name="load_video_fail">Das Laden des Videos ist fehlgeschlagen. Überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut!</string>
+    <string name="last_sync">Letzte synchronisation: %s</string>
+    <string name="last_time">Zuletzt:</string>
+    <string name="log_out">abmelden</string>
+    <string name="login_out_sure">Möchten Sie sich wirklich ausloggen?</string>
+    <string name="set_backup">Sicherung &amp; Wiederherstellen</string>
+    <string name="sign_in_tips">Anmelden und Ihre Daten synchronisieren</string>
+    <string name="continue_with_google">Weiter mit Google</string>
+    <string name="data_sync_done">Datensynchronisierung abgeschlossen!</string>
 </resources>

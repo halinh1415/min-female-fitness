@@ -8,8 +8,6 @@
     <string name="roboto_light" translatable="false">sans-serif-light</string>
     <string name="roboto_medium" translatable="false">sans-serif-medium</string>
     <string name="roboto_regular" translatable="false">sans-serif</string>
-
-
     <string name="txt_rate" translatable="false">Rate us</string>
     <string name="txt_action_settings">Settings</string>
     <string name="txt_very_severely_underweight">Very Severely Underweight</string>
@@ -345,5 +343,18 @@
     <string name="adductors">Adductors</string>
     <string name="neck">Neck</string>
     <string name="txt_most_popular">Most Popular</string>
+    <string name="oops">Oops!</string>
+    <string name="oops_network_error">Oops! Network error</string>
+    <string name="oops_sync_failed">Oops! Sync Failed</string>
+    <string name="oops_unlock_failed">Oops! Unlock failed</string>
+    <string name="oops_unlock_failed_des">Please watch the video till the end to unlock successfully.</string>
     <string name="load_video_fail">Load video fail, check your internet and retry!</string>
+    <string name="last_sync">Last sync: %s</string>
+    <string name="last_time">Last time:</string>
+    <string name="log_out">Log out</string>
+    <string name="login_out_sure">Are you sure you want to log out?</string>
+    <string name="set_backup"><![CDATA[Back up & Restore]]></string>
+    <string name="sign_in_tips">Sign in and synchronize your data</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="data_sync_done">Data synchronization completed!</string>
 </resources>
