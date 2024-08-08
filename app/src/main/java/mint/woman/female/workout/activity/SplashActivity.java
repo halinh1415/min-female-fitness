@@ -320,26 +320,28 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-    LoadingDialogFragment loadingDialog;
+    KProgressHUD hud = null;
 
     void showDialog() {
         try {
-            if (loadingDialog == null) {
-                loadingDialog = new LoadingDialogFragment();
-            }
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            loadingDialog.show(fragmentManager, "loading_dialog");
+            hud = KProgressHUD.create(SplashActivity.this)
+                    .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                    .setDetailsLabel("Loading ad...")
+                    .setCancellable(false)
+                    .setAnimationSpeed(2)
+                    .setDimAmount(0.5f)
+                    .show();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    void hideDialog() {
+    void hideDialog(){
         try {
-            if (loadingDialog != null) {
-                loadingDialog.dismiss();
+            if (hud != null && hud.isShowing()){
+                hud.dismiss();
             }
-        } catch (Exception e) {
+        }catch (Exception e){
             e.printStackTrace();
         }
 
