@@ -490,7 +490,7 @@ public class MyPreference {
 
 
     public int getCountOption() {
-        return mSharedPreferences.getInt("COUNT_OPTION",0);
+        return mSharedPreferences.getInt("COUNT_OPTION",1);
     }
     public void setCountOption(int option){
         mEditor.putInt("COUNT_OPTION",option);
