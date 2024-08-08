@@ -80,8 +80,6 @@ public class ChallengeActivity extends AppCompatActivity implements IDayClickLis
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         CollapsingToolbarLayout toolBarLayout = findViewById(R.id.toolbar_layout);
         toolBarLayout.setTitle(getTitle());
-
-
         initView();
         requestNewAdBanner();
     }

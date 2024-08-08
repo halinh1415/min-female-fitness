@@ -349,4 +349,5 @@
     <string name="sign_in_tips">サインインしてデータを同期する</string>
     <string name="continue_with_google">Googleで継続する</string>
     <string name="data_sync_done">データの同期が完了しました！</string>
-</resources>
+<string name="breast_training">胸部のワークアウト</string>
+    </resources>

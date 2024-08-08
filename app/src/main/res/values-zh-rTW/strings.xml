@@ -318,7 +318,7 @@
     <string name="explore_tag_hot">熱門</string>
     <string name="downloading">下載中......</string>
     <string name="loading">加載中…</string>
-    <string name="abs">腹部</string>
+    <string name="abs">腹肌</string>
     <string name="traps">斜方肌</string>
     <string name="triceps">肱三頭肌</string>
     <string name="biceps">肱二頭肌</string>
@@ -346,7 +346,8 @@
     <string name="log_out">退出</string>
     <string name="login_out_sure">您確定要登出嗎？</string>
     <string name="set_backup">數據備份和恢復</string>
-    <string name="sign_in_tips">登錄賬戶後同步數據</string>
+    <string name="sign_in_tips">登錄帳戶後同步數據</string>
     <string name="continue_with_google">使用 Google 繼續</string>
     <string name="data_sync_done">資料同步完成！</string>
+    <string name="breast_training">乳房訓練</string>
 </resources>

@@ -272,7 +272,7 @@
     <string name="txt_count_down_info_3">تتبع العد للتحكم في الوتيرة وإكمال التمرين خلال الوقت المحدد</string>
     <string name="sound">صوت</string>
 <string name="no_counting">لا يوجد عد</string>
-    <string name="minutes">دقيقة</string>
+    <string name="minutes">دقائق</string>
     <string name="save">حفظ</string>
     <string name="cancel_via_google_play">إلغاء في أي وقت عبر Google Play.</string>
     <string name="free_7_days_trial_then_xx_year">مجانًا تجربة 7 أيام، ثم تصبح مقابل %s اً في سنة</string>
@@ -349,4 +349,5 @@
     <string name="sign_in_tips">تسجيل الدخول ومزامنة بياناتك</string>
     <string name="continue_with_google">المتابعة باستخدام Google</string>
     <string name="data_sync_done">اكتملت مزامنة البيانات!</string>
-</resources>
+<string name="breast_training">تمرين للثدي</string>
+    </resources>

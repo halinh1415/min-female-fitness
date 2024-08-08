@@ -357,4 +357,5 @@
     <string name="sign_in_tips">Sign in and synchronize your data</string>
     <string name="continue_with_google">Continue with Google</string>
     <string name="data_sync_done">Data synchronization completed!</string>
+    <string name="breast_training">Breast Workout</string>
 </resources>

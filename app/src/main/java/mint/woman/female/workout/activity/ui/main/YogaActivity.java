@@ -391,7 +391,7 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
                 if (entry.getKey().startsWith("PLAN_PROGRESS_")) {
                     int programId = Integer.parseInt(entry.getKey().replace("PLAN_PROGRESS_", ""));
                     int progress = (int) entry.getValue();
-                    if (programId == 1 || programId == 879 || programId == 880 || programId == 881 || programId == 882){
+                    if (programId == 1 || programId == 879 || programId == 880 || programId == 881 || programId == 882 || programId == 1178){
                         userRef.child(String.valueOf(programId)).setValue(progress).addOnSuccessListener(aVoid -> {
                             Log.d("HAHA", "write progress success!");
                         }).addOnFailureListener(e -> {

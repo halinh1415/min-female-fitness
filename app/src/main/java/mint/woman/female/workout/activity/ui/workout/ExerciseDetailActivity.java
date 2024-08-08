@@ -136,23 +136,27 @@ public class ExerciseDetailActivity extends AppCompatActivity {
                     return;
                 }
                 ChipGroup chipGroup = findViewById(R.id.chipGroup);
-                for (String major : customfields.getMuscleMajor()) {
-                    Chip chip = (Chip) LayoutInflater.from(this).inflate(R.layout.chip_item, chipGroup, false);
+                if (customfields.getMuscleMajor()!= null) {
+                    for (String major : customfields.getMuscleMajor()) {
+                        Chip chip = (Chip) LayoutInflater.from(this).inflate(R.layout.chip_item, chipGroup, false);
 
-                    int resId = FitnessConstUtils.getMuscleId(Integer.parseInt(major));
-                    if (resId > 0) {
-                        chip.setText(getString(resId));
-                        chipGroup.addView(chip);
+                        int resId = FitnessConstUtils.getMuscleId(Integer.parseInt(major));
+                        if (resId > 0) {
+                            chip.setText(getString(resId));
+                            chipGroup.addView(chip);
+                        }
+
                     }
-
                 }
-                for (String minor : customfields.getMuscleMinor()) {
-                    Chip chip = (Chip) LayoutInflater.from(this).inflate(R.layout.chip_item, chipGroup, false);
-                    chip.setChipIconResource(R.drawable.ic_red_2);
-                    int resId = FitnessConstUtils.getMuscleId(Integer.parseInt(minor));
-                    if (resId > 0) {
-                        chip.setText(getString(resId));
-                        chipGroup.addView(chip);
+                if (customfields.getMuscleMinor() != null) {
+                    for (String minor : customfields.getMuscleMinor()) {
+                        Chip chip = (Chip) LayoutInflater.from(this).inflate(R.layout.chip_item, chipGroup, false);
+                        chip.setChipIconResource(R.drawable.ic_red_2);
+                        int resId = FitnessConstUtils.getMuscleId(Integer.parseInt(minor));
+                        if (resId > 0) {
+                            chip.setText(getString(resId));
+                            chipGroup.addView(chip);
+                        }
                     }
                 }
                 body = BitmapFactory.decodeResource(getResources(),
@@ -161,14 +165,18 @@ public class ExerciseDetailActivity extends AppCompatActivity {
                 imMuscle.setImageBitmap(body);
                 executor.execute(() -> {
                     body = BitmapFactory.decodeResource(getResources(), R.drawable.img_body);
-                    for (String major : customfields.getMuscleMajor()) {
-                        int mus = FitnessConstUtils.getMuscle(Integer.parseInt(major), true);
-                        body = overlay(body, BitmapFactory.decodeResource(getResources(), mus));
+                    if (customfields.getMuscleMajor() != null) {
+                        for (String major : customfields.getMuscleMajor()) {
+                            int mus = FitnessConstUtils.getMuscle(Integer.parseInt(major), true);
+                            body = overlay(body, BitmapFactory.decodeResource(getResources(), mus));
 
+                        }
                     }
-                    for (String minor : customfields.getMuscleMinor()) {
-                        int mus = FitnessConstUtils.getMuscle(Integer.parseInt(minor), false);
-                        body = overlay(body, BitmapFactory.decodeResource(getResources(), mus));
+                    if (customfields.getMuscleMinor() != null) {
+                        for (String minor : customfields.getMuscleMinor()) {
+                            int mus = FitnessConstUtils.getMuscle(Integer.parseInt(minor), false);
+                            body = overlay(body, BitmapFactory.decodeResource(getResources(), mus));
+                        }
                     }
                     handler.post(() -> {
                         imMuscle.setImageBitmap(body);
