@@ -1,6 +1,8 @@
 package mint.woman.female.workout.model;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -46,7 +48,7 @@ public class Customfields {
     }
 
     public List<String> getMuscleMajor() {
-        return muscleMajor;
+        return muscleMajor != null ? muscleMajor : new ArrayList<>();
     }
 
     public void setMuscleMajor(List<String> muscleMajor) {
@@ -54,7 +56,7 @@ public class Customfields {
     }
 
     public List<String> getMuscleMinor() {
-        return muscleMinor;
+        return muscleMinor != null ? muscleMinor : new ArrayList<>();
     }
 
     public void setMuscleMinor(List<String> muscleMinor) {
