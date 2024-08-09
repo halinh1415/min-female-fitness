@@ -47,6 +47,7 @@ import mint.woman.female.workout.fragment.VideoDemoFragment;
 import mint.woman.female.workout.fragment.VideoYtFragment;
 import mint.woman.female.workout.model.Customfields;
 import mint.woman.female.workout.model.ExerciseObject;
+import mint.woman.female.workout.utils.ExerciseHelper;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.MyPreference;
 
@@ -316,7 +317,7 @@ public class DialogDemoWorkout extends DialogFragment implements View.OnClickLis
         @NonNull
         @Override
         public Fragment getItem(int position) {
-            if (position == 1) return VideoYtFragment.newInstance(mExerciseObject.getVideoUrl());
+            if (position == 1) return VideoYtFragment.newInstance(ExerciseHelper.getInstance().getUrl(mExerciseObject.getId()));
             else return VideoDemoFragment.newInstance(mExerciseObject.getImagePath());
         }
 

@@ -36,6 +36,7 @@ import mint.woman.female.workout.common.adapter.VideoDemoAdapter;
 import mint.woman.female.workout.custom.CustomViewPager;
 import mint.woman.female.workout.model.Customfields;
 import mint.woman.female.workout.model.ExerciseObject;
+import mint.woman.female.workout.utils.ExerciseHelper;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
@@ -109,7 +110,7 @@ public class ExerciseDetailActivity extends AppCompatActivity {
                 mExerciseDescription.setText(mExerciseObject.getIntroduce());
 
                 //   mEquipment.setText(mExerciseObject.getEquipment());
-                mAdapter = new VideoDemoAdapter(getSupportFragmentManager(), mExerciseObject.getImagePath(), mExerciseObject.getVideoUrl());
+                mAdapter = new VideoDemoAdapter(getSupportFragmentManager(), mExerciseObject.getImagePath(), ExerciseHelper.getInstance().getUrl(mExerciseObject.getId()));
                 mViewPager.setAdapter(mAdapter);
                 mTabLayout.setupWithViewPager(mViewPager);
                 mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

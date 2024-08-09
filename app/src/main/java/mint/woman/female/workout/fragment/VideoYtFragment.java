@@ -93,13 +93,26 @@ public class VideoYtFragment extends Fragment {
         getLifecycle().addObserver(youTubePlayerView);
 
 
+        String[] parts  = mExerciseUrl.split("&t=");
+        String videoId = parts[0];
+
+        // The second part is the time, if it exists
+        String time = parts.length > 1 ? parts[1] : "0";
+        float startTime = 0f;
+        try {
+            startTime = Float.parseFloat(time.replace("s", ""));
+        }catch (Exception e){
+            startTime = 0f;
+            e.printStackTrace();
+        }
+        float finalTime = startTime;
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                 if (youTubePlayer!= null) {
                     //    DefaultPlayerUiController defaultPlayerUiController = new DefaultPlayerUiController(youTubePlayerView, youTubePlayer);
                     // youTubePlayerView.setCustomPlayerUi(defaultPlayerUiController.getRootView());
-                    youTubePlayer.loadVideo(mExerciseUrl, 0);
+                    youTubePlayer.loadVideo(videoId, finalTime);
                     youTubePlayer.play();
                 }
             }
