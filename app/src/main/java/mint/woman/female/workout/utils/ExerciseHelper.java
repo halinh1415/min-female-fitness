@@ -17,11 +17,13 @@ public class ExerciseHelper {
         String json = FirebaseRemoteConfig.getInstance().getString("demo_url");
         try {
             JSONObject jsonObject = new JSONObject(json);
-            return jsonObject.getString(""+actionId);
+            if (jsonObject.has(""+actionId))
+                return jsonObject.getString(""+actionId);
+            else return "a";
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return "";
+        return "a";
     }
 
 }
