@@ -68,7 +68,7 @@ public class PreviewAdapter extends RecyclerView.Adapter<ExerciseViewHolder> imp
         int minutes = (actionObject.time) / 60;
         int seconds = actionObject.time % 60;
         String timeString = String.format("%02d:%02d", minutes, seconds);
-        if (actionObject.unit.contains("s")){
+        if (actionObject.getUnit().contains("s")){
             holder.mReps.setText(timeString);
         }else {
             holder.mReps.setText("x "+actionObject.time);

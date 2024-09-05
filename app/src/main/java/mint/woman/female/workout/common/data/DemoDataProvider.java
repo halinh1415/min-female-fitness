@@ -136,7 +136,7 @@ public class DemoDataProvider extends AbstractDemoDataProvider {
                     jsAct.put("time", actionObject.time);
                     jsAct.put("actype", actionObject.actype);
                     jsAct.put("rest", actionObject.rest);
-                    jsAct.put("unit", actionObject.unit);
+                    jsAct.put("unit", actionObject.getUnit());
                     jsActions.put(jsAct);
                 }
                 jsDayObject.put("exercise", jsActions);
@@ -157,7 +157,7 @@ public class DemoDataProvider extends AbstractDemoDataProvider {
         for (PlanObject.ActionObject action : actionObjectList
         ) {
             // ExerciseObject exerciseObject = getExerciseItem(action.actionId);
-            if (action.unit.isEmpty()) {
+            if (action.getUnit().isEmpty()) {
                 totalTime += action.rest + action.time * 2;
                 //  totalTime += action.time * (exerciseObject.getTime() / 1000.0f);
             } else {

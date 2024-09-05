@@ -131,7 +131,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
 
 
             mExerciseName.setText(mExerciseObject.getName());
-            if (mActionObject.unit.contains("s")) {
+            if (mActionObject.getUnit().contains("s")) {
                 mSub.setVisibility(View.GONE);
                 mExerciseCount.setText(FitnessConstUtils.toTime(mActionObject.time));
             } else {
@@ -219,7 +219,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         int minutes = (mActionObject.time) / 60;
         int seconds = mActionObject.time % 60;
         String timeString = String.format("%02d:%02d", minutes, seconds);
-        if (mActionObject.unit.contains("s")) {
+        if (mActionObject.getUnit().contains("s")) {
             mExerciseCount.setText(timeString);
         } else {
             mExerciseCount.setText("x " + mActionObject.time);
@@ -300,7 +300,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         mExerciseName.setText(mExerciseObject.getName());
 
         mExerciseName.setText(mExerciseObject.getName());
-        if (mActionObject.unit.contains("s")) {
+        if (mActionObject.getUnit().contains("s")) {
             mSub.setVisibility(View.GONE);
             mExerciseCount.setText(FitnessConstUtils.toTime(mActionObject.time));
         } else {

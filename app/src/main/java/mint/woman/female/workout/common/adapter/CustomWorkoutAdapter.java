@@ -192,7 +192,7 @@ public class CustomWorkoutAdapter extends AbstractExpandableItemAdapter<CustomWo
         }
         holder.mExerciseName.setText(exerciseObject.getName());
 
-        if (!actionObject.unit.isEmpty()) {
+        if (!actionObject.getUnit().isEmpty()) {
             int minutes = (actionObject.time) / 60;
             int seconds = actionObject.time % 60;
             String timeString = String.format("%02d:%02d", minutes, seconds);

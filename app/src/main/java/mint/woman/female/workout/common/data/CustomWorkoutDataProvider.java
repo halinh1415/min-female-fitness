@@ -118,7 +118,7 @@ public class CustomWorkoutDataProvider extends AbstractCustomWorkoutDataProvider
                     jsAct.put("time", actionObject.time);
                     jsAct.put("actype",actionObject.actype);
                     jsAct.put("rest",actionObject.rest);
-                    jsAct.put("unit",actionObject.unit);
+                    jsAct.put("unit",actionObject.getUnit());
 
                     jsActions.put(jsAct);
                 }
