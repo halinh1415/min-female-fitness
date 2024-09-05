@@ -71,6 +71,7 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         Preference music = findPreference("BACK_GROUND_MUSIC");
         music.setSummary(MyPreference.newInstance(getContext()).getMusicName());
         findPreference("BACK_GROUND_MUSIC").setOnPreferenceClickListener(this);
+        findPreference("RECOMMEND_APP").setOnPreferenceClickListener(this);
         preferenceBackUp = findPreference("BACK_UP");
         Preference reminder = findPreference("ST_REMINDER");
         reminder.setSummary(FitnessApplication.getApplication().mDatabase.getReminderSet());
@@ -148,7 +149,16 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
                     mListener.onRateShow();
                 }
                 break;
+            case "RECOMMEND_APP":
+                AppOpenManager.getInstance().disableAdResumeByClickAction();
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://dev?id=Min+Fitness")));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Min+Fitness")));
+                }
+                break;
             case "ST_FEEDBACK":
+                AppOpenManager.getInstance().disableAdResumeByClickAction();
                 sendEmail();
                 break;
             case "ST_SHARE":

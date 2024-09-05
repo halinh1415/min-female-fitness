@@ -9,10 +9,10 @@
         android:title="@string/set_backup"
         android:visibility="visible" />
     <PreferenceCategory android:title="General">
-<!--        <Preference-->
-<!--            android:icon="@drawable/ic_youtube"-->
-<!--            android:key="ST_YOUTUBE"-->
-<!--            android:title="Youtube Channel (Ad)"/>-->
+        <Preference
+            android:title="@string/txt_recommend_app"
+            android:key="RECOMMEND_APP"
+            android:icon="@drawable/ic_recommend"/>
         <ListPreference
             android:entries="@array/app_theme_name"
             android:entryValues="@array/app_theme_value"

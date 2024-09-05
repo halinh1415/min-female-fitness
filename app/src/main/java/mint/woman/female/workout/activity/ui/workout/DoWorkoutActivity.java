@@ -72,7 +72,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     ProgramObject mProgramObject;
     Bundle mBundle;
     int currentExerciseCount = 0, totalExercise;
-    long startPause, endPause, pauseTime, startExercise, endExercise, frequency_ads = 10;
+    long startPause, endPause, pauseTime, startExercise, endExercise;
     MediaPlayer musicPlayer, ringPlayer, tickPlayer;
     MyPreference myPreference;
     @BindView(R.id.workout_progress)
@@ -163,11 +163,9 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     private void initView() {
         myPreference = new MyPreference(this);
         mWorkoutViewModel = new ViewModelProvider(this).get(WorkoutViewModel.class);
-        frequency_ads = myPreference.openCount() > 10 ? 5 : FitnessConstUtils.FREQUENCY_AD;
         mBundle = getIntent().getExtras();
 
         if (mBundle != null) {
-            //mPlanObject = mBundle.getParcelable("PLAN_OBJECT");
             int id = mBundle.getInt("PROGRAM_ID", 0);
             mProgramObject = FitnessApplication.getApplication().getProgram(id);
             discover = mProgramObject.getDiscover();
