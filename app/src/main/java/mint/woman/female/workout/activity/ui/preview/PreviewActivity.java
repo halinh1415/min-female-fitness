@@ -342,7 +342,6 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
             mProgressReady.setProgress(value);
             mProgressTxt.setText(getString(R.string.download) + "..." + value + "%");
             if (workInfo.getState() == WorkInfo.State.SUCCEEDED) {
-                // hideDialog();
                 mPreviewViewModel.setDownloadStatus(DownloadStatus.DONE);
                 updateData();
                 Toast.makeText(PreviewActivity.this, "Download Done!", Toast.LENGTH_SHORT).show();
@@ -351,7 +350,6 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
             if (workInfo.getState() == WorkInfo.State.FAILED) {
                 mPreviewViewModel.setDownloadStatus(DownloadStatus.FAIL);
                 showAlertInternetConnect();
-                //hideDialog();
             }
         });
     }

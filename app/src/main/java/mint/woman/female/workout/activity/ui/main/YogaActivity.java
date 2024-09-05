@@ -272,7 +272,7 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
         }
     }
 
-    // See: https://developer.android.com/training/basics/intents/result
+
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(new FirebaseAuthUIActivityResultContract(), result -> onSignInResult(result));
 
     private void onSignInResult(FirebaseAuthUIAuthenticationResult result) {
