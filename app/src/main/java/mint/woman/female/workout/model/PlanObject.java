@@ -110,7 +110,7 @@ public class PlanObject implements Parcelable, Cloneable {
 
         public int actionId, time, actype, rest;
         public int mId;
-        public String unit;
+        private String unit;
 
         public boolean isSelected = false;
 
@@ -174,6 +174,10 @@ public class PlanObject implements Parcelable, Cloneable {
             return actionObject;
         }
 
+        public String getUnit(){
+            if (unit!= null) return unit;
+            return "";
+        }
 
     }
 }

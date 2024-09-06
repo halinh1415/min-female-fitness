@@ -145,7 +145,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
             return;
         }
         REP = mActionObject.time;
-        if (mExerciseObject.getAlternation() && mActionObject.unit.isEmpty()) {
+        if (mExerciseObject.getAlternation() && mActionObject.getUnit().isEmpty()) {
             REP = mActionObject.time / 2;
         }
         mTotalTime = mActionObject.time;
@@ -157,7 +157,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         });
 
         mExerciseName.setText(mExerciseObject.getName());
-        if (mActionObject.unit.contains("s")) {
+        if (mActionObject.getUnit().contains("s")) {
             mCurrentTime = mActionObject.time;
             btnPause.setVisibility(View.VISIBLE);
             mDoneImg.setVisibility(View.GONE);
@@ -251,7 +251,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         mBottomProgressBar.setMax(REP);
         mBottomProgressBar.setProgress((mCurrentTime));
      //   mVideoView.setVideoURI(Uri.parse(path));
-        if (mActionObject.unit.contains("s")) {
+        if (mActionObject.getUnit().contains("s")) {
 
             btnPause.setVisibility(View.VISIBLE);
             mDoneImg.setVisibility(View.GONE);
