@@ -37,15 +37,7 @@ import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.fitness.FitnessOptions;
-import com.google.android.gms.fitness.data.DataType;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.ump.ConsentDebugSettings;
-import com.google.android.ump.ConsentForm;
-import com.google.android.ump.ConsentInformation;
-import com.google.android.ump.ConsentRequestParameters;
-import com.google.android.ump.UserMessagingPlatform;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -257,19 +249,7 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
 
     @Override
     public void onGetGoogleFit() {
-        if (myPreference.isSyncGoogleFit()) {
-            FitnessOptions fitnessOptions = FitnessOptions.builder().addDataType(DataType.TYPE_ACTIVITY_SEGMENT, FitnessOptions.ACCESS_WRITE).addDataType(DataType.TYPE_ACTIVITY_SEGMENT, FitnessOptions.ACCESS_READ).addDataType(DataType.TYPE_CALORIES_EXPENDED, FitnessOptions.ACCESS_WRITE).build();
 
-            if (!GoogleSignIn.hasPermissions(GoogleSignIn.getLastSignedInAccount(this), fitnessOptions)) {
-                myPreference.setSyncGoogleFit(false);
-                GoogleSignIn.requestPermissions(this, // your activity
-                        RC_ACCESS_FITNESS, GoogleSignIn.getLastSignedInAccount(this), fitnessOptions);
-            } else {
-                accessGoogleFit();
-            }
-        } else {
-            Toast.makeText(this, "Disconnected to Google Fit successfully!", Toast.LENGTH_SHORT).show();
-        }
     }
 
 

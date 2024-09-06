@@ -27,17 +27,6 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.fitness.Fitness;
-import com.google.android.gms.fitness.FitnessActivities;
-import com.google.android.gms.fitness.FitnessOptions;
-import com.google.android.gms.fitness.data.DataPoint;
-import com.google.android.gms.fitness.data.DataSet;
-import com.google.android.gms.fitness.data.DataSource;
-import com.google.android.gms.fitness.data.DataType;
-import com.google.android.gms.fitness.data.Field;
-import com.google.android.gms.fitness.data.Session;
-import com.google.android.gms.fitness.request.SessionInsertRequest;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.reminder.ReminderActivity;
@@ -134,23 +123,7 @@ public class FinishedActivity extends AppCompatActivity  {
                 int seconds = time % 60;
                 txtTimeCount.setText(String.format("%2d:%02d", minutes, seconds));
             }
-            if (myPreference.isSyncGoogleFit()) {
-                FitnessOptions fitnessOptions = FitnessOptions.builder()
-                        .addDataType(DataType.TYPE_ACTIVITY_SEGMENT, FitnessOptions.ACCESS_WRITE)
-                        .addDataType(DataType.TYPE_ACTIVITY_SEGMENT, FitnessOptions.ACCESS_READ)
-                        .addDataType(DataType.TYPE_CALORIES_EXPENDED, FitnessOptions.ACCESS_WRITE)
-                        .build();
-                if (!GoogleSignIn.hasPermissions(GoogleSignIn.getLastSignedInAccount(this), fitnessOptions)) {
-                    myPreference.setSyncGoogleFit(false);
-                    GoogleSignIn.requestPermissions(
-                            this, // your activity
-                            999,
-                            GoogleSignIn.getLastSignedInAccount(this),
-                            fitnessOptions);
-                } else {
-                    accessGoogleFit();
-                }
-            }
+
         }
 
         if (mCongratulationPlayer != null) mCongratulationPlayer.release();
@@ -310,94 +283,7 @@ public class FinishedActivity extends AppCompatActivity  {
 //    }
 
 
-    @OnCheckedChanged(R.id.sw_google_fit)
-    void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-        if (compoundButton.getId() == R.id.sw_google_fit) {
-            if (b) {
-                FitnessOptions fitnessOptions = FitnessOptions.builder()
-                        .addDataType(DataType.TYPE_ACTIVITY_SEGMENT, FitnessOptions.ACCESS_WRITE)
-                        .addDataType(DataType.TYPE_ACTIVITY_SEGMENT, FitnessOptions.ACCESS_READ)
-                        .addDataType(DataType.TYPE_CALORIES_EXPENDED, FitnessOptions.ACCESS_WRITE)
-                        .build();
-                if (!GoogleSignIn.hasPermissions(GoogleSignIn.getLastSignedInAccount(this), fitnessOptions)) {
-                    myPreference.setSyncGoogleFit(false);
-                    GoogleSignIn.requestPermissions(
-                            this, // your activity
-                            999,
-                            GoogleSignIn.getLastSignedInAccount(this),
-                            fitnessOptions);
-                } else {
-                    // accessGoogleFit();
-                }
-            } else {
-                myPreference.setSyncGoogleFit(false);
-            }
-        }
-    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 999) {
-            if (resultCode == Activity.RESULT_OK) {
-                myPreference.setSyncGoogleFit(true);
-                mSWGoogleFit.setChecked(true);
-                accessGoogleFit();
-            } else {
-                myPreference.setSyncGoogleFit(false);
-                mSWGoogleFit.setChecked(false);
-            }
-        }
-
-    }
-
-    private void accessGoogleFit() {
-
-// Create a session with metadata about the activity.
-        Session session = new Session.Builder()
-                .setName(mHistoryItem.getName())
-                .setDescription(mHistoryItem.getName())
-                .setIdentifier("YOGA_WORKOUT_PLAN_" + mHistoryItem.getStartTime())
-                .setActivity(FitnessActivities.YOGA)
-                .setStartTime(mHistoryItem.getStartTime(), TimeUnit.MILLISECONDS)
-                .setEndTime(mHistoryItem.getEndTime(), TimeUnit.MILLISECONDS)
-                .build();
-
-// Build a session insert request
-        DataSource caloriesDS = new DataSource.Builder()
-                .setAppPackageName(this.getPackageName())
-                .setDataType(DataType.TYPE_CALORIES_EXPENDED)
-                .setAppPackageName(getApplicationContext())
-                .setType(DataSource.TYPE_RAW)
-                .build();
-        float calories = (float) mHistoryItem.getCalories();
-
-//        DataPoint dataPoint = DataPoint.builder(caloriesDS).setTimeInterval(mHistoryItem.getStartTime(),mHistoryItem.getEndTime(),TimeUnit.MILLISECONDS).setField(Field.FIELD_CALORIES,calories).build();
-//        DataSet kbDataSet = DataSet.builder(caloriesDS)
-//                .add(dataPoint)
-//                .build();
-        // Create a data set of the run speeds to include in the session.
-        DataSet kbDataSet = DataSet.create(caloriesDS);
-        DataPoint caloriesDP = kbDataSet.createDataPoint().setTimeInterval(mHistoryItem.getStartTime(), mHistoryItem.getEndTime(), TimeUnit.MILLISECONDS);
-
-        caloriesDP.getValue(Field.FIELD_CALORIES).setFloat(calories);
-        kbDataSet.add(caloriesDP);
-
-
-        SessionInsertRequest insertRequest = new SessionInsertRequest.Builder()
-                .setSession(session)
-                .addDataSet(kbDataSet)
-                .build();
-
-        Fitness.getSessionsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                .insertSession(insertRequest)
-                .addOnSuccessListener(aVoid -> {
-                    Log.i("HAHA", "activitySegmentKB insert was successful!");
-                })
-                .addOnFailureListener(e -> Log.i("HAHA", "There was a problem inserting the activitySegmentKB: " +
-                        e.getLocalizedMessage()));
-
-    }
 
     @Override
     protected void onDestroy() {
