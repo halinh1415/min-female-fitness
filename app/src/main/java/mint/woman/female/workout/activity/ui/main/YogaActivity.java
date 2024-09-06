@@ -152,6 +152,10 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
                 ActivityCompat.requestPermissions(YogaActivity.this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
                 return;
             }
+            if (ContextCompat.checkSelfPermission(YogaActivity.this, Manifest.permission.SCHEDULE_EXACT_ALARM) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(YogaActivity.this, new String[]{Manifest.permission.SCHEDULE_EXACT_ALARM}, 111);
+                return;
+            }
         }
         if (myPreference.isRemind()) {
             createDailyNotify();
