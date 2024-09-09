@@ -259,7 +259,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                     } else {
                         mAudioAppManager.playText("" + getActionObjectCurrent().time);
                     }
-                    mAudioAppManager.playText(getExerciseObjectCurrent().getName());
+                    mAudioAppManager.playText(getExerciseObjectCurrent().getName().toLowerCase().replace("-"," "));
                     if (getExerciseObjectCurrent().getAlternation() && getActionObjectCurrent().getUnit().isEmpty()) {
                         mAudioAppManager.playText("" + getActionObjectCurrent().time / 2);
                         mAudioAppManager.playText(getString(R.string.td_each_side));
@@ -429,7 +429,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             mAudioAppManager.playText("" + getActionObjectCurrent().time);
             if (!getActionObjectCurrent().getUnit().isEmpty()) {
                 mAudioAppManager.playText(getString(R.string.txt_seconds));
-                mAudioAppManager.playTextWithListener(getExerciseObjectCurrent().getName(), () -> {
+                mAudioAppManager.playTextWithListener(getExerciseObjectCurrent().getName().toLowerCase().replace("-"," "), () -> {
                     Log.d("HAHA", "FINISH audio secons!");
                     PlayFragment playFragment = (PlayFragment) getSupportFragmentManager().findFragmentByTag("Ready");
                     if (playFragment != null) {
@@ -437,7 +437,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                     }
                 });
             } else if (getExerciseObjectCurrent().getAlternation() && getActionObjectCurrent().getUnit().isEmpty()) {
-                mAudioAppManager.playText(getExerciseObjectCurrent().getName());
+                mAudioAppManager.playText(getExerciseObjectCurrent().getName().toLowerCase().replace("-"," "));
                 mAudioAppManager.playText("" + getActionObjectCurrent().time / 2);
                 mAudioAppManager.playTextWithListener(getString(R.string.td_each_side), () -> {
                     Log.d("HAHA", "FINISH audio! each side");
@@ -450,7 +450,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                     }
                 });
             } else {
-                mAudioAppManager.playTextWithListener(getExerciseObjectCurrent().getName(), () -> {
+                mAudioAppManager.playTextWithListener(getExerciseObjectCurrent().getName().toLowerCase().replace("-"," "), () -> {
                     Log.d("HAHA", "FINISH audio! one side");
                     PlayFragment playFragment = (PlayFragment) getSupportFragmentManager().findFragmentByTag("Ready");
                     if (playFragment != null) {
@@ -605,7 +605,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                 if (!getActionObjectCurrent().getUnit().isEmpty()) {
                     mAudioAppManager.playText(getString(R.string.txt_seconds));
                 }
-                mAudioAppManager.playText(getExerciseObjectCurrent().getName());
+                mAudioAppManager.playText(getExerciseObjectCurrent().getName().toLowerCase().replace("-"," "));
                 if (getExerciseObjectCurrent().getAlternation() && getActionObjectCurrent().getUnit().isEmpty()) {
                     mAudioAppManager.playText("" + getActionObjectCurrent().time / 2);
                     mAudioAppManager.playText(getString(R.string.td_each_side));
