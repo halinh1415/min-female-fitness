@@ -350,4 +350,5 @@
     <string name="continue_with_google">Weiter mit Google</string>
     <string name="data_sync_done">Datensynchronisierung abgeschlossen!</string>
 <string name="breast_training">Brusttraining</string>
-    </resources>
+    <string name="pain_relief">Schmerzlinderung</string>
+</resources>

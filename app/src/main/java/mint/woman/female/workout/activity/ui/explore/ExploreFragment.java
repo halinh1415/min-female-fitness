@@ -116,6 +116,7 @@ public class ExploreFragment extends Fragment implements ProgramClickListener {
             sections.add(new Section(getString(R.string.at_home), getString(R.string.upper_body_stretching_short_des), getProgram(mListStretch), 6));
             sections.add(new Section(getString(R.string.for_summer), getProgram(mListSummer), 8));
             sections.add(new Section(getString(R.string.tip_pro_instruction_3), getProgram(mListFaceYoga), 7));
+            sections.add(new Section(getString(R.string.pain_relief), getProgram(new int[]{883,200,201,1151,1150}), 7));
         }
         SectionAdapter sectionAdapter = new SectionAdapter(sections, this);
         mExploreRc.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));

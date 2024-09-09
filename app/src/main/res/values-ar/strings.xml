@@ -350,4 +350,5 @@
     <string name="continue_with_google">المتابعة باستخدام Google</string>
     <string name="data_sync_done">اكتملت مزامنة البيانات!</string>
 <string name="breast_training">تمرين للثدي</string>
-    </resources>
+    <string name="pain_relief">تخفيف الألم</string>
+</resources>

@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name" translatable="false">การออกกำลังกายหญิง</string>
     <string name="txt_rate" translatable="false">ให้คะแนนเรา</string>
     <string name="txt_action_settings">การตั้งค่า</string>
@@ -305,4 +305,50 @@
     <string name="txt_iap_feature_info_4">โฆษณาฟรีตลอดไป</string>
     <string name="txt_iap_feature_info_3">แผนส่วนบุคคลและการอัปเดตในอนาคต</string>
     <string name="txt_iap_feature_info_2">บรรลุผลลัพธ์อันน่าทึ่งในเวลาเพียง 4 สัปดาห์</string>
+<string name="training">การฝึกอบรม</string>
+    <string name="training_goal">เป้าหมายการฝึกอบรม</string>
+    <string name="random_workout">การออกกำลังกายแบบสุ่ม</string>
+    <string name="for_summer">สำหรับฤดูร้อน</string>
+    <string name="tip_pro_instruction_3">โยคะกระชับใบหน้า</string>
+    <string name="at_home">กิจวัตร</string>
+    <string name="txt_7_minutes">7 นาที</string>
+    <string name="reach_goal_fast">เร็ว</string>
+    <string name="seven_min_get_fit_des">ในเวลาเพียง 7 นาทีต่อวัน การออกกำลังกายที่รวดเร็วและมีประสิทธิภาพสามารถช่วยเพิ่มสมรรถภาพและสุขภาพของคุณได้ รักษาสุขภาพให้แข็งแรงและลดน้ำหนักส่วนเกิน!</string>
+    <string name="upper_body_stretching_short_des">ยืดแขน ไหล่ หน้าอก และหลัง คลายกล้ามเนื้อและเพิ่มความยืดหยุ่น</string>
+    <string name="explore_tag_hot">ร้อน</string>
+    <string name="downloading">กำลังดาวน์โหลด</string>
+    <string name="loading">กำลังโหลด...</string>
+    <string name="abs">หน้าท้อง</string>
+    <string name="traps">กับดัก</string>
+    <string name="triceps">ไทรเซบ</string>
+    <string name="biceps">ลูกหนู</string>
+    <string name="forearms">ปลายแขน</string>
+    <string name="shoulders">ไหล่</string>
+    <string name="chest">หน้าอก</string>
+    <string name="leg">ขา</string>
+    <string name="glutes">ก้น</string>
+    <string name="quadriceps">ควอดริเซ็ปส์</string>
+    <string name="hamstrings">เอ็นร้อยหวาย</string>
+    <string name="back">กลับ</string>
+    <string name="calves">น่อง</string>
+    <string name="lower_back">หลังส่วนล่าง</string>
+    <string name="adductors">ตัวเหนี่ยวนำ</string>
+    <string name="neck">คอ</string>
+    <string name="txt_most_popular">ยอดนิยมที่สุด</string>
+    <string name="oops">อ๊ะ!</string>
+    <string name="oops_network_error">อ๊ะ! ข้อผิดพลาดของเครือข่าย</string>
+    <string name="oops_sync_failed">อ๊ะ! การซิงค์ล้มเหลว</string>
+    <string name="oops_unlock_failed">อ๊ะ! การปลดล็อคล้มเหลว</string>
+    <string name="oops_unlock_failed_des">โปรดดูวิดีโอจนจบเพื่อปลดล็อคได้สำเร็จ</string>
+    <string name="load_video_fail">โหลดวิดีโอล้มเหลว ตรวจสอบอินเทอร์เน็ตของคุณแล้วลองอีกครั้ง!</string>
+    <string name="last_sync">ซิงค์ครั้งล่าสุด: %s</string>
+    <string name="last_time">ครั้งสุดท้าย:</string>
+    <string name="log_out">ออกจากระบบ</string>
+    <string name="login_out_sure">คุณแน่ใจหรือไม่ว่าต้องการออกจากระบบ?</string>
+    <string name="set_backup">สำรองและกู้คืน</string>
+    <string name="sign_in_tips">ลงชื่อเข้าใช้และซิงโครไนซ์ข้อมูลของคุณ</string>
+    <string name="continue_with_google">ดำเนินการต่อด้วย Google</string>
+    <string name="data_sync_done">การซิงโครไนซ์ข้อมูลเสร็จสมบูรณ์!</string>
+    <string name="breast_training">การออกกำลังกายเต้านม</string>
+    <string name="pain_relief">บรรเทาอาการปวด</string>
 </resources>

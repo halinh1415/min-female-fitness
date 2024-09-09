@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name" translatable="false">Kvinnligt träningspass</string>
     <string name="txt_rate" translatable="false">Gradera oss</string>
     <string name="txt_action_settings">Inställningar</string>
@@ -305,4 +305,50 @@
     <string name="txt_iap_feature_info_4">Annonsfri för alltid</string>
     <string name="txt_iap_feature_info_3">Personlig plan och framtidsuppdatering</string>
     <string name="txt_iap_feature_info_2">Uppnå fantastiska resultat på bara 4 veckor</string>
+<string name="training">Utbildning</string>
+    <string name="training_goal">Träningsmål</string>
+    <string name="random_workout">Slumpmässiga träningspass</string>
+    <string name="for_summer">Till sommaren</string>
+    <string name="tip_pro_instruction_3">Ansiktsuppstramande Yoga</string>
+    <string name="at_home">Rutiner</string>
+    <string name="txt_7_minutes">7 minuter</string>
+    <string name="reach_goal_fast">Snabb</string>
+    <string name="seven_min_get_fit_des">På bara 7 minuter om dagen kan snabba och effektiva träningspass förbättra din kondition och hälsa. Håll dig i form och tappa de extra kilona!</string>
+    <string name="upper_body_stretching_short_des">Sträck ut armarna, axlarna, bröstet och ryggen. Lossa musklerna och öka flexibiliteten.</string>
+    <string name="explore_tag_hot">Varm</string>
+    <string name="downloading">Laddar ner</string>
+    <string name="loading">Belastning...</string>
+    <string name="abs">Abs</string>
+    <string name="traps">Fällor</string>
+    <string name="triceps">Triceps</string>
+    <string name="biceps">Biceps</string>
+    <string name="forearms">Underarmar</string>
+    <string name="shoulders">Axlar</string>
+    <string name="chest">Bröst</string>
+    <string name="leg">Ben</string>
+    <string name="glutes">Glutes</string>
+    <string name="quadriceps">Quadriceps</string>
+    <string name="hamstrings">Hamstrings</string>
+    <string name="back">Tillbaka</string>
+    <string name="calves">Kalvar</string>
+    <string name="lower_back">Nedre delen av ryggen</string>
+    <string name="adductors">adduktorer</string>
+    <string name="neck">Hals</string>
+    <string name="txt_most_popular">Mest populära</string>
+    <string name="oops">hoppsan!</string>
+    <string name="oops_network_error">hoppsan! Nätverksfel</string>
+    <string name="oops_sync_failed">hoppsan! Synkronisering misslyckades</string>
+    <string name="oops_unlock_failed">hoppsan! Upplåsning misslyckades</string>
+    <string name="oops_unlock_failed_des">Se videon till slutet för att låsa upp.</string>
+    <string name="load_video_fail">Ladda video misslyckades, kontrollera ditt internet och försök igen!</string>
+    <string name="last_sync">Senaste synkronisering: %s</string>
+    <string name="last_time">Förra gången:</string>
+    <string name="log_out">Logga ut</string>
+    <string name="login_out_sure">Är du säker på att du vill logga ut?</string>
+    <string name="set_backup">Säkerhetskopiera och återställa</string>
+    <string name="sign_in_tips">Logga in och synkronisera dina data</string>
+    <string name="continue_with_google">Fortsätt med Google</string>
+    <string name="data_sync_done">Datasynkronisering slutförd!</string>
+    <string name="breast_training">Bröstträning</string>
+    <string name="pain_relief">Smärtlindring</string>
 </resources>

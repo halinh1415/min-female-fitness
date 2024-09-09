@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name" translatable="false">Kvinde træning</string>
     <string name="txt_rate" translatable="false">Bedøm os</string>
     <string name="txt_action_settings">Indstillinger</string>
@@ -111,7 +111,7 @@
     <string name="txt_go_premium">Gå til premium</string>
     <string name="txt_watch_video">Se video</string>
     <string name="txt_this_week">Denne uge</string>
-    <string name="rp_syn_with_google_fit">Synkroniser til google fit</string>
+    <string name="rp_syn_with_google_fit">Sync to Google Fit</string>
     <string name="txt_not_remind">Ikke minde igen</string>
     <string name="close">Tæt</string>
     <string name="recipes_breakfast">Morgenmad</string>
@@ -134,7 +134,7 @@
     <string name="weeks">Uger</string>
     <string name="txt_daily">Daglige</string>
     <string name="tab_discover">Opdage</string>=
-    <string name="explore_more">Se mere</string>
+    <string name="explore_more">Mere</string>
     <string name="txt_for_home_workout">Til hjemmetræning</string>
     <string name="txt_saved_money">Gemt</string>
     <string name="txt_all_exercise">Alle øvelser</string>
@@ -246,7 +246,7 @@
     <string name="replace_with">Erstat med</string>
     <string name="current">Nuværende</string>
     <string name="download">Hent</string>
-    <string name="retry">Prøve igen</string>
+    <string name="retry">Prøv igen</string>
     <string name="td_each_side">Hver side</string>
 <string name="belly">Bug</string>
     <string name="arm">Arm</string>
@@ -315,7 +315,40 @@
     <string name="reach_goal_fast">Hurtig</string>
     <string name="seven_min_get_fit_des">På kun 7 minutter om dagen kan hurtig og effektiv træning forbedre din kondition og sundhed. Hold dig i form og smid de ekstra kilo!</string>
     <string name="upper_body_stretching_short_des">Stræk dine arme, skuldre, bryst og ryg. Løsn musklerne og øg fleksibiliteten.</string>
-    <string name="explore_tag_hot">Hed</string>
+    <string name="explore_tag_hot">Hot</string>
     <string name="downloading">Downloader</string>
-    <string name="loading">Indlæser...</string>
+    <string name="loading">Indlæser…</string>
+<string name="abs">Abs</string>
+    <string name="traps">Fælder</string>
+    <string name="triceps">Triceps</string>
+    <string name="biceps">Biceps</string>
+    <string name="forearms">Underarme</string>
+    <string name="shoulders">Skuldre</string>
+    <string name="chest">Bryst</string>
+    <string name="leg">Ben</string>
+    <string name="glutes">Glutes</string>
+    <string name="quadriceps">Quadriceps</string>
+    <string name="hamstrings">Hamstrings</string>
+    <string name="back">Tilbage</string>
+    <string name="calves">Kalve</string>
+    <string name="lower_back">Nedre ryg</string>
+    <string name="adductors">adduktorer</string>
+    <string name="neck">Hals</string>
+    <string name="txt_most_popular">Mest populær</string>
+    <string name="oops">Ups!</string>
+    <string name="oops_network_error">Ups! Netværksfejl</string>
+    <string name="oops_sync_failed">Ups! Synkronisering mislykkedes</string>
+    <string name="oops_unlock_failed">Ups! Oplåsning mislykkedes</string>
+    <string name="oops_unlock_failed_des">Se venligst videoen til slutningen for at låse op.</string>
+    <string name="load_video_fail">Fejl ved indlæsning af video, tjek dit internet og prøv igen!</string>
+    <string name="last_sync">Sidste synkronisering: %s</string>
+    <string name="last_time">Sidste gang:</string>
+    <string name="log_out">Log ud</string>
+    <string name="login_out_sure">Er du sikker på, at du vil logge ud?</string>
+    <string name="set_backup">Data backup &amp; gendannelse</string>
+    <string name="sign_in_tips">Log ind og synkroniser dine data</string>
+    <string name="continue_with_google">Fortsæt med Google</string>
+    <string name="data_sync_done">Datasynkronisering gennemført!</string>
+    <string name="breast_training">Bryst træning</string>
+    <string name="pain_relief">Smertelindring</string>
 </resources>

@@ -350,4 +350,5 @@
     <string name="continue_with_google">Продолжить через Google</string>
     <string name="data_sync_done">Синхронизация данных завершена!</string>
 <string name="breast_training">Тренировки для груди</string>
+    <string name="pain_relief">Против боли</string>
     </resources>

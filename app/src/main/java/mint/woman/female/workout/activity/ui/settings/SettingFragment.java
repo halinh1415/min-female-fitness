@@ -47,7 +47,7 @@ import mint.woman.female.workout.utils.RemoteConfigKeys;
 public class SettingFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
     private OnSettingsListener mListener;
     private final SimpleDateFormat mFormatDateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
-    public final static String SUPPORT_LANGUAGES = "ar@de@en@es@fa@fr@in_ID@it@ja@ko@nl@pl@pt@ru@tr@vi@zh_CN@zh_TW@th@uk";
+    public final static String SUPPORT_LANGUAGES = "ar@de@en@es@fa@fr@in_ID@it@ja@ko@nl@pl@pt@ru@tr@vi@zh_CN@zh_TW@th@uk@da@no@lv@fi@hr@ca@cs";
 
     CustomPreference preferenceBackUp;
     MyPreference myPreference;
