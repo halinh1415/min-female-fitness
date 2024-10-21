@@ -114,7 +114,8 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
         }
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(FitnessApplication.getApplication());
-
+//        AppEventsLogger logger = AppEventsLogger.newLogger(this);
+//        logger.logEvent("App Launched");
 
     }
 
