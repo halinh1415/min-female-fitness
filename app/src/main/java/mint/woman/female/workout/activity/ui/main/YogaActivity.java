@@ -33,6 +33,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.preference.PreferenceManager;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.IdpResponse;
@@ -53,6 +55,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.SplashActivity;
 import mint.woman.female.workout.activity.premium.PremiumActivity;
@@ -109,6 +112,9 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
             file.mkdirs();
             FileUtil.copyAssetToInternalStorage(YogaActivity.this, "music/Default.mp3", "music/Default.mp3");
         }
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(FitnessApplication.getApplication());
+
 
     }
 

@@ -70,7 +70,7 @@ dependencies {
     implementation 'com.github.luizgrp:SectionedRecyclerViewAdapter:v3.2.0'
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
-
+    implementation 'com.facebook.android:facebook-android-sdk:17.0.1'
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0'
 
     implementation platform('com.google.firebase:firebase-bom:33.2.0')

@@ -2,6 +2,8 @@
     <string name="app_name" translatable="false">Female Workout</string>
     <string name="ad_banner_unit_id" translatable="false">ca-app-pub-9959217683006097/7312502868</string>
     <string name="txt_app_id" translatable="false">ca-app-pub-9959217683006097~3177816739</string>
+    <string name="facebook_app_id" translatable="false">842950201035913</string>
+    <string name="facebook_client_id" translatable="false">ad08227ced236fd23efd7a1fa35b1838</string>
     <string name="default_notification_channel_id" translatable="false">female_workout_notification_id</string>
     <string name="roboto_black" translatable="false">sans-serif-black</string>
     <string name="roboto_condensed" translatable="false">sans-serif-condensed</string>
@@ -359,4 +361,6 @@
     <string name="data_sync_done">Data synchronization completed!</string>
     <string name="breast_training">Breast Workout</string>
     <string name="pain_relief">Pain relief</string>
+
+
 </resources>
