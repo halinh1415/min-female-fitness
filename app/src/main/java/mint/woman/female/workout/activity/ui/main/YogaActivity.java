@@ -150,7 +150,7 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
         if (isFirst) {
             isFirst = false;
             int openCount = myPreference.openCount();
-            if (openCount > 2 && openCount % 5 == 0 && !myPreference.isPremiumMember()) {
+            if (openCount > 2 && openCount % 3 == 0 && !myPreference.isPremiumMember()) {
                 startActivity(new Intent(YogaActivity.this, PremiumActivity.class));
             }
         }
