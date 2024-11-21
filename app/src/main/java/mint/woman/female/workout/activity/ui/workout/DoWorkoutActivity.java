@@ -252,12 +252,12 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                 mProgress.setText("" + (currentExerciseCount + 1) + "/" + totalExercise);
                 mAudioAppManager.setMale(myPreference.getGender() == 0);
                 if (myPreference.isSpeakerOn()) {
-                    mAudioAppManager.playText(getString(R.string.txt_ready_to_go_the_next));
+                   // mAudioAppManager.playText(getString(R.string.txt_ready_to_go_the_next));
                     if (getActionObjectCurrent().getUnit().contains("s")) {
-                        mAudioAppManager.playText("" + getActionObjectCurrent().time);
-                        mAudioAppManager.playText(getString(R.string.txt_seconds));
+                        mAudioAppManager.playText(getString(R.string.txt_ready_to_go_the_next)+" "+ getActionObjectCurrent().time +" "+ getString(R.string.txt_seconds));
+
                     } else {
-                        mAudioAppManager.playText("" + getActionObjectCurrent().time);
+                        mAudioAppManager.playText(getString(R.string.txt_ready_to_go_the_next)+ " " + getActionObjectCurrent().time);
                     }
                     mAudioAppManager.playText(getExerciseObjectCurrent().getName().toLowerCase().replace("-"," "));
                     if (getExerciseObjectCurrent().getAlternation() && getActionObjectCurrent().getUnit().isEmpty()) {
