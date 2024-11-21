@@ -34,6 +34,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.preference.PreferenceManager;
 
 import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsConstants;
 import com.facebook.appevents.AppEventsLogger;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
@@ -114,8 +115,9 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
         }
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(FitnessApplication.getApplication());
-//        AppEventsLogger logger = AppEventsLogger.newLogger(this);
+        AppEventsLogger logger = AppEventsLogger.newLogger(this);
 //        logger.logEvent("App Launched");
+        logger.logEvent(AppEventsConstants.EVENT_NAME_COMPLETED_REGISTRATION);
 
     }
 

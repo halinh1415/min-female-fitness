@@ -49,7 +49,7 @@ public class AudioAppManager {
                     }
                 }
             }
-            handler.postDelayed(this, 1000);
+            handler.postDelayed(this, 500);
         }
     };
     Handler handler = new Handler();
