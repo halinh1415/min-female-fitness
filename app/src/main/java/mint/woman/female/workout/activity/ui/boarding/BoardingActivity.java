@@ -27,18 +27,16 @@ import com.make.dots.dotsindicator.DotsIndicator;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.firstsetup.FirstSetupActivity;
-import mint.woman.female.workout.activity.ui.language.LanguageActivity;
 import mint.woman.female.workout.admodule.MaticAd;
 import mint.woman.female.workout.admodule.MaticAdCallBack;
 import mint.woman.female.workout.admodule.MaticAdKeys;
+import mint.woman.female.workout.databinding.ActivityBoardingBinding;
+import mint.woman.female.workout.databinding.LoadingNativeMediumBinding;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import mint.woman.female.workout.utils.RemoteConfigKeys;
 
 public class BoardingActivity extends AppCompatActivity {
@@ -48,55 +46,43 @@ public class BoardingActivity extends AppCompatActivity {
     String[] imgIntros = new String[]{"onboard_intro_1.png", "onboard_intro_2.png", "onboard_intro_3.png", "onboard_intro_4.png", "onboard_intro_5.png"};
     int[] boardingDescriptions = new int[]{R.string.txt_description_onboard_1, R.string.txt_description_onboard_2, R.string.txt_description_onboard_3, R.string.txt_description_onboard_4, R.string.txt_description_onboard_5};
 
-    @BindView(R.id.vpOnboard)
-    ViewPager vpOnboard;
-
-    @BindView(R.id.dotsIndicator)
-    DotsIndicator dotsIndicator;
-    @BindView(R.id.layoutAdNative)
-    FrameLayout layoutAdNative;
-    @BindView(R.id.shimmer_container_native)
-    ShimmerFrameLayout shimmerFrameLayout;
-    @BindView(R.id.tvNext)
-    TextView tvNext;
-    @BindView(R.id.tvSkip)
-    TextView tvSkip;
-
+    ActivityBoardingBinding binding;
     int currentPosition = 0;
     BoardingAdapter boardingAdapter;
     MyPreference myPreference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_boarding);
-        ButterKnife.bind(this);
+        binding = ActivityBoardingBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         initView();
     }
 
     private void initView() {
         myPreference = new MyPreference(this);
-        Shader textShader = new LinearGradient(0, 0, 200, tvNext.getTextSize(),
+        Shader textShader = new LinearGradient(0, 0, 200, binding.tvNext.getTextSize(),
                 new int[]{
                         Color.parseColor("#3F51B5"),
                         Color.parseColor("#2196F3"),
                         Color.parseColor("#00BCD4"),
                 }, null, Shader.TileMode.CLAMP);
-        tvNext.getPaint().setShader(textShader);
+        binding.tvNext.getPaint().setShader(textShader);
 
         boardingAdapter = new BoardingAdapter(getSupportFragmentManager());
-        vpOnboard.setAdapter(boardingAdapter);
-        dotsIndicator.setViewPager(vpOnboard);
+        binding.vpOnboard.setAdapter(boardingAdapter);
+        binding.dotsIndicator.setViewPager( binding.vpOnboard);
+        binding.tvNext.setOnClickListener(this::nextIntro);
         if (myPreference.isShowAds()  && myPreference.getOK() && FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.NATIVE_ONBOARD)) {
             FitnessApplication.getApplication().getStorageCommon().nativeAdOnBoard.observe(BoardingActivity.this, (nativeAd) -> {
                 if (nativeAd != null) {
-                    MaticAd.getInstance().populateNativeAdView(BoardingActivity.this, nativeAd,R.layout.native_admob_medium_layout, layoutAdNative, shimmerFrameLayout);
+                    MaticAd.getInstance().populateNativeAdView(BoardingActivity.this, nativeAd,R.layout.native_admob_medium_layout, binding.layoutAdNative, binding.loading.shimmerContainerNative);
                 } else {
-                    layoutAdNative.setVisibility(View.GONE);
+                    binding.layoutAdNative.setVisibility(View.GONE);
                 }
             });
 
         } else {
-            layoutAdNative.setVisibility(View.GONE);
+            binding.layoutAdNative.setVisibility(View.GONE);
         }
 
     }
@@ -104,7 +90,7 @@ public class BoardingActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (currentPosition >0){
             currentPosition --;
-            vpOnboard.setCurrentItem(currentPosition);
+            binding.vpOnboard.setCurrentItem(currentPosition);
         }else{
             super.onBackPressed();
         }
@@ -125,14 +111,14 @@ public class BoardingActivity extends AppCompatActivity {
             });
         }
     }
-    @OnClick(R.id.tvNext)
-    void nextIntro() {
+
+    void nextIntro(View view) {
         if (currentPosition < boardingTitles.length - 1) {
 
             currentPosition++;
             //FirebaseAnalytics.getInstance(this).logEvent("scr_onboard_" + (currentPosition + 1), new Bundle());
             requestNewNativeOnBoarding();
-            vpOnboard.setCurrentItem(currentPosition);
+            binding.vpOnboard.setCurrentItem(currentPosition);
         } else {
             startActivity(new Intent(BoardingActivity.this, FirstSetupActivity.class));
             finish();

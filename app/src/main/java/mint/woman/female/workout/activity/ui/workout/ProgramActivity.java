@@ -26,7 +26,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import mint.woman.female.workout.BuildConfig;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
@@ -34,6 +33,7 @@ import mint.woman.female.workout.activity.ui.custom.CustomMyWorkoutActivity;
 import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
 import mint.woman.female.workout.common.adapter.DayAdapter;
 import mint.woman.female.workout.custom.ExpandableTextView;
+import mint.woman.female.workout.databinding.ActivityProgramBinding;
 import mint.woman.female.workout.model.PlanObject;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.utils.LanguageHelper;
@@ -42,31 +42,10 @@ import mint.woman.female.workout.utils.MyPreference;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ProgramActivity extends AppCompatActivity implements DayAdapter.ClickListener {
 
-    @BindView(R.id.rc_program)
-    RecyclerView mRcProgram;
-    @BindView(R.id.txt_program_description)
-    ExpandableTextView mProgramDescription;
-    @BindView(R.id.img_banner)
-    ImageView mBanner;
-    @BindView(R.id.image_workout)
-    ImageView mImageWorkout;
-    @BindView(R.id.progressBar)
-    ProgressBar mPlanProgress;
-    @BindView(R.id.tv_program_progress)
-    TextView mPlanCount;
-    @BindView(R.id.adView)
-    AdView mAdBanner;
-    @BindView(R.id.btn_goto)
-    Button mBtnGoto;
-    @BindView(R.id.tv_program_name)
-    TextView mProgramName;
-
+    ActivityProgramBinding binding;
     List<PlanObject> mPlanObjectList;
     int sizePlan, progress;
     ProgramObject mProgramObject;
@@ -79,12 +58,13 @@ public class ProgramActivity extends AppCompatActivity implements DayAdapter.Cli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_program);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        binding = ActivityProgramBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+      
+        setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ButterKnife.bind(this);
+     
         initView();
         requestNewAdBanner();
     }
@@ -113,27 +93,31 @@ public class ProgramActivity extends AppCompatActivity implements DayAdapter.Cli
             sizePlan = mPlanObjectList.size();
             progress = myPreference.getPlanProgress(mProgramObject.getId());
             setTitle(getString(R.string.txt_challenge_7x4));
-            mProgramName.setText(mProgramObject.getName().toUpperCase());
-            mProgramDescription.setVisibility(View.GONE);
-            mRcProgram.setLayoutManager(new LinearLayoutManager(this));
-            mRcProgram.setNestedScrollingEnabled(false);
+            binding.tvProgramName.setText(mProgramObject.getName().toUpperCase());
+            binding.contentProgram.txtProgramDescription.setVisibility(View.GONE);
+            binding.contentProgram.rcProgram.setLayoutManager(new LinearLayoutManager(this));
+            binding.contentProgram.rcProgram.setNestedScrollingEnabled(false);
             mDayAdapter = new DayAdapter(mPlanObjectList, progress, this);
-            mRcProgram.setAdapter(mDayAdapter);
-            Glide.with(getApplicationContext()).load(Uri.parse("file:///android_asset/images/" + mProgramObject.getBackground())).into(mBanner);
+            binding.contentProgram.rcProgram.setAdapter(mDayAdapter);
+            Glide.with(getApplicationContext()).load(Uri.parse("file:///android_asset/images/" + mProgramObject.getBackground())).into(binding.imgBanner);
 
-            Glide.with(getApplicationContext()).load(Uri.parse("file:///android_asset/images/" + mProgramObject.getImage())).into(mImageWorkout);
-            mPlanProgress.setMax(sizePlan);
-            mPlanProgress.setProgress(progress);
-            mPlanCount.setText("" + (sizePlan - progress) + " " + getString(R.string.txt_day_left));
+            Glide.with(getApplicationContext()).load(Uri.parse("file:///android_asset/images/" + mProgramObject.getImage())).into(binding.imageWorkout);
+            binding.progressBar.setMax(sizePlan);
+            binding.progressBar.setProgress(progress);
+            binding.tvProgramProgress.setText("" + (sizePlan - progress) + " " + getString(R.string.txt_day_left));
             if (progress < mPlanObjectList.size()) {
-                mBtnGoto.setText(getText(R.string.txt_go_to) + " " + getString(R.string.txt_day) + " " + (progress + 1));
+                binding.btnGoto.setText(getText(R.string.txt_go_to) + " " + getString(R.string.txt_day) + " " + (progress + 1));
             }
             if (progress >= mPlanObjectList.size()) {
                 restartProgress();
             }
+            binding.btnGoto.setOnClickListener(view -> {
+                gotoDay(progress);
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     @Override
@@ -146,25 +130,20 @@ public class ProgramActivity extends AppCompatActivity implements DayAdapter.Cli
     }
 
     void requestNewAdBanner() {
-        mAdBanner = findViewById(R.id.adView);
-        mAdBanner.setVisibility(View.GONE);
+        binding.adView.setVisibility(View.GONE);
         if (myPreference.isShowAds() && myPreference.getOK()) {
             AdRequest adRequest = new AdRequest.Builder().build();
-            mAdBanner.loadAd(adRequest);
-            mAdBanner.setAdListener(new AdListener() {
+            binding.adView.loadAd(adRequest);
+            binding.adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdLoaded() {
                     super.onAdLoaded();
-                    mAdBanner.setVisibility(View.VISIBLE);
+                    binding.adView.setVisibility(View.VISIBLE);
                 }
             });
         }
     }
 
-    @OnClick(R.id.btn_goto)
-    void onClick() {
-        gotoDay(progress);
-    }
 
     private void gotoDay(int idDay) {
         try {

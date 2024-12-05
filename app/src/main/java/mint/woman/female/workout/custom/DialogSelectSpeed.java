@@ -28,21 +28,16 @@ import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.workout.DoWorkoutActivity;
 import mint.woman.female.workout.activity.ui.workout.WorkoutViewModel;
+import mint.woman.female.workout.databinding.DialogChooseSpeedBinding;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.utils.MyPreference;
 
 import java.io.IOException;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class DialogSelectSpeed extends BottomSheetDialogFragment {
-    @BindView(R.id.npk_speed)
-    NumberPicker mSpeedNpk;
-    @BindView(R.id.videoView)
-    CustomVideoView mVideoView;
 
+
+    DialogChooseSpeedBinding binding;
     private ExerciseObject mExerciseObject;
     private String[] num = new String[]{"0.6x", "0.7x", "0.8x", "0.9x", "1.0x", "1.1x", "1.2x", "1.3x", "1.4x", "1.5x", "1.6x"};
     private float[] values = new float[]{0.6f, 0.7f, 0.8f, 0.9f, 1.0f, 1.1f, 1.2f, 1.3f, 1.4f, 1.5f, 1.6f};
@@ -68,9 +63,8 @@ public class DialogSelectSpeed extends BottomSheetDialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        FrameLayout frameLayout = new FrameLayout(getActivity());
-        populateViewForOrientation(inflater, frameLayout);
-        return frameLayout;
+       binding = DialogChooseSpeedBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
     @Override
@@ -104,22 +98,22 @@ public class DialogSelectSpeed extends BottomSheetDialogFragment {
         path = getContext().getCacheDir() + "/temp.mp4";
         currentSpeed = myPreference.getSpeed();
 
-        mVideoView.setVideoURI(Uri.parse(path));
-        mVideoView.setOnPreparedListener(mediaPlayer -> {
+        binding.videoView.setVideoURI(Uri.parse(path));
+        binding.videoView.setOnPreparedListener(mediaPlayer -> {
             mediaPlayer.setLooping(true);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 mediaPlayer.setPlaybackParams(new PlaybackParams().setSpeed(currentSpeed));
             }
         });
-        mVideoView.setZOrderOnTop(false);
-        mVideoView.start();
-        mSpeedNpk.setMaxValue(num.length - 1);
-        mSpeedNpk.setMinValue(0);
+        binding.videoView.setZOrderOnTop(false);
+        binding.videoView.start();
+        binding.npkSpeed.setMaxValue(num.length - 1);
+        binding.npkSpeed.setMinValue(0);
         int index = getIndexOf(myPreference.getSpeed());
-        mSpeedNpk.setValue(index);
-        mSpeedNpk.setDisplayedValues(num);
-        mSpeedNpk.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-        mSpeedNpk.setOnValueChangedListener((numberPicker, i, i1) -> {
+        binding.npkSpeed.setValue(index);
+        binding.npkSpeed.setDisplayedValues(num);
+        binding.npkSpeed.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+        binding.npkSpeed.setOnValueChangedListener((numberPicker, i, i1) -> {
             currentSpeed = values[i1];
             if (mediaPlayer != null) {
                 mediaPlayer.release();
@@ -130,22 +124,22 @@ public class DialogSelectSpeed extends BottomSheetDialogFragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            mVideoView.setVideoURI(Uri.parse(path));
-            mVideoView.setOnPreparedListener(mediaPlayer -> {
+            binding.videoView.setVideoURI(Uri.parse(path));
+            binding.videoView.setOnPreparedListener(mediaPlayer -> {
                 mediaPlayer.setLooping(true);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     mediaPlayer.setPlaybackParams(new PlaybackParams().setSpeed(currentSpeed));
                 }
             });
-            mVideoView.start();
+            binding.videoView.start();
         });
     }
 
     private void populateViewForOrientation(LayoutInflater inflater, ViewGroup viewGroup) {
 
-        viewGroup.removeAllViewsInLayout();
-        View subview = inflater.inflate(R.layout.dialog_choose_speed, viewGroup);
-        ButterKnife.bind(this, subview);
+        //viewGroup.removeAllViewsInLayout();
+       // View subview = inflater.inflate(R.layout.dialog_choose_speed, viewGroup);
+       // ButterKnife.bind(this, subview);
 
         // Find your buttons in subview, set up onclicks, set up callbacks to your parent fragment or activity here.
     }
@@ -166,7 +160,7 @@ public class DialogSelectSpeed extends BottomSheetDialogFragment {
     }
 
     private void setupFullHeight(BottomSheetDialog bottomSheetDialog) {
-        FrameLayout bottomSheet = (FrameLayout) bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
+        FrameLayout bottomSheet = (FrameLayout) bottomSheetDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
         BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
         behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
@@ -202,10 +196,13 @@ public class DialogSelectSpeed extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         loadExercise();
+        binding.btnOk.setOnClickListener(this::onClick);
+        binding.btnOk.setOnClickListener(this::onClick);
     }
 
 
-    @OnClick({R.id.btn_cancel, R.id.btn_ok})
+
+
     void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_cancel:
@@ -213,7 +210,7 @@ public class DialogSelectSpeed extends BottomSheetDialogFragment {
                 //     mWorkoutViewModel.setPause(false);
                 break;
             case R.id.btn_ok:
-                myPreference.setSpeed(values[mSpeedNpk.getValue()]);
+                myPreference.setSpeed(values[binding.npkSpeed.getValue()]);
                 dismiss();
                 //    mWorkoutViewModel.setPause(false);
                 break;

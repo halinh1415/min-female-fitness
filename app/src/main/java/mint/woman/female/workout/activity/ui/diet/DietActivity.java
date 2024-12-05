@@ -29,28 +29,19 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.databinding.ActivityDietBinding;
+import mint.woman.female.workout.databinding.ContentDietBinding;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 
 public class DietActivity extends AppCompatActivity {
+    ActivityDietBinding binding;
+    ContentDietBinding contentDietBinding;
 
-    @BindView(R.id.rc_diet)
-    RecyclerView mMealRc;
-    @BindView(R.id.img_banner)
-    ImageView mBanner;
-    @BindView(R.id.progressBar)
-    ProgressBar mProgressDiet;
-    @BindView(R.id.tv_program_progress)
-    TextView mProgressTxt;
-    @BindView(R.id.adView)
-    AdView mAdBanner;
     MyPreference myPreference;
     int progress;
     DietAdapter mDietAdapter;
@@ -60,10 +51,10 @@ public class DietActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diet);
-        ButterKnife.bind(this);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        binding = ActivityDietBinding.inflate(getLayoutInflater());
+        contentDietBinding = binding.contentDiet;
+        setContentView(binding.getRoot());
+        setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initView();
         requestNewAdBanner();
@@ -102,36 +93,37 @@ public class DietActivity extends AppCompatActivity {
     private void initView() {
         myPreference = new MyPreference(this);
         progress = myPreference.getProgressDiet();
-        Glide.with(getApplicationContext()).load(Uri.parse("file:///android_asset/images/diet_banner.jpg")).into(mBanner);
+        Glide.with(getApplicationContext()).load(Uri.parse("file:///android_asset/images/diet_banner.jpg")).into(binding.imgBanner);
         mDietAdapter = new DietAdapter();
-        mMealRc.setLayoutManager(new GridLayoutManager(this, 3));
-        mMealRc.setAdapter(mDietAdapter);
-        mMealRc.setNestedScrollingEnabled(false);
-        mProgressDiet.setMax(30);
-        mProgressDiet.setProgress(progress);
-        mProgressTxt.setText("" + (30 - progress) + " " + getString(R.string.txt_day_left));
+        contentDietBinding.rcDiet.setLayoutManager(new GridLayoutManager(this, 3));
+        contentDietBinding.rcDiet.setAdapter(mDietAdapter);
+        contentDietBinding.rcDiet.setNestedScrollingEnabled(false);
+        binding.progressBar.setMax(30);
+        binding.progressBar.setProgress(progress);
+        binding.tvProgramProgress.setText("" + (30 - progress) + " " + getString(R.string.txt_day_left));
         if (30 == progress) {
             showFullDiet();
         }
 
+        binding.btnShoppingList.setOnClickListener(this::goShoppingList);
     }
 
-    @OnClick(R.id.btn_shopping_list)
-    void onClick() {
+
+    void goShoppingList(View view) {
         Intent intent = new Intent(DietActivity.this, ShoppingListActivity.class);
         startActivity(intent);
     }
 
     void requestNewAdBanner() {
-        mAdBanner.setVisibility(View.GONE);
+        binding.adView.setVisibility(View.GONE);
         if (myPreference.isShowAds() && myPreference.getOK()) {
             AdRequest adRequest = new AdRequest.Builder().build();
-            mAdBanner.loadAd(adRequest);
-            mAdBanner.setAdListener(new AdListener() {
+            binding.adView.loadAd(adRequest);
+            binding.adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdLoaded() {
                     super.onAdLoaded();
-                    mAdBanner.setVisibility(View.VISIBLE);
+                    binding.adView.setVisibility(View.VISIBLE);
                 }
             });
         }
@@ -200,6 +192,9 @@ public class DietActivity extends AppCompatActivity {
                 holder.mIconDone.setVisibility(View.INVISIBLE);
                 holder.bg.setBackgroundResource(R.drawable.background_diet_none);
             }
+            holder.bg.setOnClickListener(view -> {
+                gotoMeals(position);
+            });
         }
 
         @Override
@@ -208,21 +203,16 @@ public class DietActivity extends AppCompatActivity {
         }
 
         class DietViewHolder extends RecyclerView.ViewHolder {
-            @BindView(R.id.txt_diet_day)
             TextView mDay;
-            @BindView(R.id.rl_diet)
             View bg;
-            @BindView(R.id.img_diet_done)
             ImageView mIconDone;
 
             DietViewHolder(View itemView) {
                 super(itemView);
-                ButterKnife.bind(this, itemView);
-            }
+                mDay = itemView.findViewById(R.id.txt_diet_day);
+                bg = itemView.findViewById(R.id.rl_diet);
+                mIconDone = itemView.findViewById(R.id.img_diet_done);
 
-            @OnClick(R.id.rl_diet)
-            void onClick(View view) {
-                gotoMeals(getAdapterPosition());
             }
         }
     }

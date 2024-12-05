@@ -24,6 +24,7 @@ import mint.woman.female.workout.R;
 import mint.woman.female.workout.common.adapter.EventDecorator;
 import mint.woman.female.workout.common.adapter.HistorySection;
 import mint.woman.female.workout.custom.HighlightWeekendsDecorator;
+import mint.woman.female.workout.databinding.FragmentHistoryBinding;
 import mint.woman.female.workout.model.HistoryItem;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.MyPreference;
@@ -39,23 +40,21 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
 
 public class HistoryFragment extends Fragment implements HistorySection.ClickListener{
     private final SimpleDateFormat mFormatDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-    @BindView(R.id.calendarView)
-    MaterialCalendarView calendarView;
-    @BindView(R.id.rc_history)
-    RecyclerView mHistoryRc;
-    @BindView(R.id.progressBarHistory)
-    ProgressBar mProgressHistory;
-    @BindView(R.id.txt_no_workout)
-    TextView mNoWorkoutText;
-    @BindView(R.id.adView)
-    AdView mAdBanner;
+    FragmentHistoryBinding binding;
+//    @BindView(R.id.calendarView)
+//    MaterialCalendarView calendarView;
+//    @BindView(R.id.rc_history)
+//    RecyclerView mHistoryRc;
+//    @BindView(R.id.progressBarHistory)
+//    ProgressBar mProgressHistory;
+//    @BindView(R.id.txt_no_workout)
+//    TextView mNoWorkoutText;
+//    @BindView(R.id.adView)
+//    AdView mAdBanner;
 
     SectionedRecyclerViewAdapter mAdapter;
 
@@ -75,9 +74,8 @@ public class HistoryFragment extends Fragment implements HistorySection.ClickLis
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_history, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+        binding = FragmentHistoryBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
     @Override
@@ -89,29 +87,29 @@ public class HistoryFragment extends Fragment implements HistorySection.ClickLis
 
     private void initView() {
         mAdapter = new SectionedRecyclerViewAdapter();
-        mHistoryRc.setNestedScrollingEnabled(false);
-        mHistoryRc.setLayoutManager(new GridLayoutManager(getContext(), 1));
+        binding.rcHistory.setNestedScrollingEnabled(false);
+        binding.rcHistory.setLayoutManager(new GridLayoutManager(getContext(), 1));
         //    DividerItemDecoration divider = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         //  mHistoryRc.addItemDecoration(divider);
-        mHistoryRc.setAdapter(mAdapter);
+        binding.rcHistory.setAdapter(mAdapter);
         mHistoryViewModel = new ViewModelProvider(this).get(HistoryViewModel.class);
-        mNoWorkoutText.setVisibility(View.GONE);
+        binding.txtNoWorkout.setVisibility(View.GONE);
 
-        mProgressHistory.setVisibility(View.VISIBLE);
+        binding.progressBarHistory.setVisibility(View.VISIBLE);
 
 
         CalendarDay today = CalendarDay.today();
         getHistoryOnMonth(today);
 
-        calendarView.setOnDateChangedListener((widget, date, selected) -> {
+        binding.calendarView.setOnDateChangedListener((widget, date, selected) -> {
             if (selected) {
                 getHistoryOnDate(date);
             }
         });
-        calendarView.setOnMonthChangedListener((widget, date) -> {
+        binding.calendarView.setOnMonthChangedListener((widget, date) -> {
             getHistoryOnMonth(date);
         });
-        calendarView.addDecorators(new HighlightWeekendsDecorator());
+        binding.calendarView.addDecorators(new HighlightWeekendsDecorator());
 
     }
 
@@ -121,11 +119,11 @@ public class HistoryFragment extends Fragment implements HistorySection.ClickLis
         calendar.set(Calendar.MONTH, day.getMonth() - 1);
         calendar.set(Calendar.DAY_OF_MONTH, day.getDay());
         long dayLong = TimeUnit.MILLISECONDS.toDays(calendar.getTimeInMillis());
-        mProgressHistory.setVisibility(View.VISIBLE);
+        binding.progressBarHistory.setVisibility(View.VISIBLE);
         mHistoryViewModel.findInDay(dayLong).observe(getActivity(), historyItems -> {
-            mProgressHistory.setVisibility(View.GONE);
+            binding.progressBarHistory.setVisibility(View.GONE);
             if (historyItems != null) {
-                mNoWorkoutText.setVisibility(View.GONE);
+                binding.txtNoWorkout.setVisibility(View.GONE);
                 mAdapter.removeAllSections();
                 long millis = TimeUnit.DAYS.toMillis(dayLong);
                 mAdapter.addSection(new HistorySection(getContext(),mFormatDate.format(millis), historyItems,this));
@@ -133,7 +131,7 @@ public class HistoryFragment extends Fragment implements HistorySection.ClickLis
             } else {
                 mAdapter.removeAllSections();
                 mAdapter.notifyDataSetChanged();
-                mNoWorkoutText.setVisibility(View.VISIBLE);
+                binding.txtNoWorkout.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -147,11 +145,11 @@ public class HistoryFragment extends Fragment implements HistorySection.ClickLis
         calendar.add(Calendar.MONTH, 1);
         calendar.add(Calendar.DATE, -1);
         long end = TimeUnit.MILLISECONDS.toDays(calendar.getTimeInMillis());
-        mProgressHistory.setVisibility(View.VISIBLE);
+        binding.progressBarHistory.setVisibility(View.VISIBLE);
         mHistoryViewModel.findFromTo(from, end).observe(getActivity(), historyItems -> {
-            mProgressHistory.setVisibility(View.GONE);
+            binding.progressBarHistory.setVisibility(View.GONE);
             if (historyItems.size() > 0) {
-                mNoWorkoutText.setVisibility(View.GONE);
+                binding.txtNoWorkout.setVisibility(View.GONE);
                 mAdapter.removeAllSections();
                 Map<Long, List<HistoryItem>> groupedItems = new HashMap<>();
                 for (HistoryItem item : historyItems) {
@@ -178,13 +176,13 @@ public class HistoryFragment extends Fragment implements HistorySection.ClickLis
                     mAdapter.addSection(new HistorySection(getContext(),mFormatDate.format(millis),historyItemList,this));
                 }
                 EventDecorator eventDecorator = new EventDecorator(calendarDayList);
-                calendarView.addDecorator(eventDecorator);
+                binding.calendarView.addDecorator(eventDecorator);
                 mAdapter.notifyDataSetChanged();
             } else {
-                calendarView.removeDecorators();
+                binding.calendarView.removeDecorators();
                 mAdapter.removeAllSections();
                 mAdapter.notifyDataSetChanged();
-                mNoWorkoutText.setVisibility(View.VISIBLE);
+                binding.txtNoWorkout.setVisibility(View.VISIBLE);
             }
 
         });
@@ -235,15 +233,15 @@ public class HistoryFragment extends Fragment implements HistorySection.ClickLis
 
     void requestNewAdBanner() {
         myPreference = new MyPreference(getContext());
-        mAdBanner.setVisibility(View.GONE);
+        binding.adView.setVisibility(View.GONE);
         if (myPreference.isShowAds() && myPreference.getOK()) {
             AdRequest adRequest = new AdRequest.Builder().build();
-            mAdBanner.loadAd(adRequest);
-            mAdBanner.setAdListener(new AdListener() {
+            binding.adView.loadAd(adRequest);
+            binding.adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdLoaded() {
                     super.onAdLoaded();
-                    mAdBanner.setVisibility(View.VISIBLE);
+                    binding.adView.setVisibility(View.VISIBLE);
                 }
             });
         }

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.databinding.ActivitySetGoalBinding;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 
@@ -21,15 +22,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class SetGoalActivity extends AppCompatActivity {
-    @BindView(R.id.spnWeekGoal)
-    Spinner spWeekGoal;
-    @BindView(R.id.spnFirstDayOfWeek)
-    Spinner spFirstDayOfWeek;
+    ActivitySetGoalBinding binding;
 
 
     int firstDayOfWeek = 0, goalOfWeek = 5;
@@ -40,8 +34,8 @@ public class SetGoalActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_goal);
-        ButterKnife.bind(this);
+        binding = ActivitySetGoalBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         initView();
     }
 
@@ -59,7 +53,7 @@ public class SetGoalActivity extends AppCompatActivity {
                 goalOfWeeks[i] = "" + (i + 1) + " " + getString(R.string.txt_days);
             }
         }
-        spWeekGoal.setAdapter(new ArrayAdapter<>(this, R.layout.spinner_item, goalOfWeeks));
+        binding.spnWeekGoal.setAdapter(new ArrayAdapter<>(this, R.layout.spinner_item, goalOfWeeks));
 
         Calendar calendar = Calendar.getInstance(Locale.getDefault());
 
@@ -69,9 +63,9 @@ public class SetGoalActivity extends AppCompatActivity {
         fistDayList[1] = weekFormat.format(calendar.getTime());
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
         fistDayList[2] = weekFormat.format(calendar.getTime());
-        spFirstDayOfWeek.setAdapter(new ArrayAdapter<>(this, R.layout.spinner_item, fistDayList));
+        binding.spnFirstDayOfWeek.setAdapter(new ArrayAdapter<>(this, R.layout.spinner_item, fistDayList));
 
-        spFirstDayOfWeek.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spnFirstDayOfWeek.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 firstDayOfWeek = position;
@@ -82,9 +76,9 @@ public class SetGoalActivity extends AppCompatActivity {
 
             }
         });
-        spFirstDayOfWeek.setSelection(firstDayOfWeek);
+        binding.spnFirstDayOfWeek.setSelection(firstDayOfWeek);
 
-        spWeekGoal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spnWeekGoal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 goalOfWeek = position;
@@ -95,12 +89,12 @@ public class SetGoalActivity extends AppCompatActivity {
 
             }
         });
-        spWeekGoal.setSelection(goalOfWeek);
+        binding.spnWeekGoal.setSelection(goalOfWeek);
+        binding.btnSave.setOnClickListener(this::saveGoal);
 
     }
 
-    @OnClick(R.id.btn_save)
-    void saveGoal() {
+    void saveGoal(View view) {
         Bundle bundleFire = new Bundle();
         bundleFire.putInt("GoalOfWeek", goalOfWeek+1);
         bundleFire.putInt("FirstDayOf", firstDayOfWeek);

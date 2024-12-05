@@ -17,18 +17,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.admodule.AppOpenManager;
-import mint.woman.female.workout.utils.FitnessConstUtils;
-
+import mint.woman.female.workout.databinding.FragmentVideoYtBinding;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 /**
@@ -38,16 +31,15 @@ import butterknife.ButterKnife;
  */
 public class VideoYtFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    FragmentVideoYtBinding binding;
     private static final String ARG_URL = "video_url";
 
     // TODO: Rename and change types of parameters
     private String mExerciseUrl;
-    @BindView(R.id.youtube_player_view)
-    YouTubePlayerView youTubePlayerView;
-    @BindView(R.id.btn_open_yt)
-    Button mOpenYtBtn;
+//    @BindView(R.id.youtube_player_view)
+//    YouTubePlayerView youTubePlayerView;
+//    @BindView(R.id.btn_open_yt)
+//    Button mOpenYtBtn;
 
 
     public VideoYtFragment() {
@@ -81,16 +73,15 @@ public class VideoYtFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_video_yt, container, false);
-        ButterKnife.bind(this,view);
-        return view;
+        binding =  FragmentVideoYtBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getLifecycle().addObserver(youTubePlayerView);
+        getLifecycle().addObserver(binding.youtubePlayerView);
 
 
         String[] parts  = mExerciseUrl.split("&t=");
@@ -106,7 +97,7 @@ public class VideoYtFragment extends Fragment {
             e.printStackTrace();
         }
         float finalTime = startTime;
-        youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+        binding.youtubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                 if (youTubePlayer!= null) {
@@ -117,7 +108,7 @@ public class VideoYtFragment extends Fragment {
                 }
             }
         });
-        mOpenYtBtn.setOnClickListener(new View.OnClickListener() {
+        binding.btnOpenYt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openYoutubeChannel();

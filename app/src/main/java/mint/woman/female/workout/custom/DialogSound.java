@@ -20,11 +20,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.workout.WorkoutViewModel;
-
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import mint.woman.female.workout.databinding.DialogSoundLayoutBinding;
 
 public class DialogSound extends BottomSheetDialogFragment {
+    DialogSoundLayoutBinding binding;
 
     WorkoutViewModel mWorkoutViewModel;
 
@@ -42,7 +41,7 @@ public class DialogSound extends BottomSheetDialogFragment {
 
 
     private void setupFullHeight(BottomSheetDialog bottomSheetDialog) {
-        FrameLayout bottomSheet = bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
+        FrameLayout bottomSheet = bottomSheetDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
         BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
         behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
@@ -77,9 +76,8 @@ public class DialogSound extends BottomSheetDialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_sound_layout, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+        binding = DialogSoundLayoutBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
     @Override
@@ -88,7 +86,7 @@ public class DialogSound extends BottomSheetDialogFragment {
         mWorkoutViewModel.setPause(false);
     }
 
-    @OnClick(R.id.btn_close)
+
     void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_close:
@@ -102,6 +100,7 @@ public class DialogSound extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mWorkoutViewModel = new ViewModelProvider(getActivity()).get(WorkoutViewModel.class);
+        binding.btnClose.setOnClickListener(this::onClick);
 
     }
 

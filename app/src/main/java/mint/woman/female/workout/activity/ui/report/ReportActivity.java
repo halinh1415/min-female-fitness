@@ -36,6 +36,7 @@ import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.history.HistoryViewModel;
 import mint.woman.female.workout.activity.ui.weekgoal.WeekGoalFragment;
 import mint.woman.female.workout.custom.RoundedBarChart;
+import mint.woman.female.workout.databinding.ActivityReportBinding;
 import mint.woman.female.workout.fragment.WeightViewModel;
 import mint.woman.female.workout.model.HistoryItem;
 import mint.woman.female.workout.model.UserObject;
@@ -52,39 +53,37 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 @SuppressLint("NonConstantResourceId")
 public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener,
         OnChartValueSelectedListener {
+    ActivityReportBinding binding;
 
-    @BindView(R.id.weight_line_chart)
-    LineChart mChartWeight;
-    @BindView(R.id.waist_chart)
-    LineChart mChartWaist;
-    @BindView(R.id.calorie_bar_chart)
-    RoundedBarChart mCaloriesChart;
-    @BindView(R.id.txt_chart_y)
-    TextView mChartYUnit;
-    @BindView(R.id.txt_highest_weight)
-    TextView mHighestWeight;
-    @BindView(R.id.txt_lowest_weight)
-    TextView mLowestWeight;
-    @BindView(R.id.txt_good_weight)
-    TextView mGoodWeight;
-    @BindView(R.id.txt_recent_weight)
-    TextView mRecentWeight;
-    @BindView(R.id.txt_waist_chart_y)
-    TextView mWaistChartYUnit;
-    @BindView(R.id.txt_highest_waist)
-    TextView mHighestWaist;
-    @BindView(R.id.txt_lowest_waist)
-    TextView mLowestWaist;
-    @BindView(R.id.txt_good_waist)
-    TextView mGoodWaist;
-    @BindView(R.id.txt_recent_waist)
-    TextView mRecentWaist;
+//    @BindView(R.id.weight_line_chart)
+//    LineChart mChartWeight;
+//    @BindView(R.id.waist_chart)
+//    LineChart mChartWaist;
+//    @BindView(R.id.calorie_bar_chart)
+//    RoundedBarChart mCaloriesChart;
+//    @BindView(R.id.txt_chart_y)
+//    TextView mChartYUnit;
+//    @BindView(R.id.txt_highest_weight)
+//    TextView mHighestWeight;
+//    @BindView(R.id.txt_lowest_weight)
+//    TextView mLowestWeight;
+//    @BindView(R.id.txt_good_weight)
+//    TextView mGoodWeight;
+//    @BindView(R.id.txt_recent_weight)
+//    TextView mRecentWeight;
+//    @BindView(R.id.txt_waist_chart_y)
+//    TextView mWaistChartYUnit;
+//    @BindView(R.id.txt_highest_waist)
+//    TextView mHighestWaist;
+//    @BindView(R.id.txt_lowest_waist)
+//    TextView mLowestWaist;
+//    @BindView(R.id.txt_good_waist)
+//    TextView mGoodWaist;
+//    @BindView(R.id.txt_recent_waist)
+//    TextView mRecentWaist;
     ValueFormatter xAxisMonthFormatter;
 
     HistoryViewModel mHistoryViewModel;
@@ -96,8 +95,9 @@ public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekB
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report);
-        ButterKnife.bind(this);
+        binding = ActivityReportBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         initView();
 
         requestNewAdBanner();
@@ -203,12 +203,12 @@ public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekB
             }
             BarDataSet set1;
 
-            if (mCaloriesChart.getData() != null && mCaloriesChart.getData().getDataSetCount() > 0) {
-                set1 = (BarDataSet) mCaloriesChart.getData().getDataSetByIndex(0);
+            if (binding.calorieBarChart.getData() != null && binding.calorieBarChart.getData().getDataSetCount() > 0) {
+                set1 = (BarDataSet) binding.calorieBarChart.getData().getDataSetByIndex(0);
                 set1.setColor(R.color.colorAccent);
                 set1.setValues(values);
-                mCaloriesChart.getData().notifyDataChanged();
-                mCaloriesChart.notifyDataSetChanged();
+                binding.calorieBarChart.getData().notifyDataChanged();
+                binding.calorieBarChart.notifyDataSetChanged();
 
             } else {
                 set1 = new BarDataSet(values, getResources().getString(R.string.txt_calories_burn));
@@ -222,23 +222,23 @@ public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekB
                 data.setValueTextSize(10f);
                 data.setBarWidth(0.9f);
 
-                mCaloriesChart.setData(data);
+                binding.calorieBarChart.setData(data);
             }
-            mCaloriesChart.setVisibleXRangeMaximum(10);
-            mCaloriesChart.moveViewToX(mCaloriesChart.getXChartMax());
+            binding.calorieBarChart.setVisibleXRangeMaximum(10);
+            binding.calorieBarChart.moveViewToX(binding.calorieBarChart.getXChartMax());
         });
 
 
     }
     private void initDataWeight() {
-        if (mChartWeight.getData() != null) mChartWeight.clearValues();
+        if (binding.weightLineChart.getData() != null) binding.weightLineChart.clearValues();
 
         float currentHeight = myPreference.getCurrentHeightM();
         goodWeight = currentHeight * currentHeight * 22.9f;
         if (!myPreference.isKg()) {
             goodWeight *= 2.20462f;
         }
-        mChartYUnit.setText(myPreference.getWeightUnit());
+        binding.txtChartY.setText(myPreference.getWeightUnit());
         mHistoryViewModel.getAllUsers().observe(this, userObjects -> {
             ArrayList<Entry> values = new ArrayList<>();
             List<Entry> valueGood = new ArrayList<>();
@@ -294,25 +294,25 @@ public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekB
             data.setValueTextColor(Color.RED);
             data.setValueTextSize(9f);
             // set data
-            mChartWeight.setData(data);
-            mChartWeight.setVisibleXRangeMaximum(20);
-            mChartWeight.moveViewToX(mChartWeight.getXChartMax());
+            binding.weightLineChart.setData(data);
+            binding.weightLineChart.setVisibleXRangeMaximum(20);
+            binding.weightLineChart.moveViewToX(binding.weightLineChart.getXChartMax());
 
 //update weight min,max
-            mLowestWeight.setText(getString(R.string.txt_lowest_weight) + " " + String.format("%.1f",min) + " " + myPreference.getWeightUnit());
-            mHighestWeight.setText(getString(R.string.txt_highest_weight) + " " + String.format("%.1f",max) + " " + myPreference.getWeightUnit());
-            mRecentWeight.setText(getString(R.string.txt_recent_weight) + " " + String.format("%.1f",myPreference.getCurrentWeight()) + " " + myPreference.getWeightUnit());
+            binding.txtLowestWeight.setText(getString(R.string.txt_lowest_weight) + " " + String.format("%.1f",min) + " " + myPreference.getWeightUnit());
+            binding.txtHighestWeight.setText(getString(R.string.txt_highest_weight) + " " + String.format("%.1f",max) + " " + myPreference.getWeightUnit());
+            binding.txtRecentWeight.setText(getString(R.string.txt_recent_weight) + " " + String.format("%.1f",myPreference.getCurrentWeight()) + " " + myPreference.getWeightUnit());
         });
 
 
-        mGoodWeight.setText(getString(R.string.txt_good_weight) + " " + String.format("%.1f", goodWeight) + myPreference.getWeightUnit());
+        binding.txtGoodWeight.setText(getString(R.string.txt_good_weight) + " " + String.format("%.1f", goodWeight) + myPreference.getWeightUnit());
     }
 
 
 
     private void initDataWaist() {
-        if (mChartWaist.getData() != null) mChartWaist.clearValues();
-        mWaistChartYUnit.setText(myPreference.getHeightUnit());
+        if (binding.waistChart.getData() != null) binding.waistChart.clearValues();
+        binding.txtWaistChartY.setText(myPreference.getHeightUnit());
         float currentHeight = myPreference.getCurrentHeightCm();
         goodWaist = currentHeight *0.45f;
         if (!myPreference.isKg()){
@@ -365,22 +365,22 @@ public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekB
             data.setValueTextColor(Color.RED);
             data.setValueTextSize(9f);
             // set data
-            mChartWaist.setData(data);
-            mChartWaist.setVisibleXRangeMaximum(20);
-            mChartWaist.moveViewToX(mChartWaist.getXChartMax());
+            binding.waistChart.setData(data);
+            binding.waistChart.setVisibleXRangeMaximum(20);
+            binding.waistChart.moveViewToX(binding.waistChart.getXChartMax());
             float currentWaist = myPreference.getCurrentWaist();
             if (!myPreference.isKg()){
                 currentWaist =currentWaist/ 30.48f;
             }
 
 //update weight min,max
-            mLowestWaist.setText(getString(R.string.txt_min) + " " + String.format("%.1f",min) + " " + myPreference.getHeightUnit());
-            mHighestWaist.setText(getString(R.string.txt_max) + " " + String.format("%.1f",max) + " " + myPreference.getHeightUnit());
-            mRecentWaist.setText(getString(R.string.txt_recent) + " " + String.format("%.1f",currentWaist) + " " + myPreference.getHeightUnit());
+            binding.txtLowestWaist.setText(getString(R.string.txt_min) + " " + String.format("%.1f",min) + " " + myPreference.getHeightUnit());
+            binding.txtHighestWaist.setText(getString(R.string.txt_max) + " " + String.format("%.1f",max) + " " + myPreference.getHeightUnit());
+            binding.txtRecentWaist.setText(getString(R.string.txt_recent) + " " + String.format("%.1f",currentWaist) + " " + myPreference.getHeightUnit());
         });
 
 
-        mGoodWaist.setText(getString(R.string.txt_good_weight) + " " + String.format("%.1f ", goodWaist) + myPreference.getHeightUnit());
+        binding.txtRecentWaist.setText(getString(R.string.txt_good_weight) + " " + String.format("%.1f ", goodWaist) + myPreference.getHeightUnit());
     }
 
     @Override
@@ -390,32 +390,32 @@ public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekB
 
 
     private void chartInitWaist() {// no description text
-        mWaistChartYUnit.setText(myPreference.getHeightUnit());
-        mChartWaist.getDescription().setEnabled(false);
+        binding.txtWaistChartY.setText(myPreference.getHeightUnit());
+        binding.waistChart.getDescription().setEnabled(false);
         // enable touch gestures
-        mChartWaist.setTouchEnabled(true);
-        mChartWaist.setDragDecelerationFrictionCoef(0.9f);
+        binding.waistChart.setTouchEnabled(true);
+        binding.waistChart.setDragDecelerationFrictionCoef(0.9f);
         // enable scaling and dragging
-        mChartWaist.setDragEnabled(true);
-        mChartWaist.setScaleEnabled(false);
-        mChartWaist.setDrawGridBackground(false);
-        mChartWaist.setHighlightPerDragEnabled(false);
+        binding.waistChart.setDragEnabled(true);
+        binding.waistChart.setScaleEnabled(false);
+        binding.waistChart.setDrawGridBackground(false);
+        binding.waistChart.setHighlightPerDragEnabled(false);
         // set an alternative background color
 
-        mChartWaist.setPinchZoom(false);
+        binding.waistChart.setPinchZoom(false);
 
-        mChartWaist.setDrawGridBackground(false);
+        binding.waistChart.setDrawGridBackground(false);
         // chart.setDrawYLabels(false);
 
 
-        mChartWaist.setDragEnabled(true);
-        mChartWaist.setScaleEnabled(false);
-        mChartWaist.setDrawGridBackground(false);
+        binding.waistChart.setDragEnabled(true);
+        binding.waistChart.setScaleEnabled(false);
+        binding.waistChart.setDrawGridBackground(false);
         //  mChartWaist.setBackgroundColor(Color.WHITE);
         // mChartWaist.animateX(500);
-        mChartWaist.invalidate();
+        binding.waistChart.invalidate();
         // mChartWaist.animateX(200);
-        XAxis xAxis = mChartWaist.getXAxis();
+        XAxis xAxis = binding.waistChart.getXAxis();
 //        xAxis.setTextColor(context.getResources().getColor(R.color.colorDarkIcon));
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTextSize(10f);
@@ -437,7 +437,7 @@ public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekB
             }
         };
         xAxis.setValueFormatter(xAxisFormatter);
-        YAxis leftAxis = mChartWaist.getAxisLeft();
+        YAxis leftAxis = binding.waistChart.getAxisLeft();
         leftAxis.setTextColor(getResources().getColor(R.color.colorDarkIcon));
         leftAxis.enableGridDashedLine(20,5,5f);
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
@@ -447,40 +447,40 @@ public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekB
         leftAxis.setGranularityEnabled(true);
         leftAxis.setYOffset(-9f);
         //  leftAxis.setTextColor(context.getResources().getColor(R.color.Black));
-        YAxis rightAxis = mChartWaist.getAxisRight();
+        YAxis rightAxis = binding.waistChart.getAxisRight();
         rightAxis.setEnabled(false);
-        mChartWaist.getLegend().setTextColor(R.color.colorDarkIcon);
-        mChartWaist.getLegend().setTextSize(16f);
+        binding.waistChart.getLegend().setTextColor(R.color.colorDarkIcon);
+        binding.waistChart.getLegend().setTextSize(16f);
     }
     private void chartWeightInit() {
 
-        mChartWeight.getDescription().setEnabled(false);
+        binding.weightLineChart.getDescription().setEnabled(false);
         // enable touch gestures
-        mChartWeight.setTouchEnabled(true);
-        mChartWeight.setDragDecelerationFrictionCoef(0.9f);
+        binding.weightLineChart.setTouchEnabled(true);
+        binding.weightLineChart.setDragDecelerationFrictionCoef(0.9f);
         // enable scaling and dragging
-        mChartWeight.setDragEnabled(true);
-        mChartWeight.setScaleEnabled(false);
-        mChartWeight.setDrawGridBackground(false);
+        binding.weightLineChart.setDragEnabled(true);
+        binding.weightLineChart.setScaleEnabled(false);
+        binding.weightLineChart.setDrawGridBackground(false);
 
         // mChartWeight.setGridBackgroundColor(getColor(R.color.gray_600));
-        mChartWeight.setHighlightPerDragEnabled(false);
+        binding.weightLineChart.setHighlightPerDragEnabled(false);
         // set an alternative background color
 
-        mChartWeight.setPinchZoom(false);
-        mChartWeight.setMinimumWidth(5);
+        binding.weightLineChart.setPinchZoom(false);
+        binding.weightLineChart.setMinimumWidth(5);
 
         // chart.setDrawYLabels(false);
 
 
-        mChartWeight.setDragEnabled(true);
-        mChartWeight.setScaleEnabled(false);
+        binding.weightLineChart.setDragEnabled(true);
+        binding.weightLineChart.setScaleEnabled(false);
 
         //  mChartWeight.setBackgroundColor(Color.WHITE);
         // mChartWeight.animateX(500);
-        mChartWeight.invalidate();
+        binding.weightLineChart.invalidate();
         // mChartWeight.animateX(200);
-        XAxis xAxis = mChartWeight.getXAxis();
+        XAxis xAxis =  binding.weightLineChart.getXAxis();
         xAxis.enableGridDashedLine(20,5,5f);
 
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -502,7 +502,7 @@ public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekB
             }
         };
         xAxis.setValueFormatter(xAxisFormatter);
-        YAxis leftAxis = mChartWeight.getAxisLeft();
+        YAxis leftAxis =  binding.weightLineChart.getAxisLeft();
         leftAxis.setTextColor(getResources().getColor(R.color.colorDarkIcon));
         leftAxis.enableGridDashedLine(20,5,5f);
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
@@ -513,35 +513,35 @@ public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekB
         leftAxis.setGranularityEnabled(true);
         leftAxis.setYOffset(-9f);
         //  leftAxis.setTextColor(context.getResources().getColor(R.color.Black));
-        YAxis rightAxis = mChartWeight.getAxisRight();
+        YAxis rightAxis =  binding.weightLineChart.getAxisRight();
         rightAxis.setEnabled(false);
         //  mChartWeight.getLegend().setTextColor(R.color.colorDarkIcon);
-        mChartWeight.getLegend().setTextSize(16f);
+        binding.weightLineChart.getLegend().setTextSize(16f);
     }
 
     private void initCaloriesChart() {
-        mCaloriesChart.setOnChartValueSelectedListener(this);
+        binding.calorieBarChart.setOnChartValueSelectedListener(this);
 
-        mCaloriesChart.setDrawBarShadow(false);
-        mCaloriesChart.setDrawValueAboveBar(true);
+        binding.calorieBarChart.setDrawBarShadow(false);
+        binding.calorieBarChart.setDrawValueAboveBar(true);
 
-        mCaloriesChart.getDescription().setEnabled(false);
+        binding.calorieBarChart.getDescription().setEnabled(false);
 
 
         // if more than 60 entries are displayed in the chart, no values will be
         // drawn
-        mCaloriesChart.setMaxVisibleValueCount(60);
+        binding.calorieBarChart.setMaxVisibleValueCount(60);
 
         // scaling can now only be done on x- and y-axis separately
-        mCaloriesChart.setPinchZoom(false);
+        binding.calorieBarChart.setPinchZoom(false);
 
-        mCaloriesChart.setDrawGridBackground(false);
+        binding.calorieBarChart.setDrawGridBackground(false);
         // chart.setDrawYLabels(false);
-        mCaloriesChart.setDragEnabled(true);
-        mCaloriesChart.setScaleEnabled(false);
+        binding.calorieBarChart.setDragEnabled(true);
+        binding.calorieBarChart.setScaleEnabled(false);
         // mCaloriesChart.setBackgroundColor(Color.WHITE);
 
-        XAxis xAxis = mCaloriesChart.getXAxis();
+        XAxis xAxis = binding.calorieBarChart.getXAxis();
 
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
@@ -565,7 +565,7 @@ public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekB
 
 
 
-        YAxis leftAxis = mCaloriesChart.getAxisLeft();
+        YAxis leftAxis = binding.calorieBarChart.getAxisLeft();
         leftAxis.setLabelCount(8, false);
         leftAxis.enableGridDashedLine(20,5,5f);
         // leftAxis.setValueFormatter(custom);
@@ -574,11 +574,11 @@ public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekB
         leftAxis.setTextColor(getResources().getColor(R.color.colorDarkIcon));
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
-        YAxis rightAxis = mCaloriesChart.getAxisRight();
+        YAxis rightAxis = binding.calorieBarChart.getAxisRight();
         rightAxis.setEnabled(false);
 
 
-        Legend l = mCaloriesChart.getLegend();
+        Legend l = binding.calorieBarChart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
@@ -589,12 +589,12 @@ public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekB
         l.setXEntrySpace(4f);
 
         XYMarkerView mv = new XYMarkerView(this);
-        mv.setChartView(mCaloriesChart); // For bounds control
-        mCaloriesChart.setMarker(mv);
-        mCaloriesChart.setVisibleXRangeMaximum(10);
-        mCaloriesChart.invalidate();
-        mCaloriesChart.getLegend().setTextColor(getResources().getColor(R.color.colorDarkIcon));
-        mCaloriesChart.getLegend().setTextSize(16f);
+        mv.setChartView(binding.calorieBarChart); // For bounds control
+        binding.calorieBarChart.setMarker(mv);
+        binding.calorieBarChart.setVisibleXRangeMaximum(10);
+        binding.calorieBarChart.invalidate();
+        binding.calorieBarChart.getLegend().setTextColor(getResources().getColor(R.color.colorDarkIcon));
+        binding.calorieBarChart.getLegend().setTextSize(16f);
 
     }
 

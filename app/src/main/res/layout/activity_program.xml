@@ -95,7 +95,9 @@
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
-        <include layout="@layout/content_program" />
+        <include
+            android:id="@+id/content_program"
+            layout="@layout/content_program" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <Button

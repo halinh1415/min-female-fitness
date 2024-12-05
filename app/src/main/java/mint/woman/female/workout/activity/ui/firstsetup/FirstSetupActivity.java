@@ -43,31 +43,23 @@ import mint.woman.female.workout.activity.ui.main.YogaActivity;
 import mint.woman.female.workout.admodule.MaticAd;
 import mint.woman.female.workout.admodule.MaticAdCallBack;
 import mint.woman.female.workout.custom.CustomViewPager;
+import mint.woman.female.workout.databinding.ActivityFirstSetupBinding;
+import mint.woman.female.workout.databinding.LoadingNativeMediumBinding;
 import mint.woman.female.workout.receiver.AlarmReceiver;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 
 import java.util.Locale;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import mint.woman.female.workout.utils.RemoteConfigKeys;
 
 public class FirstSetupActivity extends AppCompatActivity {
     private static final String TAG = "FirstSetupActivity";
-    @BindView(R.id.vpSetup)
-    CustomViewPager vpSetup;
+    ActivityFirstSetupBinding binding;
+
+
     UserSetupAdapter userSetupAdapter;
 
-    @BindView(R.id.dotsIndicator)
-    DotsIndicator dotsIndicator;
-    @BindView(R.id.tvSetupStep)
-    TextView tvStepUserSetup;
-    @BindView(R.id.layoutAdNative)
-    FrameLayout layoutAdNative;
-    @BindView(R.id.shimmer_container_native)
-    ShimmerFrameLayout shimmerFrameLayout;
+
     int currentPosition = 0;
     MyPreference myPreference;
     SetupViewModel setupViewModel;
@@ -75,46 +67,47 @@ public class FirstSetupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first_setup);
+        binding = ActivityFirstSetupBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setupViewModel = new ViewModelProvider(this).get(SetupViewModel.class);
-        ButterKnife.bind(this);
+
         initView();
     }
 
     private void initView() {
         myPreference = new MyPreference(this);
         userSetupAdapter = new UserSetupAdapter(getSupportFragmentManager());
-        vpSetup.setAdapter(userSetupAdapter);
-        dotsIndicator.setViewPager(vpSetup);
+        binding.vpSetup.setAdapter(userSetupAdapter);
+        binding.dotsIndicator.setViewPager(binding.vpSetup);
 
         if (myPreference.isShowAds()  && myPreference.getOK() && FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.NATIVE_SETUP)) {
             FitnessApplication.getApplication().getStorageCommon().nativeSetup.observe(FirstSetupActivity.this, (nativeAd) -> {
                 if (nativeAd != null) {
-                    MaticAd.getInstance().populateNativeAdView(FirstSetupActivity.this, nativeAd,R.layout.native_admob_medium_layout, layoutAdNative, shimmerFrameLayout);
+                    MaticAd.getInstance().populateNativeAdView(FirstSetupActivity.this, nativeAd,R.layout.native_admob_medium_layout, binding.layoutAdNative, binding.loading.shimmerContainerNative);
                 } else {
-                    layoutAdNative.setVisibility(View.GONE);
+                    binding.layoutAdNative.setVisibility(View.GONE);
                 }
             });
 
         } else {
-            layoutAdNative.setVisibility(View.GONE);
+            binding.layoutAdNative.setVisibility(View.GONE);
         }
+        binding.btnNext.setOnClickListener(this::goNext);
     }
 
     @Override
     public void onBackPressed() {
         if (currentPosition >0){
             currentPosition --;
-            vpSetup.setCurrentItem(currentPosition);
+            binding.vpSetup.setCurrentItem(currentPosition);
         }else{
             super.onBackPressed();
         }
 
     }
 
-    @SuppressLint("DefaultLocale")
-    @OnClick(R.id.btnNext)
-    void goNext() {
+
+    void goNext(View view) {
         FirebaseAnalytics.getInstance(this).logEvent("click_next_scr_setup", new Bundle());
         if (currentPosition < 5) {
             if (currentPosition == 2) {
@@ -123,8 +116,8 @@ public class FirstSetupActivity extends AppCompatActivity {
             }
 
             currentPosition++;
-            tvStepUserSetup.setText(getString(R.string.txt_step) + " " + (currentPosition + 1) + "/" + userSetupAdapter.getCount());
-            vpSetup.setCurrentItem(currentPosition);
+            binding.tvSetupStep.setText(getString(R.string.txt_step) + " " + (currentPosition + 1) + "/" + userSetupAdapter.getCount());
+            binding.vpSetup.setCurrentItem(currentPosition);
         } else {
             if (Build.VERSION.SDK_INT >= 33) {
                 if (ContextCompat.checkSelfPermission(FirstSetupActivity.this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(FirstSetupActivity.this, Manifest.permission.SCHEDULE_EXACT_ALARM) != PackageManager.PERMISSION_GRANTED) {

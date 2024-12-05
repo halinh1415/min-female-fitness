@@ -19,39 +19,31 @@ import androidx.viewpager.widget.ViewPager;
 
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.workout.WorkoutViewModel;
 import mint.woman.female.workout.custom.KKViewPager;
+import mint.woman.female.workout.databinding.ActivityCountManagerBinding;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 
 public class CountManagerActivity extends AppCompatActivity {
 
-    @BindView(R.id.vpCount)
-    KKViewPager viewPager;
-    @BindView(R.id.tv_count_info)
-    TextView tvCountInfo;
-    @BindView(R.id.tv_count_title)
-    TextView tvCountTitle;
+
     MyPreference myPreference;
     int currentOption = 0;
     int[] titleCountIds = new int[]{ R.string.no_counting, R.string.tempo_counting,R.string.countdown};
     int[] infoCountIds = new int[]{ R.string.txt_count_down_info_2, R.string.txt_count_down_info_3,R.string.txt_count_down_info_1};
 
 
+    ActivityCountManagerBinding binding;
     WorkoutViewModel mWorkoutViewModel;
     //    @BindView(R.id.pager_container)
 //    PagerContainer mContainer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        setContentView(R.layout.activity_count_manager);
-
-        ButterKnife.bind(this);
+        binding = ActivityCountManagerBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         initView();
 
     }
@@ -60,16 +52,16 @@ public class CountManagerActivity extends AppCompatActivity {
         myPreference = new MyPreference(this);
         mWorkoutViewModel = new ViewModelProvider(this).get(WorkoutViewModel.class);
         currentOption = myPreference.getCountOption();
-        tvCountInfo.setText(getString(infoCountIds[currentOption]));
-        tvCountTitle.setText(getString(titleCountIds[currentOption]));
-        viewPager.setAdapter(new CountPagerAdapter(getSupportFragmentManager()));
-        viewPager.setAnimationEnabled(true);
-        viewPager.setFadeEnabled(true);
-        viewPager.setFadeFactor(0.6f);
-        viewPager.setPageMargin(20);
-        viewPager.setPadding(200, 0, 200, 0);
-        viewPager.setCurrentItem(currentOption);
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        binding.tvCountInfo.setText(getString(infoCountIds[currentOption]));
+        binding.tvCountTitle.setText(getString(titleCountIds[currentOption]));
+        binding.vpCount.setAdapter(new CountPagerAdapter(getSupportFragmentManager()));
+        binding.vpCount.setAnimationEnabled(true);
+        binding.vpCount.setFadeEnabled(true);
+        binding.vpCount.setFadeFactor(0.6f);
+        binding.vpCount.setPageMargin(20);
+        binding.vpCount.setPadding(200, 0, 200, 0);
+        binding.vpCount.setCurrentItem(currentOption);
+        binding.vpCount.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -78,8 +70,8 @@ public class CountManagerActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 myPreference.setCountOption(position);
-                tvCountInfo.setText(infoCountIds[position]);
-                tvCountTitle.setText(getString(titleCountIds[position]));
+                binding.tvCountInfo.setText(infoCountIds[position]);
+                binding.tvCountTitle.setText(getString(titleCountIds[position]));
             }
 
             @Override

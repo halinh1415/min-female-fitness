@@ -3,17 +3,18 @@ plugins {
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
     id  'com.google.firebase.firebase-perf'
+    id 'org.jetbrains.kotlin.android'
 }
 android {
     namespace 'mint.woman.female.workout'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "mint.woman.female.workout"
-        minSdk 23
+        minSdk 26
         targetSdk 34
         versionCode 70
-        versionName "1.0.70"
+        versionName "1.0.70t"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -36,27 +37,32 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
 }
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.7.0'
-    implementation 'com.google.android.ump:user-messaging-platform:2.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'com.google.android.ump:user-messaging-platform:3.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
     implementation 'com.zjun:rule-view:0.0.1'
-    implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     implementation 'com.airbnb.android:lottie:6.2.0'
-//    implementation 'com.android.support:multidex:1.0.3'
-    implementation 'androidx.navigation:navigation-fragment:2.5.1'
-    implementation 'androidx.navigation:navigation-ui:2.5.1'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.11'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
-    implementation "androidx.lifecycle:lifecycle-process:2.5.1"
+
+    implementation 'androidx.navigation:navigation-fragment:2.8.4'
+    implementation 'androidx.navigation:navigation-ui:2.8.4'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.8.7'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7'
+    implementation "androidx.lifecycle:lifecycle-process:2.8.7"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.activity:activity:1.8.0'
+    implementation 'androidx.core:core-ktx:1.15.0'
+    implementation 'androidx.activity:activity:1.9.3'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
@@ -65,8 +71,6 @@ dependencies {
     implementation "com.android.billingclient:billing:7.0.0"
     implementation 'com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:1.0.0'
     implementation 'androidx.preference:preference:1.2.1'
-    implementation 'com.jakewharton:butterknife:10.2.3'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
     implementation 'com.github.luizgrp:SectionedRecyclerViewAdapter:v3.2.0'
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
@@ -90,6 +94,8 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
     implementation 'com.kaopiz:kprogresshud:1.2.0'
     implementation 'com.github.tizisdeepan:dots:1.0.1'
+    implementation "androidx.health.connect:connect-client:1.1.0-alpha10"
+
 // JSON Parsing
     implementation 'com.google.code.gson:gson:2.10.1'
     // optional - RxJava support for Room

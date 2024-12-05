@@ -36,6 +36,7 @@ import mint.woman.female.workout.admodule.MaticAd;
 import mint.woman.female.workout.admodule.MaticAdCallBack;
 import mint.woman.female.workout.custom.DialogQuit;
 import mint.woman.female.workout.custom.ProgressLineView;
+import mint.woman.female.workout.databinding.ActivityDoWorkoutBinding;
 import mint.woman.female.workout.fragment.PlayFragment;
 import mint.woman.female.workout.fragment.RestFragment;
 import mint.woman.female.workout.model.ExerciseObject;
@@ -56,10 +57,6 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 @SuppressLint({"SetTextI18n", "NonConstantResourceId"})
 public class DoWorkoutActivity extends AppCompatActivity implements RestFragment.OnRestFragmentInteractionListener, PlayFragment.OnReadyFragmentInteractionListener, DialogQuit.OnQuitListener {
     private final SimpleDateFormat mFormatDateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
@@ -67,6 +64,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     public static int version = 1001;
     private final String support_language = "ar@de@en@es@fa@fr@in_ID@it@ja@ko@nl@pl@pt@ru@tr@zh_CN@zh_TW";
 
+    ActivityDoWorkoutBinding binding;
 
     ProgramObject mProgramObject;
     Bundle mBundle;
@@ -74,17 +72,11 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     long startPause, endPause, pauseTime, startExercise, endExercise;
     MediaPlayer musicPlayer, ringPlayer, tickPlayer;
     MyPreference myPreference;
-    @BindView(R.id.workout_progress)
-    ProgressLineView mProgressLineView;
+
     boolean mIsReady = false;
     DialogQuit mQuitDialog;
     int mFlagAds, mDayIndex;
-    @BindView(R.id.img_workout)
-    ImageView mWorkoutImg;
-    @BindView(R.id.txt_progress)
-    TextView mProgress;
-    @BindView(R.id.txt_workout_time)
-    TextView mWorkoutTime;
+
 
     HashMap<Integer, ExerciseObject> hashMap;
     List<PlanObject.ActionObject> actionObjectList;
@@ -103,7 +95,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             int minutes = seconds / 60;
             seconds = seconds % 60;
 
-            mWorkoutTime.setText(String.format("%02d:%02d", minutes, seconds));
+            binding.txtWorkoutTime.setText(String.format("%02d:%02d", minutes, seconds));
 
             timerHandler.postDelayed(this, 500);
         }
@@ -113,8 +105,9 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_do_workout);
-        ButterKnife.bind(this);
+        binding = ActivityDoWorkoutBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+      
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         initView();
     }
@@ -164,6 +157,9 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         myPreference = new MyPreference(this);
         mWorkoutViewModel = new ViewModelProvider(this).get(WorkoutViewModel.class);
         mBundle = getIntent().getExtras();
+        binding.imgBackActivity.setOnClickListener(view -> {
+            onBackPressed();
+        });
         if (mBundle != null) {
             int id = mBundle.getInt("PROGRAM_ID", 0);
             mProgramObject = FitnessApplication.getApplication().getProgram(id);
@@ -182,15 +178,15 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
 
             String progress = getString(R.string.txt_next_of_exercise) + " " + (currentExerciseCount + 1) + "/" + totalExercise;
 
-            Glide.with(this).load(Uri.parse("file:///android_asset/images/img_rest.webp")).into(mWorkoutImg);
+            Glide.with(this).load(Uri.parse("file:///android_asset/images/img_rest.webp")).into(binding.imgWorkout);
 
             totalExercise = actionObjectList.size();
             if (currentExerciseCount >= actionObjectList.size()) {
                 currentExerciseCount = 0;
             }
             mAudioAppManager = new AudioAppManager(DoWorkoutActivity.this, myPreference.getLanguage());
-            mProgressLineView.setProgress((float) currentExerciseCount);
-            mProgressLineView.setMax(actionObjectList.size());
+            binding.workoutProgress.setProgress((float) currentExerciseCount);
+            binding.workoutProgress.setMax(actionObjectList.size());
 
             mIsReady = false;
 
@@ -249,7 +245,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             mQuitDialog = new DialogQuit();
             mQuitDialog.setQuitListener(this);
             try {
-                mProgress.setText("" + (currentExerciseCount + 1) + "/" + totalExercise);
+                binding.txtProgress.setText("" + (currentExerciseCount + 1) + "/" + totalExercise);
                 mAudioAppManager.setMale(myPreference.getGender() == 0);
                 if (myPreference.isSpeakerOn()) {
                    // mAudioAppManager.playText(getString(R.string.txt_ready_to_go_the_next));
@@ -335,8 +331,8 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        mProgress.setText("" + (currentExerciseCount + 1) + "/" + totalExercise);
-        mProgressLineView.setProgress(currentExerciseCount);
+        binding.txtProgress.setText("" + (currentExerciseCount + 1) + "/" + totalExercise);
+        binding.workoutProgress.setProgress(currentExerciseCount);
     }
 
 
@@ -550,7 +546,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
 
     @Override
     public void updateProgressWorkout(float progress) {
-        mProgressLineView.setProgress(currentExerciseCount + progress);
+        binding.workoutProgress.setProgress(currentExerciseCount + progress);
     }
 
     String toTitleCase(String input) {
@@ -594,10 +590,10 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
 
         if (currentExerciseCount < totalExercise - 1) {
             currentExerciseCount++;
-            mProgressLineView.setProgress(currentExerciseCount);
+            binding.workoutProgress.setProgress(currentExerciseCount);
 
 
-            mProgress.setText("" + (currentExerciseCount + 1) + "/" + totalExercise);
+            binding.txtProgress.setText("" + (currentExerciseCount + 1) + "/" + totalExercise);
             String progress = getString(R.string.txt_next_of_exercise) + " " + (currentExerciseCount + 1) + "/" + totalExercise;
             if (myPreference.isSpeakerOn()) {
                 mAudioAppManager.addTextAndClear(getString(R.string.txt_take_a_rest_the_next));
@@ -657,7 +653,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     private void previousExercise() {
         if (currentExerciseCount > 0) {
             currentExerciseCount--;
-            mProgressLineView.setProgress(currentExerciseCount);
+            binding.workoutProgress.setProgress(currentExerciseCount);
             String progress = getString(R.string.txt_next_of_exercise) + " " + (currentExerciseCount + 1) + "/" + totalExercise;
 
             getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance(getActionObjectCurrent(), getActionObjectCurrent().rest >0?getActionObjectCurrent().rest: myPreference.getRestTime(), progress), "Rest").commitAllowingStateLoss();
@@ -670,10 +666,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     }
 
 
-    @OnClick(R.id.img_back_activity)
-    public void onClick(View view) {
-        onBackPressed();
-    }
+
 
 
     private ExerciseObject getExerciseObjectCurrent() {

@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.health.connect.HealthConnectManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,10 +19,6 @@ import androidx.navigation.Navigation;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
-
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
@@ -65,7 +62,7 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         findPreference("TTS_ENGINE").setOnPreferenceClickListener(this);
         findPreference("PRIVACY_POLICY").setOnPreferenceClickListener(this);
         findPreference("TTS_INSTALL_VOICE").setOnPreferenceClickListener(this);
-        //findPreference("SYNC_GOOGLE_FIT").setOnPreferenceClickListener(this);
+        findPreference("SYNC_FIT").setOnPreferenceClickListener(this);
         findPreference("ST_REMINDER").setOnPreferenceClickListener(this);
         findPreference("BACK_UP").setOnPreferenceClickListener(this);
         Preference music = findPreference("BACK_GROUND_MUSIC");
@@ -84,7 +81,7 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         }
         languagePreference.setEntryValues(languageEntryValues);
         languagePreference.setEntries(languageEntries);
-        version.setTitle("Version App: " + BuildConfig.VERSION_NAME);
+        version.setTitle("Version: " + BuildConfig.VERSION_NAME);
         if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.ENABLE_SYNC)){
             preferenceBackUp.setVisible(true);
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -144,6 +141,12 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
     @Override
     public boolean onPreferenceClick(Preference preference) {
         switch (preference.getKey()) {
+            case "SYNC_FIT":
+
+                if (mListener != null) {
+                    mListener.onGetGoogleFit();
+                }
+                break;
             case "ST_RATE":
                 if (mListener != null) {
                     mListener.onRateShow();

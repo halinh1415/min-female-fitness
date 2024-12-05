@@ -13,32 +13,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.firstsetup.SetupViewModel;
-import mint.woman.female.workout.custom.SuffixTextView;
-import com.zjun.widget.RuleView;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import mint.woman.female.workout.databinding.FragmentUserInfoBinding;
 
 
 public class UserInfoFragment extends Fragment {
-    @BindView(R.id.rule_weight)
-    RuleView mRuleWeight;
-
-    @BindView(R.id.rule_height)
-    RuleView mRuleHeight;
-    @BindView(R.id.tv_weight_value)
-    SuffixTextView mUserWeight;
-    @BindView(R.id.tv_height_value)
-    SuffixTextView mUserHeight;
-    @BindView(R.id.rdKg)
-    RadioButton rdKg;
-    @BindView(R.id.rdKg1)
-    RadioButton rdKg1;
-    @BindView(R.id.rdLb)
-    RadioButton rdLb;
-    @BindView(R.id.rdLb1)
-    RadioButton rdLb1;
+    FragmentUserInfoBinding binding;
     boolean isKg = true;
     float weight = 65.0f;
     float height = 175.0f;
@@ -47,9 +26,8 @@ public class UserInfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_user_info, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+        binding = FragmentUserInfoBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
     @Override
@@ -57,51 +35,48 @@ public class UserInfoFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setupViewModel = new ViewModelProvider(getActivity()).get(SetupViewModel.class);
         if (isKg) {
-            mUserWeight.setSuffix("kg");
-            mUserHeight.setSuffix("cm");
+            binding.tvWeightValue.setSuffix("kg");
+            binding.tvHeightValue.setSuffix("cm");
 
-            mRuleWeight.setValue(35f, 200f, weight, 0.1f, 10);
-            mRuleHeight.setValue(90f, 250f, height, 0.1f, 10);
+            binding.ruleWeight.setValue(35f, 200f, weight, 0.1f, 10);
+            binding.ruleHeight.setValue(90f, 250f, height, 0.1f, 10);
         } else {
-            mUserWeight.setSuffix("lb");
-            mUserHeight.setSuffix("ft");
-            mRuleWeight.setValue(35f, 440f, weight, 0.1f, 10);
-            mRuleHeight.setValue(2.9f, 8.2f, height, 0.1f, 10);
+            binding.tvWeightValue.setSuffix("lb");
+            binding.tvHeightValue.setSuffix("ft");
+            binding.ruleWeight.setValue(35f, 440f, weight, 0.1f, 10);
+            binding.ruleHeight.setValue(2.9f, 8.2f, height, 0.1f, 10);
         }
-        mRuleHeight.setOnValueChangedListener(new RuleView.OnValueChangedListener() {
-            @Override
-            public void onValueChanged(float value) {
-                height = value;
-                mUserHeight.setText(String.format(" %.1f", value));
-            }
+        binding.ruleHeight.setOnValueChangedListener(value -> {
+            height = value;
+            binding.tvHeightValue.setText(String.format(" %.1f", value));
         });
 
-        mRuleWeight.setOnValueChangedListener(new RuleView.OnValueChangedListener() {
-            @Override
-            public void onValueChanged(float value) {
-                weight = value;
-                mUserWeight.setText(String.format(" %.1f", value));
-            }
+        binding.ruleWeight.setOnValueChangedListener(value -> {
+            weight = value;
+            binding.tvWeightValue.setText(String.format(" %.1f", value));
         });
 
+        binding.rdKg.setOnClickListener(this::onClickUnit);
+        binding.rdKg1.setOnClickListener(this::onClickUnit);
+        binding.rdLb.setOnClickListener(this::onClickUnit);
+        binding.rdLb.setOnClickListener(this::onClickUnit);
     }
 
-    @OnClick({R.id.rdKg, R.id.rdKg1, R.id.rdLb, R.id.rdLb1})
     void onClickUnit(View view) {
         updateValue();
         switch (view.getId()) {
             case R.id.rdKg:
             case R.id.rdKg1:
-                rdKg.setChecked(true);
-                rdKg1.setChecked(true);
+                binding.rdKg.setChecked(true);
+                binding.rdKg1.setChecked(true);
                 if (!isKg) {
                     changeUnit();
                 }
                 break;
             case R.id.rdLb:
             case R.id.rdLb1:
-                rdLb.setChecked(true);
-                rdLb1.setChecked(true);
+                binding.rdLb.setChecked(true);
+                binding.rdLb1.setChecked(true);
                 if (isKg) {
                     changeUnit();
                 }
@@ -124,8 +99,8 @@ public class UserInfoFragment extends Fragment {
         setupViewModel.setWeight(weight);
         setupViewModel.setHeight(height);
         if (isKg) {
-            mUserWeight.setSuffix("kg");
-            mUserHeight.setSuffix("cm");
+            binding.tvWeightValue.setSuffix("kg");
+            binding.tvHeightValue.setSuffix("cm");
             if (weight >200f){
                 weight = 180f;
             }
@@ -141,11 +116,11 @@ public class UserInfoFragment extends Fragment {
             if (height > 250f){
                 height = 200f;
             }
-            mRuleWeight.setValue(35f, 200f, weight, 0.1f, 10);
-            mRuleHeight.setValue(80f, 250f, height, 0.1f, 10);
+            binding.ruleWeight.setValue(35f, 200f, weight, 0.1f, 10);
+            binding.ruleHeight.setValue(80f, 250f, height, 0.1f, 10);
         } else {
-            mUserWeight.setSuffix("lb");
-            mUserHeight.setSuffix("ft");
+            binding.tvWeightValue.setSuffix("lb");
+            binding.tvHeightValue.setSuffix("ft");
             if (weight > 440){
                 weight = 400f;
             }
@@ -159,9 +134,9 @@ public class UserInfoFragment extends Fragment {
                 height = 9.9f;
             }
 
-            mRuleWeight.setValue(35f, 440f, weight, 0.1f, 10);
+            binding.ruleWeight.setValue(35f, 440f, weight, 0.1f, 10);
            // mRuleHeight.setValue(2.5f, 8.2f, height, 0.1f, 10);
-            mRuleHeight.setValue(2.5f, 10f, height, 0.1f, 10);
+            binding.ruleHeight.setValue(2.5f, 10f, height, 0.1f, 10);
         }
     }
 

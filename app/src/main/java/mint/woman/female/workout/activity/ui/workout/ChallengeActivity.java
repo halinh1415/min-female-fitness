@@ -36,6 +36,7 @@ import mint.woman.female.workout.activity.ui.custom.CustomMyWorkoutActivity;
 import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
 import mint.woman.female.workout.common.adapter.ChallengeAdapter;
 import mint.woman.female.workout.common.adapter.IDayClickListener;
+import mint.woman.female.workout.databinding.ActivityChallengeBinding;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.retrofit.ApiUtils;
 import mint.woman.female.workout.utils.LanguageHelper;
@@ -43,25 +44,22 @@ import mint.woman.female.workout.utils.MyPreference;
 
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class ChallengeActivity extends AppCompatActivity implements IDayClickListener {
 
+    ActivityChallengeBinding binding;
 
-    @BindView(R.id.adView)
-    AdView mAdBanner;
-    @BindView(R.id.rc_challenge)
-    RecyclerView rcChallenge;
-    @BindView(R.id.img_banner)
-    ImageView mBanner;
-    @BindView(R.id.image_workout)
-    ImageView mImageWorkout;
-    @BindView(R.id.progressBar)
-    ProgressBar mPlanProgress;
-    @BindView(R.id.tv_progress)
-    TextView mPlanCount;
+//    @BindView(R.id.adView)
+//    AdView mAdBanner;
+//    @BindView(R.id.rc_challenge)
+//    RecyclerView rcChallenge;
+//    @BindView(R.id.img_banner)
+//    ImageView mBanner;
+//    @BindView(R.id.image_workout)
+//    ImageView mImageWorkout;
+//    @BindView(R.id.progressBar)
+//    ProgressBar mPlanProgress;
+//    @BindView(R.id.tv_progress)
+//    TextView mPlanCount;
     ChallengeAdapter challengeAdapter;
     MyPreference myPreference;
     Bundle mBundle;
@@ -72,11 +70,11 @@ public class ChallengeActivity extends AppCompatActivity implements IDayClickLis
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_challenge);
-        ButterKnife.bind(this);
+        binding = ActivityChallengeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         CollapsingToolbarLayout toolBarLayout = findViewById(R.id.toolbar_layout);
         toolBarLayout.setTitle(getTitle());
@@ -100,43 +98,45 @@ public class ChallengeActivity extends AppCompatActivity implements IDayClickLis
         progress = myPreference.getPlanProgress(mProgramObject.getId());
         challengeAdapter = new ChallengeAdapter(this,mProgramObject.getTotal());
         challengeAdapter.setProgress(progress);
-        rcChallenge.setLayoutManager(new GridLayoutManager(this, 1));
-        rcChallenge.setAdapter(challengeAdapter);
+        binding.contentChallenge.rcChallenge.setLayoutManager(new GridLayoutManager(this, 1));
+        binding.contentChallenge.rcChallenge.setAdapter(challengeAdapter);
         String baseUrl = "file:///android_asset/images/";
         if (mProgramObject.getDiscover() >0){
             baseUrl = ApiUtils.BASE_URL_IMAGES;
         }
-        Glide.with(ChallengeActivity.this).load(Uri.parse(baseUrl + mProgramObject.getBackground())).into(mBanner);
+        Glide.with(ChallengeActivity.this).load(Uri.parse(baseUrl + mProgramObject.getBackground())).into(binding.imgBanner);
 
-        Glide.with(ChallengeActivity.this).load(Uri.parse(baseUrl + mProgramObject.getImage())).into(mImageWorkout);
-        mPlanProgress.setMax(mProgramObject.getTotal());
-        mPlanProgress.setProgress(progress);
-        mPlanCount.setText("" + (mProgramObject.getTotal() - progress) + " " + getString(R.string.txt_day_left));
+        Glide.with(ChallengeActivity.this).load(Uri.parse(baseUrl + mProgramObject.getImage())).into(binding.imageWorkout);
+        binding.progressBar.setMax(mProgramObject.getTotal());
+        binding.progressBar.setProgress(progress);
+        binding.tvProgress.setText("" + (mProgramObject.getTotal() - progress) + " " + getString(R.string.txt_day_left));
         if (progress >= mProgramObject.getTotal()) {
             restartProgress();
         }
+        binding.btnGoto.setOnClickListener(view -> {
+            goDay(progress);
+        });
 
     }
     void requestNewAdBanner() {
-        mAdBanner = findViewById(R.id.adView);
         if (myPreference.isShowAds() && myPreference.getOK()) {
             AdRequest adRequest = new AdRequest.Builder().build();
-            mAdBanner.loadAd(adRequest);
-            mAdBanner.setAdListener(new AdListener() {
+            binding.adView.loadAd(adRequest);
+            binding.adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                     super.onAdFailedToLoad(loadAdError);
-                    mAdBanner.setVisibility(View.GONE);
+                    binding.adView.setVisibility(View.GONE);
                 }
 
                 @Override
                 public void onAdLoaded() {
                     super.onAdLoaded();
-                    mAdBanner.setVisibility(View.VISIBLE);
+                    binding.adView.setVisibility(View.VISIBLE);
                 }
             });
         }else {
-            mAdBanner.setVisibility(View.GONE);
+            binding.adView.setVisibility(View.GONE);
         }
     }
 
@@ -162,10 +162,7 @@ public class ChallengeActivity extends AppCompatActivity implements IDayClickLis
             e.printStackTrace();
         }
     }
-    @OnClick(R.id.btn_goto)
-    void goWorkout(){
-        goDay(progress);
-    }
+
 
     private void restartProgress() {
         AlertDialog.Builder restart = new AlertDialog.Builder(this);

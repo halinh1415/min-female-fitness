@@ -16,38 +16,38 @@ import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
 import mint.woman.female.workout.activity.ui.workout.ProgramActivity;
 import mint.woman.female.workout.common.adapter.ProgramClickListener;
+import mint.woman.female.workout.databinding.ActivityExploreDetailBinding;
 import mint.woman.female.workout.model.CategoryObject;
 import mint.woman.female.workout.model.ProgramObject;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import mint.woman.female.workout.utils.LanguageHelper;
 
 public class ExploreDetailActivity extends AppCompatActivity implements ProgramClickListener {
 
-    @BindView(R.id.rc_detail_explore)
-    RecyclerView mDetailExploreRc;
+    ActivityExploreDetailBinding binding;
+
     ArrayList<ProgramObject> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_explore_detail);
-        ButterKnife.bind(this);
+        binding = ActivityExploreDetailBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         initView();
     }
 
     private void initView() {
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             // list = bundle.getParcelableArrayList("PLAN_MORE");
             list = new ArrayList<>();
             setTitle(bundle.getString("PLAN_LIST_NAME"));
-            mDetailExploreRc.setLayoutManager(new LinearLayoutManager(this));
+            binding.rcDetailExplore.setLayoutManager(new LinearLayoutManager(this));
         }
 
     }

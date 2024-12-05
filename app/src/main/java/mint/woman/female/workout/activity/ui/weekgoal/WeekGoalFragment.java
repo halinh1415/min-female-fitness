@@ -27,6 +27,7 @@ import mint.woman.female.workout.activity.ui.workout.ChallengeActivity;
 import mint.woman.female.workout.activity.ui.workout.ProgramActivity;
 import mint.woman.female.workout.custom.ProgramClickListener;
 import mint.woman.female.workout.custom.SpanningLinearLayoutManager;
+import mint.woman.female.workout.databinding.FragmentWeekGoalBinding;
 import mint.woman.female.workout.model.HistoryItem;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.utils.MyPreference;
@@ -39,32 +40,29 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class WeekGoalFragment extends Fragment implements ProgramClickListener, IDayClickListener {
     int[] firstDayOfWeeks = new int[]{Calendar.MONDAY, Calendar.SATURDAY, Calendar.SUNDAY, Calendar.THURSDAY, Calendar.WEDNESDAY, Calendar.THURSDAY, Calendar.FRIDAY};
-    @BindView(R.id.rc_week_goal)
-    RecyclerView rcWeekGoal;
-    @BindView(R.id.rc_program_goal)
-    RecyclerView rcProgramGoal;
-    @BindView(R.id.txt_goal_progress)
-    TextView tvGoalProgress;
-    @BindView(R.id.txt_total_time)
-    TextView mTotalTime;
-    @BindView(R.id.txt_workout_number)
-    TextView mWorkouts;
-    @BindView(R.id.txt_calories)
-    TextView mCalories;
-    @BindView(R.id.lnSetGoal)
-    View lnSetGoal;
-    @BindView(R.id.lnHistory)
-    View lnHistory;
-    @BindView(R.id.txt_records)
-    TextView mRecords;
-    @BindView(R.id.txt_goal_title)
-    TextView mGoalTitle;
+    FragmentWeekGoalBinding binding;
+//    @BindView(R.id.rc_week_goal)
+//    RecyclerView rcWeekGoal;
+//    @BindView(R.id.rc_program_goal)
+//    RecyclerView rcProgramGoal;
+//    @BindView(R.id.txt_goal_progress)
+//    TextView tvGoalProgress;
+//    @BindView(R.id.txt_total_time)
+//    TextView mTotalTime;
+//    @BindView(R.id.txt_workout_number)
+//    TextView mWorkouts;
+//    @BindView(R.id.txt_calories)
+//    TextView mCalories;
+//    @BindView(R.id.lnSetGoal)
+//    View lnSetGoal;
+//    @BindView(R.id.lnHistory)
+//    View lnHistory;
+//    @BindView(R.id.txt_records)
+//    TextView mRecords;
+//    @BindView(R.id.txt_goal_title)
+//    TextView mGoalTitle;
     MyPreference myPreference;
     HomeViewModel homeViewModel;
 
@@ -86,9 +84,9 @@ public class WeekGoalFragment extends Fragment implements ProgramClickListener, 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_week_goal, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+        binding = FragmentWeekGoalBinding.inflate(getLayoutInflater());
+
+        return binding.getRoot();
     }
 
     @SuppressLint("DefaultLocale")
@@ -98,12 +96,12 @@ public class WeekGoalFragment extends Fragment implements ProgramClickListener, 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         myPreference = new MyPreference(getContext());
         if (isWeek) {
-            lnHistory.setVisibility(View.GONE);
-            lnSetGoal.setVisibility(View.VISIBLE);
+            binding.lnHistory.setVisibility(View.GONE);
+            binding.lnSetGoal.setVisibility(View.VISIBLE);
             // mGoalTitle.setText(getString(R.string.txt_this_week));
         } else {
-            lnHistory.setVisibility(View.VISIBLE);
-            lnSetGoal.setVisibility(View.GONE);
+            binding.lnHistory.setVisibility(View.VISIBLE);
+            binding.lnSetGoal.setVisibility(View.GONE);
             // mGoalTitle.setText(getString(R.string.txt_this_month));
         }
         initWeekGoal();
@@ -128,11 +126,11 @@ public class WeekGoalFragment extends Fragment implements ProgramClickListener, 
     public void setIsWeek(boolean isWeek) {
         this.isWeek = isWeek;
         if (isWeek) {
-            lnHistory.setVisibility(View.GONE);
-            lnSetGoal.setVisibility(View.VISIBLE);
+            binding.lnHistory.setVisibility(View.GONE);
+            binding.lnSetGoal.setVisibility(View.VISIBLE);
         } else {
-            lnHistory.setVisibility(View.VISIBLE);
-            lnSetGoal.setVisibility(View.GONE);
+            binding.lnHistory.setVisibility(View.VISIBLE);
+            binding.lnSetGoal.setVisibility(View.GONE);
         }
         Calendar now = Calendar.getInstance();
 
@@ -160,9 +158,9 @@ public class WeekGoalFragment extends Fragment implements ProgramClickListener, 
             }
 
             int minute = (times) / 60;
-            mWorkouts.setText(String.valueOf(historyItemList.size()));
-            mTotalTime.setText(String.format("%d", minute));
-            mCalories.setText(String.format("%d", calories));
+            binding.txtWorkoutNumber.setText(String.valueOf(historyItemList.size()));
+            binding.txtTotalTime.setText(String.format("%d", minute));
+            binding.txtCalories.setText(String.format("%d", calories));
         });
 
     }
@@ -198,13 +196,13 @@ public class WeekGoalFragment extends Fragment implements ProgramClickListener, 
         }
         dayAdapter = new DayAdapter(labels, dayOfMonth, this);
         dayAdapter.setNow(current);
-        rcWeekGoal.setAdapter(dayAdapter);
-        rcWeekGoal.setLayoutManager(new SpanningLinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        binding.rcWeekGoal.setAdapter(dayAdapter);
+        binding.rcWeekGoal.setLayoutManager(new SpanningLinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         mProgramHistory = new ArrayList<>();
         programGoalAdapter = new ProgramGoalAdapter(getContext(), this);
-        rcProgramGoal.setLayoutManager(new LinearLayoutManager(getContext()));
-        rcProgramGoal.setAdapter(programGoalAdapter);
-        rcProgramGoal.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        binding.rcProgramGoal.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rcProgramGoal.setAdapter(programGoalAdapter);
+        binding.rcProgramGoal.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
 
         homeViewModel.findHistoryFromTo(first, first + 7).observe(getViewLifecycleOwner(), historyItemList -> {
@@ -228,21 +226,27 @@ public class WeekGoalFragment extends Fragment implements ProgramClickListener, 
             }
 
             int minute = (times) / 60;
-            mWorkouts.setText(String.valueOf(historyItemList.size()));
-            mTotalTime.setText(String.format("%d", minute));
-            mCalories.setText(String.format("%d", calories));
+            binding.txtWorkoutNumber.setText(String.valueOf(historyItemList.size()));
+            binding.txtTotalTime.setText(String.format("%d", minute));
+            binding.txtCalories.setText(String.format("%d", calories));
             for (Boolean dayStatus : status) {
                 if (dayStatus) {
                     count++;
                 }
             }
             dayAdapter.setStatus(status);
-            tvGoalProgress.setText(String.format("%d/%d", count, myPreference.getGoalOfWeek()));
+            binding.txtGoalProgress.setText(String.format("%d/%d", count, myPreference.getGoalOfWeek()));
         });
-        rcWeekGoal.setOnClickListener(v -> {
+        binding.rcWeekGoal.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), HistoryActivity.class));
         });
-
+        binding.txtTotalTime.setOnClickListener(this::goHistory);
+        binding.lnWeek.setOnClickListener(this::goHistory);
+        binding.txtMoreHistory.setOnClickListener(this::goHistory);
+        binding.txtRecords.setOnClickListener(this::goHistory);
+        binding.txtSetGoal.setOnClickListener(view -> {
+            startActivityForResult(new Intent(getActivity(), SetGoalActivity.class), 999);
+        });
     }
 
 
@@ -255,17 +259,15 @@ public class WeekGoalFragment extends Fragment implements ProgramClickListener, 
             if (programObject != null) programs.add(programObject);
         }
         return programs;
+
     }
 
-    @OnClick({R.id.txt_total_time, R.id.ln_week, R.id.txt_more_history, R.id.txt_records})
-    void goHistory() {
+
+    void goHistory(View view) {
         startActivity(new Intent(getActivity(), HistoryActivity.class));
     }
 
-    @OnClick(R.id.txt_set_goal)
-    void setGoal() {
-        startActivityForResult(new Intent(getActivity(), SetGoalActivity.class), 999);
-    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

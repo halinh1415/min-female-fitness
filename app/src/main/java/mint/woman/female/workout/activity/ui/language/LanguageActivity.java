@@ -3,22 +3,20 @@ package mint.woman.female.workout.activity.ui.language;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.FrameLayout;
-
-import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.boarding.BoardingActivity;
 import mint.woman.female.workout.activity.ui.language.LanguageAdapter.IChangeLanguage;
 import mint.woman.female.workout.admodule.MaticAd;
+import mint.woman.female.workout.databinding.ActivityLanguageBinding;
+import mint.woman.female.workout.databinding.NativeLanguageLoadingBinding;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 import mint.woman.female.workout.utils.RemoteConfigKeys;
@@ -27,17 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class LanguageActivity extends AppCompatActivity implements IChangeLanguage {
-    @BindView(R.id.rcLanguage)
-    RecyclerView rcLanguage;
-    @BindView(R.id.layoutAdNative)
-    FrameLayout layoutAdNative;
-    @BindView(R.id.shimmer_container_native)
-    ShimmerFrameLayout shimmerFrameLayout;
+    ActivityLanguageBinding binding;
 
     private LanguageAdapter adapter;
     List<Language> languages;
@@ -46,8 +36,10 @@ public class LanguageActivity extends AppCompatActivity implements IChangeLangua
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_language);
-        ButterKnife.bind(this);
+        binding = ActivityLanguageBinding.inflate(getLayoutInflater());
+
+        setContentView(binding.getRoot());
+
         initView();
     }
 
@@ -58,15 +50,16 @@ public class LanguageActivity extends AppCompatActivity implements IChangeLangua
         if (myPreference.isShowAds()  && myPreference.getOK() && FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.NATIVE_LANGUAGE)) {
             FitnessApplication.getApplication().getStorageCommon().nativeAdLanguage.observe(LanguageActivity.this, (nativeAd) -> {
                 if (nativeAd != null) {
-                    MaticAd.getInstance().populateNativeAdView(LanguageActivity.this, nativeAd,R.layout.native_ad_language_layout, layoutAdNative, shimmerFrameLayout);
+                    MaticAd.getInstance().populateNativeAdView(LanguageActivity.this, nativeAd,R.layout.native_ad_language_layout, binding.layoutAdNative, binding.loading.shimmerContainerNative);
                 } else {
-                    layoutAdNative.setVisibility(View.GONE);
+                    binding.layoutAdNative.setVisibility(View.GONE);
                 }
             });
 
         } else {
-            layoutAdNative.setVisibility(View.GONE);
+            binding.layoutAdNative.setVisibility(View.GONE);
         }
+        binding.imgDone.setOnClickListener(this::finishLanguage);
 
     }
 
@@ -127,8 +120,8 @@ public class LanguageActivity extends AppCompatActivity implements IChangeLangua
 //            }
 //        });
 //    }
-    @OnClick(R.id.imgDone)
-    void finishLanguage() {
+
+    void finishLanguage(View view) {
         if (!adapter.getLanguageCode().isEmpty()) {
             myPreference.setLanguage(adapter.getLanguageCode());
             Bundle bundle = new Bundle();
@@ -175,8 +168,8 @@ public class LanguageActivity extends AppCompatActivity implements IChangeLangua
         }
         adapter = new LanguageAdapter(this, languages, this);
         adapter.setDefault(lang);
-        rcLanguage.setAdapter(adapter);
-        rcLanguage.setLayoutManager(new LinearLayoutManager(this));
+        binding.rcLanguage.setAdapter(adapter);
+        binding.rcLanguage.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override

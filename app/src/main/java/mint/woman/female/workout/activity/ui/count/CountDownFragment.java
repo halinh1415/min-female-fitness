@@ -11,28 +11,16 @@ import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.databinding.FragmentCountDownBinding;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 
 public class CountDownFragment extends Fragment {
 
 
-    @BindView(R.id.tv_count_title)
-    TextView tvCountTitle;
-    @BindView(R.id.btn_pause)
-    View btnPause;
-    @BindView(R.id.btn_done)
-    View btnDone;
-    @BindView(R.id.progress_ready)
-    ProgressBar progressBar;
+
     CountDownTimer countDownTimer;
-    @BindView(R.id.tv_count_down)
-    TextView tvCountDown;
+    FragmentCountDownBinding binding;
     int option = 0;
 
     public CountDownFragment() {
@@ -58,53 +46,53 @@ public class CountDownFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_count_down, container, false);
-        ButterKnife.bind(this,view);
-        return view;
+         binding = FragmentCountDownBinding.inflate(getLayoutInflater());
+
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        progressBar.setMax(10000);
+        binding.progressReady.setMax(10000);
         countDownTimer = new CountDownTimer(10000,10) {
             @SuppressLint("DefaultLocale")
             @Override
             public void onTick(long l) {
                 int curr = (int)(10000-l)/1000;
-                progressBar.setProgress((int) (10000-l));
+                binding.progressReady.setProgress((int) (10000-l));
                 if (option == 2 ){
-                    tvCountDown.setText(FitnessConstUtils.toTime(10- curr));
+                    binding.tvCountDown.setText(FitnessConstUtils.toTime(10- curr));
                 }else if (option == 1){
-                    tvCountDown.setText(String.format("%d/10",curr));
+                    binding.tvCountDown.setText(String.format("%d/10",curr));
                 }
             }
 
             @Override
             public void onFinish() {
-                progressBar.setProgress(0);
+                binding.progressReady.setProgress(0);
                 countDownTimer.start();
             }
         };
         countDownTimer.start();
         switch (option){
             case 2:
-                btnPause.setVisibility(View.VISIBLE);
-                btnDone.setVisibility(View.GONE);
-                tvCountDown.setText("00:20");
-                tvCountTitle.setText(R.string.countdown);
+                binding.btnPause.setVisibility(View.VISIBLE);
+                binding.btnDone.setVisibility(View.GONE);
+                binding.tvCountDown.setText("00:20");
+                binding.tvCountTitle.setText(R.string.countdown);
                 break;
             case 0:
-                btnPause.setVisibility(View.GONE);
-                btnDone.setVisibility(View.VISIBLE);
-                tvCountTitle.setText(R.string.no_counting);
-                tvCountDown.setText("x20");
+                binding.btnPause.setVisibility(View.GONE);
+                binding.btnDone.setVisibility(View.VISIBLE);
+                binding.tvCountTitle.setText(R.string.no_counting);
+                binding.tvCountDown.setText("x20");
                 break;
             case 1:
-                tvCountDown.setText("8/10");
-                btnDone.setVisibility(View.GONE);
-                btnPause.setVisibility(View.VISIBLE);
-                tvCountTitle.setText(R.string.tempo_counting);
+                binding.tvCountDown.setText("8/10");
+                binding.btnDone.setVisibility(View.GONE);
+                binding.btnPause.setVisibility(View.VISIBLE);
+                binding.tvCountTitle.setText(R.string.tempo_counting);
                 break;
         }
 

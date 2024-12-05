@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.health.connect.datatypes.TotalCaloriesBurnedRecord;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +26,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.health.connect.client.HealthConnectClient;
+import androidx.health.connect.client.PermissionController;
+import androidx.health.connect.client.permission.HealthPermission;
+import androidx.health.connect.client.records.ExerciseSessionRecord;
+import androidx.health.connect.client.records.HeartRateRecord;
+import androidx.health.connect.client.records.StepsRecord;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -52,10 +59,16 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
+import kotlin.Unit;
+import kotlin.coroutines.Continuation;
+import kotlin.coroutines.CoroutineContext;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.SplashActivity;
@@ -263,10 +276,42 @@ public class YogaActivity extends AppCompatActivity implements HomeFragment.OnHo
         startActivity(intent);
     }
 
+    // Permission launcher
+
+
     @Override
     public void onGetGoogleFit() {
-
+       startActivity(new Intent(YogaActivity.this,HeathDataActivity.class));
+//        if (!availabilityStatus) {
+//            Toast.makeText(this, "sdk not support", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        HealthDataManager healthDataManager = new HealthDataManager(YogaActivity.this);
+//        HealthConnectClient healthConnectClient = HealthConnectClient.getOrCreate(this);
+//        Set<String> granted = healthConnectClient.getPermissionController().getGrantedPermissions();
+//        if (granted.containsAll(healthDataManager.getPERMISSIONS())) {
+//            Toast.makeText(YogaActivity.this, "All permissions already granted", Toast.LENGTH_SHORT).show();
+//            // Proceed with inserting or reading data
+//        } else {
+//            requestPermissionsLauncher.launch(healthDataManager.getPERMISSIONS());
+//        }
+//      //  healthDataManager.checkPermissionsAndRun(healthConnectClient, );
+//        requestPermissionsLauncher = registerForActivityResult(
+//                PermissionController.createRequestPermissionResultContract(),
+//                grantedPermissions -> {
+//                    if (grantedPermissions.containsAll(healthDataManager.getPERMISSIONS())) {
+//                        Toast.makeText(this, "Permissions granted", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        Toast.makeText(this, "Permissions denied", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//        );
+//
+//        // Example usage
+//        requestPermissionsLauncher.launch(healthDataManager.getPERMISSIONS());
     }
+
+
 
 
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(new FirebaseAuthUIActivityResultContract(), result -> onSignInResult(result));

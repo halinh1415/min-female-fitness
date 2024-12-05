@@ -15,9 +15,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import mint.woman.female.workout.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import mint.woman.female.workout.databinding.FragmentBoardingBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +23,7 @@ import butterknife.ButterKnife;
  * create an instance of this fragment.
  */
 public class BoardingFragment extends Fragment {
+    FragmentBoardingBinding binding;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,12 +37,6 @@ public class BoardingFragment extends Fragment {
     private String imageIntro;
 
 
-    @BindView(R.id.txtTitleOnboard)
-    TextView tvOnboardTitle;
-    @BindView(R.id.txtContentOnboard)
-    TextView tvtOnboardContent;
-    @BindView(R.id.imgOnboard)
-    ImageView imgOnboard;
 
     public BoardingFragment() {
         // Required empty public constructor
@@ -83,16 +76,16 @@ public class BoardingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_boarding, container, false);
-        ButterKnife.bind(this,view);
-        return view;
+        binding = FragmentBoardingBinding.inflate(getLayoutInflater());
+
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        tvOnboardTitle.setText(title);
-        tvtOnboardContent.setText(content);
-        Glide.with(requireContext()).load(Uri.parse("file:///android_asset/onboards/" + imageIntro)).into(imgOnboard);
+        binding.txtTitleOnboard.setText(title);
+        binding.txtContentOnboard.setText(content);
+        Glide.with(requireContext()).load(Uri.parse("file:///android_asset/onboards/" + imageIntro)).into(binding.imgOnboard);
     }
 }

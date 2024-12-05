@@ -20,19 +20,15 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.minfitness.decode.Decoder;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.workout.DoWorkoutActivity;
 import mint.woman.female.workout.activity.ui.workout.WorkoutViewModel;
-import mint.woman.female.workout.custom.CustomVideoView;
+
 import mint.woman.female.workout.custom.DialogDemoWorkout;
+import mint.woman.female.workout.databinding.FragmentRestBinding;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.PlanObject;
 import mint.woman.female.workout.utils.FileUtil;
@@ -41,22 +37,23 @@ import mint.woman.female.workout.utils.MyPreference;
 
 @SuppressLint("NonConstantResourceId")
 public class RestFragment extends Fragment implements View.OnClickListener {
-    @BindView(R.id.videoView)
-    CustomVideoView mVideoView;
-    @BindView(R.id.txt_workout_count)
-    TextView mProgressCount;
-    @BindView(R.id.tv_exercise_name)
-    TextView mExerciseName;
-    @BindView(R.id.txt_exercise_count)
-    TextView mExerciseCount;
-    @BindView(R.id.rest_progress)
-    TextView mRestTimeProgress;
-    @BindView(R.id.adView)
-    AdView mAdBanner;
-    @BindView(R.id.txt_break)
-    TextView mBreak;
-    @BindView(R.id.tv_sub)
-    TextView mSub;
+    FragmentRestBinding binding;
+//    @BindView(R.id.videoView)
+//    Custo binding.videoView  binding.videoView;
+//    @BindView(R.id.txt_workout_count)
+//    TextView binding.txtWorkoutCount;
+//    @BindView(R.id.tv_exercise_name)
+//    TextView  binding.tvExerciseName;
+//    @BindView(R.id.txt_exercise_count)
+//    TextView  binding.txtExerciseCount;
+//    @BindView(R.id.rest_progress)
+//    TextView binding.restProgress;
+//    @BindView(R.id.adView)
+//    AdView mAdBanner;
+//    @BindView(R.id.txt_break)
+//    TextView binding.txtBreak;
+//    @BindView(R.id.tv_sub)
+//    TextView binding.tvSub;
     private int mRestTime, mCurrentTime;
     private String exerciseProgressCount;
     private MyPreference myPreference;
@@ -103,9 +100,8 @@ public class RestFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FrameLayout frameLayout = new FrameLayout(getActivity());
-        populateViewForOrientation(inflater, frameLayout);
-        return frameLayout;
+      binding = FragmentRestBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
     @SuppressLint("SetTextI18n")
@@ -122,34 +118,34 @@ public class RestFragment extends Fragment implements View.OnClickListener {
 
             videoPath = getContext().getCacheDir() + "/temp.mp4";
             if (FileUtil.doesVideoExist(getContext(), "temp.mp4")) {
-                mVideoView.setVideoURI(Uri.parse(videoPath));
-                mVideoView.setOnPreparedListener(mediaPlayer -> {
+                binding.videoView.setVideoURI(Uri.parse(videoPath));
+                 binding.videoView.setOnPreparedListener(mediaPlayer -> {
                     mediaPlayer.setLooping(true);
                 });
-                mVideoView.start();
+                 binding.videoView.start();
             }
 
 
-            mExerciseName.setText(mExerciseObject.getName());
+            binding.tvExerciseName.setText(mExerciseObject.getName());
             if (mActionObject.getUnit().contains("s")) {
-                mSub.setVisibility(View.GONE);
-                mExerciseCount.setText(FitnessConstUtils.toTime(mActionObject.time));
+                binding.tvSub.setVisibility(View.GONE);
+                 binding.txtExerciseCount.setText(FitnessConstUtils.toTime(mActionObject.time));
             } else {
-                mExerciseCount.setText("x " + mActionObject.time);
+                 binding.txtExerciseCount.setText("x " + mActionObject.time);
                 if (mExerciseObject.getAlternation()) {
-                    mSub.setVisibility(View.VISIBLE);
-                    mSub.setText(getString(R.string.td_each_side) + " x" + (mActionObject.time / 2));
+                    binding.tvSub.setVisibility(View.VISIBLE);
+                    binding.tvSub.setText(getString(R.string.td_each_side) + " x" + (mActionObject.time / 2));
                 } else {
-                    mSub.setVisibility(View.GONE);
+                    binding.tvSub.setVisibility(View.GONE);
                 }
             }
-            mProgressCount.setText(exerciseProgressCount);
+            binding.txtWorkoutCount.setText(exerciseProgressCount);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         if (mRestTime == 123) {
-            mBreak.setText(getString(R.string.txt_ready_to_go));
+            binding.txtBreak.setText(getString(R.string.txt_ready_to_go));
             mRestTime = 16;
             mCurrentTime = 15;
             initTimer(15);
@@ -158,14 +154,17 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         }
         // if (mListener != null) mListener.startRestTime(mRestTime);
         requestNewAdBanner();
-
+        binding.videoView.start();
+        binding.txtSkip.setOnClickListener(this);
+        binding.txtAddTime.setOnClickListener(this);
+        binding.tvExerciseName.setOnClickListener(this);
 
     }
 
     private void requestNewAdBanner() {
         if (myPreference.isShowAds() && myPreference.getOK()) {
             AdRequest adRequest = new AdRequest.Builder().build();
-            mAdBanner.loadAd(adRequest);
+            binding.adView.loadAd(adRequest);
         }
     }
 
@@ -180,7 +179,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
                 if (mCurrentTime != (int) (l / 1000)) {
                     mCurrentTime = (int) (l / 1000);
 
-                    mRestTimeProgress.setText(FitnessConstUtils.toTime(mCurrentTime));
+                    binding.restProgress.setText(FitnessConstUtils.toTime(mCurrentTime));
                     if (mListener != null) {
                         mListener.updateRestTime(mCurrentTime);
                     }
@@ -190,7 +189,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onFinish() {
-                mRestTimeProgress.setText(FitnessConstUtils.toTime(0));
+                binding.restProgress.setText(FitnessConstUtils.toTime(0));
                 if (mListener != null) {
                     mListener.onFinishRest();
                 }
@@ -204,28 +203,28 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
-        mVideoView.pause();
+         binding.videoView.pause();
     }
 
     public void onResumeRest() {
         initTimer(mCurrentTime);
         videoPath = getContext().getCacheDir() + "/temp.mp4";
-        mVideoView.setVideoURI(Uri.parse(videoPath));
-        mVideoView.setOnPreparedListener(mediaPlayer -> {
+         binding.videoView.setVideoURI(Uri.parse(videoPath));
+         binding.videoView.setOnPreparedListener(mediaPlayer -> {
             mediaPlayer.setLooping(true);
         });
-        mVideoView.start();
-        mExerciseName.setText(mExerciseObject.getName());
+         binding.videoView.start();
+         binding.tvExerciseName.setText(mExerciseObject.getName());
         int minutes = (mActionObject.time) / 60;
         int seconds = mActionObject.time % 60;
         String timeString = String.format("%02d:%02d", minutes, seconds);
         if (mActionObject.getUnit().contains("s")) {
-            mExerciseCount.setText(timeString);
+            binding.txtExerciseCount.setText(timeString);
         } else {
-            mExerciseCount.setText("x " + mActionObject.time);
+             binding.txtExerciseCount.setText("x " + mActionObject.time);
         }
 
-        mProgressCount.setText(exerciseProgressCount);
+        binding.txtWorkoutCount.setText(exerciseProgressCount);
     }
 
     @Override
@@ -236,13 +235,13 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         }
 //        initTimer(mCurrentTime);
 //        try {
-//            mVideoView.pause();
+//             binding.videoView.pause();
 //            videoPath = getContext().getCacheDir() + "/temp.mp4";
-//            mVideoView.setVideoURI(Uri.parse(videoPath));
-//            mVideoView.setOnPreparedListener(mediaPlayer -> {
+//             binding.videoView.setVideoURI(Uri.parse(videoPath));
+//             binding.videoView.setOnPreparedListener(mediaPlayer -> {
 //                mediaPlayer.setLooping(true);
 //            });
-//            mVideoView.start();
+//             binding.videoView.start();
 //        }catch (Exception e){
 //            e.printStackTrace();
 //        }
@@ -271,8 +270,8 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
-        if (mVideoView != null) {
-            mVideoView.stopPlayback();
+        if ( binding.videoView != null) {
+             binding.videoView.stopPlayback();
         }
     }
 
@@ -287,7 +286,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
 
         viewGroup.removeAllViewsInLayout();
         View subview = inflater.inflate(R.layout.fragment_rest, viewGroup);
-        ButterKnife.bind(this, subview);
+
 
         // Find your buttons in subview, set up onclicks, set up callbacks to your parent fragment or activity here.
     }
@@ -297,33 +296,33 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         super.onConfigurationChanged(newConfig);
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         populateViewForOrientation(inflater, (ViewGroup) getView());
-        mExerciseName.setText(mExerciseObject.getName());
+         binding.tvExerciseName.setText(mExerciseObject.getName());
 
-        mExerciseName.setText(mExerciseObject.getName());
+         binding.tvExerciseName.setText(mExerciseObject.getName());
         if (mActionObject.getUnit().contains("s")) {
-            mSub.setVisibility(View.GONE);
-            mExerciseCount.setText(FitnessConstUtils.toTime(mActionObject.time));
+            binding.tvSub.setVisibility(View.GONE);
+             binding.txtExerciseCount.setText(FitnessConstUtils.toTime(mActionObject.time));
         } else {
-            mExerciseCount.setText("x " + mActionObject.time);
+             binding.txtExerciseCount.setText("x " + mActionObject.time);
             if (mExerciseObject.getAlternation()) {
-                mSub.setVisibility(View.VISIBLE);
-                mSub.setText(getString(R.string.td_each_side) + " x" + (mActionObject.time / 2));
+                binding.tvSub.setVisibility(View.VISIBLE);
+                binding.tvSub.setText(getString(R.string.td_each_side) + " x" + (mActionObject.time / 2));
             } else {
-                mSub.setVisibility(View.GONE);
+                binding.tvSub.setVisibility(View.GONE);
             }
         }
         videoPath = getContext().getCacheDir() + "/temp.mp4";
-        mVideoView.setVideoURI(Uri.parse(videoPath));
-        mVideoView.setOnPreparedListener(mediaPlayer -> {
+         binding.videoView.setVideoURI(Uri.parse(videoPath));
+         binding.videoView.setOnPreparedListener(mediaPlayer -> {
             mediaPlayer.setLooping(true);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 mediaPlayer.setPlaybackParams(new PlaybackParams().setSpeed(myPreference.getSpeed()));
             }
         });
-        mVideoView.start();
+
     }
 
-    @OnClick({R.id.txt_skip, R.id.txt_add_time, R.id.tv_exercise_name})
+
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.txt_skip:

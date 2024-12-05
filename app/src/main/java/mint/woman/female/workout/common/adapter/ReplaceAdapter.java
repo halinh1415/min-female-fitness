@@ -20,9 +20,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class ReplaceAdapter extends RecyclerView.Adapter<ReplaceAdapter.ReplaceViewHolder> {
 
     List<Replace> replaceList;
@@ -99,21 +96,20 @@ public class ReplaceAdapter extends RecyclerView.Adapter<ReplaceAdapter.ReplaceV
 
 
     class ReplaceViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.img_exercise)
         ImageView mDemoExercise;
-        @BindView(R.id.tv_exercise_name)
         TextView mExerciseName;
-        @BindView(R.id.txt_exercise_time)
         TextView mReps;
 
-        @BindView(R.id.img_select)
         ImageView imgSelect;
-        @BindView(R.id.container)
         View container;
 
         ReplaceViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            mDemoExercise = itemView.findViewById(R.id.img_exercise);
+            mExerciseName = itemView.findViewById(R.id.tv_exercise_name);
+            mReps = itemView.findViewById(R.id.txt_exercise_time);
+            imgSelect = itemView.findViewById(R.id.img_select);
+            container = itemView.findViewById(R.id.container);
         }
 
 
