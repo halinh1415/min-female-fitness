@@ -253,7 +253,7 @@
     <string name="ass">Kont</string>
     <string name="thigh">Dijen</string>
     <string name="focus_part">Waar wil je je op richten?</string>
-    <string name="full_body">Hele lichaam</string>
+    <string name="full_body">HELE LICHAAM</string>
     <string name="txt_start_day">Begin vanaf de dag</string>
     <string name="txt_choose_day">Kies een dag:</string>
     <string name="txt_set_progress">Voortgang instellen</string>
@@ -272,7 +272,7 @@
     <string name="txt_count_down_info_3">Houd de telling bij om het tempo te controleren en voltooi de training binnen de tijdslimiet</string>
     <string name="sound">Geluid</string>
 <string name="no_counting">Geen tel</string>
-    <string name="minutes">minuten</string>
+    <string name="minutes">Notulen</string>
     <string name="save">Opslaan</string>
     <string name="cancel_via_google_play">Altijd annuleren via Google Play.</string>
     <string name="free_7_days_trial_then_xx_year">Gratis 7-daagse proefperiode, daarna %s per jaar</string>
@@ -318,7 +318,7 @@
     <string name="explore_tag_hot">Populair</string>
     <string name="downloading">Aan het downloaden...</string>
     <string name="loading">Het laden...</string>
-    <string name="abs">BUIKSPIEREN</string>
+    <string name="abs">Buikspieren</string>
     <string name="traps">Monnikskapspieren</string>
     <string name="triceps">Triceps</string>
     <string name="biceps">Biceps</string>
@@ -351,4 +351,13 @@
     <string name="data_sync_done">Gegevenssynchronisatie voltooid!</string>
 <string name="breast_training">Work-out voor je borsten</string>
     <string name="pain_relief">Pijnverlichting</string>
+    <string name="sync_to_google_health">Synchroniseren met Health Connect</string>
+    <string name="manage_data_access">Gegevens en toegang beheren</string>
+    <string name="health_connect">Gezondheid verbinden</string>
+    <string name="tip_connect_google_health">Deel gegevens over je gezondheid met andere apps om tijd te besparen.</string>
+    <string name="tip_connect_hc_success">Health Connect is met succes gekoppeld</string>
+    <string name="tip_disconnect_hc_success">Verbinding met Health Connect is gebroken</string>
+    <string name="update_health_connect_gpt">Health Connect Bijwerken</string>
+    <string name="connect_to_google_health">Deel gegevens met Health Connect en andere apps</string>
+    <string name="connecting_with_health">Health Connect wordt gekoppeld...</string>
     </resources>

@@ -351,4 +351,13 @@
     <string name="data_sync_done">Sinkronisasi data selesai!</string>
 <string name="breast_training">Latihan Payudara</string>
 <string name="pain_relief">Pereda nyeri</string>
+<string name="sync_to_google_health">Sinkronkan ke Health Connect</string>
+    <string name="manage_data_access">Kelola data dan akses</string>
+    <string name="health_connect">Koneksi Kesehatan</string>
+    <string name="tip_connect_google_health">Bagikan data kesehatan Anda dengan aplikasi lain untuk menghemat waktu Anda.</string>
+    <string name="tip_connect_hc_success">Berhasil terhubung ke Health Connect</string>
+    <string name="tip_disconnect_hc_success">Terputus dari Health Connect</string>
+    <string name="update_health_connect_gpt">Perbarui Health Connect</string>
+    <string name="connect_to_google_health">Bagikan data dengan Health Connect &amp; aplikasi lain</string>
+    <string name="connecting_with_health">Terhubung dengan Koneksi Kesehatan...</string>
 </resources>

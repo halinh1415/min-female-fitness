@@ -222,7 +222,7 @@
     <string name="txt_workout_time_level_3">بیش از 45 دقیقه</string>
     <string name="txt_step">گام</string>
     <string name="txt_tell_us_more_info">از خودتان بیشتر بگویید</string>
-    <string name="continue_text">ادامه دادن</string>
+    <string name="continue_text">ادامه</string>
     <string name="txt_calories_chart">نمودار کالری</string>
     <string name="txt_warm_up">دست گرمی بازی کردن</string>
     <string name="txt_reminder_content_1">چربی مشعل، منحنی شکل!</string>
@@ -317,7 +317,7 @@
     <string name="upper_body_stretching_short_des">کشش بازو، شانه، سینه و پشت. رها کردن عضلات و بهبود انعطاف‌پذیری.</string>
     <string name="explore_tag_hot">داغ</string>
     <string name="downloading">بارگیری ...</string>
-    <string name="loading">درحال بارگذاری…</string>
+    <string name="loading">بارگیری…</string>
     <string name="abs">شکم</string>
     <string name="traps">عضله ذوزنقه‌ای</string>
     <string name="triceps">ماهیچه سه‌سر بازو</string>
@@ -351,4 +351,13 @@
     <string name="data_sync_done">همگام سازی داده ها تکمیل شد!</string>
 <string name="breast_training">ورزش سینه</string>
     <string name="pain_relief">رفع درد</string>
+    <string name="sync_to_google_health">همگام‌سازی با Health Connect</string>
+    <string name="manage_data_access">مدیریت داده‌ها و دسترسی</string>
+    <string name="health_connect">Health Connect</string>
+    <string name="tip_connect_google_health">اشتراک‌گذاری داده‌های سلامتی‌ شما در سایر برنامه‌ها به منظور صرفه‌جویی در وقت.</string>
+    <string name="tip_connect_hc_success">با موفقیت به Health Connect وصل شد</string>
+    <string name="tip_disconnect_hc_success">اتصال به Health Connect قطع شد</string>
+    <string name="update_health_connect_gpt">به‌روزرسانی Health Connect</string>
+    <string name="connect_to_google_health">اشتراک‌گذاری داده‌ها با Health Connect و سایر برنامه‌ها</string>
+    <string name="connecting_with_health">در حال اتصال به Health Connect...</string>
     </resources>

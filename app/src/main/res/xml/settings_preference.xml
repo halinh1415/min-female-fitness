@@ -37,9 +37,9 @@
             android:title="@string/txt_gender"/>
         <SwitchPreference
             android:defaultValue="false"
-            android:icon="@drawable/ic_google_fit"
+            android:icon="@drawable/ic_health_data"
             android:key="SYNC_FIT"
-            android:title="Health Connect"/>
+            android:title="@string/sync_to_google_health"/>
         <Preference
             android:icon="@drawable/ic_bell"
             android:key="ST_REMINDER"

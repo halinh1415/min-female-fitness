@@ -21,7 +21,6 @@
         android:name="android.permission.SCHEDULE_EXACT_ALARM"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission android:name="android.permission.health.WRITE_TOTAL_CALORIES_BURNED" />
     <uses-permission android:name="android.permission.health.WRITE_EXERCISE" />
 
     <application
@@ -34,15 +33,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".activity.ui.main.HeathDataActivity"
-            android:exported="false"
 
-            android:parentActivityName=".activity.ui.main.YogaActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.ui.main.YogaActivity" />
-        </activity>
         <activity
             android:name=".activity.ui.workout.CategoryDetailActivity"
             android:exported="false"
@@ -150,7 +141,7 @@
             android:name=".ViewPermissionUsageActivity"
             android:exported="true"
             android:permission="android.permission.START_VIEW_PERMISSION_USAGE"
-            android:targetActivity=".activity.ui.main.HeathDataActivity">
+            android:targetActivity=".activity.ui.main.YogaActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW_PERMISSION_USAGE" />
 

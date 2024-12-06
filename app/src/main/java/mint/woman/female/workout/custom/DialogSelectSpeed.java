@@ -197,7 +197,7 @@ public class DialogSelectSpeed extends BottomSheetDialogFragment {
         super.onViewCreated(view, savedInstanceState);
         loadExercise();
         binding.btnOk.setOnClickListener(this::onClick);
-        binding.btnOk.setOnClickListener(this::onClick);
+        binding.btnCancel.setOnClickListener(this::onClick);
     }
 
 

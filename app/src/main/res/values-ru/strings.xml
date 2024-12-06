@@ -253,7 +253,7 @@
     <string name="ass">Задница</string>
     <string name="thigh">Бедра</string>
     <string name="focus_part">Над чем хотите поработать?</string>
-    <string name="full_body">Всё тело</string>
+    <string name="full_body">ВСЁ ТЕЛО</string>
     <string name="txt_start_day">Начать с дня</string>
     <string name="txt_choose_day">Выберите день:</string>
     <string name="txt_set_progress">Установить прогресс</string>
@@ -272,7 +272,7 @@
     <string name="txt_count_down_info_3">Следите за счетом, чтобы контролировать темп и завершить тренировку в установленные сроки.</string>
     <string name="sound">Звук</string>
 <string name="no_counting">Нет счета</string>
-    <string name="minutes">минут</string>
+    <string name="minutes">Минут</string>
     <string name="save">Сохранить</string>
     <string name="cancel_via_google_play">Отмените когда угодно в Google Play.</string>
     <string name="free_7_days_trial_then_xx_year">Бесплатно пробная версия на 7 дней, затем %s в год</string>
@@ -318,7 +318,7 @@
     <string name="explore_tag_hot">Популярно</string>
     <string name="downloading">Загрузка...</string>
     <string name="loading">Загрузка…</string>
-    <string name="abs">ПРЕСС</string>
+    <string name="abs">Пресс</string>
     <string name="traps">Трапециевидные</string>
     <string name="triceps">Трицепсы</string>
     <string name="biceps">Бицепсы</string>
@@ -351,4 +351,13 @@
     <string name="data_sync_done">Синхронизация данных завершена!</string>
 <string name="breast_training">Тренировки для груди</string>
     <string name="pain_relief">Против боли</string>
+    <string name="sync_to_google_health">Синхронизировать с Health Connect</string>
+    <string name="manage_data_access">Управление данными и доступом</string>
+    <string name="health_connect">Здоровье Connect</string>
+    <string name="tip_connect_google_health">Делитесь своими медицинскими данными с другими приложениями, чтобы сэкономить время.</string>
+    <string name="tip_connect_hc_success">Успешно подключено к Health Connect</string>
+    <string name="tip_disconnect_hc_success">Отключено от Health Connect</string>
+    <string name="update_health_connect_gpt">Обновите Health Connect</string>
+    <string name="connect_to_google_health">Делитесь данными с Health Connect и другими приложениями</string>
+    <string name="connecting_with_health">Подключение к Health Connect...</string>
     </resources>

@@ -351,4 +351,13 @@
     <string name="data_sync_done">데이터 동기화가 완료되었습니다!</string>
 <string name="breast_training">가슴 워크아웃</string>
     <string name="pain_relief">통증 완화</string>
+    <string name="sync_to_google_health">Health Connect 에 동기화</string>
+    <string name="manage_data_access">데이터 관리 및 액세스</string>
+    <string name="health_connect">헬스 커넥트</string>
+    <string name="tip_connect_google_health">내 건강 데이터를 다른 앱과 공유해서 시간을 절약하세요.</string>
+    <string name="tip_connect_hc_success">Health Connect에 성공적으로 연결됨</string>
+    <string name="tip_disconnect_hc_success">Health Connect와 연결 해제됨</string>
+    <string name="update_health_connect_gpt">Health Connect 업데이트</string>
+    <string name="connect_to_google_health">Health Connect &amp; 기타 앱과 데이터 공유</string>
+    <string name="connecting_with_health">Health Connect에 연결 중...</string>
     </resources>

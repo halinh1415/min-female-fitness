@@ -351,4 +351,13 @@
     <string name="data_sync_done">データの同期が完了しました！</string>
 <string name="breast_training">胸部のワークアウト</string>
     <string name="pain_relief">痛みの軽減</string>
+    <string name="sync_to_google_health">Health Connectと同期化する</string>
+    <string name="manage_data_access">データとアクセスの管理</string>
+    <string name="health_connect">ヘルスコネクト</string>
+    <string name="tip_connect_google_health">あなたのヘルスデータを他のアプリと共有して、時間を節約することができます。</string>
+    <string name="tip_connect_hc_success">Health Connectに正常に接続しました</string>
+    <string name="tip_disconnect_hc_success">Health Connectから切断されました</string>
+    <string name="update_health_connect_gpt">Health Connectを更新</string>
+    <string name="connect_to_google_health">Health Connectやその他のアプリとデータをシェアしましょう</string>
+    <string name="connecting_with_health">Health Connectと接続中...</string>
     </resources>
