@@ -360,4 +360,7 @@
     <string name="update_health_connect_gpt">به‌روزرسانی Health Connect</string>
     <string name="connect_to_google_health">اشتراک‌گذاری داده‌ها با Health Connect و سایر برنامه‌ها</string>
     <string name="connecting_with_health">در حال اتصال به Health Connect...</string>
+    <string name="update_now">الآن به‌روزرسانی شود</string>
+    <string name="health_connect_update_desc_gpt">اوه! اتصال شکست خورد. لطفاً نسخه Health Connect را برای به اشتراک گذاری داده‌ها به‌روز کنید.</string>
+    <string name="later">بعداً</string>
     </resources>

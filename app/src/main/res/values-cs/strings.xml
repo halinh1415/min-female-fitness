@@ -360,4 +360,7 @@
     <string name="update_health_connect_gpt">Aktualizujte Health Connect</string>
     <string name="connect_to_google_health">Sdílejte data pomocí Health Connect a dalších aplikací</string>
     <string name="connecting_with_health">Připojování ke službě Health Connect...</string>
+<string name="update_now">Aktualizujte nyní</string>
+    <string name="health_connect_update_desc_gpt">Jejda! Připojení se nezdařilo. Pro sdílení dat aktualizujte verzi Health Connect.</string>
+    <string name="later">Později</string>
 </resources>

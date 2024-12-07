@@ -359,4 +359,8 @@
     <string name="update_health_connect_gpt">Ažurirajte Health Connect</string>
     <string name="connect_to_google_health">Dijelite podatke s Health Connectom i drugim aplikacijama</string>
     <string name="connecting_with_health">Povezivanje sa Health Connect...</string>
+<string name="iap_detail_review">1. Google kontrolira i upravlja svim plaćanjima putem Trgovine Play.\n2. Plaćanja će se naplatiti s vašeg računa Trgovine Play prilikom potvrde kupnje.\n3. Pretplata se automatski obnavlja, osim ako se automatska obnova ne isključi najmanje 24 sata prije kraja tekućeg razdoblja.\n4. Račun će biti naplaćen za obnovu unutar 24 sata prije kraja tekućeg razdoblja po cijeni od %s/godina ili %s/mjesec.\n5. Možete upravljati svojim pretplatama, a automatska obnova se može isključiti u postavkama vašeg računa Trgovine Play nakon kupnje.\n6. Svaki neiskorišteni dio besplatnog probnog razdoblja, ako je ponuđeno, bit će oduzet ako kupite pretplatu na publikaciju, gdje je primjenjivo.</string>
+    <string name="update_now">Ažurirajte sada</string>
+    <string name="health_connect_update_desc_gpt">Ups! Povezivanje nije uspjelo. Ažurirajte svoju verziju Health Connecta za dijeljenje podataka.</string>
+    <string name="later">Kasnije</string>
 </resources>

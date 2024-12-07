@@ -360,4 +360,7 @@
     <string name="update_health_connect_gpt">Päivitä Health Connect</string>
     <string name="connect_to_google_health">Jaa tietoja Health Connectin ja muiden sovellusten kanssa</string>
     <string name="connecting_with_health">Yhdistetään Health Connectiin...</string>
+<string name="update_now">Päivitä nyt</string>
+    <string name="health_connect_update_desc_gpt">Oho! Yhteys epäonnistui. Päivitä Health Connect -versiosi tietojen jakamista varten.</string>
+    <string name="later">Myöhemmin</string>
 </resources>

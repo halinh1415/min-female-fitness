@@ -360,4 +360,7 @@
     <string name="update_health_connect_gpt">Health Connect aktualisieren</string>
     <string name="connect_to_google_health">Daten mit Health Connect und anderen Apps teilen</string>
     <string name="connecting_with_health">Verbindung mit Health Connect erfolgt ...</string>
+    <string name="update_now">Jetzt aktualisieren</string>
+    <string name="health_connect_update_desc_gpt">Hoppla! Verbindung fehlgeschlagen. Bitte aktualisiere deine Health Connect-Version, um Daten zu teilen.</string>
+    <string name="later">Später</string>
     </resources>

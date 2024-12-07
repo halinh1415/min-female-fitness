@@ -359,4 +359,8 @@
     <string name="update_health_connect_gpt">Atjauniniet Health Connect</string>
     <string name="connect_to_google_health">Kopīgojiet datus ar Health Connect un citām lietotnēm</string>
     <string name="connecting_with_health">Notiek savienojuma izveide ar Health Connect...</string>
+<string name="iap_detail_review">1. Visus maksājumus, kas veikti, izmantojot Play veikalu, kontrolē un pārvalda Google.\n2. Maksājumi tiks iekasēti no jūsu Play veikala konta, apstiprinot pirkumu.\n3. Abonements tiek automātiski atjaunots, ja vien automātiskā atjaunošana nav izslēgta vismaz 24 stundas pirms pašreizējā perioda beigām.\n4. Maksa par konta atjaunošanu tiks iekasēta 24 stundu laikā pirms pašreizējā perioda beigām par cenu %s/gadā vai %s/mēnesī.\n5. Varat pārvaldīt savus abonementus un automātisko atjaunošanu var izslēgt, pēc pirkuma atverot sava Play veikala konta iestatījumus.\n6. Jebkāda neizmantotā bezmaksas izmēģinājuma perioda daļa, ja tāda tiek piedāvāta, tiks zaudēta, ja iegādāsieties publikācijas abonementu, ja piemērojams.</string>
+    <string name="update_now">Atjauniniet tūlīt</string>
+    <string name="health_connect_update_desc_gpt">Hmm! Savienojums neizdevās. Lai kopīgotu datus, lūdzu, atjauniniet savu Health Connect versiju.</string>
+    <string name="later">Vēlāk</string>
 </resources>

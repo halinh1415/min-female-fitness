@@ -360,4 +360,7 @@
     <string name="update_health_connect_gpt">Health Connect Güncelle</string>
     <string name="connect_to_google_health">Health Connect ve diğer uygulamalarla veri paylaşın</string>
     <string name="connecting_with_health">Health Connect\'e bağlanılıyor...</string>
+    <string name="update_now">Şimdi güncelle</string>
+    <string name="health_connect_update_desc_gpt">Hay aksi! Bağlantı başarısız. Veri paylaşımı için Health Connect sürümünüzü güncelleyin.</string>
+    <string name="later">Daha sonra</string>
     </resources>

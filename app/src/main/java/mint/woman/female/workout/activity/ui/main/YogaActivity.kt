@@ -748,16 +748,10 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
                     getString(R.string.update_health_connect_gpt),
                     Toast.LENGTH_SHORT
                 ).show()
-                val providerPackageName = "com.google.android.apps.healthdata"
-                // Optionally redirect to package installer to find a provider, for example:
-                val uriString =
-                    "market://details?id=$providerPackageName&url=healthconnect%3A%2F%2Fonboarding"
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.setPackage("com.android.vending")
-                intent.setData(Uri.parse(uriString))
-                intent.putExtra("overlay", true)
-                intent.putExtra("callerId", packageName)
-                startActivity(intent)
+                val dialogSync = supportFragmentManager.findFragmentByTag("health_connect") as HealthDataDialog?
+                dialogSync?.dismiss()
+                val healthConnectUpdateDialog = HealthConnectUpdateDialog()
+                healthConnectUpdateDialog.show(supportFragmentManager,"update_health_dialog")
                 return
             }
             val healthConnectClient = HealthConnectClient.getOrCreate(this)
@@ -795,4 +789,5 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
         }
 
     }
+
 }

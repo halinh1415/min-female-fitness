@@ -359,4 +359,8 @@
     <string name="update_health_connect_gpt">Oppdater Health Connect</string>
     <string name="connect_to_google_health">Del data med Health Connect og andre apper</string>
     <string name="connecting_with_health">Kobler til med Health Connect...</string>
+<string name="iap_detail_review">1. Alle betalinger som gjøres via Play Butikk kontrolleres og administreres av Google.\n2. Betalinger vil bli belastet Play Store-kontoen din ved bekreftelse av kjøpet.\n3. Abonnementet fornyes automatisk, med mindre automatisk fornyelse er slått av minst 24 timer før slutten av gjeldende periode.\n4. Kontoen vil bli belastet for fornyelse innen 24 timer før slutten av gjeldende periode til en pris på %s/år eller %s/måned.\n5. Du kan administrere abonnementene dine, og automatisk fornyelse kan bli slått av ved å gå til Play Butikk-kontoinnstillingene etter kjøpet.\n6. Eventuell ubrukt del av en gratis prøveperiode, hvis den tilbys, vil bli tapt hvis du kjøper et abonnement på publikasjonen, der det er aktuelt.</string>
+    <string name="update_now">Oppdater nå</string>
+    <string name="health_connect_update_desc_gpt">Oops! Tilkobling mislyktes. Oppdater Health Connect-versjonen din for å dele data.</string>
+    <string name="later">Seinere</string>
 </resources>

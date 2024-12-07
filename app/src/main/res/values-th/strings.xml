@@ -351,7 +351,7 @@
     <string name="data_sync_done">การซิงโครไนซ์ข้อมูลเสร็จสมบูรณ์!</string>
     <string name="breast_training">การออกกำลังกายเต้านม</string>
     <string name="pain_relief">บรรเทาอาการปวด</string>
-<string name="sync_to_google_health">ซิงค์ไปยัง Health Connect</string>
+    <string name="sync_to_google_health">ซิงค์ไปยัง Health Connect</string>
     <string name="manage_data_access">จัดการข้อมูลและสิทธิ์เข้าถึง</string>
     <string name="health_connect">เชื่อมต่อสุขภาพ</string>
     <string name="tip_connect_google_health">แชร์ข้อมูลสุขภาพของคุณกับแอปอื่นเพื่อประหยัดเวลาของคุณ</string>
@@ -360,4 +360,7 @@
     <string name="update_health_connect_gpt">อัพเดท Health Connect</string>
     <string name="connect_to_google_health">แชร์ข้อมูลกับ Health Connect และแอปอื่นๆ</string>
     <string name="connecting_with_health">กำลังเชื่อมต่อกับ Health Connect...</string>
-    </resources>
+    <string name="update_now">อัปเดตเลย</string>
+    <string name="health_connect_update_desc_gpt">อ๊ะ! การเชื่อมต่อล้มเหลว กรุณาอัพเดทเวอร์ชัน Health Connect เพื่อแชร์ข้อมูล</string>
+    <string name="later">ภายหลัง</string>
+</resources>

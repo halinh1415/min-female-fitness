@@ -360,4 +360,7 @@
     <string name="update_health_connect_gpt">Обновите Health Connect</string>
     <string name="connect_to_google_health">Делитесь данными с Health Connect и другими приложениями</string>
     <string name="connecting_with_health">Подключение к Health Connect...</string>
+    <string name="update_now">Обновлять</string>
+    <string name="health_connect_update_desc_gpt">Ой! Ошибка подключения. Пожалуйста, обновите версию Health Connect для обмена данными.</string>
+    <string name="later">Позже</string>
     </resources>

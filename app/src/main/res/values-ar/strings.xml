@@ -360,4 +360,7 @@
     <string name="update_health_connect_gpt">تحديث Health Connect</string>
     <string name="connect_to_google_health">مشاركة البيانات مع Health Connect وتطبيقات أخرى</string>
     <string name="connecting_with_health">جارٍ الاتصال بتطبيق Health Connect...</string>
+    <string name="update_now">قم بالتحديث الآن</string>
+    <string name="health_connect_update_desc_gpt">عذرًا! فشل الاتصال. يُرجى تحديث إصدار Health Connect لمشاركة البيانات.</string>
+    <string name="later">فيما بعد</string>
     </resources>

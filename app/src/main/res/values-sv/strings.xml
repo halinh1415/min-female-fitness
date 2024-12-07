@@ -360,4 +360,7 @@
     <string name="update_health_connect_gpt">Uppdatera Health Connect</string>
     <string name="connect_to_google_health">Dela data med Health Connect och andra appar</string>
     <string name="connecting_with_health">Ansluter med Health Connect...</string>
+<string name="update_now">Uppdatera nu</string>
+    <string name="health_connect_update_desc_gpt">hoppsan! Anslutningen misslyckades. Uppdatera din Health Connect-version för att dela data.</string>
+    <string name="later">Senare</string>
 </resources>

@@ -370,4 +370,7 @@
     <string name="update_health_connect_gpt">Update Health Connect</string>
     <string name="connect_to_google_health">Share data with Health Connect &amp; other apps</string>
     <string name="connecting_with_health">Connecting with Health Connect...</string>
+    <string name="update_now">Update now</string>
+    <string name="health_connect_update_desc_gpt">Oops! Connection failed. Please update your Health Connect version for sharing data.</string>
+    <string name="later">Later</string>
 </resources>

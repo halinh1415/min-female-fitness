@@ -360,4 +360,7 @@
     <string name="update_health_connect_gpt">Health Connect 업데이트</string>
     <string name="connect_to_google_health">Health Connect &amp; 기타 앱과 데이터 공유</string>
     <string name="connecting_with_health">Health Connect에 연결 중...</string>
+    <string name="update_now">지금 업데이트함</string>
+    <string name="health_connect_update_desc_gpt">이런! 연결 실패. 데이터 공유를 위해 Health Connect 버전을 업데이트해주세요.</string>
+    <string name="later">후에</string>
     </resources>

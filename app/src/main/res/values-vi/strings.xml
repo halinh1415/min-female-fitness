@@ -360,4 +360,7 @@
     <string name="update_health_connect_gpt">Cập Nhật Health Connect</string>
     <string name="connect_to_google_health">Chia sẻ dữ liệu với Health Connect &amp; các ứng dụng khác</string>
     <string name="connecting_with_health">Đang kết nối với Health Connect...</string>
-</resources>
+<string name="update_now">Cập nhật ngay</string>
+    <string name="health_connect_update_desc_gpt">Rất tiếc! Kết nối thất bại. Vui lòng cập nhật phiên bản Health Connect của bạn để chia sẻ dữ liệu.</string>
+    <string name="later">Sau</string>
+    </resources>
