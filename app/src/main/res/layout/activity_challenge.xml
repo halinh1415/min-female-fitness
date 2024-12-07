@@ -91,7 +91,9 @@
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
-        <include layout="@layout/content_challenge" />
+        <include
+            android:id="@+id/content_challenge"
+            layout="@layout/content_challenge" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
     <LinearLayout

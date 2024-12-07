@@ -1,7 +1,6 @@
 package mint.woman.female.workout.activity.ui.explore;
 
 import android.content.Intent;
-import android.icu.lang.UCharacter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +9,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.minfitness.decode.Decoder;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
@@ -22,26 +23,16 @@ import mint.woman.female.workout.activity.ExploreDetailActivity;
 import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
 import mint.woman.female.workout.activity.ui.workout.CategoryDetailActivity;
 import mint.woman.female.workout.activity.ui.workout.ChallengeActivity;
-import mint.woman.female.workout.activity.ui.workout.ProgramActivity;
 import mint.woman.female.workout.common.adapter.ProgramClickListener;
 import mint.woman.female.workout.common.adapter.SectionAdapter;
+import mint.woman.female.workout.databinding.FragmentExploreBinding;
 import mint.woman.female.workout.model.CategoryObject;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.model.Section;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-
 public class ExploreFragment extends Fragment implements ProgramClickListener {
-    @BindView(R.id.rc_explore)
-    RecyclerView mExploreRc;
+
+    FragmentExploreBinding binding;
     SectionAdapter mAdapter;
     HashMap<Integer, ProgramObject> hashMap;
     int[] mListStretch = new int[]{18, 19, 16, 17, 959};
@@ -64,9 +55,9 @@ public class ExploreFragment extends Fragment implements ProgramClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_explore, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+        binding = FragmentExploreBinding.inflate(getLayoutInflater());
+
+        return binding.getRoot();
     }
 
     @Override
@@ -119,9 +110,9 @@ public class ExploreFragment extends Fragment implements ProgramClickListener {
             sections.add(new Section(getString(R.string.pain_relief), getProgram(new int[]{883,200,201,1151,1150}), 7));
         }
         SectionAdapter sectionAdapter = new SectionAdapter(sections, this);
-        mExploreRc.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        binding.rcExplore.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         // mExploreRc.setLayoutManager(new LinearLayoutManager(getContext()));
-        mExploreRc.setAdapter(sectionAdapter);
+        binding.rcExplore.setAdapter(sectionAdapter);
         // rcSection.setAdapter(mSectionAdapter);
     }
 

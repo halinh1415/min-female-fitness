@@ -21,34 +21,33 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.admodule.AppOpenManager;
 import mint.woman.female.workout.admodule.CustomRatingBar;
+import mint.woman.female.workout.databinding.DialogRatingBinding;
 import mint.woman.female.workout.utils.MyPreference;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class DialogRating extends DialogFragment {
-    @BindView(R.id.img_rate)
-    ImageView imgRating;
-    //    @BindView(R.id.ratingBar)
-//    CustomRatingBar mRatingBar;
-    @BindView(R.id.txt_pre_rate_title)
-    TextView mPreRateTitle;
-    @BindView(R.id.txt_pre_rate_feedback)
-    TextView mPreRateFeedback;
+    DialogRatingBinding binding;
+//    @BindView(R.id.img_rate)
+//    ImageView  binding.imgRate;
+//    //    @BindView(R.id.ratingBar)
+////    CustomRatingBar mRatingBar;
+//    @BindView(R.id.txt_pre_rate_title)
+//    TextView  binding.txtPreRateTitle;
+//    @BindView(R.id.txt_pre_rate_feedback)
+//    TextView  binding.txtPreRateFeedback;
     int mRateValue = 0;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_rating, container, false);
-        ButterKnife.bind(this, view);
+        binding = DialogRatingBinding.inflate(getLayoutInflater());
 
-        return view;
+        return binding.getRoot();
     }
 
     @Override
@@ -69,58 +68,25 @@ public class DialogRating extends DialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        FirebaseAnalytics.getInstance(getContext()).logEvent("scr_pre_rating",new Bundle());
+        FirebaseAnalytics.getInstance(getContext()).logEvent("scr_pre_rating", new Bundle());
 
         initView();
 
     }
 
-    @BindView(R.id.star_layout)
-    LinearLayout lyRate;
 
     private void initView() {
-       // changeTextColorOfTextViews(lyRate, mRateValue);
+        binding.rateStar1.setOnClickListener(this::changeRate);
+        binding.rateStar2.setOnClickListener(this::changeRate);
+        binding.rateStar3.setOnClickListener(this::changeRate);
+        binding.rateStar4.setOnClickListener(this::changeRate);
+        binding.rateStar5.setOnClickListener(this::changeRate);
 
-//        mRatingBar.setStars(0.0f);
-//        mRatingBar.setCanChange(true);
-//        mRatingBar.setMax(5);
-//        mRatingBar.setStep(true);
-//        mPreRateFeedback.setText(getString(R.string.txt_pre_rate_feedback_default));
-//        mRatingBar.setOnStarChangeListener(new CustomRatingBar.OnStarChangeListener() {
-//            @Override
-//            public void onStarChange(CustomRatingBar ratingBar, float star) {
-//
-//                int value = (int) star;
-//                mRateValue = value;
-//                switch (value) {
-//                    case 3:
-//                        mPreRateTitle.setText(getString(R.string.txt_pre_rate_title_unhappy));
-//                        mPreRateFeedback.setText(getString(R.string.txt_feedback_unhappy));
-//                        imgRating.setImageResource(R.drawable.ic_rate_three);
-//                        break;
-//                    case 4:
-//                        mPreRateTitle.setText(getString(R.string.txt_pre_rate_title_happy));
-//                        mPreRateFeedback.setText(getString(R.string.txt_some_feedback));
-//                        imgRating.setImageResource(R.drawable.ic_rate_four);
-//                        break;
-//                    case 5:
-//                        mPreRateTitle.setText(getString(R.string.txt_pre_rate_title_happy));
-//                        mPreRateFeedback.setText(getString(R.string.txt_some_feedback));
-//                        imgRating.setImageResource(R.drawable.ic_rate_five);
-//                        break;
-//                    case 2:
-//                        mPreRateTitle.setText(getString(R.string.txt_pre_rate_title_unhappy));
-//                        mPreRateFeedback.setText(getString(R.string.txt_feedback_unhappy));
-//                        imgRating.setImageResource(R.drawable.ic_rate_two);
-//                        break;
-//                    default:
-//                        mPreRateTitle.setText(getString(R.string.txt_pre_rate_title_unhappy));
-//                        mPreRateFeedback.setText(getString(R.string.txt_feedback_unhappy));
-//                        imgRating.setImageResource(R.drawable.ic_rate_one);
-//                        break;
-//                }
-//            }
-//        });
+        binding.btnClose.setOnClickListener(this::onClick);
+        binding.btnRate.setOnClickListener(this::onClick);
+        binding.imgClose.setOnClickListener(view -> {
+            dismiss();
+        });
     }
 
     private void changeTextColorOfTextViews(ViewGroup viewGroup, int rate) {
@@ -145,7 +111,6 @@ public class DialogRating extends DialogFragment {
 
 
 
-    @OnClick({R.id.rate_star_1, R.id.rate_star_2, R.id.rate_star_3, R.id.rate_star_4, R.id.rate_star_5})
     void changeRate(View view) {
         switch (view.getId()) {
             case R.id.rate_star_1:
@@ -154,9 +119,9 @@ public class DialogRating extends DialogFragment {
                 } else {
                     mRateValue = 1;
                 }
-                mPreRateTitle.setText(getString(R.string.txt_pre_rate_title_unhappy));
-                mPreRateFeedback.setText(getString(R.string.txt_feedback_unhappy));
-                imgRating.setImageResource(R.drawable.ic_rate_one);
+                binding.txtPreRateTitle.setText(getString(R.string.txt_pre_rate_title_unhappy));
+                binding.txtPreRateFeedback.setText(getString(R.string.txt_feedback_unhappy));
+                 binding.imgRate.setImageResource(R.drawable.ic_rate_one);
                 break;
             case R.id.rate_star_2:
                 if (mRateValue == 2) {
@@ -164,9 +129,9 @@ public class DialogRating extends DialogFragment {
                 } else {
                     mRateValue = 2;
                 }
-                mPreRateTitle.setText(getString(R.string.txt_pre_rate_title_unhappy));
-                mPreRateFeedback.setText(getString(R.string.txt_feedback_unhappy));
-                imgRating.setImageResource(R.drawable.ic_rate_two);
+                 binding.txtPreRateTitle.setText(getString(R.string.txt_pre_rate_title_unhappy));
+                 binding.txtPreRateFeedback.setText(getString(R.string.txt_feedback_unhappy));
+                binding.imgRate.setImageResource(R.drawable.ic_rate_two);
                 break;
             case R.id.rate_star_3:
                 if (mRateValue == 3) {
@@ -174,9 +139,9 @@ public class DialogRating extends DialogFragment {
                 } else {
                     mRateValue = 3;
                 }
-                mPreRateTitle.setText(getString(R.string.txt_pre_rate_title_unhappy));
-                mPreRateFeedback.setText(getString(R.string.txt_feedback_unhappy));
-                imgRating.setImageResource(R.drawable.ic_rate_three);
+                 binding.txtPreRateTitle.setText(getString(R.string.txt_pre_rate_title_unhappy));
+                 binding.txtPreRateFeedback.setText(getString(R.string.txt_feedback_unhappy));
+                 binding.imgRate.setImageResource(R.drawable.ic_rate_three);
                 break;
             case R.id.rate_star_4:
                 if (mRateValue == 4) {
@@ -184,9 +149,9 @@ public class DialogRating extends DialogFragment {
                 } else {
                     mRateValue = 4;
                 }
-                mPreRateTitle.setText(getString(R.string.txt_pre_rate_title_happy));
-                mPreRateFeedback.setText(getString(R.string.txt_some_feedback));
-                imgRating.setImageResource(R.drawable.ic_rate_four);
+                 binding.txtPreRateTitle.setText(getString(R.string.txt_pre_rate_title_happy));
+                 binding.txtPreRateFeedback.setText(getString(R.string.txt_some_feedback));
+                 binding.imgRate.setImageResource(R.drawable.ic_rate_four);
                 break;
             case R.id.rate_star_5:
                 if (mRateValue == 5) {
@@ -194,12 +159,12 @@ public class DialogRating extends DialogFragment {
                 } else {
                     mRateValue = 5;
                 }
-                mPreRateTitle.setText(getString(R.string.txt_pre_rate_title_happy));
-                mPreRateFeedback.setText(getString(R.string.txt_some_feedback));
-                imgRating.setImageResource(R.drawable.ic_rate_five);
+                 binding.txtPreRateTitle.setText(getString(R.string.txt_pre_rate_title_happy));
+                 binding.txtPreRateFeedback.setText(getString(R.string.txt_some_feedback));
+                 binding.imgRate.setImageResource(R.drawable.ic_rate_five);
                 break;
         }
-        changeTextColorOfTextViews(lyRate, mRateValue);
+        changeTextColorOfTextViews(binding.starLayout, mRateValue);
     }
 
 
@@ -213,18 +178,17 @@ public class DialogRating extends DialogFragment {
 
 
 
-    @OnClick({R.id.btn_close,R.id.btn_rate})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_close:
-                FirebaseAnalytics.getInstance(getContext()).logEvent("click_close_scr_pre_rating",new Bundle());
+                FirebaseAnalytics.getInstance(getContext()).logEvent("click_close_scr_pre_rating", new Bundle());
                 dismiss();
                 break;
             case R.id.btn_rate:
                 Bundle bundleFire = new Bundle();
                 bundleFire.putInt("Rate", mRateValue);
                 FirebaseAnalytics.getInstance(getContext()).logEvent("click_rate_scr_pre_rating", bundleFire);
-                if (mRateValue == 5 || mRateValue ==0) {
+                if (mRateValue == 5 || mRateValue == 0) {
                     gotoRate();
                 } else {
                     DialogFeedback dialogRating = new DialogFeedback();
@@ -234,6 +198,7 @@ public class DialogRating extends DialogFragment {
                 break;
         }
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -244,10 +209,7 @@ public class DialogRating extends DialogFragment {
         }
     }
 
-    @OnClick(R.id.img_close)
-    void close(){
-        dismiss();
-    }
+
 
     public void gotoRate() {
         AppOpenManager.getInstance().disableAdResumeByClickAction();

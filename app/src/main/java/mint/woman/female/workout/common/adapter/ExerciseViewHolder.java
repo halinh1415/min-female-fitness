@@ -10,28 +10,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.custom.ItemTouchHelperViewHolder;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
 
 public class ExerciseViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
-    @BindView(R.id.img_exercise)
     ImageView mDemoExercise;
-    @BindView(R.id.drag_handle)
     ImageView mDragHandle;
-    @BindView(R.id.img_delete)
     ImageView mDelete;
-    @BindView(R.id.img_replace)
     View imgReplace;
-    @BindView(R.id.tv_exercise_name)
     TextView mExerciseName;
-    @BindView(R.id.txt_exercise_time)
     TextView mReps;
-    @BindView(R.id.container)
     View container;
 
     ExerciseViewHolder(View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
+       mDemoExercise = itemView.findViewById(R.id.img_exercise);
+       mDragHandle = itemView.findViewById(R.id.drag_handle);
+       mDelete = itemView.findViewById(R.id.img_delete);
+       imgReplace = itemView.findViewById(R.id.img_replace);
+       mExerciseName = itemView.findViewById(R.id.tv_exercise_name);
+       mReps = itemView.findViewById(R.id.txt_exercise_time);
+       container = itemView.findViewById(R.id.container);
     }
 
     @Override

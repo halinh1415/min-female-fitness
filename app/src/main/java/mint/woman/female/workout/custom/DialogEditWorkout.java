@@ -15,16 +15,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.databinding.DialogMyWorkoutRepsLayoutBinding;
 import mint.woman.female.workout.model.PlanObject;
 import mint.woman.female.workout.utils.MyPreference;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class DialogEditWorkout extends DialogFragment {
-    @BindView(R.id.npk_reps_number)
-    NumberPicker numberPicker;
+    DialogMyWorkoutRepsLayoutBinding binding;
+
     OnEditFragmentInteractionListener mListener;
     PlanObject.ActionObject actionObject;
     MyPreference myPreference;
@@ -70,26 +67,27 @@ public class DialogEditWorkout extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_my_workout_reps_layout, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+        binding = DialogMyWorkoutRepsLayoutBinding.inflate(getLayoutInflater());
+
+        return binding.getRoot();
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        numberPicker.setMaxValue(300);
-        numberPicker.setMinValue(10);
-        numberPicker.setValue(actionObject.time);
-        numberPicker.setOnValueChangedListener((numberPicker, i, i1) -> {
+        binding.npkRepsNumber.setMaxValue(300);
+        binding.npkRepsNumber.setMinValue(10);
+        binding.npkRepsNumber.setValue(actionObject.time);
+        binding.npkRepsNumber.setOnValueChangedListener((numberPicker, i, i1) -> {
             actionObject.time = i1;
         });
+        binding.btnCancel.setOnClickListener(this::onClick);
+        binding.btnOk.setOnClickListener(this::onClick);
     }
 
 
     @SuppressLint("SetTextI18n")
-    @OnClick({R.id.btn_cancel, R.id.btn_ok})
     public void onClick(View view) {
         switch (view.getId()) {
 

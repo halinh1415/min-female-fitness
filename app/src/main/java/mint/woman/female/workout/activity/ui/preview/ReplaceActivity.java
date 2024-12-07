@@ -3,6 +3,7 @@ package mint.woman.female.workout.activity.ui.preview;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import mint.woman.female.workout.common.adapter.ExerciseClickListener;
 import mint.woman.female.workout.common.adapter.ReplaceAdapter;
 import mint.woman.female.workout.custom.DialogEditExercise;
 import mint.woman.female.workout.custom.EditExerciseListener;
+import mint.woman.female.workout.databinding.ActivityReplaceBinding;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.Replace;
 import mint.woman.female.workout.utils.FitnessConstUtils;
@@ -27,22 +29,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class ReplaceActivity extends AppCompatActivity implements ExerciseClickListener, EditExerciseListener {
-    @BindView(R.id.img_exercise)
-    ImageView imExercise;
-    @BindView(R.id.tv_exercise_name)
-    TextView mExerciseName;
-    @BindView(R.id.txt_exercise_time)
-    TextView mReps;
-
-    @BindView(R.id.rc_replace)
-    RecyclerView rcReplace;
-    @BindView(R.id.tv_replace_in)
-            TextView tvReplaceIn;
+    ActivityReplaceBinding binding;
+//    @BindView(R.id.img_exercise)
+//    ImageView imExercise;
+//    @BindView(R.id.tv_exercise_name)
+//    TextView mExerciseName;
+//    @BindView(R.id.txt_exercise_time)
+//    TextView mReps;
+//
+//    @BindView(R.id.rc_replace)
+//    RecyclerView rcReplace;
+//    @BindView(R.id.tv_replace_in)
+//            TextView tvReplaceIn;
     ReplaceAdapter replaceAdapter;
     List<Replace> replaceList;
 
@@ -58,8 +57,9 @@ public class ReplaceActivity extends AppCompatActivity implements ExerciseClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_replace);
-        ButterKnife.bind(this);
+        binding = ActivityReplaceBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         initView();
     }
 
@@ -73,23 +73,24 @@ public class ReplaceActivity extends AppCompatActivity implements ExerciseClickL
 
             hashMap = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(0,version);
             mCurrentExerciseObject = hashMap.get(actionId);
-            mExerciseName.setText(mCurrentExerciseObject.getName());
+            binding.tvExerciseName.setText(mCurrentExerciseObject.getName());
             if (mCurrentExerciseObject.getUnit().contains("s")){
-                mReps.setText(FitnessConstUtils.toTime(time));
+                binding.txtExerciseTime.setText(FitnessConstUtils.toTime(time));
             }else{
-                mReps.setText("x"+time);
+                binding.txtExerciseTime.setText("x"+time);
             }
            // byte[] encrypt = VideoEncryptor.decryptGif(getAssets(), "i/g/video_" +actionId,"ASDFGHJKLASDFGHJ");
             byte[] encrypt = Decoder.decryptFromAssets(getAssets(), "i/g/video_" +actionId);
-            Glide.with(this).asGif().load(encrypt).into(imExercise);
+            Glide.with(this).asGif().load(encrypt).into(binding.imgExercise);
             replaceAdapter = new ReplaceAdapter( this,hashMap);
 
             replaceList = getList();
             replaceAdapter.setReplaceList(replaceList);
-            rcReplace.setLayoutManager(new GridLayoutManager(this, 1));
-            rcReplace.setAdapter(replaceAdapter);
+            binding.rcReplace.setLayoutManager(new GridLayoutManager(this, 1));
+            binding.rcReplace.setAdapter(replaceAdapter);
         }
 
+        binding.btnReplace.setOnClickListener(this::onReplace);
 
 
     }
@@ -116,8 +117,8 @@ public class ReplaceActivity extends AppCompatActivity implements ExerciseClickL
     }
 
 
-    @OnClick(R.id.btn_replace)
-    void onReplace(){
+
+    void onReplace(View view){
         int position = replaceAdapter.getSelectPosition();
         if (position!=-1){
             Intent intent = getIntent();

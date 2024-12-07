@@ -10,10 +10,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.utils.MyPreference;
 
@@ -62,16 +58,15 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.DietViewHolder
     }
 
     class DietViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.txt_diet_day)
         TextView mDay;
-        @BindView(R.id.rl_diet)
         View bg;
-        @BindView(R.id.img_diet_done)
         ImageView mIconDone;
 
         DietViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            mDay = itemView.findViewById(R.id.txt_diet_day);
+            bg = itemView.findViewById(R.id.rl_diet);
+            mIconDone = itemView.findViewById(R.id.img_diet_done);
         }
 
     }

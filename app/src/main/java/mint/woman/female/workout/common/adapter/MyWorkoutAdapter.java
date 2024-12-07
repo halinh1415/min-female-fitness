@@ -18,10 +18,6 @@ import mint.woman.female.workout.utils.MyPreference;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class MyWorkoutAdapter extends RecyclerView.Adapter<MyWorkoutAdapter.MyWorkoutViewHolder> {
     Context mContext;
     private List<ProgramObject> mItems;
@@ -76,22 +72,24 @@ public class MyWorkoutAdapter extends RecyclerView.Adapter<MyWorkoutAdapter.MyWo
     }
 
     @SuppressLint("NonConstantResourceId")
-    class MyWorkoutViewHolder extends RecyclerView.ViewHolder {
+    class MyWorkoutViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.tv_exercise_name)
         TextView mWorkoutName;
-        @BindView(R.id.tv_program_progress)
         TextView mProgressCount;
-        @BindView(R.id.progressBar)
         ProgressBar mProgress;
 
         MyWorkoutViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            mWorkoutName = itemView.findViewById(R.id.tv_exercise_name);
+            mProgressCount = itemView.findViewById(R.id.tv_program_progress);
+            mProgress = itemView.findViewById(R.id.progressBar);
+            itemView.findViewById(R.id.img_edit).setOnClickListener(this::onClick);
+            itemView.findViewById(R.id.img_delete).setOnClickListener(this::onClick);
+            itemView.findViewById(R.id.container).setOnClickListener(this::onClick);
         }
 
-        @OnClick({R.id.img_edit, R.id.img_delete, R.id.container})
-        void onClick(View view) {
+
+        public void onClick(View view) {
             if (getAdapterPosition() == RecyclerView.NO_POSITION) {
                 return;
             }

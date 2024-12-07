@@ -43,36 +43,33 @@ import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.workout.DoWorkoutActivity;
 import mint.woman.female.workout.activity.ui.workout.WorkoutViewModel;
+import mint.woman.female.workout.databinding.DialogDemoLayoutBinding;
 import mint.woman.female.workout.fragment.VideoDemoFragment;
 import mint.woman.female.workout.fragment.VideoYtFragment;
 import mint.woman.female.workout.model.Customfields;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.utils.ExerciseHelper;
 import mint.woman.female.workout.utils.FitnessConstUtils;
-import mint.woman.female.workout.utils.MyPreference;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 
-public class DialogDemoWorkout extends DialogFragment implements View.OnClickListener {
+public class DialogDemoWorkout extends DialogFragment{
+    DialogDemoLayoutBinding binding;
     ExerciseObject mExerciseObject;
-    @BindView(R.id.tv_exercise_name)
-    TextView mExerciseName;
-    @BindView(R.id.tv_exercise_description)
-    TextView mExerciseDescription;
-
-    @BindView(R.id.tabLayout)
-    TabLayout mTabLayout;
-    @BindView(R.id.viewPager)
-    CustomViewPager mViewPager;
-    @BindView(R.id.chipGroup)
-    ChipGroup chipGroup;
-    @BindView(R.id.img_muscle)
-    ImageView imgMuscle;
-    @BindView(R.id.cv_muscle)
-    View cvMuscle;
+//    @BindView(R.id.tv_exercise_name)
+//    TextView mExerciseName;
+//    @BindView(R.id.tv_exercise_description)
+//    TextView mExerciseDescription;
+//
+//    @BindView(R.id.tabLayout)
+//    TabLayout mTabLayout;
+//    @BindView(R.id.viewPager)
+//    CustomViewPager mViewPager;
+//    @BindView(R.id.chipGroup)
+//    ChipGroup chipGroup;
+//    @BindView(R.id.img_muscle)
+//    ImageView imgMuscle;
+//    @BindView(R.id.cv_muscle)
+//    View cvMuscle;
     private WorkoutViewModel mWorkoutViewModel;
     ExecutorService executor = Executors.newSingleThreadExecutor();
     Handler handler = new Handler(Looper.getMainLooper());
@@ -118,7 +115,7 @@ public class DialogDemoWorkout extends DialogFragment implements View.OnClickLis
 
 
     private void setupFullHeight(BottomSheetDialog bottomSheetDialog) {
-        FrameLayout bottomSheet = (FrameLayout) bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
+        FrameLayout bottomSheet = (FrameLayout) bottomSheetDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
         BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
         behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
@@ -153,16 +150,17 @@ public class DialogDemoWorkout extends DialogFragment implements View.OnClickLis
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        FrameLayout frameLayout = new FrameLayout(getActivity());
-        populateViewForOrientation(inflater, frameLayout);
-        return frameLayout;
+        binding = DialogDemoLayoutBinding.inflate(getLayoutInflater());
+//        FrameLayout frameLayout = new FrameLayout(getActivity());
+//        populateViewForOrientation(inflater, frameLayout);
+        return binding.getRoot();
     }
 
     private void populateViewForOrientation(LayoutInflater inflater, ViewGroup viewGroup) {
 
         viewGroup.removeAllViewsInLayout();
-        View subview = inflater.inflate(R.layout.dialog_demo_layout, viewGroup);
-        ButterKnife.bind(this, subview);
+        binding = DialogDemoLayoutBinding.inflate(getLayoutInflater());
+        //viewGroup.addView(binding.getRoot());
 
         // Find your buttons in subview, set up onclicks, set up callbacks to your parent fragment or activity here.
     }
@@ -180,40 +178,40 @@ public class DialogDemoWorkout extends DialogFragment implements View.OnClickLis
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         VideoDemoAdapter mAdapter = new VideoDemoAdapter(getChildFragmentManager());
-        mViewPager.setAdapter(mAdapter);
-        mTabLayout.setupWithViewPager(mViewPager);
-        mExerciseName.setText(mExerciseObject.getName());
-        mExerciseDescription.setText(mExerciseObject.getIntroduce());
+        binding.viewPager.setAdapter(mAdapter);
+        binding.tabLayout.setupWithViewPager( binding.viewPager);
+        binding.tvExerciseName.setText(mExerciseObject.getName());
+        binding.tvExerciseDescription.setText(mExerciseObject.getIntroduce());
         try {
             Customfields customfields = mExerciseObject.getCustomfields();
             if (customfields == null) {
-                cvMuscle.setVisibility(View.GONE);
+                binding.cvMuscle.setVisibility(View.GONE);
                 return;
             }
 
             for (String major : customfields.getMuscleMajor()) {
-                Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_item, chipGroup, false);
+                Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_item, binding.chipGroup, false);
 
                 int resId = FitnessConstUtils.getMuscleId(Integer.parseInt(major));
                 if (resId > 0) {
                     chip.setText(getString(resId));
-                    chipGroup.addView(chip);
+                    binding.chipGroup.addView(chip);
                 }
 
             }
             for (String minor : customfields.getMuscleMinor()) {
-                Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_item, chipGroup, false);
+                Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_item, binding.chipGroup, false);
                 chip.setChipIconResource(R.drawable.ic_red_2);
                 int resId = FitnessConstUtils.getMuscleId(Integer.parseInt(minor));
                 if (resId > 0) {
                     chip.setText(getString(resId));
-                    chipGroup.addView(chip);
+                    binding.chipGroup.addView(chip);
                 }
             }
             body = BitmapFactory.decodeResource(getResources(),
                     R.drawable.img_body);
 
-            imgMuscle.setImageBitmap(body);
+            binding.imgMuscle.setImageBitmap(body);
             executor.execute(() -> {
                 body = BitmapFactory.decodeResource(getResources(), R.drawable.img_body);
                 for (String major : customfields.getMuscleMajor()) {
@@ -226,12 +224,16 @@ public class DialogDemoWorkout extends DialogFragment implements View.OnClickLis
                     body = overlay(body, BitmapFactory.decodeResource(getResources(), mus));
                 }
                 handler.post(() -> {
-                    imgMuscle.setImageBitmap(body);
+                    binding.imgMuscle.setImageBitmap(body);
                 });
             });
         }catch (Exception e){
             e.printStackTrace();
         }
+
+        binding.btnClose.setOnClickListener(view1 -> {
+            dismiss();
+        });
     }
 
     public Bitmap overlay(Bitmap bmp1, Bitmap bmp2) {
@@ -276,10 +278,10 @@ public class DialogDemoWorkout extends DialogFragment implements View.OnClickLis
 //        mVideoView.start();
 
         VideoDemoAdapter mAdapter = new VideoDemoAdapter(getChildFragmentManager());
-        mViewPager.setAdapter(mAdapter);
-        mTabLayout.setupWithViewPager(mViewPager);
-        mExerciseName.setText(mExerciseObject.getName());
-        mExerciseDescription.setText(mExerciseObject.getIntroduce());
+        binding.viewPager.setAdapter(mAdapter);
+        binding.tabLayout.setupWithViewPager(binding.viewPager);
+        binding.tvExerciseName.setText(mExerciseObject.getName());
+        binding.tvExerciseDescription.setText(mExerciseObject.getIntroduce());
 
     }
 
@@ -297,15 +299,7 @@ public class DialogDemoWorkout extends DialogFragment implements View.OnClickLis
 
     }
 
-    @OnClick(R.id.btn_close)
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_close:
-                //   mWorkoutViewModel.setPause(false);
-                dismiss();
-                break;
-        }
-    }
+
 
     class VideoDemoAdapter extends FragmentPagerAdapter {
 

@@ -11,11 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import mint.woman.female.workout.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class ChallengeAdapter extends RecyclerView.Adapter<ChallengeAdapter.ChallengeViewHolder> {
     private int[] days = new int[]{R.id.day_1, R.id.day_2, R.id.day_3, R.id.day_4, R.id.day_5, R.id.day_6, R.id.day_7};
     private int[] links = new int[]{R.id.link_1, R.id.link_2, R.id.link_3, R.id.link_4, R.id.link_5, R.id.link_6, R.id.link_7};
@@ -98,13 +93,21 @@ public class ChallengeAdapter extends RecyclerView.Adapter<ChallengeAdapter.Chal
 
         public ChallengeViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+
             wLink = itemView.findViewById(R.id.w_link);
             mIconWeek = itemView.findViewById(R.id.img_icon_week);
             mCup = itemView.findViewById(R.id.img_cup);
             mWeekName = itemView.findViewById(R.id.txt_week_name);
+            itemView.findViewById(R.id.day_1).setOnClickListener(this::onClick);
+            itemView.findViewById(R.id.day_2).setOnClickListener(this::onClick);
+            itemView.findViewById(R.id.day_3).setOnClickListener(this::onClick);
+            itemView.findViewById(R.id.day_4).setOnClickListener(this::onClick);
+            itemView.findViewById(R.id.day_5).setOnClickListener(this::onClick);
+            itemView.findViewById(R.id.day_6).setOnClickListener(this::onClick);
+            itemView.findViewById(R.id.day_7).setOnClickListener(this::onClick);
         }
-        @OnClick({R.id.day_1, R.id.day_2, R.id.day_3, R.id.day_4, R.id.day_5, R.id.day_6, R.id.day_7})
+
+
         void onClick(View view) {
             if (getAdapterPosition() == RecyclerView.NO_POSITION) {
                 return;

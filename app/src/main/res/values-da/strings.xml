@@ -351,4 +351,16 @@
     <string name="data_sync_done">Datasynkronisering gennemført!</string>
     <string name="breast_training">Bryst træning</string>
     <string name="pain_relief">Smertelindring</string>
+<string name="sync_to_google_health">Synkroniser med Health Connect</string>
+    <string name="manage_data_access">Administrer data og adgang</string>
+    <string name="health_connect">Health Connect</string>
+    <string name="tip_connect_google_health">Del dine sundhedsdata med andre apps for at spare tid.</string>
+    <string name="tip_connect_hc_success">Forbundet til Health Connect</string>
+    <string name="tip_disconnect_hc_success">Afbrudt fra Health Connect</string>
+    <string name="update_health_connect_gpt">Opdater Health Connect</string>
+    <string name="connect_to_google_health">Del data med Health Connect og andre apps</string>
+    <string name="connecting_with_health">Forbinder med Health Connect...</string>
+<string name="update_now">Opdater nu</string>
+    <string name="health_connect_update_desc_gpt">Ups! Forbindelsen mislykkedes. Opdater venligst din Health Connect-version for at dele data.</string>
+    <string name="later">Senere</string>
 </resources>

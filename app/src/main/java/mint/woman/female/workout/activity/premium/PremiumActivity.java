@@ -27,52 +27,19 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import kotlin.text.Regex;
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.databinding.ActivityPremiumBinding;
+import mint.woman.female.workout.databinding.ItemGoPro1Binding;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 import mint.woman.female.workout.utils.RemoteConfigKeys;
 
 public class PremiumActivity extends AppCompatActivity {
     PremiumViewModel premiumViewModel;
+    ActivityPremiumBinding  binding;
+    ItemGoPro1Binding goPro1Binding;
 
-    @BindView(R.id.ll_life_time)
-    View llLifetime;
-    @BindView(R.id.ll_year)
-    View llYearly;
-    @BindView(R.id.ll_month)
-    View llMonthly;
-    @BindView(R.id.rc_premium)
-    RecyclerView rcPremium;
-    @BindView(R.id.img_year0)
-    ImageView imgYearChoose;
-    @BindView(R.id.img_month0)
-    ImageView imgMonthChoose;
-    @BindView(R.id.img_life_time0)
-    ImageView imgLifetimeChoose;
-    @BindView(R.id.tv_year_price)
-    TextView tvYearPrice;
-    @BindView(R.id.tv_month_price)
-    TextView tvMonthPrice;
-    @BindView(R.id.tv_lifetime_price)
-    TextView tvLifeTimePrice;
-    @BindView(R.id.tv_off2)
-    TextView tvOffYear;
-    @BindView(R.id.tv_year_to_month)
-    TextView tvYearToMonth;
-    @BindView(R.id.tv_des_1)
-    TextView tvDes1;
-    @BindView(R.id.tv_des_2)
-    TextView tvDes2;
-    @BindView(R.id.tv_year2)
-    TextView tvYear2;
-    @BindView(R.id.cl_flower)
-    View clFlower1;
-    @BindView(R.id.cl_flower_2)
-    View clFlower2;
 
     MyPreference myPreference;
     PremiumAdapter premiumAdapter;
@@ -82,8 +49,9 @@ public class PremiumActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         EdgeToEdgeUtils.applyEdgeToEdge(getWindow(), true);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_premium);
-        ButterKnife.bind(this);
+        binding = ActivityPremiumBinding.inflate(getLayoutInflater());
+        goPro1Binding = binding.itemGo;
+        setContentView(binding.getRoot());
         initView();
 
     }
@@ -92,41 +60,44 @@ public class PremiumActivity extends AppCompatActivity {
         myPreference = new MyPreference(this);
         premiumViewModel = new ViewModelProvider(this).get(PremiumViewModel.class);
         premiumAdapter = new PremiumAdapter();
+        binding.ivClose.setOnClickListener(view -> {
+            finish();
+        });
 
         premiumViewModel.selected.observe(this, selected -> {
-            changeTextColorOfTextViews((ViewGroup) llLifetime, selected == 0);
-            changeTextColorOfTextViews((ViewGroup) llYearly, selected == 1);
-            changeTextColorOfTextViews((ViewGroup) llMonthly, selected == 2);
+            changeTextColorOfTextViews((ViewGroup) goPro1Binding.llLifeTime, selected == 0);
+            changeTextColorOfTextViews((ViewGroup) goPro1Binding.llYear, selected == 1);
+            changeTextColorOfTextViews((ViewGroup) goPro1Binding.llMonth, selected == 2);
             if (selected == 0) {
-                tvDes1.setVisibility(View.INVISIBLE);
-                tvDes2.setVisibility(View.INVISIBLE);
-                clFlower2.setBackgroundResource(R.drawable.ic_discount_2);
-                clFlower1.setBackgroundResource(R.drawable.ic_discount);
+                goPro1Binding.tvDes1.setVisibility(View.INVISIBLE);
+                goPro1Binding.tvDes2.setVisibility(View.INVISIBLE);
+                goPro1Binding.clFlower2.setBackgroundResource(R.drawable.ic_discount_2);
+                goPro1Binding.clFlower.setBackgroundResource(R.drawable.ic_discount);
             } else if (selected == 1) {
                 if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.ENABLE_TRIAL)){
-                    tvDes1.setVisibility(View.VISIBLE);
+                    goPro1Binding.tvDes1.setVisibility(View.VISIBLE);
                 }else{
-                    tvDes1.setVisibility(View.INVISIBLE);
+                    goPro1Binding.tvDes1.setVisibility(View.INVISIBLE);
                 }
 
-                tvDes2.setVisibility(View.VISIBLE);
-                clFlower2.setBackgroundResource(R.drawable.ic_discount);
-                clFlower1.setBackgroundResource(R.drawable.ic_discount_2);
+                goPro1Binding.tvDes2.setVisibility(View.VISIBLE);
+                goPro1Binding.clFlower2.setBackgroundResource(R.drawable.ic_discount);
+                goPro1Binding.clFlower.setBackgroundResource(R.drawable.ic_discount_2);
             } else {
-                clFlower2.setBackgroundResource(R.drawable.ic_discount);
-                clFlower1.setBackgroundResource(R.drawable.ic_discount);
-                tvDes1.setVisibility(View.INVISIBLE);
-                tvDes2.setVisibility(View.VISIBLE);
+                goPro1Binding.clFlower2.setBackgroundResource(R.drawable.ic_discount);
+                goPro1Binding.clFlower.setBackgroundResource(R.drawable.ic_discount);
+                goPro1Binding.tvDes1.setVisibility(View.INVISIBLE);
+                goPro1Binding.tvDes2.setVisibility(View.VISIBLE);
             }
         });
         if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.ENABLE_TRIAL)){
-            tvYear2.setText(getString(R.string.txt_day_free_trial));
+            goPro1Binding.tvYear1.setText(getString(R.string.txt_day_free_trial));
         }else {
-            tvYear2.setText(getString(R.string.txt_most_popular));
+            goPro1Binding.tvYear2.setText(getString(R.string.txt_most_popular));
         }
 
-        rcPremium.setAdapter(premiumAdapter);
-        rcPremium.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        binding.rcPremium.setAdapter(premiumAdapter);
+        binding.rcPremium.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         premiumViewModel.productSkuDetailsMap.observe(this, productDetailsMap -> {
             ProductDetails productDetailsMonthly = productDetailsMap.get(InAppKey.PREMIUM_MONTHLY);
             Log.d("HAHA", "skuDetailsYearly check");
@@ -136,7 +107,7 @@ public class PremiumActivity extends AppCompatActivity {
             if (productDetailsMonthly != null) {
                 String monthPrice = productDetailsMonthly.getSubscriptionOfferDetails().get(0).getPricingPhases().getPricingPhaseList().get(0).getFormattedPrice();
                 mPrice = productDetailsMonthly.getSubscriptionOfferDetails().get(0).getPricingPhases().getPricingPhaseList().get(0).getPriceAmountMicros();
-                tvMonthPrice.setText(String.format(getString(R.string.abbr_x_mth_gpt), monthPrice));
+                goPro1Binding.tvMonthPrice.setText(String.format(getString(R.string.abbr_x_mth_gpt), monthPrice));
                 premiumAdapter.setMonthPrice(monthPrice);
             } else {
                 Log.d("HAHA", "skuDetailsMonthly!= null");
@@ -151,10 +122,10 @@ public class PremiumActivity extends AppCompatActivity {
                 }
                 String saleOff = "" + discount + "%";
                 String yPriceString = getAnnualPrice(skuDetailsYearly).getFormattedPrice();
-                tvOffYear.setText(String.format(getString(R.string.premium_price_save_2), saleOff));
-                tvDes1.setText(String.format(getString(R.string.free_7_days_trial_then_xx_year), yPriceString));
-                tvYearToMonth.setText(String.format(getString(R.string.iap_only_x_per_mth_gpt), getAnnualMonthlyPrice(skuDetailsYearly)));
-                tvYearPrice.setText(String.format(getString(R.string.txt_x_year_gpt), yPriceString));
+                goPro1Binding.tvOffYear.setText(String.format(getString(R.string.premium_price_save_2), saleOff));
+                goPro1Binding.tvDes1.setText(String.format(getString(R.string.free_7_days_trial_then_xx_year), yPriceString));
+                goPro1Binding.tvYearToMonth.setText(String.format(getString(R.string.iap_only_x_per_mth_gpt), getAnnualMonthlyPrice(skuDetailsYearly)));
+                goPro1Binding.tvYearPrice.setText(String.format(getString(R.string.txt_x_year_gpt), yPriceString));
                 premiumAdapter.setYearPrice(yPriceString);
             } else {
                 Log.d("HAHA", "skuDetailsYearly!= null");
@@ -170,9 +141,21 @@ public class PremiumActivity extends AppCompatActivity {
         premiumViewModel.productDetailInApps.observe(this, inAppProducts -> {
             ProductDetails productLifetime = inAppProducts.get(InAppKey.PREMIUM_LIFETIME);
             if (productLifetime != null) {
-                tvLifeTimePrice.setText(productLifetime.getOneTimePurchaseOfferDetails().getFormattedPrice());
+                goPro1Binding.tvLifetimePrice.setText(productLifetime.getOneTimePurchaseOfferDetails().getFormattedPrice());
             }
         });
+        goPro1Binding.btnContinue.setOnClickListener(v->{
+            if (premiumViewModel.getSelected().getValue() == 0) {
+                premiumViewModel.launchBillingFlowInApp(this, InAppKey.PREMIUM_LIFETIME);
+            } else if (premiumViewModel.getSelected().getValue() == 2) {
+                premiumViewModel.launchBillingFlow(this, InAppKey.PREMIUM_MONTHLY);
+            } else {
+                premiumViewModel.launchBillingFlowYearly(this, InAppKey.PREMIUM_YEARLY);
+            }
+        });
+        goPro1Binding.llMonth.setOnClickListener(this::chosePlan);
+        goPro1Binding.llYear.setOnClickListener(this::chosePlan);
+        goPro1Binding.llLifeTime.setOnClickListener(this::chosePlan);
 
     }
 
@@ -229,7 +212,6 @@ public class PremiumActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.ll_month, R.id.ll_year, R.id.ll_life_time})
     void chosePlan(View view) {
         switch (view.getId()) {
             case R.id.ll_month:
@@ -245,18 +227,9 @@ public class PremiumActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick(R.id.btn_continue)
-    void chargePremium() {
-        if (premiumViewModel.getSelected().getValue() == 0) {
-            premiumViewModel.launchBillingFlowInApp(this, InAppKey.PREMIUM_LIFETIME);
-        } else if (premiumViewModel.getSelected().getValue() == 2) {
-            premiumViewModel.launchBillingFlow(this, InAppKey.PREMIUM_MONTHLY);
-        } else {
-            premiumViewModel.launchBillingFlowYearly(this, InAppKey.PREMIUM_YEARLY);
-        }
-    }
 
-    @OnClick(R.id.iv_close)
+
+
     void close() {
         finish();
     }

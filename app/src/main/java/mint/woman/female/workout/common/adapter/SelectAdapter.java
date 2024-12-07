@@ -19,10 +19,6 @@ import com.minfitness.decode.Decoder;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class SelectAdapter extends RecyclerView.Adapter<SelectAdapter.SelectViewHolder> {
 
 
@@ -124,24 +120,24 @@ public class SelectAdapter extends RecyclerView.Adapter<SelectAdapter.SelectView
     }
 
     class SelectViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.img_exercise)
         ImageView mDemoExercise;
-        @BindView(R.id.tv_exercise_name)
         TextView mExerciseName;
-        @BindView(R.id.tv_exercise_type)
         TextView mType;
-        @BindView(R.id.cb_exercise)
         CheckBox mCbExercise;
-        @BindView(R.id.ln_premium)
         View lnPremium;
-        @BindView(R.id.container)
         View mContainer;
-        @BindView(R.id.img_detail)
         View imgDetail;
 
         SelectViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+
+            mDemoExercise = itemView.findViewById(R.id.img_exercise);
+            mExerciseName = itemView.findViewById(R.id.tv_exercise_name);
+            mType = itemView.findViewById(R.id.tv_exercise_type);
+            mCbExercise = itemView.findViewById(R.id.cb_exercise);
+            lnPremium = itemView.findViewById(R.id.ln_premium);
+            mContainer = itemView.findViewById(R.id.container);
+            imgDetail = itemView.findViewById(R.id.img_detail);
             if (ptype == 0) {
                 mType.setVisibility(View.VISIBLE);
             } else {

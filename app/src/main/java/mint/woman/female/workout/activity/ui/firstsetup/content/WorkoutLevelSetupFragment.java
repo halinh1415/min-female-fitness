@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 
 import mint.woman.female.workout.R;
 
-import butterknife.ButterKnife;
 
 public class WorkoutLevelSetupFragment extends Fragment {
 
@@ -18,7 +17,7 @@ public class WorkoutLevelSetupFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_workout_level_setup, container, false);
-        ButterKnife.bind(this, view);
+
         return view;
     }
 }

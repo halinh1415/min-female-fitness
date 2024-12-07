@@ -5,31 +5,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.custom.GridSpacingItemDecoration;
+import mint.woman.female.workout.databinding.FragmentDietBinding;
 import mint.woman.female.workout.utils.MyPreference;
 
 public class DietFragment extends Fragment implements DietAdapter.IDietClick {
-
-    @BindView(R.id.rc_diet)
-    RecyclerView mMealRc;
-    @BindView(R.id.progressBar)
-    ProgressBar mProgressDiet;
-    @BindView(R.id.tv_program_progress)
-    TextView mProgressTxt;
+    FragmentDietBinding binding;
     MyPreference myPreference;
     int progress;
     DietAdapter mDietAdapter;
@@ -39,9 +26,8 @@ public class DietFragment extends Fragment implements DietAdapter.IDietClick {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_diet, container, false);
-        ButterKnife.bind(this,view);
-        return view;
+        binding = FragmentDietBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
     @Override
@@ -62,17 +48,21 @@ public class DietFragment extends Fragment implements DietAdapter.IDietClick {
         progress = myPreference.getProgressDiet();
 
         mDietAdapter = new DietAdapter(this);
-        mMealRc.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        mMealRc.setAdapter(mDietAdapter);
-        mMealRc.setNestedScrollingEnabled(false);
-        mMealRc.addItemDecoration(new GridSpacingItemDecoration(3, 10, false));
-        mProgressDiet.setMax(30);
-        mProgressDiet.setProgress(progress);
-        mProgressTxt.setText("" + (30 - progress) + " " + getString(R.string.txt_day_left));
+        binding.rcDiet.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        binding.rcDiet.setAdapter(mDietAdapter);
+        binding.rcDiet.setNestedScrollingEnabled(false);
+        binding.rcDiet.addItemDecoration(new GridSpacingItemDecoration(3, 10, false));
+        binding.progressBar.setMax(30);
+        binding.progressBar.setProgress(progress);
+        binding.tvProgramProgress.setText("" + (30 - progress) + " " + getString(R.string.txt_day_left));
         if (30 == progress) {
             showFullDiet();
         }
 
+        binding.btnShoppingList.setOnClickListener(view -> {
+            Intent intent = new Intent(getContext(), ShoppingListActivity.class);
+            startActivity(intent);
+        });
     }
     private void showFullDiet() {
         AlertDialog.Builder doneAlert = new AlertDialog.Builder(getContext());
@@ -94,11 +84,7 @@ public class DietFragment extends Fragment implements DietAdapter.IDietClick {
         intent.putExtras(bundle);
         startActivity(intent);
     }
-    @OnClick(R.id.btn_shopping_list)
-    void onClick() {
-        Intent intent = new Intent(getContext(), ShoppingListActivity.class);
-        startActivity(intent);
-    }
+
 
 
     @Override

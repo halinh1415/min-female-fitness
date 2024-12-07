@@ -253,7 +253,7 @@
     <string name="ass">Bunda</string>
     <string name="thigh">Coxa</string>
     <string name="focus_part">Qual parte do corpo é o seu foco?</string>
-    <string name="full_body">Todo o corpo</string>
+    <string name="full_body">CORPO TODO</string>
     <string name="txt_start_day">Comece do dia</string>
     <string name="txt_choose_day">Escolha um dia:</string>
     <string name="txt_set_progress">Definir progresso</string>
@@ -272,7 +272,7 @@
     <string name="txt_count_down_info_3">Acompanhe a contagem para controlar o ritmo e completar o treino dentro do prazo</string>
     <string name="sound">Som</string>
 <string name="no_counting">Não conta</string>
-    <string name="minutes">minutos</string>
+    <string name="minutes">Minutos</string>
     <string name="save">Salvar</string>
     <string name="cancel_via_google_play">Cancele quando quiser via Google Play.</string>
     <string name="free_7_days_trial_then_xx_year">Grátis teste de 7 dias, depois %s/ano</string>
@@ -318,7 +318,7 @@
     <string name="explore_tag_hot">Popular</string>
     <string name="downloading">Baixando...</string>
     <string name="loading">Carregando…</string>
-    <string name="abs">ABDÔMEN</string>
+    <string name="abs">Abdômen</string>
     <string name="traps">Trapézio</string>
     <string name="triceps">Tríceps</string>
     <string name="biceps">Bíceps</string>
@@ -351,4 +351,16 @@
     <string name="data_sync_done">Sincronização de dados concluída!</string>
 <string name="breast_training">Treino para seios</string>
     <string name="pain_relief">Alívio de dor</string>
+    <string name="sync_to_google_health">Sincronizar com o Health Connect</string>
+    <string name="manage_data_access">Gerenciar dados e acesso</string>
+    <string name="health_connect">Conexão Saúde</string>
+    <string name="tip_connect_google_health">Compartilhe seus dados de saúde com outros aplicativos para economizar tempo.</string>
+    <string name="tip_connect_hc_success">Conectado ao Health Connect com sucesso</string>
+    <string name="tip_disconnect_hc_success">Desconectado do Health Connect</string>
+    <string name="update_health_connect_gpt">Atualizar o Health Connect</string>
+    <string name="connect_to_google_health">Compartilhe dados com o Health Connect e outros aplicativos</string>
+    <string name="connecting_with_health">Conectando ao Health Connect...</string>
+    <string name="update_now">Atualizar agora</string>
+    <string name="health_connect_update_desc_gpt">Opa! Conexão falhou. Por favor, atualize a versão do Health Connect para compartilhar dados.</string>
+    <string name="later">Mais tarde</string>
     </resources>

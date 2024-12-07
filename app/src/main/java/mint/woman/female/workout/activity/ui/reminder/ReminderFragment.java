@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.databinding.FragmentReminderBinding;
 import mint.woman.female.workout.model.ReminderItem;
 import mint.woman.female.workout.receiver.AlarmReceiver;
 import mint.woman.female.workout.utils.Database;
@@ -32,17 +33,13 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.BindArray;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 
 public class ReminderFragment extends Fragment {
+    FragmentReminderBinding binding;
 
     int[] day_repeats = new int[]{R.id.cb1, R.id.cb2, R.id.cb3, R.id.cb4, R.id.cb5, R.id.cb6, R.id.cb7};
 
-    @BindArray(R.array.week_simple)
+
     String[] weekSimple;
 
     SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
@@ -50,8 +47,8 @@ public class ReminderFragment extends Fragment {
     int repeat = 127;
     Database mDatabase;
 
-    @BindView(R.id.rc_reminder)
-    RecyclerView mReminderRc;
+//    @BindView(R.id.rc_reminder)
+//    RecyclerView mReminderRc;
 
     ReminderAdapter mAdapter;
     MyPreference myPreference;
@@ -63,6 +60,7 @@ public class ReminderFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         getActivity().setTitle(R.string.txt_reminder);
 
         mDatabase = Database.newInstance(getContext(), "workout.db");
@@ -73,25 +71,26 @@ public class ReminderFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_reminder, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+        binding = FragmentReminderBinding.inflate(getLayoutInflater());
+
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mReminderRc.setLayoutManager(new GridLayoutManager(mContext, 1));
+        weekSimple = getResources().getStringArray(R.array.week_simple);
+        binding.rcReminder.setLayoutManager(new GridLayoutManager(mContext, 1));
         mAdapter = new ReminderAdapter();
-        mReminderRc.setAdapter(mAdapter);
+        binding.rcReminder.setAdapter(mAdapter);
 
 
         List<ReminderItem> list = mDatabase.getReminder();
         mAdapter.setData(list);
+        binding.fbAdd.setOnClickListener(this::addReminder);
     }
 
-    @OnClick(R.id.fb_add)
-    public void addReminder() {
+    public void addReminder(View view) {
 
         TimePickerDialog timePicker = new TimePickerDialog(getActivity(), (tp, i, i1) -> {
             Calendar calendar = Calendar.getInstance();

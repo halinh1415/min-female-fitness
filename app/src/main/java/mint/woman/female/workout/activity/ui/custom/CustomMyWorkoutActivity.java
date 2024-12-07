@@ -31,6 +31,7 @@ import mint.woman.female.workout.activity.ui.workout.SelectExerciseActivity;
 import mint.woman.female.workout.common.adapter.CustomWorkoutAdapter;
 import mint.woman.female.workout.common.data.CustomWorkoutDataProvider;
 import mint.woman.female.workout.custom.DialogEditWorkout;
+import mint.woman.female.workout.databinding.ActivityCustomMyWorkoutBinding;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.PlanObject;
@@ -43,14 +44,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class CustomMyWorkoutActivity extends AppCompatActivity implements DialogEditWorkout.OnEditFragmentInteractionListener {
-    @BindView(R.id.rc_custom_workout)
-    RecyclerView mRecyclerView;
-    @BindView(R.id.adView)
-    AdView mAdBanner;
+
+    ActivityCustomMyWorkoutBinding binding;
 
     CustomWorkoutDataProvider mProvider;
     CustomWorkoutAdapter customWorkoutAdapter;
@@ -68,13 +65,14 @@ public class CustomMyWorkoutActivity extends AppCompatActivity implements Dialog
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_custom_my_workout);
-        ButterKnife.bind(this);
+        binding = ActivityCustomMyWorkoutBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         initView();
     }
 
     private void initView() {
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        binding.rcCustomWorkout.setLayoutManager(new LinearLayoutManager(this));
         mBundle = getIntent().getExtras();
         mDatabase = FitnessApplication.getApplication().mDatabase;
         mCurrentDay = 0;
@@ -124,24 +122,24 @@ public class CustomMyWorkoutActivity extends AppCompatActivity implements Dialog
             });
             RecyclerView.Adapter mWrappedAdapter = mRecyclerViewExpandableItemManager.createWrappedAdapter(customWorkoutAdapter);
             mWrappedAdapter = mRecyclerViewDragDropManager.createWrappedAdapter(mWrappedAdapter);
-            mRecyclerView.setAdapter(mWrappedAdapter);
-            mRecyclerView.setItemAnimator(animator);
-            mRecyclerViewDragDropManager.attachRecyclerView(mRecyclerView);
-            mRecyclerViewExpandableItemManager.attachRecyclerView(mRecyclerView);
+            binding.rcCustomWorkout.setAdapter(mWrappedAdapter);
+            binding.rcCustomWorkout.setItemAnimator(animator);
+            mRecyclerViewDragDropManager.attachRecyclerView(binding.rcCustomWorkout);
+            mRecyclerViewExpandableItemManager.attachRecyclerView(binding.rcCustomWorkout);
         }
         requestNewAdBanner();
     }
 
     void requestNewAdBanner() {
-        mAdBanner.setVisibility(View.GONE);
+        binding.adView.setVisibility(View.GONE);
         if (MyPreference.newInstance(this).isShowAds() && MyPreference.newInstance(this).getOK()) {
             AdRequest adRequest = new AdRequest.Builder().build();
-            mAdBanner.loadAd(adRequest);
-            mAdBanner.setAdListener(new AdListener() {
+            binding.adView.loadAd(adRequest);
+            binding.adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdLoaded() {
                     super.onAdLoaded();
-                    mAdBanner.setVisibility(View.VISIBLE);
+                    binding.adView.setVisibility(View.VISIBLE);
                 }
             });
         }

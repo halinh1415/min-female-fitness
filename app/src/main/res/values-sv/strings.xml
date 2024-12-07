@@ -111,7 +111,7 @@
     <string name="txt_go_premium">Gå premium</string>
     <string name="txt_watch_video">Kolla på video</string>
     <string name="txt_this_week">Denna vecka</string>
-    <string name="rp_syn_with_google_fit">Synkronisera till google fit</string>
+    <string name="rp_syn_with_google_fit">Synka med Google Fit</string>
     <string name="txt_not_remind">Inte påminna igen</string>
     <string name="close">Stänga</string>
     <string name="recipes_breakfast">Frukost</string>
@@ -134,7 +134,7 @@
     <string name="weeks">Veckor</string>
     <string name="txt_daily">Dagligen</string>
     <string name="tab_discover">Upptäck</string>=
-    <string name="explore_more">Se mer</string>
+    <string name="explore_more">Mer</string>
     <string name="txt_for_home_workout">För hemmaträning</string>
     <string name="txt_saved_money">Sparad</string>
     <string name="txt_all_exercise">Alla övningar</string>
@@ -315,9 +315,9 @@
     <string name="reach_goal_fast">Snabb</string>
     <string name="seven_min_get_fit_des">På bara 7 minuter om dagen kan snabba och effektiva träningspass förbättra din kondition och hälsa. Håll dig i form och tappa de extra kilona!</string>
     <string name="upper_body_stretching_short_des">Sträck ut armarna, axlarna, bröstet och ryggen. Lossa musklerna och öka flexibiliteten.</string>
-    <string name="explore_tag_hot">Varm</string>
+    <string name="explore_tag_hot">Hett</string>
     <string name="downloading">Laddar ner</string>
-    <string name="loading">Belastning...</string>
+    <string name="loading">Laddar…</string>
     <string name="abs">Abs</string>
     <string name="traps">Fällor</string>
     <string name="triceps">Triceps</string>
@@ -335,20 +335,32 @@
     <string name="adductors">adduktorer</string>
     <string name="neck">Hals</string>
     <string name="txt_most_popular">Mest populära</string>
-    <string name="oops">hoppsan!</string>
+    <string name="oops">Oj!</string>
     <string name="oops_network_error">hoppsan! Nätverksfel</string>
-    <string name="oops_sync_failed">hoppsan! Synkronisering misslyckades</string>
+    <string name="oops_sync_failed">Oj! Det gick inte att synkronisera</string>
     <string name="oops_unlock_failed">hoppsan! Upplåsning misslyckades</string>
     <string name="oops_unlock_failed_des">Se videon till slutet för att låsa upp.</string>
     <string name="load_video_fail">Ladda video misslyckades, kontrollera ditt internet och försök igen!</string>
-    <string name="last_sync">Senaste synkronisering: %s</string>
+    <string name="last_sync">Senaste synkroniseringen: %s</string>
     <string name="last_time">Förra gången:</string>
     <string name="log_out">Logga ut</string>
     <string name="login_out_sure">Är du säker på att du vill logga ut?</string>
-    <string name="set_backup">Säkerhetskopiera och återställa</string>
+    <string name="set_backup">Säkerhetskopiera &amp; återställ</string>
     <string name="sign_in_tips">Logga in och synkronisera dina data</string>
     <string name="continue_with_google">Fortsätt med Google</string>
     <string name="data_sync_done">Datasynkronisering slutförd!</string>
     <string name="breast_training">Bröstträning</string>
     <string name="pain_relief">Smärtlindring</string>
+<string name="sync_to_google_health">Synkronisera till Health Connect</string>
+    <string name="manage_data_access">Hantera data och åtkomst</string>
+    <string name="health_connect">Health Connect</string>
+    <string name="tip_connect_google_health">Dela dina hälsodata med andra appar för att spara tid.</string>
+    <string name="tip_connect_hc_success">Ansluten till Health Connect framgångsrikt</string>
+    <string name="tip_disconnect_hc_success">Frånkopplad från Health Connect</string>
+    <string name="update_health_connect_gpt">Uppdatera Health Connect</string>
+    <string name="connect_to_google_health">Dela data med Health Connect och andra appar</string>
+    <string name="connecting_with_health">Ansluter med Health Connect...</string>
+<string name="update_now">Uppdatera nu</string>
+    <string name="health_connect_update_desc_gpt">hoppsan! Anslutningen misslyckades. Uppdatera din Health Connect-version för att dela data.</string>
+    <string name="later">Senare</string>
 </resources>

@@ -350,5 +350,17 @@
     <string name="continue_with_google">Tiếp tục với Google</string>
     <string name="data_sync_done">Đồng bộ hóa dữ liệu đã hoàn tất!</string>
     <string name="breast_training">Tập luyện ngực</string>
-<string name="pain_relief">Giảm đau</string>
+    <string name="pain_relief">Giảm đau</string>
+    <string name="sync_to_google_health">Đồng bộ với Health Connect</string>
+    <string name="manage_data_access">Quản lý dữ liệu và truy cập</string>
+    <string name="health_connect">Kết nối Health Connect</string>
+    <string name="tip_connect_google_health">Chia sẻ dữ liệu sức khỏe của bạn với các ứng dụng khác để tiết kiệm thời gian của bạn.</string>
+    <string name="tip_connect_hc_success">Đã kết nối thành công với Health Connect</string>
+    <string name="tip_disconnect_hc_success">Đã ngắt kết nối khỏi Health Connect</string>
+    <string name="update_health_connect_gpt">Cập Nhật Health Connect</string>
+    <string name="connect_to_google_health">Chia sẻ dữ liệu với Health Connect &amp; các ứng dụng khác</string>
+    <string name="connecting_with_health">Đang kết nối với Health Connect...</string>
+<string name="update_now">Cập nhật ngay</string>
+    <string name="health_connect_update_desc_gpt">Rất tiếc! Kết nối thất bại. Vui lòng cập nhật phiên bản Health Connect của bạn để chia sẻ dữ liệu.</string>
+    <string name="later">Sau</string>
 </resources>

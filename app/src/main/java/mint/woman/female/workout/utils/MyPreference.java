@@ -377,12 +377,12 @@ public class MyPreference {
     }
 
     public void setSyncGoogleFit(boolean value) {
-        mEditor.putBoolean("SYNC_GOOGLE_FIT", value);
+        mEditor.putBoolean("SYNC_FIT", value);
         mEditor.commit();
     }
 
     public boolean isSyncGoogleFit() {
-        return mSharedPreferences.getBoolean("SYNC_GOOGLE_FIT", false);
+        return mSharedPreferences.getBoolean("SYNC_FIT", false);
     }
 
     public void setRemind(boolean value) {

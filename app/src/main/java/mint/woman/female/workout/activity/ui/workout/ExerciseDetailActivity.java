@@ -34,6 +34,7 @@ import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
 import mint.woman.female.workout.common.adapter.VideoDemoAdapter;
 import mint.woman.female.workout.custom.CustomViewPager;
+import mint.woman.female.workout.databinding.ActivityExerciseDetailBinding;
 import mint.woman.female.workout.model.Customfields;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.utils.ExerciseHelper;
@@ -45,27 +46,10 @@ import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class ExerciseDetailActivity extends AppCompatActivity {
     // @BindView(R.id.videoView)
     // CustomVideoView mVideoView;
-    @BindView(R.id.tv_exercise_name)
-    TextView mExerciseName;
-    @BindView(R.id.tv_exercise_description)
-    TextView mExerciseDescription;
-
-    @BindView(R.id.tabLayout)
-    TabLayout mTabLayout;
-    @BindView(R.id.viewPager)
-    CustomViewPager mViewPager;
-    @BindView(R.id.fl_adplaceholder)
-    FrameLayout frameNativeAds;
-    @BindView(R.id.img_muscle)
-    ImageView imMuscle;
-    @BindView(R.id.cv_muscle)
-    View cvMuscle;
+  ActivityExerciseDetailBinding binding;
     ExerciseObject mExerciseObject;
     VideoDemoAdapter mAdapter;
     MyPreference myPreference;
@@ -78,10 +62,10 @@ public class ExerciseDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exercise_detail);
-        ButterKnife.bind(this);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        binding = ActivityExerciseDetailBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initView();
     }
@@ -102,18 +86,18 @@ public class ExerciseDetailActivity extends AppCompatActivity {
                 FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
                 crashlytics.setCustomKey("ACTION_ID", actionId);
 
-                mExerciseName.setText(mExerciseObject.getName());
+                binding.contentExercise.tvExerciseName.setText(mExerciseObject.getName());
 
                 //mBenefits.setText(mExerciseObject.getBenefits());
                 setTitle(mExerciseObject.getName());
 
-                mExerciseDescription.setText(mExerciseObject.getIntroduce());
+                binding.contentExercise.tvExerciseDescription.setText(mExerciseObject.getIntroduce());
 
                 //   mEquipment.setText(mExerciseObject.getEquipment());
                 mAdapter = new VideoDemoAdapter(getSupportFragmentManager(), mExerciseObject.getImagePath(), ExerciseHelper.getInstance().getUrl(mExerciseObject.getId()));
-                mViewPager.setAdapter(mAdapter);
-                mTabLayout.setupWithViewPager(mViewPager);
-                mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                binding.viewPager.setAdapter(mAdapter);
+                binding.tabLayout.setupWithViewPager(  binding.viewPager);
+                binding.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                     @Override
                     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -122,8 +106,8 @@ public class ExerciseDetailActivity extends AppCompatActivity {
                     @Override
                     public void onPageSelected(int position) {
 
-                        if (position == 1) frameNativeAds.setVisibility(View.GONE);
-                        else frameNativeAds.setVisibility(View.VISIBLE);
+                        if (position == 1) binding.contentExercise.flAdplaceholder.setVisibility(View.GONE);
+                        else  binding.contentExercise.flAdplaceholder.setVisibility(View.VISIBLE);
                     }
 
                     @Override
@@ -133,7 +117,7 @@ public class ExerciseDetailActivity extends AppCompatActivity {
                 });
                 Customfields customfields = mExerciseObject.getCustomfields();
                 if (customfields == null) {
-                    cvMuscle.setVisibility(View.GONE);
+                    binding.contentExercise.cvMuscle.setVisibility(View.GONE);
                     return;
                 }
                 ChipGroup chipGroup = findViewById(R.id.chipGroup);
@@ -163,7 +147,7 @@ public class ExerciseDetailActivity extends AppCompatActivity {
                 body = BitmapFactory.decodeResource(getResources(),
                         R.drawable.img_body);
 
-                imMuscle.setImageBitmap(body);
+                binding.contentExercise.imgMuscle.setImageBitmap(body);
                 executor.execute(() -> {
                     body = BitmapFactory.decodeResource(getResources(), R.drawable.img_body);
                     if (customfields.getMuscleMajor() != null) {
@@ -180,7 +164,7 @@ public class ExerciseDetailActivity extends AppCompatActivity {
                         }
                     }
                     handler.post(() -> {
-                        imMuscle.setImageBitmap(body);
+                        binding.contentExercise.imgMuscle.setImageBitmap(body);
                     });
                 });
             }

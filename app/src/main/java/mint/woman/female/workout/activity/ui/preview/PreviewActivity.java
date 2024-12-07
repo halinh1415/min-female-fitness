@@ -73,10 +73,10 @@ import mint.woman.female.workout.custom.DialogEditExercise;
 import mint.woman.female.workout.custom.DialogEditWorkout;
 import mint.woman.female.workout.custom.DialogUnlockTraining;
 import mint.woman.female.workout.custom.EditExerciseListener;
-import mint.woman.female.workout.custom.ExpandableTextView;
-import mint.woman.female.workout.custom.LoadingDialogFragment;
 import mint.woman.female.workout.custom.OnStartDragListener;
 import mint.woman.female.workout.custom.SimpleItemTouchHelperCallback;
+import mint.woman.female.workout.databinding.ActivityPreviewBinding;
+import mint.woman.female.workout.databinding.ContentPreviewBinding;
 import mint.woman.female.workout.model.PlanObject;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.retrofit.ApiUtils;
@@ -91,43 +91,15 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 @SuppressLint({"NonConstantResourceId", "DefaultLocale", "SetTextI18n"})
 public class PreviewActivity extends AppCompatActivity implements PreviewAdapter.EventDemo, OnStartDragListener, DialogEditWorkout.OnEditFragmentInteractionListener, EditExerciseListener, DialogUnlockTraining.OnUnlockTrainingListener {
 
     private static final String TAG = "PreviewActivity";
-    @BindView(R.id.rc_demo)
-    RecyclerView mPreviewRc;
-    @BindView(R.id.img_banner)
-    ImageView mBanner;
-    @BindView(R.id.image_workout)
-    ImageView mImageWorkout;
-    @BindView(R.id.app_bar)
-    AppBarLayout mAppBarLayout;
-    @BindView(R.id.adView)
-    AdView mAdBanner;
+    ActivityPreviewBinding binding;
+    ContentPreviewBinding contentPreviewBinding;
 
-    @BindView(R.id.tv_workout_intro)
-    TextView tvWorkoutIntro;
 
-    @BindView(R.id.tv_level)
-    TextView mPlanLevel;
-    @BindView(R.id.tv_workout_description)
-    TextView mWorkoutDescription;
-
-    @BindView(R.id.progress_ready_bottom)
-    ProgressBar mProgressReady;
-    @BindView(R.id.btn_goto)
-    View mGoBtn;
-    @BindView(R.id.txt_start)
-    TextView mProgressTxt;
-    @BindView(R.id.txt_reset)
-    TextView mResetBtn;
-    @BindView(R.id.txt_program_description)
-    ExpandableTextView mProgramDescription;
     PreviewAdapter mPreviewAdapter;
     DemoDataProvider mDemoDataProvider;
     MyPreference myPreference;
@@ -166,10 +138,12 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_preview);
-        ButterKnife.bind(this);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        binding = ActivityPreviewBinding.inflate(getLayoutInflater());
+        contentPreviewBinding = binding.contentPreview;
+        setContentView(binding.getRoot());
+
+
+        setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initView();
         requestNewAdBanner();
@@ -188,6 +162,9 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         mBundle = getIntent().getExtras();
         handler = new Handler();
         mPreviewViewModel = new ViewModelProvider(this).get(PreviewViewModel.class);
+        binding.fabAudio.setOnClickListener(this::goAudioOptions);
+        binding.btnGoto.setOnClickListener(this::gotoWorkout);
+        binding.txtReset.setOnClickListener(this::reset);
         if (mBundle != null) {
             int id = mBundle.getInt("PROGRAM_ID", 0);
             mProgramObject = FitnessApplication.getApplication().getProgram(id);
@@ -198,22 +175,22 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
             mIndexDay = mBundle.getInt("DAY_NUMBER");
             FitnessApplication.getApplication().setDiscover(mProgramObject.getDiscover());
             FitnessApplication.getApplication().setVersion(mProgramObject.getVersion());
-            mProgramDescription.setVisibility(View.GONE);
+            binding.tvWorkoutDescription.setVisibility(View.GONE);
             mJsonHelper = FitnessApplication.getApplication().mJsonHelper;
             String baseUrl = "file:///android_asset/images/";
             if (mProgramObject.getDiscover() > 0) {
                 baseUrl = ApiUtils.BASE_URL_IMAGES;
             }
-            Glide.with(this).load(Uri.parse(baseUrl + mProgramObject.getBackground())).into(mBanner);
-            Glide.with(getApplicationContext()).load(Uri.parse(baseUrl + mProgramObject.getImage())).into(mImageWorkout);
+            Glide.with(this).load(Uri.parse(baseUrl + mProgramObject.getBackground())).into(binding.imgBanner);
+            Glide.with(getApplicationContext()).load(Uri.parse(baseUrl + mProgramObject.getImage())).into(binding.imageWorkout);
             if (mProgramObject.getType() == 1 || mProgramObject.getType() == 3) {
-                mPlanLevel.setText(getString(R.string.txt_day) + " " + (mIndexDay + 1));
+                binding.tvLevel.setText(getString(R.string.txt_day) + " " + (mIndexDay + 1));
             } else if (mProgramObject.getType() == 2) {
-                mPlanLevel.setText("Level " + mProgramObject.getLevel());
+                binding.tvLevel.setText("Level " + mProgramObject.getLevel());
             }
             String htmlContent = "" + mProgramObject.getTotal() + " " + getString(R.string.minutes) + "";
-            tvWorkoutIntro.setText(htmlContent);
-            mWorkoutDescription.setText(mProgramObject.getDescription());
+            binding.tvWorkoutIntro.setText(htmlContent);
+            binding.tvWorkoutDescription.setText(mProgramObject.getDescription());
             setTitle(mProgramObject.getName().toUpperCase());
             FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
             crashlytics.setCustomKey("PROGRAM_ID", mProgramObject.getId());
@@ -223,49 +200,49 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
             mPreviewViewModel.getDownloadStatus().observe(PreviewActivity.this, downloadStatus -> {
                 switch (downloadStatus) {
                     case DONE:
-                        mGoBtn.setEnabled(true);
-                        mProgressTxt.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        mProgressTxt.setText(getString(R.string.txt_go_to));
-                        mResetBtn.setVisibility(View.GONE);
-                        mGoBtn.setVisibility(View.VISIBLE);
+                        binding.btnGoto.setEnabled(true);
+                        binding.txtStart.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        binding.txtStart.setText(getString(R.string.txt_go_to));
+                        binding.txtReset.setVisibility(View.GONE);
+                        binding.btnGoto.setVisibility(View.VISIBLE);
                         if (saveProgress > 0 && saveProgress < mDemoDataProvider.getItemCount()) {
-                            mResetBtn.setVisibility(View.VISIBLE);
-                            mProgressReady.setMax(mDemoDataProvider.getItemCount());
-                            mProgressReady.setProgress(saveProgress);
+                            binding.txtReset.setVisibility(View.VISIBLE);
+                            binding.progressReadyBottom.setMax(mDemoDataProvider.getItemCount());
+                            binding.progressReadyBottom.setProgress(saveProgress);
                             float percent = saveProgress * 100f / mDemoDataProvider.getItemCount();
-                            mProgressTxt.setText(getString(R.string.continue_text) + String.format(" %.0f", percent) + "%");
+                            binding.txtStart.setText(getString(R.string.continue_text) + String.format(" %.0f", percent) + "%");
                         } else {
-                            mProgressReady.setMax(100);
-                            mProgressReady.setProgress(100);
-                            mProgressTxt.setText(getString(R.string.txt_go_to));
-                            mResetBtn.setVisibility(View.GONE);
+                            binding.progressReadyBottom.setMax(100);
+                            binding.progressReadyBottom.setProgress(100);
+                            binding.txtStart.setText(getString(R.string.txt_go_to));
+                            binding.txtReset.setVisibility(View.GONE);
                         }
                         break;
                     case FAIL:
                         Toast.makeText(PreviewActivity.this,"Check your internet and retry!", Toast.LENGTH_SHORT).show();
-                        mResetBtn.setVisibility(View.GONE);
-                        mGoBtn.setEnabled(true);
-                        mProgressReady.setProgress(100);
-                        mProgressTxt.setCompoundDrawablesWithIntrinsicBounds(R.drawable.baseline_settings_backup_restore_24, 0, 0, 0);
-                        mProgressTxt.setText(getString(R.string.retry));
-                        mGoBtn.setVisibility(View.VISIBLE);
+                        binding.txtReset.setVisibility(View.GONE);
+                        binding.btnGoto.setEnabled(true);
+                        binding.progressReadyBottom.setProgress(100);
+                        binding.txtStart.setCompoundDrawablesWithIntrinsicBounds(R.drawable.baseline_settings_backup_restore_24, 0, 0, 0);
+                        binding.txtStart.setText(getString(R.string.retry));
+                        binding.btnGoto.setVisibility(View.VISIBLE);
                         break;
                     case NEED_DOWNLOAD:
-                        mProgressReady.setProgress(100);
-                        mProgressReady.setMax(100);
-                        mProgressTxt.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cloud_download_black_24dp, 0, 0, 0);
+                        binding.progressReadyBottom.setProgress(100);
+                        binding.progressReadyBottom.setMax(100);
+                        binding.txtStart.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cloud_download_black_24dp, 0, 0, 0);
                     case DOWNLOADING:
-                        mProgressTxt.setText(getString(R.string.download));
-                        mResetBtn.setVisibility(View.GONE);
-                        mGoBtn.setVisibility(View.VISIBLE);
+                        binding.txtStart.setText(getString(R.string.download));
+                        binding.txtReset.setVisibility(View.GONE);
+                        binding.btnGoto.setVisibility(View.VISIBLE);
 
                         break;
                 }
             });
 
             DividerItemDecoration divider = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-            mPreviewRc.addItemDecoration(divider);
-            mPreviewRc.setLayoutManager(new GridLayoutManager(this, 1));
+            contentPreviewBinding.rcDemo.addItemDecoration(divider);
+            contentPreviewBinding.rcDemo.setLayoutManager(new GridLayoutManager(this, 1));
             if (mProgramObject.getDiscover() > 0) {
                 File file = new File(getFilesDir(), "discover" + mProgramObject.getDiscover() + "/" + mProgramObject.getVersion());
                 if (file.exists()) {
@@ -278,7 +255,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                     if (mProgramObject.getDiscover() > 0 && checkExploreData()) {
                         mPreviewViewModel.setDownloadStatus(DownloadStatus.NEED_DOWNLOAD);
                         ExercisePreAdapter exercisePreAdapter = new ExercisePreAdapter();
-                        mPreviewRc.setAdapter(exercisePreAdapter);
+                        contentPreviewBinding.rcDemo.setAdapter(exercisePreAdapter);
                         startDownload();
                         return;
                     }
@@ -289,7 +266,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                 if (mProgramObject.getDiscover() > 0 && checkExploreData()) {
                     mPreviewViewModel.setDownloadStatus(DownloadStatus.NEED_DOWNLOAD);
                     ExercisePreAdapter exercisePreAdapter = new ExercisePreAdapter();
-                    mPreviewRc.setAdapter(exercisePreAdapter);
+                    contentPreviewBinding.rcDemo.setAdapter(exercisePreAdapter);
                     startDownload();
                     return;
                 }
@@ -307,14 +284,14 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         if (mProgramObject.getDiscover() > 0 && checkExploreData()) {
             mPreviewViewModel.setDownloadStatus(DownloadStatus.NEED_DOWNLOAD);
             ExercisePreAdapter exercisePreAdapter = new ExercisePreAdapter();
-            mPreviewRc.setAdapter(exercisePreAdapter);
+            contentPreviewBinding.rcDemo.setAdapter(exercisePreAdapter);
             return;
         }
         mDemoDataProvider = new DemoDataProvider(PreviewActivity.this, mProgramObject.getDiscover(), mProgramObject.getVersion());
         mDemoDataProvider.setData(mProgramObject.getPlan(), mIndexDay);
         mPreviewAdapter = new PreviewAdapter(this, this, this, mDemoDataProvider, mProgramObject.getDiscover());
-        mPreviewRc.setAdapter(mPreviewAdapter);
-        mPreviewRc.setNestedScrollingEnabled(false);
+        contentPreviewBinding.rcDemo.setAdapter(mPreviewAdapter);
+        contentPreviewBinding.rcDemo.setNestedScrollingEnabled(false);
         updatePlan();
     }
 
@@ -332,15 +309,15 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                         .build();
 
         WorkManager.getInstance(PreviewActivity.this).enqueue(syncWorkRequest);
-        mGoBtn.setEnabled(false);
-        mProgressTxt.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cloud_download_black_24dp, 0, 0, 0);
+        binding.btnGoto.setEnabled(false);
+        binding.txtStart.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cloud_download_black_24dp, 0, 0, 0);
         mPreviewViewModel.setDownloadStatus(DownloadStatus.DOWNLOADING);
-        mProgressReady.setMax(100);
+        binding.progressReadyBottom.setMax(100);
         WorkManager.getInstance(this).getWorkInfoByIdLiveData(syncWorkRequest.getId()).observe(this, workInfo -> {
             Data progress = workInfo.getProgress();
             int value = progress.getInt("PROGRESS", 0);
-            mProgressReady.setProgress(value);
-            mProgressTxt.setText(getString(R.string.download) + "..." + value + "%");
+            binding.progressReadyBottom.setProgress(value);
+            binding.txtStart.setText(getString(R.string.download) + "..." + value + "%");
             if (workInfo.getState() == WorkInfo.State.SUCCEEDED) {
                 mPreviewViewModel.setDownloadStatus(DownloadStatus.DONE);
                 updateData();
@@ -452,16 +429,15 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
     }
 
     void requestNewAdBanner() {
-        mAdBanner = findViewById(R.id.adView);
-        mAdBanner.setVisibility(View.GONE);
+        binding.adView.setVisibility(View.GONE);
         if (myPreference.isShowAds() && myPreference.getOK()) {
             AdRequest adRequest = new AdRequest.Builder().build();
-            mAdBanner.loadAd(adRequest);
-            mAdBanner.setAdListener(new AdListener() {
+            binding.adView.loadAd(adRequest);
+            binding.adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdLoaded() {
                     super.onAdLoaded();
-                    mAdBanner.setVisibility(View.VISIBLE);
+                    binding.adView.setVisibility(View.VISIBLE);
                 }
             });
         }
@@ -514,14 +490,14 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                 menu.setGroupVisible(R.id.group_edit, false);
                 menu.findItem(R.id.action_edit).setVisible(true);
                 mPreviewAdapter.setFlagEdit(false);
-                mAppBarLayout.setExpanded(true, true);
-                CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) mAppBarLayout.getLayoutParams();
+                binding.appBar.setExpanded(true, true);
+                CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) binding.appBar.getLayoutParams();
                 ((CustomAppBarLayoutBehavior) layoutParams.getBehavior()).setScrollBehavior(true);
-                mPreviewRc.setNestedScrollingEnabled(false);
+                contentPreviewBinding.rcDemo.setNestedScrollingEnabled(false);
                 if (mProgramObject.getDiscover() == 0) {
                     ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mPreviewAdapter);
                     mItemTouchHelper = new ItemTouchHelper(callback);
-                    mItemTouchHelper.attachToRecyclerView(mPreviewRc);
+                    mItemTouchHelper.attachToRecyclerView(contentPreviewBinding.rcDemo);
                 }
                 File file = new File(getFilesDir().getPath() + "/i");
                 if (!file.exists()) {
@@ -556,14 +532,14 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                 menu.setGroupVisible(R.id.group_edit, true);
                 menu.findItem(R.id.action_add).setVisible(false);
                 mPreviewAdapter.setFlagEdit(flagEdit);
-                mAppBarLayout.setExpanded(false, true);
+                binding.appBar.setExpanded(false, true);
                 if (mProgramObject.getDiscover() == 0) {
                     ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mPreviewAdapter);
                     mItemTouchHelper = new ItemTouchHelper(callback);
-                    mItemTouchHelper.attachToRecyclerView(mPreviewRc);
+                    mItemTouchHelper.attachToRecyclerView(contentPreviewBinding.rcDemo);
                 }
-                mPreviewRc.setNestedScrollingEnabled(true);
-                CoordinatorLayout.LayoutParams layoutParams1 = (CoordinatorLayout.LayoutParams) mAppBarLayout.getLayoutParams();
+                contentPreviewBinding.rcDemo.setNestedScrollingEnabled(true);
+                CoordinatorLayout.LayoutParams layoutParams1 = (CoordinatorLayout.LayoutParams) binding.appBar.getLayoutParams();
                 ((CustomAppBarLayoutBehavior) layoutParams1.getBehavior()).setScrollBehavior(false);
 
                 return true;
@@ -576,20 +552,20 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
     private void updatePlan() {
         int minutes = mDemoDataProvider.getTotalTime() / 60;
         String htmlContent = "<h>" + minutes + " " + getString(R.string.minutes) + " &#8226; " + mDemoDataProvider.getItemCount() + " " + getString(R.string.txt_exercises) + "<h>";
-        tvWorkoutIntro.setText(Html.fromHtml(htmlContent));
+        binding.tvWorkoutIntro.setText(Html.fromHtml(htmlContent));
         float cal = (mDemoDataProvider.getTotalTime() / 3600.0f) * FitnessConstUtils.CALORIES_CONST * (myPreference.getCurrentWeightKG() / 65.0f);
         saveProgress = myPreference.getSaveProgress(mProgramObject.getId(), mIndexDay);
         if (saveProgress > 0 && saveProgress < mDemoDataProvider.getItemCount()) {
-            mResetBtn.setVisibility(View.VISIBLE);
-            mProgressReady.setMax(mDemoDataProvider.getItemCount());
-            mProgressReady.setProgress(saveProgress);
+            binding.txtReset.setVisibility(View.VISIBLE);
+            binding.progressReadyBottom.setMax(mDemoDataProvider.getItemCount());
+            binding.progressReadyBottom.setProgress(saveProgress);
             float percent = saveProgress * 100f / mDemoDataProvider.getItemCount();
-            mProgressTxt.setText(getString(R.string.continue_text) + String.format(" %.0f", percent) + "%");
+            binding.txtStart.setText(getString(R.string.continue_text) + String.format(" %.0f", percent) + "%");
         } else {
-            mProgressReady.setMax(100);
-            mProgressReady.setProgress(100);
-            mProgressTxt.setText(getString(R.string.txt_go_to));
-            mResetBtn.setVisibility(View.GONE);
+            binding.progressReadyBottom.setMax(100);
+            binding.progressReadyBottom.setProgress(100);
+            binding.txtStart.setText(getString(R.string.txt_go_to));
+            binding.txtReset.setVisibility(View.GONE);
         }
     }
 
@@ -601,8 +577,8 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                 }
             });
 
-    @OnClick(R.id.fab_audio)
-    void goAudioOptions() {
+
+    void goAudioOptions(View view) {
         resultCount.launch(new Intent(PreviewActivity.this, CountManagerActivity.class));
     }
 
@@ -666,8 +642,8 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         startActivity(intent);
     }
 
-    @OnClick(R.id.btn_goto)
-    void gotoWorkout() {
+
+    void gotoWorkout(View view) {
         DownloadStatus downloadStatus = mPreviewViewModel.getDownloadStatus().getValue();
         if (downloadStatus == DownloadStatus.NEED_DOWNLOAD || downloadStatus == DownloadStatus.FAIL) {
             startDownload();
@@ -691,8 +667,8 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         }
     }
 
-    @OnClick(R.id.txt_reset)
-    void reset() {
+
+    void reset(View view) {
         mBundle.putInt("PROGRESS", 0);
         if (MaticAd.getInstance().isAvailableInter() && mProgramObject.getPremium() != 1 && FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.GO_BEFORE)) {
             MaticAd.getInstance().showPriorityInterstitialAd(PreviewActivity.this, new MaticAdCallBack() {

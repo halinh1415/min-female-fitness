@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.health.connect.HealthConnectManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,10 +19,8 @@ import androidx.navigation.Navigation;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.SwitchPreference;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
@@ -34,6 +33,7 @@ import mint.woman.female.workout.BuildConfig;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.PolicyActivity;
+import mint.woman.female.workout.activity.ui.main.HealthDataDialog;
 import mint.woman.female.workout.activity.ui.sounds.SoundsActivity;
 import mint.woman.female.workout.admodule.AppOpenManager;
 import mint.woman.female.workout.custom.CustomPreference;
@@ -65,7 +65,8 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         findPreference("TTS_ENGINE").setOnPreferenceClickListener(this);
         findPreference("PRIVACY_POLICY").setOnPreferenceClickListener(this);
         findPreference("TTS_INSTALL_VOICE").setOnPreferenceClickListener(this);
-        //findPreference("SYNC_GOOGLE_FIT").setOnPreferenceClickListener(this);
+        findPreference("SYNC_FIT").setOnPreferenceClickListener(this);
+
         findPreference("ST_REMINDER").setOnPreferenceClickListener(this);
         findPreference("BACK_UP").setOnPreferenceClickListener(this);
         Preference music = findPreference("BACK_GROUND_MUSIC");
@@ -82,9 +83,11 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         for (int i = 0; i < languageEntryValues.length; i++) {
             languageEntries[i] = getLanguageName(languageEntryValues[i]);
         }
+
+
         languagePreference.setEntryValues(languageEntryValues);
         languagePreference.setEntries(languageEntries);
-        version.setTitle("Version App: " + BuildConfig.VERSION_NAME);
+        version.setTitle("Version: " + BuildConfig.VERSION_NAME);
         if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.ENABLE_SYNC)){
             preferenceBackUp.setVisible(true);
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -136,14 +139,33 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
     }
 
     public void initValue(boolean value) {
-     //   SwitchPreference swGoogleFit = (SwitchPreference) findPreference("SYNC_GOOGLE_FIT");
-        //swGoogleFit.setChecked(value);
+        SwitchPreference swGoogleFit = (SwitchPreference) findPreference("SYNC_FIT");
+        swGoogleFit.setChecked(value);
     }
 
 
     @Override
     public boolean onPreferenceClick(Preference preference) {
         switch (preference.getKey()) {
+            case "SYNC_FIT":
+
+                AppOpenManager.getInstance().disableAdResumeByClickAction();
+                SwitchPreference swGoogleFit = findPreference("SYNC_FIT");
+                HealthDataDialog healthDataDialog = new HealthDataDialog();
+                healthDataDialog.show(getActivity().getSupportFragmentManager(), "health_connect");
+                if (swGoogleFit.isChecked()){
+                    swGoogleFit.setChecked(false);
+//                    if (mListener != null) {
+//                        mListener.onGetGoogleFit();
+//                    }
+                }else {
+                    swGoogleFit.setChecked(true);
+//                    if (mListener != null) {
+//                        mListener.disableHealthConnect();
+//                    }
+                    // swGoogleFit.setTitle(getString(R.string.txt_sync_to_google_fit));
+                }
+                break;
             case "ST_RATE":
                 if (mListener != null) {
                     mListener.onRateShow();
@@ -349,6 +371,7 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         void onLanguageChange();
 
         void onGetGoogleFit();
+        void disableHealthConnect();
 
         void syncData();
     }

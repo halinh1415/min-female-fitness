@@ -72,7 +72,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <include layout="@layout/loading_native_medium" />
+            <include
+                android:id="@+id/loading"
+                layout="@layout/loading_native_medium" />
         </FrameLayout>
     </LinearLayout>
 </RelativeLayout>

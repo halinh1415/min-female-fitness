@@ -5,6 +5,8 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.history.HistoryViewModel;
+import mint.woman.female.workout.databinding.DialogWeightBinding;
 import mint.woman.female.workout.fragment.BMIFragment;
 import mint.woman.female.workout.fragment.WeightViewModel;
 import mint.woman.female.workout.model.UserObject;
@@ -27,31 +30,29 @@ import mint.woman.female.workout.utils.MyPreference;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnTextChanged;
+
 
 public class DialogWeight extends DialogFragment {
 
 
+    DialogWeightBinding binding;
 
-    @BindView(R.id.rdKg)
-    RadioButton rdKg;
-    @BindView(R.id.rdLb)
-    RadioButton rdLb;
-
-
-    @BindView(R.id.edt_weight)
-    SuffixEditText edtWeight;
-    @BindView(R.id.edt_height)
-    SuffixEditText edtHeight;
-    @BindView(R.id.edt_height_2)
-    SuffixEditText edtHeight2;
-    @BindView(R.id.edt_waist)
-    SuffixEditText edtWaist;
-    @BindView(R.id.edt_waist2)
-    SuffixEditText edtWaist2;
+//    @BindView(R.id.binding.rdKg)
+//    RadioButton binding.rdKg;
+//    @BindView(R.id.binding.rdLb)
+//    RadioButton binding.rdLb;
+//
+//
+//    @BindView(R.id.edt_weight)
+//    SuffixEditText binding.edtWeight;
+//    @BindView(R.id.edt_height)
+//    SuffixEditText binding.edtHeight;
+//    @BindView(R.id.edt_height_2)
+//    SuffixEditText binding.edtHeight2;
+//    @BindView(R.id.edt_waist)
+//    SuffixEditText binding.edtWaist;
+//    @BindView(R.id.edt_waist2)
+//    SuffixEditText binding.edtWaist2;
     HistoryViewModel mHistoryViewModel;
     WeightViewModel mWeightViewModel;
     MyPreference myPreference;
@@ -61,9 +62,9 @@ public class DialogWeight extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_weight, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+        binding = DialogWeightBinding.inflate(getLayoutInflater());
+
+        return binding.getRoot();
     }
 
     @SuppressLint("DefaultLocale")
@@ -75,40 +76,40 @@ public class DialogWeight extends DialogFragment {
 
         mWeightViewModel.getIsKg().observe(getViewLifecycleOwner(),isKgL->{
             if (isKgL) {
-                edtWeight.setText(String.format("%.1f", weight).replace(",", "."));
-                edtHeight.setText(String.format("%.1f", height).replace(",", "."));
-                edtWaist.setText(String.format("%.1f", waist).replace(",", "."));
-                edtWaist2.setText("");
-                edtHeight2.setText("");
-                edtHeight2.setVisibility(View.GONE);
-                edtWaist2.setVisibility(View.GONE);
-                edtWeight.setSuffix("KG");
-                edtHeight.setSuffix("CM");
-                edtWaist.setSuffix("CM");
-                rdKg.setChecked(true);
+                binding.edtWeight.setText(String.format("%.1f", weight).replace(",", "."));
+                binding.edtHeight.setText(String.format("%.1f", height).replace(",", "."));
+                binding.edtWaist.setText(String.format("%.1f", waist).replace(",", "."));
+                binding.edtWaist2.setText("");
+                binding.edtHeight2.setText("");
+                binding.edtHeight2.setVisibility(View.GONE);
+                binding.edtWaist2.setVisibility(View.GONE);
+                binding.edtWeight.setSuffix("KG");
+                binding.edtHeight.setSuffix("CM");
+                binding.edtWaist.setSuffix("CM");
+                binding.rdKg.setChecked(true);
             } else {
-                rdLb.setChecked(true);
-                edtHeight2.setVisibility(View.VISIBLE);
-                edtWaist2.setVisibility(View.VISIBLE);
-                edtWeight.setText(String.format("%.1f", weight * 2.20462262f).replace(",", "."));
+                binding.rdLb.setChecked(true);
+                binding.edtHeight2.setVisibility(View.VISIBLE);
+                binding.edtWaist2.setVisibility(View.VISIBLE);
+                binding.edtWeight.setText(String.format("%.1f", weight * 2.20462262f).replace(",", "."));
                 Log.d("HAHA","height = "+height);
                 int feetPart = (int) Math.floor(height / 12f / 2.54f);
                 float inchesPart = (float) Math.ceil((height / 2.54f) - (feetPart * 12f));
-                edtHeight.setText(String.format("%d", feetPart));
-                edtHeight2.setText(String.format("%.1f", inchesPart).replace(",", "."));
+                binding.edtHeight.setText(String.format("%d", feetPart));
+                binding.edtHeight2.setText(String.format("%.1f", inchesPart).replace(",", "."));
 
                 Log.d("HAHA","waist = "+waist);
                 int ft = (int) Math.floor(waist / 12f / 2.54f);
                 float in = (float) Math.ceil((waist / 2.54f) - (ft * 12f));
 
 
-                edtWaist.setText(String.format("%d", ft));
-                edtWaist2.setText(String.format("%.1f", in).replace(",", "."));
-                edtWeight.setSuffix("LB");
-                edtHeight.setSuffix("FT");
-                edtHeight2.setSuffix("IN");
-                edtWaist.setSuffix("FT");
-                edtWaist2.setSuffix("IN");
+                binding.edtWaist.setText(String.format("%d", ft));
+                binding.edtWaist2.setText(String.format("%.1f", in).replace(",", "."));
+                binding.edtWeight.setSuffix("LB");
+                binding.edtHeight.setSuffix("FT");
+                binding.edtHeight2.setSuffix("IN");
+                binding.edtWaist.setSuffix("FT");
+                binding.edtWaist2.setSuffix("IN");
             }
         });
         myPreference = new MyPreference(getActivity());
@@ -118,22 +119,54 @@ public class DialogWeight extends DialogFragment {
         isKg = myPreference.isKg();
         mWeightViewModel.setIsKg( myPreference.isKg());
         mWeightViewModel.setUser(new UserObject(1100,weight,height,waist));
+        binding.rdKg.setOnClickListener(this::onClickUnit);
+        binding.rdLb.setOnClickListener(this::onClickUnit);
 
+        binding.edtWeight.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                try {
+                    if (!charSequence.toString().isEmpty()) {
+                        float temp = Float.parseFloat(charSequence.toString().replace(",", "."));
+                        if (isKg) {
+                            weight = temp;
+                        } else {
+                            weight = temp / 2.20462262f;
+                        }
+                        // updateUnit();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        binding.btnEnterWeight.setOnClickListener(this::onClick);
+        binding.btnCancelWeight.setOnClickListener(this::onClick);
 
     }
 
-    @OnClick({R.id.rdKg, R.id.rdLb})
+
     void onClickUnit(View view) {
         updateValue();
         switch (view.getId()) {
             case R.id.rdKg:
-                rdKg.setChecked(true);
+                binding.rdKg.setChecked(true);
                 if (!isKg){
                     changeUnit();
                 }
                 break;
             case R.id.rdLb:
-                rdLb.setChecked(true);
+                binding.rdLb.setChecked(true);
                 if (isKg){
                     changeUnit();
                 }
@@ -146,55 +179,55 @@ public class DialogWeight extends DialogFragment {
     void changeUnit() {
         isKg = !isKg;
         if (isKg) {
-            edtWeight.setText(String.format("%.1f", weight).replace(",", "."));
-            edtHeight.setText(String.format("%.1f", height).replace(",", "."));
-            edtWaist.setText(String.format("%.1f", waist).replace(",", "."));
-            edtWaist2.setText("");
-            edtHeight2.setText("");
-            edtHeight2.setVisibility(View.GONE);
-            edtWaist2.setVisibility(View.GONE);
-            edtWeight.setSuffix("KG");
-            edtHeight.setSuffix("CM");
-            edtWaist.setSuffix("CM");
-            rdKg.setChecked(true);
+            binding.edtWeight.setText(String.format("%.1f", weight).replace(",", "."));
+            binding.edtHeight.setText(String.format("%.1f", height).replace(",", "."));
+            binding.edtWaist.setText(String.format("%.1f", waist).replace(",", "."));
+            binding.edtWaist2.setText("");
+            binding.edtHeight2.setText("");
+            binding.edtHeight2.setVisibility(View.GONE);
+            binding.edtWaist2.setVisibility(View.GONE);
+            binding.edtWeight.setSuffix("KG");
+            binding.edtHeight.setSuffix("CM");
+            binding.edtWaist.setSuffix("CM");
+            binding.rdKg.setChecked(true);
         } else {
-            rdLb.setChecked(true);
-            edtHeight2.setVisibility(View.VISIBLE);
-            edtWaist2.setVisibility(View.VISIBLE);
-            edtWeight.setText(String.format("%.1f", weight * 2.20462262f).replace(",", "."));
+            binding.rdLb.setChecked(true);
+            binding.edtHeight2.setVisibility(View.VISIBLE);
+            binding.edtWaist2.setVisibility(View.VISIBLE);
+            binding.edtWeight.setText(String.format("%.1f", weight * 2.20462262f).replace(",", "."));
             Log.d("HAHA","height = "+height);
             int feetPart = (int) Math.floor(height / 12f / 2.54f);
             float inchesPart = (float) Math.ceil((height / 2.54f) - (feetPart * 12f));
-            edtHeight.setText(String.format("%d", feetPart));
-            edtHeight2.setText(String.format("%.1f", inchesPart).replace(",", "."));
+            binding.edtHeight.setText(String.format("%d", feetPart));
+            binding.edtHeight2.setText(String.format("%.1f", inchesPart).replace(",", "."));
 
             Log.d("HAHA","waist = "+waist);
             int ft = (int) Math.floor(waist / 12f / 2.54f);
             float in = (float) Math.ceil((waist / 2.54f) - (ft * 12f));
 
 
-            edtWaist.setText(String.format("%d", ft));
-            edtWaist2.setText(String.format("%.1f", in).replace(",", "."));
-            edtWeight.setSuffix("LB");
-            edtHeight.setSuffix("FT");
-            edtHeight2.setSuffix("IN");
-            edtWaist.setSuffix("FT");
-            edtWaist2.setSuffix("IN");
+            binding.edtWaist.setText(String.format("%d", ft));
+            binding.edtWaist2.setText(String.format("%.1f", in).replace(",", "."));
+            binding.edtWeight.setSuffix("LB");
+            binding.edtHeight.setSuffix("FT");
+            binding.edtHeight2.setSuffix("IN");
+            binding.edtWaist.setSuffix("FT");
+            binding.edtWaist2.setSuffix("IN");
         }
 
     }
     void updateValue(){
         try {
-            float temp = Float.parseFloat(edtWaist.getText().toString().replace(",", "."));
-            float tempHeight = Float.parseFloat(edtHeight.getText().toString().replace(",", "."));
-            float tempWeight = Float.parseFloat(edtWeight.getText().toString().replace(",", "."));
+            float temp = Float.parseFloat(binding.edtWaist.getText().toString().replace(",", "."));
+            float tempHeight = Float.parseFloat(binding.edtHeight.getText().toString().replace(",", "."));
+            float tempWeight = Float.parseFloat(binding.edtWeight.getText().toString().replace(",", "."));
             if (isKg) {
                 waist = temp;
                 height = tempHeight;
                 weight =  tempWeight;
             } else {
-                float temp2 = Float.parseFloat(edtWaist2.getText().toString().replace(",", "."));
-                float temp2Height = Float.parseFloat(edtHeight2.getText().toString().replace(",", "."));
+                float temp2 = Float.parseFloat(binding.edtWaist2.getText().toString().replace(",", "."));
+                float temp2Height = Float.parseFloat(binding.edtHeight2.getText().toString().replace(",", "."));
                 waist = temp * 30.48f + 2.54f * temp2;
                 height = tempHeight * 30.48f + 2.54f * temp2Height;
                 weight =  tempWeight * 0.45359237f;
@@ -207,22 +240,7 @@ public class DialogWeight extends DialogFragment {
         int a = 0;
     }
 
-    @OnTextChanged(R.id.edt_weight)
-    void onWeightChange(CharSequence charSequence, int i, int i1, int i2) {
-        try {
-            if (!charSequence.toString().isEmpty()) {
-                float temp = Float.parseFloat(charSequence.toString().replace(",", "."));
-                if (isKg) {
-                    weight = temp;
-                } else {
-                    weight = temp / 2.20462262f;
-                }
-                // updateUnit();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
 
 
     @Override
@@ -239,29 +257,22 @@ public class DialogWeight extends DialogFragment {
         super.onDestroyView();
     }
 
-
-
-
-
-
-
-    @OnClick({R.id.btn_enter_weight, R.id.btn_cancel_weight})
     void onClick(View view) {
         updateValue();
         switch (view.getId()) {
             case R.id.btn_enter_weight:
                 if (weight < 30f || weight > 150f) {
-                    edtWeight.setError(getString(R.string.txt_weight_invalid));
+                    binding.edtWeight.setError(getString(R.string.txt_weight_invalid));
                     return;
                 }
                 if (height < 80f || height > 250f) {
-                    edtHeight.setError(getString(R.string.txt_height_invalid));
-                    edtHeight2.setError(getString(R.string.txt_height_invalid));
+                    binding.edtHeight.setError(getString(R.string.txt_height_invalid));
+                    binding.edtHeight2.setError(getString(R.string.txt_height_invalid));
                     return;
                 }
                 if (waist < 50 || waist > 200f) {
-                    edtWaist.setError(getString(R.string.txt_waist_invalid));
-                    edtWaist2.setError(getString(R.string.txt_waist_invalid));
+                    binding.edtWaist.setError(getString(R.string.txt_waist_invalid));
+                    binding.edtWaist2.setError(getString(R.string.txt_waist_invalid));
                     return;
                 }
                 myPreference.setCurrentWeight(weight);

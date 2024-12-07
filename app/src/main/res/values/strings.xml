@@ -309,7 +309,7 @@
     <string name="iap_detail">1. All payments made through Play Store are controlled and managed by Google.\n2. Payments will be charged to your Play Store Account at confirmation of purchase.\n3. Subscription automatically renews, unless auto-renew is turned off at least 24 hours before the end of the current period.\n4. Account will be charged for renewal within 24 hours prior to the end of the current period.\n5. You may manage your subscriptions and auto-renewal may be turned off by going to your Play Store account settings after purchase.\n6. Any unused portion of a free trial period, if offered, will be forfeited if you purchase a subscription to the publication, where applicable.</string>
     <string name="iap_detail_review">1. All payments made through Play Store are controlled and managed by Google.\n2. Payments will be charged to your Play Store Account at confirmation of purchase.\n3. Subscription automatically renews, unless auto-renew is turned off at least 24 hours before the end of the current period.\n4. Account will be charged for renewal within 24 hours prior to the end of the current period at the price of %s/year or %s/month.\n5. You may manage your subscriptions and auto-renewal may be turned off by going to your Play Store account settings after purchase.\n6. Any unused portion of a free trial period, if offered, will be forfeited if you purchase a subscription to the publication, where applicable.</string>
     <string name="txt_day_free_trial">7 Day Free Trail</string>
-     <string name="premium_price_save_2">%s\noff</string>
+    <string name="premium_price_save_2">%s\noff</string>
     <string name="iap_discount_card_title_gpt">Get access to all premium features</string>
     <string name="txt_iap_feature_info_1">Explore Unlimited Exercise: Meet all your needs</string>
     <string name="txt_iap_feature_info_4">Ads Free Forever</string>
@@ -361,6 +361,16 @@
     <string name="data_sync_done">Data synchronization completed!</string>
     <string name="breast_training">Breast Workout</string>
     <string name="pain_relief">Pain relief</string>
-
-
+    <string name="sync_to_google_health">Sync to Health Connect</string>
+    <string name="manage_data_access">Manage data and access</string>
+    <string name="health_connect">Health Connect</string>
+    <string name="tip_connect_google_health">Share your health data with other apps to save your time.</string>
+    <string name="tip_connect_hc_success">Successfully connected to Health Connect</string>
+    <string name="tip_disconnect_hc_success">Disconnected from Health Connect</string>
+    <string name="update_health_connect_gpt">Update Health Connect</string>
+    <string name="connect_to_google_health">Share data with Health Connect &amp; other apps</string>
+    <string name="connecting_with_health">Connecting with Health Connect...</string>
+    <string name="update_now">Update now</string>
+    <string name="health_connect_update_desc_gpt">Oops! Connection failed. Please update your Health Connect version for sharing data.</string>
+    <string name="later">Later</string>
 </resources>

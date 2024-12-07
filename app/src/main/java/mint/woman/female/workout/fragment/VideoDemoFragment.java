@@ -13,10 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import mint.woman.female.workout.R;
-import mint.woman.female.workout.custom.CustomVideoView;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import mint.woman.female.workout.databinding.FragmentVideoDemoBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,9 +28,7 @@ public class VideoDemoFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private String mVideoName;
-
-    @BindView(R.id.videoView)
-    CustomVideoView mVideoView;
+    FragmentVideoDemoBinding binding;
     String path;
 
     public VideoDemoFragment() {
@@ -70,11 +65,11 @@ public class VideoDemoFragment extends Fragment {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         populateViewForOrientation(inflater, (ViewGroup) getView());
         path = getContext().getCacheDir() + "/temp.mp4";
-        mVideoView.setVideoURI(Uri.parse(path));
-        mVideoView.setOnPreparedListener(mediaPlayer -> {
+        binding.videoView.setVideoURI(Uri.parse(path));
+        binding.videoView.setOnPreparedListener(mediaPlayer -> {
             mediaPlayer.setLooping(true);
         });
-        mVideoView.start();
+        binding.videoView.start();
         super.onConfigurationChanged(newConfig);
 
     }
@@ -82,16 +77,16 @@ public class VideoDemoFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        FrameLayout frameLayout = new FrameLayout(getActivity());
-        populateViewForOrientation(inflater, frameLayout);
-        return frameLayout;
+     
+        binding = FragmentVideoDemoBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
     private void populateViewForOrientation(LayoutInflater inflater, ViewGroup viewGroup) {
 
         viewGroup.removeAllViewsInLayout();
         View subview = inflater.inflate(R.layout.fragment_video_demo, viewGroup);
-        ButterKnife.bind(this, subview);
+       // ButterKnife.bind(this, subview);
 
         // Find your buttons in subview, set up onclicks, set up callbacks to your parent fragment or activity here.
     }
@@ -100,21 +95,21 @@ public class VideoDemoFragment extends Fragment {
     public void onResume() {
         super.onResume();
         path = getContext().getCacheDir() + "/temp.mp4";
-        mVideoView.setVideoURI(Uri.parse(path));
-        mVideoView.setOnPreparedListener(mediaPlayer -> {
+        binding.videoView.setVideoURI(Uri.parse(path));
+        binding.videoView.setOnPreparedListener(mediaPlayer -> {
             mediaPlayer.setLooping(true);
         });
-        mVideoView.start();
+        binding.videoView.start();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         path = getContext().getCacheDir() + "/temp.mp4";
-        mVideoView.setVideoURI(Uri.parse(path));
-        mVideoView.setOnPreparedListener(mediaPlayer -> {
+        binding.videoView.setVideoURI(Uri.parse(path));
+        binding.videoView.setOnPreparedListener(mediaPlayer -> {
             mediaPlayer.setLooping(true);
         });
-        mVideoView.start();
+        binding.videoView.start();
     }
 }

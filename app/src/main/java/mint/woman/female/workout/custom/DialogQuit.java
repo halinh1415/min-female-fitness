@@ -15,20 +15,13 @@ import androidx.lifecycle.ViewModelProvider;
 
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.workout.WorkoutViewModel;
+import mint.woman.female.workout.databinding.DialogQuitWorkoutBinding;
 
 import java.util.Random;
-
-import butterknife.BindAnim;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class DialogQuit extends DialogFragment {
 
+    DialogQuitWorkoutBinding binding;
     WorkoutViewModel mWorkoutViewModel;
-    @BindView(R.id.txt_quit_content)
-    TextView tvQuitContent;
-
     public OnQuitListener mListener;
 
     public void setQuitListener(OnQuitListener listener) {
@@ -38,10 +31,11 @@ public class DialogQuit extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_quit_workout, container, false);
+        binding = DialogQuitWorkoutBinding.inflate(getLayoutInflater());
+
         mWorkoutViewModel = new ViewModelProvider(getActivity()).get(WorkoutViewModel.class);
-        ButterKnife.bind(this, view);
-        return view;
+
+        return binding.getRoot();
     }
 
     @NonNull
@@ -62,7 +56,9 @@ public class DialogQuit extends DialogFragment {
         String[] arr = getContext().getResources().getStringArray(R.array.arr_quit);
         Random random = new Random();
         int index = random.nextInt(arr.length);
-        tvQuitContent.setText(arr[index]);
+        binding.txtQuitContent.setText(arr[index]);
+        binding.btnQuit.setOnClickListener(this::onClick);
+        binding.btnNoQuit.setOnClickListener(this::onClick);
 
     }
 
@@ -74,7 +70,7 @@ public class DialogQuit extends DialogFragment {
     }
 
 
-    @OnClick({R.id.btn_quit, R.id.btn_no_quit})
+
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_quit:

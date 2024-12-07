@@ -25,12 +25,12 @@ import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
 import mint.woman.female.workout.common.adapter.EventDecorator;
 import mint.woman.female.workout.common.adapter.HistorySection;
 import mint.woman.female.workout.custom.HighlightWeekendsDecorator;
+import mint.woman.female.workout.databinding.ActivityHistoryBinding;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.model.HistoryItem;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.LanguageHelper;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,21 +41,19 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
 
 public class HistoryActivity extends AppCompatActivity implements HistorySection.ClickListener{
+    ActivityHistoryBinding binding;
     private final SimpleDateFormat mFormatDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-    @BindView(R.id.calendarView)
-    MaterialCalendarView calendarView;
-    @BindView(R.id.rc_history)
-    RecyclerView mHistoryRc;
-    @BindView(R.id.progressBarHistory)
-    ProgressBar mProgressHistory;
-    @BindView(R.id.txt_no_workout)
-    TextView mNoWorkoutText;
+//    @BindView(R.id.calendarView)
+//    MaterialCalendarView calendarView;
+//    @BindView(R.id.rc_history)
+//    RecyclerView mHistoryRc;
+//    @BindView(R.id.progressBarHistory)
+//    ProgressBar mProgressHistory;
+//    @BindView(R.id.txt_no_workout)
+//    TextView mNoWorkoutText;
 
     SectionedRecyclerViewAdapter mAdapter;
 
@@ -65,24 +63,24 @@ public class HistoryActivity extends AppCompatActivity implements HistorySection
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history);
-        ButterKnife.bind(this);
+        binding = ActivityHistoryBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         initView();
     }
 
     private void initView() {
         mAdapter = new SectionedRecyclerViewAdapter();
         setTitle(getString(R.string.mn_history));
-        mHistoryRc.setNestedScrollingEnabled(false);
+        binding.rcHistory.setNestedScrollingEnabled(false);
         hashMap = FitnessApplication.getApplication().mJsonHelper.getAllCategoryHashMap();
-        mHistoryRc.setLayoutManager(new GridLayoutManager(this, 1));
+        binding.rcHistory.setLayoutManager(new GridLayoutManager(this, 1));
         //    DividerItemDecoration divider = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         //  mHistoryRc.addItemDecoration(divider);
-        mHistoryRc.setAdapter(mAdapter);
+        binding.rcHistory.setAdapter(mAdapter);
         mHistoryViewModel = new ViewModelProvider(this).get(HistoryViewModel.class);
-        mNoWorkoutText.setVisibility(View.GONE);
+        binding.txtNoWorkout.setVisibility(View.GONE);
 
-        mProgressHistory.setVisibility(View.VISIBLE);
+        binding.progressBarHistory.setVisibility(View.VISIBLE);
 
 
         CalendarDay today = CalendarDay.today();
@@ -92,15 +90,15 @@ public class HistoryActivity extends AppCompatActivity implements HistorySection
 //                .commit();
 
 
-        calendarView.setOnDateChangedListener((widget, date, selected) -> {
+        binding.calendarView.setOnDateChangedListener((widget, date, selected) -> {
             if (selected) {
                 getHistoryOnDate(date);
             }
         });
-        calendarView.setOnMonthChangedListener((widget, date) -> {
+        binding.calendarView.setOnMonthChangedListener((widget, date) -> {
             getHistoryOnMonth(date);
         });
-        calendarView.addDecorators(new HighlightWeekendsDecorator());
+        binding.calendarView.addDecorators(new HighlightWeekendsDecorator());
 
     }
 
@@ -111,11 +109,11 @@ public class HistoryActivity extends AppCompatActivity implements HistorySection
         calendar.set(Calendar.DAY_OF_MONTH, day.getDay());
         long dayLong = TimeUnit.MILLISECONDS.toDays(calendar.getTimeInMillis());
         Log.d("HAHA", "get history on :" + dayLong);
-        mProgressHistory.setVisibility(View.VISIBLE);
+        binding.progressBarHistory.setVisibility(View.VISIBLE);
         mHistoryViewModel.findInDay(dayLong).observe(HistoryActivity.this, historyItems -> {
-            mProgressHistory.setVisibility(View.GONE);
+            binding.progressBarHistory.setVisibility(View.GONE);
             if (historyItems != null) {
-                mNoWorkoutText.setVisibility(View.GONE);
+                binding.txtNoWorkout.setVisibility(View.GONE);
                 mAdapter.removeAllSections();
                 long millis = TimeUnit.DAYS.toMillis(dayLong);
                 mAdapter.addSection(new HistorySection(HistoryActivity.this,mFormatDate.format(millis), historyItems,this));
@@ -123,7 +121,7 @@ public class HistoryActivity extends AppCompatActivity implements HistorySection
             } else {
                 mAdapter.removeAllSections();
                 mAdapter.notifyDataSetChanged();
-                mNoWorkoutText.setVisibility(View.VISIBLE);
+                binding.txtNoWorkout.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -137,11 +135,11 @@ public class HistoryActivity extends AppCompatActivity implements HistorySection
         calendar.add(Calendar.MONTH, 1);
         calendar.add(Calendar.DATE, -1);
         long end = TimeUnit.MILLISECONDS.toDays(calendar.getTimeInMillis());
-        mProgressHistory.setVisibility(View.VISIBLE);
+        binding.progressBarHistory.setVisibility(View.VISIBLE);
         mHistoryViewModel.findFromTo(from, end).observe(HistoryActivity.this, historyItems -> {
-            mProgressHistory.setVisibility(View.GONE);
+            binding.progressBarHistory.setVisibility(View.GONE);
             if (historyItems.size() > 0) {
-                mNoWorkoutText.setVisibility(View.GONE);
+                binding.txtNoWorkout.setVisibility(View.GONE);
                 mAdapter.removeAllSections();
                 Map<Long, List<HistoryItem>> groupedItems = new HashMap<>();
                 for (HistoryItem item : historyItems) {
@@ -168,13 +166,13 @@ public class HistoryActivity extends AppCompatActivity implements HistorySection
                     mAdapter.addSection(new HistorySection(HistoryActivity.this,mFormatDate.format(millis),historyItemList,this));
                 }
                 EventDecorator eventDecorator = new EventDecorator(calendarDayList);
-                calendarView.addDecorator(eventDecorator);
+                binding.calendarView.addDecorator(eventDecorator);
                 mAdapter.notifyDataSetChanged();
             } else {
-                calendarView.removeDecorators();
+                binding.calendarView.removeDecorators();
                 mAdapter.removeAllSections();
                 mAdapter.notifyDataSetChanged();
-                mNoWorkoutText.setVisibility(View.VISIBLE);
+                binding.txtNoWorkout.setVisibility(View.VISIBLE);
             }
 
         });

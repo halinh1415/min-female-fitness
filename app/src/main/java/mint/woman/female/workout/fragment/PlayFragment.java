@@ -37,51 +37,19 @@ import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.count.CountManagerActivity;
 import mint.woman.female.workout.activity.ui.workout.DoWorkoutActivity;
 import mint.woman.female.workout.activity.ui.workout.WorkoutViewModel;
-import mint.woman.female.workout.custom.CustomVideoView;
 import mint.woman.female.workout.custom.DialogDemoWorkout;
 import mint.woman.female.workout.custom.DialogSelectSpeed;
 import mint.woman.female.workout.custom.PauseDialog;
+import mint.woman.female.workout.databinding.FragmentPlayBinding;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.PlanObject;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.MyPreference;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 @SuppressLint({"NonConstantResourceId", "UseSwitchCompatOrMaterialCode", "DefaultLocale", "SetTextI18n"})
 public class PlayFragment extends Fragment implements View.OnClickListener {
-    private boolean isPause = false;
-    @BindView(R.id.videoView)
-    CustomVideoView mVideoView;
-    @BindView(R.id.tv_exercise_name)
-    TextView mExerciseName;
-    @BindView(R.id.txt_time)
-    TextView mExerciseTime;
-
-    // @BindView(R.id.txt_pause)
-    //ImageView mPause;
-    @BindView(R.id.img_previous)
-    View mPrevious;
-    @BindView(R.id.img_next)
-    View mNext;
-    @BindView(R.id.progress_ready_bottom)
-    ProgressBar mBottomProgressBar;
-    @BindView(R.id.progress_ready)
-    ProgressBar mReadyProgress;
-
-    @BindView(R.id.txt_speed)
-    TextView mSpeed;
-    @BindView(R.id.img_done)
-    View mDoneImg;
-    @BindView(R.id.btn_pause)
-    View btnPause;
-
-    @BindView(R.id.tv_count_down)
-    TextView mCountDownText;
-    @BindView(R.id.tv_sub)
-    TextView mSub;
+    FragmentPlayBinding binding;
     private CountDownTimer countDownTimer;
     private int crr, mCurrentTime, mTotalTime, progress, totalExercise;
     private MyPreference myPreference;
@@ -149,66 +117,73 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
             REP = mActionObject.time / 2;
         }
         mTotalTime = mActionObject.time;
-        mSpeed.setText("" + myPreference.getSpeed() + "x");
-        mVideoView.setVideoURI(Uri.parse(path));
-        mVideoView.setOnPreparedListener(mediaPlayer -> {
+        binding.txtSpeed.setText("" + myPreference.getSpeed() + "x");
+        binding.videoView.setVideoURI(Uri.parse(path));
+        binding.videoView.setOnPreparedListener(mediaPlayer -> {
             mediaPlayer.setLooping(true);
 
         });
 
-        mExerciseName.setText(mExerciseObject.getName());
+        binding.tvExerciseName.setText(mExerciseObject.getName());
         if (mActionObject.getUnit().contains("s")) {
             mCurrentTime = mActionObject.time;
-            btnPause.setVisibility(View.VISIBLE);
-            mDoneImg.setVisibility(View.GONE);
-            mSub.setVisibility(View.INVISIBLE);
-            mExerciseTime.setText(FitnessConstUtils.toTime(REP));
-            mBottomProgressBar.setMax(mActionObject.time * 1000);
-            mBottomProgressBar.setProgress(0);
-            mReadyProgress.setMax(mActionObject.time * 1000);
-            mReadyProgress.setProgress(0);
+            binding.btnPause.setVisibility(View.VISIBLE);
+            binding.imgDone.setVisibility(View.GONE);
+            binding.tvSub.setVisibility(View.INVISIBLE);
+            binding.txtTime.setText(FitnessConstUtils.toTime(REP));
+            binding.progressReadyBottom.setMax(mActionObject.time * 1000);
+            binding.progressReadyBottom.setProgress(0);
+            binding.progressReady.setMax(mActionObject.time * 1000);
+            binding.progressReady.setProgress(0);
         } else {
             mCurrentTime = 0;
             if (mExerciseObject.getAlternation()) {
-                mSub.setVisibility(View.VISIBLE);
-                mSub.setText(getString(R.string.td_each_side)+" x"+REP);
+                binding.tvSub.setVisibility(View.VISIBLE);
+                binding.tvSub.setText(getString(R.string.td_each_side)+" x"+REP);
             } else {
-                mSub.setVisibility(View.INVISIBLE);
+                binding.tvSub.setVisibility(View.INVISIBLE);
             }
-            mExerciseTime.setText("x" + REP);
+            binding.txtTime.setText("x" + REP);
             if (myPreference.getCountOption() == 1) {
-                btnPause.setVisibility(View.VISIBLE);
-                mDoneImg.setVisibility(View.GONE);
-                mVideoView.setOnPreparedListener(mediaPlayer -> {
+                binding.btnPause.setVisibility(View.VISIBLE);
+                binding.imgDone.setVisibility(View.GONE);
+                binding.videoView.setOnPreparedListener(mediaPlayer -> {
                     mediaPlayer.setLooping(false);
                 });
-                mVideoView.setOnCompletionListener(mediaPlayer -> {
-                    new Handler().postDelayed(() -> mVideoView.start(), mExerciseObject.getSpeed());
+                binding.videoView.setOnCompletionListener(mediaPlayer -> {
+                    new Handler().postDelayed(() -> binding.videoView.start(), mExerciseObject.getSpeed());
                 });
-                mExerciseTime.setText(proToSpan(""+0,"/"+REP));
-                //mExerciseTime.setText("0/" + REP);
+                binding.txtTime.setText(proToSpan(""+0,"/"+REP));
+                //binding.txtTime.setText("0/" + REP);
             }else {
-                btnPause.setVisibility(View.GONE);
-                mDoneImg.setVisibility(View.VISIBLE);
+                binding.btnPause.setVisibility(View.GONE);
+                binding.imgDone.setVisibility(View.VISIBLE);
             }
-            mExerciseName.setText(mExerciseObject.getName());
+            binding.tvExerciseName.setText(mExerciseObject.getName());
 
         }
-        mVideoView.start();
+        binding.videoView.start();
         if (!myPreference.isSpeakerOn()) {
             countDown();
         }
         //  countDown();
         if (progress == 0) {
-            mPrevious.setEnabled(false);
-            mPrevious.setAlpha(0.2f);
+            binding.imgPrevious.setEnabled(false);
+             binding.imgPrevious.setAlpha(0.2f);
         } else if (progress > 0 && (progress < totalExercise - 1)) {
-            mPrevious.setEnabled(true);
-            mPrevious.setAlpha(1.0f);
-            mNext.setEnabled(true);
-            mNext.setAlpha(1.0f);
+             binding.imgPrevious.setEnabled(true);
+             binding.imgPrevious.setAlpha(1.0f);
+            binding.imgNext.setEnabled(true);
+            binding.imgNext.setAlpha(1.0f);
         }
-
+        binding.imgPrevious.setOnClickListener(this);
+        binding.imgNext.setOnClickListener(this);
+        binding.btnPause.setOnClickListener(this);
+        binding.txtSpeed.setOnClickListener(this);
+        binding.tvExerciseName.setOnClickListener(this);
+        binding.imgSetting.setOnClickListener(this);
+        binding.imgRotate.setOnClickListener(this);
+        binding.imgDone.setOnClickListener(this);
 
     }
 
@@ -217,9 +192,9 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
-        if (mVideoView != null) {
-            mVideoView.setOnCompletionListener(null);
-            mVideoView.stopPlayback();
+        if (binding.videoView != null) {
+            binding.videoView.setOnCompletionListener(null);
+            binding.videoView.stopPlayback();
         }
     }
 
@@ -235,119 +210,119 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
     }
     public void onResumeReady() {
         Log.d("HAHA", "onResumeReady");
-        mSpeed.setText("" + myPreference.getSpeed() + "x");
-        mExerciseName.setText(mExerciseObject.getName());
-        mCountDownText.setVisibility(View.INVISIBLE);
-        mVideoView.setVideoURI(Uri.parse(path));
+        binding.txtSpeed.setText("" + myPreference.getSpeed() + "x");
+        binding.tvExerciseName.setText(mExerciseObject.getName());
+        binding.tvCountDown.setVisibility(View.INVISIBLE);
+        binding.videoView.setVideoURI(Uri.parse(path));
         playExercise();
 
     }
 
     public void playExercise() {
-        mSpeed.setText("" + myPreference.getSpeed() + "x");
-        mCountDownText.setVisibility(View.INVISIBLE);
-        mReadyProgress.setMax(REP);
-        mReadyProgress.setProgress((mCurrentTime));
-        mBottomProgressBar.setMax(REP);
-        mBottomProgressBar.setProgress((mCurrentTime));
-     //   mVideoView.setVideoURI(Uri.parse(path));
+        binding.txtSpeed.setText("" + myPreference.getSpeed() + "x");
+        binding.tvCountDown.setVisibility(View.INVISIBLE);
+         binding.progressReady.setMax(REP);
+         binding.progressReady.setProgress((mCurrentTime));
+         binding.progressReadyBottom.setMax(REP);
+         binding.progressReadyBottom.setProgress((mCurrentTime));
+     //   binding.videoView.setVideoURI(Uri.parse(path));
         if (mActionObject.getUnit().contains("s")) {
 
-            btnPause.setVisibility(View.VISIBLE);
-            mDoneImg.setVisibility(View.GONE);
-            mVideoView.setOnPreparedListener(mediaPlayer -> {
+            binding.btnPause.setVisibility(View.VISIBLE);
+            binding.imgDone.setVisibility(View.GONE);
+            binding.videoView.setOnPreparedListener(mediaPlayer -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     mediaPlayer.setPlaybackParams(new PlaybackParams().setSpeed(myPreference.getSpeed()));
                 }
                 mediaPlayer.setLooping(true);
             });
-            if (!mVideoView.isPlaying()) {
-                mVideoView.start();
+            if (!binding.videoView.isPlaying()) {
+                binding.videoView.start();
             }
             initTimer(mCurrentTime);
         } else {
             if (mExerciseObject.getAlternation()) {
-                mSub.setVisibility(View.VISIBLE);
-                mSub.setText(getString(R.string.td_each_side)+" x"+REP);
+                binding.tvSub.setVisibility(View.VISIBLE);
+                binding.tvSub.setText(getString(R.string.td_each_side)+" x"+REP);
             } else {
-                mSub.setVisibility(View.INVISIBLE);
+                binding.tvSub.setVisibility(View.INVISIBLE);
             }
 
             if (myPreference.getCountOption() == 1) {
-                mExerciseTime.setText("" + (mCurrentTime + 1) + "/" + REP);
-                btnPause.setVisibility(View.VISIBLE);
-                mDoneImg.setVisibility(View.GONE);
+                binding.txtTime.setText("" + (mCurrentTime + 1) + "/" + REP);
+                binding.btnPause.setVisibility(View.VISIBLE);
+                binding.imgDone.setVisibility(View.GONE);
 
-                mVideoView.setOnPreparedListener(mediaPlayer -> {
+                binding.videoView.setOnPreparedListener(mediaPlayer -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         mediaPlayer.setPlaybackParams(new PlaybackParams().setSpeed(myPreference.getSpeed()));
                     }
                     mediaPlayer.setLooping(false);
                 });
-                mExerciseTime.setText(proToSpan(""+mCurrentTime,"/"+REP));
-                mVideoView.setOnCompletionListener(mediaPlayer -> {
+                binding.txtTime.setText(proToSpan(""+mCurrentTime,"/"+REP));
+                binding.videoView.setOnCompletionListener(mediaPlayer -> {
                     mCurrentTime++;
                     if (mCurrentTime > REP) {
                         mListener.onFinishReady();
                     } else {
-                        mExerciseTime.setText(proToSpan(""+mCurrentTime,"/"+REP));
-                        mBottomProgressBar.setProgress((mCurrentTime));
-                        mReadyProgress.setProgress((mCurrentTime));
+                        binding.txtTime.setText(proToSpan(""+mCurrentTime,"/"+REP));
+                         binding.progressReadyBottom.setProgress((mCurrentTime));
+                         binding.progressReady.setProgress((mCurrentTime));
                         if (mListener != null) {
                             mListener.updateReady(mCurrentTime);
                             mListener.updateProgressWorkout(((float) (mCurrentTime) / REP));
                         }
-                        new Handler().postDelayed(() -> mVideoView.start(), mExerciseObject.getSpeed());
-                        // mVideoView.start();
+                        new Handler().postDelayed(() -> binding.videoView.start(), mExerciseObject.getSpeed());
+                        // binding.videoView.start();
                     }
                 });
                 //mListener.updateReady(mCurrentTime + 1);
-                mBottomProgressBar.setProgress(mCurrentTime + 1);
-                if (!mVideoView.isPlaying()) {
-                    mVideoView.start();
+                 binding.progressReadyBottom.setProgress(mCurrentTime + 1);
+                if (!binding.videoView.isPlaying()) {
+                    binding.videoView.start();
                 }
             } else {
-                mExerciseTime.setText("x" + REP);
-                mVideoView.setOnPreparedListener(mediaPlayer -> {
+                binding.txtTime.setText("x" + REP);
+                binding.videoView.setOnPreparedListener(mediaPlayer -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         mediaPlayer.setPlaybackParams(new PlaybackParams().setSpeed(myPreference.getSpeed()));
                     }
                     mediaPlayer.setLooping(true);
                 });
-                if (!mVideoView.isPlaying()) {
-                    mVideoView.start();
+                if (!binding.videoView.isPlaying()) {
+                    binding.videoView.start();
                 }
-                btnPause.setVisibility(View.GONE);
-                mDoneImg.setVisibility(View.VISIBLE);
+                binding.btnPause.setVisibility(View.GONE);
+                binding.imgDone.setVisibility(View.VISIBLE);
             }
         }
     }
 
     public void initTimer(int time) {
         releaseTimer();
-        mBottomProgressBar.setMax(mTotalTime * 1000);
-        mReadyProgress.setMax(mTotalTime * 1000);
-        mBottomProgressBar.setProgress((mTotalTime - mCurrentTime) * 1000);
+         binding.progressReadyBottom.setMax(mTotalTime * 1000);
+         binding.progressReady.setMax(mTotalTime * 1000);
+         binding.progressReadyBottom.setProgress((mTotalTime - mCurrentTime) * 1000);
         countDownTimer = new CountDownTimer(time * 1000, 10) {
             @Override
             public void onTick(long l) {
                 if (mCurrentTime != (int) l / 1000) {
                     mCurrentTime = (int) l / 1000;
-                    mExerciseTime.setText(FitnessConstUtils.toTime(mCurrentTime));
+                    binding.txtTime.setText(FitnessConstUtils.toTime(mCurrentTime));
                     float progress = (float) (mTotalTime - mCurrentTime) / mTotalTime;
                     if (mListener != null) {
                         mListener.updateProgressWorkout(progress);
                         mListener.updateReady(mCurrentTime);
                     }
                 }
-                mReadyProgress.setProgress((int) (mTotalTime * 1000 - l));
-                mBottomProgressBar.setProgress((int) (mTotalTime * 1000 - l));
+                 binding.progressReady.setProgress((int) (mTotalTime * 1000 - l));
+                 binding.progressReadyBottom.setProgress((int) (mTotalTime * 1000 - l));
             }
 
             @Override
             public void onFinish() {
                 mCurrentTime = 0;
-                mBottomProgressBar.setProgress(mTotalTime * 1000);
+                 binding.progressReadyBottom.setProgress(mTotalTime * 1000);
                 if (mListener != null) {
                     mListener.onFinishReady();
                 }
@@ -359,7 +334,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
     public void countDown() {
         crr = 0;
         //playExercise();
-        //mCountDownText.setVisibility(View.VISIBLE);
+        //binding.tvCountDown.setVisibility(View.VISIBLE);
         countDownTimer = new CountDownTimer(3800, 10) {
             @Override
             public void onTick(long l) {
@@ -367,7 +342,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
                     crr = (int) l / 1000;
                     if (crr > 0) {
                         try {
-                          //  mCountDownText.setText("" + crr);
+                          //  binding.tvCountDown.setText("" + crr);
                             Animation anim = new TranslateAnimation(0, 0, -200, 100);
                             anim.setDuration(450);
                             Animation fadeOut = new AlphaAnimation(1, 0);
@@ -380,8 +355,8 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
 
                                 @Override
                                 public void onAnimationEnd(Animation animation) {
-                                  //  mCountDownText.clearAnimation();
-                                 //   mCountDownText.startAnimation(fadeOut);
+                                  //  binding.tvCountDown.clearAnimation();
+                                 //   binding.tvCountDown.startAnimation(fadeOut);
                                  //   fadeOut.setFillAfter(true);
                                 }
 
@@ -390,8 +365,8 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
 
                                 }
                             });
-                            //mCountDownText.clearAnimation();
-                            //mCountDownText.startAnimation(anim);
+                            //binding.tvCountDown.clearAnimation();
+                            //binding.tvCountDown.startAnimation(anim);
                            // if (mListener != null) mListener.updateReady(crr);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -403,7 +378,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
             @SuppressLint("DefaultLocale")
             @Override
             public void onFinish() {
-                //mCountDownText.setVisibility(View.INVISIBLE);
+                //binding.tvCountDown.setVisibility(View.INVISIBLE);
                 playExercise();
 
             }
@@ -428,8 +403,8 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
-        if (mVideoView != null) {
-            mVideoView.stopPlayback();
+        if (binding.videoView != null) {
+            binding.videoView.stopPlayback();
         }
     }
 
@@ -438,11 +413,9 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
             countDownTimer.cancel();
             countDownTimer = null;
         }
+
     }
 
-    @SuppressLint("SetTextI18n")
-    @OnClick({R.id.img_previous,
-            R.id.img_next, R.id.btn_pause, R.id.txt_speed, R.id.tv_exercise_name, R.id.img_setting, R.id.img_rotate,R.id.img_done})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_previous:
@@ -500,8 +473,9 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
     private void populateViewForOrientation(LayoutInflater inflater, ViewGroup viewGroup) {
 
         viewGroup.removeAllViewsInLayout();
-        View subview = inflater.inflate(R.layout.fragment_play, viewGroup);
-        ButterKnife.bind(this, subview);
+        binding = FragmentPlayBinding.inflate(getLayoutInflater());
+        viewGroup.addView(binding.getRoot());
+
 
         // Find your buttons in subview, set up onclicks, set up callbacks to your parent fragment or activity here.
     }
@@ -513,9 +487,17 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         populateViewForOrientation(inflater, (ViewGroup) getView());
         onResumeReady();
         if (progress == 0) {
-            mPrevious.setEnabled(false);
-            mPrevious.setAlpha(0.2f);
+             binding.imgPrevious.setEnabled(false);
+             binding.imgPrevious.setAlpha(0.2f);
         }
+        binding.imgPrevious.setOnClickListener(this);
+        binding.imgNext.setOnClickListener(this);
+        binding.btnPause.setOnClickListener(this);
+        binding.txtSpeed.setOnClickListener(this);
+        binding.tvExerciseName.setOnClickListener(this);
+        binding.imgSetting.setOnClickListener(this);
+        binding.imgRotate.setOnClickListener(this);
+        binding.imgDone.setOnClickListener(this);
     }
 
     public interface OnReadyFragmentInteractionListener {

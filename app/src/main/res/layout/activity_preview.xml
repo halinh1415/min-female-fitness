@@ -120,7 +120,9 @@
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
-        <include layout="@layout/content_preview" />
+        <include
+            android:id="@+id/content_preview"
+            layout="@layout/content_preview" />
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_audio"
             android:layout_width="wrap_content"

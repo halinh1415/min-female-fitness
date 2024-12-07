@@ -9,21 +9,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import mint.woman.female.workout.R;
+import mint.woman.female.workout.databinding.FragmentGenderSetupBinding;
 import mint.woman.female.workout.utils.MyPreference;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+
 
 
 public class GenderSetupFragment extends Fragment {
 
+    FragmentGenderSetupBinding binding;
 
-    @BindView(R.id.lnFemale)
-    View mFemale;
-    @BindView(R.id.lnMale)
-    View mMale;
+
     MyPreference myPreference;
     public GenderSetupFragment() {
         // Required empty public constructor
@@ -33,27 +29,29 @@ public class GenderSetupFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_gender_setup, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+        binding = FragmentGenderSetupBinding.inflate(getLayoutInflater());
+
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         myPreference = new MyPreference(getActivity());
+        binding.lnFemale.setOnClickListener(this::setFemale);
+        binding.lnMale.setOnClickListener(this::setMale);
     }
 
-    @OnClick({R.id.lnMale})
-    void setMale(){
-        mMale.setAlpha(1.0f);
-        mFemale.setAlpha(0.3f);
+
+    void setMale(View view){
+        binding.lnMale.setAlpha(1.0f);
+        binding.lnFemale.setAlpha(0.3f);
         myPreference.setGender(0);
     }
-    @OnClick({R.id.lnFemale})
-    void setFemale(){
-        mMale.setAlpha(.3f);
-        mFemale.setAlpha(1f);
+
+    void setFemale(View view){
+        binding.lnMale.setAlpha(.3f);
+        binding.lnFemale.setAlpha(1.0f);
         myPreference.setGender(1);
     }
 }

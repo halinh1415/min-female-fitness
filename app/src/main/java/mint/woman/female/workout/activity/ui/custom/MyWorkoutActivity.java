@@ -31,6 +31,7 @@ import mint.woman.female.workout.activity.ui.workout.ProgramActivity;
 import mint.woman.female.workout.activity.ui.workout.RestTimeActivity;
 import mint.woman.female.workout.common.adapter.MyWorkoutAdapter;
 import mint.woman.female.workout.common.data.CustomWorkoutDataProvider;
+import mint.woman.female.workout.databinding.ActivityMyWorkoutBinding;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.model.PlanObject;
 import mint.woman.female.workout.utils.Database;
@@ -41,17 +42,12 @@ import com.minfitness.decode.Decoder;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 @SuppressLint("NonConstantResourceId")
 public class MyWorkoutActivity extends AppCompatActivity implements MyWorkoutAdapter.EventListener {
 
-    @BindView(R.id.rc_my_workout)
-    RecyclerView mRcWorkout;
-    @BindView(R.id.adView)
-    AdView mAdBanner;
+
+    ActivityMyWorkoutBinding binding;
     MyPreference myPreference;
     boolean flagAds = false, flagRefresh = false;
     MyWorkoutAdapter mAdapter;
@@ -62,8 +58,9 @@ public class MyWorkoutActivity extends AppCompatActivity implements MyWorkoutAda
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_workout);
-        ButterKnife.bind(this);
+        binding = ActivityMyWorkoutBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         initView();
         initData();
     }
@@ -74,13 +71,14 @@ public class MyWorkoutActivity extends AppCompatActivity implements MyWorkoutAda
         List<ProgramObject> list = mDatabase.getMyWorkoutList();
         mAdapter.setData(list);
         if (list.isEmpty()){
-            mAdBanner.setVisibility(View.GONE);
+            binding.adView.setVisibility(View.GONE);
         }else {
-            mAdBanner.setVisibility(View.VISIBLE);
+            binding.adView.setVisibility(View.VISIBLE);
         }
         mAdapter.setEventListener(this);
-        mRcWorkout.setLayoutManager(new GridLayoutManager(this, 1));
-        mRcWorkout.setAdapter(mAdapter);
+        binding.rcMyWorkout.setLayoutManager(new GridLayoutManager(this, 1));
+        binding.rcMyWorkout.setAdapter(mAdapter);
+        binding.fbAdd.setOnClickListener(this::showAlertAdd);
     }
 
 
@@ -92,8 +90,8 @@ public class MyWorkoutActivity extends AppCompatActivity implements MyWorkoutAda
     }
 
 
-    @OnClick(R.id.fb_add)
-    public void showAlertAdd() {
+
+    public void showAlertAdd(View v1) {
         final AlertDialog.Builder dialogAdd = new AlertDialog.Builder(this);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_create_my_workout, null);
         final NumberPicker daysNumber = view.findViewById(R.id.npk_reps_number);
@@ -156,8 +154,8 @@ public class MyWorkoutActivity extends AppCompatActivity implements MyWorkoutAda
     void requestNewAdBanner() {
         if (myPreference.isShowAds() && myPreference.getOK()) {
             AdRequest adRequest = new AdRequest.Builder().build();
-            mAdBanner.loadAd(adRequest);
-            mAdBanner.setAdListener(new AdListener() {
+            binding.adView.loadAd(adRequest);
+            binding.adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdLoaded() {
                     super.onAdLoaded();
@@ -167,7 +165,7 @@ public class MyWorkoutActivity extends AppCompatActivity implements MyWorkoutAda
                 @Override
                 public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                     super.onAdFailedToLoad(loadAdError);
-                    mAdBanner.setVisibility(View.GONE);
+                    binding.adView.setVisibility(View.GONE);
                 }
             });
         }

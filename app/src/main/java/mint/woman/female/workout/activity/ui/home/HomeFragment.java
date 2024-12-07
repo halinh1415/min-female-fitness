@@ -22,6 +22,7 @@ import mint.woman.female.workout.activity.ui.weekgoal.WeekGoalFragment;
 import mint.woman.female.workout.activity.ui.workout.CategoryDetailActivity;
 import mint.woman.female.workout.common.adapter.ProgramClickListener;
 import mint.woman.female.workout.common.adapter.SectionAdapter;
+import mint.woman.female.workout.databinding.FragmentHomeBinding;
 import mint.woman.female.workout.model.CategoryObject;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.model.Section;
@@ -31,15 +32,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 @SuppressLint({"NonConstantResourceId", "DefaultLocale"})
 public class HomeFragment extends Fragment implements ProgramClickListener {
-
-    @BindView(R.id.rc_my_workout)
-    RecyclerView mPlanRc;
+    FragmentHomeBinding binding;
 //    @BindView(R.id.txt_add_program)
 //    TextView mAddProgram;
 
@@ -58,9 +53,9 @@ public class HomeFragment extends Fragment implements ProgramClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        ButterKnife.bind(this, root);
-        return root;
+        binding = FragmentHomeBinding.inflate(getLayoutInflater());
+
+        return binding.getRoot();
     }
 
 
@@ -71,12 +66,13 @@ public class HomeFragment extends Fragment implements ProgramClickListener {
         myPreference = MyPreference.newInstance(getContext());
 
         // mPlanCalendarView.setSelectedDate(CalendarDay.today());
-        mPlanRc.setNestedScrollingEnabled(false);
-        mPlanRc.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rcMyWorkout.setNestedScrollingEnabled(false);
+        binding.rcMyWorkout.setLayoutManager(new LinearLayoutManager(getContext()));
         WeekGoalFragment goalFragment = (WeekGoalFragment) getFragmentManager().findFragmentById(R.id.a1);
         if (goalFragment != null){
             goalFragment.setIsWeek(true);
         }
+        binding.lnMyTraining.setOnClickListener(this::goTraining);
         initData();
     }
     private List<Object> getProgram(int[] list) {
@@ -109,9 +105,9 @@ public class HomeFragment extends Fragment implements ProgramClickListener {
 //        });
         //   mExploreRc.setLayoutManager(glm);
         SectionAdapter sectionAdapter = new SectionAdapter(sections,this);
-        mPlanRc.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        binding.rcMyWorkout.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         // mExploreRc.setLayoutManager(new LinearLayoutManager(getContext()));
-        mPlanRc.setAdapter(sectionAdapter);
+        binding.rcMyWorkout.setAdapter(sectionAdapter);
         // rcSection.setAdapter(mSectionAdapter);
     }
 
@@ -130,7 +126,7 @@ public class HomeFragment extends Fragment implements ProgramClickListener {
     }
 
 
-    @OnClick({R.id.ln_my_training})
+
     void goTraining(View view){
         Navigation.findNavController(view).navigate(R.id.action_nav_home_to_nav_my_workout);
     }
