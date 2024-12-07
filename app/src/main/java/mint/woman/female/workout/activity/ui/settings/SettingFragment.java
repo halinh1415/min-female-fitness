@@ -151,18 +151,18 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
 
                 AppOpenManager.getInstance().disableAdResumeByClickAction();
                 SwitchPreference swGoogleFit = findPreference("SYNC_FIT");
+                HealthDataDialog healthDataDialog = new HealthDataDialog();
+                healthDataDialog.show(getActivity().getSupportFragmentManager(), "health_connect");
                 if (swGoogleFit.isChecked()){
                     swGoogleFit.setChecked(false);
-                    HealthDataDialog healthDataDialog = new HealthDataDialog();
-                    healthDataDialog.show(getActivity().getSupportFragmentManager(), "health_connect");
 //                    if (mListener != null) {
 //                        mListener.onGetGoogleFit();
 //                    }
                 }else {
-                    Toast.makeText(getContext(), getString(R.string.tip_disconnect_hc_success), Toast.LENGTH_SHORT).show();
-                    if (mListener != null) {
-                        mListener.disableHealthConnect();
-                    }
+                    swGoogleFit.setChecked(true);
+//                    if (mListener != null) {
+//                        mListener.disableHealthConnect();
+//                    }
                     // swGoogleFit.setTitle(getString(R.string.txt_sync_to_google_fit));
                 }
                 break;

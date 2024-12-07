@@ -589,6 +589,21 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
             e.printStackTrace()
         }
     }
+    private fun disableGoogleFit() {
+        Toast.makeText(this, getString(R.string.tip_disconnect_hc_success), Toast.LENGTH_SHORT).show()
+        myPreference.isSyncGoogleFit = true
+        try {
+            val navHostFragment =
+                supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
+            val settingFragment =
+                navHostFragment!!.childFragmentManager.primaryNavigationFragment as SettingFragment?
+            val dialogSync = supportFragmentManager.findFragmentByTag("health_connect") as HealthDataDialog?
+            dialogSync?.updateValue(false)
+            settingFragment?.initValue(false)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
     override fun onResume() {
         super.onResume()
@@ -756,6 +771,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
 
     override fun disableHealthConnect() {
         try{
+            Toast.makeText(this,getString(R.string.tip_disconnect_hc_success), Toast.LENGTH_SHORT).show()
             val availabilityStatus = HealthConnectClient.getSdkStatus(this)
             myPreference = MyPreference.newInstance(this)
             if (availabilityStatus == HealthConnectClient.SDK_UNAVAILABLE) {
@@ -772,6 +788,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
             lifecycleScope.launch {
                 healthConnectClient.permissionController.revokeAllPermissions()
             }
+            disableGoogleFit()
 
         }catch (e:Exception){
             e.printStackTrace()
