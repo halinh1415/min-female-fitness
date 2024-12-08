@@ -18,7 +18,6 @@
 -keepclassmembers,allowobfuscation class * {
   @com.google.gson.annotations.SerializedName <fields>;
 }
--keep class org.jsoup.**
 -keep class com.android.vending.billing.**
 -keep public class * implements androidx.versionedparcelable.VersionedParcelable
 -keepclasseswithmembernames,includedescriptorclasses class * {

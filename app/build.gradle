@@ -13,8 +13,8 @@ android {
         applicationId "mint.woman.female.workout"
         minSdk 26
         targetSdk 34
-        versionCode 73
-        versionName "1.0.73"
+        versionCode 75
+        versionName "1.0.75"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -94,7 +94,7 @@ dependencies {
     implementation "androidx.health.connect:connect-client:1.1.0-alpha10"
 
 // JSON Parsing
-    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.google.code.gson:gson:2.11.0'
     // optional - RxJava support for Room
     implementation "androidx.room:room-rxjava2:2.6.1"
     testImplementation 'junit:junit:4.13.2'
