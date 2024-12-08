@@ -8,7 +8,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import java.util.List;
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ExerciseObject {
@@ -56,7 +55,6 @@ public class ExerciseObject {
     @SerializedName("tips")
     private List<Tip> tips;
     @SerializedName("groupactions")
-    @Expose
     private List<Integer> groupactions;
     @SerializedName("playspeeds")
     private PlaySpeeds playspeeds;
