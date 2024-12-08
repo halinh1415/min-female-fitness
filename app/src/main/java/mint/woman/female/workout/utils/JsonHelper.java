@@ -156,8 +156,7 @@ public class JsonHelper {
             }
 
             Gson gson = new Gson();
-            List<ProgramObject> list = gson.fromJson(jsonString, new TypeToken<List<ProgramObject>>() {
-            }.getType());
+            List<ProgramObject> list = gson.fromJson(jsonString, TypeToken.getParameterized(List.class,ProgramObject.class).getType());
             for (ProgramObject pr : list
             ) {
                 programHashMap.put(pr.getId(), pr);
@@ -204,8 +203,7 @@ public class JsonHelper {
                     }
                 }
                 Gson gson = new Gson();
-                List<ExerciseObject> list = gson.fromJson(jsonString, new TypeToken<List<ExerciseObject>>() {
-                }.getType());
+                List<ExerciseObject> list = gson.fromJson(jsonString, TypeToken.getParameterized(List.class,ExerciseObject.class).getType());
                 for (ExerciseObject exe : list
                 ) {
                     hashMapExercises.put(exe.getId(), exe);
@@ -262,8 +260,7 @@ public class JsonHelper {
 
 
         Gson gson = new Gson();
-        return gson.fromJson(jsonString, new TypeToken<List<ExerciseObject>>() {
-        }.getType());
+        return gson.fromJson(jsonString, TypeToken.getParameterized(List.class,ExerciseObject.class).getType());
 //        Gson gson = new Gson();
 //        list = gson.fromJson(decryptJson, new TypeToken<List<ExerciseObject>>() {}.getType());
 
