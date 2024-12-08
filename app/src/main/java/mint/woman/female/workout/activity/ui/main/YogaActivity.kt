@@ -306,8 +306,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
 
     // Permission launcher
 
-    val requestPermissionActivityContract =
-        PermissionController.createRequestPermissionResultContract()
+    val requestPermissionActivityContract =  PermissionController.createRequestPermissionResultContract()
 
     val requestPermissions =
         registerForActivityResult(requestPermissionActivityContract) { granted ->
@@ -337,6 +336,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
     suspend fun checkPermissionsAndRun(healthConnectClient: HealthConnectClient) {
         try {
             val granted = healthConnectClient.permissionController.getGrantedPermissions()
+            Log.d("HAHA"," var"+granted)
             if (granted.containsAll(PERMISSIONS)) {
                 myPreference.isSyncGoogleFit = true
                 accessGoogleFit()
@@ -608,7 +608,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
     private fun disableGoogleFit() {
         Toast.makeText(this, getString(R.string.tip_disconnect_hc_success), Toast.LENGTH_SHORT)
             .show()
-        myPreference.isSyncGoogleFit = true
+        myPreference.isSyncGoogleFit = false
         try {
             val navHostFragment =
                 supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
