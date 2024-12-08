@@ -71,7 +71,8 @@ import java.util.Arrays
 import java.util.Locale
 
 
-class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnSettingsListener,UserSyncCallBack,
+class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnSettingsListener,
+    UserSyncCallBack,
     UserUpdateCallback {
     var binding: ActivityYogaBinding? = null
     var mCurrentCategory: ProgramObject? = null
@@ -91,12 +92,21 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        val appBarConfiguration: AppBarConfiguration = AppBarConfiguration.Builder(
-            R.id.nav_home,
-            R.id.nav_report2,
-            R.id.nav_diet_fragment,
-            R.id.nav_setting
-        ).build()
+//        val appBarConfiguration: AppBarConfiguration = AppBarConfiguration.Builder(
+//            R.id.nav_home,
+//            R.id.nav_report2,
+//            R.id.nav_diet_fragment,
+//            R.id.nav_setting
+//        ).build()
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.nav_home,
+                R.id.nav_explore,
+                R.id.nav_report2,
+                R.id.nav_diet_fragment,
+                R.id.nav_setting
+            )
+        )
         val navController = findNavController(this, R.id.nav_host_fragment)
         setupActionBarWithNavController(this, navController, appBarConfiguration)
         setupWithNavController(binding!!.navView, navController)
@@ -289,6 +299,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
         intent.addFlags((Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
         startActivity(intent)
     }
+
     private val PERMISSIONS = setOf(
         HealthPermission.getWritePermission(ExerciseSessionRecord::class)
     )
@@ -298,29 +309,31 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
     val requestPermissionActivityContract =
         PermissionController.createRequestPermissionResultContract()
 
-    val requestPermissions = registerForActivityResult(requestPermissionActivityContract) { granted ->
-        if (granted.containsAll(PERMISSIONS)) {
-            Toast.makeText(
-                this,
-                "granted", Toast.LENGTH_SHORT
-            ).show()
-            myPreference.isSyncGoogleFit = true
-            accessGoogleFit()
+    val requestPermissions =
+        registerForActivityResult(requestPermissionActivityContract) { granted ->
+            if (granted.containsAll(PERMISSIONS)) {
+                Toast.makeText(
+                    this,
+                    "granted", Toast.LENGTH_SHORT
+                ).show()
+                myPreference.isSyncGoogleFit = true
+                accessGoogleFit()
 
 
-        } else {
-            myPreference.isSyncGoogleFit = false
-            try {
-                val navHostFragment =
-                    supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
-                val settingFragment =
-                    navHostFragment!!.childFragmentManager.primaryNavigationFragment as SettingFragment?
-                settingFragment?.initValue(false)
-            } catch (e: Exception) {
-                e.printStackTrace()
+            } else {
+                myPreference.isSyncGoogleFit = false
+                try {
+                    val navHostFragment =
+                        supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
+                    val settingFragment =
+                        navHostFragment!!.childFragmentManager.primaryNavigationFragment as SettingFragment?
+                    settingFragment?.initValue(false)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             }
         }
-    }
+
     suspend fun checkPermissionsAndRun(healthConnectClient: HealthConnectClient) {
         try {
             val granted = healthConnectClient.permissionController.getGrantedPermissions()
@@ -331,13 +344,14 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
             } else {
                 requestPermissions.launch(PERMISSIONS)
             }
-        }catch (e:Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }
+
     // Permission launcher
     override fun onGetGoogleFit() {
-        try{
+        try {
             val availabilityStatus = HealthConnectClient.getSdkStatus(this)
             myPreference = MyPreference.newInstance(this)
             if (availabilityStatus == HealthConnectClient.SDK_UNAVAILABLE) {
@@ -370,7 +384,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
             lifecycleScope.launch {
                 checkPermissionsAndRun(healthConnectClient)
             }
-        }catch (e:Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
 
@@ -582,22 +596,26 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
                 supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
             val settingFragment =
                 navHostFragment!!.childFragmentManager.primaryNavigationFragment as SettingFragment?
-            val dialogSync = supportFragmentManager.findFragmentByTag("health_connect") as HealthDataDialog?
+            val dialogSync =
+                supportFragmentManager.findFragmentByTag("health_connect") as HealthDataDialog?
             dialogSync?.updateValue(true)
             settingFragment?.initValue(true)
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
+
     private fun disableGoogleFit() {
-        Toast.makeText(this, getString(R.string.tip_disconnect_hc_success), Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.tip_disconnect_hc_success), Toast.LENGTH_SHORT)
+            .show()
         myPreference.isSyncGoogleFit = true
         try {
             val navHostFragment =
                 supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
             val settingFragment =
                 navHostFragment!!.childFragmentManager.primaryNavigationFragment as SettingFragment?
-            val dialogSync = supportFragmentManager.findFragmentByTag("health_connect") as HealthDataDialog?
+            val dialogSync =
+                supportFragmentManager.findFragmentByTag("health_connect") as HealthDataDialog?
             dialogSync?.updateValue(false)
             settingFragment?.initValue(false)
         } catch (e: Exception) {
@@ -640,7 +658,6 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
             startActivity(intent2)
         }
     }
-
 
 
     private fun showUpdateApp() {
@@ -730,7 +747,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
 
 
     override fun onSync() {
-        try{
+        try {
             val availabilityStatus = HealthConnectClient.getSdkStatus(this)
             myPreference = MyPreference.newInstance(this)
             if (availabilityStatus == HealthConnectClient.SDK_UNAVAILABLE) {
@@ -748,24 +765,26 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
                     getString(R.string.update_health_connect_gpt),
                     Toast.LENGTH_SHORT
                 ).show()
-                val dialogSync = supportFragmentManager.findFragmentByTag("health_connect") as HealthDataDialog?
+                val dialogSync =
+                    supportFragmentManager.findFragmentByTag("health_connect") as HealthDataDialog?
                 dialogSync?.dismiss()
                 val healthConnectUpdateDialog = HealthConnectUpdateDialog()
-                healthConnectUpdateDialog.show(supportFragmentManager,"update_health_dialog")
+                healthConnectUpdateDialog.show(supportFragmentManager, "update_health_dialog")
                 return
             }
             val healthConnectClient = HealthConnectClient.getOrCreate(this)
             lifecycleScope.launch {
                 checkPermissionsAndRun(healthConnectClient)
             }
-        }catch (e:Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
     override fun disableHealthConnect() {
-        try{
-            Toast.makeText(this,getString(R.string.tip_disconnect_hc_success), Toast.LENGTH_SHORT).show()
+        try {
+            Toast.makeText(this, getString(R.string.tip_disconnect_hc_success), Toast.LENGTH_SHORT)
+                .show()
             val availabilityStatus = HealthConnectClient.getSdkStatus(this)
             myPreference = MyPreference.newInstance(this)
             if (availabilityStatus == HealthConnectClient.SDK_UNAVAILABLE) {
@@ -784,7 +803,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
             }
             disableGoogleFit()
 
-        }catch (e:Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
 

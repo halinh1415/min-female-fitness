@@ -56,7 +56,7 @@ public class ReportFragment extends Fragment implements SeekBar.OnSeekBarChangeL
 
     
     FragmentReportBinding binding;
-    TextView mRecentWaist;
+
     ValueFormatter xAxisMonthFormatter;
 
     HistoryViewModel mHistoryViewModel;
@@ -332,7 +332,7 @@ public class ReportFragment extends Fragment implements SeekBar.OnSeekBarChangeL
 
 //update weight min,max
 
-            mRecentWaist.setText(getString(R.string.txt_recent) + " " + String.format("%.1f", currentWaist) + " " + myPreference.getHeightUnit());
+            binding.txtRecentWaist.setText(getString(R.string.txt_recent) + " " + String.format("%.1f", currentWaist) + " " + myPreference.getHeightUnit());
         });
 
 
