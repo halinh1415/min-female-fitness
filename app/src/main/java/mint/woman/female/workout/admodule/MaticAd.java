@@ -20,9 +20,10 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdOptions;
 import com.google.android.gms.ads.nativead.NativeAdView;
-import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.util.concurrent.atomic.AtomicInteger;
+
+import mint.woman.female.workout.custom.progress.KProgressHUD;
 
 public class MaticAd {
     private static final String TAG = "MaticAd";

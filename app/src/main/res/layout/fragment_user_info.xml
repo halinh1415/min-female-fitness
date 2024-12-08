@@ -96,7 +96,7 @@
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/_16sdp" />
 
-        <com.zjun.widget.RuleView
+        <mint.woman.female.workout.custom.RuleView
             android:id="@+id/rule_weight"
             android:layout_width="match_parent"
             android:layout_height="70dp"
@@ -166,7 +166,7 @@
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/_16sdp" />
 
-        <com.zjun.widget.RuleView
+        <mint.woman.female.workout.custom.RuleView
             android:id="@+id/rule_height"
             android:layout_width="match_parent"
             android:layout_height="70dp"

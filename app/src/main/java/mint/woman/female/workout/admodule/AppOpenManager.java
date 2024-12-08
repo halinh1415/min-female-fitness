@@ -19,10 +19,10 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.appopen.AppOpenAd;
-import com.kaopiz.kprogresshud.KProgressHUD;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import mint.woman.female.workout.custom.progress.KProgressHUD;
 
 
 public class AppOpenManager implements Application.ActivityLifecycleCallbacks, LifecycleObserver {

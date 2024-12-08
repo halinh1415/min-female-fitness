@@ -68,7 +68,7 @@
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/_20sdp" />
 
-    <com.zjun.widget.RuleView
+    <mint.woman.female.workout.custom.RuleView
         android:id="@+id/rule_height"
         android:layout_width="70dp"
         android:layout_height="match_parent"

@@ -17,6 +17,8 @@
     <color name="color_dadada">#dadada</color>
     <color name="color_de333333">#de333333</color>
     <color name="color_f3f3f3">#f3f3f3</color>
+    <color name="kprogresshud_default_color">#b1000000</color>
+    <color name="kprogresshud_grey_color">#449E9E9E</color>
     <color name="red">#ffc93437</color>
     <color name="red_00">#ff0000</color>
     <color name="red_30p">#4cf44336</color>
