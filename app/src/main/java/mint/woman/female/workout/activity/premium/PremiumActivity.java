@@ -68,26 +68,30 @@ public class PremiumActivity extends AppCompatActivity {
             changeTextColorOfTextViews((ViewGroup) goPro1Binding.llLifeTime, selected == 0);
             changeTextColorOfTextViews((ViewGroup) goPro1Binding.llYear, selected == 1);
             changeTextColorOfTextViews((ViewGroup) goPro1Binding.llMonth, selected == 2);
-            if (selected == 0) {
-                goPro1Binding.tvDes1.setVisibility(View.INVISIBLE);
-                goPro1Binding.tvDes2.setVisibility(View.INVISIBLE);
-                goPro1Binding.clFlower2.setBackgroundResource(R.drawable.ic_discount_2);
-                goPro1Binding.clFlower.setBackgroundResource(R.drawable.ic_discount);
-            } else if (selected == 1) {
-                if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.ENABLE_TRIAL)){
-                    goPro1Binding.tvDes1.setVisibility(View.VISIBLE);
-                }else{
+            try {
+                if (selected == 0) {
                     goPro1Binding.tvDes1.setVisibility(View.INVISIBLE);
-                }
+                    goPro1Binding.tvDes2.setVisibility(View.INVISIBLE);
+                    goPro1Binding.clFlower2.setBackgroundResource(R.drawable.ic_discount_2);
+                    goPro1Binding.clFlower.setBackgroundResource(R.drawable.ic_discount);
+                } else if (selected == 1) {
+                    if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.ENABLE_TRIAL)) {
+                        goPro1Binding.tvDes1.setVisibility(View.VISIBLE);
+                    } else {
+                        goPro1Binding.tvDes1.setVisibility(View.INVISIBLE);
+                    }
 
-                goPro1Binding.tvDes2.setVisibility(View.VISIBLE);
-                goPro1Binding.clFlower2.setBackgroundResource(R.drawable.ic_discount);
-                goPro1Binding.clFlower.setBackgroundResource(R.drawable.ic_discount_2);
-            } else {
-                goPro1Binding.clFlower2.setBackgroundResource(R.drawable.ic_discount);
-                goPro1Binding.clFlower.setBackgroundResource(R.drawable.ic_discount);
-                goPro1Binding.tvDes1.setVisibility(View.INVISIBLE);
-                goPro1Binding.tvDes2.setVisibility(View.VISIBLE);
+                    goPro1Binding.tvDes2.setVisibility(View.VISIBLE);
+                    goPro1Binding.clFlower2.setBackgroundResource(R.drawable.ic_discount);
+                    goPro1Binding.clFlower.setBackgroundResource(R.drawable.ic_discount_2);
+                } else {
+                    goPro1Binding.clFlower2.setBackgroundResource(R.drawable.ic_discount);
+                    goPro1Binding.clFlower.setBackgroundResource(R.drawable.ic_discount);
+                    goPro1Binding.tvDes1.setVisibility(View.INVISIBLE);
+                    goPro1Binding.tvDes2.setVisibility(View.VISIBLE);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
             }
         });
         if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.ENABLE_TRIAL)){
