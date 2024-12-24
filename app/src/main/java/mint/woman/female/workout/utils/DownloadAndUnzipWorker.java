@@ -43,6 +43,8 @@ public class DownloadAndUnzipWorker extends Worker {
             Log.d(TAG, "url =" + zipUrl);
             URL url = new URL(zipUrl);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setConnectTimeout(10000); // 10 giây
+            urlConnection.setReadTimeout(15000);  // 15 giây
             InputStream input = url.openStream();
 
             File zipFile = new File(getApplicationContext().getCacheDir(), "temp.zip");
