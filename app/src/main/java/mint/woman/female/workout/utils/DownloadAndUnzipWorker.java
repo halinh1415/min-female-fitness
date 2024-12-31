@@ -9,6 +9,7 @@ import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
 import java.io.BufferedInputStream;
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -31,6 +32,59 @@ public class DownloadAndUnzipWorker extends Worker {
         super(context, params);
     }
 
+    //    @NonNull
+//    @Override
+//    public Result doWork() {
+//        try {
+//            // Download the zip file
+//            String zipUrl = getInputData().getString("audio_url");
+//            String destination = getInputData().getString("destination_folder");
+//
+//
+//            Log.d(TAG, "url =" + zipUrl);
+//            URL url = new URL(zipUrl);
+//            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+//            urlConnection.setConnectTimeout(10000); // 10 giây
+//            urlConnection.setReadTimeout(15000);  // 15 giây
+//            InputStream input = url.openStream();
+//
+//            File zipFile = new File(getApplicationContext().getCacheDir(), "temp.zip");
+//            if (!zipFile.exists()) {
+//                zipFile.createNewFile();
+//            }
+//            int fileLength = urlConnection.getContentLength();
+//            int totalBytesRead = 0;
+//            FileOutputStream output = new FileOutputStream(zipFile);
+//
+//            byte[] buffer = new byte[8192];
+//            int length;
+//            while ((length = input.read(buffer)) > 0) {
+//                output.write(buffer, 0, length);
+//                totalBytesRead += length;
+//                int progress = (int) ((totalBytesRead * 100L) / fileLength);
+//                setProgressAsync(new Data.Builder().putInt("PROGRESS", progress).build());
+//            }
+//
+//            output.close();
+//            input.close();
+//            File audioFile = new File(getApplicationContext().getFilesDir(), destination);
+//            if (!audioFile.exists()) {
+//                audioFile.mkdirs();
+//            }
+//
+//            // Unzip the file
+//            unzip(zipFile, getApplicationContext().getFilesDir().getPath() + "/" + destination);
+//
+//            // Delete the temporary zip file
+//            zipFile.delete();
+//            Log.d(TAG, "download audio success ");
+//            return Result.success();
+//        } catch (Exception e) {
+//            Log.d(TAG, "download audio fail =" + e);
+//            e.printStackTrace();
+//            return Result.failure();
+//        }
+//    }
     @NonNull
     @Override
     public Result doWork() {
@@ -41,31 +95,31 @@ public class DownloadAndUnzipWorker extends Worker {
 
 
             Log.d(TAG, "url =" + zipUrl);
-            URL url = new URL(zipUrl);
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setConnectTimeout(10000); // 10 giây
-            urlConnection.setReadTimeout(15000);  // 15 giây
-            InputStream input = url.openStream();
-
+            URL u = new URL(zipUrl);
+            URLConnection conn = u.openConnection();
+            int contentLength = conn.getContentLength();
             File zipFile = new File(getApplicationContext().getCacheDir(), "temp.zip");
             if (!zipFile.exists()) {
                 zipFile.createNewFile();
             }
-            int fileLength = urlConnection.getContentLength();
-            int totalBytesRead = 0;
-            FileOutputStream output = new FileOutputStream(zipFile);
 
-            byte[] buffer = new byte[1024];
+            FileOutputStream fos = new FileOutputStream(zipFile);
+
+
             int length;
-            while ((length = input.read(buffer)) > 0) {
-                output.write(buffer, 0, length);
-                totalBytesRead += length;
-                int progress = (int) ((totalBytesRead * 100L) / fileLength);
-                setProgressAsync(new Data.Builder().putInt("PROGRESS", progress).build());
+
+
+            if (isConnected(conn)) {
+                DataInputStream stream = new DataInputStream(u.openStream());
+                byte[] buffer = new byte[contentLength];
+                stream.readFully(buffer);
+                stream.close();
+                fos.write(buffer);
+                fos.flush();
+                fos.close();
             }
 
-            output.close();
-            input.close();
+
             File audioFile = new File(getApplicationContext().getFilesDir(), destination);
             if (!audioFile.exists()) {
                 audioFile.mkdirs();
@@ -99,7 +153,7 @@ public class DownloadAndUnzipWorker extends Worker {
             ZipEntry ze;
             while ((ze = zis.getNextEntry()) != null) {
                 File file = new File(destinationFolder, ze.getName());
-                ensureZipPathSafety(file,destinationFolder);
+                ensureZipPathSafety(file, destinationFolder);
 
                 if (ze.isDirectory()) {
                     file.mkdirs();
@@ -114,12 +168,12 @@ public class DownloadAndUnzipWorker extends Worker {
                 }
                 zis.closeEntry();
             }
-        }
-        catch (Exception e){
-            Log.d(TAG,"unzip except:"+e.toString());
+        } catch (Exception e) {
+            Log.d(TAG, "unzip except:" + e.toString());
             e.printStackTrace();
         }
     }
+
     public void ensureZipPathSafety(final File outputFile, final String destDirectory) throws Exception {
         String destDirCanonicalPath = (new File(destDirectory)).getCanonicalPath();
         String outputFileCanonicalPath = outputFile.getCanonicalPath();
