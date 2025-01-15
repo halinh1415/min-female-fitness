@@ -43,26 +43,6 @@ import java.util.concurrent.TimeUnit;
 public class WeekGoalFragment extends Fragment implements ProgramClickListener, IDayClickListener {
     int[] firstDayOfWeeks = new int[]{Calendar.MONDAY, Calendar.SATURDAY, Calendar.SUNDAY, Calendar.THURSDAY, Calendar.WEDNESDAY, Calendar.THURSDAY, Calendar.FRIDAY};
     FragmentWeekGoalBinding binding;
-//    @BindView(R.id.rc_week_goal)
-//    RecyclerView rcWeekGoal;
-//    @BindView(R.id.rc_program_goal)
-//    RecyclerView rcProgramGoal;
-//    @BindView(R.id.txt_goal_progress)
-//    TextView tvGoalProgress;
-//    @BindView(R.id.txt_total_time)
-//    TextView mTotalTime;
-//    @BindView(R.id.txt_workout_number)
-//    TextView mWorkouts;
-//    @BindView(R.id.txt_calories)
-//    TextView mCalories;
-//    @BindView(R.id.lnSetGoal)
-//    View lnSetGoal;
-//    @BindView(R.id.lnHistory)
-//    View lnHistory;
-//    @BindView(R.id.txt_records)
-//    TextView mRecords;
-//    @BindView(R.id.txt_goal_title)
-//    TextView mGoalTitle;
     MyPreference myPreference;
     HomeViewModel homeViewModel;
 
