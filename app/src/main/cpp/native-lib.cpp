@@ -106,7 +106,6 @@ int vfF101211(JNIEnv *env) {
     // LOGI("native The preset signature is：%s", SIGN);
     int result = strcmp(sign, SIGN);
     int result2 = strcmp(sign,SIGN_DEBUG);
-    LOGE("HAHA: String value: %s\n", sign);
     // 使用之后要释放这段内存
     env->ReleaseStringUTFChars(signature_str, sign);
     env->DeleteLocalRef(signature_str);
