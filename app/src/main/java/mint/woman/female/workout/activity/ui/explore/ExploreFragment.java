@@ -36,7 +36,7 @@ public class ExploreFragment extends Fragment implements ProgramClickListener {
     SectionAdapter mAdapter;
     HashMap<Integer, ProgramObject> hashMap;
     int[] mListStretch = new int[]{18, 19,971, 16, 17, 959};
-    int[] mList7Minute = new int[]{24, 41, 37, 32, 45};
+    int[] mList7Minute = new int[]{24, 41, 37, 32, 45,969};
     int[] mListSummer = new int[]{1110,1140,47,39,46,30,34,38};
     int[] mListFaceYoga = new int[]{10, 11};
     boolean flagAds;
