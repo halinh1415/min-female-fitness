@@ -89,6 +89,7 @@ import mint.woman.female.workout.utils.RemoteConfigKeys;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -114,6 +115,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
     private DialogUnlockTraining dialogUnlockTraining;
     private boolean isRewardedAdLoading = false;
     private Handler handler;
+	 private List<Integer> mProgramLocks = new ArrayList<>();
 
     PreviewViewModel mPreviewViewModel;
     // Called when ad is dismissed.
@@ -165,6 +167,12 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         binding.fabAudio.setOnClickListener(this::goAudioOptions);
         binding.btnGoto.setOnClickListener(this::gotoWorkout);
         binding.txtReset.setOnClickListener(this::reset);
+        mProgramLocks.add(47);
+        mProgramLocks.add(971);
+        mProgramLocks.add(1110);
+        mProgramLocks.add(1140);
+        mProgramLocks.add(1150);
+        mProgramLocks.add(1151);
         if (mBundle != null) {
             int id = mBundle.getInt("PROGRAM_ID", 0);
             mProgramObject = FitnessApplication.getApplication().getProgram(id);
@@ -175,7 +183,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
             mIndexDay = mBundle.getInt("DAY_NUMBER");
             FitnessApplication.getApplication().setDiscover(mProgramObject.getDiscover());
             FitnessApplication.getApplication().setVersion(mProgramObject.getVersion());
-            binding.tvWorkoutDescription.setVisibility(View.GONE);
+          //  binding.tvWorkoutDescription.setVisibility(View.GONE);
             mJsonHelper = FitnessApplication.getApplication().mJsonHelper;
             String baseUrl = "file:///android_asset/images/";
             if (mProgramObject.getDiscover() > 0) {
@@ -754,7 +762,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
     void showUnlock() {
         try {
             if (dialogUnlockTraining == null) {
-                dialogUnlockTraining = new DialogUnlockTraining();
+                dialogUnlockTraining = DialogUnlockTraining.newInstance(mProgramLocks.contains(mProgramObject.getId()));
             }
             FragmentManager fragmentManager = getSupportFragmentManager();
             dialogUnlockTraining.show(fragmentManager, "UnlockTraining");

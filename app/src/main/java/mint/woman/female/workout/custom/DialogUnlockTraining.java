@@ -21,6 +21,26 @@ public class DialogUnlockTraining extends DialogFragment {
     private OnUnlockTrainingListener mListener;
     DialogUnlockTrainingBinding binding;
 
+    boolean isProLock = false;
+    public DialogUnlockTraining() {
+
+    }
+
+    public static DialogUnlockTraining newInstance(boolean isProLock) {
+        DialogUnlockTraining dialogUnlockProTraining = new DialogUnlockTraining();
+        Bundle arg = new Bundle();
+        arg.putBoolean("PRO_LOCK", isProLock);
+        dialogUnlockProTraining.setArguments(arg);
+        return dialogUnlockProTraining;
+    }
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments()!= null){
+            isProLock = getArguments().getBoolean("PRO_LOCK");
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,6 +70,11 @@ public class DialogUnlockTraining extends DialogFragment {
                 mListener.goPremium();
             }
         });
+        if (isProLock){
+            binding.lnWatchVideo.setVisibility(View.GONE);
+        }else{
+            binding.lnWatchVideo.setVisibility(View.VISIBLE);
+        }
     }
 
     public void loadDone(){
@@ -57,11 +82,7 @@ public class DialogUnlockTraining extends DialogFragment {
         binding.pgLoading.setVisibility(View.GONE);
         binding.lnWatchVideo.setEnabled(true);
     }
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRetainInstance(true);
-    }
+
 
     @Override
     public void onDestroyView() {
