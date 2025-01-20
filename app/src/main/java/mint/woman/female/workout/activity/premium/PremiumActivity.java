@@ -126,7 +126,7 @@ public class PremiumActivity extends AppCompatActivity {
                 }
                 String saleOff = "" + discount + "%";
                 String yPriceString = getAnnualPrice(skuDetailsYearly).getFormattedPrice();
-                goPro1Binding.tvOffYear.setText(String.format(getString(R.string.premium_price_save_2), saleOff));
+                goPro1Binding.tvOff2.setText(String.format(getString(R.string.premium_price_save_2), saleOff));
                 goPro1Binding.tvDes1.setText(String.format(getString(R.string.free_7_days_trial_then_xx_year), yPriceString));
                 goPro1Binding.tvYearToMonth.setText(String.format(getString(R.string.iap_only_x_per_mth_gpt), getAnnualMonthlyPrice(skuDetailsYearly)));
                 goPro1Binding.tvYearPrice.setText(String.format(getString(R.string.txt_x_year_gpt), yPriceString));
