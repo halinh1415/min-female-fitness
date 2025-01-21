@@ -44,41 +44,48 @@ public class DownloadAndUnzipWorker extends Worker {
             Log.d(TAG, "url =" + zipUrl);
             URL url = new URL(zipUrl);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setConnectTimeout(10000); // 10 giây
-            urlConnection.setReadTimeout(12000);  // 15 giây
-            InputStream input = url.openStream();
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setConnectTimeout(10000);
+            urlConnection.setReadTimeout(15000);
+            final int responseCode = urlConnection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_PARTIAL || responseCode == HttpURLConnection.HTTP_OK) {
+                InputStream input = urlConnection.getInputStream();
 
-            File zipFile = new File(getApplicationContext().getCacheDir(), "temp.zip");
-            if (!zipFile.exists()) {
-                zipFile.createNewFile();
+
+                File zipFile = new File(getApplicationContext().getCacheDir(), "temp.zip");
+                if (!zipFile.exists()) {
+                    zipFile.createNewFile();
+                }
+                int fileLength = urlConnection.getContentLength();
+                int totalBytesRead = 0;
+                FileOutputStream output = new FileOutputStream(zipFile);
+
+                byte[] buffer = new byte[8192];
+
+                int length;
+                while ((length = input.read(buffer)) > 0) {
+                    output.write(buffer, 0, length);
+                    totalBytesRead += length;
+                    int progress = (int) ((totalBytesRead * 100L) / fileLength);
+                    setProgressAsync(new Data.Builder().putInt("PROGRESS", progress).build());
+                }
+
+                output.close();
+                input.close();
+                File audioFile = new File(getApplicationContext().getFilesDir(), destination);
+                if (!audioFile.exists()) {
+                    audioFile.mkdirs();
+                }
+
+                // Unzip the file
+                unzip(zipFile, getApplicationContext().getFilesDir().getPath() + "/" + destination);
+
+                // Delete the temporary zip file
+                zipFile.delete();
+                Log.d(TAG, "download audio success ");
+                return Result.success();
             }
-            int fileLength = urlConnection.getContentLength();
-            int totalBytesRead = 0;
-            FileOutputStream output = new FileOutputStream(zipFile);
-
-            byte[] buffer = new byte[8192];
-            int length;
-            while ((length = input.read(buffer)) > 0) {
-                output.write(buffer, 0, length);
-                totalBytesRead += length;
-                int progress = (int) ((totalBytesRead * 100L) / fileLength);
-                setProgressAsync(new Data.Builder().putInt("PROGRESS", progress).build());
-            }
-
-            output.close();
-            input.close();
-            File audioFile = new File(getApplicationContext().getFilesDir(), destination);
-            if (!audioFile.exists()) {
-                audioFile.mkdirs();
-            }
-
-            // Unzip the file
-            unzip(zipFile, getApplicationContext().getFilesDir().getPath() + "/" + destination);
-
-            // Delete the temporary zip file
-            zipFile.delete();
-            Log.d(TAG, "download audio success ");
-            return Result.success();
+            return Result.failure();
         } catch (Exception e) {
             Log.d(TAG, "download audio fail =" + e);
             e.printStackTrace();

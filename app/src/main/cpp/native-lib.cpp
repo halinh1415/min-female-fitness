@@ -131,7 +131,7 @@ JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
 //        __android_log_print(ANDROID_LOG_DEBUG, "HAHA", "workout lib SUCCESS!\n");
 //        return JNI_VERSION_1_6;
 //    }
-    __android_log_print(ANDROID_LOG_DEBUG, "HAHA", "workout lib  ERROR!\n");
+    //__android_log_print(ANDROID_LOG_DEBUG, "HAHA", "workout lib  ERROR!\n");
     // Register your class' native methods.
 //    static const JNINativeMethod methods[] = {
 //            {"nativeFoo", "()V", reinterpret_cast<void*>(nativeFoo)},
