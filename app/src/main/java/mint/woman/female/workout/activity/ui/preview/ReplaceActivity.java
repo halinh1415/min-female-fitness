@@ -49,7 +49,7 @@ public class ReplaceActivity extends AppCompatActivity implements ExerciseClickL
     int actionId;
     int time;
     int classId =0;
-    int version = 1001;
+    int version = 1003;
     ExerciseObject mCurrentExerciseObject;
     HashMap<Integer,ExerciseObject> hashMap;
     String path;
@@ -69,7 +69,7 @@ public class ReplaceActivity extends AppCompatActivity implements ExerciseClickL
             actionId = mBundle.getInt("actionId");
             time = mBundle.getInt("time");
             classId = mBundle.getInt("group");
-            version = mBundle.getInt("version",1001);
+            version = mBundle.getInt("version",1003);
 
             hashMap = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(0,version);
             mCurrentExerciseObject = hashMap.get(actionId);

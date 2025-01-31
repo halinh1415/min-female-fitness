@@ -27,7 +27,7 @@ public class DemoDataProvider extends AbstractDemoDataProvider {
     private Context mContext;
     HashMap<Integer, ExerciseObject> hashMap;
     int discover = 0;
-    int version = 1001;
+    int version = 1003;
 
     public DemoDataProvider(Context context, int discover, int version) {
         this.mContext = context;

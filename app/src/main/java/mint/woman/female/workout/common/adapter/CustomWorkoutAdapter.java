@@ -186,7 +186,7 @@ public class CustomWorkoutAdapter extends AbstractExpandableItemAdapter<CustomWo
     @Override
     public void onBindChildViewHolder(MyChildViewHolder holder, int groupPosition, int childPosition, int viewType) {
         PlanObject.ActionObject actionObject = mProvider.getChildItem(groupPosition, childPosition);
-        ExerciseObject exerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(0,1001).get(actionObject.actionId);
+        ExerciseObject exerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(0,1003).get(actionObject.actionId);
         if (exerciseObject == null){
             Log.d("HAHA","not found id ="+actionObject.actionId);
         }

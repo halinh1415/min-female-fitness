@@ -35,7 +35,7 @@ public class FitnessApplication extends Application {
     public JsonHelper mJsonHelper;
     public Database mDatabase;
     private static FitnessApplication sInstance;
-    private int version =1001,discover =0;
+    private int version =1003,discover =0;
     protected StorageCommon storageCommon;
 
     public StorageCommon  getStorageCommon() {
