@@ -37,6 +37,9 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.AuthUI.IdpConfig.GoogleBuilder
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import com.google.android.play.core.review.ReviewInfo
+import com.google.android.play.core.review.ReviewManager
+import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -83,6 +86,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
     var premiumViewModel: PremiumViewModel? = null
     var historyViewModel: HistoryViewModel? = null
 
+    lateinit var reviewManager: ReviewManager
     //   GoogleSignInClient mGoogleSignInClient;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -128,6 +132,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
     }
 
     private fun initView() {
+        reviewManager = ReviewManagerFactory.create(this);
         premiumViewModel = ViewModelProvider(this).get(
             PremiumViewModel::class.java
         )
@@ -166,6 +171,9 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
             val openCount = myPreference.openCount()
             if (openCount > 2 && openCount % 5 == 0 && !myPreference.isPremiumMember()) {
                 startActivity(Intent(this@YogaActivity, PremiumActivity::class.java))
+            }
+            if (openCount>1 && openCount% 10 ==1){
+                requestReview()
             }
         }
         val user = FirebaseAuth.getInstance().currentUser
@@ -209,6 +217,28 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
         //checkAccount();
     }
 
+    private fun requestReview() {
+        try{
+            reviewManager.requestReviewFlow()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful()) {
+                        // get ReviewInfo
+                        val reviewInfo: ReviewInfo = task.getResult()
+                        // show dialog review
+                        reviewManager.launchReviewFlow(this@YogaActivity, reviewInfo)
+                            .addOnCompleteListener { reviewTask ->
+
+                                if (!reviewTask.isSuccessful()) {
+
+                                }
+                            }
+                    }
+                }
+        }catch (e:Exception){
+            e.printStackTrace();
+        }
+
+    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
