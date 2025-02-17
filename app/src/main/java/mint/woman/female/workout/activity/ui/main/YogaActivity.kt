@@ -172,7 +172,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
             if (openCount > 2 && openCount % 5 == 0 && !myPreference.isPremiumMember()) {
                 startActivity(Intent(this@YogaActivity, PremiumActivity::class.java))
             }
-            if (openCount% 5 ==1){
+            if (openCount>1 && openCount% 5 ==1){
                 requestReview()
             }
         }
