@@ -61,7 +61,7 @@ import java.util.concurrent.TimeUnit;
 public class DoWorkoutActivity extends AppCompatActivity implements RestFragment.OnRestFragmentInteractionListener, PlayFragment.OnReadyFragmentInteractionListener, DialogQuit.OnQuitListener {
     private final SimpleDateFormat mFormatDateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
     public static int discover = 0;
-    public static int version = 1001;
+    public static int version = 1003;
     private final String support_language = "ar@de@en@es@fa@fr@in_ID@it@ja@ko@nl@pl@pt@ru@tr@zh_CN@zh_TW";
 
     ActivityDoWorkoutBinding binding;
