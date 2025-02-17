@@ -111,11 +111,12 @@ class FinishedActivity : AppCompatActivity() {
                 mCongratulationPlayer!!.start()
             }
         }
-        if (!myPreference.isRated && myPreference!!.showRate && myPreference!!.openCount() % 3 == 1) {
+        val openCount = myPreference.openCount()
+        if (!myPreference.isRated && myPreference!!.showRate && openCount % 3 == 1) {
             val dialogPreRating = DialogRating()
             dialogPreRating.show(supportFragmentManager, "rate")
         } else {
-            if (myPreference!!.openCount() % 10 == 1) {
+            if (openCount >1 && openCount % 10 == 1) {
                 requestReview()
             }
         }
