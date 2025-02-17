@@ -1,6 +1,5 @@
 package mint.woman.female.workout.activity.ui.workout
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
@@ -19,6 +18,10 @@ import androidx.preference.PreferenceManager
 import com.bumptech.glide.Glide
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
+import com.google.android.play.core.review.ReviewInfo
+import com.google.android.play.core.review.ReviewManager
+import com.google.android.play.core.review.ReviewManagerFactory
+import com.google.android.play.core.review.model.ReviewErrorCode
 import kotlinx.coroutines.launch
 import mint.woman.female.workout.FitnessApplication
 import mint.woman.female.workout.R
@@ -35,7 +38,7 @@ import mint.woman.female.workout.utils.MyPreference
 import java.time.Instant
 import java.time.ZoneOffset
 import java.util.Locale
-import kotlin.math.log
+
 
 class FinishedActivity : AppCompatActivity() {
     lateinit var binding: ActivityFinishedBinding
@@ -43,6 +46,7 @@ class FinishedActivity : AppCompatActivity() {
     lateinit var mHistoryItem: HistoryItem
     var mCongratulationPlayer: MediaPlayer? = null
     lateinit var myPreference: MyPreference
+    lateinit var reviewManager: ReviewManager
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,6 +64,7 @@ class FinishedActivity : AppCompatActivity() {
 
 
     private fun initView() {
+        reviewManager = ReviewManagerFactory.create(this);
         myPreference = MyPreference(this)
         binding.swGoogleFit.isChecked = myPreference!!.isSyncGoogleFit
         binding.swGoogleFit.visibility = View.GONE
@@ -79,7 +84,8 @@ class FinishedActivity : AppCompatActivity() {
             mProgramObject = FitnessApplication.getApplication().getProgram(id)
             mHistoryItem = mBundle.getParcelable<HistoryItem>("HISTORY") as HistoryItem
 
-            binding.contentFinished.txtReminderSet.text = FitnessApplication.getApplication().mDatabase.getReminderSet()
+            binding.contentFinished.txtReminderSet.text =
+                FitnessApplication.getApplication().mDatabase.getReminderSet()
             var kCalories = 0f
             if (mHistoryItem != null) {
                 kCalories = mHistoryItem!!.calories.toFloat()
@@ -108,6 +114,10 @@ class FinishedActivity : AppCompatActivity() {
         if (!myPreference.isRated && myPreference!!.showRate && myPreference!!.openCount() % 3 == 1) {
             val dialogPreRating = DialogRating()
             dialogPreRating.show(supportFragmentManager, "rate")
+        } else {
+            if (myPreference!!.openCount() % 10 == 1) {
+                requestReview()
+            }
         }
         if (!myPreference.isSetReminder) {
             val selectReminderEveryDayDialog = SelectReminderEveryDayDialog()
@@ -141,8 +151,32 @@ class FinishedActivity : AppCompatActivity() {
         }
     }
 
+    private fun requestReview() {
+        try{
+            reviewManager.requestReviewFlow()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful()) {
+                        // get ReviewInfo
+                        val reviewInfo: ReviewInfo = task.getResult()
+                        // show dialog review
+                        reviewManager.launchReviewFlow(this@FinishedActivity, reviewInfo)
+                            .addOnCompleteListener { reviewTask ->
+
+                                if (!reviewTask.isSuccessful()) {
+
+                                }
+                            }
+                    }
+                }
+        }catch (e:Exception){
+            e.printStackTrace();
+        }
+
+    }
+
+
     suspend fun insertHealthData() {
-        Log.d("HAHA","add fit")
+        Log.d("HAHA", "add fit")
         val availabilityStatus = HealthConnectClient.getSdkStatus(this)
 
         if (availabilityStatus == HealthConnectClient.SDK_UNAVAILABLE) {
@@ -170,7 +204,7 @@ class FinishedActivity : AppCompatActivity() {
             startTime = Instant.ofEpochMilli(mHistoryItem.startTime),
             startZoneOffset = ZoneOffset.UTC,
             endTime = Instant.now(),
-            endZoneOffset =  ZoneOffset.UTC,
+            endZoneOffset = ZoneOffset.UTC,
             exerciseType = ExerciseSessionRecord.EXERCISE_TYPE_GYMNASTICS,
             title = mHistoryItem.name,
 //                metadata = Metadata(UUID.randomUUID().toString())
