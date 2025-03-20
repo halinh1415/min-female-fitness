@@ -77,13 +77,19 @@ public class CoachOptionActivity extends AppCompatActivity implements VoiceAdapt
         binding.rcVoice.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         this.tts = new TextToSpeech(this, i -> {
             if (i == TextToSpeech.SUCCESS) {
-                if (!myPreference.getLanguage().isEmpty()) {
-                    tts.setLanguage(new Locale(myPreference.getLanguage()));
-                    defaultEngine = tts.getDefaultEngine();
-                    defaultLocale = tts.getDefaultVoice().getLocale();
-                    if (voiceAdapter != null){
-                        voiceAdapter.setDefaultTTs(defaultEngine,defaultLocale);
+                try {
+                    if (!myPreference.getLanguage().isEmpty()) {
+                        tts.setLanguage(new Locale(myPreference.getLanguage()));
+                        defaultEngine = tts.getDefaultEngine();
+                        if (tts.getDefaultVoice()!= null) {
+                            defaultLocale = tts.getDefaultVoice().getLocale();
+                        }
+                        if (voiceAdapter != null) {
+                            voiceAdapter.setDefaultTTs(defaultEngine, defaultLocale);
+                        }
                     }
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
             }
         });
