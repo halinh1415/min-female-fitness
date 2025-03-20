@@ -33,9 +33,8 @@ import java.util.Locale;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.premium.PremiumActivity;
 import mint.woman.female.workout.databinding.ActivitySoundsBinding;
-import mint.woman.female.workout.retrofit.ApiUtils;
 import mint.woman.female.workout.retrofit.MusicItem;
-import mint.woman.female.workout.retrofit.SOService;
+
 import mint.woman.female.workout.utils.DownloadFileWorker;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
@@ -44,7 +43,6 @@ import mint.woman.female.workout.utils.RemoteConfigKeys;
 public class SoundsActivity extends AppCompatActivity implements MusicClickListener{
     private static final String TAG = "SoundsActivity";
     private ActivitySoundsBinding binding;
-    SOService mService;
     MusicAdapter musicAdapter;
     MediaPlayer musicPlayer;
     MyPreference myPreference;
@@ -69,7 +67,7 @@ public class SoundsActivity extends AppCompatActivity implements MusicClickListe
 
 
         binding.rcMusic.setAdapter(musicAdapter);
-        mService = ApiUtils.getSOService(SoundsActivity.this);
+
         binding.ltLoading.setVisibility(View.GONE);
         binding.ltLoading.setAnimation("loading.json");
         binding.ltLoading.playAnimation();
