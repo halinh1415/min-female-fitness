@@ -375,7 +375,7 @@
     <string name="select_tts">Chọn công cụ TTS</string>
     <string name="tap_to_listen_and_choose">Chạm vào để nghe và lựa chọn giọng ưa thích của bạn.</string>
     <string name="ttslib_download_tts">Tải công cụ TTS</string>
-    <string name="tts_name">Ngôn ngữ giọng nói</string>
+    <string name="tts_name">Ngôn ngữ giọng noi</string>
     <string name="tts_data">Tải thêm dữ liệu ngôn ngữ TTS</string>
     <string name="device_tts_setting">Cài đặt TTS thiết bị</string>
     <string name="default_text">Mặc định</string>

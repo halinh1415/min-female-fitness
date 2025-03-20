@@ -349,7 +349,7 @@
     <string name="sign_in_tips">Faça login e sincronize seus dados</string>
     <string name="continue_with_google">Continuar com o Google</string>
     <string name="data_sync_done">Sincronização de dados concluída!</string>
-<string name="breast_training">Treino para seios</string>
+ <string name="breast_training">Treino para seios</string>
     <string name="pain_relief">Alívio de dor</string>
     <string name="sync_to_google_health">Sincronizar com o Health Connect</string>
     <string name="manage_data_access">Gerenciar dados e acesso</string>

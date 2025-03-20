@@ -362,4 +362,21 @@
     <string name="update_now">Atjauniniet tūlīt</string>
     <string name="health_connect_update_desc_gpt">Hmm! Savienojums neizdevās. Lai kopīgotu datus, lūdzu, atjauniniet savu Health Connect versiju.</string>
     <string name="later">Vēlāk</string>
+<string name="iap_detail_review">1. Visus maksājumus, kas veikti, izmantojot Play veikalu, kontrolē un pārvalda Google. \ N2. Maksājumi tiks iekasēti no jūsu Play veikala kontā, apstiprinot pirkumu. \ N3. Abonēšana automātiski atjaunojas, ja vien automātiskā atjaunošana nav izslēgta vismaz 24 stundas pirms pašreizējā perioda beigām. \ N4. Konts tiks iekasēts par atjaunošanu 24 stundu laikā pirms pašreizējā perioda beigām par cenu %s/gadā vai %mēnesī. \ N5. Jūs varat pārvaldīt savus abonementus, un automātisko atjaunošanu var izslēgt, pēc pirkuma dodoties uz jūsu Play Store konta iestatījumiem. \ N6. Jebkura neizmantota bezmaksas izmēģinājuma perioda daļa, ja tā tiek piedāvāta, tiks zaudēta, ja attiecīgā gadījumā iegādājaties publikācijas abonementu.</string>
+    <string name="coach_voice">Trenera balss</string>
+    <string name="test_voice">Tā ir testa balss</string>
+    <string name="test_result_tip">Vai dzirdējāt testa balsi?</string>
+    <string name="wp_the_next">nākamais</string>
+    <string name="v_start_with">Sākt ar</string>
+    <string name="tts_test_des">Sveiki, es esmu jūsu personīgais treneris, %s. Es pavadīšu jūs visā jūsu katrā treniņā, sniedzot jums nepieciešamos padomus, kā rīkoties visefektīvāk.</string>
+    <string name="name_male">Aleksandrs</string>
+    <string name="v_done">Labi darīts! Apsveicam!</string>
+    <string name="name_female">Sofija</string>
+    <string name="select_tts">Atlasiet TTS motoru</string>
+    <string name="tap_to_listen_and_choose">Pieskarieties, lai klausītos un izvēlētos savu iecienīto balsi.</string>
+    <string name="ttslib_download_tts">Lejupielādējiet TTS motoru</string>
+    <string name="tts_name">Balss valoda</string>
+    <string name="tts_data">Lejupielādējiet vairāk TTS valodas datu</string>
+    <string name="device_tts_setting">Ierīces TTS iestatījums</string>
+    <string name="default_text">Nepildīt</string>
 </resources>

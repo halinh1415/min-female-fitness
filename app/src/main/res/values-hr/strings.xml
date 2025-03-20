@@ -362,4 +362,21 @@
     <string name="update_now">Ažurirajte sada</string>
     <string name="health_connect_update_desc_gpt">Ups! Povezivanje nije uspjelo. Ažurirajte svoju verziju Health Connecta za dijeljenje podataka.</string>
     <string name="later">Kasnije</string>
+<string name="iap_detail_review">1. Sve isplate izvršene putem Play Store -a kontrolira i upravlja Google. \ N2. Plaćanja će se naplaćivati ​​na vašem računu Play Store -a prilikom potvrde o kupnji. \ N3. Pretplata se automatski obnavlja, osim ako se automatsko obnavljanje ne isključi najmanje 24 sata prije kraja trenutnog razdoblja. \ N4. Račun će se naplaćivati ​​za obnovu u roku od 24 sata prije kraja tekućeg razdoblja po cijeni od %s/godišnje ili %s/mjesečno. \ N5. Možete upravljati svojim pretplatama, a automatsko obnavljanje može biti isključeno tako što ćete nakon kupnje odlaziti na postavke računa Play Store. \ N6. Bilo koji neiskorišteni dio besplatnog probnog razdoblja, ako se nudi, bit će oduzet ako kupite pretplatu na publikaciju, ako je primjenjivo.</string>
+    <string name="coach_voice">Trenerski glas</string>
+    <string name="test_voice">Ovo je testni glas</string>
+    <string name="test_result_tip">Jeste li čuli testni glas?</string>
+    <string name="wp_the_next">sljedeći</string>
+    <string name="v_start_with">počne sa</string>
+    <string name="tts_test_des">Pozdrav, ja sam vaš osobni trener, %s. Pratit ću vas tijekom svakog vašeg treninga, dajući vam potrebne savjete kako najučinkovitije vježbati.</string>
+    <string name="name_male">Aleksandar</string>
+    <string name="v_done">Bravo! Čestitamo!</string>
+    <string name="name_female">Sofija</string>
+    <string name="select_tts">Odaberite TTS motor</string>
+    <string name="tap_to_listen_and_choose">Dodirnite za slušanje i odaberite svoj omiljeni glas.</string>
+    <string name="ttslib_download_tts">Preuzmite TTS motor</string>
+    <string name="tts_name">Glasovni jezik</string>
+    <string name="tts_data">Preuzmite više podataka o jeziku TTS</string>
+    <string name="device_tts_setting">Postavka uređaja TTS</string>
+    <string name="default_text">Zadano</string>
 </resources>

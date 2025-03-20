@@ -363,4 +363,20 @@
 <string name="update_now">Uppdatera nu</string>
     <string name="health_connect_update_desc_gpt">hoppsan! Anslutningen misslyckades. Uppdatera din Health Connect-version för att dela data.</string>
     <string name="later">Senare</string>
+<string name="coach_voice">Tränares röst</string>
+    <string name="test_voice">Detta är teströst</string>
+    <string name="test_result_tip">Hörde du teströsten?</string>
+    <string name="wp_the_next">nästa</string>
+    <string name="v_start_with">börja</string>
+    <string name="tts_test_des">Hej, jag är din personliga tränare, %s. Jag kommer att följa dig under alla träningspass, vilket ger dig nödvändiga tips om hur du tränar mest effektivt.</string>
+    <string name="name_male">Alexander</string>
+    <string name="v_done">Bra gjort! Grattis!</string>
+    <string name="name_female">Sophia</string>
+    <string name="select_tts">Välj TTS -motor</string>
+    <string name="tap_to_listen_and_choose">Tryck för att lyssna och välj din favoritröst.</string>
+    <string name="ttslib_download_tts">Ladda ner TTS -motor</string>
+    <string name="tts_name">Röstspråk</string>
+    <string name="tts_data">Ladda ner fler TTS -språkdata</string>
+    <string name="device_tts_setting">Enhet TTS -inställning</string>
+    <string name="default_text">Standard</string>
 </resources>
