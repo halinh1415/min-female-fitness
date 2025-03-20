@@ -54,7 +54,7 @@
     <string name="txt_day">Päivä</string>
     <string name="txt_days">Päivää</string>
     <string name="txt_skip">Ohita</string>
-    <string name="txt_take_a_break">Lepää</string>
+    <string name="wp_have_a_rest">Lepää</string>
     <string name="txt_press_tired">Paina tauko, jos tunnet olevasi väsynyt</string>
     <string name="txt_do_you_quit">Haluatko lopettaa?</string>
     <string name="txt_get_fit">Kaunis kroppa ei ole koskaan helppoa!</string>
@@ -130,7 +130,7 @@
     <string name="txt_copy_day_1_to_all">Kopioi päivä 1 kaikille</string>
     <string name="txt_body_need_rest">Kehosi ja lihaksesi tarvitsevat lepoa</string>
     <string name="txt_select_exercise_suit">Valitse sinulle sopiva harjoitusnopeus</string>
-    <string name="txt_ready_to_go">Valmiina lähtöön!</string>
+    <string name="wp_ready_to_go">Valmiina lähtöön!</string>
     <string name="weeks">Viikot</string>
     <string name="txt_daily">Päivittäin</string>
     <string name="tab_discover">Tutustu</string>=
@@ -231,10 +231,10 @@
     <string name="txt_reminder_content_4">Määrittele tavoitteet, tunne hyvä olo.</string>
     <string name="txt_reminder_content_5">Murskaa se, pysy kunnossa!</string>
     <string name="txt_take_a_rest_the_next">Lepää! seuraava</string>
-    <string name="txt_seconds">Sekuntia</string>
+    <string name="wp_seconds">Sekuntia</string>
     <string name="txt_ready_to_go_the_next">Valmiina lähtöön! seuraava</string>
-    <string name="txt_start">Alkaa</string>
-    <string name="td_v_half_time">Puolet ajasta</string>
+    <string name="wp_start">Alkaa</string>
+    <string name="wp_v_half_time">Puolet ajasta</string>
     <string name="explore_tag_new">Uusi</string>
     <string name="txt_abs">Vatsalihastreeni</string>
     <string name="txt_arm">Käsivarsi harjoitus</string>
@@ -247,7 +247,7 @@
     <string name="current">Nykyinen</string>
     <string name="download">Ladata</string>
     <string name="retry">Yritä uudelleen</string>
-    <string name="td_each_side">Molemmin puolin</string>
+    <string name="wp_each_side">Molemmin puolin</string>
 <string name="belly">Vatsa</string>
     <string name="arm">Arm</string>
     <string name="ass">Butt</string>
@@ -360,7 +360,7 @@
     <string name="update_health_connect_gpt">Päivitä Health Connect</string>
     <string name="connect_to_google_health">Jaa tietoja Health Connectin ja muiden sovellusten kanssa</string>
     <string name="connecting_with_health">Yhdistetään Health Connectiin...</string>
-<string name="update_now">Päivitä nyt</string>
+    <string name="update_now">Päivitä nyt</string>
     <string name="health_connect_update_desc_gpt">Oho! Yhteys epäonnistui. Päivitä Health Connect -versiosi tietojen jakamista varten.</string>
     <string name="later">Myöhemmin</string>
 </resources>

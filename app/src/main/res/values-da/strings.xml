@@ -54,7 +54,7 @@
     <string name="txt_day">Dag</string>
     <string name="txt_days">Dage</string>
     <string name="txt_skip">Springe</string>
-    <string name="txt_take_a_break">Tag et hvil</string>
+    <string name="wp_have_a_rest">Tag et hvil</string>
     <string name="txt_press_tired">Tryk på pause, hvis du føler dig træt</string>
     <string name="txt_do_you_quit">Vil du holde op?</string>
     <string name="txt_get_fit">At have en smuk krop har aldrig let!</string>
@@ -130,7 +130,7 @@
     <string name="txt_copy_day_1_to_all">Kopier dag 1 til alle</string>
     <string name="txt_body_need_rest">Din krop og muskler har brug for at få hvile</string>
     <string name="txt_select_exercise_suit">Vælg den træningshastighed, der passer dig</string>
-    <string name="txt_ready_to_go">Klar til at gå!</string>
+    <string name="wp_ready_to_go">Klar til at gå!</string>
     <string name="weeks">Uger</string>
     <string name="txt_daily">Daglige</string>
     <string name="tab_discover">Opdage</string>=
@@ -231,10 +231,10 @@
     <string name="txt_reminder_content_4">Definer mål, føl dig godt.</string>
     <string name="txt_reminder_content_5">Knus det, hold dig i form!</string>
     <string name="txt_take_a_rest_the_next">Tag et hvil! den næste</string>
-    <string name="txt_seconds">Sekunder</string>
+    <string name="wp_seconds">Sekunder</string>
     <string name="txt_ready_to_go_the_next">Klar til at gå! den næste</string>
-    <string name="txt_start">Start</string>
-    <string name="td_v_half_time">Halvdelen af ​​tiden</string>
+    <string name="wp_start">Start</string>
+    <string name="wp_v_half_time">Halvdelen af ​​tiden</string>
     <string name="explore_tag_new">Ny</string>
     <string name="txt_abs">Abs træning</string>
     <string name="txt_arm">Armtræning</string>
@@ -247,7 +247,7 @@
     <string name="current">Nuværende</string>
     <string name="download">Hent</string>
     <string name="retry">Prøv igen</string>
-    <string name="td_each_side">Hver side</string>
+    <string name="wp_each_side">Hver side</string>
 <string name="belly">Bug</string>
     <string name="arm">Arm</string>
     <string name="ass">Bagdel</string>

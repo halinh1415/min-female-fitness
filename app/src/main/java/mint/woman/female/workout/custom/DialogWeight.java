@@ -37,22 +37,6 @@ public class DialogWeight extends DialogFragment {
 
     DialogWeightBinding binding;
 
-//    @BindView(R.id.binding.rdKg)
-//    RadioButton binding.rdKg;
-//    @BindView(R.id.binding.rdLb)
-//    RadioButton binding.rdLb;
-//
-//
-//    @BindView(R.id.edt_weight)
-//    SuffixEditText binding.edtWeight;
-//    @BindView(R.id.edt_height)
-//    SuffixEditText binding.edtHeight;
-//    @BindView(R.id.edt_height_2)
-//    SuffixEditText binding.edtHeight2;
-//    @BindView(R.id.edt_waist)
-//    SuffixEditText binding.edtWaist;
-//    @BindView(R.id.edt_waist2)
-//    SuffixEditText binding.edtWaist2;
     HistoryViewModel mHistoryViewModel;
     WeightViewModel mWeightViewModel;
     MyPreference myPreference;

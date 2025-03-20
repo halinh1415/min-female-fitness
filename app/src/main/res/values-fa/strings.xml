@@ -54,7 +54,7 @@
     <string name="txt_day">روز</string>
     <string name="txt_days">روزها</string>
     <string name="txt_skip">پرش کنید</string>
-    <string name="txt_take_a_break">استراحت کن</string>
+    <string name="wp_have_a_rest">یک استراحت کنید</string>
     <string name="txt_press_tired">اگر احساس خستگی می کنید، مکث را فشار دهید</string>
     <string name="txt_do_you_quit">ایا می خواهید خارج شوید؟</string>
     <string name="txt_get_fit">داشتن اندامی زیبا هرگز آسان نیست!</string>
@@ -130,7 +130,7 @@
     <string name="txt_copy_day_1_to_all">روز 1 را برای همه کپی کنید</string>
     <string name="txt_body_need_rest">بدن و ماهیچه شما نیاز به استراحت دارند</string>
     <string name="txt_select_exercise_suit">سرعت تمرین مناسب خود را انتخاب کنید</string>
-    <string name="txt_ready_to_go">آماده برای رفتن!</string>
+    <string name="wp_ready_to_go">آماده برای رفتن!</string>
     <string name="weeks">هفته ها</string>
     <string name="txt_daily">روزانه</string>
     <string name="tab_discover">كشف كردن</string>=
@@ -222,7 +222,7 @@
     <string name="txt_workout_time_level_3">بیش از 45 دقیقه</string>
     <string name="txt_step">گام</string>
     <string name="txt_tell_us_more_info">از خودتان بیشتر بگویید</string>
-    <string name="continue_text">ادامه</string>
+    <string name="continue_text">ادامه دادن</string>
     <string name="txt_calories_chart">نمودار کالری</string>
     <string name="txt_warm_up">دست گرمی بازی کردن</string>
     <string name="txt_reminder_content_1">چربی مشعل، منحنی شکل!</string>
@@ -231,10 +231,10 @@
     <string name="txt_reminder_content_4">اهداف را تعریف کنید، احساس خوبی داشته باشید.</string>
     <string name="txt_reminder_content_5">خردش کن، تناسب اندام بمان!</string>
     <string name="txt_take_a_rest_the_next">استراحت کن! بعدی</string>
-    <string name="txt_seconds">ثانیه ها</string>
+    <string name="wp_seconds">ثانیه‌ها</string>
     <string name="txt_ready_to_go_the_next">آماده برای رفتن! بعدی</string>
-    <string name="txt_start">شروع کنید</string>
-    <string name="td_v_half_time">نصف وقت</string>
+    <string name="wp_start">شروع</string>
+    <string name="wp_v_half_time">نیمی از زمان</string>
     <string name="explore_tag_new">جدید</string>
     <string name="txt_abs">تمرین عضلات شکم</string>
     <string name="txt_arm">تمرین بازو</string>
@@ -247,7 +247,7 @@
     <string name="current">فعلی</string>
     <string name="download">دانلود</string>
     <string name="retry">سعیمجدد</string>
-    <string name="td_each_side">هر طرف</string>
+    <string name="wp_each_side">هر طرف</string>
 <string name="belly">شکم</string>
     <string name="arm">بازو</string>
     <string name="ass">لب به لب</string>
@@ -317,7 +317,7 @@
     <string name="upper_body_stretching_short_des">کشش بازو، شانه، سینه و پشت. رها کردن عضلات و بهبود انعطاف‌پذیری.</string>
     <string name="explore_tag_hot">داغ</string>
     <string name="downloading">بارگیری ...</string>
-    <string name="loading">بارگیری…</string>
+    <string name="loading">درحال بارگذاری…</string>
     <string name="abs">شکم</string>
     <string name="traps">عضله ذوزنقه‌ای</string>
     <string name="triceps">ماهیچه سه‌سر بازو</string>
@@ -363,4 +363,20 @@
     <string name="update_now">الآن به‌روزرسانی شود</string>
     <string name="health_connect_update_desc_gpt">اوه! اتصال شکست خورد. لطفاً نسخه Health Connect را برای به اشتراک گذاری داده‌ها به‌روز کنید.</string>
     <string name="later">بعداً</string>
+    <string name="coach_voice">صدای مربی</string>
+    <string name="test_voice">این صدای آزمون است</string>
+    <string name="test_result_tip">آیا صدای آزمون را می شنوید؟</string>
+    <string name="wp_the_next">بعدی</string>
+    <string name="v_start_with">شروع با</string>
+    <string name="tts_test_des">سلام، من مربی شخصی شما %s هستم. در طول هر تمرین، شما را همراهی خواهم کرد، و نکات لازم را درباره موثرترین نحوه انجام تمرین خواهم گفت.</string>
+    <string name="name_male">Thomas</string>
+    <string name="v_done">عالی بود! تبریک!</string>
+    <string name="name_female">Kelly</string>
+    <string name="select_tts">انتخاب موتور TTS</string>
+    <string name="tap_to_listen_and_choose">برای گوش دادن و انتخاب صدای موردعلاقه خود، ضربه بزنید.</string>
+    <string name="ttslib_download_tts">دانلود TTS موتور</string>
+    <string name="tts_name">زبان صدای</string>
+    <string name="tts_data">دانلود اطلاعات بیشتر به زبان TTS</string>
+    <string name="device_tts_setting">امکان تنظیم TTS دستگاه های</string>
+    <string name="default_text">پیش فرض</string>
     </resources>

@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="@string/txt_take_a_break"
+        android:text="@string/wp_have_a_rest"
         android:textColor="@color/White"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"

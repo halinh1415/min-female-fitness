@@ -54,7 +54,7 @@
     <string name="txt_day">Dzień</string>
     <string name="txt_days">Dni</string>
     <string name="txt_skip">Pominąć</string>
-    <string name="txt_take_a_break">Odpocząć</string>
+    <string name="wp_have_a_rest">Odpocznij sobie</string>
     <string name="txt_press_tired">Naciśnij pauzę, jeśli czujesz się zmęczony</string>
     <string name="txt_do_you_quit">Chcesz wyjść?</string>
     <string name="txt_get_fit">Posiadanie pięknego ciała nigdy nie było łatwe!</string>
@@ -130,7 +130,7 @@
     <string name="txt_copy_day_1_to_all">Skopiuj dzień 1 do wszystkich</string>
     <string name="txt_body_need_rest">Twoje ciało i mięśnie potrzebują odpoczynku</string>
     <string name="txt_select_exercise_suit">Wybierz prędkość ćwiczeń, która ci odpowiada</string>
-    <string name="txt_ready_to_go">Gotowy do wyjścia!</string>
+    <string name="wp_ready_to_go">Gotowy</string>
     <string name="weeks">Tygodnie</string>
     <string name="txt_daily">Codziennie</string>
     <string name="tab_discover">Odkryć</string>=
@@ -231,10 +231,10 @@
     <string name="txt_reminder_content_4">Określ cele, poczuj się świetnie.</string>
     <string name="txt_reminder_content_5">Zmiażdż to, pozostań w formie!</string>
     <string name="txt_take_a_rest_the_next">Odpocząć! następny</string>
-    <string name="txt_seconds">Sekundy</string>
+    <string name="wp_seconds">sekund(-y)</string>
     <string name="txt_ready_to_go_the_next">Gotowy do wyjścia! następny</string>
-    <string name="txt_start">Początek</string>
-    <string name="td_v_half_time">Połowa czasu</string>
+    <string name="wp_start">START</string>
+    <string name="wp_v_half_time">połowa czasu</string>
     <string name="explore_tag_new">Nowy</string>
     <string name="txt_abs">Trening mięśni brzucha</string>
     <string name="txt_arm">Trening ramion</string>
@@ -247,13 +247,13 @@
     <string name="current">Bieżąca</string>
     <string name="download">Pobierz</string>
     <string name="retry">Ponów próbę</string>
-    <string name="td_each_side">Każda strona</string>
+    <string name="wp_each_side">Każda strona</string>
 <string name="belly">Brzuch</string>
     <string name="arm">Ramiona</string>
     <string name="ass">Krupon</string>
     <string name="thigh">Uda</string>
     <string name="focus_part">Na czym chcesz się skupić?</string>
-    <string name="full_body">CAŁE CIAŁO</string>
+    <string name="full_body">Całe ciało</string>
     <string name="txt_start_day">Zacznij od dnia</string>
     <string name="txt_choose_day">Wybierz dzień:</string>
     <string name="txt_set_progress">Ustaw postęp</string>
@@ -272,7 +272,7 @@
     <string name="txt_count_down_info_3">Śledź licznik, aby kontrolować tempo i ukończyć trening w wyznaczonym czasie</string>
     <string name="sound">Dźwięk</string>
 <string name="no_counting">Bez liczenia</string>
-    <string name="minutes">Minuty</string>
+    <string name="minutes">minut</string>
     <string name="save">Zapisz</string>
     <string name="cancel_via_google_play">Możesz anulować w dowolnym czasie przez Google Play.</string>
     <string name="free_7_days_trial_then_xx_year">Grátis teste de 7 dias, depois %s/ano</string>
@@ -318,7 +318,7 @@
     <string name="explore_tag_hot">Popularny</string>
     <string name="downloading">Pobieranie...</string>
     <string name="loading">Załadunek…</string>
-    <string name="abs">Mięśnie brzucha</string>
+    <string name="abs">MIĘŚNIE BRZUCHA</string>
     <string name="traps">Czworoboczny</string>
     <string name="triceps">Mięśnie trójgłowe ramienia</string>
     <string name="biceps">Bicepsy</string>
@@ -363,4 +363,20 @@
     <string name="update_now">Zaktualizuj</string>
     <string name="health_connect_update_desc_gpt">Ups! Połączenie przerwane. Proszę zaktualizować wersję Health Connect, aby udostępniać dane.</string>
     <string name="later">Później</string>
+    <string name="coach_voice">Głos trenera</string>
+    <string name="test_voice">To jest głos testowy</string>
+    <string name="test_result_tip">Słyszałeś głos testu?</string>
+    <string name="wp_the_next">Następny</string>
+    <string name="v_start_with">zacznij od</string>
+    <string name="tts_test_des">Witaj, jestem %s, będę Twoim osobistym trenerem. Będę towarzyszyć Ci podczas każdego treningu, udzielając niezbędnych wskazówek, jak najefektywniej wykonywać ćwiczenia.</string>
+    <string name="name_male">Tomek</string>
+    <string name="v_done">Brawo! Gratulacje!</string>
+    <string name="name_female">Kasia</string>
+    <string name="select_tts">Wybrać aparatu TTS</string>
+    <string name="tap_to_listen_and_choose">Dotknij, aby posłuchać i wybrać ulubiony głos.</string>
+    <string name="ttslib_download_tts">Pobierz aparatu TTS</string>
+    <string name="tts_name">Język głos</string>
+    <string name="tts_data">Pobrać więcej TTS danych języka</string>
+    <string name="device_tts_setting">Urządzenie TTS Ustawienie</string>
+    <string name="default_text">Domyślnie</string>
     </resources>

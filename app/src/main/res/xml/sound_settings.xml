@@ -13,7 +13,15 @@
             app:key="VOICE_VOLUME"
             app:title="@string/txt_voice_volume"
             android:max="100"
+            app:isPreferenceVisible="false"
             app:defaultValue="90" />
+        <Preference
+            app:dependency="VOICE_ON"
+            app:icon="@drawable/ic_default_voice"
+            app:key="COACH"
+            app:title="@string/coach_voice"
+            app:useSimpleSummaryProvider="true"
+            />
     </PreferenceCategory>
     <PreferenceCategory app:title="General">
         <SwitchPreference

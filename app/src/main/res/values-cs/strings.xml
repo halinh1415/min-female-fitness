@@ -54,7 +54,7 @@
     <string name="txt_day">Den</string>
     <string name="txt_days">Dny</string>
     <string name="txt_skip">Přeskočit</string>
-    <string name="txt_take_a_break">Odpočiň si</string>
+    <string name="wp_have_a_rest">Odpočiň si</string>
     <string name="txt_press_tired">Pokud se cítíte unavení, stiskněte pauzu</string>
     <string name="txt_do_you_quit">Chcete skončit?</string>
     <string name="txt_get_fit">Mít krásné tělo není nikdy snadné!</string>
@@ -130,7 +130,7 @@
     <string name="txt_copy_day_1_to_all">Zkopírujte den 1 všem</string>
     <string name="txt_body_need_rest">Vaše tělo a svaly si potřebují odpočinout</string>
     <string name="txt_select_exercise_suit">Vyberte si rychlost cvičení, která vám vyhovuje</string>
-    <string name="txt_ready_to_go">Připraven jít!</string>
+    <string name="wp_ready_to_go">Připraven jít!</string>
     <string name="weeks">Týdny</string>
     <string name="txt_daily">Denně</string>
     <string name="tab_discover">Objevit</string>=
@@ -231,10 +231,10 @@
     <string name="txt_reminder_content_4">Definujte si cíle, cíťte se skvěle.</string>
     <string name="txt_reminder_content_5">Rozdrťte to, zůstaňte fit!</string>
     <string name="txt_take_a_rest_the_next">Odpočiň si! další</string>
-    <string name="txt_seconds">Sekundy</string>
+    <string name="wp_seconds">Sekundy</string>
     <string name="txt_ready_to_go_the_next">Připraven jít! další</string>
-    <string name="txt_start">Start</string>
-    <string name="td_v_half_time">Polovinu času</string>
+    <string name="wp_start">Start</string>
+    <string name="wp_v_half_time">Polovinu času</string>
     <string name="explore_tag_new">Nové</string>
     <string name="txt_abs">Břišní cvičení</string>
     <string name="txt_arm">Cvičení paží</string>
@@ -247,7 +247,7 @@
     <string name="current">Aktuální</string>
     <string name="download">Stažení</string>
     <string name="retry">Zkuste to znovu</string>
-    <string name="td_each_side">Každá strana</string>
+    <string name="wp_each_side">Každá strana</string>
 <string name="belly">Břicho</string>
     <string name="arm">Paže</string>
     <string name="ass">Zadek</string>

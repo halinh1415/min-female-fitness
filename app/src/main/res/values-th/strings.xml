@@ -54,7 +54,7 @@
     <string name="txt_day">วัน</string>
     <string name="txt_days">วัน</string>
     <string name="txt_skip">ข้าม</string>
-    <string name="txt_take_a_break">พักผ่อน</string>
+    <string name="wp_have_a_rest">พักผ่อน</string>
     <string name="txt_press_tired">กดหยุดชั่วคราวหากคุณรู้สึกเหนื่อย</string>
     <string name="txt_do_you_quit">คุณต้องการที่จะเลิก?</string>
     <string name="txt_get_fit">การมีหุ่นสวยไม่ใช่เรื่องง่าย!</string>
@@ -130,7 +130,7 @@
     <string name="txt_copy_day_1_to_all">คัดลอกวันที่ 1 ทั้งหมด</string>
     <string name="txt_body_need_rest">ร่างกายและกล้ามเนื้อของคุณจำเป็นต้องพักผ่อน</string>
     <string name="txt_select_exercise_suit">เลือกความเร็วในการออกกำลังกายที่เหมาะกับคุณ</string>
-    <string name="txt_ready_to_go">พร้อมที่จะไป!</string>
+    <string name="wp_ready_to_go">พร้อมที่จะไป!</string>
     <string name="weeks">สัปดาห์</string>
     <string name="txt_daily">รายวัน</string>
     <string name="tab_discover">ค้นพบ</string>=
@@ -231,10 +231,10 @@
     <string name="txt_reminder_content_4">กำหนดเป้าหมาย รู้สึกดีมาก</string>
     <string name="txt_reminder_content_5">บดขยี้มันให้พอดี!</string>
     <string name="txt_take_a_rest_the_next">พักผ่อน! ต่อไป</string>
-    <string name="txt_seconds">วินาที</string>
+    <string name="wp_seconds">วินาที</string>
     <string name="txt_ready_to_go_the_next">พร้อมที่จะไป! ต่อไป</string>
-    <string name="txt_start">เริ่ม</string>
-    <string name="td_v_half_time">ครึ่งเวลา</string>
+    <string name="wp_start">เริ่ม</string>
+    <string name="wp_v_half_time">ครึ่งเวลา</string>
     <string name="explore_tag_new">ใหม่</string>
     <string name="txt_abs">ออกกำลังกายหน้าท้อง</string>
     <string name="txt_arm">ออกกำลังกายแขน</string>
@@ -247,7 +247,7 @@
     <string name="current">ปัจจุบัน</string>
     <string name="download">ดาวน์โหลด</string>
     <string name="retry">ลองใหม่</string>
-    <string name="td_each_side">แต่ละด้าน</string>
+    <string name="wp_each_side">แต่ละด้าน</string>
 <string name="belly">ท้อง</string>
     <string name="arm">แขน</string>
     <string name="ass">ก้น</string>

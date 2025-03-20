@@ -44,4 +44,12 @@
     <key>app_open_resume</key>
     <value>true</value>
   </entry>
+  <entry>
+    <key>enable_voice</key>
+    <value>true</value>
+  </entry>
+  <entry>
+    <key>voice</key>
+    <value>{"woman":"en@de@es@fr@it@ja@ko@nl@pl@pt@ru@vi","man":"en@de@es@fr@it@ja@nl@pl@pt@ru@vi","Adam":"en","Bella":"en"}</value>
+  </entry>
 </defaults>

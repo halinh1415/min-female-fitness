@@ -54,7 +54,7 @@
     <string name="txt_day">日</string>
     <string name="txt_days">日々</string>
     <string name="txt_skip">スキップ</string>
-    <string name="txt_take_a_break">休んでください</string>
+    <string name="wp_have_a_rest">休憩する</string>
     <string name="txt_press_tired">疲れたら一時停止を押してください</string>
     <string name="txt_do_you_quit">辞めたいですか？</string>
     <string name="txt_get_fit">美しい体を手に入れるのは決して簡単なことではありません！</string>
@@ -130,7 +130,7 @@
     <string name="txt_copy_day_1_to_all">1日目を全員にコピー</string>
     <string name="txt_body_need_rest">体と筋肉には休息が必要です</string>
     <string name="txt_select_exercise_suit">自分に合った運動速度を選択してください</string>
-    <string name="txt_ready_to_go">準備完了！</string>
+    <string name="wp_ready_to_go">用意スタート</string>
     <string name="weeks">週間</string>
     <string name="txt_daily">毎日</string>
     <string name="tab_discover">発見する</string>=
@@ -231,10 +231,10 @@
     <string name="txt_reminder_content_4">目標を定義すると、気分が良くなります。</string>
     <string name="txt_reminder_content_5">頑張って、健康を維持しましょう！</string>
     <string name="txt_take_a_rest_the_next">休んでください！次は</string>
-    <string name="txt_seconds">秒</string>
+    <string name="wp_seconds">秒</string>
     <string name="txt_ready_to_go_the_next">準備完了！次は</string>
-    <string name="txt_start">始める</string>
-    <string name="td_v_half_time">半分の時間</string>
+    <string name="wp_start">開始</string>
+    <string name="wp_v_half_time">半分の時間</string>
     <string name="explore_tag_new">新規</string>
     <string name="txt_abs">腹筋エクササイズ</string>
     <string name="txt_arm">腕のトレーニング</string>
@@ -247,7 +247,7 @@
     <string name="current">現在</string>
     <string name="download">ダウンロード</string>
     <string name="retry">リトライ</string>
-    <string name="td_each_side">左右それぞれ</string>
+    <string name="wp_each_side">左右それぞれ</string>
 <string name="belly">お腹</string>
     <string name="arm">腕</string>
     <string name="ass">お尻</string>
@@ -363,4 +363,20 @@
     <string name="update_now">今すぐアップデートします</string>
     <string name="health_connect_update_desc_gpt">おっと！接続に失敗しました。データ共有のためにHealth Connectバージョンをアップデートしてください。</string>
     <string name="later">後で</string>
+    <string name="coach_voice">コーチの声</string>
+    <string name="test_voice">これはテスト音です</string>
+    <string name="test_result_tip">テスト音声が聞こえましたか？</string>
+    <string name="wp_the_next">次へ</string>
+    <string name="v_start_with">開始エクササイズ:</string>
+    <string name="tts_test_des">こんにちは、私はあなたのパーソナルトレーナー、%sです。毎回のトレーニングに同行して、最も効果的にエクササイズをする方法について必要なヒントをお伝えします。</string>
+    <string name="name_male">トーマス</string>
+    <string name="v_done">よくできました。おめでとうございます</string>
+    <string name="name_female">ケリー</string>
+    <string name="select_tts">TTSエンジンを選択する</string>
+    <string name="tap_to_listen_and_choose">タップで声を聞いて、お気に入りを選びましょう。</string>
+    <string name="ttslib_download_tts">TTSエンジンをダウンロードする</string>
+    <string name="tts_name">音声言語</string>
+    <string name="tts_data">他のTTS言語データをダウンロードする</string>
+    <string name="device_tts_setting">デバイスのTTS設定</string>
+    <string name="default_text">既定</string>
     </resources>

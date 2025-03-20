@@ -47,7 +47,7 @@ import mint.woman.female.workout.utils.RemoteConfigKeys;
 public class SettingFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
     private OnSettingsListener mListener;
     private final SimpleDateFormat mFormatDateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
-    public final static String SUPPORT_LANGUAGES = "ar@de@en@es@fa@fr@in_ID@it@ja@ko@nl@pl@pt@ru@tr@vi@zh_CN@zh_TW@th@uk@da@no@lv@fi@hr@ca@cs";
+    public final static String SUPPORT_LANGUAGES = "en@ar@de@es@fa@fr@in_ID@it@ja@ko@nl@pl@pt@ru@tr@vi@zh_CN@zh_TW@th@uk@da@no@lv@fi@hr@ca@cs";
 
     CustomPreference preferenceBackUp;
     MyPreference myPreference;
@@ -73,6 +73,9 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         music.setSummary(MyPreference.newInstance(getContext()).getMusicName());
         findPreference("BACK_GROUND_MUSIC").setOnPreferenceClickListener(this);
         findPreference("RECOMMEND_APP").setOnPreferenceClickListener(this);
+        findPreference("COACH").setOnPreferenceClickListener(this);
+        Preference coachPreference = findPreference("COACH");
+        coachPreference.setSummary(myPreference.getVoiceModelName(myPreference.getLanguage()));
         preferenceBackUp = findPreference("BACK_UP");
         Preference reminder = findPreference("ST_REMINDER");
         reminder.setSummary(FitnessApplication.getApplication().mDatabase.getReminderSet());
@@ -185,6 +188,9 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
                 break;
             case "ST_SHARE":
                 shareApp();
+                break;
+            case "COACH":
+                startActivity(new Intent(getActivity(), CoachOptionActivity.class));
                 break;
             case "TTS_INSTALL_VOICE":
                 AppOpenManager.getInstance().disableAdResumeByClickAction();

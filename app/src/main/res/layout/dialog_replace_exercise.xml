@@ -95,7 +95,7 @@
                     android:id="@+id/tv_each_side"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/td_each_side"
+                    android:text="@string/wp_each_side"
                     android:textAlignment="center" />
 
                 <TextView

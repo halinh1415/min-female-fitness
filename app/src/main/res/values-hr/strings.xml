@@ -54,7 +54,7 @@
     <string name="txt_day">Dan</string>
     <string name="txt_days">Dana</string>
     <string name="txt_skip">Preskočiti</string>
-    <string name="txt_take_a_break">Odmori se</string>
+    <string name="wp_have_a_rest">Odmori se</string>
     <string name="txt_press_tired">Pritisnite pauzu ako se osjećate umorno</string>
     <string name="txt_do_you_quit">Želiš li odustati?</string>
     <string name="txt_get_fit">Imati lijepo tijelo nikad nije lako!</string>
@@ -130,7 +130,7 @@
     <string name="txt_copy_day_1_to_all">Kopiraj 1. dan svima</string>
     <string name="txt_body_need_rest">Vaše tijelo i mišići moraju se odmoriti</string>
     <string name="txt_select_exercise_suit">Odaberite brzinu vježbanja koja vam odgovara</string>
-    <string name="txt_ready_to_go">Spremni za polazak!</string>
+    <string name="wp_ready_to_go">Spremni za polazak!</string>
     <string name="weeks">Tjedni</string>
     <string name="txt_daily">Dnevno</string>
     <string name="tab_discover">Otkriti</string>=
@@ -231,10 +231,10 @@
     <string name="txt_reminder_content_4">Definirajte ciljeve, osjećajte se sjajno.</string>
     <string name="txt_reminder_content_5">Crush it, ostani fit!</string>
     <string name="txt_take_a_rest_the_next">Odmori se! sljedeći</string>
-    <string name="txt_seconds">Sekundi</string>
+    <string name="wp_seconds">Sekundi</string>
     <string name="txt_ready_to_go_the_next">Spremni za polazak! sljedeći</string>
-    <string name="txt_start">Početak</string>
-    <string name="td_v_half_time">Pola vremena</string>
+    <string name="wp_start">Početak</string>
+    <string name="wp_v_half_time">Pola vremena</string>
     <string name="explore_tag_new">Novi</string>
     <string name="txt_abs">Vježba za trbušnjake</string>
     <string name="txt_arm">Vježba za ruke</string>
@@ -247,7 +247,7 @@
     <string name="current">Trenutno</string>
     <string name="download">Preuzimanje</string>
     <string name="retry">Pokušaj ponovo</string>
-    <string name="td_each_side">Svaka strana</string>
+    <string name="wp_each_side">Svaka strana</string>
 <string name="belly">Trbuh</string>
     <string name="arm">Ruka</string>
     <string name="ass">stražnjica</string>

@@ -54,7 +54,7 @@
     <string name="txt_day">दिन</string>
     <string name="txt_days">दिन</string>
     <string name="txt_skip">छोडना</string>
-    <string name="txt_take_a_break">आराम करो</string>
+    <string name="wp_have_a_rest">आराम करो</string>
     <string name="txt_press_tired">यदि आप थका हुआ महसूस करते हैं तो रोकें दबाएँ</string>
     <string name="txt_do_you_quit">क्या आप बाहर निकलना चाहते है?</string>
     <string name="txt_get_fit">सुंदर शरीर पाना कभी आसान नहीं होता!</string>
@@ -130,7 +130,7 @@
     <string name="txt_copy_day_1_to_all">दिन 1 को सभी के लिए कॉपी करें</string>
     <string name="txt_body_need_rest">आपके शरीर और मांसपेशियों को आराम की जरूरत है</string>
     <string name="txt_select_exercise_suit">व्यायाम की वह गति चुनें जो आपके लिए उपयुक्त हो</string>
-    <string name="txt_ready_to_go">जाने के लिए तैयार!</string>
+    <string name="wp_ready_to_go">जाने के लिए तैयार!</string>
     <string name="weeks">हफ्तों</string>
     <string name="txt_daily">दैनिक</string>
     <string name="tab_discover">खोज करना</string>=
@@ -231,10 +231,10 @@
     <string name="txt_reminder_content_4">लक्ष्य निर्धारित करें, अच्छा महसूस करें।</string>
     <string name="txt_reminder_content_5">इसे कुचलें, फिट रहें!</string>
     <string name="txt_take_a_rest_the_next">आराम करो! अगला</string>
-    <string name="txt_seconds">सेकंड</string>
+    <string name="wp_seconds">सेकंड</string>
     <string name="txt_ready_to_go_the_next">जाने के लिए तैयार! अगला</string>
-    <string name="txt_start">शुरू</string>
-    <string name="td_v_half_time">आधा समय</string>
+    <string name="wp_start">शुरू</string>
+    <string name="wp_v_half_time">आधा समय</string>
     <string name="explore_tag_new">नया</string>
     <string name="txt_abs">पेट कसरत</string>
     <string name="txt_arm">बांह की कसरत</string>
@@ -247,7 +247,7 @@
     <string name="current">मौजूदा</string>
     <string name="download">डाउनलोड</string>
     <string name="retry">पुन: प्रयास करें</string>
-    <string name="td_each_side">प्रत्येक तरफ</string>
+    <string name="wp_each_side">प्रत्येक तरफ</string>
 <string name="belly">पेट</string>
     <string name="arm">हाथ</string>
     <string name="ass">बट</string>

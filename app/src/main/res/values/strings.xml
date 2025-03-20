@@ -64,7 +64,7 @@
     <string name="txt_day">Day</string>
     <string name="txt_days">Days</string>
     <string name="txt_skip">Skip</string>
-    <string name="txt_take_a_break">Take a rest</string>
+    <string name="wp_have_a_rest">Take a rest</string>
     <string name="txt_press_tired">Press pause if you feel tired</string>
     <string name="txt_do_you_quit">Do you want to quit?</string>
     <string name="txt_get_fit">Having a beautiful body has never easy!</string>
@@ -141,7 +141,7 @@
     <string name="txt_copy_day_1_to_all">Copy day 1 to all</string>
     <string name="txt_body_need_rest">Your body and muscle need to get rest</string>
     <string name="txt_select_exercise_suit">Choose the exercise speed that suits you</string>
-    <string name="txt_ready_to_go">Ready to go!</string>
+    <string name="wp_ready_to_go">Ready to go!</string>
     <string name="weeks">Weeks</string>
     <string name="txt_daily">Daily</string>
     <string name="tab_discover">Discover</string>=
@@ -243,10 +243,10 @@
     <string name="txt_reminder_content_4">Define goals, feel great.</string>
     <string name="txt_reminder_content_5">Crush it, stay fit!</string>
     <string name="txt_take_a_rest_the_next">Take a rest! The next</string>
-    <string name="txt_seconds">Seconds</string>
+    <string name="wp_seconds">seconds</string>
     <string name="txt_ready_to_go_the_next">Ready to go! The next</string>
-    <string name="txt_start">Start</string>
-    <string name="td_v_half_time">Half the time</string>
+    <string name="wp_start">START</string>
+    <string name="wp_v_half_time">Half the time</string>
     <string name="explore_tag_new">NEW</string>
     <string name="txt_abs">Abs workout</string>
     <string name="txt_arm">Arm workout</string>
@@ -259,7 +259,7 @@
     <string name="current">Current</string>
     <string name="download">Download</string>
     <string name="retry">Retry</string>
-    <string name="td_each_side">Each side</string>
+    <string name="wp_each_side">Each Side</string>
     <string name="belly">Belly</string>
     <string name="arm">Arm</string>
     <string name="ass">Butt</string>
@@ -373,4 +373,20 @@
     <string name="update_now">Update now</string>
     <string name="health_connect_update_desc_gpt">Oops! Connection failed. Please update your Health Connect version for sharing data.</string>
     <string name="later">Later</string>
+    <string name="coach_voice">Coach voice</string>
+    <string name="test_voice">This is test voice</string>
+    <string name="test_result_tip">Did you hear the test voice?</string>
+    <string name="wp_the_next">the next</string>
+    <string name="v_start_with">start with</string>
+    <string name="tts_test_des">Hello, I\'m your personal trainer, %s. I will accompany you throughout your every workout, giving you necessary tips on how to do exercise most effectively.</string>
+    <string name="name_male">Alexander</string>
+    <string name="v_done">Well done! Congratulations!</string>
+    <string name="name_female">Sophia</string>
+    <string name="select_tts">Select TTS Engine</string>
+    <string name="tap_to_listen_and_choose">Tap to listen and choose your favorite voice.</string>
+    <string name="ttslib_download_tts">Download TTS Engine</string>
+    <string name="tts_name">Voice Language</string>
+    <string name="tts_data">Download more TTS language data</string>
+    <string name="device_tts_setting">Device TTS Setting</string>
+    <string name="default_text">Default</string>
 </resources>

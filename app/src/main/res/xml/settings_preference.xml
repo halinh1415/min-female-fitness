@@ -54,6 +54,8 @@
             app:summaryOff="@string/txt_off_music"
             app:summaryOn="@string/txt_on_music"
             app:title="@string/txt_music" />
+
+
         <SeekBarPreference
             app:dependency="MUSIC_ON"
             app:key="MUSIC_VOLUME"
@@ -92,10 +94,18 @@
             app:title="@string/txt_voice_guide"
             app:summaryOff="@string/txt_voice_off"
             app:summaryOn="@string/txt_voice_on"/>
+        <Preference
+            app:dependency="VOICE_ON"
+            app:icon="@drawable/ic_default_voice"
+            app:key="COACH"
+            app:title="@string/coach_voice"
+            app:useSimpleSummaryProvider="true"
+            />
         <SeekBarPreference
             app:dependency="VOICE_ON"
             app:key="VOICE_VOLUME"
             app:title="@string/txt_voice_volume"
+            app:isPreferenceVisible="false"
             android:max="100"
             app:defaultValue="90" />
 
@@ -103,11 +113,13 @@
             android:icon="@drawable/ic_baseline_file_download_24"
             android:key="TTS_INSTALL_VOICE"
             app:dependency="VOICE_ON"
+            app:isPreferenceVisible="false"
             android:title="@string/txt_install_tts"/>
         <Preference
             android:icon="@drawable/ic_baseline_swap_horiz_24"
             android:key="TTS_ENGINE"
             app:dependency="VOICE_ON"
+            app:isPreferenceVisible="false"
             android:title="TTS Engine"/>
     </PreferenceCategory>
 

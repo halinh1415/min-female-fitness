@@ -8,7 +8,11 @@ import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -19,6 +23,7 @@ import java.util.Locale;
 
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.utils.AppEncrypt;
+import mint.woman.female.workout.utils.MyPreference;
 
 public class AudioAppManager {
 
@@ -28,13 +33,13 @@ public class AudioAppManager {
     private LinkedList<String> audioResources;
     private MediaPlayer mediaPlayer;
     private TextToSpeech tts;
-    private int currentIndex;
-    private boolean ttsReady = false, isMale = false;
+    private boolean ttsReady = false;
     private Locale locale;
     IAudioMangerFinishListener finishListener = null;
     public boolean isPause = false;
+    public MyPreference myPreference;
 
-    Runnable r = new Runnable() {
+    Runnable checkQueueRunnable = new Runnable() {
 
         public void run() {
             if (!isPause) {
@@ -42,7 +47,7 @@ public class AudioAppManager {
                     if (!mediaPlayer.isPlaying() && !tts.isSpeaking()) {
                         playAssets();
                     }
-                } else if (!mediaPlayer.isPlaying() && !tts.isSpeaking()) {
+                } else if ( !mediaPlayer.isPlaying() && !tts.isSpeaking()) {
                     if (finishListener != null) {
                         finishListener.onFinish();
                         finishListener = null;
@@ -54,15 +59,12 @@ public class AudioAppManager {
     };
     Handler handler = new Handler();
 
-    public void setMale(boolean male) {
-        isMale = male;
-    }
 
     public AudioAppManager(Context context, String languageCode) {
         this.context = context;
         this.audioResources = new LinkedList<>();
         this.mediaPlayer = new MediaPlayer();
-        this.currentIndex = 0;
+        myPreference = MyPreference.newInstance(context);
         this.tts = new TextToSpeech(context, i -> {
             if (i == TextToSpeech.SUCCESS) {
                 if (!languageCode.isEmpty()) {
@@ -73,8 +75,9 @@ public class AudioAppManager {
                 ttsReady = true;
             }
         });
+
         this.locale = new Locale(languageCode);
-        handler.postDelayed(r, 1000);
+        handler.postDelayed(checkQueueRunnable, 500);
     }
 
     public String getLocaleApp() {
@@ -96,12 +99,18 @@ public class AudioAppManager {
 
     public void playText(String text) {
         audioResources.add(text);
+//        if (!mediaPlayer.isPlaying() && !tts.isSpeaking() && ttsReady) {
+//            playAssets();
+//        }
     }
 
     public void playTextWithListener(String text, IAudioMangerFinishListener finishListener) {
         audioResources.add(text);
         this.finishListener = finishListener;
-      //  Log.d("HAHA", "add with listener: " + text+" stack= "+audioResources.toString());
+//        if (!mediaPlayer.isPlaying() && !tts.isSpeaking()) {
+//            playAssets();
+//        }
+
     }
 
     public void addText(String... texts) {
@@ -121,15 +130,18 @@ public class AudioAppManager {
     }
 
     public String getBasePath() {
-        return "audio/" + getLocaleApp() + "/" + (isMale ? "male" : "female");
+        return context.getFilesDir()+"/voice/" + myPreference.getLanguage() + "/" + myPreference.getVoiceModel(myPreference.getLanguage());
     }
 
     public void playAssets() {
         if (audioResources.isEmpty()) {
-            return; // No audio resources to play
+           // handler.post(checkQueueRunnable); // Nếu danh sách rỗng, bắt đầu kiểm tra
+            return;
         }
 
-        if (mediaPlayer.isPlaying() || tts.isSpeaking()) {
+       // handler.removeCallbacks(checkQueueRunnable); // Dừng kiểm tra khi có nội dung để phát
+
+        if (mediaPlayer.isPlaying() || tts.isSpeaking() || !ttsReady) {
             return;
         }
 
@@ -143,25 +155,54 @@ public class AudioAppManager {
             if (content.isEmpty()) {
                 return;
             }
-            String filePath = getBasePath() + "/" + AppEncrypt.getName(content) + ".mp3";
+            String filePath = getBasePath() + "/" + AppEncrypt.getName(content);
 
 
-            if (isFilePresent(filePath)) {
+            if (!myPreference.getVoiceModel(myPreference.getLanguage()).equals("default") && FirebaseRemoteConfig.getInstance().getBoolean("enable_voice")) {
+                File encryptedFile = new File(filePath);
+                if (!encryptedFile.exists()) {
+
+                    if (ttsReady) {
+                        //Log.d("HAHA","SPEAK :"+content+" size:"+audioResources.toString());
+                        tts.speak(content, TextToSpeech.QUEUE_ADD, null, "");
+                        tts.setOnUtteranceCompletedListener(utteranceId -> {
+                            playAssets();
+                        });
+                    }
+                    return;
+                }
+                File tempFile = new File(context.getCacheDir(), "temp_voice.mp3");
+
+
+                try (FileInputStream fis = new FileInputStream(encryptedFile);
+                     FileOutputStream fos = new FileOutputStream(tempFile)) {
+
+                    byte[] buffer = new byte[4096];
+                    int bytesRead;
+                    while ((bytesRead = fis.read(buffer)) != -1) {
+                        for (int i = 0; i < bytesRead; i++) {
+                            buffer[i] ^= 0xAB;
+                        }
+                        fos.write(buffer, 0, bytesRead);
+                    }
+                }
+
+
                 mediaPlayer.reset();
-                Log.d(TAG, "Play audio: " + filePath);
-                File audioFile = new File(context.getFilesDir(),filePath);
-                mediaPlayer.setDataSource(audioFile.getAbsolutePath());
+                mediaPlayer.setDataSource(tempFile.getAbsolutePath());
                 mediaPlayer.prepare();
                 mediaPlayer.start();
                 mediaPlayer.setOnCompletionListener(mp -> {
-                    // Play the next audio file when the current one completes
+                    tempFile.delete();
                     playAssets();
                 });
             } else {
                 if (ttsReady) {
                     //Log.d("HAHA","SPEAK :"+content+" size:"+audioResources.toString());
                     tts.speak(content, TextToSpeech.QUEUE_ADD, null, "");
-
+                    tts.setOnUtteranceCompletedListener(utteranceId -> {
+                        playAssets();
+                    });
                 }
 
 
@@ -187,15 +228,7 @@ public class AudioAppManager {
 //        }
 //        return false;
 //    }
-    public boolean isFilePresent(String fileName) {
-        try {
-            File file = new File(context.getFilesDir(), fileName);
-            return file.exists();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+
 
     public void stop() {
         if (mediaPlayer.isPlaying()) {
@@ -214,7 +247,7 @@ public class AudioAppManager {
             tts.shutdown();
         }
         if (handler != null) {
-            handler.removeCallbacks(r);
+            handler.removeCallbacks(checkQueueRunnable);
         }
         if (mediaPlayer != null) {
             mediaPlayer.release();

@@ -17,8 +17,10 @@
         android:layout_width="@dimen/_36sdp"
         android:layout_height="@dimen/_36sdp"
         android:layout_alignParentRight="true"
+        android:padding="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_30sdp"
         android:layout_marginRight="@dimen/_16sdp"
+        android:alpha="0.7"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/ic_close"
         android:visibility="visible" />

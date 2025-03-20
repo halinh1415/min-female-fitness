@@ -54,7 +54,7 @@
     <string name="txt_day">Hari</string>
     <string name="txt_days">Hari</string>
     <string name="txt_skip">Melewati</string>
-    <string name="txt_take_a_break">Beristirahat</string>
+    <string name="wp_have_a_rest">Beristirahat</string>
     <string name="txt_press_tired">Tekan jeda jika anda merasa lelah</string>
     <string name="txt_do_you_quit">Apakah kamu ingin keluar?</string>
     <string name="txt_get_fit">Memiliki tubuh indah tidak pernah mudah!</string>
@@ -130,7 +130,7 @@
     <string name="txt_copy_day_1_to_all">Salin hari 1 ke semua</string>
     <string name="txt_body_need_rest">Tubuh dan otot anda perlu istirahat</string>
     <string name="txt_select_exercise_suit">Pilih kecepatan latihan yang cocok untuk anda</string>
-    <string name="txt_ready_to_go">Siap untuk berangkat!</string>
+    <string name="wp_ready_to_go">Siap untuk berangkat!</string>
     <string name="weeks">Minggu</string>
     <string name="txt_daily">Sehari-hari</string>
     <string name="tab_discover">Menemukan</string>=
@@ -231,10 +231,10 @@
     <string name="txt_reminder_content_4">Tentukan tujuan, rasakan hebatnya.</string>
     <string name="txt_reminder_content_5">Hancurkan, tetap bugar!</string>
     <string name="txt_take_a_rest_the_next">Beristirahat! selanjutnya</string>
-    <string name="txt_seconds">Detik</string>
+    <string name="wp_seconds">Detik</string>
     <string name="txt_ready_to_go_the_next">Siap untuk berangkat! selanjutnya</string>
-    <string name="txt_start">Awal</string>
-    <string name="td_v_half_time">Separuh waktu</string>
+    <string name="wp_start">Awal</string>
+    <string name="wp_v_half_time">Separuh waktu</string>
     <string name="explore_tag_new">Baru</string>
     <string name="txt_abs">Latihan perut</string>
     <string name="txt_arm">Latihan lengan</string>
@@ -247,7 +247,7 @@
     <string name="current">Saat ini</string>
     <string name="download">Unduh</string>
     <string name="retry">Mencoba kembali</string>
-    <string name="td_each_side">Setiap sisi</string>
+    <string name="wp_each_side">Setiap sisi</string>
 <string name="belly">Perut</string>
     <string name="arm">Lengan</string>
     <string name="ass">Pantat</string>
@@ -363,4 +363,20 @@
 <string name="update_now">Perbarui sekarang</string>
     <string name="health_connect_update_desc_gpt">Ups! Koneksi gagal. Harap perbarui versi Health Connect Anda untuk berbagi data.</string>
     <string name="later">Nanti</string>
+<string name="coach_voice">Suara Pelatih</string>
+    <string name="test_voice">Ini adalah suara uji</string>
+    <string name="test_result_tip">Apakah Anda mendengar suara tes?</string>
+    <string name="wp_the_next">berikutnya</string>
+    <string name="v_start_with">Mulailah dengan</string>
+    <string name="tts_test_des">Halo, saya pelatih pribadi Anda, %s. Saya akan menemani Anda di setiap latihan Anda, memberi Anda tips yang diperlukan tentang cara melakukan olahraga dengan paling efektif.</string>
+    <string name="name_male">Thomas</string>
+    <string name="v_done">Bagus sekali! Selamat!</string>
+    <string name="name_female">Thomas</string>
+<string name="select_tts">Pilih mesin TTS</string>
+    <string name="tap_to_listen_and_choose">Ketuk untuk mendengarkan dan memilih suara favorit Anda.</string>
+    <string name="ttslib_download_tts">Unduh mesin TTS</string>
+    <string name="tts_name">Bahasa suara</string>
+    <string name="tts_data">Unduh lebih banyak data bahasa TTS</string>
+    <string name="device_tts_setting">Pengaturan TTS Perangkat</string>
+    <string name="default_text">Bawaan</string>
 </resources>

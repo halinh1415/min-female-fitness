@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.work.Data;
@@ -27,16 +26,11 @@ import java.util.Locale;
 
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.premium.PremiumActivity;
-import mint.woman.female.workout.activity.ui.preview.DownloadStatus;
-import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
-import mint.woman.female.workout.custom.LoadingDialogFragment;
 import mint.woman.female.workout.databinding.ActivitySoundsBinding;
 import mint.woman.female.workout.retrofit.ApiUtils;
 import mint.woman.female.workout.retrofit.MusicItem;
 import mint.woman.female.workout.retrofit.SOService;
-import mint.woman.female.workout.utils.DownloadAndUnzipWorker;
 import mint.woman.female.workout.utils.DownloadFileWorker;
-import mint.woman.female.workout.utils.DownloadVideoWorker;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 import retrofit2.Call;

@@ -54,7 +54,7 @@
     <string name="txt_day">天</string>
     <string name="txt_days">天</string>
     <string name="txt_skip">跳過</string>
-    <string name="txt_take_a_break">休息一下</string>
+    <string name="wp_have_a_rest">休息一下</string>
     <string name="txt_press_tired">如果感覺累請按暫停</string>
     <string name="txt_do_you_quit">你想退出嗎？</string>
     <string name="txt_get_fit">擁有美麗的身材從來都不是一件容易的事！</string>
@@ -130,7 +130,7 @@
     <string name="txt_copy_day_1_to_all">將第 1 天複製到所有人</string>
     <string name="txt_body_need_rest">你的身體和肌肉需要休息</string>
     <string name="txt_select_exercise_suit">選擇適合自己的運動速度</string>
-    <string name="txt_ready_to_go">準備出發！</string>
+    <string name="wp_ready_to_go">預備開始</string>
     <string name="weeks">週數</string>
     <string name="txt_daily">日常的</string>
     <string name="tab_discover">發現</string>=
@@ -231,10 +231,10 @@
     <string name="txt_reminder_content_4">明確目標，感覺很棒。</string>
     <string name="txt_reminder_content_5">粉碎它，保持健康！</string>
     <string name="txt_take_a_rest_the_next">休息一下！下一個</string>
-    <string name="txt_seconds">秒數</string>
+    <string name="wp_seconds">秒</string>
     <string name="txt_ready_to_go_the_next">準備出發！下一個</string>
-    <string name="txt_start">開始</string>
-    <string name="td_v_half_time">一半的時間</string>
+    <string name="wp_start">開始</string>
+    <string name="wp_v_half_time">一半時間</string>
     <string name="explore_tag_new">新</string>
     <string name="txt_abs">腹肌鍛鍊</string>
     <string name="txt_arm">手臂鍛鍊</string>
@@ -247,7 +247,7 @@
     <string name="current">目前</string>
     <string name="download">下載</string>
     <string name="retry">重試</string>
-    <string name="td_each_side">每一邊</string>
+    <string name="wp_each_side">每一邊</string>
 <string name="belly">腹部</string>
     <string name="arm">手臂</string>
     <string name="ass">屁股</string>
@@ -318,7 +318,7 @@
     <string name="explore_tag_hot">熱門</string>
     <string name="downloading">下載中......</string>
     <string name="loading">加載中…</string>
-    <string name="abs">腹部</string>
+    <string name="abs">腹肌</string>
     <string name="traps">斜方肌</string>
     <string name="triceps">肱三頭肌</string>
     <string name="biceps">肱二頭肌</string>
@@ -346,7 +346,7 @@
     <string name="log_out">退出</string>
     <string name="login_out_sure">您確定要登出嗎？</string>
     <string name="set_backup">數據備份和恢復</string>
-    <string name="sign_in_tips">登錄賬戶後同步數據</string>
+    <string name="sign_in_tips">登錄帳戶後同步數據</string>
     <string name="continue_with_google">使用 Google 繼續</string>
     <string name="data_sync_done">資料同步完成！</string>
     <string name="breast_training">乳房訓練</string>
@@ -363,4 +363,20 @@
     <string name="update_now">立即更新</string>
     <string name="health_connect_update_desc_gpt">哎呀！連線失敗。請更新您的Health Connect版本以共享數據。</string>
     <string name="later">稍後</string>
+    <string name="coach_voice">教練語音</string>
+    <string name="test_voice">這是測試聲音</string>
+    <string name="test_result_tip">你能聽到語音測試嗎？</string>
+    <string name="wp_the_next">下一個</string>
+    <string name="v_start_with">第一個動作</string>
+    <string name="tts_test_des">哈囉，我是你的私人教練 %s。我會陪你完成每次訓練，並教你一些必要訣竅，讓你能更有效率地進行健身。</string>
+    <string name="name_male">Thomas</string>
+    <string name="v_done">幹的好！很棒！</string>
+    <string name="name_female">Kelly</string>
+    <string name="select_tts">選擇TTS引擎</string>
+    <string name="tap_to_listen_and_choose">按一下聆聽，並選出您最愛的聲音。</string>
+    <string name="ttslib_download_tts">下載TTS引擎</string>
+    <string name="tts_name">提示音的語言</string>
+    <string name="tts_data">下載更多的TTS語言數據</string>
+    <string name="device_tts_setting">設備的TTS設置</string>
+    <string name="default_text">系統預設</string>
     </resources>

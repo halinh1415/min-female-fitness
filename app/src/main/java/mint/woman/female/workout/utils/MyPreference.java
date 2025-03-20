@@ -504,4 +504,19 @@ public class MyPreference {
         mEditor.putLong("BACKUP_TIME",time);
         mEditor.commit();
     }
+
+    public String getVoiceModel(String language) {
+        return mSharedPreferences.getString("voice_"+language,"default");
+    }
+    public void setVoiceModel(String language, String model){
+        mEditor.putString("voice_"+language,model);
+        mEditor.commit();
+    }
+    public void setVoiceModelName(String language, String modelName){
+        mEditor.putString("coach_"+language,modelName);
+        mEditor.commit();
+    }
+    public String getVoiceModelName(String language){
+       return mSharedPreferences.getString("coach_"+language,"Default");
+    }
 }

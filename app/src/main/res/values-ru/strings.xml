@@ -54,7 +54,7 @@
     <string name="txt_day">День</string>
     <string name="txt_days">Дни</string>
     <string name="txt_skip">Пропускать</string>
-    <string name="txt_take_a_break">Отдохни</string>
+    <string name="wp_have_a_rest">Отдохните</string>
     <string name="txt_press_tired">Нажмите паузу, если чувствуете усталость</string>
     <string name="txt_do_you_quit">Вы хотите бросить курить?</string>
     <string name="txt_get_fit">Иметь красивое тело всегда непросто!</string>
@@ -130,7 +130,7 @@
     <string name="txt_copy_day_1_to_all">Скопировать день 1 для всех</string>
     <string name="txt_body_need_rest">Ваше тело и мышцы нуждаются в отдыхе</string>
     <string name="txt_select_exercise_suit">Выберите скорость тренировки, которая подходит вам</string>
-    <string name="txt_ready_to_go">Готов идти!</string>
+    <string name="wp_ready_to_go">ПРИГОТОВЬТЕСЬ</string>
     <string name="weeks">Недели</string>
     <string name="txt_daily">Ежедневно</string>
     <string name="tab_discover">Обнаружить</string>=
@@ -231,10 +231,10 @@
     <string name="txt_reminder_content_4">Определите цели, почувствуйте себя прекрасно.</string>
     <string name="txt_reminder_content_5">Сокрушай его, оставайся в форме!</string>
     <string name="txt_take_a_rest_the_next">Отдохни! следующий</string>
-    <string name="txt_seconds">Секунды</string>
+    <string name="wp_seconds">с</string>
     <string name="txt_ready_to_go_the_next">Готов идти! следующий</string>
-    <string name="txt_start">Начинать</string>
-    <string name="td_v_half_time">Половина времени</string>
+    <string name="wp_start">Вперед</string>
+    <string name="wp_v_half_time">половина времени</string>
     <string name="explore_tag_new">Новинка</string>
     <string name="txt_abs">Качать пресс</string>
     <string name="txt_arm">Тренировка рук</string>
@@ -247,13 +247,13 @@
     <string name="current">Текущий</string>
     <string name="download">Скачать</string>
     <string name="retry">Повторить</string>
-    <string name="td_each_side">Для каждой стороны</string>
+    <string name="wp_each_side">Для каждой стороны</string>
 <string name="belly">Живот</string>
     <string name="arm">Руки</string>
     <string name="ass">Задница</string>
     <string name="thigh">Бедра</string>
     <string name="focus_part">Над чем хотите поработать?</string>
-    <string name="full_body">ВСЁ ТЕЛО</string>
+    <string name="full_body">Всё тело</string>
     <string name="txt_start_day">Начать с дня</string>
     <string name="txt_choose_day">Выберите день:</string>
     <string name="txt_set_progress">Установить прогресс</string>
@@ -272,7 +272,7 @@
     <string name="txt_count_down_info_3">Следите за счетом, чтобы контролировать темп и завершить тренировку в установленные сроки.</string>
     <string name="sound">Звук</string>
 <string name="no_counting">Нет счета</string>
-    <string name="minutes">Минут</string>
+    <string name="minutes">минут</string>
     <string name="save">Сохранить</string>
     <string name="cancel_via_google_play">Отмените когда угодно в Google Play.</string>
     <string name="free_7_days_trial_then_xx_year">Бесплатно пробная версия на 7 дней, затем %s в год</string>
@@ -318,7 +318,7 @@
     <string name="explore_tag_hot">Популярно</string>
     <string name="downloading">Загрузка...</string>
     <string name="loading">Загрузка…</string>
-    <string name="abs">Пресс</string>
+    <string name="abs">ПРЕСС</string>
     <string name="traps">Трапециевидные</string>
     <string name="triceps">Трицепсы</string>
     <string name="biceps">Бицепсы</string>
@@ -363,4 +363,20 @@
     <string name="update_now">Обновлять</string>
     <string name="health_connect_update_desc_gpt">Ой! Ошибка подключения. Пожалуйста, обновите версию Health Connect для обмена данными.</string>
     <string name="later">Позже</string>
+    <string name="coach_voice">Голос тренера</string>
+    <string name="test_voice">Это тестовый голос</string>
+    <string name="test_result_tip">Слышите ли вы этот голосовой тест?</string>
+    <string name="wp_the_next">следующее</string>
+    <string name="v_start_with">начать с</string>
+    <string name="tts_test_des">Привет, я твой личный тренер %s. Я буду поддерживать во время тренировки, давая советы о том, как выполнять упражнения наиболее эффективно.</string>
+    <string name="name_male">Павел</string>
+    <string name="v_done">Отличная работа, поздравляем</string>
+    <string name="name_female">Анника</string>
+    <string name="select_tts">Выбрать синтезатор речи TTS</string>
+    <string name="tap_to_listen_and_choose">Коснитесь, чтобы прослушать и выбрать свой любимый голос.</string>
+    <string name="ttslib_download_tts">Скачать синтезатор речи TTS</string>
+    <string name="tts_name">Голос язык</string>
+    <string name="tts_data">Скачать больше синтезаторов речи TTS</string>
+    <string name="device_tts_setting">TTS Настройка устройства</string>
+    <string name="default_text">Система по умолчанию</string>
     </resources>

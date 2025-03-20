@@ -15,6 +15,7 @@ import androidx.preference.SwitchPreference;
 
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.PolicyActivity;
+import mint.woman.female.workout.activity.ui.settings.CoachOptionActivity;
 import mint.woman.female.workout.activity.ui.sounds.SoundsActivity;
 import mint.woman.female.workout.activity.ui.workout.WorkoutViewModel;
 import mint.woman.female.workout.admodule.AppOpenManager;
@@ -25,13 +26,18 @@ public class DialogSoundSettings extends PreferenceFragmentCompat implements Pre
 
 
     WorkoutViewModel workoutViewModel;
+    MyPreference myPreference;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.sound_settings, rootKey);
+        myPreference = new MyPreference(getContext());
         Preference music = findPreference("BACK_GROUND_MUSIC");
         music.setSummary(MyPreference.newInstance(getContext()).getMusicName());
         findPreference("BACK_GROUND_MUSIC").setOnPreferenceClickListener(this);
+        findPreference("COACH").setOnPreferenceClickListener(this);
+        Preference coachPreference = findPreference("COACH");
+        coachPreference.setSummary(myPreference.getVoiceModelName(myPreference.getLanguage()));
         workoutViewModel = new ViewModelProvider(getActivity()).get(WorkoutViewModel.class);
 
 
@@ -57,8 +63,8 @@ public class DialogSoundSettings extends PreferenceFragmentCompat implements Pre
                 int soundVolume = seekBarPreference.getValue();
                 float volume = (float) (1 - (Math.log(100 - soundVolume) / Math.log(100)));
                 workoutViewModel.setMusicVolume(volume);
-
                 break;
+
             case "ST_TTS_LANGUAGE":
                 ListPreference ttsLanguage = (ListPreference) findPreference("ST_TTS_LANGUAGE");
                 workoutViewModel.setLanguage(ttsLanguage.getValue());
@@ -86,12 +92,9 @@ public class DialogSoundSettings extends PreferenceFragmentCompat implements Pre
             case "BACK_GROUND_MUSIC":
                 startActivity(new Intent(getActivity(), SoundsActivity.class));
                 break;
-//            case "BACK_UP":
-//                if (mListener != null) {
-//                    mListener.singIn();
-//                }
-//
-//                break;
+            case "COACH":
+                startActivity(new Intent(getActivity(), CoachOptionActivity.class));
+                break;
 
         }
         return false;

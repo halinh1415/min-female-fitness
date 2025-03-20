@@ -22,8 +22,6 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -139,7 +137,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
             mCurrentTime = 0;
             if (mExerciseObject.getAlternation()) {
                 binding.tvSub.setVisibility(View.VISIBLE);
-                binding.tvSub.setText(getString(R.string.td_each_side)+" x"+REP);
+                binding.tvSub.setText(getString(R.string.wp_each_side)+" x"+REP);
             } else {
                 binding.tvSub.setVisibility(View.INVISIBLE);
             }
@@ -243,7 +241,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         } else {
             if (mExerciseObject.getAlternation()) {
                 binding.tvSub.setVisibility(View.VISIBLE);
-                binding.tvSub.setText(getString(R.string.td_each_side)+" x"+REP);
+                binding.tvSub.setText(getString(R.string.wp_each_side)+" x"+REP);
             } else {
                 binding.tvSub.setVisibility(View.INVISIBLE);
             }
@@ -415,7 +413,12 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         }
 
     }
+    private void showDialogDemoWorkout() {
+        if (!isAdded() || getParentFragmentManager().findFragmentByTag("images") != null) return;
 
+        DialogDemoWorkout dialogDemoWorkout = DialogDemoWorkout.newInstance(mActionObject.actionId);
+        dialogDemoWorkout.show(getParentFragmentManager(), "images");
+    }
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_previous:
@@ -449,8 +452,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.tv_exercise_name:
                 mWorkoutViewModel.setPause(true);
-                DialogDemoWorkout dialogDemoWorkout = DialogDemoWorkout.newInstance(mActionObject.actionId);
-                dialogDemoWorkout.show(getParentFragmentManager(), "images");
+              showDialogDemoWorkout();
                 break;
             case R.id.img_setting:
                 mWorkoutViewModel.setPause(true);

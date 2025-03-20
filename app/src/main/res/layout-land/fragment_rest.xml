@@ -111,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:gravity="center"
-            android:text="@string/txt_take_a_break"
+            android:text="@string/wp_have_a_rest"
             android:textColor="@color/White"
             android:textSize="24sp"
             android:textStyle="bold" />

@@ -54,7 +54,7 @@
     <string name="txt_day">Jour</string>
     <string name="txt_days">Jours</string>
     <string name="txt_skip">Sauter</string>
-    <string name="txt_take_a_break">Repose toi un peu</string>
+    <string name="wp_have_a_rest">Temps de repos</string>
     <string name="txt_press_tired">Appuyez sur pause si vous vous sentez fatigué</string>
     <string name="txt_do_you_quit">Voulez-vous arrêter?</string>
     <string name="txt_get_fit">Avoir un beau corps n’a jamais été facile !</string>
@@ -130,7 +130,7 @@
     <string name="txt_copy_day_1_to_all">Copiez le jour 1 à tous</string>
     <string name="txt_body_need_rest">Votre corps et vos muscles ont besoin de se reposer</string>
     <string name="txt_select_exercise_suit">Choisissez la vitesse d\'exercice qui vous convient</string>
-    <string name="txt_ready_to_go">Prêt à partir!</string>
+    <string name="wp_ready_to_go">PRÊT A Y ALLER</string>
     <string name="weeks">Semaines</string>
     <string name="txt_daily">Tous les jours</string>
     <string name="tab_discover">Découvrir</string>=
@@ -231,10 +231,10 @@
     <string name="txt_reminder_content_4">Définir des objectifs, se sentir bien.</string>
     <string name="txt_reminder_content_5">Écrasez-le, restez en forme !</string>
     <string name="txt_take_a_rest_the_next">Repose toi un peu! le suivant</string>
-    <string name="txt_seconds">Secondes</string>
+    <string name="wp_seconds">secondes</string>
     <string name="txt_ready_to_go_the_next">Prêt à partir! le suivant</string>
-    <string name="txt_start">Commencer</string>
-    <string name="td_v_half_time">La moitié du temps</string>
+    <string name="wp_start">Commencez</string>
+    <string name="wp_v_half_time">mi temps</string>
     <string name="explore_tag_new">Nouveau</string>
     <string name="txt_abs">Entraînement des abdominaux</string>
     <string name="txt_arm">Entraînement des bras</string>
@@ -247,13 +247,13 @@
     <string name="current">Actuel</string>
     <string name="download">Téléchargez</string>
     <string name="retry">Réessayez</string>
-    <string name="td_each_side">Chaque côté</string>
+    <string name="wp_each_side">Chaque côté</string>
 <string name="belly">Ventre</string>
     <string name="arm">Bras</string>
     <string name="ass">Bout</string>
     <string name="thigh">Cuisses</string>
     <string name="focus_part">Sur quoi voulez-vous vous concentrer ?</string>
-    <string name="full_body">CORPS COMPLET</string>
+    <string name="full_body">Corps en entier</string>
     <string name="txt_start_day">Commencer le jour</string>
     <string name="txt_choose_day">Choisissez un jour :</string>
     <string name="txt_set_progress">Définir la progression</string>
@@ -272,7 +272,7 @@
     <string name="txt_count_down_info_3">Gardez une trace du décompte pour contrôler le rythme et terminer l\'entraînement dans le temps imparti</string>
     <string name="sound">Sonner</string>
 <string name="no_counting">Pas de compte</string>
-    <string name="minutes">Minutes</string>
+    <string name="minutes">minutes</string>
     <string name="save">Sauvegarder</string>
     <string name="cancel_via_google_play">Résiliation à tout moment via Google Play.</string>
     <string name="free_7_days_trial_then_xx_year">Essai gratuit de 7 jours, puis %s/an</string>
@@ -305,7 +305,7 @@
     <string name="txt_iap_feature_info_4">Annonces gratuites pour toujours</string>
     <string name="txt_iap_feature_info_3">Plan personnalisé et mise à jour future</string>
     <string name="txt_iap_feature_info_2">Obtenez des résultats étonnants en seulement 4 semaines</string>
-<string name="training">Exercices</string>
+<string name="training">Entraînement</string>
     <string name="training_goal">Objectif d\'entraînement</string>
     <string name="random_workout">Exercices aléatoires</string>
     <string name="for_summer">Pour l\'été</string>
@@ -318,7 +318,7 @@
     <string name="explore_tag_hot">Populaire</string>
     <string name="downloading">Téléchargement...</string>
     <string name="loading">Chargement…</string>
-    <string name="abs">Abdos</string>
+    <string name="abs">ABDOS</string>
     <string name="traps">Trapèze</string>
     <string name="triceps">Triceps</string>
     <string name="biceps">Biceps</string>
@@ -335,7 +335,7 @@
     <string name="adductors">Adducteurs</string>
     <string name="neck">Cou</string>
     <string name="txt_most_popular">Le plus populaire</string>
-<string name="oops">Oups !</string>
+    <string name="oops">Oups !</string>
     <string name="oops_network_error">Oups ! Erreur réseau</string>
     <string name="oops_sync_failed">Oups ! Échec de synchronisation</string>
     <string name="oops_unlock_failed">Oups ! Échec du déblocage</string>
@@ -349,7 +349,7 @@
     <string name="sign_in_tips">Connectez-vous et synchronisez vos données</string>
     <string name="continue_with_google">Continuer avec Google</string>
     <string name="data_sync_done">Synchronisation des données terminée !</string>
-<string name="breast_training">Entraînement de poitrine</string>
+    <string name="breast_training">Entraînement de poitrine</string>
     <string name="pain_relief">Soulagement de la douleur</string>
     <string name="sync_to_google_health">Synchroniser avec Health Connect</string>
     <string name="manage_data_access">Gérer les données et l\'accès</string>
@@ -363,4 +363,20 @@
     <string name="update_now">Mettre à jour</string>
     <string name="health_connect_update_desc_gpt">Oups ! Échec de la connexion. Veuillez mettre à jour votre version de Health Connect pour le partage des données.</string>
     <string name="later">Plus tard</string>
-    </resources>
+    <string name="coach_voice">Voix du coach</string>
+    <string name="test_voice">C\'est la voix de test</string>
+    <string name="test_result_tip">Avez-vous entendu la voix de test?</string>
+    <string name="wp_the_next">Prochain</string>
+    <string name="v_start_with">commencer avec</string>
+    <string name="tts_test_des">Bonjour, je suis votre entraîneur personnel, %s. Je vous accompagnerai pendant chaque entraînement, vous offrant les conseils nécessaires pour vous entraîner plus efficacement.</string>
+    <string name="name_male">Victor</string>
+    <string name="v_done">Bravo félicitations</string>
+    <string name="name_female">Chloe</string>
+    <string name="select_tts">Sélectionnez TTS moteur</string>
+    <string name="tap_to_listen_and_choose">Touchez pour écouter et choisir votre voix préférée.</string>
+    <string name="ttslib_download_tts">Télécharger TTS moteur</string>
+    <string name="tts_name">langue vocale</string>
+    <string name="tts_data">Télécharger plus TTS données de langue</string>
+    <string name="device_tts_setting">Dispositif TTS réglage</string>
+    <string name="default_text">Défaut du système</string>
+</resources>

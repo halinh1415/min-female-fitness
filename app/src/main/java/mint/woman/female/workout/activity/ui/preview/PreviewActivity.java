@@ -55,10 +55,13 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 
+import org.json.JSONArray;
+
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.premium.PremiumActivity;
 import mint.woman.female.workout.activity.ui.count.CountManagerActivity;
+import mint.woman.female.workout.activity.ui.settings.CoachOptionActivity;
 import mint.woman.female.workout.activity.ui.workout.DoWorkoutActivity;
 import mint.woman.female.workout.activity.ui.workout.ExerciseDetailActivity;
 import mint.woman.female.workout.activity.ui.workout.SelectExerciseActivity;
@@ -77,10 +80,14 @@ import mint.woman.female.workout.custom.OnStartDragListener;
 import mint.woman.female.workout.custom.SimpleItemTouchHelperCallback;
 import mint.woman.female.workout.databinding.ActivityPreviewBinding;
 import mint.woman.female.workout.databinding.ContentPreviewBinding;
+import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.PlanObject;
 import mint.woman.female.workout.model.ProgramObject;
+import mint.woman.female.workout.model.Tip;
 import mint.woman.female.workout.retrofit.ApiUtils;
+import mint.woman.female.workout.utils.AppEncrypt;
 import mint.woman.female.workout.utils.DownloadAndUnzipWorker;
+import mint.woman.female.workout.utils.DownloadVoiceWorker;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.JsonHelper;
 import mint.woman.female.workout.utils.LanguageHelper;
@@ -88,6 +95,7 @@ import mint.woman.female.workout.utils.MyPreference;
 import mint.woman.female.workout.utils.RemoteConfigKeys;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -301,6 +309,68 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         contentPreviewBinding.rcDemo.setAdapter(mPreviewAdapter);
         contentPreviewBinding.rcDemo.setNestedScrollingEnabled(false);
         updatePlan();
+        startDownLoadAudio();
+    }
+    public void saveFileListToJson(List<String> fileList, String jsonFilePath) {
+        JSONArray jsonArray = new JSONArray(fileList);
+        try (FileOutputStream fos = new FileOutputStream(new File(jsonFilePath))) {
+            fos.write(jsonArray.toString().getBytes("UTF-8"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    void startDownLoadAudio() {
+        String model = myPreference.getVoiceModel(myPreference.getLanguage());
+        if (!model.equals("default")) {
+            String voicePath = getFilesDir() + "/voice/" + myPreference.getLanguage() + "/" + myPreference.getVoiceModel(myPreference.getLanguage()) + "/";
+
+            File dir = new File(voicePath);
+
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            List<String> fileList = new ArrayList<>();
+
+            List<ExerciseObject> allExercise = FitnessApplication.getApplication().mJsonHelper.getAllExercise(mProgramObject.getDiscover(), mProgramObject.getVersion());
+            for (ExerciseObject exerciseObject : allExercise
+            ) {
+                fileList.add(AppEncrypt.getName(exerciseObject.getName()));
+                for (Tip tip : exerciseObject.getTips()) {
+                    fileList.add(AppEncrypt.getName(tip.getText()));
+                }
+            }
+
+            for (int i = 1; i < 100; i++) {
+                String fileName = AppEncrypt.getName("" + i);
+                fileList.add(fileName);
+
+            }
+            fileList.removeIf(fileName -> new File(voicePath, fileName).exists());
+            if (!fileList.isEmpty()) {
+                Data.Builder data = new Data.Builder();
+                String jsonFilePath = voicePath + "/file_list.json";
+                saveFileListToJson(fileList, jsonFilePath);
+                data.putString("FILE_LIST_PATH", jsonFilePath);
+                Log.d("DownloadVoiceWorker", "Size: " + fileList.size());
+                data.putString("BASE_PATH", voicePath);
+                data.putString("BASE_URL", ApiUtils.BASE_APP_URL + "voice/" + myPreference.getLanguage() + "/" + myPreference.getVoiceModel(myPreference.getLanguage()) + "/");
+                OneTimeWorkRequest syncWorkRequest =
+                        new OneTimeWorkRequest.Builder(DownloadVoiceWorker.class)
+                                .addTag("Sync")
+                                .setInputData(data.build())
+                                .build();
+
+                WorkManager.getInstance(PreviewActivity.this).enqueue(syncWorkRequest);
+                WorkManager.getInstance(this).getWorkInfoByIdLiveData(syncWorkRequest.getId()).observe(this, workInfo -> {
+                    if (workInfo.getState() == WorkInfo.State.SUCCEEDED) {
+                        Log.d("HAHA", "download Done!");
+                    }
+                    if (workInfo.getState() == WorkInfo.State.FAILED){
+
+                    }
+                });
+            }
+        }
     }
 
 

@@ -54,7 +54,7 @@
     <string name="txt_day">Diena</string>
     <string name="txt_days">Dienas</string>
     <string name="txt_skip">Izlaist</string>
-    <string name="txt_take_a_break">Atpūsties</string>
+    <string name="wp_have_a_rest">Atpūsties</string>
     <string name="txt_press_tired">Nospiediet pauzi, ja jūtaties noguris</string>
     <string name="txt_do_you_quit">Vai vēlaties atmest?</string>
     <string name="txt_get_fit">Skaistam ķermenim nekad nav bijis viegli!</string>
@@ -130,7 +130,7 @@
     <string name="txt_copy_day_1_to_all">Kopēt 1. dienu visiem</string>
     <string name="txt_body_need_rest">Jūsu ķermenim un muskuļiem ir jāatpūšas</string>
     <string name="txt_select_exercise_suit">Izvēlieties sev piemērotu vingrinājumu ātrumu</string>
-    <string name="txt_ready_to_go">Gatavs doties!</string>
+    <string name="wp_ready_to_go">Gatavs doties!</string>
     <string name="weeks">Nedēļas</string>
     <string name="txt_daily">Ikdienas</string>
     <string name="tab_discover">Atklājiet</string>=
@@ -231,10 +231,10 @@
     <string name="txt_reminder_content_4">Nosakiet mērķus, jūtieties lieliski.</string>
     <string name="txt_reminder_content_5">Sasmalciniet to, palieciet formā!</string>
     <string name="txt_take_a_rest_the_next">Atpūsties! nākamais</string>
-    <string name="txt_seconds">Sekundes</string>
+    <string name="wp_seconds">Sekundes</string>
     <string name="txt_ready_to_go_the_next">Gatavs doties! nākamais</string>
-    <string name="txt_start">Sākt</string>
-    <string name="td_v_half_time">Pusi laika</string>
+    <string name="wp_start">Sākt</string>
+    <string name="wp_v_half_time">Pusi laika</string>
     <string name="explore_tag_new">Jauns</string>
     <string name="txt_abs">Abs treniņš</string>
     <string name="txt_arm">Roku treniņš</string>
@@ -247,7 +247,7 @@
     <string name="current">Pašreizējais</string>
     <string name="download">Lejupielādēt</string>
     <string name="retry">Mēģiniet vēlreiz</string>
-    <string name="td_each_side">Katra puse</string>
+    <string name="wp_each_side">Katra puse</string>
 <string name="belly">Vēders</string>
     <string name="arm">Arm</string>
     <string name="ass">Muca</string>

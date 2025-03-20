@@ -110,7 +110,7 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginBottom="42dp"
                 android:background="@drawable/bg_round_corner_white_4"
-                android:text="@string/txt_start"
+                android:text="@string/wp_start"
                 android:gravity="center"
                 android:textColor="@color/red"
                 android:textSize="@dimen/_16sdp"

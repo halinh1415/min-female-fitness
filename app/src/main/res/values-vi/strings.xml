@@ -54,7 +54,7 @@
     <string name="txt_day">Ngày</string>
     <string name="txt_days">Ngày</string>
     <string name="txt_skip">Bỏ qua</string>
-    <string name="txt_take_a_break">Nghỉ ngơi</string>
+    <string name="wp_have_a_rest">Nghỉ ngơi</string>
     <string name="txt_press_tired">Nhấn tạm dừng nếu bạn cảm thấy mệt mỏi</string>
     <string name="txt_do_you_quit">Bạn có muốn kết thúc?</string>
     <string name="txt_get_fit">Sở hữu một body đẹp chưa bao giờ là dễ dàng!</string>
@@ -113,9 +113,9 @@
     <string name="txt_this_week">Tuần này</string>
     <string name="rp_syn_with_google_fit">Đồng bộ vào Google Fit</string>
     <string name="txt_not_remind">Không nhắc lại</string>
-    <string name="close">Đóng</string>
-    <string name="recipes_breakfast">Bữa sáng</string>
-    <string name="recipes_snack">Đồ ăn vặt</string>
+    <string name="close">ĐÓNG</string>
+    <string name="recipes_breakfast">Bữa ăn sáng</string>
+    <string name="recipes_snack">Bữa ăn nhẹ</string>
     <string name="recipes_lunch">Bữa trưa</string>
     <string name="recipes_dinner">Bữa tối</string>
     <string name="txt_standard_diet">Chế độ ăn uống tiêu chuẩn</string>
@@ -130,10 +130,10 @@
     <string name="txt_copy_day_1_to_all">Sao chép ngày 1 cho tất cả</string>
     <string name="txt_body_need_rest">Cơ thể và cơ bắp của bạn cần được nghỉ ngơi</string>
     <string name="txt_select_exercise_suit">Chọn tốc độ tập luyện phù hợp với bạn</string>
-    <string name="txt_ready_to_go">Sẵn sàng để đi!</string>
+    <string name="wp_ready_to_go">Sẵn sàng để bắt đầu!</string>
     <string name="weeks">Tuần</string>
     <string name="txt_daily">Hằng ngày</string>
-    <string name="tab_discover">Phát hiện</string>=
+    <string name="tab_discover">Khám phá</string>=
     <string name="explore_more">Thêm</string>
     <string name="txt_for_home_workout">Để tập luyện tại nhà</string>
     <string name="txt_saved_money">Tiết kiệm</string>
@@ -203,7 +203,7 @@
     <string name="txt_kick">Đá</string>
     <string name="txt_block">Chặn và phòng thủ</string>
     <string name="txt_combo">Kết hợp</string>
-    <string name="td_next">Kế tiếp</string>
+    <string name="td_next">Tiếp theo</string>
     <string name="txt_title_onboard_1">Cách mạng hóa việc tập thể dục tại nhà</string>
     <string name="txt_title_onboard_2">Bài tập phù hợp, kết quả thực</string>
     <string name="txt_title_onboard_3">Thể lực của bạn, theo cách của bạn</string>
@@ -223,7 +223,7 @@
     <string name="txt_workout_time_level_3">Hơn 45 phút</string>
     <string name="txt_step">Bước chân</string>
     <string name="txt_tell_us_more_info">Hãy nói cho chúng tôi biết nhiều hơn về bạn</string>
-    <string name="continue_text">Tiếp tục</string>
+    <string name="continue_text">Tiếp tục</string>
     <string name="txt_calories_chart">Biểu đồ calo</string>
     <string name="txt_warm_up">Ấm lên</string>
     <string name="txt_reminder_content_1">Đuốc mỡ, tạo hình đường cong!</string>
@@ -232,10 +232,10 @@
     <string name="txt_reminder_content_4">Xác định mục tiêu, cảm thấy tuyệt vời.</string>
     <string name="txt_reminder_content_5">Hãy nghiền nát nó, giữ dáng!</string>
     <string name="txt_take_a_rest_the_next">Nghỉ ngơi! tiếp theo</string>
-    <string name="txt_seconds">Giây</string>
+    <string name="wp_seconds">Giây</string>
     <string name="txt_ready_to_go_the_next">Sẵn sàng để đi! tiếp theo</string>
-    <string name="txt_start">Bắt đầu</string>
-    <string name="td_v_half_time">Nửa thời gian</string>
+    <string name="wp_start">Bắt đầu</string>
+    <string name="wp_v_half_time">Nửa thời gian</string>
     <string name="explore_tag_new">Mới</string>
     <string name="txt_abs">Tập cơ bụng</string>
     <string name="txt_arm">Tập luyện cánh tay</string>
@@ -244,16 +244,16 @@
     <string name="txt_split">Chia bài tập</string>
     <string name="txt_challenge_7x4">Thử thách 7x4</string>
     <string name="replace">Thay thế</string>
-    <string name="replace_with">Thay bằng</string>
+    <string name="replace_with">Thay thế bằng</string>
     <string name="current">Hiện tại</string>
     <string name="download">Tải về</string>
     <string name="retry">Thử lại</string>
-    <string name="td_each_side">Mỗi bên</string>
+    <string name="wp_each_side">Mỗi bên</string>
     <string name="belly">Bụng</string>
-    <string name="arm">CÁNH TAY</string>
-    <string name="ass">mông</string>
+    <string name="arm">Cánh tay</string>
+    <string name="ass">Mông</string>
     <string name="thigh">Đùi</string>
-    <string name="focus_part">Phần trọng tâm của bạn là gì?</string>
+    <string name="focus_part">Phần tập trung của bạn là gì?</string>
     <string name="full_body">Toàn thân</string>
     <string name="txt_start_day">Bắt đầu từ ngày</string>
     <string name="txt_choose_day">Chọn một ngày:</string>
@@ -262,7 +262,7 @@
     <string name="txt_select_audio">Tùy chọn âm thanh</string>
     <string name="txt_count_down_info_1">Tập luyện với giới hạn thời gian và theo tốc độ của riêng bạn</string>
     <string name="countdown">Đếm ngược</string>
-    <string name="tempo_counting">Nhịp độ và đếm</string>
+    <string name="tempo_counting">Nhịp độ &amp; Đếm</string>
     <string name="td_mute">Tắt tiếng</string>
     <string name="txt_coach_tip">Lời khuyên của huấn luyện viên</string>
     <string name="txt_meal_plan_30">Kế hoạch bữa ăn trong 30 ngày</string>
@@ -317,7 +317,7 @@
     <string name="upper_body_stretching_short_des">Duỗi cánh tay, vai, ngực và lưng. Nới lỏng cơ bắp và cải thiện tính linh hoạt.</string>
     <string name="explore_tag_hot">Hấp dẫn</string>
     <string name="downloading">Đang tải xuống...</string>
-    <string name="loading">Đang tải …</string>
+    <string name="loading">Đang tải…</string>
     <string name="abs">Bụng</string>
     <string name="traps">Cơ cầu vai</string>
     <string name="triceps">Cơ tay sau</string>
@@ -360,7 +360,23 @@
     <string name="update_health_connect_gpt">Cập Nhật Health Connect</string>
     <string name="connect_to_google_health">Chia sẻ dữ liệu với Health Connect &amp; các ứng dụng khác</string>
     <string name="connecting_with_health">Đang kết nối với Health Connect...</string>
-<string name="update_now">Cập nhật ngay</string>
+    <string name="update_now">Cập nhật ngay</string>
     <string name="health_connect_update_desc_gpt">Rất tiếc! Kết nối thất bại. Vui lòng cập nhật phiên bản Health Connect của bạn để chia sẻ dữ liệu.</string>
     <string name="later">Sau</string>
+    <string name="test_voice">Đây là giọng nói thử nghiệm</string>
+    <string name="coach_voice">Giọng huấn luyện viên</string>
+    <string name="test_result_tip">Bạn có nghe được giọng nói nghe thử?</string>
+    <string name="wp_the_next">tiếp theo</string>
+    <string name="v_start_with">Bắt đầu với</string>
+    <string name="tts_test_des">Xin chào, tôi là, huấn luyện viên cá nhân của bạn, %s. Tôi sẽ đồng hành cùng bạn trong mỗi buổi tập, cung cấp cho bạn những lời khuyên cần thiết về cách thực hiện bài tập một cách hiệu quả nhất.</string>
+    <string name="name_male">Minh</string>
+    <string name="v_done">Làm tốt lắm! Chúc mừng!</string>
+    <string name="name_female">Hạnh</string>
+    <string name="select_tts">Chọn công cụ TTS</string>
+    <string name="tap_to_listen_and_choose">Chạm vào để nghe và lựa chọn giọng ưa thích của bạn.</string>
+    <string name="ttslib_download_tts">Tải công cụ TTS</string>
+    <string name="tts_name">Ngôn ngữ giọng nói</string>
+    <string name="tts_data">Tải thêm dữ liệu ngôn ngữ TTS</string>
+    <string name="device_tts_setting">Cài đặt TTS thiết bị</string>
+    <string name="default_text">Mặc định</string>
 </resources>

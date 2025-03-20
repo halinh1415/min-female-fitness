@@ -54,7 +54,7 @@
     <string name="txt_day">Dag</string>
     <string name="txt_days">Dager</string>
     <string name="txt_skip">Hopp over</string>
-    <string name="txt_take_a_break">Ta en pause</string>
+    <string name="wp_have_a_rest">Ta en pause</string>
     <string name="txt_press_tired">Trykk pause hvis du føler deg sliten</string>
     <string name="txt_do_you_quit">Vil du slutte?</string>
     <string name="txt_get_fit">Å ha en vakker kropp har aldri lett!</string>
@@ -130,7 +130,7 @@
     <string name="txt_copy_day_1_to_all">Kopier dag 1 til alle</string>
     <string name="txt_body_need_rest">Kroppen og musklene dine trenger å hvile</string>
     <string name="txt_select_exercise_suit">Velg treningshastigheten som passer deg</string>
-    <string name="txt_ready_to_go">Klar til å gå!</string>
+    <string name="wp_ready_to_go">Klar til å gå!</string>
     <string name="weeks">Uker</string>
     <string name="txt_daily">Daglig</string>
     <string name="tab_discover">Oppdage</string>=
@@ -231,10 +231,10 @@
     <string name="txt_reminder_content_4">Definer mål, føl deg bra.</string>
     <string name="txt_reminder_content_5">Knus den, hold deg i form!</string>
     <string name="txt_take_a_rest_the_next">Ta en pause! den neste</string>
-    <string name="txt_seconds">Sekunder</string>
+    <string name="wp_seconds">Sekunder</string>
     <string name="txt_ready_to_go_the_next">Klar til å gå! den neste</string>
-    <string name="txt_start">Start</string>
-    <string name="td_v_half_time">Halve tiden</string>
+    <string name="wp_start">Start</string>
+    <string name="wp_v_half_time">Halve tiden</string>
     <string name="explore_tag_new">Ny</string>
     <string name="txt_abs">Mage-trening</string>
     <string name="txt_arm">Arm trening</string>
@@ -247,7 +247,7 @@
     <string name="current">Nåværende</string>
     <string name="download">Nedlasting</string>
     <string name="retry">Prøv på nytt</string>
-    <string name="td_each_side">Hver side</string>
+    <string name="wp_each_side">Hver side</string>
 <string name="belly">Mage</string>
     <string name="arm">Væpne</string>
     <string name="ass">Rumpe</string>
@@ -359,7 +359,7 @@
     <string name="update_health_connect_gpt">Oppdater Health Connect</string>
     <string name="connect_to_google_health">Del data med Health Connect og andre apper</string>
     <string name="connecting_with_health">Kobler til med Health Connect...</string>
-<string name="iap_detail_review">1. Alle betalinger som gjøres via Play Butikk kontrolleres og administreres av Google.\n2. Betalinger vil bli belastet Play Store-kontoen din ved bekreftelse av kjøpet.\n3. Abonnementet fornyes automatisk, med mindre automatisk fornyelse er slått av minst 24 timer før slutten av gjeldende periode.\n4. Kontoen vil bli belastet for fornyelse innen 24 timer før slutten av gjeldende periode til en pris på %s/år eller %s/måned.\n5. Du kan administrere abonnementene dine, og automatisk fornyelse kan bli slått av ved å gå til Play Butikk-kontoinnstillingene etter kjøpet.\n6. Eventuell ubrukt del av en gratis prøveperiode, hvis den tilbys, vil bli tapt hvis du kjøper et abonnement på publikasjonen, der det er aktuelt.</string>
+    <string name="iap_detail_review">1. Alle betalinger som gjøres via Play Butikk kontrolleres og administreres av Google.\n2. Betalinger vil bli belastet Play Store-kontoen din ved bekreftelse av kjøpet.\n3. Abonnementet fornyes automatisk, med mindre automatisk fornyelse er slått av minst 24 timer før slutten av gjeldende periode.\n4. Kontoen vil bli belastet for fornyelse innen 24 timer før slutten av gjeldende periode til en pris på %s/år eller %s/måned.\n5. Du kan administrere abonnementene dine, og automatisk fornyelse kan bli slått av ved å gå til Play Butikk-kontoinnstillingene etter kjøpet.\n6. Eventuell ubrukt del av en gratis prøveperiode, hvis den tilbys, vil bli tapt hvis du kjøper et abonnement på publikasjonen, der det er aktuelt.</string>
     <string name="update_now">Oppdater nå</string>
     <string name="health_connect_update_desc_gpt">Oops! Tilkobling mislyktes. Oppdater Health Connect-versjonen din for å dele data.</string>
     <string name="later">Seinere</string>

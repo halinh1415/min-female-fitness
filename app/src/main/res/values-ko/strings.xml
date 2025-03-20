@@ -54,7 +54,7 @@
     <string name="txt_day">낮</string>
     <string name="txt_days">날</string>
     <string name="txt_skip">건너뛰다</string>
-    <string name="txt_take_a_break">쉬어 라</string>
+    <string name="wp_have_a_rest">휴식</string>
     <string name="txt_press_tired">피곤하면 일시정지 누르세요</string>
     <string name="txt_do_you_quit">그만두고 싶나요?</string>
     <string name="txt_get_fit">아름다운 몸매를 갖는 것은 결코 쉬운 일이 아닙니다!</string>
@@ -130,7 +130,7 @@
     <string name="txt_copy_day_1_to_all">1일을 모두 복사</string>
     <string name="txt_body_need_rest">몸과 근육은 휴식이 필요합니다</string>
     <string name="txt_select_exercise_suit">자신에게 맞는 운동속도를 선택하세요</string>
-    <string name="txt_ready_to_go">갈 준비가 됐어요!</string>
+    <string name="wp_ready_to_go">시작 할 준비</string>
     <string name="weeks">주</string>
     <string name="txt_daily">일일</string>
     <string name="tab_discover">발견하다</string>=
@@ -231,10 +231,10 @@
     <string name="txt_reminder_content_4">목표를 정의하고 기분이 좋아지세요.</string>
     <string name="txt_reminder_content_5">부수고 건강을 유지하세요!</string>
     <string name="txt_take_a_rest_the_next">쉬어 라! 다음</string>
-    <string name="txt_seconds">초</string>
+    <string name="wp_seconds">초</string>
     <string name="txt_ready_to_go_the_next">갈 준비가 됐어요! 다음</string>
-    <string name="txt_start">시작</string>
-    <string name="td_v_half_time">절반의 시간</string>
+    <string name="wp_start">시작합니다</string>
+    <string name="wp_v_half_time">하프타임</string>
     <string name="explore_tag_new">신규</string>
     <string name="txt_abs">복근 운동</string>
     <string name="txt_arm">팔운동</string>
@@ -247,7 +247,7 @@
     <string name="current">현재</string>
     <string name="download">다운로드</string>
     <string name="retry">재시도</string>
-    <string name="td_each_side">양쪽</string>
+    <string name="wp_each_side">양쪽</string>
 <string name="belly">배</string>
     <string name="arm">팔</string>
     <string name="ass">대상</string>
@@ -363,4 +363,20 @@
     <string name="update_now">지금 업데이트함</string>
     <string name="health_connect_update_desc_gpt">이런! 연결 실패. 데이터 공유를 위해 Health Connect 버전을 업데이트해주세요.</string>
     <string name="later">후에</string>
+    <string name="coach_voice">코치 음성</string>
+    <string name="test_voice">이것은 테스트 음성입니다</string>
+    <string name="test_result_tip">당신은 테스트의 목소리를 들었나요?</string>
+    <string name="wp_the_next">다음</string>
+    <string name="v_start_with">시작</string>
+    <string name="tts_test_des">안녕하세요, 저는 귀하의 개인 트레이너 %s입니다. 각 워크아웃을 진행하는 동안 귀하와 함께하며 가장 효과적으로 운동하는 데 필요한 팁을 알려 드리겠습니다.</string>
+    <string name="name_male">민준</string>
+    <string name="v_done">잘 하셨습니다. 축하합니다.</string>
+    <string name="name_female">서연</string>
+    <string name="select_tts">TTS 엔진 다운로드</string>
+    <string name="tap_to_listen_and_choose">탭하여 원하는 음성을 듣고 선택하세요.</string>
+    <string name="ttslib_download_tts">TTS 엔진을 선택</string>
+    <string name="tts_name">음성 언어</string>
+    <string name="tts_data">다른 TTS 언어 다운로드</string>
+    <string name="device_tts_setting">장치 TTS 설정</string>
+    <string name="default_text">기본값</string>
     </resources>

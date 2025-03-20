@@ -11,8 +11,6 @@ import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -134,7 +132,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
                  binding.txtExerciseCount.setText("x " + mActionObject.time);
                 if (mExerciseObject.getAlternation()) {
                     binding.tvSub.setVisibility(View.VISIBLE);
-                    binding.tvSub.setText(getString(R.string.td_each_side) + " x" + (mActionObject.time / 2));
+                    binding.tvSub.setText(getString(R.string.wp_each_side) + " x" + (mActionObject.time / 2));
                 } else {
                     binding.tvSub.setVisibility(View.GONE);
                 }
@@ -145,7 +143,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         }
 
         if (mRestTime == 123) {
-            binding.txtBreak.setText(getString(R.string.txt_ready_to_go));
+            binding.txtBreak.setText(getString(R.string.wp_ready_to_go));
             mRestTime = 16;
             mCurrentTime = 15;
             initTimer(15);
@@ -246,11 +244,17 @@ public class RestFragment extends Fragment implements View.OnClickListener {
 //            e.printStackTrace();
 //        }
     }
+    private void showDialogDemoWorkout() {
+        if (!isAdded() || getParentFragmentManager().findFragmentByTag("images") != null) return;
 
+        DialogDemoWorkout dialogDemoWorkout = DialogDemoWorkout.newInstance(mActionObject.actionId);
+        dialogDemoWorkout.show(getParentFragmentManager(), "images");
+    }
     @Override
     public void onResume() {
         super.onResume();
     }
+
 
     @Override
     public void onAttach(Context context) {
@@ -306,7 +310,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
              binding.txtExerciseCount.setText("x " + mActionObject.time);
             if (mExerciseObject.getAlternation()) {
                 binding.tvSub.setVisibility(View.VISIBLE);
-                binding.tvSub.setText(getString(R.string.td_each_side) + " x" + (mActionObject.time / 2));
+                binding.tvSub.setText(getString(R.string.wp_each_side) + " x" + (mActionObject.time / 2));
             } else {
                 binding.tvSub.setVisibility(View.GONE);
             }
@@ -338,8 +342,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.tv_exercise_name:
                 mWorkoutViewModel.setPause(true);
-                DialogDemoWorkout dialogDemoWorkout = DialogDemoWorkout.newInstance(mActionObject.actionId);
-                dialogDemoWorkout.show(getChildFragmentManager(), "images");
+                showDialogDemoWorkout();
                 break;
         }
     }
