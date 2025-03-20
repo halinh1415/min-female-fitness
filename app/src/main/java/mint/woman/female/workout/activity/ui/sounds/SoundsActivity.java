@@ -20,7 +20,13 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
 
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.File;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -33,9 +39,7 @@ import mint.woman.female.workout.retrofit.SOService;
 import mint.woman.female.workout.utils.DownloadFileWorker;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import mint.woman.female.workout.utils.RemoteConfigKeys;
 
 public class SoundsActivity extends AppCompatActivity implements MusicClickListener{
     private static final String TAG = "SoundsActivity";
@@ -66,29 +70,28 @@ public class SoundsActivity extends AppCompatActivity implements MusicClickListe
 
         binding.rcMusic.setAdapter(musicAdapter);
         mService = ApiUtils.getSOService(SoundsActivity.this);
-        binding.ltLoading.setVisibility(View.VISIBLE);
+        binding.ltLoading.setVisibility(View.GONE);
         binding.ltLoading.setAnimation("loading.json");
         binding.ltLoading.playAnimation();
         setTitle(getString(R.string.txt_select_audio));
-        mService.getMusic().enqueue(new Callback<List<MusicItem>>() {
-            @Override
-            public void onResponse(Call<List<MusicItem>> call, Response<List<MusicItem>> response) {
-                if (response.isSuccessful()){
-                    binding.ltLoading.cancelAnimation();
-                    binding.ltLoading.setVisibility(View.GONE);
-                    musicAdapter.setMusicItemList(response.body());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<MusicItem>> call, Throwable throwable) {
-
-            }
-        });
-       playMusic(myPreference.getMusicFile());
+        loadMusic();
+        playMusic(myPreference.getMusicFile());
 
     }
 
+    private void loadMusic() {
+        try {
+            Gson gson = new Gson();
+            List<MusicItem> musicItemList = gson.fromJson(FirebaseRemoteConfig.getInstance().getString(RemoteConfigKeys.BACKGROUND_MUSIC), new TypeToken<List<MusicItem>>() {
+            }.getType());
+            if (musicItemList != null) {
+                Collections.sort(musicItemList, Comparator.comparingInt(MusicItem::getPremium));
+                musicAdapter.setMusicItemList(musicItemList);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 
 

@@ -7,6 +7,7 @@ public class RemoteConfigKeys {
     public static final String GO_BEFORE = "inter_go_before";
     public static final String ENABLE_TRIAL = "enable_trial";
     public static final String ENABLE_SYNC = "enable_sync";
+    public static final String BACKGROUND_MUSIC = "background_music";
     public static String NATIVE_LANGUAGE = "native_language";
     public static String NATIVE_SETUP = "native_setup";
     public static String NATIVE_ONBOARD = "native_onboard";
