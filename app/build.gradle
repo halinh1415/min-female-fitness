@@ -13,8 +13,8 @@ android {
         applicationId "mint.woman.female.workout"
         minSdk 26
         targetSdk 34
-        versionCode 89
-        versionName "1.0.89"
+        versionCode 93
+        versionName "1.0.93"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
