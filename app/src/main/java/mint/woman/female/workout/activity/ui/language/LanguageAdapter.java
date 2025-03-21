@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 import mint.woman.female.workout.R;
 
 import java.util.List;
@@ -58,6 +60,11 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.Langua
 
         holder.tvNameLanguage.setText(language.getName());
         holder.imgIconLanguage.setImageResource(language.getIdIcon());
+        if (position == 2 && choicePosition == -1){
+            holder.ltChoose.setVisibility(View.VISIBLE);
+        }else{
+            holder.ltChoose.setVisibility(View.GONE);
+        }
         if (position == choicePosition) {
             holder.imgChooseLanguage.setImageResource(R.drawable.ic_selected);
         } else {
@@ -81,12 +88,14 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.Langua
         private TextView tvNameLanguage;
         private ImageView imgIconLanguage;
         private ImageView imgChooseLanguage;
+        private LottieAnimationView ltChoose;
 
         public LanguageViewHolder(@NonNull View itemView) {
             super(itemView);
             tvNameLanguage = itemView.findViewById(R.id.tvNameLanguage);
             imgIconLanguage = itemView.findViewById(R.id.imgIconLanguage);
             imgChooseLanguage = itemView.findViewById(R.id.imgChooseLanguage);
+            ltChoose = itemView.findViewById(R.id.ltChoose);
         }
     }
 

@@ -28,20 +28,41 @@
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imgIconLanguage"
-        app:layout_constraintEnd_toStartOf="@+id/imgChooseLanguage"
+        app:layout_constraintEnd_toStartOf="@+id/ly_choose"
         app:layout_constraintStart_toEndOf="@+id/imgIconLanguage"
         app:layout_constraintTop_toTopOf="@+id/imgIconLanguage"
         tools:text="English" />
 
-    <ImageView
-        android:id="@+id/imgChooseLanguage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/ic_selected"
-        android:visibility="visible"
+    <FrameLayout
+        android:id="@+id/ly_choose"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <ImageView
+            android:id="@+id/imgChooseLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_selected"
+            android:visibility="visible"
+            android:layout_gravity="center"
+            />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/ltChoose"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:paddingTop="@dimen/_4sdp"
+            android:visibility="invisible"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/click" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

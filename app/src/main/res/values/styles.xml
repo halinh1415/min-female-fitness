@@ -186,4 +186,11 @@
         <item name="android:drawableLeft">@drawable/ic_area_unchoose</item>
         <item name="android:drawablePadding">@dimen/_4sdp</item>
     </style>
+    <style name="FullscreenReminderTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowShowWallpaper">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
 </resources>

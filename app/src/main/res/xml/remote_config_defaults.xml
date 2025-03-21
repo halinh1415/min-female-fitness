@@ -45,6 +45,10 @@
     <value>true</value>
   </entry>
   <entry>
+    <key>enable_lock</key>
+    <value>false</value>
+  </entry>
+  <entry>
     <key>enable_voice</key>
     <value>true</value>
   </entry>

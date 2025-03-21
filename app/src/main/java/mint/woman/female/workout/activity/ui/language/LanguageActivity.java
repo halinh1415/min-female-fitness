@@ -46,6 +46,7 @@ public class LanguageActivity extends AppCompatActivity implements IChangeLangua
     private void initView() {
         myPreference = new MyPreference(this);
         initLanguage();
+        binding.imgDone.setVisibility(View.INVISIBLE);
 
         if (myPreference.isShowAds()  && myPreference.getOK() && FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.NATIVE_LANGUAGE)) {
             FitnessApplication.getApplication().getStorageCommon().nativeAdLanguage.observe(LanguageActivity.this, (nativeAd) -> {
@@ -164,10 +165,10 @@ public class LanguageActivity extends AppCompatActivity implements IChangeLangua
         }
         if (checkLanguage != -1){
             Language defaultLanguage = languages.remove(checkLanguage);
-            languages.add(0,defaultLanguage);
+            languages.add(2,defaultLanguage);
         }
         adapter = new LanguageAdapter(this, languages, this);
-        adapter.setDefault(lang);
+        //adapter.setDefault(lang);
         binding.rcLanguage.setAdapter(adapter);
         binding.rcLanguage.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -194,6 +195,6 @@ public class LanguageActivity extends AppCompatActivity implements IChangeLangua
 
     @Override
     public void onChangeLanguage(String code) {
-
+        binding.imgDone.setVisibility(View.VISIBLE);
     }
 }

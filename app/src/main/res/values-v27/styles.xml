@@ -24,4 +24,13 @@
         <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>
         <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
     </style>
+    <style name="FullscreenReminderTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowShowWallpaper">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
 </resources>

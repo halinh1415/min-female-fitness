@@ -28,10 +28,14 @@ import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.SplashActivity;
+import mint.woman.female.workout.activity.ui.locknotify.LockScreenActivity;
 import mint.woman.female.workout.model.ReminderItem;
 import mint.woman.female.workout.service.ReminderWorker;
+import mint.woman.female.workout.utils.RemoteConfigKeys;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -353,15 +357,15 @@ public class AlarmReceiver extends BroadcastReceiver {
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
 
-        //Intent fullScreenIntent = new Intent(context, LockScreenActivity.class);
-// Set the Activity to start in a new, empty task
-//        fullScreenIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-//                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//
-//        PendingIntent fullScreenPendingIntent = PendingIntent.getActivity(
-//                context, 0, fullScreenIntent,
-//                PendingIntent.FLAG_IMMUTABLE
-//        );
+        Intent fullScreenIntent = new Intent(context, LockScreenActivity.class);
+
+        fullScreenIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        PendingIntent fullScreenPendingIntent = PendingIntent.getActivity(
+                context, 0, fullScreenIntent,
+                PendingIntent.FLAG_IMMUTABLE
+        );
 
         Builder notificationBuilder = new Builder(context, DefaultNotificationChannelId);
 
@@ -373,8 +377,9 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setCategory(NotificationCompat.CATEGORY_CALL)
                 .setContentIntent(notifyPendingIntent);
 //                .setFullScreenIntent(fullScreenPendingIntent, true);
-        // if (BuildConfig.DEBUG )  notificationBuilder.setContentText("HHI");
-
+        if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.ENABLE_LOCK_WIDGET)) {
+            notificationBuilder.setFullScreenIntent(fullScreenPendingIntent, true);
+        }
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (notificationManager != null) {
             notificationManager.cancel(NOTIFY_DAILY_ID_CODE);
