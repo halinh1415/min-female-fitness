@@ -80,15 +80,18 @@ public class MyPreference {
     public String getMusicName() {
         return mSharedPreferences.getString("BACK_GROUND_MUSIC", "Default");
     }
-    public void setMusicName(String name){
+
+    public void setMusicName(String name) {
         mEditor.putString("BACK_GROUND_MUSIC", name);
         mEditor.commit();
     }
-    public void setMusicFile(String file){
+
+    public void setMusicFile(String file) {
         mEditor.putString("BACK_GROUND_MUSIC_FILE", file);
         mEditor.commit();
     }
-    public String getMusicFile(){
+
+    public String getMusicFile() {
         return mSharedPreferences.getString("BACK_GROUND_MUSIC_FILE", "Default.mp3");
     }
 
@@ -120,11 +123,11 @@ public class MyPreference {
     public boolean isKg() {
         return mSharedPreferences.getBoolean("IS_KG", true);
     }
-    public void setUnitKg(boolean value){
+
+    public void setUnitKg(boolean value) {
         mEditor.putBoolean("IS_KG", value);
         mEditor.commit();
     }
-
 
 
     public float getCurrentWeightKG() {
@@ -134,6 +137,7 @@ public class MyPreference {
     public float getCurrentHeightCm() {
         return mSharedPreferences.getFloat("CURRENT_HEIGHT", 175.0f);
     }
+
     public float getCurrentWaistCm() {
         return mSharedPreferences.getFloat("CURRENT_WAIST", 75.0f);
     }
@@ -147,7 +151,7 @@ public class MyPreference {
         return isKg() ? value : (value * 2.20462f);
     }
 
-    public void  setCurrentWeight(float value) {
+    public void setCurrentWeight(float value) {
         mEditor.putFloat("CURRENT_WEIGHT", value);
         mEditor.commit();
     }
@@ -157,26 +161,28 @@ public class MyPreference {
 //
 //        return value;
         float value = mSharedPreferences.getFloat("CURRENT_HEIGHT", 175f);
-        if (isKg()){
+        if (isKg()) {
             return value;
-        }else{
+        } else {
             return (value / 30.48f);
         }
     }
 
     public float getCurrentWaist() {
         float value = mSharedPreferences.getFloat("CURRENT_WAIST", 75f);
-        if (isKg()){
+        if (isKg()) {
             return value;
-        }else {
+        } else {
             return (value / 30.48f);
         }
     }
+
     public void setCurrentWaist(float value) {
 
         mEditor.putFloat("CURRENT_WAIST", value);
         mEditor.commit();
     }
+
     public void setCurrentHeight(float value) {
         mEditor.putFloat("CURRENT_HEIGHT", value);
         mEditor.commit();
@@ -187,7 +193,7 @@ public class MyPreference {
     }
 
     public String getHeightUnit() {
-        return isKg()?"Cm":"Ft";
+        return isKg() ? "Cm" : "Ft";
 
     }
 
@@ -253,17 +259,21 @@ public class MyPreference {
     }
 
     public String getLanguage() {
-        String locale =  mSharedPreferences.getString("ST_LANGUAGE", "");
-        if (locale.isEmpty()){
-            locale =  Locale.getDefault().getLanguage().toLowerCase();
+        String locale = mSharedPreferences.getString("ST_LANGUAGE", "");
+        if (locale.isEmpty()) {
+            locale = Locale.getDefault().getLanguage().toLowerCase();
         }
         if (locale.contains("zh") || locale.contains("in")) {
-            return locale.replace("-","_");
+            return locale.replace("-", "_");
+        }
+        if (locale.length() > 2) {
+            return locale.substring(0, 2);
         }
         return locale;
     }
+
     public void setLanguage(String code) {
-        mEditor.putString("ST_LANGUAGE",code);
+        mEditor.putString("ST_LANGUAGE", code);
         mEditor.commit();
     }
 
@@ -414,7 +424,8 @@ public class MyPreference {
         mEditor.putBoolean("SHOPPING_OK_" + id, value);
         mEditor.commit();
     }
-    public boolean isTick(){
+
+    public boolean isTick() {
         return mSharedPreferences.getBoolean("IS_TICK", true);
     }
 
@@ -430,43 +441,54 @@ public class MyPreference {
     public String getTheme() {
         return mSharedPreferences.getString("THEME", "light");
     }
+
     public int getGoalOfWeek() {
-        return mSharedPreferences.getInt("GOAL_OF_WEEK",5);
+        return mSharedPreferences.getInt("GOAL_OF_WEEK", 5);
     }
+
     public int getFirstDayOfWeek() {
-        return mSharedPreferences.getInt("FIRST_DAY_OF_WEEK",0);
+        return mSharedPreferences.getInt("FIRST_DAY_OF_WEEK", 0);
     }
+
     public void setFirstDayOfWeek(int value) {
-        mEditor.putInt("FIRST_DAY_OF_WEEK",value);
+        mEditor.putInt("FIRST_DAY_OF_WEEK", value);
         mEditor.commit();
 
     }
+
     public void setGoalOfWeek(int value) {
-        mEditor.putInt("GOAL_OF_WEEK",value);
+        mEditor.putInt("GOAL_OF_WEEK", value);
         mEditor.commit();
 
     }
-    public String getTimeRemindDaily(){
-        return mSharedPreferences.getString("TIME_REMIND_DAILY","20:00");
+
+    public String getTimeRemindDaily() {
+        return mSharedPreferences.getString("TIME_REMIND_DAILY", "20:00");
     }
-    public void setTimeRemindDaily(String value){
-        mEditor.putString("TIME_REMIND_DAILY",value);
+
+    public void setTimeRemindDaily(String value) {
+        mEditor.putString("TIME_REMIND_DAILY", value);
         mEditor.commit();
     }
+
     public boolean isFirstOpen() {
         return mSharedPreferences.getBoolean("IS_FIRST_OPEN", true);
     }
-    public void setFirstOpen(boolean value){
+
+    public void setFirstOpen(boolean value) {
         mEditor.putBoolean("IS_FIRST_OPEN", value);
         mEditor.commit();
     }
+
     public boolean isTranslate() {
         return mSharedPreferences.getBoolean("IS_TRANSLATE_NAME", true);
     }
-    public void setTranslate(boolean value){
+
+    public void setTranslate(boolean value) {
         mEditor.putBoolean("IS_TRANSLATE_NAME", value);
         mEditor.commit();
     }
+
     public int getSaveProgress(int programId, int day) {
         return mSharedPreferences.getInt("SAVE_PROGRESS_" + programId + "_" + day, 0);
     }
@@ -475,13 +497,16 @@ public class MyPreference {
         mEditor.putInt("SAVE_PROGRESS_" + programId + "_" + day, value);
         mEditor.commit();
     }
+
     public float getSaveProgressPercent(int programId, int day) {
         return mSharedPreferences.getFloat("SAVE_PROGRESS_PERCENT_" + programId + "_" + day, 0.0f);
     }
+
     public void setSaveProgressPercent(int programId, int day, float value) {
         mEditor.putFloat("SAVE_PROGRESS_PERCENT_" + programId + "_" + day, value);
         mEditor.commit();
     }
+
     public void saveProgressWorkout(int id, int mDayIndex, int currentExerciseCount) {
         mEditor.putInt("CURRENT_PROGRESS_" + id + "DAY_" + mDayIndex, currentExerciseCount);
         mEditor.commit();
@@ -493,33 +518,39 @@ public class MyPreference {
 
 
     public int getCountOption() {
-        return mSharedPreferences.getInt("COUNT_OPTION",1);
+        return mSharedPreferences.getInt("COUNT_OPTION", 1);
     }
-    public void setCountOption(int option){
-        mEditor.putInt("COUNT_OPTION",option);
+
+    public void setCountOption(int option) {
+        mEditor.putInt("COUNT_OPTION", option);
         mEditor.commit();
 
     }
-    public long getBackUpTime(){
-        return mSharedPreferences.getLong("BACKUP_TIME",0);
+
+    public long getBackUpTime() {
+        return mSharedPreferences.getLong("BACKUP_TIME", 0);
     }
-    public void setBackUpTime(long time){
-        mEditor.putLong("BACKUP_TIME",time);
+
+    public void setBackUpTime(long time) {
+        mEditor.putLong("BACKUP_TIME", time);
         mEditor.commit();
     }
 
     public String getVoiceModel(String language) {
-        return mSharedPreferences.getString("voice_"+language,"default");
+        return mSharedPreferences.getString("voice_" + language, "default");
     }
-    public void setVoiceModel(String language, String model){
-        mEditor.putString("voice_"+language,model);
+
+    public void setVoiceModel(String language, String model) {
+        mEditor.putString("voice_" + language, model);
         mEditor.commit();
     }
-    public void setVoiceModelName(String language, String modelName){
-        mEditor.putString("coach_"+language,modelName);
+
+    public void setVoiceModelName(String language, String modelName) {
+        mEditor.putString("coach_" + language, modelName);
         mEditor.commit();
     }
-    public String getVoiceModelName(String language){
-       return mSharedPreferences.getString("coach_"+language,"Default");
+
+    public String getVoiceModelName(String language) {
+        return mSharedPreferences.getString("coach_" + language, "Default");
     }
 }
