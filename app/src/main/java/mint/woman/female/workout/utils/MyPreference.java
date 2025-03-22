@@ -257,6 +257,9 @@ public class MyPreference {
         if (locale.isEmpty()){
             locale =  Locale.getDefault().getLanguage().toLowerCase();
         }
+        if (locale.contains("zh") || locale.contains("in")) {
+            return locale.replace("-","_");
+        }
         return locale;
     }
     public void setLanguage(String code) {
