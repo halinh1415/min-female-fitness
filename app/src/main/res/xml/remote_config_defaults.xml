@@ -49,6 +49,10 @@
     <value>false</value>
   </entry>
   <entry>
+    <key>enable_language_next</key>
+    <value>true</value>
+  </entry>
+  <entry>
     <key>enable_voice</key>
     <value>true</value>
   </entry>
