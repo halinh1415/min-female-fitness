@@ -177,41 +177,44 @@ class FinishedActivity : AppCompatActivity() {
 
 
     suspend fun insertHealthData() {
-        Log.d("HAHA", "add fit")
-        val availabilityStatus = HealthConnectClient.getSdkStatus(this)
+        try {
+            val availabilityStatus = HealthConnectClient.getSdkStatus(this)
 
-        if (availabilityStatus == HealthConnectClient.SDK_UNAVAILABLE) {
-            Toast.makeText(this, "sdk UNAVAILABLE", Toast.LENGTH_SHORT).show()
-            return  // early return as there is no viable integration
-        }
-        if (availabilityStatus == HealthConnectClient.SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED) {
-            val providerPackageName = "com.google.android.apps.healthdata"
-            // Optionally redirect to package installer to find a provider, for example:
-            val uriString =
-                "market://details?id=\$providerPackageName&url=healthconnect%3A%2F%2Fonboarding"
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.setPackage("com.android.vending")
-            intent.setData(Uri.parse(uriString))
-            intent.putExtra("overlay", true)
-            intent.putExtra("callerId", packageName)
-            startActivity(intent)
-            return
-        }
-        val healthConnectClient = HealthConnectClient.getOrCreate(this)
+            if (availabilityStatus == HealthConnectClient.SDK_UNAVAILABLE) {
+                Toast.makeText(this, "sdk UNAVAILABLE", Toast.LENGTH_SHORT).show()
+                return  // early return as there is no viable integration
+            }
+            if (availabilityStatus == HealthConnectClient.SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED) {
+                val providerPackageName = "com.google.android.apps.healthdata"
+                // Optionally redirect to package installer to find a provider, for example:
+                val uriString =
+                    "market://details?id=\$providerPackageName&url=healthconnect%3A%2F%2Fonboarding"
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.setPackage("com.android.vending")
+                intent.setData(Uri.parse(uriString))
+                intent.putExtra("overlay", true)
+                intent.putExtra("callerId", packageName)
+                startActivity(intent)
+                return
+            }
+            val healthConnectClient = HealthConnectClient.getOrCreate(this)
 
 
-        // Create a WorkoutSessionRecord
-        val workoutSession = ExerciseSessionRecord(
-            startTime = Instant.ofEpochMilli(mHistoryItem.startTime),
-            startZoneOffset = ZoneOffset.UTC,
-            endTime = Instant.now(),
-            endZoneOffset = ZoneOffset.UTC,
-            exerciseType = ExerciseSessionRecord.EXERCISE_TYPE_GYMNASTICS,
-            title = mHistoryItem.name,
+            // Create a WorkoutSessionRecord
+            val workoutSession = ExerciseSessionRecord(
+                startTime = Instant.ofEpochMilli(mHistoryItem.startTime),
+                startZoneOffset = ZoneOffset.UTC,
+                endTime = Instant.now(),
+                endZoneOffset = ZoneOffset.UTC,
+                exerciseType = ExerciseSessionRecord.EXERCISE_TYPE_GYMNASTICS,
+                title = mHistoryItem.name,
 //                metadata = Metadata(UUID.randomUUID().toString())
-        )
+            )
 
-        healthConnectClient.insertRecords(listOf(workoutSession))
+            healthConnectClient.insertRecords(listOf(workoutSession))
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
 
     }
 

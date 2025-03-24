@@ -63,9 +63,13 @@ public class HistoryActivity extends AppCompatActivity implements HistorySection
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityHistoryBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        initView();
+        try {
+            binding = ActivityHistoryBinding.inflate(getLayoutInflater());
+            setContentView(binding.getRoot());
+            initView();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void initView() {
