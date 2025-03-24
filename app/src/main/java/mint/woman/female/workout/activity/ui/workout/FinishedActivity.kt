@@ -22,6 +22,7 @@ import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.android.play.core.review.model.ReviewErrorCode
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import kotlinx.coroutines.launch
 import mint.woman.female.workout.FitnessApplication
 import mint.woman.female.workout.R
@@ -154,21 +155,23 @@ class FinishedActivity : AppCompatActivity() {
 
     private fun requestReview() {
         try{
-            reviewManager.requestReviewFlow()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful()) {
-                        // get ReviewInfo
-                        val reviewInfo: ReviewInfo = task.getResult()
-                        // show dialog review
-                        reviewManager.launchReviewFlow(this@FinishedActivity, reviewInfo)
-                            .addOnCompleteListener { reviewTask ->
+            if (FirebaseRemoteConfig.getInstance().getBoolean("enable_review")) {
+                reviewManager.requestReviewFlow()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful()) {
+                            // get ReviewInfo
+                            val reviewInfo: ReviewInfo = task.getResult()
+                            // show dialog review
+                            reviewManager.launchReviewFlow(this@FinishedActivity, reviewInfo)
+                                .addOnCompleteListener { reviewTask ->
 
-                                if (!reviewTask.isSuccessful()) {
+                                    if (!reviewTask.isSuccessful()) {
 
+                                    }
                                 }
-                            }
+                        }
                     }
-                }
+            }
         }catch (e:Exception){
             e.printStackTrace();
         }

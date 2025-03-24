@@ -219,21 +219,23 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
 
     private fun requestReview() {
         try{
-            reviewManager.requestReviewFlow()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful()) {
-                        // get ReviewInfo
-                        val reviewInfo: ReviewInfo = task.getResult()
-                        // show dialog review
-                        reviewManager.launchReviewFlow(this@YogaActivity, reviewInfo)
-                            .addOnCompleteListener { reviewTask ->
+            if (FirebaseRemoteConfig.getInstance().getBoolean("enable_review")) {
+                reviewManager.requestReviewFlow()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful()) {
+                            // get ReviewInfo
+                            val reviewInfo: ReviewInfo = task.getResult()
+                            // show dialog review
+                            reviewManager.launchReviewFlow(this@YogaActivity, reviewInfo)
+                                .addOnCompleteListener { reviewTask ->
 
-                                if (!reviewTask.isSuccessful()) {
+                                    if (!reviewTask.isSuccessful()) {
 
+                                    }
                                 }
-                            }
+                        }
                     }
-                }
+            }
         }catch (e:Exception){
             e.printStackTrace();
         }
