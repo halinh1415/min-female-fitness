@@ -230,9 +230,7 @@
     <string name="txt_reminder_content_3">Schwitzen sie für ein neues ich.</string>
     <string name="txt_reminder_content_4">Ziele definieren, sich großartig fühlen.</string>
     <string name="txt_reminder_content_5">Mach’s gut, bleib fit!</string>
-    <string name="txt_take_a_rest_the_next">Nimm den rest! der nächste</string>
     <string name="wp_seconds">Sekunden</string>
-    <string name="txt_ready_to_go_the_next">Startklar! der nächste</string>
     <string name="wp_start">start</string>
     <string name="wp_v_half_time">Halbzeit</string>
     <string name="explore_tag_new">Neu</string>
@@ -351,7 +349,7 @@
     <string name="data_sync_done">Datensynchronisierung abgeschlossen!</string>
 <string name="breast_training">Brusttraining</string>
     <string name="pain_relief">Schmerzlinderung</string>
-<string name="sync_to_google_health">Mit Health Connect synchronisieren</string>
+    <string name="sync_to_google_health">Mit Health Connect synchronisieren</string>
     <string name="manage_data_access">Daten und Zugang verwalten</string>
     <string name="health_connect">Health Connect</string>
     <string name="tip_connect_google_health">Teilen Sie Ihre Gesundheitsdaten mit anderen Apps, um Zeit zu sparen.</string>

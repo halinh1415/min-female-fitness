@@ -1,4 +1,3 @@
 
-
-rootProject.name = "Min Female Workout"
+rootProject.name = "Min-Female Fitness"
 include ':app'

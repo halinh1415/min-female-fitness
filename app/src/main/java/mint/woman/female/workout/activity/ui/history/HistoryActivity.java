@@ -259,6 +259,8 @@ public class HistoryActivity extends AppCompatActivity implements HistorySection
 //        public EventDecorator(List<CalendarDay> dates) {
 //            this.dates = new HashSet<>(dates);
 //        }
+
+
 //
 //        @Override
 //        public boolean shouldDecorate(CalendarDay day) {

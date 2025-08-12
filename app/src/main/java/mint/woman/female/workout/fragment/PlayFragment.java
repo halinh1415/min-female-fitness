@@ -452,7 +452,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.tv_exercise_name:
                 mWorkoutViewModel.setPause(true);
-              showDialogDemoWorkout();
+               showDialogDemoWorkout();
                 break;
             case R.id.img_setting:
                 mWorkoutViewModel.setPause(true);
@@ -477,8 +477,6 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         viewGroup.removeAllViewsInLayout();
         binding = FragmentPlayBinding.inflate(getLayoutInflater());
         viewGroup.addView(binding.getRoot());
-
-
         // Find your buttons in subview, set up onclicks, set up callbacks to your parent fragment or activity here.
     }
 

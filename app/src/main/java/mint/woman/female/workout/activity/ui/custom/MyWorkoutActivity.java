@@ -189,7 +189,7 @@ public class MyWorkoutActivity extends AppCompatActivity implements MyWorkoutAda
     protected void attachBaseContext(Context newBase) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(newBase);
         String lang = preferences.getString("ST_LANGUAGE", "");
-        if (!lang.isEmpty() ) {
+        if (!lang.isEmpty() && lang.length() > 2) {
             lang = lang.substring(0, 2);
         } else {
             lang = Locale.getDefault().getLanguage();
