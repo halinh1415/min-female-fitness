@@ -95,7 +95,7 @@ public class PremiumActivity extends AppCompatActivity {
             }
         });
         if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.ENABLE_TRIAL)){
-            goPro1Binding.tvYear1.setText(getString(R.string.txt_day_free_trial));
+            goPro1Binding.tvYear2.setText(getString(R.string.txt_day_free_trial));
         }else {
             goPro1Binding.tvYear2.setText(getString(R.string.txt_most_popular));
         }
