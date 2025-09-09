@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="mint.woman.female.workout">
-
+    <uses-sdk tools:overrideLibrary="androidx.health.connect.client" />
     <queries>
         <package android:name="com.google.android.apps.healthdata" />
 

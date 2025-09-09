@@ -332,57 +332,81 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
         startActivity(intent)
     }
 
-    private val PERMISSIONS = setOf(
-        HealthPermission.getWritePermission(ExerciseSessionRecord::class)
-    )
+    private val PERMISSIONS: Set<String> by lazy {
+        if (Build.VERSION.SDK_INT >= 26) {
+            setOf(
+                HealthPermission.getWritePermission(ExerciseSessionRecord::class)
+            )
+        } else {
+            emptySet()
+        }
+    }
 
     // Permission launcher
 
-    val requestPermissionActivityContract =  PermissionController.createRequestPermissionResultContract()
+    val requestPermissionActivityContract =
+        if (Build.VERSION.SDK_INT >= 26) {
+            PermissionController.createRequestPermissionResultContract()
+        } else {
+            null
+        }
 
     val requestPermissions =
-        registerForActivityResult(requestPermissionActivityContract) { granted ->
-            if (granted.containsAll(PERMISSIONS)) {
-                Toast.makeText(
-                    this,
-                    "granted", Toast.LENGTH_SHORT
-                ).show()
-                myPreference.isSyncGoogleFit = true
-                accessGoogleFit()
+        if (Build.VERSION.SDK_INT >= 26 && requestPermissionActivityContract != null) {
+            registerForActivityResult(requestPermissionActivityContract) { granted ->
+                if (granted.containsAll(PERMISSIONS)) {
+                    Toast.makeText(
+                        this,
+                        "granted", Toast.LENGTH_SHORT
+                    ).show()
+                    myPreference.isSyncGoogleFit = true
+                    accessGoogleFit()
 
 
-            } else {
-                myPreference.isSyncGoogleFit = false
-                try {
-                    val navHostFragment =
-                        supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
-                    val settingFragment =
-                        navHostFragment!!.childFragmentManager.primaryNavigationFragment as SettingFragment?
-                    settingFragment?.initValue(false)
-                } catch (e: Exception) {
-                    e.printStackTrace()
+                } else {
+                    myPreference.isSyncGoogleFit = false
+                    try {
+                        val navHostFragment =
+                            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
+                        val settingFragment =
+                            navHostFragment!!.childFragmentManager.primaryNavigationFragment as SettingFragment?
+                        settingFragment?.initValue(false)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
                 }
             }
+        }else{
+            null
         }
 
     suspend fun checkPermissionsAndRun(healthConnectClient: HealthConnectClient) {
+        if (Build.VERSION.SDK_INT < 26) {
+            // Không hỗ trợ Health Connect trên Android < 8.0
+            Log.w("HAHA", "Health Connect not supported on this Android version")
+            return
+        }
         try {
             val granted = healthConnectClient.permissionController.getGrantedPermissions()
-            Log.d("HAHA"," var"+granted)
+            Log.d("HAHA", " var" + granted)
             if (granted.containsAll(PERMISSIONS)) {
                 myPreference.isSyncGoogleFit = true
                 accessGoogleFit()
                 // Proceed with inserting or reading data
             } else {
-                requestPermissions.launch(PERMISSIONS)
+                requestPermissions?.launch(PERMISSIONS)
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-    // Permission launcher
     override fun onGetGoogleFit() {
+        if (Build.VERSION.SDK_INT < 26) {
+            // Không hỗ trợ Health Connect trên Android < 8.0
+            Log.w("HAHA", "Health Connect not supported on this Android version")
+            return
+        }
         try {
             val availabilityStatus = HealthConnectClient.getSdkStatus(this)
             myPreference = MyPreference.newInstance(this)

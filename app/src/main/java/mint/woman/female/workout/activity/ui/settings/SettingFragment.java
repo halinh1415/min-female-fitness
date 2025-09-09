@@ -87,7 +87,10 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
             languageEntries[i] = getLanguageName(languageEntryValues[i]);
         }
 
-
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            Preference fitSync = findPreference("SYNC_FIT");
+            fitSync.setVisible(false);
+        }
         languagePreference.setEntryValues(languageEntryValues);
         languagePreference.setEntries(languageEntries);
         version.setTitle("Version: " + BuildConfig.VERSION_NAME);
@@ -151,13 +154,13 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
     public boolean onPreferenceClick(Preference preference) {
         switch (preference.getKey()) {
             case "SYNC_FIT":
-
-                AppOpenManager.getInstance().disableAdResumeByClickAction();
-                SwitchPreference swGoogleFit = findPreference("SYNC_FIT");
-                HealthDataDialog healthDataDialog = new HealthDataDialog();
-                healthDataDialog.show(getActivity().getSupportFragmentManager(), "health_connect");
-                if (swGoogleFit.isChecked()){
-                    swGoogleFit.setChecked(false);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    AppOpenManager.getInstance().disableAdResumeByClickAction();
+                    SwitchPreference swGoogleFit = findPreference("SYNC_FIT");
+                    HealthDataDialog healthDataDialog = new HealthDataDialog();
+                    healthDataDialog.show(getActivity().getSupportFragmentManager(), "health_connect");
+                    if (swGoogleFit.isChecked()){
+                        swGoogleFit.setChecked(false);
 //                    if (mListener != null) {
 //                        mListener.onGetGoogleFit();
 //                    }
@@ -166,7 +169,10 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
 //                    if (mListener != null) {
 //                        mListener.disableHealthConnect();
 //                    }
-                    // swGoogleFit.setTitle(getString(R.string.txt_sync_to_google_fit));
+                        // swGoogleFit.setTitle(getString(R.string.txt_sync_to_google_fit));
+                    }
+                } else {
+
                 }
                 break;
             case "ST_RATE":

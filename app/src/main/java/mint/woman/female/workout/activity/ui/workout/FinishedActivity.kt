@@ -5,11 +5,13 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.media.MediaPlayer
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.health.connect.client.HealthConnectClient
 import androidx.health.connect.client.records.ExerciseSessionRecord
@@ -125,7 +127,7 @@ class FinishedActivity : AppCompatActivity() {
             val selectReminderEveryDayDialog = SelectReminderEveryDayDialog()
             selectReminderEveryDayDialog.show(supportFragmentManager, "SelectReminder")
         }
-        if (myPreference.isSyncGoogleFit) {
+        if (myPreference.isSyncGoogleFit && Build.VERSION.SDK_INT >=26) {
             lifecycleScope.launch {
                 insertHealthData()
             }
@@ -179,6 +181,7 @@ class FinishedActivity : AppCompatActivity() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     suspend fun insertHealthData() {
         try {
             val availabilityStatus = HealthConnectClient.getSdkStatus(this)
