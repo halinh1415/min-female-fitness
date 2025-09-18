@@ -21,6 +21,8 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreference;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
@@ -94,7 +96,9 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         languagePreference.setEntryValues(languageEntryValues);
         languagePreference.setEntries(languageEntries);
         version.setTitle("Version: " + BuildConfig.VERSION_NAME);
-        if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.ENABLE_SYNC)){
+        boolean hasGMS = GoogleApiAvailability.getInstance()
+                .isGooglePlayServicesAvailable(getContext()) == ConnectionResult.SUCCESS;
+        if (hasGMS &&FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.ENABLE_SYNC)){
             preferenceBackUp.setVisible(true);
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             if (user != null) {
