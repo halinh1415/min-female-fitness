@@ -19,9 +19,10 @@ import mint.woman.female.workout.R;
 import mint.woman.female.workout.admodule.AppOpenManager;
 import mint.woman.female.workout.databinding.FragmentVideoYtBinding;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
-
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions;
 
 
 /**
@@ -84,6 +85,7 @@ public class VideoYtFragment extends Fragment {
         getLifecycle().addObserver(binding.youtubePlayerView);
 
 
+
         String[] parts  = mExerciseUrl.split("&t=");
         String videoId = parts[0];
 
@@ -97,6 +99,7 @@ public class VideoYtFragment extends Fragment {
             e.printStackTrace();
         }
         float finalTime = startTime;
+
         binding.youtubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
@@ -107,15 +110,35 @@ public class VideoYtFragment extends Fragment {
                     youTubePlayer.play();
                 }
             }
+
+            @Override
+            public void onError(@NonNull YouTubePlayer youTubePlayer, @NonNull PlayerConstants.PlayerError error) {
+                super.onError(youTubePlayer, error);
+                Log.d("HAHA",""+error.toString());
+                if (error == PlayerConstants.PlayerError.VIDEO_NOT_PLAYABLE_IN_EMBEDDED_PLAYER) {
+//                    String videoUrl = "https://www.youtube.com/watch?v=" + videoId;
+//                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl));
+//                    intent.putExtra("force_fullscreen", true);
+//                    startActivity(intent);
+                    binding.youtubePlayerView.setVisibility(View.INVISIBLE);
+                }
+            }
         });
+        binding.youtubePlayerView.enableBackgroundPlayback(true);
         binding.btnOpenYt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openYoutubeChannel();
+                openYoutubeVideo(videoId);
             }
         });
 
         //  YouTubePlayerFragment youTubePlayerFragment = (YouTubePlayerFragment) view.findViewById(R.id.youtube_fragment);
+    }
+    void openYoutubeVideo(String videoId){
+        String videoUrl = "https://www.youtube.com/watch?v=" + videoId;
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl));
+        intent.putExtra("force_fullscreen", true);
+        startActivity(intent);
     }
     public void openYoutubeChannel() {
         FirebaseAnalytics.getInstance(getContext()).logEvent("click_open_youtube_channel_dm", new Bundle());

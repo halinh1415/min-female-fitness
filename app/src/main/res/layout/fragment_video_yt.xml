@@ -44,7 +44,7 @@
                 android:drawableLeft="@drawable/ic_youtube"
                 android:paddingHorizontal="10dp"
                 android:text="YouTube"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:textAllCaps="false"
                 android:textColor="@color/White"
                 android:textSize="10sp" />

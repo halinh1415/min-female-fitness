@@ -3,6 +3,8 @@ package mint.woman.female.workout;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
+import android.webkit.WebView;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.PreferenceManager;
@@ -41,9 +43,6 @@ public class FitnessApplication extends Application {
     public StorageCommon  getStorageCommon() {
         return storageCommon;
     }
-
-
-
 
 
 
@@ -105,9 +104,16 @@ public class FitnessApplication extends Application {
         AppOpenManager.getInstance().setAdResumeHighId(MaticAdKeys.OPEN_RESUME_HIGH);
         AppOpenManager.getInstance().setAdResumeMediumId(MaticAdKeys.OPEN_RESUME_MEDIUM);
         storageCommon = new StorageCommon();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            String processName = getProcessName();
+            if (!getPackageName().equals(processName)) {
+                WebView.setDataDirectorySuffix(processName);
+            }
+        }
         mJsonHelper = JsonHelper.newInstance(getApplicationContext());
         mDatabase = Database.newInstance(getApplicationContext(), "workout.db");
         setTheme();
+
 
     }
 
