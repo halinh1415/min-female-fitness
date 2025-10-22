@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -83,7 +84,9 @@ public class SoundsActivity extends AppCompatActivity implements MusicClickListe
             List<MusicItem> musicItemList = gson.fromJson(FirebaseRemoteConfig.getInstance().getString(RemoteConfigKeys.BACKGROUND_MUSIC), new TypeToken<List<MusicItem>>() {
             }.getType());
             if (musicItemList != null) {
-                Collections.sort(musicItemList, Comparator.comparingInt(MusicItem::getPremium));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    Collections.sort(musicItemList, Comparator.comparingInt(MusicItem::getPremium));
+                }
                 musicAdapter.setMusicItemList(musicItemList);
             }
         }catch (Exception e){

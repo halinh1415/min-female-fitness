@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
@@ -346,7 +347,9 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                 fileList.add(fileName);
 
             }
-            fileList.removeIf(fileName -> new File(voicePath, fileName).exists());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                fileList.removeIf(fileName -> new File(voicePath, fileName).exists());
+            }
             if (!fileList.isEmpty()) {
                 Data.Builder data = new Data.Builder();
                 String jsonFilePath = voicePath + "/file_list.json";

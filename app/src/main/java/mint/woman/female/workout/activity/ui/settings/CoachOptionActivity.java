@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
@@ -212,7 +213,9 @@ public class CoachOptionActivity extends AppCompatActivity implements VoiceAdapt
             fileList.add(fileName);
 
         }
-        fileList.removeIf(fileName -> new File(voicePath, fileName).exists());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            fileList.removeIf(fileName -> new File(voicePath, fileName).exists());
+        }
         if (!fileList.isEmpty()) {
             isDownloading = true;
             voiceAdapter.setVoiceDownloading(voiceItem.getValue());
