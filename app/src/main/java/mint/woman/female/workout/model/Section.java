@@ -27,18 +27,5 @@ public class Section{
 
     }
 
-//    public Section(String sectionName, List<CategoryObject> categoryObjectList,int viewType) {
-//        this.sectionName = sectionName;
-//        this.programObjectList.addAll(programObjectList);
-//        this.viewType = viewType;
-//        this.background ="";
-//
-//    }
-//    public Section(String sectionName, List<ProgramObject> programObjectList,int viewType,String background) {
-//        this.sectionName = sectionName;
-//        this.programObjectList.addAll(programObjectList);
-//        this.viewType = viewType;
-//        this.background =background;
-//    }
 
 }
