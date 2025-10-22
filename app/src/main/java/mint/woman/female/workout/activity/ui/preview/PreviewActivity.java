@@ -98,6 +98,7 @@ import mint.woman.female.workout.utils.RemoteConfigKeys;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -347,8 +348,12 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                 fileList.add(fileName);
 
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                fileList.removeIf(fileName -> new File(voicePath, fileName).exists());
+            Iterator<String> iterator = fileList.iterator();
+            while (iterator.hasNext()) {
+                String fileName = iterator.next();
+                if (new File(voicePath, fileName).exists()) {
+                    iterator.remove();
+                }
             }
             if (!fileList.isEmpty()) {
                 Data.Builder data = new Data.Builder();
