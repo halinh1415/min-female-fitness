@@ -156,7 +156,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initView();
-        requestNewAdBanner();
+
         loadInterStart();
     }
 
@@ -286,6 +286,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                     startDownload();
                     return;
                 }
+                requestNewAdBanner();
             }
             updateData();
         }
