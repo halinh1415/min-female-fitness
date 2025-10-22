@@ -84,9 +84,12 @@ public class SoundsActivity extends AppCompatActivity implements MusicClickListe
             List<MusicItem> musicItemList = gson.fromJson(FirebaseRemoteConfig.getInstance().getString(RemoteConfigKeys.BACKGROUND_MUSIC), new TypeToken<List<MusicItem>>() {
             }.getType());
             if (musicItemList != null) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    Collections.sort(musicItemList, Comparator.comparingInt(MusicItem::getPremium));
-                }
+                Collections.sort(musicItemList, new Comparator<MusicItem>() {
+                    @Override
+                    public int compare(MusicItem o1, MusicItem o2) {
+                        return Integer.compare(o1.getPremium(), o2.getPremium());
+                    }
+                });
                 musicAdapter.setMusicItemList(musicItemList);
             }
         }catch (Exception e){
