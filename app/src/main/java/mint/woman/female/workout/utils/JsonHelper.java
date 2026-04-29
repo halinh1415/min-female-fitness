@@ -130,7 +130,31 @@ public class JsonHelper {
         return language.substring(0, 2);
     }
 
+    public List<ProgramObject> getAllCategory() {
+        if (!Decoder.isSuccess){
+            return new ArrayList<>();
+        }
+        String langCode = getLocaleApp();
+        String fileName;
+        fileName = "programs/all_program_" + langCode ;
+        String jsonString = "";
+        if (isAssetExists(fileName)) {
+            //jsonString = loadJSONFromAsset(fileName);
+            byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), fileName);
+            //  jsonString = Decoder.getAllData(mContext.getAssets(), fileName);
+            jsonString = new String(decode, StandardCharsets.UTF_8);
 
+        } else {
+            // jsonString = loadJSONFromAsset("programs/all_program_en.json");
+            byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), "programs/all_program_en");
+            //  jsonString = Decoder.getAllData(mContext.getAssets(), fileName);
+            jsonString = new String(decode, StandardCharsets.UTF_8);
+        }
+
+        Gson gson = new Gson();
+        List<ProgramObject> list = gson.fromJson(jsonString, TypeToken.getParameterized(List.class,ProgramObject.class).getType());
+        return list;
+    }
 
     public HashMap<Integer, ProgramObject> getAllCategoryHashMap() {
         if (!Decoder.isSuccess){

@@ -2,12 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="mint.woman.female.workout">
+
     <uses-sdk tools:overrideLibrary="androidx.health.connect.client" />
+
     <queries>
         <package android:name="com.google.android.apps.healthdata" />
 
         <intent>
             <action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE" />
+        </intent>
+    </queries>
+    <queries>
+        <intent>
+            <action android:name="com.google.android.youtube.api.service.START" />
         </intent>
     </queries>
 
@@ -23,11 +30,7 @@
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.health.WRITE_EXERCISE" />
-    <queries>
-        <intent>
-            <action android:name="com.google.android.youtube.api.service.START" />
-        </intent>
-    </queries>
+
     <application
         android:name=".FitnessApplication"
         android:exported="true"
@@ -39,14 +42,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".activity.ui.guide.GuidePersonalPlanActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ui.settings.CoachOptionActivity"
             android:exported="false"
-            android:parentActivityName=".activity.ui.main.YogaActivity"
-            >
+            android:parentActivityName=".activity.ui.main.YogaActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.ui.main.YogaActivity" />
-
         </activity>
         <activity
             android:name=".activity.ui.workout.CategoryDetailActivity"
@@ -151,7 +155,7 @@
             android:label="@string/app_name"
             android:largeHeap="true"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE" />
             </intent-filter>
@@ -389,12 +393,13 @@
             android:name="android.adservices.AD_SERVICES_CONFIG"
             android:resource="@xml/gma_ad_services_config"
             tools:replace="android:resource" />
+
         <meta-data
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION"
-            android:value="true"/>
+            android:value="true" />
         <meta-data
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
-            android:value="true"/>
+            android:value="true" />
     </application>
 
 </manifest>

@@ -29,6 +29,9 @@ import java.util.Locale;
 
 import kotlin.text.Regex;
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.activity.ui.firstsetup.FirstSetupActivity;
+import mint.woman.female.workout.admodule.MaticAd;
+import mint.woman.female.workout.admodule.MaticAdCallBack;
 import mint.woman.female.workout.databinding.ActivityPremiumBinding;
 import mint.woman.female.workout.databinding.ItemGoPro1Binding;
 import mint.woman.female.workout.utils.LanguageHelper;
@@ -43,6 +46,7 @@ public class PremiumActivity extends AppCompatActivity {
 
     MyPreference myPreference;
     PremiumAdapter premiumAdapter;
+    boolean isFirstSetup = false;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -57,11 +61,12 @@ public class PremiumActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        isFirstSetup = getIntent().getBooleanExtra("IS_FIRST",false);
         myPreference = new MyPreference(this);
         premiumViewModel = new ViewModelProvider(this).get(PremiumViewModel.class);
         premiumAdapter = new PremiumAdapter();
         binding.ivClose.setOnClickListener(view -> {
-            finish();
+            finishPremium();
         });
 
         premiumViewModel.selected.observe(this, selected -> {
@@ -161,6 +166,20 @@ public class PremiumActivity extends AppCompatActivity {
         goPro1Binding.llYear.setOnClickListener(this::chosePlan);
         goPro1Binding.llLifeTime.setOnClickListener(this::chosePlan);
 
+    }
+
+    void finishPremium(){
+        if (isFirstSetup && FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.INTER_FIRST_OPEN) && MaticAd.getInstance().isAvailableInter()){
+            MaticAd.getInstance().showPriorityInterstitialAd(PremiumActivity.this,new MaticAdCallBack(){
+                @Override
+                public void onNextAction() {
+                    super.onNextAction();
+                    PremiumActivity.this.finish();
+                }
+            });
+        }else{
+            PremiumActivity.this.finish();
+        }
     }
 
     @SuppressLint("DefaultLocale")

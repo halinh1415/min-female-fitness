@@ -61,7 +61,7 @@
             app:key="MUSIC_VOLUME"
             app:title="@string/txt_music_volume"
             android:max="100"
-            app:defaultValue="90" />
+            app:defaultValue="50" />
         <Preference
             app:dependency="MUSIC_ON"
             app:icon="@drawable/ic_music_note"

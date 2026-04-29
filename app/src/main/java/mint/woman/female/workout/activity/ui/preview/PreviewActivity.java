@@ -333,7 +333,20 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                 dir.mkdirs();
             }
             List<String> fileList = new ArrayList<>();
+            fileList.add(AppEncrypt.getName(getString(R.string.wp_start)));
+            fileList.add(AppEncrypt.getName(getString(R.string.v_start_with)));
+            fileList.add(AppEncrypt.getName(getString(R.string.wp_ready_to_go)));
+            fileList.add(AppEncrypt.getName(getString(R.string.wp_v_half_time)));
+            fileList.add(AppEncrypt.getName(String.format(getString(R.string.tts_test_des),myPreference.getVoiceModel(myPreference.getLanguage()))));
+            fileList.add(AppEncrypt.getName(getString(R.string.wp_seconds)));
+            fileList.add(AppEncrypt.getName(getString(R.string.wp_each_side)));
+            fileList.add(AppEncrypt.getName(getString(R.string.wp_the_next)));
+            fileList.add(AppEncrypt.getName(getString(R.string.wp_have_a_rest)));
+            for (int i =1;i<100;i++) {
+                String fileName = AppEncrypt.getName(""+i);
+                fileList.add(fileName);
 
+            }
             List<ExerciseObject> allExercise = FitnessApplication.getApplication().mJsonHelper.getAllExercise(mProgramObject.getDiscover(), mProgramObject.getVersion());
             for (ExerciseObject exerciseObject : allExercise
             ) {
@@ -341,12 +354,6 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                 for (Tip tip : exerciseObject.getTips()) {
                     fileList.add(AppEncrypt.getName(tip.getText()));
                 }
-            }
-
-            for (int i = 1; i < 100; i++) {
-                String fileName = AppEncrypt.getName("" + i);
-                fileList.add(fileName);
-
             }
             Iterator<String> iterator = fileList.iterator();
             while (iterator.hasNext()) {

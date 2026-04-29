@@ -345,9 +345,8 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         } else {
             mHistoryItem.setName(mProgramObject.getName() + " - Level " + mProgramObject.getLevel());
         }
-        mHistoryItem.setImage(mProgramObject.getImage());
         mHistoryItem.setStartTime(Calendar.getInstance().getTimeInMillis());
-        mHistoryItem.setDate(TimeUnit.MILLISECONDS.toDays(Calendar.getInstance().getTimeInMillis()));
+        mHistoryItem.setDateId(Calendar.getInstance().getTimeInMillis());
         mHistoryItem.setStart(mFormatDateTime.format(Calendar.getInstance().getTimeInMillis()));
         mHistoryItem.setProgramId(mProgramObject.getId());
         mHistoryItem.setDayIndex(mDayIndex);

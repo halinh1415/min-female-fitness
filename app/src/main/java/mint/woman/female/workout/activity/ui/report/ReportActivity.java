@@ -181,7 +181,7 @@ public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekB
             Map<Long, List<HistoryItem>> groupedItems = new HashMap<>();
             Map<Long,Integer> caloriesMap = new HashMap<>();
             for (HistoryItem item : historyItems) {
-                long date = item.getDate();
+                long date = item.getDateId();
                 if (!groupedItems.containsKey(date)) {
                     groupedItems.put(date, new ArrayList<>());
                     caloriesMap.put(date,0);
@@ -196,7 +196,7 @@ public class ReportActivity extends AppCompatActivity implements SeekBar.OnSeekB
 
             for (List<HistoryItem> historyDateWithItem : historyDateWithItems) {
                 if (historyDateWithItem.size() >0){
-                    long date = historyDateWithItem.get(0).getDate();
+                    long date = historyDateWithItem.get(0).getDateId();
                     values.add(new BarEntry(date, caloriesMap.get(date)));
                 }
 

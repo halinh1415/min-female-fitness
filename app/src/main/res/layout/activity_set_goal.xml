@@ -40,10 +40,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:layout_marginTop="@dimen/_50sdp"
-            android:layout_marginHorizontal="@dimen/_10sdp"
             android:orientation="vertical">
 
             <TextView
@@ -53,10 +51,11 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="16sp" />
 
-            <Spinner
-                android:id="@+id/spnWeekGoal"
-                android:layout_width="match_parent"
+            <NumberPicker
+                android:id="@+id/npkWeekGoal"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:theme="@style/NumberPickerText"
                 android:descendantFocusability="blocksDescendants" />
 
             <TextView
@@ -67,10 +66,9 @@
                 android:textSize="16sp" />
 
             <Spinner
-                android:id="@+id/spnFirstDayOfWeek"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:descendantFocusability="blocksDescendants" />
+                android:id="@+id/spFirstDayOfWeek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
@@ -90,5 +88,11 @@
             android:layout_margin="10dp"
             android:textColor="@color/White"
             android:textStyle="bold" />
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="@string/ad_banner_unit_id" />
     </LinearLayout>
 </RelativeLayout>

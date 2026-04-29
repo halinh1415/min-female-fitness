@@ -7,9 +7,22 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Calendar;
+
 @Entity
 public class HistoryItem implements Parcelable {
 
+    public static final Creator<HistoryItem> CREATOR = new Creator<HistoryItem>() {
+        @Override
+        public HistoryItem createFromParcel(Parcel in) {
+            return new HistoryItem(in);
+        }
+
+        @Override
+        public HistoryItem[] newArray(int size) {
+            return new HistoryItem[size];
+        }
+    };
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private int id;
@@ -23,8 +36,10 @@ public class HistoryItem implements Parcelable {
     private int calories;
     @ColumnInfo(name = "duration")
     private int duration;
+
+    // --- ĐÃ CẬP NHẬT: Tên biến rõ ràng hơn nhưng vẫn giữ tên cột DB là "dateId" ---
     @ColumnInfo(name = "dateId")
-    private long date;
+    private long dateId;
     @ColumnInfo(name = "start")
     private String start;
     @ColumnInfo(name = "passed")
@@ -48,7 +63,8 @@ public class HistoryItem implements Parcelable {
         name = in.readString();
         calories = in.readInt();
         duration = in.readInt();
-        date = in.readLong();
+        // --- ĐÃ CẬP NHẬT: Đọc giá trị dateStartOfDayMillis từ Parcel ---
+        dateId = in.readLong(); // Đọc giá trị cho biến mới
         start = in.readString();
         passed = in.readByte() != 0;
         programId = in.readInt();
@@ -64,7 +80,7 @@ public class HistoryItem implements Parcelable {
         dest.writeString(name);
         dest.writeInt(calories);
         dest.writeInt(duration);
-        dest.writeLong(date);
+        dest.writeLong(dateId);
         dest.writeString(start);
         dest.writeByte((byte) (passed ? 1 : 0));
         dest.writeInt(programId);
@@ -75,18 +91,6 @@ public class HistoryItem implements Parcelable {
     @Override
     public int describeContents() {
         return 0;
-    }
-
-    public static final Creator<HistoryItem> CREATOR = new Creator<HistoryItem>() {
-        @Override
-        public HistoryItem createFromParcel(Parcel in) {
-            return new HistoryItem(in);
-        }
-
-        @Override
-        public HistoryItem[] newArray(int size) {
-            return new HistoryItem[size];
-        }
     };
 
     public String getImage() {
@@ -149,12 +153,26 @@ public class HistoryItem implements Parcelable {
         this.duration = duration;
     }
 
-    public long getDate() {
-        return date;
+    // --- ĐÃ CẬP NHẬT: Getter cho cột "dateId" phải là getDateId() ---
+    public long getDateId() { // Tên getter mới cho cột "dateId"
+        return dateId;
     }
 
-    public void setDate(long date) {
-        this.date = date;
+    /**
+     * Set the date for this history item. It stores the milliseconds of 00:00:00
+     * of the local calendar day to allow for easy and accurate queries by day.
+     * @param millis A timestamp (in milliseconds) from which to derive the local calendar day.
+     */
+    // --- ĐÃ CẬP NHẬT: Setter cho cột "dateId" phải là setDateId() ---
+    public void setDateId(long millis) { // Tên setter mới cho cột "dateId"
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(millis);
+        // Normalize to the beginning of the day in the local timezone
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        this.dateId = calendar.getTimeInMillis();
     }
 
     public String getStart() {

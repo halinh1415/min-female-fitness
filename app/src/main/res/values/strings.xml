@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">Female Workout</string>
-<!--    <string name="ad_banner_unit_id" translatable="false">ca-app-pub-9959217683006097/7312502868</string>-->
-<!--    <string name="txt_app_id" translatable="false">ca-app-pub-9959217683006097~3177816739</string>-->
+    <!--    <string name="ad_banner_unit_id" translatable="false">ca-app-pub-9959217683006097/7312502868</string>-->
+    <!--    <string name="txt_app_id" translatable="false">ca-app-pub-9959217683006097~3177816739</string>-->
     <string name="ad_banner_unit_id" translatable="false">ca-app-pub-5720159127614071/3652071363</string>
     <string name="txt_app_id" translatable="false">ca-app-pub-5720159127614071~8495358027</string>
     <string name="facebook_app_id" translatable="false">842950201035913</string>
@@ -391,4 +391,136 @@
     <string name="tts_data">Download more TTS language data</string>
     <string name="device_tts_setting">Device TTS Setting</string>
     <string name="default_text">Default</string>
+    <string name="generate_plan">Generating your personal plan</string>
+    <string name="analysis_profile">Analyzing your profile...</string>
+    <string name="day_of_total">🏁Day %1$d of %2$d </string>
+    <string name="streak_start_new">Begin your mindful flow today</string>
+    <string name="streak_kept_today">You nurtured your flow today</string>
+    <string name="streak_need_today">Flow for 5 minutes today to maintain your harmony</string>
+    <string name="streak_days">🌿 %1$d consecutive mindful days</string>
+    <string name="streak_broken_recently">Your flow took a gentle pause — step back into practice today to restore it</string>
+    <string name="streak_resumed">Welcome back — you have beautifully resumed your flow</string>
+    <string name="streak_milestone">Wonderful — you\'ve reached a %1$d-day mindful flow!</string>
+    <string name="streak_at_risk">Your flow is resting — a short sequence will restore your rhythm</string>
+    <string name="streak_paused">Your flow is paused — return to your center whenever you\'re ready</string>
+    <string name="streak_unknown">Keep moving mindfully to nurture your flow</string>
+
+    <string name="noti_recovery_title">A day of gentle restoration</string>
+    <string name="noti_recovery_message">You\'ve been flowing beautifully. Settle into a gentle 5-minute breathing practice today.</string>
+    <string name="noti_streak_title">Nurture your %1$d-day flow today</string>
+    <string name="noti_streak_message">Just a short mindful movement is enough to keep your energy flowing.</string>
+    <string name="noti_comeback_title">Return to your center today</string>
+    <string name="noti_comeback_message">Resting is part of the journey. Let’s reconnect with a short, mindful flow.</string>
+    <string name="noti_reengage_title">Step back into the flow, slowly</string>
+    <string name="noti_reengage_message">Try just 7 minutes of gentle practice today. No pressure, just presence.</string>
+    <string name="noti_daily_title">Time to find your center</string>
+    <string name="noti_daily_message">Let’s continue your journey with a mindful sequence today.</string>
+    <string name="enable_notifications">Turn on workout reminders</string>
+    <string name="enable_notifications_message">Allow notifications so I can remind you to train more regularly, maintain your streak, and suggest suitable rest days.</string>
+    <string name="turn_on_notification">Turn on notifications</string>
+    <string name="notifications_enabled">Notifications are enabled</string>
+    <string name="notifications_enabled_message">I\'ll remind you to practice at the right times.</string>
+    <string name="notifications_blocked">Notifications are currently turned off.</string>
+    <string name="notifications_blocked_message">You have declined and chosen not to ask again. Open Settings to enable notifications for the app.</string>
+    <string name="suggestion_today">✨ Today\'s suggestion</string>
+    <string name="any_level">Any level</string>
+    <string name="start_now">Start now</string>
+    <string name="txt_not_started">Not started</string>
+    <string name="open_settings">Open settings</string>
+    <string name="ai_coach">🌿 Qigong Coach (AI)</string>
+    <string name="prepare">Prepare</string>
+    <string name="welcome_to_exercise">Welcome to the exercise!</string>
+    <string name="tai_chi_center">Tai Chi Center</string>
+    <string name="overall_progress">Your overall journey</string>
+    <string name="share_achievements">Share achievements</string>
+    <string name="txt_how_do_you_like_this_app">We would like to know your opinion.</string>
+    <string name="skip_countdown">Skip countdown</string>
+    <string name="start_in">Start in</string>
+    <string name="report_today">Report to day</string>
+    <string name="streak_days_in_a_row">Streak days</string>
+    <string name="progress_this_week">Progress this week</string>
+    <string name="day_30s">30 Days</string>
+    <string name="day_7s">7 Days</string>
+    <string name="month_3s">3 months</string>
+    <string name="stable_over_past_7d">Stable over the past week</string>
+    <string name="stable_over_past_30d">Stable over the past month</string>
+    <string name="stable_over_past_90d">Stable over the past 3 months</string>
+    <string name="suggestion_next">Next suggestion</string>
+    <string name="target_x_kg">Target %1$f %2$s</string>
+    <string name="streak_x_day_target">Goal: Maintain a %1$d consecutive days</string>
+    <string name="x_minutes">%1$d minutes</string>
+    <string name="day_x">Day %1$d</string>
+    <string name="x_days">%1$d days</string>
+    <string name="up_weight_trend">+%1$.1f %2$s in %3$d days</string>
+    <string name="down_weight_trend">-%1$.1f %2$s in %3$d days</string>
+    <string name="for_you_to_day">For you to day</string>
+
+    <!-- Onboarding Step 1 strings -->
+    <string name="step_1_of_4">STEP 1 / 4</string>
+    <string name="what_brings_you_to_tai_chi">What brings you to Tai Chi?</string>
+    <string name="we_will_customize_your_pathway">We will customize your personal pathway.</string>
+    <string name="reduce_stress_and_anxiety">Reduce stress &amp; relax</string>
+    <string name="increase_energy">Boost Energy</string>
+    <string name="learn_martial_arts">Martial Arts &amp; Strength</string>
+
+    <!-- Onboarding Step 2 strings -->
+    <string name="step_2_of_4">STEP 2 / 4</string>
+    <string name="how_do_you_like_exercise_space">How do you like your exercise space?</string>
+    <string name="tai_chi_can_be_adjusted_flexibly">Tai Chi can be flexibly adjusted to your physical condition.</string>
+    <string name="standing_gentle">Standing &amp; Moving</string>
+    <string name="ideal_for_beginners_and_general_fitness">Holistic development of balance and strength.</string>
+    <string name="seated_gentle">Sit on the chair &amp; gently</string>
+    <string name="ideal_for_seniors_or_those_with_mobility_issues">Ideal for office workers, senior citizens, or therapy sessions.</string>
+
+    <!-- Onboarding Step 3 strings -->
+    <string name="step_3_of_4">STEP 3 / 4</string>
+    <string name="what_is_your_daily_exercise_time_goal">What is your daily exercise time goal?</string>
+    <string name="consistency_matters_more_than_duration">Consistency matters more than duration. Choose a level you can easily maintain.</string>
+    <string name="option_10_20_minutes">10 - 20 minutes</string>
+    <string name="quick_and_stress_relief">Quick &amp; easy, stress relief for busy people.</string>
+    <string name="option_15_20_minutes_standard">15 - 20 minutes</string>
+    <string name="standard_perfect_balance">Standard. Perfect balance for health.</string>
+    <string name="option_30_45_plus_minutes">30 - 45+ minutes</string>
+    <string name="advanced_skill_and_qi_training">Advanced. Deep skill &amp; Qi training.</string>
+
+    <!-- Onboarding Step 4 strings -->
+    <string name="step_4_of_4">STEP 4 / 4</string>
+    <string name="have_you_practiced_tai_chi_before">Have you practiced Tai Chi before?</string>
+    <string name="dont_worry_perfect_path_awaits">Don\'t worry! No matter your level, the perfect path awaits.</string>
+    <string name="beginner_level">Beginner</string>
+    <string name="never_practiced_or_want_to_learn_basics">Never practiced or want to learn the basics from scratch.</string>
+    <string name="has_experience">Has experience</string>
+    <string name="familiar_with_qigong_yoga_meditation">Familiar with Qigong, Yoga, or Meditation.</string>
+    <string name="auto_next">Auto next</string>
+    <string name="txt_intro_summary">Introducing the training session.</string>
+    <string name="enable_intro">Introducing training</string>
+    <string name="unlock_your_inner_energy">Unlock Your Inner Energy</string>
+    <string name="pro_benefits_1">Guided Tai Chi programs</string>
+    <string name="pro_benefits_2">Personalized training plans</string>
+    <string name="pro_benefits_3">Reduce stress &amp; improve balance</string>
+    <string name="pro_benefits_4">Access all premium content</string>
+    <string name="pro_benefits_5">Ads Free Forever</string>
+    <string name="unlock_premium">Unlock Premium</string>
+    <string name="start_7_days_free_trial">Start 7-Day Free Trial</string>
+    <string name="stable">Stable</string>
+
+    <!-- PlanGenerateActivity strings -->
+    <string name="plan_generating">Creating your personalized practice plan...</string>
+    <string name="plan_users_count">Over 1M+ users worldwide trust our app</string>
+    <string name="plan_exercises_count">500+ easy-to-learn Tai Chi and Qigong exercises</string>
+    <string name="plan_app_rating">No.1 Rated Tai Chi - Qigong App</string>
+    <string name="schedule">Schedule</string>
+
+    <string name="notification_dialog_title" >Daily Practice, Small Progress</string>
+    <string name="notification_dialog_description" >Get gentle reminders so you do not miss your Tai Chi and Qigong sessions.</string>
+    <string name="notification_dialog_enable" >Enable Reminders</string>
+    <string name="notification_dialog_later" >Maybe Later</string>
+
+    <string name="schedule_reminder_title" >Practice Reminder</string>
+    <string name="schedule_reminder_message" >Added \"%1$s\" (%2$d min).\nTomorrow, keep your %3$d-day streak going.</string>
+    <string name="schedule_pick_time">Choose Time</string>
+    <string name="schedule_default_time_button" >Use Default (8:00 AM)</string>
+    <string name="schedule_time_selected_toast" >Reminder set for %1$02d:%2$02d tomorrow</string>
+    <string name="schedule_default_time_toast" >Reminder set for 8:00 AM tomorrow</string>
+    <string name="join_with_10_million_users">Join 10,000+ people improving their Qi daily</string>
 </resources>
