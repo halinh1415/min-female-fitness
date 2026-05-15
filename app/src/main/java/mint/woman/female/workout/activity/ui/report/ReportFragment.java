@@ -36,6 +36,9 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import java.text.SimpleDateFormat;
@@ -43,6 +46,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @SuppressLint("NonConstantResourceId")
@@ -82,6 +86,10 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
     private void initView() {
         // Refresh weight trends
         mHistoryViewModel.refreshWeightTrends();
+
+        // Refresh calories trends and chart data
+        mHistoryViewModel.refreshCaloriesTrends();
+        mHistoryViewModel.refreshCaloriesChartData();
 
         // Refresh today workout stats
         mHistoryViewModel.refreshTodayWorkout();
@@ -172,8 +180,53 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
             updateButtonStyles(90);
         });
 
-        // Set default display to 7 days
-        updateButtonStyles(7);
+        // ===== CALORIES CHART LISTENERS =====
+        // Click listener for 7 days calories
+        binding.ll7dayChangeCalories.setOnClickListener(v -> {
+            mHistoryViewModel.getCaloriesChartData7Days().observe(getViewLifecycleOwner(), caloriesData -> {
+                drawCaloriesChart(caloriesData, 7);
+            });
+            // Cập nhật calories trend 7 days
+            mHistoryViewModel.getCaloriesTrend7Days().observe(getViewLifecycleOwner(), caloriesTrendResult -> {
+                updateCaloriesTrendDisplay(caloriesTrendResult, 7);
+            });
+            updateCaloriesButtonStyles(7);
+        });
+
+        // Click listener for 30 days calories
+        binding.ll30dayChangeCalories.setOnClickListener(v -> {
+            mHistoryViewModel.getCaloriesChartData30Days().observe(getViewLifecycleOwner(), caloriesData -> {
+                drawCaloriesChart(caloriesData, 30);
+            });
+            // Cập nhật calories trend 30 days
+            mHistoryViewModel.getCaloriesTrend30Days().observe(getViewLifecycleOwner(), caloriesTrendResult -> {
+                updateCaloriesTrendDisplay(caloriesTrendResult, 30);
+            });
+            updateCaloriesButtonStyles(30);
+        });
+
+        // Click listener for 90 days calories
+        binding.ll90dayChangeCalories.setOnClickListener(v -> {
+            mHistoryViewModel.getCaloriesChartData90Days().observe(getViewLifecycleOwner(), caloriesData -> {
+                drawCaloriesChart(caloriesData, 90);
+            });
+            // Cập nhật calories trend 90 days
+            mHistoryViewModel.getCaloriesTrend90Days().observe(getViewLifecycleOwner(), caloriesTrendResult -> {
+                updateCaloriesTrendDisplay(caloriesTrendResult, 90);
+            });
+            updateCaloriesButtonStyles(90);
+        });
+
+        // Set default display to 7 days for calories
+        updateCaloriesButtonStyles(7);
+        mHistoryViewModel.getCaloriesChartData7Days().observe(getViewLifecycleOwner(), caloriesData -> {
+            drawCaloriesChart(caloriesData, 7);
+        });
+        mHistoryViewModel.getCaloriesTrend7Days().observe(getViewLifecycleOwner(), caloriesTrendResult -> {
+            if (caloriesTrendResult != null) {
+                updateCaloriesTrendDisplay(caloriesTrendResult, 7);
+            }
+        });
 
         mHistoryViewModel.getSuggestProgram().observe(getViewLifecycleOwner(), suggestProgram -> {
             if (suggestProgram != null) {
@@ -215,7 +268,7 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
         // Bỏ comment dòng dưới để thêm dữ liệu test
         //  insertThreeMonthsTestData();
 //        mHistoryViewModel.deleteAllUsers();
-        //insertOneMonthTestData();
+    //    insertOneMonthTestData();
 
         // Sau khi insert, đợi 1 giây rồi load dữ liệu
         mHistoryViewModel.getAllUsers().observe(getViewLifecycleOwner(), userObjects -> {
@@ -339,6 +392,122 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
         }
         binding.tvWeightStability.setText(trendText);
         binding.tvWeekGoal.setText(String.format("Current: %.1f %s | Target: %.1f %s", myDB.getCurrentWeight(), unit, targetWeight, unit));
+    }
+
+    private void drawCaloriesChart(Map<String, Integer> caloriesData, int days) {
+        if (binding.caloriesChart == null) {
+            return;
+        }
+
+        ArrayList<BarEntry> values = new ArrayList<>();
+        ArrayList<String> dateLabels = new ArrayList<>();
+
+        if (caloriesData != null && !caloriesData.isEmpty()) {
+            int entryIndex = 0;
+            for (Map.Entry<String, Integer> entry : caloriesData.entrySet()) {
+                String dateString = entry.getKey(); // Format: yyyy-MM-dd
+                int calories = entry.getValue();
+
+                values.add(new BarEntry(entryIndex, calories));
+
+                // Format: dd/MM
+                String[] parts = dateString.split("-");
+                if (parts.length >= 3) {
+                    dateLabels.add(parts[2] + "/" + parts[1]);
+                } else {
+                    dateLabels.add(dateString);
+                }
+                entryIndex++;
+            }
+        } else {
+            // Dữ liệu trống
+            values.add(new BarEntry(0, 0));
+            dateLabels.add("No data");
+        }
+
+        BarDataSet set1 = new BarDataSet(values, getString(R.string.txt_calories_burn));
+        set1.setColor(getResources().getColor(R.color.colorWorkout));
+        set1.setValueTextColor(getResources().getColor(R.color.colorText));
+        set1.setDrawValues(true);
+        set1.setValueTextSize(9f);
+
+        BarData data = new BarData(set1);
+        data.setBarWidth(0.9f);
+
+        binding.caloriesChart.setData(data);
+
+        // Xóa description label
+        Description description = new Description();
+        description.setEnabled(false);
+        binding.caloriesChart.setDescription(description);
+
+        // Cấu hình trục X để hiển thị ngày tháng
+        XAxis xAxis = binding.caloriesChart.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(dateLabels));
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawGridLines(false);
+        xAxis.setLabelRotationAngle(-45);
+        xAxis.setTextSize(10f);
+
+        // Cấu hình trục Y
+        YAxis leftAxis = binding.caloriesChart.getAxisLeft();
+        leftAxis.setDrawGridLines(true);
+        leftAxis.setAxisMinimum(0);
+
+        YAxis rightAxis = binding.caloriesChart.getAxisRight();
+        rightAxis.setEnabled(false);
+
+        binding.caloriesChart.invalidate();
+    }
+
+    private void updateCaloriesTrendDisplay(mint.woman.female.workout.utils.CaloriesTrendResult result, int days) {
+        String trendText = "";
+
+        if (result.caloriesTrendText.equals("UP")) {
+            trendText = getString(R.string.up_calories_trend, result.caloriesTrend, days, result.caloriesTrendPercent);
+        } else if (result.caloriesTrendText.equals("DOWN")) {
+            trendText = getString(R.string.down_calories_trend, Math.abs(result.caloriesTrend), days, Math.abs(result.caloriesTrendPercent));
+        } else {
+            switch (days) {
+                case 7:
+                    trendText = getString(R.string.stable_over_past_7d);
+                    break;
+                case 30:
+                    trendText = getString(R.string.stable_over_past_30d);
+                    break;
+                case 90:
+                    trendText = getString(R.string.stable_over_past_90d);
+                    break;
+            }
+        }
+        binding.tvCaloriesStability.setText(trendText);
+    }
+
+    private void updateCaloriesButtonStyles(int selectedDays) {
+        // Reset all button styles
+        binding.ll7dayChangeCalories.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+        binding.ll30dayChangeCalories.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+        binding.ll90dayChangeCalories.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
+        binding.tv7dayChangeCalories.setTextColor(getResources().getColor(R.color.colorText));
+        binding.tv30dayChangeCalories.setTextColor(getResources().getColor(R.color.colorText));
+        binding.tv3mChangeCalories.setTextColor(getResources().getColor(R.color.colorText));
+
+        // Highlight selected button
+        switch (selectedDays) {
+            case 7:
+                binding.ll7dayChangeCalories.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                binding.tv7dayChangeCalories.setTextColor(getResources().getColor(android.R.color.white));
+                break;
+            case 30:
+                binding.ll30dayChangeCalories.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                binding.tv30dayChangeCalories.setTextColor(getResources().getColor(android.R.color.white));
+                break;
+            case 90:
+                binding.ll90dayChangeCalories.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                binding.tv3mChangeCalories.setTextColor(getResources().getColor(android.R.color.white));
+                break;
+        }
     }
 
     private void updateButtonStyles(int selectedDays) {

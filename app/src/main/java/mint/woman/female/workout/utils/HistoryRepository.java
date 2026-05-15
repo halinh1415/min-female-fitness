@@ -333,4 +333,88 @@ public class HistoryRepository {
             callback.onResult(result);
         });
     }
+    /**
+     * ✅ Lấy xu hướng calories trong một khoảng thời gian
+     * So sánh calories của khoảng thời gian hiện tại với khoảng thời gian trước đó
+     *
+     * @param timeRangeMillis Khoảng thời gian (ms) để tính trend (ví dụ: 7 ngày, 30 ngày)
+     * @param callback Callback trả về CaloriesTrendResult
+     */
+    public void getCaloriesTrend(long timeRangeMillis, Callback<CaloriesTrendResult> callback) {
+        HistoryDatabase.databaseWriteExecutor.execute(() -> {
+            long now = System.currentTimeMillis();
+
+            // Lấy dữ liệu khoảng thời gian hiện tại
+            long currentStartTime = now - timeRangeMillis;
+            List<HistoryItem> currentItems = mHistoryDao.getHistoryInRange(currentStartTime, now);
+
+            int currentTotalCalories = 0;
+            if (currentItems != null) {
+                for (HistoryItem item : currentItems) {
+                    if (item != null) {
+                        currentTotalCalories += item.getCalories();
+                    }
+                }
+            }
+
+            // Lấy dữ liệu khoảng thời gian trước đó
+            long previousStartTime = currentStartTime - timeRangeMillis;
+            List<HistoryItem> previousItems = mHistoryDao.getHistoryInRange(previousStartTime, currentStartTime);
+
+            int previousTotalCalories = 0;
+            if (previousItems != null) {
+                for (HistoryItem item : previousItems) {
+                    if (item != null) {
+                        previousTotalCalories += item.getCalories();
+                    }
+                }
+            }
+
+            // Tính xu hướng (trend)
+            int caloriesTrend = currentTotalCalories - previousTotalCalories;
+
+            // Tính phần trăm thay đổi
+            float caloriesTrendPercent = (previousTotalCalories != 0)
+                    ? (caloriesTrend * 100.0f / previousTotalCalories)
+                    : 0;
+
+            CaloriesTrendResult result = new CaloriesTrendResult(currentTotalCalories, caloriesTrend, caloriesTrendPercent);
+            callback.onResult(result);
+        });
+    }
+
+    /**
+     * ✅ Lấy dữ liệu calories hàng ngày cho biểu đồ trong khoảng thời gian
+     * Nhóm calories theo từng ngày
+     *
+     * @param timeRangeMillis Khoảng thời gian (ms) để lấy dữ liệu (ví dụ: 7 ngày, 30 ngày)
+     * @param callback Callback trả về một Map với key là ngày (yyyy-MM-dd) và value là tổng calories
+     */
+    public void getCaloriesChartData(long timeRangeMillis, Callback<java.util.Map<String, Integer>> callback) {
+        HistoryDatabase.databaseWriteExecutor.execute(() -> {
+            long now = System.currentTimeMillis();
+            long startTime = now - timeRangeMillis;
+
+            List<HistoryItem> items = mHistoryDao.getHistoryInRange(startTime, now);
+
+            java.util.Map<String, Integer> caloriesByDay = new java.util.LinkedHashMap<>();
+
+            if (items != null) {
+                for (HistoryItem item : items) {
+                    if (item == null) continue;
+
+                    // Lấy ngày từ startTime của item
+                    long itemDate = item.getStartTime();
+                    String dayString = new java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
+                            .format(new java.util.Date(itemDate));
+
+                    // Cộng calories vào từng ngày
+                    int currentCalories = caloriesByDay.getOrDefault(dayString, 0);
+                    caloriesByDay.put(dayString, currentCalories + item.getCalories());
+                }
+            }
+
+            callback.onResult(caloriesByDay);
+        });
+    }
 }

@@ -265,7 +265,7 @@ public class DialogWeight extends DialogFragment {
 //                BMIFragment bmiFragment = (BMIFragment) getActivity().getSupportFragmentManager().findFragmentByTag("BMI_FRAGMENT");
 //                bmiFragment.updateColor();
                 UserObject userObject = new UserObject();
-                userObject.setDate(TimeUnit.MILLISECONDS.toDays(Calendar.getInstance().getTimeInMillis()));
+                userObject.setDate(Calendar.getInstance().getTimeInMillis());
                 userObject.setWeight(myPreference.getCurrentWeightKG());
                 userObject.setHeight(myPreference.getCurrentHeightCm());
                 userObject.setWaist(myPreference.getCurrentWaistCm());

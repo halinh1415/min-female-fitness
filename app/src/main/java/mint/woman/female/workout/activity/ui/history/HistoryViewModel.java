@@ -18,8 +18,10 @@ import mint.woman.female.workout.utils.UserRepository;
 import mint.woman.female.workout.utils.UserStreakResult;
 import mint.woman.female.workout.utils.WeeklyProgressResult;
 import mint.woman.female.workout.utils.WeightTrendResult;
+import mint.woman.female.workout.utils.CaloriesTrendResult;
 
 import java.util.List;
+import java.util.Map;
 
 public class HistoryViewModel extends AndroidViewModel {
     private final HistoryRepository mHistoryRepository;
@@ -29,6 +31,12 @@ public class HistoryViewModel extends AndroidViewModel {
     private final MutableLiveData<WeightTrendResult> mWeightTrend7Days = new MutableLiveData<>();
     private final MutableLiveData<WeightTrendResult> mWeightTrend30Days = new MutableLiveData<>();
     private final MutableLiveData<WeightTrendResult> mWeightTrend90Days = new MutableLiveData<>();
+    private final MutableLiveData<CaloriesTrendResult> mCaloriesTrend7Days = new MutableLiveData<>();
+    private final MutableLiveData<CaloriesTrendResult> mCaloriesTrend30Days = new MutableLiveData<>();
+    private final MutableLiveData<CaloriesTrendResult> mCaloriesTrend90Days = new MutableLiveData<>();
+    private final MutableLiveData<Map<String, Integer>> mCaloriesChartData7Days = new MutableLiveData<>();
+    private final MutableLiveData<Map<String, Integer>> mCaloriesChartData30Days = new MutableLiveData<>();
+    private final MutableLiveData<Map<String, Integer>> mCaloriesChartData90Days = new MutableLiveData<>();
     private final MutableLiveData<TodayWorkoutResult> mTodayWorkout = new MutableLiveData<>();
     private final MutableLiveData<ProgramObject> suggestProgram = new MutableLiveData<>();
     private final MutableLiveData<WeeklyProgressResult> mWeeklyProgress = new MutableLiveData<>();
@@ -154,6 +162,30 @@ public class HistoryViewModel extends AndroidViewModel {
         return mWeightTrend90Days;
     }
 
+    public LiveData<CaloriesTrendResult> getCaloriesTrend7Days() {
+        return mCaloriesTrend7Days;
+    }
+
+    public LiveData<CaloriesTrendResult> getCaloriesTrend30Days() {
+        return mCaloriesTrend30Days;
+    }
+
+    public LiveData<CaloriesTrendResult> getCaloriesTrend90Days() {
+        return mCaloriesTrend90Days;
+    }
+
+    public LiveData<Map<String, Integer>> getCaloriesChartData7Days() {
+        return mCaloriesChartData7Days;
+    }
+
+    public LiveData<Map<String, Integer>> getCaloriesChartData30Days() {
+        return mCaloriesChartData30Days;
+    }
+
+    public LiveData<Map<String, Integer>> getCaloriesChartData90Days() {
+        return mCaloriesChartData90Days;
+    }
+
     public void refreshWeightTrends() {
         mUserRepository.getWeightTrend(7, result -> {
             mWeightTrend7Days.postValue(result);
@@ -163,6 +195,38 @@ public class HistoryViewModel extends AndroidViewModel {
         });
         mUserRepository.getWeightTrend(90, result -> {
             mWeightTrend90Days.postValue(result);
+        });
+    }
+
+    public void refreshCaloriesTrends() {
+        long sevenDaysMillis = java.util.concurrent.TimeUnit.DAYS.toMillis(7);
+        long thirtyDaysMillis = java.util.concurrent.TimeUnit.DAYS.toMillis(30);
+        long ninetyDaysMillis = java.util.concurrent.TimeUnit.DAYS.toMillis(90);
+
+        mHistoryRepository.getCaloriesTrend(sevenDaysMillis, result -> {
+            mCaloriesTrend7Days.postValue(result);
+        });
+        mHistoryRepository.getCaloriesTrend(thirtyDaysMillis, result -> {
+            mCaloriesTrend30Days.postValue(result);
+        });
+        mHistoryRepository.getCaloriesTrend(ninetyDaysMillis, result -> {
+            mCaloriesTrend90Days.postValue(result);
+        });
+    }
+
+    public void refreshCaloriesChartData() {
+        long sevenDaysMillis = java.util.concurrent.TimeUnit.DAYS.toMillis(7);
+        long thirtyDaysMillis = java.util.concurrent.TimeUnit.DAYS.toMillis(30);
+        long ninetyDaysMillis = java.util.concurrent.TimeUnit.DAYS.toMillis(90);
+
+        mHistoryRepository.getCaloriesChartData(sevenDaysMillis, result -> {
+            mCaloriesChartData7Days.postValue(result);
+        });
+        mHistoryRepository.getCaloriesChartData(thirtyDaysMillis, result -> {
+            mCaloriesChartData30Days.postValue(result);
+        });
+        mHistoryRepository.getCaloriesChartData(ninetyDaysMillis, result -> {
+            mCaloriesChartData90Days.postValue(result);
         });
     }
 

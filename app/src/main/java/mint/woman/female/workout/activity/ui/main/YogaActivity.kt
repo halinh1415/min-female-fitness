@@ -24,6 +24,7 @@ import androidx.health.connect.client.permission.HealthPermission
 import androidx.health.connect.client.records.ExerciseSessionRecord
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -85,6 +86,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
     var tts: TextToSpeech? = null
     var premiumViewModel: PremiumViewModel? = null
     var historyViewModel: HistoryViewModel? = null
+    lateinit var navController : NavController
 
     lateinit var reviewManager: ReviewManager
     //   GoogleSignInClient mGoogleSignInClient;
@@ -111,7 +113,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
                 R.id.nav_setting
             )
         )
-        val navController = findNavController(this, R.id.nav_host_fragment)
+         navController = findNavController(this, R.id.nav_host_fragment)
         setupActionBarWithNavController(this, navController, appBarConfiguration)
         setupWithNavController(binding!!.navView, navController)
         initView()
@@ -216,7 +218,17 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
 
         //checkAccount();
     }
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        var isReport = intent.getBooleanExtra("IS_REPORT", false);
+        // Passing each menu ID as a set of Ids because each
+        if (isReport) {
+            navController.popBackStack(R.id.nav_home, true);
 
+            navController.navigate(R.id.nav_report)
+        }
+    }
     private fun requestReview() {
         try{
             if (FirebaseRemoteConfig.getInstance().getBoolean("enable_review")) {
@@ -559,6 +571,11 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
         ) {
             val userId = user.uid
             val database = FirebaseDatabase.getInstance()
+            if (!myPreference.isMigrateHistory){
+                myPreference.isMigrateHistory = true
+                migrateUserHistoryData(user.uid)
+                return
+            }
             val userRef = database.getReference("users").child(userId).child("programs")
             val userDiet = database.getReference("users").child(userId).child("diet")
             val preferences = android.preference.PreferenceManager.getDefaultSharedPreferences(this)
@@ -800,7 +817,66 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
         const val RC_SIGN_IN: Int = 1201
         const val RC_ACCESS_FITNESS: Int = 1211
     }
+    fun migrateUserHistoryData(userId: String) {
+        val database = FirebaseDatabase.getInstance()
+        // Trỏ đúng vào đường dẫn bạn cung cấp
+        val userHistoryRef = database.getReference("users").child(userId).child("history")
 
+        Log.d("HistoryMigration", "Bắt đầu kiểm tra lịch sử của User: $userId")
+
+        // Lấy dữ liệu 1 lần duy nhất (get)
+        userHistoryRef.get().addOnSuccessListener { snapshot ->
+            if (snapshot.exists()) {
+                // Tạo một Map để chứa tất cả các lệnh cập nhật
+                val updates = mutableMapOf<String, Any?>()
+                var countUpdated = 0
+
+                // Duyệt qua từng bản ghi trong history (1, 2, 3...)
+                for (itemSnapshot in snapshot.children) {
+                    val key = itemSnapshot.key // Đây là vị trí index trong mảng: "1", "2"...
+
+                    // Đọc giá trị cũ và mới
+                    val oldDate = itemSnapshot.child("date").getValue(Long::class.java)
+                    val newDateId = itemSnapshot.child("dateId").getValue(Long::class.java)
+
+                    // NẾU: Có key, có date cũ (20406...) VÀ chưa có dateId mới
+                    if (key != null && oldDate != null && newDateId == null) {
+
+                        // 1. Tính toán giá trị Timestamp mới (milliseconds)
+                        val calculatedDateId = oldDate * 86400000L
+
+                        // 2. Lệnh tạo trường mới: "1/dateId" = 1773100800000
+                        updates["$key/dateId"] = calculatedDateId
+
+                        // 3. Lệnh xóa trường cũ: "1/date" = null
+                        updates["$key/date"] = null
+
+                        countUpdated++
+                    }
+                }
+
+                // Nếu có dữ liệu cần sửa thì mới gọi lệnh lên Firebase
+                if (updates.isNotEmpty()) {
+                    Log.d("HistoryMigration", "Đang cập nhật $countUpdated bản ghi cũ...")
+
+                    userHistoryRef.updateChildren(updates).addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Log.d("HistoryMigration", "✅ Đã convert thành công toàn bộ lịch sử sang dateId!")
+                        } else {
+                            Log.e("HistoryMigration", "❌ Cập nhật thất bại", task.exception)
+                        }
+                    }
+                } else {
+                    Log.d("HistoryMigration", "⚡ Lịch sử đã chuẩn (đều dùng dateId), không cần chạy lại.")
+                }
+
+            } else {
+                Log.d("HistoryMigration", "User này chưa có lịch sử tập luyện.")
+            }
+        }.addOnFailureListener { e ->
+            Log.e("HistoryMigration", "❌ Lỗi khi đọc dữ liệu Firebase", e)
+        }
+    }
 
     override fun onSync() {
         try {

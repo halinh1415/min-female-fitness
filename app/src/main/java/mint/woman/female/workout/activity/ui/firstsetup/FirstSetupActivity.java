@@ -165,7 +165,7 @@ public class FirstSetupActivity extends AppCompatActivity {
         String time = String.format("%02d:%02d",setupViewModel.getHour(),setupViewModel.getMinute());
         myPreference.setTimeRemindDaily(time);
         AlarmReceiver.scheduleLockscreenWidget(FirstSetupActivity.this,time);
-        startActivity(new Intent(FirstSetupActivity.this, GuidePersonalPlanActivity.class));
+        startActivity(new Intent(FirstSetupActivity.this, YogaActivity.class));
         finish();
     }
     @Override

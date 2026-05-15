@@ -754,4 +754,11 @@ public class MyPreference {
                     '}';
         }
     }
+    public boolean isMigrateHistory() {
+        return mSharedPreferences.getBoolean("IS_MIGRATE", false);
+    }
+    public void setMigrateHistory(boolean value) {
+        mEditor.putBoolean("IS_MIGRATE", value);
+        mEditor.commit();
+    }
 }
