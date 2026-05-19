@@ -617,7 +617,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
             ) { historyItems: List<HistoryItem> ->
                 for (history in historyItems) {
                     userHistory.child(history.id.toString())
-                        .addValueEventListener(object : ValueEventListener {
+                        .addListenerForSingleValueEvent(object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 if (!snapshot.exists()) {
                                     userHistory.child(history.id.toString()).setValue(history)
