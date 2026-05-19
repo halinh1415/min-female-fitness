@@ -72,7 +72,7 @@ public class MyPreference {
     }
 
     public float getMusicVolume() {
-        int soundVolume = mSharedPreferences.getInt("MUSIC_VOLUME", 90);
+        int soundVolume = mSharedPreferences.getInt("MUSIC_VOLUME", 40);
         float volume = (float) (1 - (Math.log(100 - soundVolume) / Math.log(100)));
         return volume;
     }
@@ -537,6 +537,9 @@ public class MyPreference {
     }
 
     public String getVoiceModel(String language) {
+        if (language.contains("en")){
+            return  mSharedPreferences.getString("voice_" + language, "woman");
+        }
         return mSharedPreferences.getString("voice_" + language, "default");
     }
 
@@ -551,6 +554,211 @@ public class MyPreference {
     }
 
     public String getVoiceModelName(String language) {
+        if (language.contains("en")){
+            return  mSharedPreferences.getString("voice_" + language, "Sophia");
+        }
         return mSharedPreferences.getString("coach_" + language, "Default");
+    }
+    public void saveLastWorkout(long millis) {
+        mEditor.putLong("LAST_WORKOUT", millis);
+        mEditor.commit();
+    }
+    public long getLastWorkout() {
+        return mSharedPreferences.getLong("LAST_WORKOUT", 0);
+    }
+
+    // Onboarding-related getters/setters
+    public String getUserTargetFocus() {
+        return mSharedPreferences.getString("USER_TARGET_FOCUS", "Relaxation");
+    }
+
+    public void setUserTargetFocus(String value) {
+        mEditor.putString("USER_TARGET_FOCUS", value);
+        mEditor.commit();
+    }
+
+    public boolean requiresSeated() {
+        return mSharedPreferences.getBoolean("REQUIRES_SEATED", false);
+    }
+
+    public void setRequiresSeated(boolean value) {
+        mEditor.putBoolean("REQUIRES_SEATED", value);
+        mEditor.commit();
+    }
+
+    public int getAvgDuration() {
+        return mSharedPreferences.getInt("AVG_DURATION", 15);
+    }
+
+    public void setAvgDuration(int value) {
+        mEditor.putInt("AVG_DURATION", value);
+        mEditor.commit();
+    }
+
+    public String getUserExperience() {
+        return mSharedPreferences.getString("USER_EXPERIENCE", "beginner");
+    }
+
+    public void setUserExperience(String value) {
+        mEditor.putString("USER_EXPERIENCE", value);
+        mEditor.commit();
+    }
+    public boolean isOnboarded() {
+        return mSharedPreferences.getBoolean("IS_ONBOARDED", false);
+    }
+
+    public void setOnboarded(boolean value) {
+        mEditor.putBoolean("IS_ONBOARDED", value);
+        mEditor.commit();
+    }
+    public boolean isEnableIntro() {
+        return mSharedPreferences.getBoolean("ENABLE_INTRO", true);
+    }
+
+    // ============ 📱 NOTIFICATION TRACKING METRICS ============
+
+    public void incrementNotificationRequestCount() {
+        int count = mSharedPreferences.getInt("NOTIFICATION_REQUEST_COUNT", 0);
+        mEditor.putInt("NOTIFICATION_REQUEST_COUNT", count + 1);
+        mEditor.commit();
+    }
+
+    public int getNotificationRequestCount() {
+        return mSharedPreferences.getInt("NOTIFICATION_REQUEST_COUNT", 0);
+    }
+
+    public void incrementNotificationAllowCount() {
+        int count = mSharedPreferences.getInt("NOTIFICATION_ALLOW_COUNT", 0);
+        mEditor.putInt("NOTIFICATION_ALLOW_COUNT", count + 1);
+        mEditor.commit();
+    }
+
+    public int getNotificationAllowCount() {
+        return mSharedPreferences.getInt("NOTIFICATION_ALLOW_COUNT", 0);
+    }
+
+    public void incrementNotificationDeniedCount() {
+        int count = mSharedPreferences.getInt("NOTIFICATION_DENIED_COUNT", 0);
+        mEditor.putInt("NOTIFICATION_DENIED_COUNT", count + 1);
+        mEditor.commit();
+    }
+
+    public int getNotificationDeniedCount() {
+        return mSharedPreferences.getInt("NOTIFICATION_DENIED_COUNT", 0);
+    }
+
+    public double getNotificationAllowRate() {
+        int allowed = getNotificationAllowCount();
+        int total = getNotificationRequestCount();
+        return total > 0 ? (allowed / (double) total) * 100 : 0.0;
+    }
+
+    public void incrementNotificationSentCount() {
+        int count = mSharedPreferences.getInt("NOTIFICATION_SENT_COUNT", 0);
+        mEditor.putInt("NOTIFICATION_SENT_COUNT", count + 1);
+        mEditor.putLong("LAST_NOTIFICATION_TIME", System.currentTimeMillis());
+        mEditor.commit();
+    }
+
+    public int getNotificationSentCount() {
+        return mSharedPreferences.getInt("NOTIFICATION_SENT_COUNT", 0);
+    }
+
+    public void incrementNotificationClickCount() {
+        int count = mSharedPreferences.getInt("NOTIFICATION_CLICK_COUNT", 0);
+        mEditor.putInt("NOTIFICATION_CLICK_COUNT", count + 1);
+        mEditor.commit();
+    }
+
+    public int getNotificationClickCount() {
+        return mSharedPreferences.getInt("NOTIFICATION_CLICK_COUNT", 0);
+    }
+
+    public double getNotificationClickRate() {
+        int clicked = getNotificationClickCount();
+        int sent = getNotificationSentCount();
+        return sent > 0 ? (clicked / (double) sent) * 100 : 0.0;
+    }
+
+    public void incrementNotificationRetentionCount() {
+        int count = mSharedPreferences.getInt("NOTIFICATION_RETENTION_COUNT", 0);
+        mEditor.putInt("NOTIFICATION_RETENTION_COUNT", count + 1);
+        mEditor.commit();
+    }
+
+    public int getNotificationRetentionCount() {
+        return mSharedPreferences.getInt("NOTIFICATION_RETENTION_COUNT", 0);
+    }
+
+    public double getNotificationRetentionRate() {
+        int retention = getNotificationRetentionCount();
+        int sent = getNotificationSentCount();
+        return sent > 0 ? (retention / (double) sent) * 100 : 0.0;
+    }
+
+    public long getLastNotificationTime() {
+        return mSharedPreferences.getLong("LAST_NOTIFICATION_TIME", 0);
+    }
+
+    public NotificationMetrics getNotificationMetrics() {
+        return new NotificationMetrics(
+                getNotificationRequestCount(),
+                getNotificationAllowCount(),
+                getNotificationDeniedCount(),
+                getNotificationAllowRate(),
+                getNotificationSentCount(),
+                getNotificationClickCount(),
+                getNotificationClickRate(),
+                getNotificationRetentionCount(),
+                getNotificationRetentionRate()
+        );
+    }
+
+    public static class NotificationMetrics {
+        public int totalRequested;
+        public int totalAllowed;
+        public int totalDenied;
+        public double allowRate;
+        public int totalSent;
+        public int totalClicked;
+        public double clickRate;
+        public int totalRetention;
+        public double retentionRate;
+
+        public NotificationMetrics(int totalRequested, int totalAllowed, int totalDenied,
+                                   double allowRate, int totalSent, int totalClicked,
+                                   double clickRate, int totalRetention, double retentionRate) {
+            this.totalRequested = totalRequested;
+            this.totalAllowed = totalAllowed;
+            this.totalDenied = totalDenied;
+            this.allowRate = allowRate;
+            this.totalSent = totalSent;
+            this.totalClicked = totalClicked;
+            this.clickRate = clickRate;
+            this.totalRetention = totalRetention;
+            this.retentionRate = retentionRate;
+        }
+
+        @Override
+        public String toString() {
+            return "NotificationMetrics{" +
+                    "totalRequested=" + totalRequested +
+                    ", totalAllowed=" + totalAllowed +
+                    ", totalDenied=" + totalDenied +
+                    ", allowRate=" + String.format("%.2f%%", allowRate) +
+                    ", totalSent=" + totalSent +
+                    ", totalClicked=" + totalClicked +
+                    ", clickRate=" + String.format("%.2f%%", clickRate) +
+                    ", totalRetention=" + totalRetention +
+                    ", retentionRate=" + String.format("%.2f%%", retentionRate) +
+                    '}';
+        }
+    }
+    public boolean isMigrateHistory() {
+        return mSharedPreferences.getBoolean("IS_MIGRATE", false);
+    }
+    public void setMigrateHistory(boolean value) {
+        mEditor.putBoolean("IS_MIGRATE", value);
+        mEditor.commit();
     }
 }

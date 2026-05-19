@@ -50,9 +50,26 @@ public class ProgramObject  {
     @SerializedName("subtitle")
     @Expose
     private String subtitle;
+    @SerializedName("tag")
+    @Expose
+    private String tags;
     @SerializedName("version")
     @Expose
     private int version;
+    @SerializedName("duration")
+    @Expose
+    private int duration;
+
+    public int progress =0;
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tag) {
+        this.tags = tag;
+    }
+
     public ProgramObject(){
 
     }
@@ -175,5 +192,13 @@ public class ProgramObject  {
 
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }

@@ -1,602 +1,823 @@
 package mint.woman.female.workout.activity.ui.report;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
-import android.graphics.Color;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SeekBar;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Legend;
+import mint.woman.female.workout.R;
+import mint.woman.female.workout.activity.ui.history.HistoryViewModel;
+import mint.woman.female.workout.custom.DialogWeight;
+import mint.woman.female.workout.databinding.FragmentReportBinding;
+import mint.woman.female.workout.model.ProgramObject;
+import mint.woman.female.workout.model.UserObject;
+import mint.woman.female.workout.notification.AppNotificationHelper;
+import mint.woman.female.workout.notification.NotificationPermissionDialog;
+import mint.woman.female.workout.utils.MyPreference;
+import mint.woman.female.workout.utils.WeeklyProgressResult;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.ValueFormatter;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import mint.woman.female.workout.R;
-import mint.woman.female.workout.activity.ui.history.HistoryViewModel;
-import mint.woman.female.workout.databinding.FragmentReportBinding;
-import mint.woman.female.workout.fragment.WeightViewModel;
-import mint.woman.female.workout.model.HistoryItem;
-import mint.woman.female.workout.model.UserObject;
-import mint.woman.female.workout.utils.MyPreference;
-
-
 @SuppressLint("NonConstantResourceId")
-public class ReportFragment extends Fragment implements SeekBar.OnSeekBarChangeListener,
-        OnChartValueSelectedListener {
-
-    
+public class ReportFragment extends Fragment implements View.OnClickListener {
     FragmentReportBinding binding;
-
-    ValueFormatter xAxisMonthFormatter;
-
     HistoryViewModel mHistoryViewModel;
-    MyPreference myPreference;
-    float goodWeight, goodWaist;
-    WeightViewModel mWeightViewModel;
-    //   Context context;
-
+    MyPreference myDB;
+    float targetWeight = 70.1f;
+    int currentStreak = 0;
 
     public ReportFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // context = getContext();
 
-
+        myDB = MyPreference.newInstance(getContext());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-      binding = FragmentReportBinding.inflate(getLayoutInflater());
+        binding = FragmentReportBinding.inflate(getLayoutInflater());
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        myPreference = MyPreference.newInstance(getContext());
         mHistoryViewModel = new ViewModelProvider(getActivity()).get(HistoryViewModel.class);
-        mWeightViewModel = new ViewModelProvider(getActivity()).get(WeightViewModel.class);
-        myPreference = new MyPreference(getContext());
-        xAxisMonthFormatter = new ValueFormatter() {
-            private final SimpleDateFormat mFormat = new SimpleDateFormat("MMMM", Locale.getDefault());
+        initView();
+        initData();
+    }
 
-            @Override
-            public String getFormattedValue(float value) {
-                long millis = TimeUnit.DAYS.toMillis((long) value);
-                return mFormat.format(new Date(millis));
+    private void initView() {
+        // Refresh weight trends
+        mHistoryViewModel.refreshWeightTrends();
+
+        // Refresh calories trends and chart data
+        mHistoryViewModel.refreshCaloriesTrends();
+        mHistoryViewModel.refreshCaloriesChartData();
+
+        // Refresh today workout stats
+        mHistoryViewModel.refreshTodayWorkout();
+
+        // Refresh weekly progress
+        mHistoryViewModel.refreshWeeklyProgress(myDB.getGoalOfWeek(), myDB.getFirstDayOfWeek());
+
+        mHistoryViewModel.getUserStreak().observe(getViewLifecycleOwner(), userStreakResult -> {
+            if (userStreakResult != null) {
+                binding.tvWorkoutStreak.setText("" + userStreakResult.streakDays);
+                currentStreak = userStreakResult.streakDays;
             }
-        };
-
-        initCaloriesChart();
-        mWeightViewModel.getIsKg().observe(getViewLifecycleOwner(), isKg -> {
-            chartWeightInit();
-            initDataWeight();
-            chartInitWaist();
-            initDataWaist();
         });
-        Long nowDay = TimeUnit.MILLISECONDS.toDays(Calendar.getInstance().getTimeInMillis());
-        mHistoryViewModel.findFromTo(nowDay - 30,nowDay).observe(getViewLifecycleOwner(), historyItems -> {
-            ArrayList<BarEntry> values = new ArrayList<>();
-            Map<Long, List<HistoryItem>> groupedItems = new HashMap<>();
-            Map<Long,Integer> caloriesMap = new HashMap<>();
-            for (HistoryItem item : historyItems) {
-                long date = item.getDate();
-                if (!groupedItems.containsKey(date)) {
-                    groupedItems.put(date, new ArrayList<>());
-                    caloriesMap.put(date,0);
-                }
-                groupedItems.get(date).add(item);
-                int currentCalories = caloriesMap.get(date);
-                caloriesMap.put(date,currentCalories+ item.getCalories());
+
+        // Observe today workout stats
+        mHistoryViewModel.getTodayWorkout().observe(getViewLifecycleOwner(), todayWorkout -> {
+            if (todayWorkout != null) {
+                binding.tvWorkoutCount.setText(todayWorkout.workoutCount + " " + getString(R.string.txt_exercise));
+                binding.tvTodayCalories.setText("" + todayWorkout.totalCalories + " kcal");
+                binding.tvWorkoutDuration.setText(formatDurationToMinute(todayWorkout.totalDuration));
+
+                // Cập nhật xu hướng thời gian tập luyện hôm nay
+                binding.tvTodayDurationTrend.setText(String.format("%s %s (%+.1f%%)",
+                        todayWorkout.durationTrendText,
+                        formatDurationToMinute(todayWorkout.durationTrend),
+                        todayWorkout.durationTrendPercent));
+
+                // Cập nhật xu hướng calories hôm nay
+                binding.tvTodayCaloriesTrend.setText(String.format("%s %d kcal (%+.1f%%)",
+                        todayWorkout.caloriesTrendText,
+                        todayWorkout.caloriesTrend,
+                        todayWorkout.caloriesTrendPercent));
             }
+        });
 
-            // Convert to List<List<Item>>
-            List<List<HistoryItem>> historyDateWithItems = new ArrayList<>(groupedItems.values());
+        // Observe weekly progress
+        mHistoryViewModel.getWeeklyProgress().observe(getViewLifecycleOwner(), weeklyProgress -> {
+            if (weeklyProgress != null) {
+                binding.progressWeek.setMax(weeklyProgress.goalDays);
+                binding.progressWeek.setProgress(weeklyProgress.completedDays);
+                binding.progressWeekText.setText(weeklyProgress.completedDays + "/" + weeklyProgress.goalDays);
+                binding.tvWeekCalories.setText("" + weeklyProgress.totalCalories + " kcal");
+                binding.tvWeekDuration.setText(formatDurationToMinute(weeklyProgress.totalDuration));
 
-            for (List<HistoryItem> historyDateWithItem : historyDateWithItems) {
-                if (historyDateWithItem.size() >0){
-                    long date = historyDateWithItem.get(0).getDate();
-                    values.add(new BarEntry(date, caloriesMap.get(date)));
-                }
-
+                // Cập nhật trend: Thời lượng luyện tập và Calories
+                updateWeeklyTrend(weeklyProgress);
             }
-            BarDataSet set1;
+        });
 
-            if (binding.calorieBarChart.getData() != null && binding.calorieBarChart.getData().getDataSetCount() > 0) {
-                set1 = (BarDataSet) binding.calorieBarChart.getData().getDataSetByIndex(0);
-                set1.setColor(R.color.colorAccent);
-                set1.setValues(values);
-                binding.calorieBarChart.getData().notifyDataChanged();
-                binding.calorieBarChart.notifyDataSetChanged();
+        String stringWeight = String.format("%.1f %s", myDB.getCurrentWeight(), myDB.getWeightUnit());
+        SpannableString contentWeight = new SpannableString(stringWeight);
+        contentWeight.setSpan(new UnderlineSpan(), 0, stringWeight.length(), 0);
+        binding.tvCurrentWeight.setText(contentWeight);
 
-            } else {
-                set1 = new BarDataSet(values, getActivity().getResources().getString(R.string.txt_calories_burn));
-                set1.setColors(new int[]{Color.RED});
-                // set1.setDrawIcons(true);
-                //set1.setF
-                ArrayList<IBarDataSet> dataSets = new ArrayList<>();
-                dataSets.add(set1);
+        // Click listener for 7 days
+        binding.ll7dayChange.setOnClickListener(v -> {
+            mHistoryViewModel.getAllUsers().observe(getViewLifecycleOwner(), userObjects -> {
+                drawWeightChart(userObjects, 7);
+            });
+            // Cập nhật weight trend 7 days
+            mHistoryViewModel.getWeightTrend7Days().observe(getViewLifecycleOwner(), weightTrendResult -> {
+                updateWeekChangeDisplay(weightTrendResult, 7);
+            });
+            updateButtonStyles(7);
+        });
 
-                BarData data = new BarData(dataSets);
-                data.setValueTextSize(10f);
-                data.setBarWidth(0.9f);
-                data.setDrawValues(false);
-                data.setDrawValues(false);
+        // Click listener for 30 days
+        binding.ll30dayChange.setOnClickListener(v -> {
+            mHistoryViewModel.getAllUsers().observe(getViewLifecycleOwner(), userObjects -> {
+                drawWeightChart(userObjects, 30);
+            });
+            // Cập nhật weight trend 30 days
+            mHistoryViewModel.getWeightTrend30Days().observe(getViewLifecycleOwner(), weightTrendResult -> {
+                updateWeekChangeDisplay(weightTrendResult, 30);
+            });
+            updateButtonStyles(30);
+        });
 
-                binding.calorieBarChart.setData(data);
+        // Click listener for 90 days
+        binding.ll90dayChange.setOnClickListener(v -> {
+            mHistoryViewModel.getAllUsers().observe(getViewLifecycleOwner(), userObjects -> {
+                drawWeightChart(userObjects, 90);
+            });
+            // Cập nhật weight trend 90 days
+            mHistoryViewModel.getWeightTrend90Days().observe(getViewLifecycleOwner(), weightTrendResult -> {
+                updateWeekChangeDisplay(weightTrendResult, 90);
+            });
+            updateButtonStyles(90);
+        });
+
+        // ===== CALORIES CHART LISTENERS =====
+        // Click listener for 7 days calories
+        binding.ll7dayChangeCalories.setOnClickListener(v -> {
+            mHistoryViewModel.getCaloriesChartData7Days().observe(getViewLifecycleOwner(), caloriesData -> {
+                drawCaloriesChart(caloriesData, 7);
+            });
+            // Cập nhật calories trend 7 days
+            mHistoryViewModel.getCaloriesTrend7Days().observe(getViewLifecycleOwner(), caloriesTrendResult -> {
+                updateCaloriesTrendDisplay(caloriesTrendResult, 7);
+            });
+            updateCaloriesButtonStyles(7);
+        });
+
+        // Click listener for 30 days calories
+        binding.ll30dayChangeCalories.setOnClickListener(v -> {
+            mHistoryViewModel.getCaloriesChartData30Days().observe(getViewLifecycleOwner(), caloriesData -> {
+                drawCaloriesChart(caloriesData, 30);
+            });
+            // Cập nhật calories trend 30 days
+            mHistoryViewModel.getCaloriesTrend30Days().observe(getViewLifecycleOwner(), caloriesTrendResult -> {
+                updateCaloriesTrendDisplay(caloriesTrendResult, 30);
+            });
+            updateCaloriesButtonStyles(30);
+        });
+
+        // Click listener for 90 days calories
+        binding.ll90dayChangeCalories.setOnClickListener(v -> {
+            mHistoryViewModel.getCaloriesChartData90Days().observe(getViewLifecycleOwner(), caloriesData -> {
+                drawCaloriesChart(caloriesData, 90);
+            });
+            // Cập nhật calories trend 90 days
+            mHistoryViewModel.getCaloriesTrend90Days().observe(getViewLifecycleOwner(), caloriesTrendResult -> {
+                updateCaloriesTrendDisplay(caloriesTrendResult, 90);
+            });
+            updateCaloriesButtonStyles(90);
+        });
+
+        // Set default display to 7 days for calories
+        updateCaloriesButtonStyles(7);
+        mHistoryViewModel.getCaloriesChartData7Days().observe(getViewLifecycleOwner(), caloriesData -> {
+            drawCaloriesChart(caloriesData, 7);
+        });
+        mHistoryViewModel.getCaloriesTrend7Days().observe(getViewLifecycleOwner(), caloriesTrendResult -> {
+            if (caloriesTrendResult != null) {
+                updateCaloriesTrendDisplay(caloriesTrendResult, 7);
             }
-            binding.calorieBarChart.getBarData().setValueTextColor(getContext().getResources().getColor(R.color.colorDarkIcon));
-            binding.calorieBarChart.setVisibleXRangeMaximum(10);
-            binding.calorieBarChart.moveViewToX(binding.calorieBarChart.getXChartMax());
+        });
+
+        mHistoryViewModel.getSuggestProgram().observe(getViewLifecycleOwner(), suggestProgram -> {
+            if (suggestProgram != null) {
+                String programText = suggestProgram.getName() + " - " + getString(R.string.x_minutes, suggestProgram.getTotal());
+                String streakText = getString(R.string.streak_x_day_target, currentStreak + 1);
+
+                binding.tvNextProgramSuggestion.setText(programText);
+                binding.tvStreakTarget.setText(streakText);
+
+                // ✅ Thêm vào lịch chương trình tiếp theo
+                binding.btnScheduleNext.setOnClickListener(v -> {
+                    Log.d("🎯 ScheduleNext", "📅 Adding program to schedule: " + suggestProgram.getName());
+
+                    // Thêm vào lịch luyện tập tiếp theo (ngày mai)
+                    scheduleNextProgram(suggestProgram);
+                });
+            }
+        });
+
+
+        binding.bmiView.setGender(myDB.getGender());
+        binding.bmiView.setWeight(myDB.getCurrentWeightKG());
+        binding.bmiView.setHeight(myDB.getCurrentHeightCm() / 100);
+        binding.txtStatusBmi.setText(binding.bmiView.getBodyDescription());
+        binding.icEditBmi.setOnClickListener(this::onClick);
+
+        // Observe weight changed event
+        mHistoryViewModel.getWeightChanged().observe(getViewLifecycleOwner(), changed -> {
+            if (changed) {
+                onWeightChange();
+            }
         });
     }
 
-    private void initDataWeight() {
-        if (binding.weightLineChart.getData() != null) binding.weightLineChart.clearValues();
+    private void initData() {
+        if (binding.lineChart.getData() != null) binding.lineChart.clearValues();
 
-        float currentHeight = myPreference.getCurrentHeightM();
-        goodWeight = currentHeight * currentHeight * 22.9f;
-        if (!myPreference.isKg()) {
-            goodWeight *= 2.20462f;
-        }
-        binding.txtChartY.setText(myPreference.getWeightUnit());
+        // ===== THÊM DỮ LIỆU TEST 3 THÁNG =====
+        // Bỏ comment dòng dưới để thêm dữ liệu test
+        //  insertThreeMonthsTestData();
+//        mHistoryViewModel.deleteAllUsers();
+    //    insertOneMonthTestData();
+
+        // Sau khi insert, đợi 1 giây rồi load dữ liệu
         mHistoryViewModel.getAllUsers().observe(getViewLifecycleOwner(), userObjects -> {
-            ArrayList<Entry> values = new ArrayList<>();
-            List<Entry> valueGood = new ArrayList<>();
-            Long nowDay = TimeUnit.MILLISECONDS.toDays(Calendar.getInstance().getTimeInMillis());
-            valueGood.add(new Entry(nowDay - 365, goodWeight));
-            valueGood.add(new Entry(nowDay, goodWeight));
-            float min = 1000.0f, max = 0.0f;
-            for (UserObject userObject : userObjects) {
-                float y = myPreference.isKg() ? userObject.getWeight() : userObject.getLbs();
-                if (y > max) max = y;
-                if (y < min) min = y;
-                float from = userObject.getDate();
-                values.add(new Entry(from, y));
-            }
-            if (values.size() == 0) {
-                values.add(new Entry(TimeUnit.MILLISECONDS.toDays(Calendar.getInstance().getTimeInMillis()), 65));
-                max = 70;
-                min = 50;
-                binding.txtLowestWeight.setText(getString(R.string.txt_lowest_weight) + ": N/A" );
-                binding.txtHighestWeight.setText(getString(R.string.txt_highest_weight) + ": N/A " );
-                binding.txtRecentWeight.setText(getString(R.string.txt_recent_weight) + ": N/A ");
-            }else{
-                binding.txtLowestWeight.setText(getString(R.string.txt_lowest_weight) + " " + String.format("%.1f", min) + " " + myPreference.getWeightUnit());
-                binding.txtHighestWeight.setText(getString(R.string.txt_highest_weight) + " " + String.format("%.1f", max) + " " + myPreference.getWeightUnit());
-                binding.txtRecentWeight.setText(getString(R.string.txt_recent_weight) + " " + String.format("%.1f", myPreference.getCurrentWeight()) + " " + myPreference.getWeightUnit());
-            }
-            LineDataSet setConst = new LineDataSet(valueGood, getActivity().getResources().getString(R.string.txt_target_weight));
-            setConst.setColor(getActivity().getResources().getColor(R.color.Green));
-            setConst.setLineWidth(1.f);
-            setConst.enableDashedLine(20f, 10f, 5f);
-            setConst.setDrawValues(false);
-
-            setConst.setMode(LineDataSet.Mode.STEPPED);
-
-            setConst.disableDashedHighlightLine();
-
-            setConst.setColor(getActivity().getResources().getColor(R.color.Lime));
-            setConst.setDrawCircleHole(false);
-            setConst.setDrawCircles(false);
-
-
-            LineDataSet set1 = new LineDataSet(values, getString(R.string.txt_weight_chart));
-
-
-            set1.setAxisDependency(YAxis.AxisDependency.RIGHT);
-            set1.setColor(getActivity().getResources().getColor(R.color.Green));
-            set1.setValueTextColor(getActivity().getResources().getColor(R.color.colorDarkIcon));
-            set1.setLineWidth(3.f);
-
-            set1.setDrawCircles(true);
-            set1.setDrawValues(true);
-            set1.setDrawCircleHole(true);
-            set1.setCircleRadius(5);
-            set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-            set1.setDrawFilled(true);
-            set1.setFillDrawable(ContextCompat.getDrawable(getContext(), R.drawable.chart_fill));
-          //  set1.setFillAlpha(50);
-            set1.setHighLightColor(getActivity().getResources().getColor(R.color.DarkGreen));
-            LineData data = new LineData( setConst,set1);
-            data.setValueTextColor(Color.RED);
-            data.setValueTextSize(9f);
-            // set data
-            binding.weightLineChart.setData(data);
-            binding.weightLineChart.getAxisLeft().setAxisMaximum(data.getYMax());
-            binding.weightLineChart.getAxisLeft().setAxisMinimum(data.getYMin()-1);
-            binding.weightLineChart.setVisibleXRangeMaximum(20);
-            binding.weightLineChart.moveViewToX( binding.weightLineChart.getXChartMax());
-
-//update weight min,max
-
+            // Default display for 7 days
+            drawWeightChart(userObjects, 7);
         });
 
+        // Mặc định hiển thị weight trend 7 days khi start
+        mHistoryViewModel.getWeightTrend7Days().observe(getViewLifecycleOwner(), weightTrendResult -> {
+            if (weightTrendResult != null) {
+                updateWeekChangeDisplay(weightTrendResult, 7);
+            }
+        });
 
-        binding.txtGoodWeight.setText(getString(R.string.txt_good_weight) + " " + String.format("%.1f", goodWeight) + myPreference.getWeightUnit());
+        float currentHeight = myDB.getCurrentHeightM();
+        float targetWeight = currentHeight * currentHeight * 22.9f;
+        if (!myDB.isKg()) {
+            targetWeight *= 2.20462f;
+        }
+        binding.tvWeekGoal.setText(getString(R.string.target_x_kg, targetWeight, myDB.getWeightUnit()));
     }
 
+    private void drawWeightChart(List<UserObject> userObjects, int days) {
+        ArrayList<Entry> values = new ArrayList<>();
+        ArrayList<String> dateLabels = new ArrayList<>();
+        float min = 1000.0f, max = 0.0f;
+        long referenceMillis;
+        long dayInMillis = TimeUnit.DAYS.toMillis(1);
+        long cutoffMillis = System.currentTimeMillis() - (days * dayInMillis);
 
-    private void initDataWaist() {
-        if (binding.waistChart.getData() != null) binding.waistChart.clearValues();
-        binding.txtWaistChartY.setText(myPreference.getHeightUnit());
-        float currentHeight = myPreference.getCurrentHeightCm();
-        goodWaist = currentHeight * 0.45f;
-        if (!myPreference.isKg()) {
-            goodWaist = goodWaist / 30.48f;
+        if (userObjects != null && userObjects.size() > 0) {
+            referenceMillis = (long) userObjects.get(0).getDate();
+        } else {
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            calendar.set(Calendar.MILLISECOND, 0);
+            referenceMillis = calendar.getTimeInMillis();
         }
 
-        mHistoryViewModel.getAllUsers().observe(getViewLifecycleOwner(), userObjects -> {
-            List<Entry> values = new ArrayList<>();
-            List<Entry> targetValue = new ArrayList<>();
+        binding.lineChart.setTag(referenceMillis);
 
-            Long nowDay = TimeUnit.MILLISECONDS.toDays(Calendar.getInstance().getTimeInMillis());
-            targetValue.add(new Entry(nowDay - 365, goodWaist));
-            targetValue.add(new Entry(nowDay, goodWaist));
+        if (userObjects != null && userObjects.size() > 0) {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM", Locale.getDefault());
+            int entryIndex = 0;
 
-            float min = 1000.0f, max = 0.0f;
             for (UserObject userObject : userObjects) {
-                float y = userObject.getWaist();
-                if (!myPreference.isKg()) {
-                    y = userObject.getWaist() / 30.48f;
+                long objectTime = (long) userObject.getDate();
+
+                if (objectTime >= cutoffMillis) {
+                    float y = myDB.isKg() ? userObject.getWeight() : userObject.getLbs();
+                    if (y > max) max = y;
+                    if (y < min) min = y;
+                    float daysSinceRef = (objectTime - referenceMillis) / (float) dayInMillis;
+                    values.add(new Entry(entryIndex, y));
+                    String dateLabel = sdf.format(objectTime);
+                    dateLabels.add(dateLabel);
+                    entryIndex++;
                 }
-
-                if (y > max) max = y;
-                if (y < min) min = y;
-                float from = userObject.getDate();
-                values.add(new Entry(from, y));
             }
-            if (values.size() == 0) {
-                values.add(new Entry(TimeUnit.MILLISECONDS.toDays(Calendar.getInstance().getTimeInMillis()), 75));
-                binding.txtLowestWaist.setText(getString(R.string.txt_min) + ":N/A " );
-                binding.txtHighestWaist.setText(getString(R.string.txt_max) + ": N/A" );
-            }else{
-                binding.txtLowestWaist.setText(getString(R.string.txt_min) + " " + String.format("%.1f", min) + " " + myPreference.getHeightUnit());
-                binding.txtHighestWaist.setText(getString(R.string.txt_max) + " " + String.format("%.1f", max) + " " + myPreference.getHeightUnit());
+        } else {
+            values.add(new Entry(0, 65));
+            dateLabels.add("Today");
+        }
+
+        LineDataSet set1 = new LineDataSet(values, getString(R.string.txt_weight_chart));
+        set1.setAxisDependency(YAxis.AxisDependency.RIGHT);
+        set1.setColor(getResources().getColor(R.color.colorWorkout));
+        set1.setValueTextColor(getResources().getColor(R.color.colorText));
+        set1.setLineWidth(2.f);
+        set1.setDrawCircles(true);
+        set1.setDrawValues(true);
+        set1.setFillAlpha(100);
+        set1.setHighLightColor(getResources().getColor(R.color.DarkGreen));
+        set1.setDrawCircleHole(true);
+        LineData data = new LineData(set1);
+        data.setValueTextColor(getResources().getColor(R.color.colorText));
+        data.setValueTextSize(9f);
+
+        binding.lineChart.setData(data);
+
+        // Xóa description label
+        Description description = new Description();
+        description.setEnabled(false);
+        binding.lineChart.setDescription(description);
+
+        // Cấu hình trục X để hiển thị ngày tháng
+        XAxis xAxis = binding.lineChart.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(dateLabels));
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawGridLines(false);
+        xAxis.setLabelRotationAngle(-45);
+        xAxis.setTextSize(10f);
+
+        binding.lineChart.setVisibleXRangeMaximum(Math.min(10, dateLabels.size()));
+        binding.lineChart.moveViewToX(binding.lineChart.getXChartMax());
+    }
+
+    private void updateWeekChangeDisplay(mint.woman.female.workout.utils.WeightTrendResult result, int days) {
+        String unit = myDB.getWeightUnit();
+        String trendText = "";
+
+        if (result.trend.equals("UP")) {
+            trendText = getString(R.string.up_weight_trend, result.weightChange, unit, days);
+        } else if (result.trend.equals("DOWN")) {
+            trendText = getString(R.string.down_weight_trend, result.weightChange, unit, days);
+        } else {
+            switch (days) {
+                case 7:
+                    trendText = getString(R.string.stable_over_past_7d);
+
+                    break;
+                case 30:
+                    trendText = getString(R.string.stable_over_past_30d);
+                    break;
+                case 90:
+                    trendText = getString(R.string.stable_over_past_90d);
+                    break;
             }
-            LineDataSet setConst = new LineDataSet(targetValue, getActivity().getResources().getString(R.string.txt_target));
+        }
+        binding.tvWeightStability.setText(trendText);
+        binding.tvWeekGoal.setText(String.format("Current: %.1f %s | Target: %.1f %s", myDB.getCurrentWeight(), unit, targetWeight, unit));
+    }
 
-            setConst.setColor(getActivity().getResources().getColor(R.color.Pink));
-            setConst.setLineWidth(1);
-            setConst.setDrawCircleHole(false);
-            setConst.setDrawCircles(false);
-            setConst.setDrawValues(false);
-            setConst.enableDashedLine(20f, 5f, 1f);
-            LineDataSet set1 = new LineDataSet(values, getString(R.string.txt_waist_chart));
+    private void drawCaloriesChart(Map<String, Integer> caloriesData, int days) {
+        if (binding.caloriesChart == null) {
+            return;
+        }
 
-            set1.setAxisDependency(YAxis.AxisDependency.RIGHT);
-            set1.setColor(getActivity().getResources().getColor(R.color.DeepPink));
-            set1.setValueTextColor(getContext().getResources().getColor(R.color.Red));
-            set1.setLineWidth(2f);
-            set1.setDrawCircles(true);
-            set1.setDrawValues(true);
-            set1.setDrawCircleHole(true);
-            set1.setCircleRadius(5);
-            set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-            set1.setDrawFilled(true);
-            set1.setFillDrawable(ContextCompat.getDrawable(getContext(), R.drawable.chart_fill_waist));
-            set1.setFillAlpha(50);
-            set1.setHighLightColor(getContext().getResources().getColor(R.color.DarkGreen));
+        ArrayList<BarEntry> values = new ArrayList<>();
+        ArrayList<String> dateLabels = new ArrayList<>();
 
-            LineData data = new LineData(set1, setConst);
-            data.setValueTextColor(Color.RED);
-            data.setValueTextSize(9f);
-            // set data
-            binding.waistChart.setData(data);
+        if (caloriesData != null && !caloriesData.isEmpty()) {
+            int entryIndex = 0;
+            for (Map.Entry<String, Integer> entry : caloriesData.entrySet()) {
+                String dateString = entry.getKey(); // Format: yyyy-MM-dd
+                int calories = entry.getValue();
 
-            binding.waistChart.getAxisLeft().setAxisMaximum(data.getYMax());
-            binding.waistChart.getAxisLeft().setAxisMinimum(data.getYMin());
-            binding.waistChart.setVisibleXRangeMaximum(20);
+                values.add(new BarEntry(entryIndex, calories));
 
-            binding.waistChart.moveViewToX( binding.waistChart.getXChartMax());
-            float currentWaist = myPreference.getCurrentWaist();
-            if (!myPreference.isKg()) {
-                currentWaist = currentWaist / 30.48f;
+                // Format: dd/MM
+                String[] parts = dateString.split("-");
+                if (parts.length >= 3) {
+                    dateLabels.add(parts[2] + "/" + parts[1]);
+                } else {
+                    dateLabels.add(dateString);
+                }
+                entryIndex++;
             }
+        } else {
+            // Dữ liệu trống
+            values.add(new BarEntry(0, 0));
+            dateLabels.add("No data");
+        }
 
-//update weight min,max
+        BarDataSet set1 = new BarDataSet(values, getString(R.string.txt_calories_burn));
+        set1.setColor(getResources().getColor(R.color.colorWorkout));
+        set1.setValueTextColor(getResources().getColor(R.color.colorText));
+        set1.setDrawValues(true);
+        set1.setValueTextSize(9f);
 
-            binding.txtRecentWaist.setText(getString(R.string.txt_recent) + " " + String.format("%.1f", currentWaist) + " " + myPreference.getHeightUnit());
+        BarData data = new BarData(set1);
+        data.setBarWidth(0.9f);
+
+        binding.caloriesChart.setData(data);
+
+        // Xóa description label
+        Description description = new Description();
+        description.setEnabled(false);
+        binding.caloriesChart.setDescription(description);
+
+        // Cấu hình trục X để hiển thị ngày tháng
+        XAxis xAxis = binding.caloriesChart.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(dateLabels));
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawGridLines(false);
+        xAxis.setLabelRotationAngle(-45);
+        xAxis.setTextSize(10f);
+
+        // Cấu hình trục Y
+        YAxis leftAxis = binding.caloriesChart.getAxisLeft();
+        leftAxis.setDrawGridLines(true);
+        leftAxis.setAxisMinimum(0);
+
+        YAxis rightAxis = binding.caloriesChart.getAxisRight();
+        rightAxis.setEnabled(false);
+
+        binding.caloriesChart.invalidate();
+    }
+
+    private void updateCaloriesTrendDisplay(mint.woman.female.workout.utils.CaloriesTrendResult result, int days) {
+        String trendText = "";
+
+        if (result.caloriesTrendText.equals("UP")) {
+            trendText = getString(R.string.up_calories_trend, result.caloriesTrend, days, result.caloriesTrendPercent);
+        } else if (result.caloriesTrendText.equals("DOWN")) {
+            trendText = getString(R.string.down_calories_trend, Math.abs(result.caloriesTrend), days, Math.abs(result.caloriesTrendPercent));
+        } else {
+            switch (days) {
+                case 7:
+                    trendText = getString(R.string.stable_over_past_7d);
+                    break;
+                case 30:
+                    trendText = getString(R.string.stable_over_past_30d);
+                    break;
+                case 90:
+                    trendText = getString(R.string.stable_over_past_90d);
+                    break;
+            }
+        }
+        binding.tvCaloriesStability.setText(trendText);
+    }
+
+    private void updateCaloriesButtonStyles(int selectedDays) {
+        // Reset all button styles
+        binding.ll7dayChangeCalories.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+        binding.ll30dayChangeCalories.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+        binding.ll90dayChangeCalories.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
+        binding.tv7dayChangeCalories.setTextColor(getResources().getColor(R.color.colorText));
+        binding.tv30dayChangeCalories.setTextColor(getResources().getColor(R.color.colorText));
+        binding.tv3mChangeCalories.setTextColor(getResources().getColor(R.color.colorText));
+
+        // Highlight selected button
+        switch (selectedDays) {
+            case 7:
+                binding.ll7dayChangeCalories.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                binding.tv7dayChangeCalories.setTextColor(getResources().getColor(android.R.color.white));
+                break;
+            case 30:
+                binding.ll30dayChangeCalories.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                binding.tv30dayChangeCalories.setTextColor(getResources().getColor(android.R.color.white));
+                break;
+            case 90:
+                binding.ll90dayChangeCalories.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                binding.tv3mChangeCalories.setTextColor(getResources().getColor(android.R.color.white));
+                break;
+        }
+    }
+
+    private void updateButtonStyles(int selectedDays) {
+        // Reset all button styles
+        binding.ll7dayChange.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+        binding.ll30dayChange.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+        binding.ll90dayChange.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
+        binding.tv7dayChange.setTextColor(getResources().getColor(R.color.colorText));
+        binding.tv30dayChange.setTextColor(getResources().getColor(R.color.colorText));
+        binding.tv3mChange.setTextColor(getResources().getColor(R.color.colorText));
+
+        // Highlight selected button
+        switch (selectedDays) {
+            case 7:
+                binding.ll7dayChange.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                binding.tv7dayChange.setTextColor(getResources().getColor(android.R.color.white));
+                break;
+            case 30:
+                binding.ll30dayChange.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                binding.tv30dayChange.setTextColor(getResources().getColor(android.R.color.white));
+                break;
+            case 90:
+                binding.ll90dayChange.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                binding.tv3mChange.setTextColor(getResources().getColor(android.R.color.white));
+                break;
+        }
+    }
+
+    private String formatDuration(int totalSeconds) {
+        int minutes = totalSeconds / 3600;
+        int seconds = (totalSeconds % 60);
+        return String.format("%02d:%02d", minutes, seconds);
+    }
+
+    private String formatDurationToMinute(int totalSeconds) {
+        int minutes = totalSeconds / 60;
+        return getString(R.string.x_minutes, minutes);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.ic_edit_bmi:
+                DialogWeight mDialogWeight = new DialogWeight();
+                mDialogWeight.show(getParentFragmentManager(), "enter_weight");
+                break;
+        }
+    }
+
+
+    public void onWeightChange() {
+        // Cập nhật cân nặng hiện tại
+        String stringWeight = String.format("%.1f %s", myDB.getCurrentWeight(), myDB.getWeightUnit());
+        SpannableString contentWeight = new SpannableString(stringWeight);
+        contentWeight.setSpan(new UnderlineSpan(), 0, stringWeight.length(), 0);
+        binding.tvCurrentWeight.setText(contentWeight);
+
+        // Cập nhật mục tiêu cân nặng
+        float currentHeight = myDB.getCurrentHeightM();
+        float newTargetWeight = currentHeight * currentHeight * 22.9f;
+        if (!myDB.isKg()) {
+            newTargetWeight *= 2.20462f;
+        }
+        targetWeight = newTargetWeight;
+        binding.tvWeekGoal.setText(getString(R.string.target_x_kg, newTargetWeight, myDB.getWeightUnit()));
+
+        // Refresh dữ liệu và vẽ lại đồ thị
+        mHistoryViewModel.getAllUsers().observe(getViewLifecycleOwner(), userObjects -> {
+            drawWeightChart(userObjects, 7);
         });
 
-
-        binding.txtGoodWaist.setText(getString(R.string.txt_good_weight) + " " + String.format("%.1f ", goodWaist) + myPreference.getHeightUnit());
+        // Refresh weight trends
+        mHistoryViewModel.refreshWeightTrends();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
+    /**
+     * Thêm dữ liệu test UserObject 3 tháng (45 bản ghi)
+     * Mỗi 2 ngày 1 lần, cân nặng giảm từ 85kg → 73.4kg
+     * Dùng HistoryViewModel.insertUser() để insert vào database
+     */
+    private void insertThreeMonthsTestData() {
+        new Thread(() -> {
+            Calendar calendar = Calendar.getInstance();
+            // Lùi lại 90 ngày
+            calendar.add(Calendar.DAY_OF_YEAR, -90);
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            calendar.set(Calendar.MILLISECOND, 0);
 
+            float startWeight = 85.0f;
 
-    private void chartInitWaist() {// no description text
-        binding.txtWaistChartY.setText(myPreference.getHeightUnit());
-        binding.waistChart.getDescription().setEnabled(false);
-        // enable touch gestures
-        binding.waistChart.setTouchEnabled(true);
-        binding.waistChart.setDragDecelerationFrictionCoef(0.9f);
-        // enable scaling and dragging
-        binding.waistChart.setDragEnabled(true);
-        binding.waistChart.setScaleEnabled(false);
-        binding.waistChart.setDrawGridBackground(false);
-        binding.waistChart.setHighlightPerDragEnabled(false);
-        // set an alternative background color
+            // Thêm 45 bản ghi (90 ngày / 2 = 45 lần)
+            for (int i = 0; i < 45; i++) {
+                // Tính cân nặng giảm dần (0.15kg mỗi 2 ngày)
+                float weight = startWeight - (i * 0.15f);
 
-        binding.waistChart.setPinchZoom(false);
+                UserObject userObject = new UserObject();
+                userObject.setWeight(weight);
+                userObject.setHeight(180.0f);
+                userObject.setDate(calendar.getTimeInMillis());
 
-        binding.waistChart.setDrawGridBackground(false);
-        // chart.setDrawYLabels(false);
+                // Insert vào database thông qua HistoryViewModel
+                mHistoryViewModel.insertUser(userObject);
 
-
-        binding.waistChart.setDragEnabled(true);
-        binding.waistChart.setScaleEnabled(false);
-        binding.waistChart.setDrawGridBackground(false);
-        //  mChartWaist.setBackgroundColor(Color.WHITE);
-        // mChartWaist.animateX(500);
-        binding.waistChart.invalidate();
-        // mChartWaist.animateX(200);
-        XAxis xAxis =  binding.waistChart.getXAxis();
-//        xAxis.setTextColor(context.getResources().getColor(R.color.colorDarkIcon));
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextSize(10f);
-        xAxis.enableGridDashedLine(20, 5, 5f);
-        // xAxis.setTextColor(Color.RED);
-        // xAxis.setDrawAxisLine(false);
-        //  xAxis.setTextColor(context.getResources().getColor(R.color.Black));
-        xAxis.setCenterAxisLabels(true);
-        xAxis.setDrawGridLines(false);
-        xAxis.setGranularity(1); // only intervals of 1 day
-        xAxis.setLabelCount(7);
-        ValueFormatter xAxisFormatter = new ValueFormatter() {
-            private final SimpleDateFormat mFormat = new SimpleDateFormat("dd/M", Locale.getDefault());
-
-            @Override
-            public String getFormattedValue(float value) {
-                long millis = TimeUnit.DAYS.toMillis((long) value);
-                return mFormat.format(new Date(millis));
+                // Di chuyển đến 2 ngày tiếp theo
+                calendar.add(Calendar.DAY_OF_YEAR, 2);
             }
-        };
-        xAxis.setValueFormatter(xAxisFormatter);
-        YAxis leftAxis =  binding.waistChart.getAxisLeft();
-
-        leftAxis.setTextColor(getActivity().getResources().getColor(R.color.colorDarkIcon));
-        leftAxis.enableGridDashedLine(20, 5, 5f);
-        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
-        leftAxis.setTextColor(ColorTemplate.getHoloBlue());
-        //leftAxis.setAxisMinimum(20f);
-        leftAxis.setDrawGridLines(true);
-        leftAxis.setGranularityEnabled(true);
-        //leftAxis.setGranularity(4);
-        leftAxis.setYOffset(-9f);
-        //  leftAxis.setTextColor(context.getResources().getColor(R.color.Black));
-        YAxis rightAxis =  binding.waistChart.getAxisRight();
-        rightAxis.setEnabled(false);
-        XYMarkerView mv = new XYMarkerView(getActivity());
-        mv.setChartView( binding.waistChart); // For bounds control
-        binding.waistChart.setMarker(mv);
-        binding.waistChart.getLegend().setTextColor(getContext().getResources().getColor(R.color.colorDarkIcon));
-        binding.waistChart.getLegend().setTextSize(16f);
+        }).start();
     }
 
-    private void chartWeightInit() {
+    /**
+     * Thêm dữ liệu test UserObject 1 tháng (15 bản ghi)
+     * Mỗi 2 ngày 1 lần
+     */
+    private void insertOneMonthTestData() {
+        new Thread(() -> {
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DAY_OF_YEAR, -30);
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            calendar.set(Calendar.MILLISECOND, 0);
 
-        binding.weightLineChart.getDescription().setEnabled(false);
-        // enable touch gestures
-        binding.weightLineChart.setTouchEnabled(true);
-        binding.weightLineChart.setDragDecelerationFrictionCoef(0.9f);
-        // enable scaling and dragging
-        binding.weightLineChart.setDragEnabled(true);
-        binding.weightLineChart.setScaleEnabled(false);
-        binding.weightLineChart.setDrawGridBackground(false);
-        binding.weightLineChart.setHighlightPerDragEnabled(false);
-        // set an alternative background color
+            float startWeight = 80.0f;
 
-        binding.weightLineChart.setPinchZoom(false);
+            for (int i = 0; i < 15; i++) {
+                float weight = 60.0f + (float) Math.random() * 10.0f; // Cân nặng ngẫu nhiên từ 30kg đến 40kg
 
-        binding.weightLineChart.setDrawGridBackground(false);
-        // set an alternative background color
+                UserObject userObject = new UserObject();
+                userObject.setWeight(weight);
+                userObject.setHeight(180.0f);
+                userObject.setDate(calendar.getTimeInMillis());
 
-       // mChartWeight.setPinchZoom(false);
-        binding.weightLineChart.setMinimumWidth(5);
+                mHistoryViewModel.insertUser(userObject);
 
-        // chart.setDrawYLabels(false);
-
-
-      //  mChartWeight.setDragEnabled(true);
-      //  mChartWeight.setScaleEnabled(true);
-
-        //  mChartWeight.setBackgroundColor(Color.WHITE);
-        // mChartWeight.animateX(500);
-        binding.weightLineChart.invalidate();
-        // mChartWeight.animateX(200);
-        XAxis xAxis = binding.weightLineChart.getXAxis();
-        xAxis.enableGridDashedLine(20, 5, 5f);
-
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextColor(getContext().getResources().getColor(R.color.colorDarkIcon));
-        xAxis.setTextSize(10f);
-        // xAxis.setTextColor(Color.RED);
-        //  xAxis.setTextColor(context.getResources().getColor(R.color.Black));
-        xAxis.setCenterAxisLabels(true);
-        xAxis.setDrawGridLines(false);
-        xAxis.setGranularity(1); // only intervals of 1 day
-        xAxis.setLabelCount(7);
-        ValueFormatter xAxisFormatter = new ValueFormatter() {
-            private final SimpleDateFormat mFormat = new SimpleDateFormat("dd/M", Locale.getDefault());
-
-            @Override
-            public String getFormattedValue(float value) {
-                long millis = TimeUnit.DAYS.toMillis((long) value);
-                return mFormat.format(new Date(millis));
+                calendar.add(Calendar.DAY_OF_YEAR, 3);
             }
-        };
-        xAxis.setValueFormatter(xAxisFormatter);
-        YAxis leftAxis = binding.weightLineChart.getAxisLeft();
-
-        leftAxis.setTextColor(getContext().getResources().getColor(R.color.colorDarkIcon));
-       // leftAxis.enableGridDashedLine(20, 5, 5f);
-        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
-
-//        leftAxis.setTextColor(ColorTemplate.getHoloBlue());
-        //leftAxis.setAxisMinimum(20f);
-        leftAxis.setDrawGridLines(true);
-      //  leftAxis.setGranularity(4);
-        leftAxis.setGranularityEnabled(true);
-//        leftAxis.setAxisMaximum(200f);
-//        leftAxis.setAxisMinimum(0f);
-       // leftAxis.setYOffset(-4f);
-
-        //  leftAxis.setTextColor(context.getResources().getColor(R.color.Black));
-        YAxis rightAxis = binding.weightLineChart.getAxisRight();
-        rightAxis.setEnabled(false);
-
-        //  mChartWeight.getLegend().setTextColor(R.color.colorDarkIcon);
-        XYMarkerView mv = new XYMarkerView(getActivity());
-        mv.setChartView(binding.weightLineChart); // For bounds control
-        binding.weightLineChart.setMarker(mv);
-      //  mChartWeight.setScaleYEnabled(false);
-        binding.weightLineChart.getLegend().setTextSize(16f);
-        binding.weightLineChart.getLegend().setTextColor(getContext().getResources().getColor(R.color.colorDarkIcon));
+        }).start();
     }
 
-    private void initCaloriesChart() {
-        binding.calorieBarChart.setOnChartValueSelectedListener(this);
+    /**
+     * Thêm dữ liệu test UserObject 3 tháng với biến động thực tế
+     * Mô phỏng lên xuống tự nhiên (hormone, ăn uống, tập luyện)
+     */
+    private void insertThreeMonthsWithFluctuations() {
+        new Thread(() -> {
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DAY_OF_YEAR, -90);
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            calendar.set(Calendar.MILLISECOND, 0);
 
-        binding.calorieBarChart.setDrawBarShadow(false);
-        binding.calorieBarChart.setDrawValueAboveBar(true);
+            float baseWeight = 75.0f;
 
-        binding.calorieBarChart.getDescription().setEnabled(false);
+            for (int i = 0; i < 45; i++) {
+                // Xu hướng chính: giảm 0.15kg mỗi 2 ngày
+                float trend = -0.15f * i;
 
+                // Biến động: ±1.5kg (mô phỏng ảnh hưởng hormone, ăn uống)
+                float fluctuation = 1.5f * (float) Math.sin(i * 0.5f);
 
-        // if more than 60 entries are displayed in the chart, no values will be
-        // drawn
-        binding.calorieBarChart.setMaxVisibleValueCount(60);
+                float weight = baseWeight + trend + fluctuation;
 
-        // scaling can now only be done on x- and y-axis separately
-        binding.calorieBarChart.setPinchZoom(false);
+                UserObject userObject = new UserObject();
+                userObject.setWeight(weight);
+                userObject.setHeight(180.0f);
+                userObject.setDate(calendar.getTimeInMillis());
 
-        binding.calorieBarChart.setDrawGridBackground(false);
-        // chart.setDrawYLabels(false);
-        binding.calorieBarChart.setDragEnabled(true);
-        binding.calorieBarChart.setScaleEnabled(false);
-        // binding.calorieBarChart.setBackgroundColor(Color.WHITE);
+                mHistoryViewModel.insertUser(userObject);
 
-        XAxis xAxis = binding.calorieBarChart.getXAxis();
-
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setDrawGridLines(false);
-        xAxis.setGranularity(1f); // only intervals of 1 day
-        xAxis.setLabelCount(7);
-        xAxis.setTextColor(getActivity().getResources().getColor(R.color.colorDarkIcon));
-        xAxis.enableGridDashedLine(20, 5, 5f);
-
-        ValueFormatter xAxisFormatter = new ValueFormatter() {
-            private final SimpleDateFormat mFormat = new SimpleDateFormat("dd/M", Locale.getDefault());
-
-            @Override
-            public String getFormattedValue(float value) {
-                long millis = TimeUnit.DAYS.toMillis((long) value);
-                return mFormat.format(new Date(millis));
+                calendar.add(Calendar.DAY_OF_YEAR, 3);
             }
-        };
-
-        xAxis.setValueFormatter(xAxisFormatter);
-
-
-        YAxis leftAxis = binding.calorieBarChart.getAxisLeft();
-        leftAxis.setLabelCount(8, false);
-        leftAxis.enableGridDashedLine(20, 5, 5f);
-        // leftAxis.setValueFormatter(custom);
-        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
-        leftAxis.setSpaceTop(15f);
-        leftAxis.setTextColor(getActivity().getResources().getColor(R.color.colorDarkIcon));
-        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
-
-        YAxis rightAxis = binding.calorieBarChart.getAxisRight();
-        rightAxis.setEnabled(false);
-
-
-        Legend l = binding.calorieBarChart.getLegend();
-        l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
-        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
-        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-        l.setDrawInside(false);
-        l.setForm(Legend.LegendForm.SQUARE);
-        l.setFormSize(9f);
-        l.setTextSize(11f);
-        l.setXEntrySpace(4f);
-
-        XYMarkerView mv = new XYMarkerView(getActivity());
-        mv.setChartView(binding.calorieBarChart); // For bounds control
-        binding.calorieBarChart.setMarker(mv);
-        binding.calorieBarChart.setVisibleXRangeMaximum(10);
-        binding.calorieBarChart.invalidate();
-        binding.calorieBarChart.getLegend().setTextColor(getContext().getResources().getColor(R.color.colorDarkIcon));
-        binding.calorieBarChart.getLegend().setTextSize(16f);
-
+        }).start();
     }
 
+    /**
+     * Cập nhật trend thời lượng luyện tập và calories tuần này
+     * Hiển thị trên tv_week_duration_trend và tv_week_calories_trend
+     */
+    private void updateWeeklyTrend(WeeklyProgressResult weeklyProgress) {
+        if (weeklyProgress == null) {
+            return;
+        }
 
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+        // Tính toán trend: so sánh với tuần trước
+        // Lấy dữ liệu từ getTodayWorkout để so sánh
+        mHistoryViewModel.getTodayWorkout().observe(getViewLifecycleOwner(), todayWorkout -> {
+            if (todayWorkout != null) {
+                // Tính trend thời lượng
+                String durationTrendText = "";
+                if (todayWorkout.durationTrendPercent > 0) {
+                    durationTrendText = String.format("⬆ + %s (%+.1f%%)",
+                            formatDurationToMinute((int) todayWorkout.durationTrend),
+                            todayWorkout.durationTrendPercent);
+                } else if (todayWorkout.durationTrendPercent < 0) {
+                    durationTrendText = String.format("⬇ - %s (%.1f%%)",
+                            formatDurationToMinute((int) Math.abs(todayWorkout.durationTrend)),
+                            Math.abs(todayWorkout.durationTrendPercent));
+                } else {
+                    durationTrendText = getString(R.string.stable);
+                }
 
+                // Tính trend calories
+                String caloriesTrendText = "";
+                if (todayWorkout.caloriesTrendPercent > 0) {
+                    caloriesTrendText = String.format("⬆ + %d kcal (%+.1f%%)",
+                            todayWorkout.caloriesTrend,
+                            todayWorkout.caloriesTrendPercent);
+                } else if (todayWorkout.caloriesTrendPercent < 0) {
+                    caloriesTrendText = String.format("⬇ - %d kcal (%.1f%%)",
+                            Math.abs(todayWorkout.caloriesTrend),
+                            Math.abs(todayWorkout.caloriesTrendPercent));
+                } else {
+                    durationTrendText = getString(R.string.stable);
+                }
+
+                // Cập nhật TextViews
+                binding.tvWeekDurationTrend.setText(durationTrendText);
+                binding.tvWeekCaloriesTrend.setText(caloriesTrendText);
+            }
+        });
     }
 
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
+    /**
+     * 📅 Schedule chương trình cho ngày mai
+     * - Kiểm tra quyền POST_NOTIFICATIONS trước
+     * - Chỉ tạo thông báo nhắc nhở (KHÔNG thêm vào HistoryItem)
+     * - Nhắc nhở người dùng tập ngày mai
+     */
+    private void scheduleNextProgram(ProgramObject program) {
+        // ✅ Kiểm tra quyền POST_NOTIFICATIONS trước tiên
+        if (!hasNotificationPermission()) {
+            Log.d("🎯 ScheduleNext", "⚠️ Notification permission not granted");
+            return;
+        }
 
+        // Set thời gian cho ngày mai (8:00 AM)
+        Calendar tomorrow = Calendar.getInstance();
+        tomorrow.add(Calendar.DAY_OF_YEAR, 1);
+        tomorrow.set(Calendar.HOUR_OF_DAY, 8);
+        tomorrow.set(Calendar.MINUTE, 0);
+        tomorrow.set(Calendar.SECOND, 0);
+        tomorrow.set(Calendar.MILLISECOND, 0);
+
+        Log.d("🎯 ScheduleNext", "📅 Creating reminder for tomorrow 8:00 AM: " + program.getName());
+
+        // Hiển thị thông báo nhắc nhở
+        showScheduleReminder(program, tomorrow);
     }
 
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
+    /**
+     * ✅ Kiểm tra quyền POST_NOTIFICATIONS
+     * Nếu chưa có, hiển thị dialog xin quyền bằng AppNotificationHelper
+     * @return true nếu có quyền, false nếu chưa có
+     */
+    private boolean hasNotificationPermission() {
+        // Android 13 (API 33) trở lên cần kiểm tra quyền POST_NOTIFICATIONS
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
 
+                Log.d("🎯 ScheduleNext", "⚠️ Requesting POST_NOTIFICATIONS permission using AppNotificationHelper");
+
+                // ✅ Sử dụng AppNotificationHelper để hiển thị dialog xin quyền
+                NotificationPermissionDialog.showPracticeReminderDialog(getActivity());
+                return false;
+            }
+        }
+        return true;
     }
 
-    @Override
-    public void onValueSelected(Entry e, Highlight h) {
-
+    /**
+     * 📢 Hiển thị thông báo nhắc nhở tập ngày mai với option chọn thời gian
+     */
+    private void showScheduleReminder(ProgramObject program, Calendar tomorrow) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(getString(R.string.schedule_reminder_title))
+                .setMessage(getString(
+                        R.string.schedule_reminder_message,
+                        program.getName(),
+                        program.getTotal(),
+                        currentStreak
+                ))
+                .setPositiveButton(getString(R.string.schedule_pick_time), (dialog, which) -> {
+                    dialog.dismiss();
+                    AppNotificationHelper.scheduleNotificationWithTimePicker(
+                            getContext(),
+                            program.getName(),
+                            program.getTotal(),
+                            (hour, minute) -> {
+                                Toast.makeText(
+                                        getContext(),
+                                        getString(R.string.schedule_time_selected_toast, hour, minute),
+                                        Toast.LENGTH_SHORT
+                                ).show();
+                            }
+                    );
+                })
+                .setNegativeButton(getString(R.string.schedule_default_time_button), (dialog, which) -> {
+                    dialog.dismiss();
+                    Toast.makeText(
+                            getContext(),
+                            getString(R.string.schedule_default_time_toast),
+                            Toast.LENGTH_SHORT
+                    ).show();
+                })
+                .show();
     }
-
-    @Override
-    public void onNothingSelected() {
-
-    }
-
 
 }

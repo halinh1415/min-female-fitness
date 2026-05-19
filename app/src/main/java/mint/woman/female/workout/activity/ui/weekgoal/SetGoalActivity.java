@@ -13,6 +13,9 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
+import com.google.android.gms.ads.AdView;
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.databinding.ActivitySetGoalBinding;
 import mint.woman.female.workout.utils.LanguageHelper;
@@ -24,51 +27,66 @@ import java.util.Locale;
 
 public class SetGoalActivity extends AppCompatActivity {
     ActivitySetGoalBinding binding;
+    MyPreference myDB;
 
-
-    int firstDayOfWeek = 0, goalOfWeek = 5;
+    int firstDayOfWeek = Calendar.MONDAY, goalOfWeek = 5;
     String[] fistDayList = new String[3];
-    String[] goalOfWeeks = new String[7];
-    MyPreference myPreference;
+    // Map index spinner -> giá trị Calendar
+    int[] firstDayValues = new int[]{Calendar.MONDAY, Calendar.SATURDAY, Calendar.SUNDAY};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySetGoalBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        FirebaseAnalytics.getInstance(this).logEvent("scr_set_goal",new Bundle());
+
+        setTitle(getString(R.string.txt_week_goal));
         initView();
     }
 
     private void initView() {
-        myPreference = new MyPreference(this);
-
+        myDB = new MyPreference(this);
         SimpleDateFormat weekFormat = new SimpleDateFormat("EEEE", Locale.getDefault());
 
-        goalOfWeek = myPreference.getGoalOfWeek() -1;
-        firstDayOfWeek = myPreference.getFirstDayOfWeek();
-        for (int i = 0; i < 7; i++) {
-
-            goalOfWeeks[i] = "" + (i + 1) + " " + getString(R.string.txt_day);
-            if (i>0){
-                goalOfWeeks[i] = "" + (i + 1) + " " + getString(R.string.txt_days);
-            }
-        }
-        binding.spnWeekGoal.setAdapter(new ArrayAdapter<>(this, R.layout.spinner_item, goalOfWeeks));
+        goalOfWeek = myDB.getGoalOfWeek();
+        firstDayOfWeek = myDB.getFirstDayOfWeek();
+        binding.npkWeekGoal.setMinValue(1);
+        binding.npkWeekGoal.setMaxValue(7);
+        binding.npkWeekGoal.setValue(goalOfWeek);
+        binding.npkWeekGoal.setWrapSelectorWheel(false);
 
         Calendar calendar = Calendar.getInstance(Locale.getDefault());
 
+        // Tính tên ngày bằng cách cộng từ Monday
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         fistDayList[0] = weekFormat.format(calendar.getTime());
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+
+        // Saturday = Monday + 5 ngày
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        calendar.add(Calendar.DAY_OF_MONTH, 5);
         fistDayList[1] = weekFormat.format(calendar.getTime());
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+
+        // Sunday = Saturday + 1 ngày
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
         fistDayList[2] = weekFormat.format(calendar.getTime());
-        binding.spnFirstDayOfWeek.setAdapter(new ArrayAdapter<>(this, R.layout.spinner_item, fistDayList));
 
-        binding.spnFirstDayOfWeek.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spFirstDayOfWeek.setAdapter(new ArrayAdapter<>(this, R.layout.spinner_item, fistDayList));
+
+        // Map giá trị Calendar ngược lại thành index spinner TRƯỚC khi setOnItemSelectedListener
+        int spinnerIndex = 0;
+        for (int i = 0; i < firstDayValues.length; i++) {
+            if (firstDayValues[i] == firstDayOfWeek) {
+                spinnerIndex = i;
+                break;
+            }
+        }
+        binding.spFirstDayOfWeek.setSelection(spinnerIndex);
+
+        binding.spFirstDayOfWeek.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                firstDayOfWeek = position;
+                firstDayOfWeek = firstDayValues[position];
             }
 
             @Override
@@ -76,41 +94,68 @@ public class SetGoalActivity extends AppCompatActivity {
 
             }
         });
-        binding.spnFirstDayOfWeek.setSelection(firstDayOfWeek);
-
-        binding.spnWeekGoal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                goalOfWeek = position;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        binding.spnWeekGoal.setSelection(goalOfWeek);
-        binding.btnSave.setOnClickListener(this::saveGoal);
+        binding.npkWeekGoal.setOnValueChangedListener((picker, oldVal, newVal) -> goalOfWeek = newVal);
+        binding.btnSave.setOnClickListener(view -> saveGoal());
 
     }
 
-    void saveGoal(View view) {
-        Bundle bundleFire = new Bundle();
-        bundleFire.putInt("GoalOfWeek", goalOfWeek+1);
-        bundleFire.putInt("FirstDayOf", firstDayOfWeek);
 
-        myPreference.setGoalOfWeek(goalOfWeek+1);
-        myPreference.setFirstDayOfWeek(firstDayOfWeek);
+    void saveGoal() {
+        Bundle bundleFire = new Bundle();
+        bundleFire.putInt("GoalOfWeek",goalOfWeek);
+        bundleFire.putInt("FirstDayOf",firstDayOfWeek);
+        FirebaseAnalytics.getInstance(this).logEvent("click_save_scr_set_goal",bundleFire);
+
+        myDB.setGoalOfWeek(goalOfWeek);
+        myDB.setFirstDayOfWeek(firstDayOfWeek);
         Intent intent = getIntent();
         intent.putExtra("RESULT", false);
         setResult(RESULT_OK, intent);
         finish();
     }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+           // hideSystemUI();
+        } else {
+
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+//        Intent intent = getIntent();
+//        intent.putExtra("RESULT", false);
+//        setResult(999, intent);
+        super.onBackPressed();
+    }
+
+
+
+    private void hideSystemUI() {
+        // Enables regular immersive mode.
+        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
+        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+        View decorView = getWindow().getDecorView();
+
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE
+                        // Set the content to appear under the system bars so that the
+                        // content doesn't resize when the system bars hide and show.
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                // Hide the nav bar and status bar4
+        );
+    }
+
     @Override
     protected void attachBaseContext(Context newBase) {
+
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(newBase);
         String lang = preferences.getString("ST_LANGUAGE", "");
-        if (!lang.isEmpty() ) {
+        if (!lang.isEmpty() && lang.length() > 1) {
             lang = lang.substring(0, 2);
         } else {
             lang = Locale.getDefault().getLanguage();

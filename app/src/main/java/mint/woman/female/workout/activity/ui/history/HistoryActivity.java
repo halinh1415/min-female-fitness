@@ -1,5 +1,7 @@
 package mint.woman.female.workout.activity.ui.history;
 
+import static mint.woman.female.workout.utils.FitnessConstUtils.convertFromCalendar;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -40,6 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
 
@@ -109,23 +112,42 @@ public class HistoryActivity extends AppCompatActivity implements HistorySection
     private void getHistoryOnDate(CalendarDay day) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, day.getYear());
-        calendar.set(Calendar.MONTH, day.getMonth() - 1);
+        calendar.set(Calendar.MONTH, day.getMonth() - 1); // Calendar.MONTH là 0-indexed
         calendar.set(Calendar.DAY_OF_MONTH, day.getDay());
-        long dayLong = TimeUnit.MILLISECONDS.toDays(calendar.getTimeInMillis());
-        Log.d("HAHA", "get history on :" + dayLong);
+
+        // --- CẬP NHẬT: Chuẩn hóa Calendar về 00:00:00 của ngày được chọn ---
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        // 'dateMillis' bây giờ là mili giây của 00:00:00 của ngày được chọn theo múi giờ địa phương
+        long dateMillis = calendar.getTimeInMillis();
+        Log.d("HAHA", "get history on date (millis):" + dateMillis); // Log giá trị mili giây
+
         binding.progressBarHistory.setVisibility(View.VISIBLE);
-        mHistoryViewModel.findInDay(dayLong).observe(HistoryActivity.this, historyItems -> {
+
+        // MHistoryViewModel.findInDay cần được cập nhật để nhận mili giây, không phải số ngày.
+        // Đảm bảo HistoryDao của bạn có một phương thức tương ứng:
+        // @Query("SELECT * FROM HistoryItem WHERE dateId = :targetDateStartOfDayMillis ORDER BY start_time ASC")
+        // LiveData<List<HistoryItem>> findInDay(long targetDateStartOfDayMillis);
+        mHistoryViewModel.findInDay(dateMillis).observe(HistoryActivity.this, historyItems -> {
             binding.progressBarHistory.setVisibility(View.GONE);
-            if (historyItems != null) {
+            if (historyItems != null && historyItems.size() > 0) { // Kiểm tra null và rỗng cho an toàn
                 binding.txtNoWorkout.setVisibility(View.GONE);
                 mAdapter.removeAllSections();
-                long millis = TimeUnit.DAYS.toMillis(dayLong);
-                mAdapter.addSection(new HistorySection(HistoryActivity.this,mFormatDate.format(millis), historyItems,this));
+
+                // 'dateMillis' đã chính xác là mili giây của 00:00:00 của ngày đó,
+                // có thể dùng trực tiếp để định dạng hiển thị
+                mAdapter.addSection(new HistorySection(HistoryActivity.this,
+                        mFormatDate.format(dateMillis), // Sử dụng dateMillis trực tiếp để định dạng
+                        historyItems, this));
                 mAdapter.notifyDataSetChanged();
             } else {
                 mAdapter.removeAllSections();
                 mAdapter.notifyDataSetChanged();
                 binding.txtNoWorkout.setVisibility(View.VISIBLE);
+                Log.d("HAHA", "Get history on date = null or empty"); // Cập nhật log
             }
         });
     }
@@ -133,43 +155,68 @@ public class HistoryActivity extends AppCompatActivity implements HistorySection
     private void getHistoryOnMonth(CalendarDay day) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, day.getYear());
-        calendar.set(Calendar.MONTH, day.getMonth() - 1);
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        long from = TimeUnit.MILLISECONDS.toDays(calendar.getTimeInMillis());
-        calendar.add(Calendar.MONTH, 1);
-        calendar.add(Calendar.DATE, -1);
-        long end = TimeUnit.MILLISECONDS.toDays(calendar.getTimeInMillis());
+        calendar.set(Calendar.MONTH, day.getMonth() - 1); // Calendar.MONTH là 0-indexed
+
+        // --- CẬP NHẬT: Tính toán 'from' (mili giây của 00:00:00 đầu tháng) ---
+        calendar.set(Calendar.DAY_OF_MONTH, 1); // Đặt về ngày đầu tiên của tháng
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        long from = calendar.getTimeInMillis(); // 'from' là mili giây của 00:00:00 của ngày đầu tháng
+
+        // --- CẬP NHẬT: Tính toán 'end' (mili giây của 00:00:00 của ngày ĐẦU TIÊN CỦA THÁNG TIẾP THEO) ---
+        // Chúng ta sẽ truy vấn các `dateId` >= `from` VÀ < `end`
+        calendar.add(Calendar.MONTH, 1); // Chuyển sang tháng tiếp theo (sẽ tự động về ngày 1 của tháng đó)
+        // Không cần calendar.add(Calendar.DATE, -1); nữa
+        long end = calendar.getTimeInMillis(); // 'end' là mili giây của 00:00:00 của ngày đầu tháng tiếp theo
+
         binding.progressBarHistory.setVisibility(View.VISIBLE);
+
+        // MHistoryViewModel.findFromTo cần được cập nhật để nhận mili giây, không phải số ngày.
+        // Đảm bảo HistoryDao của bạn có một phương thức tương ứng:
+        // @Query("SELECT * FROM HistoryItem WHERE dateId >= :fromMillis AND dateId < :toMillis ORDER BY dateId DESC, start_time DESC")
+        // LiveData<List<HistoryItem>> findFromTo(long fromMillis, long toMillis);
         mHistoryViewModel.findFromTo(from, end).observe(HistoryActivity.this, historyItems -> {
             binding.progressBarHistory.setVisibility(View.GONE);
-            if (historyItems.size() > 0) {
+            if (historyItems != null && historyItems.size() > 0) { // Kiểm tra null cho an toàn
                 binding.txtNoWorkout.setVisibility(View.GONE);
                 mAdapter.removeAllSections();
-                Map<Long, List<HistoryItem>> groupedItems = new HashMap<>();
+
+                // Grouping items by their dateId (mili giây của đầu ngày)
+                // TreeMap để đảm bảo các key (dateId) được sắp xếp tự động
+                Map<Long, List<HistoryItem>> groupedItems = new TreeMap<>(Collections.reverseOrder()); // Sắp xếp giảm dần theo ngày
                 for (HistoryItem item : historyItems) {
-                    long date = item.getDate();
-                    if (!groupedItems.containsKey(date)) {
-                        groupedItems.put(date, new ArrayList<HistoryItem>());
+                    long dateMillis = item.getDateId(); // dateId bây giờ là mili giây của 00:00:00
+                    if (!groupedItems.containsKey(dateMillis)) {
+                        groupedItems.put(dateMillis, new ArrayList<>());
                     }
-                    groupedItems.get(date).add(item);
+                    groupedItems.get(dateMillis).add(item);
                 }
 
                 // Convert to List<List<Item>>
                 List<List<HistoryItem>> historyDateWithItems = new ArrayList<>(groupedItems.values());
-                Collections.reverse(historyDateWithItems);
+                // Không cần Collections.reverse(historyDateWithItems); nếu TreeMap đã sắp xếp ngược
+
                 List<CalendarDay> calendarDayList = new ArrayList<>();
+                SimpleDateFormat mFormatDate = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()); // Định dạng ngày cho hiển thị
 
                 for (List<HistoryItem> historyItemList : historyDateWithItems) {
-                    long millis = Calendar.getInstance().getTimeInMillis();
-                    if (historyItemList.size()>0){
-                        millis = TimeUnit.DAYS.toMillis(historyItemList.get(0).getDate());
-                    }
-                    Calendar today = Calendar.getInstance();
-                    today.setTimeInMillis(millis);
-                    calendarDayList.add(FitnessConstUtils.convertFromCalendar(today));
-                    mAdapter.addSection(new HistorySection(HistoryActivity.this,mFormatDate.format(millis),historyItemList,this));
+                    if (historyItemList.isEmpty()) continue; // Bảo vệ khỏi danh sách rỗng
+
+                    long dateMillis = historyItemList.get(0).getDateId(); // Lấy dateId (mili giây của 00:00:00)
+                    Calendar displayCalendar = Calendar.getInstance();
+                    displayCalendar.setTimeInMillis(dateMillis); // Đặt Calendar bằng mili giây của đầu ngày
+
+                    calendarDayList.add(convertFromCalendar(displayCalendar)); // Chuyển đổi Calendar thành CalendarDay
+                    mAdapter.addSection(new HistorySection(HistoryActivity.this,
+                            mFormatDate.format(dateMillis), // Sử dụng dateMillis trực tiếp cho định dạng
+                            historyItemList, this));
                 }
-                EventDecorator eventDecorator = new EventDecorator(calendarDayList);
+
+                // --- CẬP NHẬT: Xóa các decorators cũ trước khi thêm mới để tránh trùng lặp ---
+                binding.calendarView.removeDecorators(); // Xóa tất cả các decorators hiện có
+                EventDecorator eventDecorator = new EventDecorator( calendarDayList);
                 binding.calendarView.addDecorator(eventDecorator);
                 mAdapter.notifyDataSetChanged();
             } else {
@@ -181,6 +228,10 @@ public class HistoryActivity extends AppCompatActivity implements HistorySection
 
         });
     }
+
+    // Đảm bảo bạn có phương thức convertFromCalendar nếu nó chưa có
+    // Ví dụ:
+
 
 
     @Override

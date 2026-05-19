@@ -39,6 +39,7 @@ import mint.woman.female.workout.activity.ui.firstsetup.content.ReminderSetupFra
 import mint.woman.female.workout.activity.ui.firstsetup.content.UserInfoFragment;
 import mint.woman.female.workout.activity.ui.firstsetup.content.WorkoutLevelSetupFragment;
 import mint.woman.female.workout.activity.ui.firstsetup.content.YearOldSetupFragment;
+import mint.woman.female.workout.activity.ui.guide.GuidePersonalPlanActivity;
 import mint.woman.female.workout.activity.ui.main.YogaActivity;
 import mint.woman.female.workout.admodule.MaticAd;
 import mint.woman.female.workout.admodule.MaticAdCallBack;
@@ -125,7 +126,7 @@ public class FirstSetupActivity extends AppCompatActivity {
                     return;
                 }
             }
-            finishSetup();
+            nextAction();
         }
     }
 
@@ -135,9 +136,9 @@ public class FirstSetupActivity extends AppCompatActivity {
         if (requestCode == 1111){
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Log.d(TAG,"onRequestPermissionsResult PERMISSION_GRANTED");
-                finishSetup();
+                nextAction();
             } else {
-                finishSetup();
+                nextAction();
                 Log.d(TAG,"onRequestPermissionsResult PERMISSION_DENIED");
 
             }
@@ -146,7 +147,7 @@ public class FirstSetupActivity extends AppCompatActivity {
     }
 
     private void finishSetup() {
-        if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.INTER_FIRST_OPEN) &&MaticAd.getInstance().isAvailableInter()){
+        if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.INTER_FIRST_OPEN) &&MaticAd.getInstance().isAvailableInter() ){
             MaticAd.getInstance().showPriorityInterstitialAd(FirstSetupActivity.this,new MaticAdCallBack(){
                 @Override
                 public void onNextAction() {

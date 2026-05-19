@@ -227,8 +227,7 @@ public class AudioAppManager {
                 playAssets();
             });
         } else {
-            // Nếu TTS chưa sẵn sàng, đợi 1 chút rồi thử lại hoặc bỏ qua
-           // handler.postDelayed(() -> playAssets(), 500);
+            handler.postDelayed(() -> playAssets(), 500);
         }
     }
 

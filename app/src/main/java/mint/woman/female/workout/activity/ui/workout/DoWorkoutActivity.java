@@ -345,9 +345,8 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         } else {
             mHistoryItem.setName(mProgramObject.getName() + " - Level " + mProgramObject.getLevel());
         }
-        mHistoryItem.setImage(mProgramObject.getImage());
         mHistoryItem.setStartTime(Calendar.getInstance().getTimeInMillis());
-        mHistoryItem.setDate(TimeUnit.MILLISECONDS.toDays(Calendar.getInstance().getTimeInMillis()));
+        mHistoryItem.setDateId(Calendar.getInstance().getTimeInMillis());
         mHistoryItem.setStart(mFormatDateTime.format(Calendar.getInstance().getTimeInMillis()));
         mHistoryItem.setProgramId(mProgramObject.getId());
         mHistoryItem.setDayIndex(mDayIndex);
@@ -630,9 +629,10 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             myPreference.setSaveProgress(mProgramObject.getId(), mDayIndex, 0);
             Intent homeIntent = new Intent(DoWorkoutActivity.this, YogaActivity.class);
             homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            homeIntent.putExtra("IS_REPORT", true);
             startActivity(homeIntent);
-            Intent historyIntent = new Intent(DoWorkoutActivity.this, ReportActivity.class);
-            startActivity(historyIntent);
+//            Intent historyIntent = new Intent(DoWorkoutActivity.this, ReportActivity.class);
+//            startActivity(historyIntent);
             Intent intent = new Intent(DoWorkoutActivity.this, FinishedActivity.class);
             mBundle.putParcelable("HISTORY", mHistoryItem);
             intent.putExtras(mBundle);

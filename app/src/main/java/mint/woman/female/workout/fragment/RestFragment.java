@@ -231,18 +231,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
-//        initTimer(mCurrentTime);
-//        try {
-//             binding.videoView.pause();
-//            videoPath = getContext().getCacheDir() + "/temp.mp4";
-//             binding.videoView.setVideoURI(Uri.parse(videoPath));
-//             binding.videoView.setOnPreparedListener(mediaPlayer -> {
-//                mediaPlayer.setLooping(true);
-//            });
-//             binding.videoView.start();
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
+
     }
     private void showDialogDemoWorkout() {
         if (!isAdded() || getParentFragmentManager().findFragmentByTag("images") != null) return;

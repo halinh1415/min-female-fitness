@@ -15,7 +15,7 @@
 
         <fragment
             android:id="@+id/a1"
-            class="mint.woman.female.workout.activity.ui.weekgoal.WeekGoalFragment"
+            class="mint.woman.female.workout.activity.ui.weekgoal.WeekGoalNewFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:tag="WEEK_GOAL_FRAGMENT" />

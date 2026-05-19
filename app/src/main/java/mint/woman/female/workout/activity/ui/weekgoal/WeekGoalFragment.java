@@ -194,7 +194,7 @@ public class WeekGoalFragment extends Fragment implements ProgramClickListener, 
                 if (!mProgramHistory.contains(programId)) {
                     mProgramHistory.add(programId);
                 }
-                int index = (int) (historyItem.getDate() - first);
+                int index = (int) (historyItem.getDateId() - first);
                 if (index < 7) {
                     status[index] = true;
                 }

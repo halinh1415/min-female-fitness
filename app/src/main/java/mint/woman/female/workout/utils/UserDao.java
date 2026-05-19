@@ -20,6 +20,9 @@ public interface UserDao {
     @Query("SELECT * FROM UserObject WHERE date = :date LIMIT 1")
     LiveData<UserObject> getUserByDay(int date);
 
+    @Query("SELECT * FROM UserObject WHERE date >= :startDate AND date <= :endDate ORDER BY date ASC")
+    List<UserObject> getUsersInRange(long startDate, long endDate);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(UserObject... userObjects);
 
@@ -28,5 +31,29 @@ public interface UserDao {
 
     @Delete
     void delete(UserObject... userObjects);
+
+    /**
+     * Xóa tất cả UserObject
+     */
+    @Query("DELETE FROM UserObject")
+    void deleteAllUsers();
+
+    /**
+     * Xóa UserObject theo ngày cụ thể
+     */
+    @Query("DELETE FROM UserObject WHERE date = :date")
+    void deleteUserByDate(long date);
+
+    /**
+     * Xóa UserObject trong khoảng thời gian
+     */
+    @Query("DELETE FROM UserObject WHERE date >= :startDate AND date <= :endDate")
+    void deleteUsersInRange(long startDate, long endDate);
+
+    /**
+     * Xóa UserObject cũ hơn ngày cụ thể
+     */
+    @Query("DELETE FROM UserObject WHERE date < :cutoffDate")
+    void deleteUsersBefore(long cutoffDate);
 
 }

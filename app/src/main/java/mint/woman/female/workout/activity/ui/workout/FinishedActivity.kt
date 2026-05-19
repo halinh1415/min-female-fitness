@@ -36,6 +36,8 @@ import mint.woman.female.workout.custom.SelectReminderEveryDayDialog
 import mint.woman.female.workout.databinding.ActivityFinishedBinding
 import mint.woman.female.workout.model.HistoryItem
 import mint.woman.female.workout.model.ProgramObject
+import mint.woman.female.workout.notification.NotificationPermissionDialog
+import mint.woman.female.workout.notification.PracticeStatsStore
 import mint.woman.female.workout.utils.LanguageHelper
 import mint.woman.female.workout.utils.MyPreference
 import java.time.Instant
@@ -79,6 +81,15 @@ class FinishedActivity : AppCompatActivity() {
         Glide.with(this).load(Uri.parse("file:///android_asset/images/img_done.webp")).into(
             binding.imgFinishedBanner
         )
+        val stats = PracticeStatsStore.get(this)
+
+        stats.isDidCompleteToday = true
+        stats.missedDays = 0
+        stats.streakCount = stats.streakCount + 1
+        stats.consecutiveActiveDays = stats.consecutiveActiveDays + 1
+        stats.lastCompletedAt = System.currentTimeMillis()
+
+        PracticeStatsStore.save(this, stats)
         // Glide.with(this).load(R.drawable.finished_banner).into(mBanner);
         if (mBundle != null) {
             //mPlanObject = mBundle.getParcelable("PLAN_OBJECT");
@@ -123,6 +134,7 @@ class FinishedActivity : AppCompatActivity() {
                 requestReview()
             }
         }
+        requestNotificationPermissionIfNeeded();
         if (!myPreference.isSetReminder) {
             val selectReminderEveryDayDialog = SelectReminderEveryDayDialog()
             selectReminderEveryDayDialog.show(supportFragmentManager, "SelectReminder")
@@ -354,5 +366,33 @@ class FinishedActivity : AppCompatActivity() {
     //    }
     override fun onDestroy() {
         super.onDestroy()
+    }
+    /**
+     * 📱 Thông minh xin quyền notification dựa trên retention strategy
+     *
+     * Logic:
+     * - Lần đầu tiên hoàn thành: Không yêu cầu (để user tập thêm lần nữa)
+     * - Lần thứ 2-3: Yêu cầu (user đã chứng minh engagement)
+     * - Lần 4+: Yêu cầu thêm (để tăng retention)
+     * - Nếu đã có reminder: Không yêu cầu lại
+     *
+     * Mục đích: Tăng conversion rate của notification permission bằng cách hỏi lúc user tích cực nhất
+     */
+    private fun requestNotificationPermissionIfNeeded() {
+        val openCount = myPreference.openCount()
+
+        // ✅ Điều kiện để yêu cầu notification permission:
+        // 1. Chưa set reminder
+        // 2. Đã hoàn thành đủ lần để chứng minh engagement (openCount >= 2 tương ứng với lần thứ 2 mở app)
+        // 3. Không yêu cầu quá sớm (tối thiểu openCount=2 để user có cơ hội tập lại)
+        if (!myPreference.isSetReminder() && openCount >= 2) {
+            // 📊 Log for tracking which round we're requesting notifications
+            Log.d(
+                "NotificationRequest",
+                "Requesting notification permission at openCount: $openCount"
+            )
+
+            NotificationPermissionDialog.showPracticeReminderDialog(this)
+        }
     }
 }

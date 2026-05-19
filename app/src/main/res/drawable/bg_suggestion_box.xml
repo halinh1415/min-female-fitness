@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Màu nền: Xám rất nhạt (Gần như trắng) để dịu mắt -->
+    <solid android:color="#F8F9FA" />
+
+    <!-- Độ bo tròn các góc: 12dp cho mềm mại -->
+    <corners android:radius="12dp" />
+
+    <!-- Đường viền mỏng xung quanh hộp -->
+    <stroke
+        android:width="1dp"
+        android:color="#E0E0E0" />
+
+</shape>
