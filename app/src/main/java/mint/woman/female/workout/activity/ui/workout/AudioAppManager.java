@@ -134,49 +134,44 @@ public class AudioAppManager {
     }
 
     public void playAssets() {
-        if (audioResources.isEmpty()) {
-           // handler.post(checkQueueRunnable); // Nếu danh sách rỗng, bắt đầu kiểm tra
+        if (audioResources.isEmpty()) return;
+
+        // Kiểm tra trạng thái
+        if (mediaPlayer.isPlaying() || tts.isSpeaking() || !ttsReady) return;
+
+        // Lấy nội dung
+        String content = "";
+        if (audioResources.size() > 0) {
+            content = audioResources.pop();
+        }
+        if (content.isEmpty()) {
+            playAssets(); // Đệ quy tìm tiếp nếu rỗng
             return;
         }
 
-       // handler.removeCallbacks(checkQueueRunnable); // Dừng kiểm tra khi có nội dung để phát
+        final String finalContent = content; // Biến final để dùng trong Thread
 
-        if (mediaPlayer.isPlaying() || tts.isSpeaking() || !ttsReady) {
-            return;
-        }
+        // Logic kiểm tra voice custom
+        boolean isCustomVoice = !myPreference.getVoiceModel(myPreference.getLanguage()).equals("default")
+                && FirebaseRemoteConfig.getInstance().getBoolean("enable_voice");
 
+        if (isCustomVoice) {
+            String filePath = getBasePath() + "/" + AppEncrypt.getName(finalContent);
+            File encryptedFile = new File(filePath);
 
-       // Log.d(TAG, "Play voice: current in size=" + audioResources.size());
-        try {
-            String content = "";
-            if (audioResources.size() > 0) {
-                content = audioResources.pop();
-            }
-            if (content.isEmpty()) {
+            if (!encryptedFile.exists()) {
+                speakWithTTS(finalContent);
                 return;
             }
-            String filePath = getBasePath() + "/" + AppEncrypt.getName(content);
 
-
-            if (!myPreference.getVoiceModel(myPreference.getLanguage()).equals("default") && FirebaseRemoteConfig.getInstance().getBoolean("enable_voice")) {
-                File encryptedFile = new File(filePath);
-                if (!encryptedFile.exists()) {
-
-                    if (ttsReady) {
-                        //Log.d("HAHA","SPEAK :"+content+" size:"+audioResources.toString());
-                        tts.speak(content, TextToSpeech.QUEUE_ADD, null, "");
-                        tts.setOnUtteranceCompletedListener(utteranceId -> {
-                            playAssets();
-                        });
-                    }
-                    return;
-                }
+            // --- KHẮC PHỤC ANR: CHẠY TRÊN THREAD RIÊNG ---
+            new Thread(() -> {
                 File tempFile = new File(context.getCacheDir(), "temp_voice.mp3");
+                boolean success = false;
 
-
+                // 1. Thực hiện giải mã (Nặng) ở Thread phụ
                 try (FileInputStream fis = new FileInputStream(encryptedFile);
                      FileOutputStream fos = new FileOutputStream(tempFile)) {
-
                     byte[] buffer = new byte[4096];
                     int bytesRead;
                     while ((bytesRead = fis.read(buffer)) != -1) {
@@ -185,32 +180,55 @@ public class AudioAppManager {
                         }
                         fos.write(buffer, 0, bytesRead);
                     }
+                    success = true;
+                } catch (Exception e) {
+                    Log.e(TAG, "Decryption failed: " + e.getMessage());
                 }
 
+                // 2. Quay lại Main Thread để phát nhạc
+                final boolean finalSuccess = success;
+                handler.post(() -> {
+                    if (finalSuccess) {
+                        try {
+                            mediaPlayer.reset();
+                            mediaPlayer.setDataSource(tempFile.getAbsolutePath());
+                            // Dùng prepareAsync thay cho prepare để tránh block thêm
+                            mediaPlayer.setOnPreparedListener(mp -> mp.start());
+                            mediaPlayer.prepareAsync();
 
-                mediaPlayer.reset();
-                mediaPlayer.setDataSource(tempFile.getAbsolutePath());
-                mediaPlayer.prepare();
-                mediaPlayer.start();
-                mediaPlayer.setOnCompletionListener(mp -> {
-                    tempFile.delete();
-                    playAssets();
+                            mediaPlayer.setOnCompletionListener(mp -> {
+                                // tempFile.delete(); // Xóa file tạm nếu cần
+                                playAssets();
+                            });
+                            mediaPlayer.setOnErrorListener((mp, what, extra) -> {
+                                speakWithTTS(finalContent); // Lỗi thì fallback về TTS
+                                return true;
+                            });
+
+                        } catch (Exception e) {
+                            speakWithTTS(finalContent);
+                        }
+                    } else {
+                        speakWithTTS(finalContent);
+                    }
                 });
-            } else {
-                if (ttsReady) {
-                    //Log.d("HAHA","SPEAK :"+content+" size:"+audioResources.toString());
-                    tts.speak(content, TextToSpeech.QUEUE_ADD, null, "");
-                    tts.setOnUtteranceCompletedListener(utteranceId -> {
-                        playAssets();
-                    });
-                }
+            }).start();
+            // --- KẾT THÚC THREAD ---
 
+        } else {
+            speakWithTTS(finalContent);
+        }
+    }
 
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.d(TAG, "Play Exception: " + e.toString());
+    private void speakWithTTS(String content) {
+        if (ttsReady) {
+            tts.speak(content, TextToSpeech.QUEUE_ADD, null, "");
+            tts.setOnUtteranceCompletedListener(utteranceId -> {
+                playAssets();
+            });
+        } else {
+            // Nếu TTS chưa sẵn sàng, đợi 1 chút rồi thử lại hoặc bỏ qua
+           // handler.postDelayed(() -> playAssets(), 500);
         }
     }
 
