@@ -50,12 +50,16 @@ public class ProgramObject  {
     @SerializedName("subtitle")
     @Expose
     private String subtitle;
-    @SerializedName("tags")
+    @SerializedName("tag")
     @Expose
     private String tags;
     @SerializedName("version")
     @Expose
     private int version;
+    @SerializedName("duration")
+    @Expose
+    private int duration;
+
     public int progress =0;
 
     public String getTags() {
@@ -188,5 +192,13 @@ public class ProgramObject  {
 
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }

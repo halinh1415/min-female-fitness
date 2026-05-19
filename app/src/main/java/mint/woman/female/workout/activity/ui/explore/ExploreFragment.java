@@ -64,6 +64,13 @@ public class ExploreFragment extends Fragment implements ProgramClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initData();
+        binding.searchView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private List<Object> getProgram(int[] list) {

@@ -41,6 +41,24 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+    <activity
+            android:name=".activity.ui.explore.FilterProgramActivity"
+            android:exported="false"
+            android:parentActivityName=".activity.ui.main.FitnessActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ui.main.FitnessActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ui.explore.SearchActivity"
+            android:exported="false"
+            android:parentActivityName=".activity.ui.main.FitnessActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ui.main.FitnessActivity" />
+        </activity>
         <activity
             android:name=".activity.ui.guide.GuidePersonalPlanActivity"
             android:exported="false" />

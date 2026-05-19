@@ -295,7 +295,7 @@ public class WeekGoalNewFragment extends Fragment implements IDayClickListener, 
                 recentIds,
                 dayOff,
                 currentAvgDuration,
-                null,//myDB.getUserTargetFocus(),   // Không có mục tiêu cụ thể
+                myDB.getUserTargetFocus(),//myDB.getUserTargetFocus(),   // Không có mục tiêu cụ thể
                 false//myDB.requiresSeated()   // Không bắt buộc phải ngồi
         );
 

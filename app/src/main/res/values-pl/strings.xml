@@ -475,4 +475,42 @@
     <string name="schedule_time_selected_toast">Przypomnienie ustawione na jutro: %1$02d:%2$02d</string>
     <string name="schedule_default_time_toast">Przypomnienie ustawione na jutro na 8:00</string>
     <string name="join_with_10_million_users">Dołącz do ponad 2 milionów osób codziennie doskonalących swoją Qi</string>
+<string name="search_free_only">Tylko bezpłatne</string>
+    <string name="search_seated_only">Tylko siedzące</string>
+    <string name="search_results">Wyniki wyszukiwania</string>
+    <string name="search_no_matching_programs">Brak pasujących programów</string>
+
+    <string name="search_browse_by_goal">Przeglądaj według celu</string>
+    <string name="search_browse_by_duration">Przeglądaj według czasu trwania</string>
+    <string name="search_browse_by_body_focus">Przeglądaj według skupienia na ciele</string>
+    <string name="search_browse_by_level">Przeglądaj według poziomu</string>
+
+    <string name="search_goal_stress_relief_mind">Ulga w stresie i umysł</string>
+    <string name="search_goal_energy_vitality">Energia i witalność</string>
+    <string name="search_goal_health_healing">Zdrowie i uzdrawianie</string>
+    <string name="search_goal_flexibility_mobility">Elastyczność i mobilność</string>
+    <string name="search_goal_strength_power">Siła i moc</string>
+    <string name="search_goal_balance_focus">Równowaga i koncentracja</string>
+
+    <string name="search_duration_express_10">Ekspres 10 min</string>
+    <string name="search_duration_quick_break_15_20">Szybka przerwa 15–20 min</string>
+    <string name="search_duration_standard_25_35">Standardowy 25–35 min</string>
+    <string name="search_duration_deep_45_plus">Głęboko 45+ min</string>
+
+    <string name="search_body_full_body_care">Pielęgnacja całego ciała</string>
+    <string name="search_body_upper_body">Górna część ciała</string>
+    <string name="search_body_spine_back">Kręgosłup i plecy</string>
+    <string name="search_body_lower_body">Dolna część ciała</string>
+    <string name="search_body_internal_mind">Wewnętrzne i Umysł</string>
+    <string name="search_level_advanced_mastery">Zaawansowane mistrzostwo</string>
+    <string name="breast">Pierś</string>
+    <string name="fast_workout">Szybki trening</string>
+    <string name="less_than_7_minute">Mniej niż 7 minut</string>
+    <string name="longer_than_7_minutes">Dłużej niż 7 minut</string>
+    <string name="search_7_min">7 minut</string>
+    <string name="search_routine">Rutyna</string>
+    <string name="search_flexibility">Elastyczność</string>
+    <string name="search_face_yoga">Joga twarzy</string>
+    <string name="yoga">Joga</string>
+    <string name="butt">Krupon</string>
 </resources>

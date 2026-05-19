@@ -475,4 +475,42 @@
     <string name="schedule_time_selected_toast">ตั้งการแจ้งเตือนสำหรับ %1$02d:%2$02d พรุ่งนี้</string>
     <string name="schedule_default_time_toast">ตั้งการช่วยเตือนเป็นวันพรุ่งนี้เวลา 8.00 น</string>
     <string name="join_with_10_million_users">เข้าร่วมกับผู้คนกว่า 2 ล้านคนที่พัฒนา Qi ทุกวัน</string>
+<string name="search_free_only">ฟรีเท่านั้น</string>
+    <string name="search_seated_only">นั่งเท่านั้น</string>
+    <string name="search_results">ผลการค้นหา</string>
+    <string name="search_no_matching_programs">ไม่มีโปรแกรมที่ตรงกัน</string>
+
+    <string name="search_browse_by_goal">เรียกดูตามเป้าหมาย</string>
+    <string name="search_browse_by_duration">เรียกดูตามระยะเวลา</string>
+    <string name="search_browse_by_body_focus">เรียกดูตามโฟกัสของร่างกาย</string>
+    <string name="search_browse_by_level">เรียกดูตามระดับ</string>
+
+    <string name="search_goal_stress_relief_mind">บรรเทาความเครียดและจิตใจ</string>
+    <string name="search_goal_energy_vitality">พลังงานและความมีชีวิตชีวา</string>
+    <string name="search_goal_health_healing">สุขภาพและการรักษา</string>
+    <string name="search_goal_flexibility_mobility">ความยืดหยุ่นและความคล่องตัว</string>
+    <string name="search_goal_strength_power">ความแข็งแกร่งและพลัง</string>
+    <string name="search_goal_balance_focus">สมดุลและโฟกัส</string>
+
+    <string name="search_duration_express_10">ด่วน 10 นาที</string>
+    <string name="search_duration_quick_break_15_20">พักด่วน 15–20 นาที</string>
+    <string name="search_duration_standard_25_35">มาตรฐาน 25–35 นาที</string>
+    <string name="search_duration_deep_45_plus">ลึก 45+ นาที</string>
+
+    <string name="search_body_full_body_care">การดูแลร่างกายเต็มรูปแบบ</string>
+    <string name="search_body_upper_body">ร่างกายส่วนบน</string>
+    <string name="search_body_spine_back">กระดูกสันหลังและหลัง</string>
+    <string name="search_body_lower_body">ร่างกายส่วนล่าง</string>
+    <string name="search_body_internal_mind">ภายในและจิตใจ</string>
+    <string name="search_level_advanced_mastery">การเรียนรู้ขั้นสูง</string>
+    <string name="breast">หน้าอก</string>
+    <string name="fast_workout">ออกกำลังกายอย่างรวดเร็ว</string>
+    <string name="less_than_7_minute">ไม่เกิน 7 นาที</string>
+    <string name="longer_than_7_minutes">ยาวกว่า 7 นาที</string>
+    <string name="search_7_min">7 นาที</string>
+    <string name="search_routine">กิจวัตรประจำวัน</string>
+    <string name="search_flexibility">ความยืดหยุ่น</string>
+    <string name="search_face_yoga">โยคะหน้า</string>
+    <string name="yoga">โยคะ</string>
+    <string name="butt">ก้น</string>
 </resources>

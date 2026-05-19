@@ -13,13 +13,14 @@ import androidx.fragment.app.Fragment;
 
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.databinding.FragmentFocusAreaBinding;
+import mint.woman.female.workout.utils.MyPreference;
 
 
 public class FocusAreaFragment extends Fragment {
     FragmentFocusAreaBinding binding;
 
 
-
+    MyPreference myPreference;
 
     public FocusAreaFragment() {
         // Required empty public constructor
@@ -43,6 +44,7 @@ public class FocusAreaFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        myPreference = new MyPreference(getContext());
         binding.btnChooseAbs.setOnClickListener(this::choose);
         binding.btnUnchooseAbs.setOnClickListener(this::choose);
         binding.btnChooseArm.setOnClickListener(this::choose);
@@ -63,6 +65,7 @@ public class FocusAreaFragment extends Fragment {
                 binding.btnUnchooseFullBody.setVisibility(View.VISIBLE);
                 binding.btnUnchooseAbs.setVisibility(View.VISIBLE);
                 binding.btnChooseAbs.setVisibility(View.GONE);
+                myPreference.setUserTargetFocus("abs");
                 break;
             case R.id.btn_unchoose_abs:
                 binding.btnUnchooseAbs.setVisibility(View.GONE);
@@ -73,6 +76,7 @@ public class FocusAreaFragment extends Fragment {
                 binding.btnUnchooseFullBody.setVisibility(View.VISIBLE);
                 binding.btnChooseArm.setVisibility(View.GONE);
                 binding.btnUnchooseArm.setVisibility(View.VISIBLE);
+                myPreference.setUserTargetFocus("arm");
                 break;
             case R.id.btn_unchoose_arm:
                 binding.btnChooseArm.setVisibility(View.VISIBLE);
@@ -83,6 +87,7 @@ public class FocusAreaFragment extends Fragment {
                 binding.btnUnchooseFullBody.setVisibility(View.VISIBLE);
                 binding.btnChooseButt.setVisibility(View.GONE);
                 binding.btnUnchooseButt.setVisibility(View.VISIBLE);
+                myPreference.setUserTargetFocus("butt");
                 break;
             case R.id.btn_unchoose_butt:
                 binding.btnChooseButt.setVisibility(View.VISIBLE);
@@ -93,6 +98,7 @@ public class FocusAreaFragment extends Fragment {
                 binding.btnUnchooseFullBody.setVisibility(View.VISIBLE);
                 binding.btnChooseThigh.setVisibility(View.GONE);
                 binding.btnUnchooseThigh.setVisibility(View.VISIBLE);
+                myPreference.setUserTargetFocus("thigh");
                 break;
             case R.id.btn_unchoose_thigh:
                 binding.btnChooseThigh.setVisibility(View.VISIBLE);
@@ -121,6 +127,7 @@ public class FocusAreaFragment extends Fragment {
                 binding.btnUnchooseArm.setVisibility(View.VISIBLE);
                 binding.btnUnchooseThigh.setVisibility(View.VISIBLE);
                 binding.btnUnchooseButt.setVisibility(View.VISIBLE);
+                myPreference.setUserTargetFocus("body");
                 break;
         }
     }

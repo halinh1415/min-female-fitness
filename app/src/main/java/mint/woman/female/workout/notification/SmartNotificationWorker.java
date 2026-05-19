@@ -10,6 +10,9 @@ import java.util.Calendar;
 
 public class SmartNotificationWorker extends Worker {
 
+    private static final int NOTIFICATION_START_HOUR = 5;  // 06:00
+    private static final int NOTIFICATION_END_HOUR = 22;   // 21:59
+
     public SmartNotificationWorker(@NonNull Context context, @NonNull WorkerParameters params) {
         super(context, params);
     }
@@ -25,6 +28,11 @@ public class SmartNotificationWorker extends Worker {
 
         Calendar calendar = Calendar.getInstance();
         int nowHour = calendar.get(Calendar.HOUR_OF_DAY);
+
+        // Only send Smart notifications from 06:00 to 21:59 local time.
+        if (nowHour < NOTIFICATION_START_HOUR || nowHour > NOTIFICATION_END_HOUR) {
+            return Result.success();
+        }
 
         NotificationContent content = SmartNotificationEngine.evaluate(context,stats, nowHour);
 

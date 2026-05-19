@@ -475,4 +475,42 @@
     <string name="schedule_time_selected_toast">Pengingat disetel untuk %1$02d:%2$02d besok</string>
     <string name="schedule_default_time_toast">Pengingat disetel untuk pukul 08.00 besok</string>
     <string name="join_with_10_million_users">Bergabunglah dengan 2 juta+ orang yang meningkatkan Qi mereka setiap hari</string>
+<string name="search_free_only">Hanya gratis</string>
+    <string name="search_seated_only">Hanya duduk</string>
+    <string name="search_results">Hasil Pencarian</string>
+    <string name="search_no_matching_programs">Tidak ada program yang cocok</string>
+
+    <string name="search_browse_by_goal">Telusuri berdasarkan Sasaran</string>
+    <string name="search_browse_by_duration">Telusuri berdasarkan Durasi</string>
+    <string name="search_browse_by_body_focus">Telusuri berdasarkan Fokus Tubuh</string>
+    <string name="search_browse_by_level">Telusuri berdasarkan Tingkat</string>
+
+    <string name="search_goal_stress_relief_mind">Menghilangkan Stres &amp; Pikiran</string>
+    <string name="search_goal_energy_vitality">Energi &amp; Vitalitas</string>
+    <string name="search_goal_health_healing">Kesehatan &amp; Penyembuhan</string>
+    <string name="search_goal_flexibility_mobility">Fleksibilitas &amp; Mobilitas</string>
+    <string name="search_goal_strength_power">Kekuatan &amp; Kekuatan</string>
+    <string name="search_goal_balance_focus">Keseimbangan &amp; Fokus</string>
+
+    <string name="search_duration_express_10">Ekspresikan 10 menit</string>
+    <string name="search_duration_quick_break_15_20">Istirahat Cepat 15–20 menit</string>
+    <string name="search_duration_standard_25_35">Standar 25–35 menit</string>
+    <string name="search_duration_deep_45_plus">Dalam 45+ menit</string>
+
+    <string name="search_body_full_body_care">Perawatan Seluruh Tubuh</string>
+    <string name="search_body_upper_body">Tubuh Bagian Atas</string>
+    <string name="search_body_spine_back">Tulang Belakang &amp; Punggung</string>
+    <string name="search_body_lower_body">Tubuh Bagian Bawah</string>
+    <string name="search_body_internal_mind">Internal &amp; Pikiran</string>
+    <string name="search_level_advanced_mastery">Penguasaan Tingkat Lanjut</string>
+    <string name="breast">Dada</string>
+    <string name="fast_workout">Latihan cepat</string>
+    <string name="less_than_7_minute">Kurang dari 7 menit</string>
+    <string name="longer_than_7_minutes">Lebih dari 7 menit</string>
+    <string name="search_7_min">7 menit</string>
+    <string name="search_routine">Rutin</string>
+    <string name="search_flexibility">Fleksibilitas</string>
+    <string name="search_face_yoga">Menghadapi yoga</string>
+    <string name="yoga">Yoga</string>
+    <string name="butt">Pantat</string>
 </resources>

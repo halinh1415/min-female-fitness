@@ -475,4 +475,42 @@
     <string name="schedule_time_selected_toast">내일 %1$02d:%2$02d에 알림이 설정되었습니다.</string>
     <string name="schedule_default_time_toast">내일 오전 8시로 알림 설정됨</string>
     <string name="join_with_10_million_users">2백만 명 이상의 사람들과 함께 매일 Qi를 향상하세요</string>
+<string name="search_free_only">무료만</string>
+    <string name="search_seated_only">착석만 가능</string>
+    <string name="search_results">검색결과</string>
+    <string name="search_no_matching_programs">일치하는 프로그램이 없습니다.</string>
+
+    <string name="search_browse_by_goal">목표별로 찾아보기</string>
+    <string name="search_browse_by_duration">기간별로 찾아보기</string>
+    <string name="search_browse_by_body_focus">바디 포커스로 찾아보기</string>
+    <string name="search_browse_by_level">레벨별로 찾아보기</string>
+
+    <string name="search_goal_stress_relief_mind">스트레스 해소 및 정신</string>
+    <string name="search_goal_energy_vitality">에너지 및 활력</string>
+    <string name="search_goal_health_healing">건강 및 힐링</string>
+    <string name="search_goal_flexibility_mobility">유연성 및 이동성</string>
+    <string name="search_goal_strength_power">힘과 힘</string>
+    <string name="search_goal_balance_focus">균형과 집중</string>
+
+    <string name="search_duration_express_10">급행 10분</string>
+    <string name="search_duration_quick_break_15_20">빠른 휴식 15~20분</string>
+    <string name="search_duration_standard_25_35">표준 25~35분</string>
+    <string name="search_duration_deep_45_plus">깊은 45분 이상</string>
+
+    <string name="search_body_full_body_care">전신 케어</string>
+    <string name="search_body_upper_body">상체</string>
+    <string name="search_body_spine_back">척추 &amp; 허리</string>
+    <string name="search_body_lower_body">하체</string>
+    <string name="search_body_internal_mind">내면과 마음</string>
+    <string name="search_level_advanced_mastery">고급 숙달</string>
+    <string name="breast">가슴</string>
+    <string name="fast_workout">빠른 운동</string>
+    <string name="less_than_7_minute">7분 미만</string>
+    <string name="longer_than_7_minutes">7분 이상</string>
+    <string name="search_7_min">7분</string>
+    <string name="search_routine">루틴</string>
+    <string name="search_flexibility">유연성</string>
+    <string name="search_face_yoga">페이스 요가</string>
+    <string name="yoga">요가</string>
+    <string name="butt">대상</string>
 </resources>

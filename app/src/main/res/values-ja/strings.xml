@@ -475,4 +475,42 @@
     <string name="schedule_time_selected_toast">明日の %1$02d:%2$02d にリマインダーを設定しました</string>
     <string name="schedule_default_time_toast">明日の午前 8 時にリマインダーを設定しました</string>
     <string name="join_with_10_million_users">200 万人以上の人々が毎日気を改善しています</string>
+<string name="search_free_only">無料のみ</string>
+    <string name="search_seated_only">着席のみ</string>
+    <string name="search_results">検索結果</string>
+    <string name="search_no_matching_programs">一致するプログラムがありません</string>
+
+    <string name="search_browse_by_goal">目標別に見る</string>
+    <string name="search_browse_by_duration">期間別に参照</string>
+    <string name="search_browse_by_body_focus">ボディフォーカスで見る</string>
+    <string name="search_browse_by_level">レベル別に参照</string>
+
+    <string name="search_goal_stress_relief_mind">ストレス解消と心</string>
+    <string name="search_goal_energy_vitality">エネルギーと活力</string>
+    <string name="search_goal_health_healing">健康と癒し</string>
+    <string name="search_goal_flexibility_mobility">柔軟性と機動性</string>
+    <string name="search_goal_strength_power">強さとパワー</string>
+    <string name="search_goal_balance_focus">バランスと集中力</string>
+
+    <string name="search_duration_express_10">急行 10分</string>
+    <string name="search_duration_quick_break_15_20">クイックブレイク 15 ～ 20 分</string>
+    <string name="search_duration_standard_25_35">標準 25 ～ 35 分</string>
+    <string name="search_duration_deep_45_plus">ディープ 45 分以上</string>
+
+    <string name="search_body_full_body_care">フルボディケア</string>
+    <string name="search_body_upper_body">上半身</string>
+    <string name="search_body_spine_back">背骨と背中</string>
+    <string name="search_body_lower_body">下半身</string>
+    <string name="search_body_internal_mind">内面と心</string>
+    <string name="search_level_advanced_mastery">上級マスタリー</string>
+    <string name="breast">胸</string>
+    <string name="fast_workout">素早いトレーニング</string>
+    <string name="less_than_7_minute">7分未満</string>
+    <string name="longer_than_7_minutes">7分以上</string>
+    <string name="search_7_min">7分</string>
+    <string name="search_routine">ルーティーン</string>
+    <string name="search_flexibility">柔軟性</string>
+    <string name="search_face_yoga">顔ヨガ</string>
+    <string name="yoga">ヨガ</string>
+    <string name="butt">お尻</string>
 </resources>

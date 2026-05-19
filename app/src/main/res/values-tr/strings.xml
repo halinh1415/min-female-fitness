@@ -475,4 +475,42 @@
     <string name="schedule_time_selected_toast">Hatırlatıcı yarın %1$02d:%2$02d için ayarlandı</string>
     <string name="schedule_default_time_toast">Hatırlatıcı yarın sabah 8:00\'e ayarlandı</string>
     <string name="join_with_10_million_users">Her gün Qi\'lerini geliştiren 2 milyondan fazla kişiye katılın</string>
+<string name="search_free_only">Yalnızca ücretsiz</string>
+    <string name="search_seated_only">Yalnızca oturmalı</string>
+    <string name="search_results">Arama Sonuçları</string>
+    <string name="search_no_matching_programs">Eşleşen program yok</string>
+
+    <string name="search_browse_by_goal">Hedefe Göre Göz Atın</string>
+    <string name="search_browse_by_duration">Süreye Göre Gözat</string>
+    <string name="search_browse_by_body_focus">Vücut Odağına Göre Göz Atın</string>
+    <string name="search_browse_by_level">Seviyeye Göre Gözat</string>
+
+    <string name="search_goal_stress_relief_mind">Stres Giderme ve Zihin</string>
+    <string name="search_goal_energy_vitality">Enerji ve Canlılık</string>
+    <string name="search_goal_health_healing">Sağlık ve Şifa</string>
+    <string name="search_goal_flexibility_mobility">Esneklik ve Hareketlilik</string>
+    <string name="search_goal_strength_power">Güç ve Güç</string>
+    <string name="search_goal_balance_focus">Denge ve Odaklanma</string>
+
+    <string name="search_duration_express_10">Ekspres 10 dk</string>
+    <string name="search_duration_quick_break_15_20">Hızlı Mola 15–20 dk</string>
+    <string name="search_duration_standard_25_35">Standart 25–35 dakika</string>
+    <string name="search_duration_deep_45_plus">Derin 45+ dk</string>
+
+    <string name="search_body_full_body_care">Tam Vücut Bakımı</string>
+    <string name="search_body_upper_body">Üst Gövde</string>
+    <string name="search_body_spine_back">Omurga ve Sırt</string>
+    <string name="search_body_lower_body">Alt Gövde</string>
+    <string name="search_body_internal_mind">İç ve Zihin</string>
+    <string name="search_level_advanced_mastery">İleri Ustalık</string>
+    <string name="breast">Göğüs</string>
+    <string name="fast_workout">Hızlı egzersiz</string>
+    <string name="less_than_7_minute">7 dakikadan az</string>
+    <string name="longer_than_7_minutes">7 dakikadan uzun</string>
+    <string name="search_7_min">7 dakika</string>
+    <string name="search_routine">Rutin</string>
+    <string name="search_flexibility">Esneklik</string>
+    <string name="search_face_yoga">Yüz yogası</string>
+    <string name="yoga">Yoga</string>
+    <string name="butt">popo</string>
 </resources>

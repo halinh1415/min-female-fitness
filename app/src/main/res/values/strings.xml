@@ -489,4 +489,42 @@
     <string name="schedule_time_selected_toast" >Reminder set for %1$02d:%2$02d tomorrow</string>
     <string name="schedule_default_time_toast" >Reminder set for 8:00 AM tomorrow</string>
     <string name="join_with_10_million_users">Join 2M+ people improving their Qi daily</string>
+    <string name="search_free_only">Free only</string>
+    <string name="search_seated_only">Seated only</string>
+    <string name="search_results">Search Results</string>
+    <string name="search_no_matching_programs">No matching programs</string>
+
+    <string name="search_browse_by_goal">Browse by Goal</string>
+    <string name="search_browse_by_duration">Browse by Duration</string>
+    <string name="search_browse_by_body_focus">Browse by Body Focus</string>
+    <string name="search_browse_by_level">Browse by Level</string>
+
+    <string name="search_goal_stress_relief_mind">Stress Relief &amp; Mind</string>
+    <string name="search_goal_energy_vitality">Energy &amp; Vitality</string>
+    <string name="search_goal_health_healing">Health &amp; Healing</string>
+    <string name="search_goal_flexibility_mobility">Flexibility &amp; Mobility</string>
+    <string name="search_goal_strength_power">Strength &amp; Power</string>
+    <string name="search_goal_balance_focus">Balance &amp; Focus</string>
+
+    <string name="search_duration_express_10">Express 10 min</string>
+    <string name="search_duration_quick_break_15_20">Quick Break 15–20 min</string>
+    <string name="search_duration_standard_25_35">Standard 25–35 min</string>
+    <string name="search_duration_deep_45_plus">Deep 45+ min</string>
+
+    <string name="search_body_full_body_care">Full Body Care</string>
+    <string name="search_body_upper_body">Upper Body</string>
+    <string name="search_body_spine_back">Spine &amp; Back</string>
+    <string name="search_body_lower_body">Lower Body</string>
+    <string name="search_body_internal_mind">Internal &amp; Mind</string>
+    <string name="search_level_advanced_mastery">Advanced Mastery</string>
+    <string name="breast">Breast</string>
+    <string name="fast_workout">Fast workout</string>
+    <string name="less_than_7_minute">Less than 7 minutes</string>
+    <string name="longer_than_7_minutes">Longer than 7 minutes</string>
+    <string name="search_7_min">7 min</string>
+    <string name="search_routine">Routine</string>
+    <string name="search_flexibility">Flexibility</string>
+    <string name="search_face_yoga">Face yoga</string>
+    <string name="yoga">Yoga</string>
+    <string name="butt">Butt</string>
 </resources>

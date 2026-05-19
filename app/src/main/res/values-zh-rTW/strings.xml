@@ -230,9 +230,7 @@
     <string name="txt_reminder_content_3">揮灑汗水，換來全新的自己。</string>
     <string name="txt_reminder_content_4">明確目標，感覺很棒。</string>
     <string name="txt_reminder_content_5">粉碎它，保持健康！</string>
-    <string name="txt_take_a_rest_the_next">休息一下！下一個</string>
     <string name="wp_seconds">秒</string>
-    <string name="txt_ready_to_go_the_next">準備出發！下一個</string>
     <string name="wp_start">開始</string>
     <string name="wp_v_half_time">一半時間</string>
     <string name="explore_tag_new">新</string>
@@ -477,4 +475,42 @@
     <string name="schedule_time_selected_toast">提醒設定為明天 %1$02d:%2$02d</string>
     <string name="schedule_default_time_toast">提醒設定為明天上午 8:00</string>
     <string name="join_with_10_million_users">加入 200 萬以上的人的行列，每天改善氣質</string>
+<string name="search_free_only">僅免費</string>
+    <string name="search_seated_only">僅限座位</string>
+    <string name="search_results">搜尋結果</string>
+    <string name="search_no_matching_programs">沒有匹配的程序</string>
+
+    <string name="search_browse_by_goal">按目標瀏覽</string>
+    <string name="search_browse_by_duration">按時長瀏覽</string>
+    <string name="search_browse_by_body_focus">按身體焦點瀏覽</string>
+    <string name="search_browse_by_level">按等級瀏覽</string>
+
+    <string name="search_goal_stress_relief_mind">緩解壓力與心靈</string>
+    <string name="search_goal_energy_vitality">能量與活力</string>
+    <string name="search_goal_health_healing">健康與治療</string>
+    <string name="search_goal_flexibility_mobility">靈活性和行動性</string>
+    <string name="search_goal_strength_power">力量與力量</string>
+    <string name="search_goal_balance_focus">平衡與專注</string>
+
+    <string name="search_duration_express_10">快車10分鐘</string>
+    <string name="search_duration_quick_break_15_20">快速休息 15–20 分鐘</string>
+    <string name="search_duration_standard_25_35">標準 25–35 分鐘</string>
+    <string name="search_duration_deep_45_plus">深度 45 分鐘以上</string>
+
+    <string name="search_body_full_body_care">全身護理</string>
+    <string name="search_body_upper_body">上半身</string>
+    <string name="search_body_spine_back">脊椎和背部</string>
+    <string name="search_body_lower_body">下半身</string>
+    <string name="search_body_internal_mind">內在與心靈</string>
+    <string name="search_level_advanced_mastery">進階掌握</string>
+    <string name="breast">胸部</string>
+    <string name="fast_workout">快速鍛鍊</string>
+    <string name="less_than_7_minute">不到7分鐘</string>
+    <string name="longer_than_7_minutes">超過7分鐘</string>
+    <string name="search_7_min">7分鐘</string>
+    <string name="search_routine">常規</string>
+    <string name="search_flexibility">靈活性</string>
+    <string name="search_face_yoga">臉部瑜伽</string>
+    <string name="yoga">瑜珈</string>
+    <string name="butt">屁股</string>
 </resources>
