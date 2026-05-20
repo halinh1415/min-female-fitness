@@ -224,8 +224,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
         var isReport = intent.getBooleanExtra("IS_REPORT", false);
         // Passing each menu ID as a set of Ids because each
         if (isReport) {
-            navController.popBackStack(R.id.nav_home, true);
-
+            navController.popBackStack(R.id.nav_home, false);
             navController.navigate(R.id.nav_report)
         }
     }

@@ -628,7 +628,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             }
             myPreference.setSaveProgress(mProgramObject.getId(), mDayIndex, 0);
             Intent homeIntent = new Intent(DoWorkoutActivity.this, YogaActivity.class);
-            homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             homeIntent.putExtra("IS_REPORT", true);
             startActivity(homeIntent);
 //            Intent historyIntent = new Intent(DoWorkoutActivity.this, ReportActivity.class);
