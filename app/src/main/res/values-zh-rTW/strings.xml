@@ -440,7 +440,7 @@
     <string name="up_weight_trend">+%1$.1f %2$s 在 %3$d 天內</string>
     <string name="down_weight_trend">-%1$.1f %2$s %3$d 天內</string>
     <string name="up_calories_trend">⬆ %2$d 天 +%1$d 千卡 (%3$.1f%%)</string>
-    <string name="down_calories_trend">⬇ -%1$d 千卡，%2$d 天 (%.1f%%)</string>
+    <string name="down_calories_trend">⬇ -%1$d 千卡，%2$d 天 (%3$.1f%%)</string>
     <string name="for_you_to_day">為了今天的你</string>
 
     <string name="auto_next">自動下一個</string>

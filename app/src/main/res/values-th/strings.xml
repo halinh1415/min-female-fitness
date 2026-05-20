@@ -440,7 +440,7 @@
     <string name="up_weight_trend">+%1$.1f %2$s ใน %3$d วัน</string>
     <string name="down_weight_trend">-%1$.1f %2$s ใน %3$d วัน</string>
     <string name="up_calories_trend">⬆ +%1$d กิโลแคลอรี ในช่วง %2$d วัน (%3$.1f%%)</string>
-    <string name="down_calories_trend">⬇ -%1$d กิโลแคลอรี ในช่วง %2$d วัน (%.1f%%)</string>
+    <string name="down_calories_trend">⬇ -%1$d กิโลแคลอรี ในช่วง %2$d วัน (%3$.1f%%)</string>
     <string name="for_you_to_day">สำหรับคุณจนถึงทุกวันนี้</string>
 
     <string name="auto_next">อัตโนมัติต่อไป</string>

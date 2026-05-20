@@ -440,7 +440,7 @@
     <string name="up_weight_trend">+%1$.1f %2$s w %3$d dni</string>
     <string name="down_weight_trend">-%1$.1f %2$s w %3$d dni</string>
     <string name="up_calories_trend">⬆ +%1$d kcal w ciągu %2$d dni (%3$.1f%%)</string>
-    <string name="down_calories_trend">⬇ -%1$d kcal w ciągu %2$d dni (%.1f%%)</string>
+    <string name="down_calories_trend">⬇ -%1$d kcal w ciągu %2$d dni (%3$.1f%%)</string>
     <string name="for_you_to_day">For you to day</string>
 
     <string name="auto_next">Auto next</string>

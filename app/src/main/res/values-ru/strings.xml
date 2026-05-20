@@ -440,7 +440,7 @@
     <string name="up_weight_trend">+%1$.1f %2$s за %3$d дней</string>
     <string name="down_weight_trend">-%1$.1f %2$s через %3$d дней</string>
     <string name="up_calories_trend">⬆ +%1$d ккал за %2$d дней (%3$.1f%%)</string>
-    <string name="down_calories_trend">⬇ -%1$d ккал за %2$d дней (%.1f%%)</string>
+    <string name="down_calories_trend">⬇ -%1$d ккал за %2$d дней (%3$.1f%%)</string>
     <string name="for_you_to_day">Для тебя сегодня</string>
 
     <string name="auto_next">Авто следующий</string>

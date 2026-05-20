@@ -380,7 +380,7 @@
     <string name="up_weight_trend">+%1$.1f %2$s trong %3$d ngày</string>
     <string name="down_weight_trend">-%1$.1f %2$s trong %3$d ngày</string>
     <string name="up_calories_trend">⬆ +%1$d kcal trong %2$d ngày (%3$.1f%%)</string>
-    <string name="down_calories_trend">⬇ -%1$d kcal trong %2$d ngày (%.1f%%)</string>
+    <string name="down_calories_trend">⬇ -%1$d kcal trong %2$d ngày (%3$.1f%%)</string>
     <string name="stable_over_past_7d">Ổn định trong 7 ngày qua</string>
     <string name="stable_over_past_30d">Ổn định trong 30 ngày qua</string>
     <string name="stable_over_past_90d">Ổn định trong 90 ngày qua</string>

@@ -440,7 +440,7 @@
     <string name="up_weight_trend">+%1$.1f %2$s, %3$d gün içinde</string>
     <string name="down_weight_trend">-%1$.1f %2$s, %3$d gün içinde</string>
     <string name="up_calories_trend">⬆ %2$d günde (%3$.1f%%) +%1$d kcal</string>
-    <string name="down_calories_trend">⬇ -%2$d günde (%.1f%%) -%1$d kcal</string>
+    <string name="down_calories_trend">⬇ -%2$d günde (%3$.1f%%) -%1$d kcal</string>
     <string name="for_you_to_day">Senin için bu güne</string>
 
     <string name="auto_next">Otomatik sonraki</string>

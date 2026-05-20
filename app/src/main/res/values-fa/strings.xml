@@ -440,7 +440,7 @@
     <string name="up_weight_trend">+%1$.1f %2$s در %3$d روز</string>
     <string name="down_weight_trend">-%1$.1f %2$s در %3$d روز</string>
     <string name="up_calories_trend">⬆ +%1$d کیلو کالری در طول %2$d روز (%3$.1f%%)</string>
-    <string name="down_calories_trend">⬇ -%1$d کیلوکالری در طول %2$d روز (%.1f%%)</string>
+    <string name="down_calories_trend">⬇ -%1$d کیلوکالری در طول %2$d روز (%3$.1f%%)</string>
     <string name="for_you_to_day">برای شما امروز</string>
 
     <string name="auto_next">بعدی خودکار</string>

@@ -440,7 +440,7 @@
     <string name="up_weight_trend">+%1$.1f %2$s في %3$d يوم</string>
     <string name="down_weight_trend">-%1$.1f %2$s في %3$d يوم</string>
     <string name="up_calories_trend">⬆ +%1$d سعر حراري خلال %2$d يوم (%3$.1f%%)</string>
-    <string name="down_calories_trend">⬇ -%1$d سعر حراري خلال %2$d يوم (%.1f%%)</string>
+    <string name="down_calories_trend">⬇ -%1$d سعر حراري خلال %2$d يوم (%3$.1f%%)</string>
     <string name="for_you_to_day">بالنسبة لك اليوم</string>
 
     <string name="auto_next">السيارات التالية</string>
