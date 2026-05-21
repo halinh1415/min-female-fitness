@@ -403,7 +403,7 @@ public class WeekGoalNewFragment extends Fragment implements IDayClickListener, 
     @Override
     public void onProgramClick(ProgramObject programObject) {
         if (programObject.getType() == 1) {
-            Intent intent = new Intent(getActivity(), ProgramActivity.class);
+            Intent intent = new Intent(getActivity(), ChallengeActivity.class);
             Bundle bundle = new Bundle();
             bundle.putInt("PROGRAM_ID", programObject.getId());
             intent.putExtras(bundle);
