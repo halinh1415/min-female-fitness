@@ -114,6 +114,9 @@ public class WeekGoalNewFragment extends Fragment implements IDayClickListener, 
     }
 
     void goSuggestion() {
+        if (currentSuggestedProgram == null){
+            return;
+        }
         if (currentSuggestedProgram.getType() == 1) {
             Intent intent = new Intent(getActivity(), ChallengeActivity.class);
             Bundle bundle = new Bundle();
