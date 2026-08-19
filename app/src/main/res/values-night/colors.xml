@@ -6,6 +6,7 @@
     <color name="colorWorkout" tools:ignore="MissingDefaultResource">#fc517f</color>
     <color name="colorWorkoutTemp">#fc517f</color>
     <color name="colorBackground">#1C1C1C</color>
+    <color name="clr_light_primary">#B4F8B9CF</color>
     <color name="colorDarkIcon">#FCFFFFFF</color>
     <color name="color_00AE8A">#00ae8a</color>
     <color name="color_222222">#222222</color>

@@ -16,6 +16,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.health.connect.client.HealthConnectClient
@@ -38,6 +39,8 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.AuthUI.IdpConfig.GoogleBuilder
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
@@ -94,7 +97,8 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
         super.onCreate(savedInstanceState)
         binding = ActivityYogaBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
-
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -104,6 +108,8 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
 //            R.id.nav_diet_fragment,
 //            R.id.nav_setting
 //        ).build()
+        val navigationView = findViewById<BottomNavigationView>(R.id.nav_view)
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home,
@@ -115,7 +121,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
         )
          navController = findNavController(this, R.id.nav_host_fragment)
         setupActionBarWithNavController(this, navController, appBarConfiguration)
-        setupWithNavController(binding!!.navView, navController)
+        setupWithNavController(navigationView, navController)
         initView()
         val file = File(filesDir, "music")
         if (!file.exists()) {

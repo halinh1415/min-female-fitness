@@ -20,6 +20,7 @@ import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams;
 import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.PendingPurchasesParams;
 import com.android.billingclient.api.ProductDetails;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.PurchasesResponseListener;
@@ -35,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 
 import mint.woman.female.workout.admodule.AppOpenManager;
+import mint.woman.female.workout.utils.MyPreference;
 import mint.woman.female.workout.utils.RemoteConfigKeys;
 
 public class PremiumViewModel extends AndroidViewModel implements PurchasesUpdatedListener,
@@ -55,20 +57,23 @@ public class PremiumViewModel extends AndroidViewModel implements PurchasesUpdat
     public MutableLiveData<Boolean> isPremium = new MutableLiveData<>();
     public MutableLiveData<Boolean> isRemoveAd = new MutableLiveData<>();
     public MutableLiveData<Integer> selected = new MutableLiveData<>();
+    MyPreference myDB;
 
 
     public PremiumViewModel(Application application) {
         super(application);
         billingClient = BillingClient.newBuilder(application)
                 .setListener(this)
-                .enablePendingPurchases() // Not used for subscriptions.
+                .enablePendingPurchases(PendingPurchasesParams.newBuilder().enableOneTimeProducts().build())
+               // .enableAutoServiceReconnection() // Add this line to enable reconne// Not used for subscriptions, kept for compatibility.
                 .build();
         if (!billingClient.isReady()) {
 
             billingClient.startConnection(this);
         }
+        myDB = new MyPreference(application);
         selected.setValue(1);
-        isPremium.setValue(false);
+        isPremium.setValue(myDB.isPremiumMember());
     }
 
     @Override
@@ -220,11 +225,11 @@ public class PremiumViewModel extends AndroidViewModel implements PurchasesUpdat
         Map<String, ProductDetails> newProductDetails = new HashMap<>();
         billingClient.queryProductDetailsAsync(
                 queryProductDetailsParams,
-                (billingResult, productDetailsList) -> {
-                    if (billingResult.getResponseCode() == OK){
-                        for (ProductDetails productDetails: productDetailsList){
-                            Log.d(TAG,"product title:"+productDetails.getTitle());
-                            newProductDetails.put(productDetails.getProductId(),productDetails);
+                (billingResult, queryProductDetailsResult) -> {
+                    if (billingResult.getResponseCode() == OK) {
+                        for (ProductDetails productDetails : queryProductDetailsResult.getProductDetailsList()) {
+                            //Log.d(TAG,"product title:"+productDetails.getTitle());
+                            newProductDetails.put(productDetails.getProductId(), productDetails);
                         }
                         productSkuDetailsMap.postValue(newProductDetails);
                     }
@@ -244,12 +249,12 @@ public class PremiumViewModel extends AndroidViewModel implements PurchasesUpdat
         Map<String, ProductDetails> newProductDetailsInApp = new HashMap<>();
         billingClient.queryProductDetailsAsync(
                 queryProductDetailsParamsLifeTime,
-                (billingResult, productDetailsList) -> {
-                    if (billingResult.getResponseCode() == OK){
-                        for (ProductDetails productDetails: productDetailsList){
-                            Log.d(TAG,"product title:"+productDetails.getTitle());
-                            Log.d(TAG,"product inApp price:"+productDetails.getOneTimePurchaseOfferDetails().getFormattedPrice());
-                            newProductDetailsInApp.put(productDetails.getProductId(),productDetails);
+                (billingResult, queryProductDetailsResult) -> {
+                    if (billingResult.getResponseCode() == OK) {
+                        for (ProductDetails productDetails : queryProductDetailsResult.getProductDetailsList()) {
+//                            Log.d(TAG,"product title:"+productDetails.getTitle());
+//                            Log.d(TAG,"product inApp price:"+productDetails.getOneTimePurchaseOfferDetails().getFormattedPrice());
+                            newProductDetailsInApp.put(productDetails.getProductId(), productDetails);
                         }
                         productDetailInApps.postValue(newProductDetailsInApp);
                     }

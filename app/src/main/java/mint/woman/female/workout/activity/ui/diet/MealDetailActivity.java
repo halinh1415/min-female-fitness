@@ -14,9 +14,14 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,8 +56,15 @@ public class MealDetailActivity extends AppCompatActivity implements RadioButton
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_meal_detail);
+
         initView();
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
         requestNewAdBanner();
     }
 
@@ -103,8 +115,8 @@ public class MealDetailActivity extends AppCompatActivity implements RadioButton
     }
 
     private void initView() {
-        Bundle bundle = getIntent().getExtras();
 
+        Bundle bundle = getIntent().getExtras();
         mDay = bundle.getInt("DAY");
         mJsonHelper = FitnessApplication.getApplication().mJsonHelper;
         mDietObjects = mJsonHelper.getListDiet();

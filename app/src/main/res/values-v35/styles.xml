@@ -6,6 +6,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="android:statusBarColor">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme.FullScreen2">
@@ -23,13 +25,15 @@
     </style>
 
     <style name="app_theme" parent="@style/base_theme">
-        <item name="android:windowBackground">@color/White</item>
+<!--        <item name="android:windowBackground">@color/White</item>-->
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowAnimationStyle">@style/animfade</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorPrimary">@color/colorAccent</item>
         <item name="colorPrimaryDark">@color/White</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
     </style>
 
     <style name="AppTheme.FullScreen">

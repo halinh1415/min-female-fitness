@@ -10,6 +10,7 @@ public class RemoteConfigKeys {
     public static final String BACKGROUND_MUSIC = "background_music";
     public static final String ENABLE_LOCK_WIDGET = "enable_lock";
     public static final String ENABLE_LANGUAGE_NEXT = "enable_language_next";
+    public static final String NATIVE_LAYOUT_STYLE = "native_layout_style";
     public static String NATIVE_LANGUAGE = "native_language";
     public static String NATIVE_SETUP = "native_setup";
     public static String NATIVE_ONBOARD = "native_onboard";

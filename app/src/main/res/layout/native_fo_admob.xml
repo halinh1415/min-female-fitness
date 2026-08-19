@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.gms.ads.nativead.NativeAdView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_radius_10">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.gms.ads.nativead.MediaView
+            android:id="@+id/ad_media"
+            android:layout_width="@dimen/_140sdp"
+            android:layout_height="@dimen/_120sdp"
+            android:layout_margin="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/_12sdp"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/_4sdp"
+            android:paddingTop="@dimen/_4sdp"
+            android:paddingBottom="@dimen/_4sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ad_media"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtAd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/bg_ad_label"
+                    android:gravity="center"
+                    android:paddingHorizontal="6dp"
+                    android:paddingVertical="2dp"
+                    android:paddingLeft="6dp"
+                    android:paddingTop="2dp"
+                    android:paddingRight="6dp"
+                    android:paddingBottom="2dp"
+                    android:text="Ad"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/ad_headline"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:textColor="@color/black_50"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ad_body"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:lineSpacingExtra="4dp"
+                android:lines="2"
+                android:maxLines="2"
+                android:textColor="@color/gray_600"
+                android:textSize="10sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/ad_call_to_action"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_native_light_green_ad_button"
+                android:paddingHorizontal="@dimen/_12sdp"
+                android:paddingLeft="@dimen/_12sdp"
+                android:paddingRight="@dimen/_12sdp"
+                android:stateListAnimator="@null"
+                android:text="Open"
+                android:textAllCaps="false"
+                android:textColor="@color/DeepPink"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.gms.ads.nativead.NativeAdView>

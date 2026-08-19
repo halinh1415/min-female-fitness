@@ -477,17 +477,17 @@
     <string name="plan_app_rating">No.1 Rated Women Workout App</string>
     <string name="schedule">Schedule</string>
 
-    <string name="notification_dialog_title" >Daily Practice, Small Progress</string>
-    <string name="notification_dialog_description" >Get gentle reminders so you do not miss your Women Workout sessions.</string>
-    <string name="notification_dialog_enable" >Enable Reminders</string>
-    <string name="notification_dialog_later" >Maybe Later</string>
+    <string name="notification_dialog_title">Daily Practice, Small Progress</string>
+    <string name="notification_dialog_description">Get gentle reminders so you do not miss your Women Workout sessions.</string>
+    <string name="notification_dialog_enable">Enable Reminders</string>
+    <string name="notification_dialog_later">Maybe Later</string>
 
-    <string name="schedule_reminder_title" >Practice Reminder</string>
-    <string name="schedule_reminder_message" >Added \"%1$s\" (%2$d min).\nTomorrow, keep your %3$d-day streak going.</string>
+    <string name="schedule_reminder_title">Practice Reminder</string>
+    <string name="schedule_reminder_message">Added \"%1$s\" (%2$d min).\nTomorrow, keep your %3$d-day streak going.</string>
     <string name="schedule_pick_time">Choose Time</string>
-    <string name="schedule_default_time_button" >Use Default (8:00 AM)</string>
-    <string name="schedule_time_selected_toast" >Reminder set for %1$02d:%2$02d tomorrow</string>
-    <string name="schedule_default_time_toast" >Reminder set for 8:00 AM tomorrow</string>
+    <string name="schedule_default_time_button">Use Default (8:00 AM)</string>
+    <string name="schedule_time_selected_toast">Reminder set for %1$02d:%2$02d tomorrow</string>
+    <string name="schedule_default_time_toast">Reminder set for 8:00 AM tomorrow</string>
     <string name="join_with_10_million_users">Join 2M+ people improving their Qi daily</string>
     <string name="search_free_only">Free only</string>
     <string name="search_seated_only">Seated only</string>

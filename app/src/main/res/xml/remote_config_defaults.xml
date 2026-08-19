@@ -57,6 +57,10 @@
     <value>false</value>
   </entry>
   <entry>
+    <key>native_layout_style</key>
+    <value>small_video</value>
+  </entry>
+  <entry>
     <key>enable_voice</key>
     <value>true</value>
   </entry>

@@ -6,7 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -27,25 +28,27 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
     <style name="app_theme" parent="@style/base_theme">
-        <item name="android:windowBackground">@color/White</item>
+<!--        <item name="android:windowBackground">@color/White</item>-->
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowAnimationStyle">@style/animfade</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorPrimary">@color/colorAccent</item>
         <item name="colorPrimaryDark">@color/White</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
     </style>
 
     <style name="app_theme_other" parent="@style/base_theme">
-        <item name="android:windowBackground">@color/White</item>
+<!--        <item name="android:windowBackground">@color/White</item>-->
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowAnimationStyle">@style/animfade</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorPrimary">@color/colorAccent</item>
         <item name="colorPrimaryDark">@color/colorAccent</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
     </style>
 
     <style name="base_theme" parent="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="android:windowBackground">@color/no_color</item>
+<!--        <item name="android:windowBackground">@color/no_color</item>-->
         <item name="alertDialogTheme">@style/alert_dialog_theme</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -75,9 +78,7 @@
     </style>
 
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" >
-        <item name="android:windowBackground">@color/notesBackgroundColor</item>
-    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Dark" />
 

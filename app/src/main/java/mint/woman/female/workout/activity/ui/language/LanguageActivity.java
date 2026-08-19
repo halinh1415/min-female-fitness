@@ -1,6 +1,9 @@
 package mint.woman.female.workout.activity.ui.language;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -57,7 +60,13 @@ public class LanguageActivity extends AppCompatActivity implements IChangeLangua
         if (myPreference.isShowAds()  && myPreference.getOK() && FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.NATIVE_LANGUAGE)) {
             FitnessApplication.getApplication().getStorageCommon().nativeAdLanguage.observe(LanguageActivity.this, (nativeAd) -> {
                 if (nativeAd != null) {
-                    MaticAd.getInstance().populateNativeAdView(LanguageActivity.this, nativeAd,R.layout.native_ad_language_layout, binding.layoutAdNative, binding.loading.shimmerContainerNative);
+                    if (FirebaseRemoteConfig.getInstance().getString(RemoteConfigKeys.NATIVE_LAYOUT_STYLE).equals("large_video") ){
+                        MaticAd.getInstance().populateNativeAdView(LanguageActivity.this, nativeAd, R.layout.native_ad_language_layout, binding.layoutAdNative,binding.loading.shimmerContainerNative);
+
+                    }else{
+                        MaticAd.getInstance().populateNativeAdView(LanguageActivity.this, nativeAd, R.layout.native_fo_admob, binding.layoutAdNative,binding.loading.shimmerContainerNative);
+                    }
+                 //  MaticAd.getInstance().populateNativeAdView(LanguageActivity.this, nativeAd,R.layout.native_ad_language_layout, binding.layoutAdNative, binding.loading.shimmerContainerNative);
                 } else {
                     binding.layoutAdNative.setVisibility(View.GONE);
                 }
@@ -82,19 +91,21 @@ public class LanguageActivity extends AppCompatActivity implements IChangeLangua
     }
 
     private void hideSystemUI() {
-        // Enables regular immersive mode.
-        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
-        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-        View decorView = getWindow().getDecorView();
+        // Lấy WindowInsetsControllerCompat để điều khiển System UI
+        WindowInsetsControllerCompat windowInsetsController =
+                WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
 
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE
-                        // Set the content to appear under the system bars so that the
-                        // content doesn't resize when the system bars hide and show.
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                // Hide the nav bar and status bar4
-        );
+        if (windowInsetsController != null) {
+            // Tương đương với cờ SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+            // (Tự động ẩn lại thanh trạng thái/điều hướng sau khi người dùng vuốt lên)
+            windowInsetsController.setSystemBarsBehavior(
+                    WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            );
+
+            // Ẩn thanh điều hướng (Navigation Bar) và thanh trạng thái (Status Bar)
+            // Tương đương với SYSTEM_UI_FLAG_HIDE_NAVIGATION và SYSTEM_UI_FLAG_FULLSCREEN
+            windowInsetsController.hide(WindowInsetsCompat.Type.systemBars());
+        }
     }
 
     private void showSystemUI() {
