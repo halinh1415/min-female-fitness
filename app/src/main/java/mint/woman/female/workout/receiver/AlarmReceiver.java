@@ -211,31 +211,37 @@ public class AlarmReceiver extends BroadcastReceiver {
     @SuppressLint({"WakelockTimeout", "InvalidWakeLockTag"})
     @Override
     public void onReceive(Context context, Intent intent) {
-        PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-
-        WakeLock wl = null;
-        if (powerManager != null) {
-            wl = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "muay_thai_workout");
-        }
-        if (wl != null) {
-            wl.acquire(1000);
-        }
-        showNotification(context, "");
-        Bundle extras = intent.getExtras();
-        if (extras != null && extras.getBoolean(ONE_TIME)) {
-            Log.d(TAG, "onReceive one time notification!!!");
-            Data myData = new Data.Builder()
-                    .putInt("REMINDER_ID", extras.getInt(ID_ONE_TIME))
-                    .build();
-            OneTimeWorkRequest oneTimeWorkRequest = new OneTimeWorkRequest.Builder(ReminderWorker.class).setInputData(myData).build();
-            WorkManager.getInstance(context).enqueue(oneTimeWorkRequest);
-        } else {
-            Log.d(TAG, "onReceive repeat notification!!!");
-        }
-
-        if (wl != null) {
-            wl.release();
-        }
+        // Dựng thông báo (decode bitmap) và gọi WorkManager ngoài main thread: alarm thường đánh
+        // thức process đang chết, main thread còn bận Application.onCreate.
+        final PendingResult pendingResult = goAsync();
+        final Context appContext = context.getApplicationContext();
+        final Bundle extras = intent.getExtras();
+        ReceiverExecutor.run(() -> {
+            PowerManager powerManager = (PowerManager) appContext.getSystemService(Context.POWER_SERVICE);
+            WakeLock wl = null;
+            if (powerManager != null) {
+                wl = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "muay_thai_workout");
+                wl.acquire(10_000);
+            }
+            try {
+                showNotification(appContext, "");
+                if (extras != null && extras.getBoolean(ONE_TIME)) {
+                    Log.d(TAG, "onReceive one time notification!!!");
+                    Data myData = new Data.Builder()
+                            .putInt("REMINDER_ID", extras.getInt(ID_ONE_TIME))
+                            .build();
+                    OneTimeWorkRequest oneTimeWorkRequest = new OneTimeWorkRequest.Builder(ReminderWorker.class).setInputData(myData).build();
+                    WorkManager.getInstance(appContext).enqueue(oneTimeWorkRequest);
+                } else {
+                    Log.d(TAG, "onReceive repeat notification!!!");
+                }
+            } finally {
+                if (wl != null && wl.isHeld()) {
+                    wl.release();
+                }
+                pendingResult.finish();
+            }
+        });
     }
 
     public void showNotification(Context context, String title) {

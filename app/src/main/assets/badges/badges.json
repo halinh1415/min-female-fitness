@@ -1,0 +1,422 @@
+{
+  "version": 1,
+
+  "_help": {
+    "note": "File goc: dinh nghia cau truc huy hieu (metric, target, tier, order) VA ban tieng Anh. Sua o day de them / bot / doi huy hieu.",
+    "localization": "Ban dich nam o badges-<ngon-ngu>.json cung thu muc. File dich CHI chua id + title/description/hint - khong lap lai metric/target/tier. Muc nao thieu trong ban dich se tu dong dung tieng Anh.",
+    "icon": "KHONG CAN DIEN. Cu bo file anh vao assets/badges/icons/ dat ten theo id (vi du ic_first_workout.webp hoac first_workout.png) la app tu nhan. Khong co file -> app ve huy hieu theo tier + glyph.",
+    "supported_metrics": {
+      "total_sessions": "Tong so buoi tap da hoan thanh",
+      "total_days": "So ngay khac nhau co tap",
+      "total_minutes": "Tong so phut da tap",
+      "total_calories": "Tong kcal da dot",
+      "current_streak": "Chuoi ngay tap lien tiep hien tai",
+      "best_streak": "Chuoi ngay dai nhat tu truoc toi nay",
+      "dawn_sessions": "So buoi bat dau truoc 08:00",
+      "evening_sessions": "So buoi bat dau tu 18:00",
+      "weekend_sessions": "So buoi vao Thu 7 / Chu nhat",
+      "long_sessions": "So buoi dai tu 20 phut tro len",
+      "single_day_minutes": "So phut nhieu nhat trong mot ngay",
+      "distinct_programs": "So chuong trinh khac nhau da tap",
+      "active_weeks": "So tuan khac nhau co tap",
+      "active_months": "So thang khac nhau co tap"
+    },
+    "supported_tiers": ["bronze", "silver", "gold", "jade"],
+    "supported_glyphs": ["root", "bamboo", "sun", "moon", "bagua", "path"]
+  },
+
+  "categories": [
+    {
+      "id": "beginnings",
+      "title": "First Steps",
+      "subtitle": "Every journey starts with one workout",
+      "order": 1
+    },
+    {
+      "id": "consistency",
+      "title": "Consistency",
+      "subtitle": "Small daily efforts add up to big results",
+      "order": 2
+    },
+    {
+      "id": "rhythm",
+      "title": "Time of Day",
+      "subtitle": "Fit workouts into your day, your way",
+      "order": 3
+    },
+    {
+      "id": "endurance",
+      "title": "Endurance",
+      "subtitle": "Minutes add up to real progress",
+      "order": 4
+    },
+    {
+      "id": "variety",
+      "title": "Variety",
+      "subtitle": "Mix it up and challenge your body",
+      "order": 5
+    },
+    {
+      "id": "journey",
+      "title": "Long-Term Progress",
+      "subtitle": "Measured in weeks and months, not days",
+      "order": 6
+    }
+  ],
+
+  "badges": [
+    {
+      "id": "first_workout",
+      "category": "beginnings",
+      "title": "First Workout",
+      "description": "Complete your very first workout.",
+      "hint": "Finish any workout to start your journey.",
+      "metric": "total_sessions",
+      "target": 1,
+      "tier": "bronze",
+      "glyph": "root",
+      "order": 1
+    },
+    {
+      "id": "ten_workouts",
+      "category": "beginnings",
+      "title": "Getting Into It",
+      "description": "Complete 10 workouts.",
+      "hint": "Momentum builds with repetition.",
+      "metric": "total_sessions",
+      "target": 10,
+      "tier": "bronze",
+      "glyph": "root",
+      "order": 2
+    },
+    {
+      "id": "fifty_workouts",
+      "category": "beginnings",
+      "title": "Fifty Strong",
+      "description": "Complete 50 workouts.",
+      "hint": "Fifty sessions in, and still going.",
+      "metric": "total_sessions",
+      "target": 50,
+      "tier": "silver",
+      "glyph": "root",
+      "order": 3
+    },
+    {
+      "id": "hundred_workouts",
+      "category": "beginnings",
+      "title": "Century Club",
+      "description": "Complete 100 workouts.",
+      "hint": "Triple digits - a real habit now.",
+      "metric": "total_sessions",
+      "target": 100,
+      "tier": "gold",
+      "glyph": "root",
+      "order": 4
+    },
+    {
+      "id": "three_hundred_workouts",
+      "category": "beginnings",
+      "title": "Unstoppable",
+      "description": "Complete 300 workouts.",
+      "hint": "Few make it this far. You did.",
+      "metric": "total_sessions",
+      "target": 300,
+      "tier": "jade",
+      "glyph": "root",
+      "order": 5
+    },
+
+    {
+      "id": "three_day_streak",
+      "category": "consistency",
+      "title": "Three in a Row",
+      "description": "Work out 3 days in a row.",
+      "hint": "The first streak is the hardest to start.",
+      "metric": "current_streak",
+      "target": 3,
+      "tier": "bronze",
+      "glyph": "bamboo",
+      "order": 1
+    },
+    {
+      "id": "seven_day_streak",
+      "category": "consistency",
+      "title": "Full Week",
+      "description": "Work out 7 days in a row.",
+      "hint": "A whole week without missing a day.",
+      "metric": "current_streak",
+      "target": 7,
+      "tier": "silver",
+      "glyph": "bamboo",
+      "order": 2
+    },
+    {
+      "id": "twenty_one_day_streak",
+      "category": "consistency",
+      "title": "Habit Formed",
+      "description": "Work out 21 days in a row.",
+      "hint": "21 days is when a habit starts to stick.",
+      "metric": "current_streak",
+      "target": 21,
+      "tier": "gold",
+      "glyph": "bamboo",
+      "order": 3
+    },
+    {
+      "id": "seven_sevens_streak",
+      "category": "consistency",
+      "title": "Seven Weeks Strong",
+      "description": "Reach a streak of 49 days.",
+      "hint": "Seven weeks of never skipping a day.",
+      "metric": "best_streak",
+      "target": 49,
+      "tier": "gold",
+      "glyph": "bamboo",
+      "order": 4
+    },
+    {
+      "id": "hundred_day_streak",
+      "category": "consistency",
+      "title": "Hundred-Day Streak",
+      "description": "Reach a streak of 100 days.",
+      "hint": "A hundred days straight - true dedication.",
+      "metric": "best_streak",
+      "target": 100,
+      "tier": "jade",
+      "glyph": "bamboo",
+      "order": 5
+    },
+
+    {
+      "id": "early_bird",
+      "category": "rhythm",
+      "title": "Early Bird",
+      "description": "Work out once before 8 in the morning.",
+      "hint": "The earliest hour, the quietest gym.",
+      "metric": "dawn_sessions",
+      "target": 1,
+      "tier": "bronze",
+      "glyph": "sun",
+      "order": 1
+    },
+    {
+      "id": "dawn_warrior",
+      "category": "rhythm",
+      "title": "Dawn Warrior",
+      "description": "Work out 10 times before 8 in the morning.",
+      "hint": "Early mornings, cool air, quiet focus.",
+      "metric": "dawn_sessions",
+      "target": 10,
+      "tier": "silver",
+      "glyph": "sun",
+      "order": 2
+    },
+    {
+      "id": "sunrise_habit",
+      "category": "rhythm",
+      "title": "Sunrise Habit",
+      "description": "Work out 40 times before 8 in the morning.",
+      "hint": "Sunrise workouts have become second nature.",
+      "metric": "dawn_sessions",
+      "target": 40,
+      "tier": "gold",
+      "glyph": "sun",
+      "order": 3
+    },
+    {
+      "id": "evening_wind_down",
+      "category": "rhythm",
+      "title": "Evening Wind-Down",
+      "description": "Work out 10 times after 6 in the evening.",
+      "hint": "Letting the day go with one last effort.",
+      "metric": "evening_sessions",
+      "target": 10,
+      "tier": "bronze",
+      "glyph": "moon",
+      "order": 4
+    },
+    {
+      "id": "night_owl",
+      "category": "rhythm",
+      "title": "Night Owl",
+      "description": "Work out 40 times after 6 in the evening.",
+      "hint": "The evening workout belongs to you.",
+      "metric": "evening_sessions",
+      "target": 40,
+      "tier": "silver",
+      "glyph": "moon",
+      "order": 5
+    },
+    {
+      "id": "weekend_warrior",
+      "category": "rhythm",
+      "title": "Weekend Warrior",
+      "description": "Work out on 8 weekend days.",
+      "hint": "Rest days can still be workout days.",
+      "metric": "weekend_sessions",
+      "target": 8,
+      "tier": "bronze",
+      "glyph": "moon",
+      "order": 6
+    },
+
+    {
+      "id": "first_hour",
+      "category": "endurance",
+      "title": "The First Hour",
+      "description": "Accumulate 60 minutes of workouts.",
+      "hint": "An hour of effort is never wasted.",
+      "metric": "total_minutes",
+      "target": 60,
+      "tier": "bronze",
+      "glyph": "path",
+      "order": 1
+    },
+    {
+      "id": "ten_hours",
+      "category": "endurance",
+      "title": "Ten Hours In",
+      "description": "Accumulate 600 minutes of workouts.",
+      "hint": "The movements start to feel natural.",
+      "metric": "total_minutes",
+      "target": 600,
+      "tier": "silver",
+      "glyph": "path",
+      "order": 2
+    },
+    {
+      "id": "fifty_hours",
+      "category": "endurance",
+      "title": "Fifty Hours Strong",
+      "description": "Accumulate 3000 minutes of workouts.",
+      "hint": "Time invested steadily pays off.",
+      "metric": "total_minutes",
+      "target": 3000,
+      "tier": "gold",
+      "glyph": "path",
+      "order": 3
+    },
+    {
+      "id": "long_workout",
+      "category": "endurance",
+      "title": "Going the Distance",
+      "description": "Complete 10 workouts of 20 minutes or more.",
+      "hint": "Longer sessions build real endurance.",
+      "metric": "long_sessions",
+      "target": 10,
+      "tier": "silver",
+      "glyph": "path",
+      "order": 4
+    },
+    {
+      "id": "full_hour_day",
+      "category": "endurance",
+      "title": "Full Hour Day",
+      "description": "Work out for 60 minutes within a single day.",
+      "hint": "One long, focused day of training.",
+      "metric": "single_day_minutes",
+      "target": 60,
+      "tier": "gold",
+      "glyph": "path",
+      "order": 5
+    },
+
+    {
+      "id": "three_programs",
+      "category": "variety",
+      "title": "Three Programs",
+      "description": "Try 3 different workout programs.",
+      "hint": "Each program challenges you differently.",
+      "metric": "distinct_programs",
+      "target": 3,
+      "tier": "bronze",
+      "glyph": "bagua",
+      "order": 1
+    },
+    {
+      "id": "five_programs",
+      "category": "variety",
+      "title": "Five Programs",
+      "description": "Try 5 different workout programs.",
+      "hint": "Keep your body guessing.",
+      "metric": "distinct_programs",
+      "target": 5,
+      "tier": "silver",
+      "glyph": "bagua",
+      "order": 2
+    },
+    {
+      "id": "eight_programs",
+      "category": "variety",
+      "title": "Eight Programs",
+      "description": "Try 8 different workout programs.",
+      "hint": "A well-rounded routine, built piece by piece.",
+      "metric": "distinct_programs",
+      "target": 8,
+      "tier": "gold",
+      "glyph": "bagua",
+      "order": 3
+    },
+
+    {
+      "id": "one_month_days",
+      "category": "journey",
+      "title": "One Month",
+      "description": "Work out on 30 different days.",
+      "hint": "A full month of showing up.",
+      "metric": "total_days",
+      "target": 30,
+      "tier": "silver",
+      "glyph": "moon",
+      "order": 1
+    },
+    {
+      "id": "four_months",
+      "category": "journey",
+      "title": "Four Months",
+      "description": "Work out across 4 different months.",
+      "hint": "The habit survives a change of season.",
+      "metric": "active_months",
+      "target": 4,
+      "tier": "gold",
+      "glyph": "path",
+      "order": 2
+    },
+    {
+      "id": "year_of_fitness",
+      "category": "journey",
+      "title": "A Year of Fitness",
+      "description": "Work out across 12 different months.",
+      "hint": "Not fast. Not loud. Simply never stopped.",
+      "metric": "active_months",
+      "target": 12,
+      "tier": "jade",
+      "glyph": "path",
+      "order": 3
+    },
+    {
+      "id": "twelve_weeks",
+      "category": "journey",
+      "title": "Twelve Weeks",
+      "description": "Work out across 12 different weeks.",
+      "hint": "Three months of coming back for more.",
+      "metric": "active_weeks",
+      "target": 12,
+      "tier": "silver",
+      "glyph": "bamboo",
+      "order": 4
+    },
+    {
+      "id": "calorie_burn_5000",
+      "category": "journey",
+      "title": "5,000 kcal Burned",
+      "description": "Burn 5000 kcal through workouts.",
+      "hint": "Steady effort, patiently repeated.",
+      "metric": "total_calories",
+      "target": 5000,
+      "tier": "gold",
+      "glyph": "sun",
+      "order": 5
+    }
+  ]
+}

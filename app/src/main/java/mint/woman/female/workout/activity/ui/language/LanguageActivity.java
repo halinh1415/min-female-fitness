@@ -15,12 +15,10 @@ import android.view.View;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
-import mint.woman.female.workout.activity.ui.boarding.BoardingActivity;
-import mint.woman.female.workout.activity.ui.firstsetup.FirstSetupActivity;
+import mint.woman.female.workout.activity.ui.onboarding.onboard.OnboardFlowActivity;
 import mint.woman.female.workout.activity.ui.language.LanguageAdapter.IChangeLanguage;
 import mint.woman.female.workout.admodule.MaticAd;
 import mint.woman.female.workout.databinding.ActivityLanguageBinding;
-import mint.woman.female.workout.databinding.NativeLanguageLoadingBinding;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 import mint.woman.female.workout.utils.RemoteConfigKeys;
@@ -146,7 +144,7 @@ public class LanguageActivity extends AppCompatActivity implements IChangeLangua
             bundle.putString("language_code",adapter.getLanguageCode());
         }
 
-        Intent intent = new Intent(LanguageActivity.this, FirstSetupActivity.class);
+        Intent intent = new Intent(LanguageActivity.this, OnboardFlowActivity.class);
         intent.addFlags((Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
         startActivity(intent);
         FitnessApplication.getApplication().getStorageCommon().nativeAdLanguage.postValue(null);

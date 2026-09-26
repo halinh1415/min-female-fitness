@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="mint.woman.female.workout">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-sdk tools:overrideLibrary="androidx.health.connect.client" />
 
@@ -40,9 +39,33 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:enableOnBackInvokedCallback="false"
+        android:theme="@style/AppTheme"
+        tools:targetApi="36">
+        <!--
+        WorkManager's default App Startup initializer runs before Application.onCreate().
+        This app only needs WorkManager after launch, so initialize it on demand instead
+        of adding database/scheduler work to the cold-start critical path.
+        -->
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup"
+                tools:node="remove" />
+        </provider>
+        <!--
+        Android 16 (targetSdk 36): screenOrientation/resizeableActivity are ignored on
+        large screens (sw >= 600dp). Temporary opt-out while layouts are made adaptive.
+        -->
+        <property
+            android:name="android.window.PROPERTY_COMPAT_ALLOW_RESTRICTED_RESIZABILITY"
+            android:value="true" />
         <activity
-            android:name=".activity.premium.TestActivity"
+            android:name=".activity.ui.premium.TestActivity"
             android:exported="false" />
         <activity
             android:name=".activity.ui.explore.FilterProgramActivity"
@@ -100,16 +123,34 @@
             android:launchMode="singleInstance"
             android:noHistory="true"
             android:theme="@style/FullscreenReminderTheme" />
+
         <activity
-            android:name=".activity.premium.PremiumActivity"
+            android:name=".activity.ui.onboarding.onboard.OnboardFlowActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Onboarding"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".activity.ui.premium.PremiumActivity"
             android:exported="false"
             android:parentActivityName=".activity.ui.main.YogaActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.FullScreen2">
+            android:theme="@style/AppTheme.Onboarding">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.ui.main.YogaActivity" />
         </activity>
+        <activity
+            android:name=".activity.ui.premium.PaywallActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Onboarding" />
+        <activity
+            android:name=".activity.ui.premium.LuckyDrawActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullScreen" />
         <activity
             android:name=".activity.ui.count.CountManagerActivity"
             android:exported="false"
@@ -217,6 +258,16 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="mint.woman.female.workout.activity.ui.report.ReportActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ui.badge.BadgeActivity"
+            android:exported="false"
+            android:label="@string/badge_screen_title"
+            android:parentActivityName=".activity.ui.main.YogaActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ui.main.YogaActivity" />
         </activity>
         <activity
             android:name=".activity.ui.workout.ProgramActivity"
@@ -422,6 +473,17 @@
         <meta-data
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
             android:value="true" />
+
+        <!-- Cap quyen doc tam thoi cho anh huy hieu gui sang app chia se. -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
     </application>
 
 </manifest>

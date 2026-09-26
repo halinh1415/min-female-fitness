@@ -21,7 +21,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.activity.ui.badge.BadgeActivity;
 import mint.woman.female.workout.activity.ui.history.HistoryViewModel;
+import mint.woman.female.workout.badge.BadgeBoard;
+import mint.woman.female.workout.badge.BadgeFormatter;
+import mint.woman.female.workout.badge.BadgeIconBinder;
+import mint.woman.female.workout.badge.BadgeProgress;
+import mint.woman.female.workout.badge.BadgeRepository;
 import mint.woman.female.workout.custom.DialogWeight;
 import mint.woman.female.workout.databinding.FragmentReportBinding;
 import mint.woman.female.workout.model.ProgramObject;
@@ -253,12 +259,46 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
         binding.txtStatusBmi.setText(binding.bmiView.getBodyDescription());
         binding.icEditBmi.setOnClickListener(this::onClick);
 
+        binding.cardBadges.setOnClickListener(v ->
+                startActivity(BadgeActivity.newIntent(requireContext())));
+
         // Observe weight changed event
         mHistoryViewModel.getWeightChanged().observe(getViewLifecycleOwner(), changed -> {
             if (changed) {
                 onWeightChange();
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Tinh lai huy hieu moi lan quay lai man hinh - user co the vua tap xong.
+        if (binding != null) {
+            BadgeRepository.load(requireContext(), this::bindBadges);
+        }
+    }
+
+    private void bindBadges(BadgeBoard board) {
+        if (binding == null || !isAdded()) return;
+
+        binding.cardBadges.setVisibility(board.getTotalCount() > 0 ? View.VISIBLE : View.GONE);
+        if (board.getTotalCount() == 0) return;
+
+        binding.tvBadgeSummary.setText(getString(
+                R.string.badge_summary, board.getUnlockedCount(), board.getTotalCount()));
+        binding.progressBadges.setProgress(board.getPercent());
+
+        BadgeProgress next = board.getClosestLockedBadge();
+        if (next == null) {
+            binding.layoutNextBadge.setVisibility(View.GONE);
+            return;
+        }
+
+        binding.layoutNextBadge.setVisibility(View.VISIBLE);
+        BadgeIconBinder.bind(next, binding.imgNextBadge, null);
+        binding.tvNextBadgeTitle.setText(next.getTitle());
+        binding.tvNextBadgeProgress.setText(BadgeFormatter.remaining(requireContext(), next));
     }
 
     private void initData() {

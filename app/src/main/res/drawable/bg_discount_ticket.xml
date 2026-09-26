@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="320dp"
+    android:height="460dp"
+    android:viewportWidth="320"
+    android:viewportHeight="460">
+
+    <path android:pathData="M36,0H284C284,20 300,36 320,36V424C300,424 284,440 284,460H36C36,440 20,424 0,424V36C20,36 36,20 36,0Z">
+        <aapt:attr name="android:fillColor">
+            <!-- Gradient trong vector phải khai báo bằng toạ độ; android:angle không có tác dụng ở đây -->
+            <gradient
+                android:type="linear"
+                android:startX="0"
+                android:startY="0"
+                android:endX="0"
+                android:endY="330"
+                android:startColor="@color/offer_jade_dark"
+                android:centerColor="@color/offer_jade"
+                android:endColor="@color/offer_jade_light" />
+        </aapt:attr>
+    </path>
+
+    <path
+        android:fillColor="@color/offer_paper"
+        android:pathData="M0,322H320V424C300,424 284,440 284,460H36C36,440 20,424 0,424Z" />
+
+    <path
+        android:fillColor="@color/offer_jade_darkest"
+        android:pathData="M55,0C55,4.97 59.03,9 64,9C68.97,9 73,4.97 73,0ZM82,0C82,4.97 86.03,9 91,9C95.97,9 100,4.97 100,0ZM109,0C109,4.97 113.03,9 118,9C122.97,9 127,4.97 127,0ZM136,0C136,4.97 140.03,9 145,9C149.97,9 154,4.97 154,0ZM163,0C163,4.97 167.03,9 172,9C176.97,9 181,4.97 181,0ZM190,0C190,4.97 194.03,9 199,9C203.97,9 208,4.97 208,0ZM217,0C217,4.97 221.03,9 226,9C230.97,9 235,4.97 235,0ZM244,0C244,4.97 248.03,9 253,9C257.97,9 262,4.97 262,0Z" />
+
+    <path
+        android:fillColor="@color/offer_jade_darkest"
+        android:pathData="M55,460C55,455.03 59.03,451 64,451C68.97,451 73,455.03 73,460ZM82,460C82,455.03 86.03,451 91,451C95.97,451 100,455.03 100,460ZM109,460C109,455.03 113.03,451 118,451C122.97,451 127,455.03 127,460ZM136,460C136,455.03 140.03,451 145,451C149.97,451 154,455.03 154,460ZM163,460C163,455.03 167.03,451 172,451C176.97,451 181,455.03 181,460ZM190,460C190,455.03 194.03,451 199,451C203.97,451 208,455.03 208,460ZM217,460C217,455.03 221.03,451 226,451C230.97,451 235,455.03 235,460ZM244,460C244,455.03 248.03,451 253,451C257.97,451 262,455.03 262,460Z" />
+</vector>

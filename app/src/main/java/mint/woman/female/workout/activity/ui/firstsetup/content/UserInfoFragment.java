@@ -48,18 +48,20 @@ public class UserInfoFragment extends Fragment {
         }
         binding.ruleHeight.setOnValueChangedListener(value -> {
             height = value;
+            setupViewModel.setHeight(value);
             binding.tvHeightValue.setText(String.format(" %.1f", value));
         });
 
         binding.ruleWeight.setOnValueChangedListener(value -> {
             weight = value;
+            setupViewModel.setWeight(value);
             binding.tvWeightValue.setText(String.format(" %.1f", value));
         });
 
         binding.rdKg.setOnClickListener(this::onClickUnit);
         binding.rdKg1.setOnClickListener(this::onClickUnit);
         binding.rdLb.setOnClickListener(this::onClickUnit);
-        binding.rdLb.setOnClickListener(this::onClickUnit);
+        binding.rdLb1.setOnClickListener(this::onClickUnit);
     }
 
     void onClickUnit(View view) {

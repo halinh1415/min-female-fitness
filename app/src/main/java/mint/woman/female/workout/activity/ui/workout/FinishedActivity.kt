@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.health.connect.client.HealthConnectClient
 import androidx.health.connect.client.records.ExerciseSessionRecord
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
 import com.bumptech.glide.Glide
@@ -28,9 +29,13 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import kotlinx.coroutines.launch
 import mint.woman.female.workout.FitnessApplication
 import mint.woman.female.workout.R
+import mint.woman.female.workout.activity.ui.badge.BadgeActivity
+import mint.woman.female.workout.activity.ui.badge.BadgeUnlockedDialog
+import mint.woman.female.workout.activity.ui.history.HistoryViewModel
 import mint.woman.female.workout.activity.ui.reminder.ReminderActivity
 import mint.woman.female.workout.admodule.MaticAd
 import mint.woman.female.workout.admodule.MaticAdCallBack
+import mint.woman.female.workout.badge.BadgeRepository
 import mint.woman.female.workout.custom.DialogRating
 import mint.woman.female.workout.custom.SelectReminderEveryDayDialog
 import mint.woman.female.workout.databinding.ActivityFinishedBinding
@@ -52,6 +57,10 @@ class FinishedActivity : AppCompatActivity() {
     var mCongratulationPlayer: MediaPlayer? = null
     lateinit var myPreference: MyPreference
     lateinit var reviewManager: ReviewManager
+    private lateinit var historyViewModel: HistoryViewModel
+
+    /** Chi an mung mot lan cho mot lan mo man hinh, du co nhieu huy hieu cung mo khoa. */
+    private var badgeCelebrationShown = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,8 +72,30 @@ class FinishedActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        historyViewModel = ViewModelProvider(this).get(HistoryViewModel::class.java)
         initView()
         requestNewAdBanner()
+        observeBadgeUnlocks()
+    }
+
+    /**
+     * Lich su vua duoc ghi (khong dong bo) truoc khi man hinh nay mo, nen khong the tinh huy
+     * hieu ngay. Bam vao LiveData cua bang history de chac chan ban ghi moi da co truoc khi tinh.
+     */
+    private fun observeBadgeUnlocks() {
+        historyViewModel.getAllHistory().observe(this) {
+            if (badgeCelebrationShown) return@observe
+
+            BadgeRepository.load(this) { board ->
+                if (badgeCelebrationShown || board.newlyUnlocked.isEmpty()) return@load
+                if (isFinishing || isDestroyed) return@load
+
+                badgeCelebrationShown = true
+                BadgeUnlockedDialog.show(this, board.newlyUnlocked) {
+                    startActivity(BadgeActivity.newIntent(this))
+                }
+            }
+        }
     }
 
 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Ban mo cua bg_paywall_corner_badge, dung khi goi mang nhan nay KHONG duoc chon.
+  Cung dang va cung bo goc, chi ha do dam xuong ~30% de nhan goc lui ve sau.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners
+        android:bottomLeftRadius="16dp"
+        android:bottomRightRadius="0dp"
+        android:topLeftRadius="0dp"
+        android:topRightRadius="16dp" />
+    <gradient
+        android:angle="0"
+        android:endColor="#4DDFA93C"
+        android:startColor="#4DF4C561"
+        android:type="linear" />
+</shape>

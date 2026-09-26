@@ -5,13 +5,11 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import mint.woman.female.workout.R;
-import mint.woman.female.workout.activity.premium.PremiumActivity;
+import mint.woman.female.workout.activity.ui.premium.PremiumActivity;
 import mint.woman.female.workout.activity.ui.main.YogaActivity;
 import mint.woman.female.workout.databinding.ActivityGuidePersonalPlanBinding;
 
@@ -46,13 +44,13 @@ public class GuidePersonalPlanActivity extends AppCompatActivity {
 
                 // 3. (Mẹo hay) Cập nhật dòng chữ trạng thái để trông "thật" hơn
                 if (progress < 30) {
-                    binding.tvStatus.setText("Đang tính chỉ số BMI...");
+                    binding.tvStatus.setText(R.string.ob_status_bmi);
                 } else if (progress < 60) {
-                    binding.tvStatus.setText("Phân tích thói quen tập luyện...");
+                    binding.tvStatus.setText(R.string.ob_status_habits);
                 } else if (progress < 90) {
-                    binding.tvStatus.setText("Xây dựng lộ trình cá nhân hóa...");
+                    binding.tvStatus.setText(R.string.ob_status_plan);
                 } else {
-                    binding.tvStatus.setText("Hoàn tất!");
+                    binding.tvStatus.setText(R.string.ob_status_done);
                 }
             }
         });
@@ -75,7 +73,7 @@ public class GuidePersonalPlanActivity extends AppCompatActivity {
         startActivity(intentMain);
         Intent intent = new Intent(GuidePersonalPlanActivity.this, PremiumActivity.class);
 
-        intent.putExtra("IS_FIRST",true);
+        intent.putExtra(PremiumActivity.EXTRA_IS_FIRST, true);
         startActivity(intent);
         finish();
     }

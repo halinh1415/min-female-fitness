@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Static "selected" look (same as ob_option_bg in selected state). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@color/ob_accent_soft" />
+    <corners android:radius="18dp" />
+    <stroke android:width="2dp" android:color="@color/ob_accent" />
+</shape>

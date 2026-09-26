@@ -4,17 +4,18 @@ plugins {
     id 'com.google.firebase.crashlytics'
     id 'com.google.firebase.firebase-perf'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.compose'
 }
 android {
     namespace 'mint.woman.female.workout'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId "mint.woman.female.workout"
         minSdk 26
-        targetSdk 35
-        versionCode 112
-        versionName "1.1.12"
+        targetSdk 36
+        versionCode 113
+        versionName "1.1.13"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -37,6 +38,7 @@ android {
     buildFeatures {
         viewBinding true
         buildConfig true
+        compose true
     }
     kotlinOptions {
         jvmTarget = '1.8'
@@ -62,8 +64,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7'
     implementation "androidx.lifecycle:lifecycle-process:2.8.7"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.core:core-ktx:1.15.0'
-    implementation 'androidx.activity:activity-ktx:1.9.3'
+    implementation 'androidx.core:core-ktx:1.17.0'
+    implementation 'androidx.activity:activity-ktx:1.10.1'
     implementation 'androidx.activity:activity:1.10.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
@@ -72,6 +74,16 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads:23.2.0'
     implementation 'com.android.billingclient:billing:9.1.0'
     implementation 'com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:1.0.0'
+
+    // Jetpack Compose - hien chi dung cho NewOnboardingComposeActivity.
+    implementation platform('androidx.compose:compose-bom:2024.12.01')
+    implementation 'androidx.activity:activity-compose:1.10.1'
+    implementation 'androidx.compose.ui:ui'
+    implementation 'androidx.compose.ui:ui-graphics'
+    implementation 'androidx.compose.foundation:foundation'
+    implementation 'androidx.compose.animation:animation'
+    implementation 'androidx.compose.runtime:runtime-saveable'
+    implementation 'androidx.compose.material3:material3'
     implementation 'androidx.preference:preference:1.2.1'
     implementation 'com.github.luizgrp:SectionedRecyclerViewAdapter:v3.2.0'
     implementation 'com.facebook.shimmer:shimmer:0.5.0'

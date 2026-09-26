@@ -35,8 +35,10 @@ import mint.woman.female.workout.BuildConfig;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.PolicyActivity;
+import mint.woman.female.workout.activity.ui.badge.BadgeActivity;
 import mint.woman.female.workout.activity.ui.main.HealthDataDialog;
 import mint.woman.female.workout.activity.ui.sounds.SoundsActivity;
+import mint.woman.female.workout.badge.BadgeRepository;
 import mint.woman.female.workout.admodule.AppOpenManager;
 import mint.woman.female.workout.custom.CustomPreference;
 import mint.woman.female.workout.custom.DialogUserLogIn;
@@ -61,6 +63,7 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.settings_preference, rootKey);
         myPreference = new MyPreference(getContext());
+        findPreference("ACHIEVEMENTS").setOnPreferenceClickListener(this);
         findPreference("ST_RATE").setOnPreferenceClickListener(this);
         findPreference("ST_FEEDBACK").setOnPreferenceClickListener(this);
         findPreference("ST_SHARE").setOnPreferenceClickListener(this);
@@ -157,6 +160,9 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
     @Override
     public boolean onPreferenceClick(Preference preference) {
         switch (preference.getKey()) {
+            case "ACHIEVEMENTS":
+                startActivity(BadgeActivity.newIntent(requireContext()));
+                break;
             case "SYNC_FIT":
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     AppOpenManager.getInstance().disableAdResumeByClickAction();
@@ -353,7 +359,19 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
     public void onResume() {
         super.onResume();
         getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+        refreshAchievementSummary();
+    }
 
+    /** Hien so huy hieu da dat ngay tren dong Achievements, vi du "7 of 29 earned". */
+    private void refreshAchievementSummary() {
+        Preference achievements = findPreference("ACHIEVEMENTS");
+        if (achievements == null) return;
+
+        BadgeRepository.load(requireContext(), board -> {
+            if (!isAdded() || board.getTotalCount() == 0) return;
+            achievements.setSummary(getString(
+                    R.string.badge_summary, board.getUnlockedCount(), board.getTotalCount()));
+        });
     }
 
     @Override

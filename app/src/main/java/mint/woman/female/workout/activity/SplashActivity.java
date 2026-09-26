@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -65,15 +66,20 @@ public class SplashActivity extends AppCompatActivity {
     private static final int TIME_OUT = 6;
     MyPreference myPreference;
     ImageView mSplash;
-    private Handler mHandler = new Handler();
+    private final Handler mHandler = new Handler(Looper.getMainLooper());
     LottieAnimationView lottieAnimationView;
     ConsentInformation consentInformation;
     InterstitialAd mInterSplashHigh, mInterSplashMedium, mInterSplash;
     FullScreenContentCallback fullScreenContentCallback;
     boolean isShowingSplash = false;
     int timeChecker = 5, interChecker = 0;
-    private final Handler handlerChecker = new Handler();
+    private final Handler handlerChecker = new Handler(Looper.getMainLooper());
     private boolean isFirstRunApp = true;
+    private boolean hasStartedAdLoading = false;
+    private boolean hasScheduledInterstitialCheck = false;
+    private boolean hasStartedMain = false;
+    private boolean isActivityResumed = false;
+    private boolean startMainWhenResumed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,21 +102,23 @@ public class SplashActivity extends AppCompatActivity {
             public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                 super.onAdFailedToShowFullScreenContent(adError);
                 Log.d(TAG, " showAds Inter Splash fail to show");
-
-                // isShowingSplash = false;
-//                mInterSplashHigh = null;
-//                mInterSplashMedium = null;
-//                mInterSplash = null;
+                isShowingSplash = false;
+                mInterSplashHigh = null;
+                mInterSplashMedium = null;
+                mInterSplash = null;
+                hideDialog();
+                startMain();
             }
 
             @Override
             public void onAdDismissedFullScreenContent() {
                 super.onAdDismissedFullScreenContent();
                 Log.d(TAG, " showAds Inter Splash dismiss");
-                //    isShowingSplash = false;
+                isShowingSplash = false;
                 mInterSplashHigh = null;
                 mInterSplashMedium = null;
                 mInterSplash = null;
+                hideDialog();
                 startMain();
             }
         };
@@ -209,11 +217,17 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        isActivityResumed = true;
+        if (startMainWhenResumed) {
+            startMainWhenResumed = false;
+            startMain();
+            return;
+        }
         if (isFirstRunApp) {
             isFirstRunApp = false;
             return;
         }
-        if (!isShowingSplash) {
+        if (hasStartedAdLoading && !isShowingSplash && !hasStartedMain) {
             if (!isFinishing()) {
                 checkShowInterSplash();
             }
@@ -221,7 +235,17 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onPause() {
+        isActivityResumed = false;
+        super.onPause();
+    }
+
     private void startLoadAd() {
+        if (hasStartedAdLoading || hasStartedMain || isFinishing() || isDestroyed()) {
+            return;
+        }
+        hasStartedAdLoading = true;
         if (myPreference.isShowAds() && myPreference.getOK())
             MobileAds.initialize(this, initializationStatus -> {
 
@@ -299,17 +323,23 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void checkShowInterSplash() {
+        if (hasScheduledInterstitialCheck || hasStartedMain || isFinishing() || isDestroyed()) {
+            return;
+        }
+        hasScheduledInterstitialCheck = true;
 
         handlerChecker.postDelayed(new Runnable() {
             @Override
             public void run() {
                 timeChecker++;
                 if (isSplashAvailable()) {
+                    hasScheduledInterstitialCheck = false;
                     showInterSplash();
 
                 } else if (timeChecker < TIME_OUT && interChecker < 3) {
                     handlerChecker.postDelayed(this, 1000);
                 } else {
+                    hasScheduledInterstitialCheck = false;
                     startMain();
                 }
 
@@ -350,25 +380,31 @@ public class SplashActivity extends AppCompatActivity {
             if (mInterSplashHigh != null) {
                 showDialog();
                 mInterSplashHigh.setFullScreenContentCallback(fullScreenContentCallback);
-                new Handler().postDelayed(() -> {
+                mHandler.postDelayed(() -> {
                     hideDialog();
-                    mInterSplashHigh.show(SplashActivity.this);
+                    if (!hasStartedMain && !isFinishing() && !isDestroyed() && mInterSplashHigh != null) {
+                        mInterSplashHigh.show(SplashActivity.this);
+                    }
                 }, 800);
 
 
             } else if (mInterSplashMedium != null) {
                 mInterSplashMedium.setFullScreenContentCallback(fullScreenContentCallback);
                 showDialog();
-                new Handler().postDelayed(() -> {
+                mHandler.postDelayed(() -> {
                     hideDialog();
-                    mInterSplashMedium.show(SplashActivity.this);
+                    if (!hasStartedMain && !isFinishing() && !isDestroyed() && mInterSplashMedium != null) {
+                        mInterSplashMedium.show(SplashActivity.this);
+                    }
                 }, 800);
             } else if (mInterSplash != null) {
                 mInterSplash.setFullScreenContentCallback(fullScreenContentCallback);
                 showDialog();
-                new Handler().postDelayed(() -> {
+                mHandler.postDelayed(() -> {
                     hideDialog();
-                    mInterSplash.show(SplashActivity.this);
+                    if (!hasStartedMain && !isFinishing() && !isDestroyed() && mInterSplash != null) {
+                        mInterSplash.show(SplashActivity.this);
+                    }
                 }, 800);
             } else {
                 startMain();
@@ -388,6 +424,19 @@ public class SplashActivity extends AppCompatActivity {
 
 
     private void startMain() {
+        if (hasStartedMain || isFinishing() || isDestroyed()) {
+            return;
+        }
+        // Do not launch the next Activity while a consent/ad window owns focus or while the
+        // app is backgrounded. Resume will perform the transition once a window can receive input.
+        if (!isActivityResumed) {
+            startMainWhenResumed = true;
+            return;
+        }
+        hasStartedMain = true;
+        mHandler.removeCallbacksAndMessages(null);
+        handlerChecker.removeCallbacksAndMessages(null);
+        hideDialog();
         if (myPreference.isFirstOpen()) {
             startActivity(new Intent(SplashActivity.this, LanguageActivity.class));
             finish();
@@ -395,6 +444,15 @@ public class SplashActivity extends AppCompatActivity {
             startActivity(new Intent(SplashActivity.this, YogaActivity.class));
             finish();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        isActivityResumed = false;
+        mHandler.removeCallbacksAndMessages(null);
+        handlerChecker.removeCallbacksAndMessages(null);
+        hideDialog();
+        super.onDestroy();
     }
 
     void requestNativeLanguage() {

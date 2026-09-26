@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Một hàng gói đăng ký của màn Paywall.
+  Wrapper bên ngoài chỉ có nền khi gói đó cần dải nhãn (ví dụ "Special price");
+  các gói còn lại để wrapper trong suốt nên ba thẻ vẫn thẳng hàng nhau.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:screenReaderFocusable="true"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_plan_band"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:letterSpacing="0.08"
+        android:paddingTop="9dp"
+        android:paddingBottom="7dp"
+        android:textAllCaps="true"
+        android:textColor="@color/offer_ink"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:text="Special price"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/card_plan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/bg_paywall_plan_unselected"
+        android:clipToOutline="true"
+        android:minHeight="86dp">
+
+        <TextView
+            android:id="@+id/tv_plan_corner_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_paywall_corner_badge"
+            android:paddingStart="14dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/offer_ink"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Original price"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_plan_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/lora_bold"
+            android:maxLines="2"
+            android:textColor="@color/offer_ink"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_plan_price"
+            app:layout_constraintEnd_toStartOf="@id/tv_plan_per_week"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="34% Off Special Offer" />
+
+        <TextView
+            android:id="@+id/tv_plan_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="18dp"
+            android:maxLines="2"
+            android:textColor="@color/offer_ink_muted"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tv_plan_title"
+            app:layout_constraintStart_toStartOf="@id/tv_plan_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_plan_title"
+            tools:text="1.000.000 đ (was 1.550.000 đ)/year" />
+
+        <TextView
+            android:id="@+id/tv_plan_per_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp"
+            android:maxLines="1"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/offer_ink_muted"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="19.178 đ/week" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -112,8 +112,10 @@ public class FirstSetupActivity extends AppCompatActivity {
         FirebaseAnalytics.getInstance(this).logEvent("click_next_scr_setup", new Bundle());
         if (currentPosition < 5) {
             if (currentPosition == 2) {
+                // Metric values are always stored (kg / cm).
                 myPreference.setCurrentWeight(setupViewModel.getWeightCm());
                 myPreference.setCurrentHeight(setupViewModel.getHeightCm());
+                myPreference.setUnitKg(setupViewModel.isKg());
             }
 
             currentPosition++;
@@ -121,8 +123,9 @@ public class FirstSetupActivity extends AppCompatActivity {
             binding.vpSetup.setCurrentItem(currentPosition);
         } else {
             if (Build.VERSION.SDK_INT >= 33) {
-                if (ContextCompat.checkSelfPermission(FirstSetupActivity.this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(FirstSetupActivity.this, Manifest.permission.SCHEDULE_EXACT_ALARM) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(FirstSetupActivity.this, new String[]{Manifest.permission.POST_NOTIFICATIONS,Manifest.permission.SCHEDULE_EXACT_ALARM},1111);
+                // SCHEDULE_EXACT_ALARM is not a runtime permission and cannot be requested here.
+                if (ContextCompat.checkSelfPermission(FirstSetupActivity.this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(FirstSetupActivity.this, new String[]{Manifest.permission.POST_NOTIFICATIONS},1111);
                     return;
                 }
             }

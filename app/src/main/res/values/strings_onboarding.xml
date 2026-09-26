@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- New onboarding quiz + paywall. Untranslated locales fall back to English. -->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!-- Common -->
+    <string name="ob_skip">Skip</string>
+    <string name="ob_continue">Continue</string>
+    <string name="ob_back">Back</string>
+    <string name="ob_percent">%d%%</string>
+    <string name="ob_not_now">Not now</string>
+
+    <!-- Step: goal -->
+    <string name="ob_goal_title">What is your main goal?</string>
+    <string name="ob_goal_subtitle">We will build your plan around it.</string>
+    <string name="ob_goal_lose_weight">Lose weight</string>
+    <string name="ob_goal_lose_weight_desc">Burn fat with guided home workouts</string>
+    <string name="ob_goal_tone">Tone my body</string>
+    <string name="ob_goal_tone_desc">Firm up abs, arms, butt and legs</string>
+    <string name="ob_goal_flexibility">Flexibility &amp; less stress</string>
+    <string name="ob_goal_flexibility_desc">Stretching, mobility and relaxation</string>
+    <string name="ob_goal_strength">Get stronger</string>
+    <string name="ob_goal_strength_desc">Build strength and energy</string>
+
+    <!-- Step: focus -->
+    <string name="ob_focus_title">Which areas do you want to focus on?</string>
+    <string name="ob_focus_subtitle">Choose one or more.</string>
+    <string name="ob_focus_full_body">Full body</string>
+    <string name="ob_focus_abs">Belly &amp; abs</string>
+    <string name="ob_focus_arms">Arms</string>
+    <string name="ob_focus_butt">Butt</string>
+    <string name="ob_focus_legs">Thighs &amp; legs</string>
+
+    <!-- Step: level -->
+    <string name="ob_level_title">How fit are you right now?</string>
+    <string name="ob_level_subtitle">Be honest - we will adjust the intensity for you.</string>
+    <string name="ob_level_beginner">Beginner</string>
+    <string name="ob_level_beginner_desc">I rarely work out</string>
+    <string name="ob_level_intermediate">Intermediate</string>
+    <string name="ob_level_intermediate_desc">I work out 1-2 times a week</string>
+    <string name="ob_level_advanced">Advanced</string>
+    <string name="ob_level_advanced_desc">I work out 3+ times a week</string>
+
+    <!-- Step: body -->
+    <string name="ob_body_title">A little about you</string>
+    <string name="ob_body_subtitle">Used to calculate your BMI and calories. Stored only on your device.</string>
+    <string name="ob_unit_metric">kg · cm</string>
+    <string name="ob_unit_imperial">lb · ft</string>
+    <string name="ob_age">Age</string>
+    <string name="ob_height">Height</string>
+    <string name="ob_weight">Current weight</string>
+    <string name="ob_target_weight">Target weight</string>
+    <string name="ob_bmi_value">Your BMI: %1$.1f · %2$s</string>
+    <string name="ob_bmi_under">Underweight</string>
+    <string name="ob_bmi_normal">Healthy</string>
+    <string name="ob_bmi_over">Overweight</string>
+    <string name="ob_bmi_obese">Obese</string>
+
+    <!-- Step: time -->
+    <string name="ob_time_title">How much time can you spend per day?</string>
+    <string name="ob_time_subtitle">Short workouts done regularly work great.</string>
+    <string name="ob_time_short">5–10 minutes</string>
+    <string name="ob_time_short_desc">Quick and easy to fit in</string>
+    <string name="ob_time_medium">10–20 minutes</string>
+    <string name="ob_time_medium_desc">The sweet spot for most people</string>
+    <string name="ob_time_long">20–30+ minutes</string>
+    <string name="ob_time_long_desc">For faster progress</string>
+
+    <!-- Step: reminder -->
+    <string name="ob_reminder_title">When do you want to work out?</string>
+    <string name="ob_reminder_subtitle">We will send a gentle reminder at this time.</string>
+    <string name="ob_reminder_benefit_title">Build a habit that sticks</string>
+    <string name="ob_reminder_benefit_desc">A daily nudge helps you keep your streak. You can change or turn it off anytime in Settings.</string>
+    <string name="ob_reminder_enable">Remind me daily</string>
+
+    <!-- Generating -->
+    <string name="ob_generating_title">Creating your personal plan…</string>
+    <string name="ob_status_bmi">Calculating your BMI…</string>
+    <string name="ob_status_habits">Analyzing your answers…</string>
+    <string name="ob_status_plan">Picking the best workouts for you…</string>
+    <string name="ob_status_done">Done!</string>
+    <string name="ob_check_profile">Profile analyzed</string>
+    <string name="ob_check_workouts">Workouts selected</string>
+    <string name="ob_check_schedule">Schedule prepared</string>
+
+    <!-- Result -->
+    <string name="ob_result_title">Your plan is ready 🎉</string>
+    <string name="ob_result_subtitle">Personalized from your answers</string>
+    <string name="ob_result_goal">Goal</string>
+    <string name="ob_result_focus">Focus</string>
+    <string name="ob_result_level">Level</string>
+    <string name="ob_result_time">Daily workout</string>
+    <string name="ob_result_bmi">BMI</string>
+    <string name="ob_result_minutes">%d min/day</string>
+    <string name="ob_result_projection_title">Your projection</string>
+    <string name="ob_result_projection">%1$s → %2$s</string>
+    <string name="ob_result_projection_date">Estimated by %s</string>
+    <string name="ob_result_disclaimer">Estimate based on a safe pace of about 0.5 kg (1 lb) per week together with healthy eating. Individual results vary.</string>
+    <string name="ob_result_cta">Get my plan</string>
+
+    <!-- Paywall -->
+    <string name="pw_title">Unlock your full plan</string>
+    <string name="pw_subtitle_personal">Your %s plan is ready. Go Premium to get everything.</string>
+    <string name="pw_subtitle_default">Reach your goals faster with Premium.</string>
+    <string name="pw_benefit_programs">All workouts &amp; challenges unlocked</string>
+    <string name="pw_benefit_ads">No ads, no interruptions</string>
+    <string name="pw_benefit_plan">Personalized plan that adapts to you</string>
+    <string name="pw_benefit_meal">Meal plans, music &amp; voice coach</string>
+    <string name="pw_plan_yearly">Yearly</string>
+    <string name="pw_plan_monthly">Monthly</string>
+    <string name="pw_plan_lifetime">Lifetime</string>
+    <string name="pw_per_month">%s / month</string>
+    <string name="pw_per_year">%s / year</string>
+    <string name="pw_one_time">One-time payment</string>
+    <string name="pw_save_badge">SAVE %d%%</string>
+    <string name="pw_trial_badge">%d DAYS FREE</string>
+    <string name="pw_best_value">BEST VALUE</string>
+    <string name="pw_timeline_title">How your free trial works</string>
+    <string name="pw_timeline_row">• %1$s — %2$s</string>
+    <string name="pw_timeline_today">Today</string>
+    <string name="pw_timeline_today_desc">Get full access to all Premium features.</string>
+    <string name="pw_timeline_reminder">Day %d</string>
+    <string name="pw_timeline_reminder_desc">Your trial is ending soon. Cancel anytime in Google Play.</string>
+    <string name="pw_timeline_charge">Day %d</string>
+    <string name="pw_timeline_charge_desc">You will be charged %s unless you cancel before.</string>
+    <string name="pw_cta_trial">Start my %d-day free trial</string>
+    <string name="pw_cta_continue">Continue</string>
+    <string name="pw_disclosure_trial">%1$d days free, then %2$s. Auto-renews until canceled.</string>
+    <string name="pw_disclosure_sub">%s. Auto-renews until canceled.</string>
+    <string name="pw_disclosure_lifetime">One-time payment of %s. No subscription.</string>
+    <string name="pw_cancel_anytime">Cancel anytime in Google Play</string>
+    <string name="pw_no_payment_today">No payment today</string>
+    <string name="pw_selected">Selected</string>
+    <string name="pw_not_selected">Not selected</string>
+    <string name="pw_restore">Restore</string>
+    <string name="pw_restore_checking">Checking your purchases…</string>
+    <string name="pw_restore_error">Could not check your purchases. Please try again.</string>
+    <string name="pw_manage">Manage subscription</string>
+    <string name="pw_privacy">Privacy</string>
+    <string name="pw_loading">Loading prices…</string>
+    <string name="pw_unavailable">Store is not available right now. Please try again later.</string>
+    <string name="pw_restore_success">Your Premium has been restored.</string>
+    <string name="pw_restore_none">No previous purchase found.</string>
+    <string name="pw_purchase_success">Welcome to Premium! 🎉</string>
+    <string name="pw_purchase_pending">Your purchase is pending. Premium will unlock after Google Play confirms payment.</string>
+    <string name="pw_purchase_error">The purchase could not be completed. Please try again.</string>
+    <string name="pw_exit_title">Wait! A special offer for you</string>
+    <string name="pw_exit_subtitle">Get Premium yearly for %1$s instead of %2$s.</string>
+    <string name="pw_exit_badge">-%d%%</string>
+    <string name="pw_exit_cta">Claim my offer</string>
+    <string name="pw_exit_decline">No thanks</string>
+</resources>

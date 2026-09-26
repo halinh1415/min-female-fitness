@@ -32,6 +32,7 @@ import com.google.android.gms.ads.AdView;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.model.DietObject;
+import mint.woman.female.workout.utils.EdgeToEdgeHelper;
 import mint.woman.female.workout.utils.JsonHelper;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
@@ -40,7 +41,8 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class MealDetailActivity extends AppCompatActivity implements RadioButton.OnCheckedChangeListener {
+public class MealDetailActivity extends AppCompatActivity implements RadioButton.OnCheckedChangeListener,
+        EdgeToEdgeHelper.HandlesInsets {
 
     RecyclerView mMealsRc;
     ImageView mImgDone;

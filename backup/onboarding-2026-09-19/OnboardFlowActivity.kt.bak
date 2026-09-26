@@ -1,0 +1,206 @@
+package mint.woman.female.workout.activity.ui.onboarding.onboard
+
+import android.content.Context
+import android.content.Intent
+import android.content.res.Configuration
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.SizeTransform
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
+import com.google.firebase.analytics.FirebaseAnalytics
+import mint.woman.female.workout.activity.ui.main.YogaActivity
+import mint.woman.female.workout.activity.ui.premium.PaywallActivity
+import mint.woman.female.workout.utils.EdgeToEdgeHelper
+import mint.woman.female.workout.utils.LanguageHelper
+import mint.woman.female.workout.utils.MyPreference
+import java.util.Locale
+
+/**
+ * Màn Onboard mới – dựng lại đầy đủ luồng theo bộ ảnh thiết kế `task/step1..step47`.
+ *
+ * Toàn bộ thứ tự màn hình nằm trong [ONBOARD_STEPS]; activity này chỉ lo phần khung
+ * (thanh tiến trình, back/skip, chuyển động) và việc lưu kết quả khi kết thúc.
+ */
+class OnboardFlowActivity : ComponentActivity(), EdgeToEdgeHelper.HandlesInsets {
+
+    private lateinit var preference: MyPreference
+    private lateinit var analytics: FirebaseAnalytics
+    private var finished = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
+        preference = MyPreference(this)
+        analytics = FirebaseAnalytics.getInstance(this)
+        analytics.logEvent(EVENT_START, null)
+
+        val state = ViewModelProvider(this)[OnboardState::class.java]
+
+        setContent {
+            MaterialTheme {
+                OnboardFlowScreen(
+                    state = state,
+                    onStepShown = { step ->
+                        analytics.logEvent(EVENT_STEP, Bundle().apply {
+                            putString(PARAM_DESIGN, step.design)
+                            putString(PARAM_KIND, step.kind.name)
+                        })
+                    },
+                    onExit = { finish() },
+                    onComplete = { completed -> finishFlow(state, completed) }
+                )
+            }
+        }
+    }
+
+    private fun finishFlow(state: OnboardState, completed: Boolean) {
+        if (finished) return
+        finished = true
+
+        state.persist(preference)
+        analytics.logEvent(
+            if (completed) EVENT_COMPLETE else EVENT_SKIP,
+            Bundle().apply { putString(PARAM_DESIGN, state.step.design) }
+        )
+
+        val main = Intent(this, YogaActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(main)
+        if (!preference.isPremiumMember) {
+            startActivity(Intent(this, PaywallActivity::class.java).putExtra("IS_FIRST", true))
+        }
+        finish()
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(newBase)
+        val saved = preferences.getString("ST_LANGUAGE", "").orEmpty()
+        val lang = if (saved.length > 1) saved.substring(0, 2) else Locale.getDefault().language
+        super.attachBaseContext(LanguageHelper.setLanguage(newBase, lang))
+    }
+
+    override fun applyOverrideConfiguration(overrideConfiguration: Configuration?) {
+        if (overrideConfiguration != null) {
+            val uiMode = overrideConfiguration.uiMode
+            overrideConfiguration.setTo(baseContext.resources.configuration)
+            overrideConfiguration.uiMode = uiMode
+        }
+        super.applyOverrideConfiguration(overrideConfiguration)
+    }
+
+    companion object {
+        private const val EVENT_START = "onboard_flow_start"
+        private const val EVENT_STEP = "onboard_flow_step"
+        private const val EVENT_COMPLETE = "onboard_flow_complete"
+        private const val EVENT_SKIP = "onboard_flow_skip"
+        private const val PARAM_DESIGN = "design"
+        private const val PARAM_KIND = "kind"
+    }
+}
+
+/** Các màn vẽ tràn cạnh (ảnh nền toàn màn hình) dùng chrome màu trắng. */
+private fun OnboardStep.isLightChrome(): Boolean = kind == StepKind.FULL_YES_NO
+
+/** Các màn chiếm trọn màn hình, không chừa lề dưới cho thanh điều hướng.
+ *  Chỉ FULL_YES_NO mới tràn cạnh thật sự (ảnh nền phủ hết + gradient tối ở dưới);
+ *  WELCOME/COACH vẫn có nút Next ở cuối Column nên cần navigationBarsPadding
+ *  để không bị thanh điều hướng hệ thống che mất. */
+private fun OnboardStep.isImmersive(): Boolean =
+    kind == StepKind.FULL_YES_NO
+
+@Composable
+private fun OnboardFlowScreen(
+    state: OnboardState,
+    onStepShown: (OnboardStep) -> Unit,
+    onExit: () -> Unit,
+    onComplete: (Boolean) -> Unit
+) {
+    val step = state.step
+    val lastIndex = ONBOARD_STEPS.lastIndex
+
+    LaunchedEffect(state.index) { onStepShown(step) }
+
+    fun goNext() {
+        if (state.index >= lastIndex) onComplete(true) else state.index += 1
+    }
+
+    fun goBack() {
+        // không cho quay lại khi kế hoạch đã bắt đầu được tạo
+        if (step.kind == StepKind.GENERATING ||
+            step.kind == StepKind.PLAN_RESULT ||
+            step.kind == StepKind.TRIAL_INTRO
+        ) return
+        if (state.index > 0) state.index -= 1 else onExit()
+    }
+
+    fun skipSection() {
+        state.index = state.nextSectionIndex()
+    }
+
+    BackHandler { goBack() }
+
+    Box(
+        Modifier
+            .fillMaxSize()
+            .background(if (step.isLightChrome()) Color.Black else ObColor.Background)
+    ) {
+        AnimatedContent(
+            targetState = state.index,
+            transitionSpec = {
+                val forward = targetState >= initialState
+                val width = 260
+                (slideInHorizontally { if (forward) width else -width } + fadeIn(tween(220)))
+                    .togetherWith(
+                        slideOutHorizontally { if (forward) -width else width } + fadeOut(tween(180))
+                    )
+                    .using(SizeTransform(clip = false))
+            },
+            label = "onboardStep"
+        ) { index ->
+            val current = remember(index) { ONBOARD_STEPS[index] }
+            Column(
+                Modifier
+                    .fillMaxSize()
+                    .then(if (current.isImmersive()) Modifier else Modifier.navigationBarsPadding())
+                    .statusBarsPadding()
+            ) {
+                if (current.hasProgress) {
+                    ObTopBar(
+                        section = current.section,
+                        fraction = state.sectionFraction(),
+                        onBack = ::goBack,
+                        onSkip = ::skipSection,
+                        light = current.isLightChrome()
+                    )
+                }
+                Box(Modifier.weight(1f)) {
+                    ObStepContent(step = current, state = state, onNext = ::goNext)
+                }
+            }
+        }
+    }
+}

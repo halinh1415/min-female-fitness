@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -32,7 +31,7 @@ import java.util.List;
 import java.util.Locale;
 
 import mint.woman.female.workout.R;
-import mint.woman.female.workout.activity.premium.PremiumActivity;
+import mint.woman.female.workout.activity.ui.premium.PremiumActivity;
 import mint.woman.female.workout.databinding.ActivitySoundsBinding;
 import mint.woman.female.workout.retrofit.MusicItem;
 

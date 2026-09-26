@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Paywall/LuckyDraw offer palette, ported from the tai-chi paywall screens. -->
+    <color name="app_start_color">#1B4D3E</color>
+    <color name="app_center_color">#2E8B57</color>
+    <color name="app_end_color">#8FBC8F</color>
+    <color name="offer_jade_darkest">#0A1F19</color>
+    <color name="offer_jade_deep">#0B3327</color>
+    <color name="offer_jade_dark">#0E3B2E</color>
+    <color name="offer_jade">#1C6B4E</color>
+    <color name="offer_jade_light">#2E8B57</color>
+    <color name="offer_gold">#F4C561</color>
+    <color name="offer_gold_light">#F9E1A3</color>
+    <color name="offer_gold_dark">#DFA93C</color>
+    <color name="offer_ink">#123A2C</color>
+    <color name="offer_ink_muted">#4A6B5D</color>
+    <color name="offer_paper">#F7FBF8</color>
+    <color name="home_background">#F4F8F5</color>
+    <color name="jade_border_soft">#D8E9DF</color>
+    <color name="jade_surface_soft">#F1F8F4</color>
+    <color name="jade_disabled">#B7CFC2</color>
+
+    <!-- Huy hieu / thanh tuu (Achievements) -->
+    <color name="badge_bronze">#A9724A</color>
+    <color name="badge_bronze_light">#E5C3A8</color>
+    <color name="badge_silver">#7D8B95</color>
+    <color name="badge_silver_light">#D5DDE3</color>
+    <color name="badge_gold">#C99A2E</color>
+    <color name="badge_gold_light">#F3DFA6</color>
+    <color name="badge_jade">#1C6B4E</color>
+    <color name="badge_jade_light">#A8D8C0</color>
+    <color name="badge_locked">#B4BEC6</color>
+    <color name="badge_locked_light">#EDF1F4</color>
+    <color name="badge_ink">#1F2A2E</color>
+    <color name="badge_muted">#6C7A80</color>
+    <color name="badge_track">#E4EAED</color>
     <color name="colorPrimary">#E91E63</color>
     <color name="colorPrimaryDark">#E91E63</color>
     <color name="colorAccent">#ff6699</color>

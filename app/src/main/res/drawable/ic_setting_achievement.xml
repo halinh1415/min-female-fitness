@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="@color/badge_gold">
+
+    <!-- Hai dai ruy bang phia sau huy chuong -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M9,13.6L6.6,22L10,20.2L11.7,16.4Z" />
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M15,13.6L17.4,22L14,20.2L12.3,16.4Z" />
+
+    <!-- Huy chuong tron, ngoi sao duoc duc rong o giua -->
+    <path
+        android:fillColor="@android:color/white"
+        android:fillType="evenOdd"
+        android:pathData="M12,2.5a6.3,6.3 0 1,1 0,12.6a6.3,6.3 0 0,1 0,-12.6z M12,5.5L12.82,7.67L15.14,7.78L13.33,9.23L13.94,11.47L12,10.2L10.06,11.47L10.67,9.23L8.86,7.78L11.18,7.67Z" />
+</vector>

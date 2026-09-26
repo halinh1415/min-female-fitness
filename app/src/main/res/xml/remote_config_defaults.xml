@@ -65,6 +65,46 @@
     <value>true</value>
   </entry>
   <entry>
+    <key>onboarding_v2</key>
+    <value>true</value>
+  </entry>
+  <entry>
+    <key>onboarding_experiment_variant</key>
+    <value>control_46</value>
+  </entry>
+  <entry>
+    <key>paywall_after_onboarding</key>
+    <value>true</value>
+  </entry>
+  <entry>
+    <key>paywall_close_delay_sec</key>
+    <value>3</value>
+  </entry>
+  <entry>
+    <key>paywall_default_plan</key>
+    <value>yearly</value>
+  </entry>
+  <entry>
+    <key>paywall_show_lifetime</key>
+    <value>true</value>
+  </entry>
+  <entry>
+    <key>paywall_show_monthly</key>
+    <value>true</value>
+  </entry>
+  <entry>
+    <key>paywall_show_timeline</key>
+    <value>true</value>
+  </entry>
+  <entry>
+    <key>paywall_exit_offer_enabled</key>
+    <value>true</value>
+  </entry>
+  <entry>
+    <key>paywall_exit_offer_id</key>
+    <value>exit-offer</value>
+  </entry>
+  <entry>
     <key>voice</key>
     <value>{"woman":"en@de@es@fr@it@ja@ko@nl@pl@pt@ru@vi","man":"en@de@es@fr@it@ja@nl@pl@pt@ru@vi","Adam":"en","Bella":"en"}</value>
   </entry>

@@ -40,7 +40,6 @@ import com.firebase.ui.auth.AuthUI.IdpConfig.GoogleBuilder
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationView
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
@@ -54,8 +53,8 @@ import kotlinx.coroutines.launch
 import mint.woman.female.workout.FitnessApplication
 import mint.woman.female.workout.R
 import mint.woman.female.workout.activity.SplashActivity
-import mint.woman.female.workout.activity.premium.PremiumActivity
-import mint.woman.female.workout.activity.premium.PremiumViewModel
+import mint.woman.female.workout.activity.ui.premium.PremiumActivity
+import mint.woman.female.workout.activity.ui.premium.PremiumViewModel
 import mint.woman.female.workout.activity.ui.custom.MyWorkoutActivity
 import mint.woman.female.workout.activity.ui.history.HistoryViewModel
 import mint.woman.female.workout.activity.ui.home.HomeFragment.OnHomeFragmentInteractionListener
@@ -703,6 +702,8 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
 
     override fun onResume() {
         super.onResume()
+        // Kiểm tra lại giao dịch mỗi lần quay về app (thanh toán đang chờ, gia hạn, huỷ gói).
+        premiumViewModel?.syncPremiumStatus()
         if (flagAds == 1) {
             flagAds = 0
             gotoPlan()

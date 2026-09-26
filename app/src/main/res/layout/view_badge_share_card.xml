@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Anh dem chia se ra mang xa hoi. Khong bao gio gan vao mot man hinh nao:
+    BadgeShare do va ve thang layout nay ra bitmap. Rong co dinh de anh xuat ra
+    luon cung ti le tren moi may.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="360dp"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingStart="32dp"
+    android:paddingTop="40dp"
+    android:paddingEnd="32dp"
+    android:paddingBottom="28dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:letterSpacing="0.14"
+        android:text="@string/badge_unlocked_celebration_title"
+        android:textAllCaps="true"
+        android:textColor="@color/badge_muted"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/img_badge"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="22dp"
+        android:contentDescription="@string/badge_screen_title"
+        android:scaleType="fitCenter" />
+
+    <TextView
+        android:id="@+id/tv_badge_tier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:letterSpacing="0.12"
+        android:textAllCaps="true"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        tools:text="Gold" />
+
+    <TextView
+        android:id="@+id/tv_badge_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:textColor="@color/badge_ink"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        tools:text="Hundred Days of Foundation" />
+
+    <TextView
+        android:id="@+id/tv_badge_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:lineSpacingExtra="3dp"
+        android:textColor="@color/badge_muted"
+        android:textSize="14sp"
+        tools:text="Reach a streak of 100 days." />
+
+    <TextView
+        android:id="@+id/tv_badge_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:gravity="center"
+        android:textColor="@color/badge_muted"
+        android:textSize="13sp"
+        tools:text="Earned on 16 Sep 2026" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="26dp"
+        android:background="@color/badge_track" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/app_name"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/app_name"
+            android:textColor="@color/badge_ink"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

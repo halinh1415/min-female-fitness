@@ -24,10 +24,21 @@ public class BootReceiver extends BroadcastReceiver {
         Log.d("HAHA1", "restart alarm");
         if (action != null && (action.equals(BOOT_COMPLETED) ||
                 action.equals(QUICKBOOT_POWERON))) {
-            String remindDaily = MyPreference.newInstance(context).getTimeRemindDaily();
-            AlarmReceiver.setAlarmDaily(context,remindDaily);
-            OneTimeWorkRequest oneTimeWorkRequest = new OneTimeWorkRequest.Builder(ReminderSetWorker.class).build();
-            WorkManager.getInstance(context).enqueue(oneTimeWorkRequest);
+            // Chạy ngoài main thread: lúc khởi động máy process được tạo ngầm, WorkManager
+            // (khởi tạo theo yêu cầu - Configuration.Provider) mở database ngay lần gọi đầu tiên.
+            // goAsync() giữ receiver sống tới khi xong, trong giới hạn thời gian của broadcast.
+            final PendingResult pendingResult = goAsync();
+            final Context appContext = context.getApplicationContext();
+            ReceiverExecutor.run(() -> {
+                try {
+                    String remindDaily = MyPreference.newInstance(appContext).getTimeRemindDaily();
+                    AlarmReceiver.setAlarmDaily(appContext, remindDaily);
+                    OneTimeWorkRequest oneTimeWorkRequest = new OneTimeWorkRequest.Builder(ReminderSetWorker.class).build();
+                    WorkManager.getInstance(appContext).enqueue(oneTimeWorkRequest);
+                } finally {
+                    pendingResult.finish();
+                }
+            });
 
         }
     }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chi mo dung thu muc cache dung de chia se, khong mo ca vung du lieu cua app. -->
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <cache-path
+        name="shared"
+        path="shared/" />
+</paths>

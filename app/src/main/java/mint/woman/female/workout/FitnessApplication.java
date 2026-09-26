@@ -4,37 +4,45 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.util.Log;
 import android.webkit.WebView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.PreferenceManager;
-
-import com.google.firebase.FirebaseApp;
-import com.google.gson.Gson;
+import androidx.work.Configuration;
 
 import mint.woman.female.workout.activity.SplashActivity;
-import mint.woman.female.workout.activity.premium.PremiumActivity;
+import mint.woman.female.workout.activity.ui.onboarding.onboard.OnboardFlowActivity;
+import mint.woman.female.workout.activity.ui.premium.PremiumActivity;
 import mint.woman.female.workout.admodule.AppOpenManager;
 import mint.woman.female.workout.admodule.MaticAdKeys;
 import mint.woman.female.workout.model.ExerciseObject;
-import mint.woman.female.workout.model.PlanObject;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.notification.AppNotificationHelper;
 import mint.woman.female.workout.notification.NotificationScheduler;
+import mint.woman.female.workout.utils.AnrReporter;
 import mint.woman.female.workout.utils.Database;
+import mint.woman.female.workout.utils.EdgeToEdgeHelper;
 import mint.woman.female.workout.utils.JsonHelper;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 import mint.woman.female.workout.utils.NetworkUtil;
 import mint.woman.female.workout.utils.StorageCommon;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class FitnessApplication extends Application {
+public class FitnessApplication extends Application implements Configuration.Provider {
 
+    private static final String TAG = "FitnessApplication";
+    private final ExecutorService startupExecutor = Executors.newSingleThreadExecutor(runnable -> {
+        Thread thread = new Thread(runnable, "deferred-startup");
+        thread.setPriority(Thread.NORM_PRIORITY - 1);
+        return thread;
+    });
 
     public JsonHelper mJsonHelper;
     public Database mDatabase;
@@ -97,17 +105,20 @@ public class FitnessApplication extends Application {
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+        // targetSdk 36: edge-to-edge can no longer be opted out -> restore legacy insets handling
+        EdgeToEdgeHelper.register(this);
         NetworkUtil.initNetwork(this);
-        AppNotificationHelper.createChannel(this);
-        NotificationScheduler.schedule(this);
         storageCommon = new StorageCommon();
-        AppOpenManager.getInstance().init(this, MaticAdKeys.OPEN_RESUME);
-        AppOpenManager.getInstance().disableAppResumeWithActivity(SplashActivity.class);
-        AppOpenManager.getInstance().disableAppResumeWithActivity(PremiumActivity.class);
+        AppOpenManager appOpenManager = AppOpenManager.getInstance();
+        // Configure IDs/exclusions before registering lifecycle callbacks. App-open ads are
+        // loaded after an Activity is resumed, not on the Application cold-start path.
+        appOpenManager.setAdResumeHighId(MaticAdKeys.OPEN_RESUME_HIGH);
+        appOpenManager.setAdResumeMediumId(MaticAdKeys.OPEN_RESUME_MEDIUM);
+        appOpenManager.disableAppResumeWithActivity(SplashActivity.class);
+        appOpenManager.disableAppResumeWithActivity(PremiumActivity.class);
+        appOpenManager.disableAppResumeWithActivity(OnboardFlowActivity.class);
+        appOpenManager.init(this, MaticAdKeys.OPEN_RESUME);
         //AppOpenManager.getInstance().disableAppResumeWithActivity(LockScreenActivity.class);
-        AppOpenManager.getInstance().setAdResumeHighId(MaticAdKeys.OPEN_RESUME_HIGH);
-        AppOpenManager.getInstance().setAdResumeMediumId(MaticAdKeys.OPEN_RESUME_MEDIUM);
-        storageCommon = new StorageCommon();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             String processName = getProcessName();
             if (!getPackageName().equals(processName)) {
@@ -117,8 +128,22 @@ public class FitnessApplication extends Application {
         mJsonHelper = JsonHelper.newInstance(getApplicationContext());
         mDatabase = Database.newInstance(getApplicationContext(), "workout.db");
         setTheme();
+        startupExecutor.execute(() -> {
+            try {
+                AppNotificationHelper.createChannel(getApplicationContext());
+                NotificationScheduler.schedule(getApplicationContext());
+                // Gửi lý do các ANR trước đó (Play Console chỉ thấy "nativePollOnce").
+                AnrReporter.reportRecentAnrs(getApplicationContext());
+            } catch (RuntimeException error) {
+                Log.w(TAG, "Unable to schedule notifications", error);
+            }
+        });
+    }
 
-
+    @NonNull
+    @Override
+    public Configuration getWorkManagerConfiguration() {
+        return new Configuration.Builder().build();
     }
 
     public void setTheme() {

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/offer_jade_darkest">
+
+    <ImageButton
+        android:id="@+id/iv_close_discount"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/txt_close"
+        android:padding="10dp"
+        android:src="@drawable/ic_discount_close" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/discount_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp">
+
+        <!--
+            Nen ve giu dung ti le 320x460 cua bg_discount_ticket, nho vay duong xe (y=322 trong
+            vector, tuc 70% chieu cao) luon trung voi guideline ben duoi va khoi gia tien nam
+            tron trong phan giay trang cua ve.
+        -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/discount_ticket"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_discount_ticket"
+            app:layout_constraintDimensionRatio="320:460"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_ticket_paper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.7" />
+
+            <LinearLayout
+                android:id="@+id/discount_headline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_discount_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/lora_bold_italic"
+                    android:gravity="center"
+                    android:rotation="-3"
+                    android:text="Special Discount"
+                    android:textColor="@color/offer_gold"
+                    android:textSize="28sp"
+                    android:textStyle="bold|italic" />
+
+                <FrameLayout
+                    android:id="@+id/discount_countdown_wrap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp">
+
+                    <LinearLayout
+                        android:id="@+id/discount_countdown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_discount_hours"
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:background="@drawable/bg_discount_timer"
+                            android:fontFamily="@font/fonts"
+                            android:gravity="center"
+                            android:text="00"
+                            android:textColor="@android:color/white"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:text=":"
+                            android:textColor="@color/app_end_color"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_discount_minutes"
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:background="@drawable/bg_discount_timer"
+                            android:fontFamily="@font/fonts"
+                            android:gravity="center"
+                            android:text="59"
+                            android:textColor="@android:color/white"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:text=":"
+                            android:textColor="@color/app_end_color"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_discount_seconds"
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:background="@drawable/bg_discount_timer"
+                            android:fontFamily="@font/fonts"
+                            android:gravity="center"
+                            android:text="53"
+                            android:textColor="@android:color/white"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|end"
+                        android:layout_marginEnd="-44dp"
+                        android:text="😜"
+                        android:textSize="34sp" />
+                </FrameLayout>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="6dp"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="52dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_discount_spark"
+                    android:rotation="24" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_discount_percent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/g1_black"
+                        android:includeFontPadding="false"
+                        android:text="50"
+                        android:textColor="@android:color/white"
+                        android:textSize="96sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/g1_black"
+                            android:includeFontPadding="false"
+                            android:text="%"
+                            android:textColor="@android:color/white"
+                            android:textSize="44sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-8dp"
+                            android:fontFamily="@font/g1_black"
+                            android:includeFontPadding="false"
+                            android:text="off"
+                            android:textColor="@android:color/white"
+                            android:textSize="32sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Duong rang cua nam dung tren ranh giua phan xanh va phan giay trang. -->
+            <View
+                android:id="@+id/discount_perforation"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_discount_perforation"
+                app:layout_constraintBottom_toBottomOf="@id/gl_ticket_paper"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/gl_ticket_paper" />
+
+            <LinearLayout
+                android:id="@+id/discount_price_row"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                app:layout_constraintBottom_toTopOf="@id/tv_discount_monthly"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/gl_ticket_paper"
+                app:layout_constraintVertical_chainStyle="packed">
+
+                <TextView
+                    android:id="@+id/tv_discount_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total 509.000 ₫/year "
+                    android:textColor="@color/offer_ink"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_original_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(1.550.000 ₫)"
+                    android:textColor="@color/offer_ink"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_discount_monthly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="20dp"
+                android:text="Only 42.417 ₫/month"
+                android:textColor="@color/offer_ink_muted"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/discount_price_row" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/btn_claim_discount"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="48dp"
+            android:background="@drawable/bg_discount_claim_button"
+            android:fontFamily="@font/fonts"
+            android:gravity="center"
+            android:text="Claim Now!"
+            android:textColor="@color/offer_ink"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/discount_ticket" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

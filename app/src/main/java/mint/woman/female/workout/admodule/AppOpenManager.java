@@ -49,6 +49,8 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
     private boolean isPremium = false;
     private final List<Class> disabledAppOpenList;
     private long loadTime = 0;
+    private boolean isLoadingAd = false;
+    private int pendingLoadCallbacks = 0;
 
     private Application myApplication;
     private String adResumeHighId = "", adResumeMediumId = "", adResumeId = "";
@@ -98,7 +100,6 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
         this.adResumeId = adResumeId;
         this.myApplication.registerActivityLifecycleCallbacks(this);
         ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
-        fetchAd();
     }
 
     /**
@@ -111,9 +112,16 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
 
     public void fetchAd() {
         // Have unused ad, no need to fetch another.
-        if (isAdAvailable()) {
+        if (isAdAvailable() || isLoadingAd || myApplication == null) {
             return;
         }
+
+        if (!FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.APP_OPEN_RESUME)) {
+            return;
+        }
+
+        isLoadingAd = true;
+        pendingLoadCallbacks = 3;
 
         loadCallback =
                 new AppOpenAd.AppOpenAdLoadCallback() {
@@ -121,6 +129,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                     @Override
                     public void onAdLoaded(AppOpenAd ad) {
                         AppOpenManager.this.appResumeAd = ad;
+                        onLoadFinished();
                     }
 
 
@@ -128,6 +137,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                     public void onAdFailedToLoad(LoadAdError loadAdError) {
                         // Handle the error.
                         Log.d(LOG_TAG, "error in loading");
+                        onLoadFinished();
                     }
 
                 };
@@ -136,12 +146,14 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
             public void onAdLoaded(@NonNull AppOpenAd appOpenAd) {
                 super.onAdLoaded(appOpenAd);
                 AppOpenManager.this.appResumeHighAd = appOpenAd;
+                onLoadFinished();
             }
 
             @Override
             public void onAdFailedToLoad(LoadAdError loadAdError) {
                 // Handle the error.
                 Log.d(LOG_TAG, "error in loading appResumeHighAd");
+                onLoadFinished();
             }
         };
         loadCallbackMedium = new AppOpenAd.AppOpenAdLoadCallback() {
@@ -149,6 +161,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
             public void onAdLoaded(@NonNull AppOpenAd appOpenAd) {
                 super.onAdLoaded(appOpenAd);
                 AppOpenManager.this.appResumeMediumAd = appOpenAd;
+                onLoadFinished();
 
 
             }
@@ -157,14 +170,21 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
             public void onAdFailedToLoad(LoadAdError loadAdError) {
                 // Handle the error.
                 Log.d(LOG_TAG, "error in loading appResumeMediumAd");
+                onLoadFinished();
             }
         };
-        if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.APP_OPEN_RESUME)) {
-            AdRequest request = getAdRequest();
-            loadTime = (new Date()).getTime();
-            AppOpenAd.load(myApplication, adResumeId, request, loadCallback);
-            AppOpenAd.load(myApplication, adResumeHighId, request, loadCallbackHigh);
-            AppOpenAd.load(myApplication, adResumeMediumId, request, loadCallbackMedium);
+        AdRequest request = getAdRequest();
+        loadTime = (new Date()).getTime();
+        AppOpenAd.load(myApplication, adResumeId, request, loadCallback);
+        AppOpenAd.load(myApplication, adResumeHighId, request, loadCallbackHigh);
+        AppOpenAd.load(myApplication, adResumeMediumId, request, loadCallbackMedium);
+    }
+
+    private void onLoadFinished() {
+        pendingLoadCallbacks--;
+        if (pendingLoadCallbacks <= 0) {
+            pendingLoadCallbacks = 0;
+            isLoadingAd = false;
         }
     }
 
@@ -232,6 +252,10 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
     }
 
     public void showAdIfAvailable() {
+        if (currentActivity == null) {
+            Log.d(LOG_TAG, "Can not show ad without an Activity.");
+            return;
+        }
         if (!isShowingAd && isAdAvailable()) {
             Log.d(LOG_TAG, "Will show ad. on activity: "+currentActivity.getClass().getName());
 
@@ -246,41 +270,51 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                             AppOpenManager.this.appResumeHighAd = null;
                             AppOpenManager.this.appResumeMediumAd = null;
                             isShowingAd = false;
+                            hideDialog();
                             fetchAd();
                         }
 
                         @Override
                         public void onAdFailedToShowFullScreenContent(AdError adError) {
+                            AppOpenManager.this.appResumeAd = null;
+                            AppOpenManager.this.appResumeHighAd = null;
+                            AppOpenManager.this.appResumeMediumAd = null;
+                            isShowingAd = false;
+                            hideDialog();
+                            fetchAd();
                         }
 
                         @Override
                         public void onAdShowedFullScreenContent() {
                             isShowingAd = true;
+                            hideDialog();
                         }
                     };
-            if (appResumeHighAd != null){
-                appResumeHighAd.setFullScreenContentCallback(fullScreenContentCallback);
+            AppOpenAd adToShow = appResumeHighAd != null
+                    ? appResumeHighAd
+                    : (appResumeMediumAd != null ? appResumeMediumAd : appResumeAd);
+            Activity activityToShowFrom = currentActivity;
+            if (adToShow != null && activityToShowFrom != null) {
+                // Reserve the show operation before the delay so lifecycle callbacks cannot
+                // schedule the same ad twice while the loading HUD is visible.
+                isShowingAd = true;
+                adToShow.setFullScreenContentCallback(fullScreenContentCallback);
                 showDialog();
-                new Handler().postDelayed(() -> {
+                new Handler(activityToShowFrom.getMainLooper()).postDelayed(() -> {
                     hideDialog();
-                    appResumeHighAd.show(currentActivity);
-                },800);
-            }else if (appResumeMediumAd != null){
-                appResumeMediumAd.setFullScreenContentCallback(fullScreenContentCallback);
-                showDialog();
-                new Handler().postDelayed(() -> {
-                    hideDialog();
-                    appResumeMediumAd.show(currentActivity);
-                },800);
-            }else if( appResumeAd != null){
-
-                appResumeAd.setFullScreenContentCallback(fullScreenContentCallback);
-                showDialog();
-                new Handler().postDelayed(() -> {
-                    hideDialog();
-                    appResumeAd.show(currentActivity);
-                },800);
-            }else{
+                    if (!activityToShowFrom.isFinishing() && !activityToShowFrom.isDestroyed()) {
+                        try {
+                            adToShow.show(activityToShowFrom);
+                        } catch (RuntimeException error) {
+                            isShowingAd = false;
+                            Log.w(LOG_TAG, "Unable to show app-open ad", error);
+                            fetchAd();
+                        }
+                    } else {
+                        isShowingAd = false;
+                    }
+                }, 800);
+            } else {
                 Log.d(LOG_TAG, "Can not show ad.");
                 fetchAd();
             }
@@ -307,11 +341,16 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                             // Set the reference to null so isAdAvailable() returns false.
                             AppOpenManager.this.appResumeAd = null;
                             isShowingAd = false;
+                            hideDialog();
                             fetchAd();
                         }
 
                         @Override
                         public void onAdFailedToShowFullScreenContent(AdError adError) {
+                            AppOpenManager.this.appResumeAd = null;
+                            isShowingAd = false;
+                            hideDialog();
+                            fetchAd();
                         }
 
                         @Override
@@ -347,7 +386,8 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
      * Utility method that checks if ad exists and can be shown.
      */
     public boolean isAdAvailable() {
-        return appResumeAd != null || appResumeHighAd != null || appResumeMediumAd != null && wasLoadTimeLessThanNHoursAgo(4);
+        return (appResumeAd != null || appResumeHighAd != null || appResumeMediumAd != null)
+                && wasLoadTimeLessThanNHoursAgo(4);
     }
 
     @Override
@@ -357,15 +397,23 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
 
     @Override
     public void onActivityStarted(@NonNull Activity activity) {
-        currentActivity = activity;
+        if (!isShowingAd) {
+            currentActivity = activity;
+        }
     }
 
 
     @Override
     public void onActivityResumed(Activity activity) {
+        if (isShowingAd) {
+            return;
+        }
         this.currentActivity = activity;
         Log.d("AppOpenManager", "onActivityResumed: " + this.currentActivity);
-        this.fetchAd();
+        if (!disabledAppOpenList.contains(activity.getClass())) {
+            // Queue the SDK request after the Activity has had a chance to draw its first frame.
+            activity.getWindow().getDecorView().post(this::fetchAd);
+        }
 
     }
 
@@ -386,7 +434,9 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
 
     @Override
     public void onActivityDestroyed(@NonNull Activity activity) {
-        currentActivity = null;
+        if (currentActivity == activity) {
+            currentActivity = null;
+        }
     }
 
     /**
@@ -394,7 +444,9 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
      */
     @OnLifecycleEvent(ON_START)
     public void onStart() {
-        if (isRemoveAd || isPremium) {
+        if (currentActivity == null) {
+            Log.d(LOG_TAG, "No resumed activity available for app-open ad");
+        } else if (isRemoveAd || isPremium) {
             Log.d(LOG_TAG, "Remove open ad in app!!");
         } else if (!isAppResumeEnabled) {
             Log.d(LOG_TAG, "onResume: app resume is disabled");

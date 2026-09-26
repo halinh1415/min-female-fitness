@@ -10,6 +10,11 @@
         android:visibility="visible" />
     <PreferenceCategory android:title="General">
         <Preference
+            android:icon="@drawable/ic_setting_achievement"
+            android:key="ACHIEVEMENTS"
+            android:summary="@string/badge_screen_subtitle"
+            android:title="@string/badge_screen_title" />
+        <Preference
             android:title="@string/txt_recommend_app"
             android:key="RECOMMEND_APP"
             android:icon="@drawable/ic_recommend"/>

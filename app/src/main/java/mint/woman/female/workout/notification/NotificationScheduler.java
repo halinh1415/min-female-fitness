@@ -18,9 +18,12 @@ public class NotificationScheduler {
                 new PeriodicWorkRequest.Builder(SmartNotificationWorker.class, 6, TimeUnit.HOURS)
                         .build();
 
+        // KEEP: được gọi ở mỗi lần process khởi động (kể cả khởi động ngầm do alarm / job / FCM).
+        // UPDATE làm WorkManager huỷ và đặt lại job của JobScheduler mỗi lần như vậy - thừa việc
+        // trên thiết bị hạn chế job chặt (Android 16, Realme/ColorOS) và có thể dừng job đang chạy.
         WorkManager.getInstance(context).enqueueUniquePeriodicWork(
                 WORK_NAME,
-                ExistingPeriodicWorkPolicy.UPDATE,
+                ExistingPeriodicWorkPolicy.KEEP,
                 request
         );
     }

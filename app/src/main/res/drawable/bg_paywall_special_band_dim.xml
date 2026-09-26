@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Ban mo cua bg_paywall_special_band, dung khi goi uu dai KHONG duoc chon.
+  Cung dang gradient vang kim nhung ha do dam xuong ~30% de dai nhan lui ve sau,
+  nhuong diem nhan cho the goi dang duoc chon.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="20dp" />
+    <gradient
+        android:angle="0"
+        android:endColor="#4DF4C561"
+        android:startColor="#4DF9E1A3"
+        android:type="linear" />
+</shape>

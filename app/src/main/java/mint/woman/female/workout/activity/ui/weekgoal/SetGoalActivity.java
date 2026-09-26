@@ -28,6 +28,7 @@ import java.util.Locale;
 public class SetGoalActivity extends AppCompatActivity {
     ActivitySetGoalBinding binding;
     MyPreference myDB;
+    private int contentBasePaddingTop;
 
     int firstDayOfWeek = Calendar.MONDAY, goalOfWeek = 5;
     String[] fistDayList = new String[3];
@@ -39,10 +40,45 @@ public class SetGoalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySetGoalBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        contentBasePaddingTop = binding.getRoot().getPaddingTop();
+        binding.getRoot().addOnLayoutChangeListener((view, left, top, right, bottom,
+                                                      oldLeft, oldTop, oldRight, oldBottom) ->
+                keepContentBelowActionBar());
         FirebaseAnalytics.getInstance(this).logEvent("scr_set_goal",new Bundle());
 
         setTitle(getString(R.string.txt_week_goal));
         initView();
+    }
+
+    /**
+     * Android 16 enforces edge-to-edge. On some decor layouts the framework ActionBar can then
+     * overlap android.R.id.content. Measure the real overlap so older Android versions and devices
+     * whose ActionBar already resizes the content do not receive duplicate top padding.
+     */
+    private void keepContentBelowActionBar() {
+        View actionBarContainer = findViewById(androidx.appcompat.R.id.action_bar_container);
+        if (actionBarContainer == null
+                || actionBarContainer.getVisibility() != View.VISIBLE
+                || actionBarContainer.getHeight() == 0) {
+            return;
+        }
+
+        int[] actionBarLocation = new int[2];
+        int[] contentLocation = new int[2];
+        actionBarContainer.getLocationInWindow(actionBarLocation);
+        binding.getRoot().getLocationInWindow(contentLocation);
+
+        int actionBarBottom = actionBarLocation[1] + actionBarContainer.getHeight();
+        int overlap = Math.max(0, actionBarBottom - contentLocation[1]);
+        int expectedTopPadding = contentBasePaddingTop + overlap;
+        if (binding.getRoot().getPaddingTop() != expectedTopPadding) {
+            binding.getRoot().setPadding(
+                    binding.getRoot().getPaddingLeft(),
+                    expectedTopPadding,
+                    binding.getRoot().getPaddingRight(),
+                    binding.getRoot().getPaddingBottom()
+            );
+        }
     }
 
     private void initView() {

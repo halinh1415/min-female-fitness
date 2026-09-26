@@ -32,7 +32,7 @@ public class MyPreference {
 
     public void setPlanProgress(int id, int progress) {
         mEditor.putInt("PLAN_PROGRESS_" + id, progress);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public int getCurrentId() {
@@ -41,7 +41,7 @@ public class MyPreference {
 
     public void setCurrentId(int id) {
         mEditor.putInt("CURRENT_ID", id);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public boolean isAutoNext() {
@@ -50,7 +50,7 @@ public class MyPreference {
 
     public void setAutoNext(boolean value) {
         mEditor.putBoolean("IS_AUTO_NEXT", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public boolean isMusicOn() {
@@ -59,7 +59,7 @@ public class MyPreference {
 
     public void setMusic(boolean value) {
         mEditor.putBoolean("MUSIC_ON", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public boolean isRingOn() {
@@ -68,7 +68,7 @@ public class MyPreference {
 
     public void setRing(boolean value) {
         mEditor.putBoolean("RING_ON", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public float getMusicVolume() {
@@ -83,12 +83,12 @@ public class MyPreference {
 
     public void setMusicName(String name) {
         mEditor.putString("BACK_GROUND_MUSIC", name);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public void setMusicFile(String file) {
         mEditor.putString("BACK_GROUND_MUSIC_FILE", file);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public String getMusicFile() {
@@ -107,7 +107,7 @@ public class MyPreference {
 
     public void setSpeed(float value) {
         mEditor.putFloat("EXERCISE_SPEED", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public boolean isSpeakerOn() {
@@ -116,7 +116,7 @@ public class MyPreference {
 
     public void setSpeaker(boolean value) {
         mEditor.putBoolean("VOICE_ON", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
 
@@ -126,7 +126,7 @@ public class MyPreference {
 
     public void setUnitKg(boolean value) {
         mEditor.putBoolean("IS_KG", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
 
@@ -153,7 +153,7 @@ public class MyPreference {
 
     public void setCurrentWeight(float value) {
         mEditor.putFloat("CURRENT_WEIGHT", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public float getCurrentHeight() {
@@ -180,12 +180,12 @@ public class MyPreference {
     public void setCurrentWaist(float value) {
 
         mEditor.putFloat("CURRENT_WAIST", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public void setCurrentHeight(float value) {
         mEditor.putFloat("CURRENT_HEIGHT", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public String getWeightUnit() {
@@ -203,7 +203,7 @@ public class MyPreference {
 
     public void increaseOpenCount() {
         mEditor.putInt("OPEN_COUNT", openCount() + 1);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public int openCount() {
@@ -216,7 +216,7 @@ public class MyPreference {
 
     public void setRated() {
         mEditor.putBoolean("IS_RATED", true);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public int getRestTime() {
@@ -231,7 +231,7 @@ public class MyPreference {
 
     public void setShowAds(boolean value) {
         mEditor.putBoolean("IS_SHOW_ADS", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public boolean isShowDiscover() {
@@ -240,7 +240,7 @@ public class MyPreference {
 
     public void setShowDiscover(boolean value) {
         mEditor.putBoolean("IS_SHOW_DISCOVER", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public void restartProgress() {
@@ -255,7 +255,7 @@ public class MyPreference {
 
     public void setOK(boolean value) {
         mEditor.putBoolean("OK_SPLASH", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public String getLanguage() {
@@ -274,7 +274,7 @@ public class MyPreference {
 
     public void setLanguage(String code) {
         mEditor.putString("ST_LANGUAGE", code);
-        mEditor.commit();
+        mEditor.apply();
     }
 
 
@@ -284,7 +284,7 @@ public class MyPreference {
 
     public void setShowRate(boolean value) {
         mEditor.putBoolean("IS_SHOW_RATE", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public int getProgressDiet() {
@@ -307,7 +307,7 @@ public class MyPreference {
 
     public void setDietDone(int day, boolean value) {
         mEditor.putBoolean("IS_DONE_DIET" + day, value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public String getLastWorkout(int id) {
@@ -320,7 +320,7 @@ public class MyPreference {
 
     public void setLastWorkout(int id, String value) {
         mEditor.putString("LAST_WORKOUT_" + id, value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public int getPushUpLevel() {
@@ -329,7 +329,7 @@ public class MyPreference {
 
     public void setPushUpLevel(int value) {
         mEditor.putInt("PUSH_UP_LEVEL", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public boolean isSetReminder() {
@@ -338,7 +338,7 @@ public class MyPreference {
 
     public void setReminder(boolean value) {
         mEditor.putBoolean("IS_SET_REMINDER", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public boolean getStatusAdsId(int id) {
@@ -347,7 +347,7 @@ public class MyPreference {
 
     public void setStatusAdsId(int id, boolean value) {
         mEditor.putBoolean("STATUS_ADS_" + id, value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public int getGender() {
@@ -356,7 +356,7 @@ public class MyPreference {
 
     public void setGender(int value) {
         mEditor.putString("USER_GENDER", String.valueOf(value));
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public int getAge() {
@@ -365,7 +365,7 @@ public class MyPreference {
 
     public void setAge(int value) {
         mEditor.putString("USER_AGE", String.valueOf(value));
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public int getVersionPlan(String plan) {
@@ -374,12 +374,12 @@ public class MyPreference {
 
     public void setVersionPlan(String plan, int version) {
         mEditor.putInt("VERSION_" + plan, version);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public void setPremiumMember(boolean value) {
         mEditor.putBoolean("PREMIUM_MEMBER", value);
-        mEditor.commit();
+        mEditor.apply();
         if (value) {
             setShowAds(false);
         }
@@ -391,7 +391,7 @@ public class MyPreference {
 
     public void setSyncGoogleFit(boolean value) {
         mEditor.putBoolean("SYNC_FIT", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public boolean isSyncGoogleFit() {
@@ -400,7 +400,7 @@ public class MyPreference {
 
     public void setRemind(boolean value) {
         mEditor.putBoolean("FIRST_REMIND", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public boolean isRemind() {
@@ -409,7 +409,7 @@ public class MyPreference {
 
     public void setStandardDiet(boolean value) {
         mEditor.putBoolean("STANDARD_DIET", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public boolean isStandardDiet() {
@@ -422,7 +422,7 @@ public class MyPreference {
 
     public void setShoppingOk(int id, boolean value) {
         mEditor.putBoolean("SHOPPING_OK_" + id, value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public boolean isTick() {
@@ -435,7 +435,7 @@ public class MyPreference {
 
     public void setPagerSaved(int value) {
         mEditor.putInt("PAGER_SAVED", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public String getTheme() {
@@ -452,13 +452,13 @@ public class MyPreference {
 
     public void setFirstDayOfWeek(int value) {
         mEditor.putInt("FIRST_DAY_OF_WEEK", value);
-        mEditor.commit();
+        mEditor.apply();
 
     }
 
     public void setGoalOfWeek(int value) {
         mEditor.putInt("GOAL_OF_WEEK", value);
-        mEditor.commit();
+        mEditor.apply();
 
     }
 
@@ -468,7 +468,7 @@ public class MyPreference {
 
     public void setTimeRemindDaily(String value) {
         mEditor.putString("TIME_REMIND_DAILY", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public boolean isFirstOpen() {
@@ -477,7 +477,7 @@ public class MyPreference {
 
     public void setFirstOpen(boolean value) {
         mEditor.putBoolean("IS_FIRST_OPEN", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public boolean isTranslate() {
@@ -486,7 +486,7 @@ public class MyPreference {
 
     public void setTranslate(boolean value) {
         mEditor.putBoolean("IS_TRANSLATE_NAME", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public int getSaveProgress(int programId, int day) {
@@ -495,7 +495,7 @@ public class MyPreference {
 
     public void setSaveProgress(int programId, int day, int value) {
         mEditor.putInt("SAVE_PROGRESS_" + programId + "_" + day, value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public float getSaveProgressPercent(int programId, int day) {
@@ -504,12 +504,12 @@ public class MyPreference {
 
     public void setSaveProgressPercent(int programId, int day, float value) {
         mEditor.putFloat("SAVE_PROGRESS_PERCENT_" + programId + "_" + day, value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public void saveProgressWorkout(int id, int mDayIndex, int currentExerciseCount) {
         mEditor.putInt("CURRENT_PROGRESS_" + id + "DAY_" + mDayIndex, currentExerciseCount);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public int getSaveProgressWorkout(int id, int mDayIndex) {
@@ -523,7 +523,7 @@ public class MyPreference {
 
     public void setCountOption(int option) {
         mEditor.putInt("COUNT_OPTION", option);
-        mEditor.commit();
+        mEditor.apply();
 
     }
 
@@ -533,7 +533,17 @@ public class MyPreference {
 
     public void setBackUpTime(long time) {
         mEditor.putLong("BACKUP_TIME", time);
-        mEditor.commit();
+        mEditor.apply();
+    }
+
+    /** Thời điểm hết hạn của gói ưu đãi 50% (Lucky Draw / flash sale), 0 nếu chưa có. */
+    public long getPromoEndTime() {
+        return mSharedPreferences.getLong("PROMO_END_TIME", 0);
+    }
+
+    public void setPromoEndTime(long time) {
+        mEditor.putLong("PROMO_END_TIME", time);
+        mEditor.apply();
     }
 
     public String getVoiceModel(String language) {
@@ -545,12 +555,12 @@ public class MyPreference {
 
     public void setVoiceModel(String language, String model) {
         mEditor.putString("voice_" + language, model);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public void setVoiceModelName(String language, String modelName) {
         mEditor.putString("coach_" + language, modelName);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public String getVoiceModelName(String language) {
@@ -561,7 +571,7 @@ public class MyPreference {
     }
     public void saveLastWorkout(long millis) {
         mEditor.putLong("LAST_WORKOUT", millis);
-        mEditor.commit();
+        mEditor.apply();
     }
     public long getLastWorkout() {
         return mSharedPreferences.getLong("LAST_WORKOUT", 0);
@@ -574,7 +584,7 @@ public class MyPreference {
 
     public void setUserTargetFocus(String value) {
         mEditor.putString("USER_TARGET_FOCUS", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public boolean requiresSeated() {
@@ -583,7 +593,7 @@ public class MyPreference {
 
     public void setRequiresSeated(boolean value) {
         mEditor.putBoolean("REQUIRES_SEATED", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public int getAvgDuration() {
@@ -592,7 +602,7 @@ public class MyPreference {
 
     public void setAvgDuration(int value) {
         mEditor.putInt("AVG_DURATION", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public String getUserExperience() {
@@ -601,7 +611,7 @@ public class MyPreference {
 
     public void setUserExperience(String value) {
         mEditor.putString("USER_EXPERIENCE", value);
-        mEditor.commit();
+        mEditor.apply();
     }
     public boolean isOnboarded() {
         return mSharedPreferences.getBoolean("IS_ONBOARDED", false);
@@ -609,7 +619,39 @@ public class MyPreference {
 
     public void setOnboarded(boolean value) {
         mEditor.putBoolean("IS_ONBOARDED", value);
-        mEditor.commit();
+        mEditor.apply();
+    }
+
+    // ============ Onboarding quiz v2 ============
+
+    /** One of: lose_weight, tone, flexibility, strength */
+    public String getUserGoal() {
+        return mSharedPreferences.getString("USER_GOAL", "tone");
+    }
+
+    public void setUserGoal(String value) {
+        mEditor.putString("USER_GOAL", value);
+        mEditor.apply();
+    }
+
+    /** Comma separated focus keys, e.g. "abs,butt". */
+    public String getUserFocusAreas() {
+        return mSharedPreferences.getString("USER_FOCUS_AREAS", "body");
+    }
+
+    public void setUserFocusAreas(String value) {
+        mEditor.putString("USER_FOCUS_AREAS", value);
+        mEditor.apply();
+    }
+
+    /** Target weight, always stored in kg. */
+    public float getTargetWeightKg() {
+        return mSharedPreferences.getFloat("TARGET_WEIGHT", 0f);
+    }
+
+    public void setTargetWeightKg(float value) {
+        mEditor.putFloat("TARGET_WEIGHT", value);
+        mEditor.apply();
     }
     public boolean isEnableIntro() {
         return mSharedPreferences.getBoolean("ENABLE_INTRO", true);
@@ -620,7 +662,7 @@ public class MyPreference {
     public void incrementNotificationRequestCount() {
         int count = mSharedPreferences.getInt("NOTIFICATION_REQUEST_COUNT", 0);
         mEditor.putInt("NOTIFICATION_REQUEST_COUNT", count + 1);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public int getNotificationRequestCount() {
@@ -630,7 +672,7 @@ public class MyPreference {
     public void incrementNotificationAllowCount() {
         int count = mSharedPreferences.getInt("NOTIFICATION_ALLOW_COUNT", 0);
         mEditor.putInt("NOTIFICATION_ALLOW_COUNT", count + 1);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public int getNotificationAllowCount() {
@@ -640,7 +682,7 @@ public class MyPreference {
     public void incrementNotificationDeniedCount() {
         int count = mSharedPreferences.getInt("NOTIFICATION_DENIED_COUNT", 0);
         mEditor.putInt("NOTIFICATION_DENIED_COUNT", count + 1);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public int getNotificationDeniedCount() {
@@ -657,7 +699,7 @@ public class MyPreference {
         int count = mSharedPreferences.getInt("NOTIFICATION_SENT_COUNT", 0);
         mEditor.putInt("NOTIFICATION_SENT_COUNT", count + 1);
         mEditor.putLong("LAST_NOTIFICATION_TIME", System.currentTimeMillis());
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public int getNotificationSentCount() {
@@ -667,7 +709,7 @@ public class MyPreference {
     public void incrementNotificationClickCount() {
         int count = mSharedPreferences.getInt("NOTIFICATION_CLICK_COUNT", 0);
         mEditor.putInt("NOTIFICATION_CLICK_COUNT", count + 1);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public int getNotificationClickCount() {
@@ -683,7 +725,7 @@ public class MyPreference {
     public void incrementNotificationRetentionCount() {
         int count = mSharedPreferences.getInt("NOTIFICATION_RETENTION_COUNT", 0);
         mEditor.putInt("NOTIFICATION_RETENTION_COUNT", count + 1);
-        mEditor.commit();
+        mEditor.apply();
     }
 
     public int getNotificationRetentionCount() {
@@ -759,6 +801,6 @@ public class MyPreference {
     }
     public void setMigrateHistory(boolean value) {
         mEditor.putBoolean("IS_MIGRATE", value);
-        mEditor.commit();
+        mEditor.apply();
     }
 }
