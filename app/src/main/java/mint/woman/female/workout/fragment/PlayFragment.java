@@ -43,6 +43,7 @@ import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.PlanObject;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.MyPreference;
+import mint.woman.female.workout.utils.WorkoutVideoDecoder;
 
 
 @SuppressLint({"NonConstantResourceId", "UseSwitchCompatOrMaterialCode", "DefaultLocale", "SetTextI18n"})
@@ -116,7 +117,7 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         }
         mTotalTime = mActionObject.time;
         binding.txtSpeed.setText("" + myPreference.getSpeed() + "x");
-        binding.videoView.setVideoURI(Uri.parse(path));
+        loadVideo();
         binding.videoView.setOnPreparedListener(mediaPlayer -> {
             mediaPlayer.setLooping(true);
 
@@ -211,9 +212,22 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         binding.txtSpeed.setText("" + myPreference.getSpeed() + "x");
         binding.tvExerciseName.setText(mExerciseObject.getName());
         binding.tvCountDown.setVisibility(View.INVISIBLE);
-        binding.videoView.setVideoURI(Uri.parse(path));
+        loadVideo();
         playExercise();
 
+    }
+
+    /**
+     * temp.mp4 do RestFragment giải mã ở luồng nền; bỏ qua nghỉ ngay thì có thể chưa xong,
+     * nên chờ giải mã rồi mới gán video.
+     */
+    private void loadVideo() {
+        Context context = getContext();
+        if (context == null) return;
+        WorkoutVideoDecoder.whenReady(context, available -> {
+            if (!available || !isAdded() || getView() == null) return;
+            binding.videoView.setVideoURI(Uri.parse(path));
+        });
     }
 
     public void playExercise() {

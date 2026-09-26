@@ -19,7 +19,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
-import com.minfitness.decode.Decoder;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.workout.DoWorkoutActivity;
@@ -29,9 +28,9 @@ import mint.woman.female.workout.custom.DialogDemoWorkout;
 import mint.woman.female.workout.databinding.FragmentRestBinding;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.PlanObject;
-import mint.woman.female.workout.utils.FileUtil;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.MyPreference;
+import mint.woman.female.workout.utils.WorkoutVideoDecoder;
 
 @SuppressLint("NonConstantResourceId")
 public class RestFragment extends Fragment implements View.OnClickListener {
@@ -106,24 +105,14 @@ public class RestFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        // Giải mã ở luồng nền: làm trên main thread chặn UI tới hàng trăm ms và có thể gây ANR.
+        WorkoutVideoDecoder.decode(requireContext(), DoWorkoutActivity.discover, mActionObject.actionId);
+        binding.videoView.setOnPreparedListener(mediaPlayer -> {
+            mediaPlayer.setLooping(true);
+        });
+        binding.videoView.start();
+        loadVideo();
         try {
-            if (DoWorkoutActivity.discover == 0) {
-                Decoder.decryptToFile(getContext().getAssets(), "i/v/video_" + mActionObject.actionId, getContext().getCacheDir() + "/temp.mp4");
-            } else {
-                Decoder.decryptInputToFile(getContext().getFilesDir() + "/discover/" + DoWorkoutActivity.discover + "/" + FitnessApplication.getApplication().getVersion() + "/v/video_" + mActionObject.actionId, getContext().getCacheDir() + "/temp.mp4");
-            }
-
-
-            videoPath = getContext().getCacheDir() + "/temp.mp4";
-            if (FileUtil.doesVideoExist(getContext(), "temp.mp4")) {
-                binding.videoView.setVideoURI(Uri.parse(videoPath));
-                 binding.videoView.setOnPreparedListener(mediaPlayer -> {
-                    mediaPlayer.setLooping(true);
-                });
-                 binding.videoView.start();
-            }
-
-
             binding.tvExerciseName.setText(mExerciseObject.getName());
             if (mActionObject.getUnit().contains("s")) {
                 binding.tvSub.setVisibility(View.GONE);
@@ -152,11 +141,21 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         }
         // if (mListener != null) mListener.startRestTime(mRestTime);
         requestNewAdBanner();
-        binding.videoView.start();
         binding.txtSkip.setOnClickListener(this);
         binding.txtAddTime.setOnClickListener(this);
         binding.tvExerciseName.setOnClickListener(this);
 
+    }
+
+    /** Gán video sau khi giải mã xong; start()/pause() gọi trước đó vẫn được VideoView giữ. */
+    private void loadVideo() {
+        Context context = getContext();
+        if (context == null) return;
+        videoPath = WorkoutVideoDecoder.videoFile(context).getPath();
+        WorkoutVideoDecoder.whenReady(context, available -> {
+            if (!available || !isAdded() || getView() == null) return;
+            binding.videoView.setVideoURI(Uri.parse(videoPath));
+        });
     }
 
     private void requestNewAdBanner() {
@@ -206,12 +205,11 @@ public class RestFragment extends Fragment implements View.OnClickListener {
 
     public void onResumeRest() {
         initTimer(mCurrentTime);
-        videoPath = getContext().getCacheDir() + "/temp.mp4";
-         binding.videoView.setVideoURI(Uri.parse(videoPath));
          binding.videoView.setOnPreparedListener(mediaPlayer -> {
             mediaPlayer.setLooping(true);
         });
          binding.videoView.start();
+         loadVideo();
          binding.tvExerciseName.setText(mExerciseObject.getName());
         int minutes = (mActionObject.time) / 60;
         int seconds = mActionObject.time % 60;
@@ -304,14 +302,13 @@ public class RestFragment extends Fragment implements View.OnClickListener {
                 binding.tvSub.setVisibility(View.GONE);
             }
         }
-        videoPath = getContext().getCacheDir() + "/temp.mp4";
-         binding.videoView.setVideoURI(Uri.parse(videoPath));
          binding.videoView.setOnPreparedListener(mediaPlayer -> {
             mediaPlayer.setLooping(true);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 mediaPlayer.setPlaybackParams(new PlaybackParams().setSpeed(myPreference.getSpeed()));
             }
         });
+         loadVideo();
 
     }
 
