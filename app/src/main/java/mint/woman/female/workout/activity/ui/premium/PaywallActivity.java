@@ -55,6 +55,11 @@ import mint.woman.female.workout.utils.RemoteConfigKeys;
  */
 public class PaywallActivity extends AppCompatActivity implements EdgeToEdgeHelper.HandlesInsets {
 
+    /** LuckyDraw (popup đè lên paywall) đóng thì paywall đóng theo, trả kết quả cho màn gọi. */
+    private final androidx.activity.result.ActivityResultLauncher<Intent> luckyDrawLauncher =
+            registerForActivityResult(new androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult(),
+                    result -> finishWithResult());
+
     public static final String EXTRA_IS_FIRST = "IS_FIRST";
     public static final String EXTRA_SOURCE = "SOURCE";
 
@@ -446,7 +451,7 @@ public class PaywallActivity extends AppCompatActivity implements EdgeToEdgeHelp
                 ? R.drawable.bg_paywall_corner_badge
                 : R.drawable.bg_paywall_corner_badge_dim);
         plan.tvPlanCornerBadge.setTextColor(ContextCompat.getColor(this,
-                selected ? R.color.offer_ink : R.color.offer_ink_muted));
+                selected ? R.color.White : R.color.offer_ink_muted));
     }
 
     private void highlightSpecialBand(boolean selected) {
@@ -454,7 +459,7 @@ public class PaywallActivity extends AppCompatActivity implements EdgeToEdgeHelp
                 ? R.drawable.bg_paywall_special_band
                 : R.drawable.bg_paywall_special_band_dim);
         binding.planSpecial.tvPlanBand.setTextColor(ContextCompat.getColor(this,
-                selected ? R.color.offer_ink : R.color.offer_ink_muted));
+                selected ? R.color.White : R.color.offer_ink_muted));
     }
 
     private String billingDisclosure(int trialDays) {
@@ -656,8 +661,8 @@ public class PaywallActivity extends AppCompatActivity implements EdgeToEdgeHelp
                 && remoteConfig.getBoolean(RemoteConfigKeys.PAYWALL_EXIT_OFFER_ENABLED)) {
             closing = true;
             logEvent("paywall_exit_offer_view", null);
-            startActivity(new Intent(this, LuckyDrawActivity.class));
-            finishWithResult();
+            // Vòng quay hiện dạng popup đè lên paywall; paywall đóng khi vòng quay / vé ưu đãi xong.
+            luckyDrawLauncher.launch(new Intent(this, LuckyDrawActivity.class));
             return;
         }
 

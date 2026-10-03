@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noti_action_start">Aloita nyt</string>
+    <string name="noti_action_snooze">Muistuta tunnin päästä</string>
+    <string name="noti_week_progress">%1$d/%2$d päivää tällä viikolla</string>
+</resources>

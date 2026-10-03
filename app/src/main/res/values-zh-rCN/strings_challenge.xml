@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ch_restart">重新开始</string>
+    <string name="ch_start_day">开始第 %d 天</string>
+    <string name="ch_day_of">第 %1$d/%2$d 天</string>
+    <string name="ch_completed">挑战完成！🎉</string>
+    <string name="ch_week_done">第 %d 周完成</string>
+    <string name="ch_finish_previous">请先完成第 %d 天</string>
+    <string name="ch_removed">该计划已不可用</string>
+</resources>

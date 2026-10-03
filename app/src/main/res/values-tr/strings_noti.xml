@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noti_action_start">Şimdi başla</string>
+    <string name="noti_action_snooze">1 saat sonra hatırlat</string>
+    <string name="noti_week_progress">Bu hafta %1$d/%2$d gün</string>
+</resources>

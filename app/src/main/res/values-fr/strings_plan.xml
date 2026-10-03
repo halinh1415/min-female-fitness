@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pp_settings">Paramètres du plan</string>
+    <string name="pp_goal">Objectif</string>
+    <string name="pp_goal_lose">Perdre du poids</string>
+    <string name="pp_goal_muscle">Prendre du muscle</string>
+    <string name="pp_goal_fit">Rester en forme</string>
+    <string name="pp_level">Niveau</string>
+    <string name="pp_focus">Zone ciblée</string>
+    <string name="pp_multiple">(Plusieurs)</string>
+    <string name="pp_full_body">Corps entier</string>
+    <string name="pp_abs">Abdos</string>
+    <string name="pp_arm_chest">Bras &amp; Poitrine</string>
+    <string name="pp_back">Dos</string>
+    <string name="pp_leg">Jambes</string>
+    <string name="pp_butt">Fessiers</string>
+    <string name="pp_injury">Zones blessées</string>
+    <string name="pp_none">Aucune</string>
+    <string name="pp_knee">Genou</string>
+    <string name="pp_shoulder">Bras &amp; Épaule</string>
+    <string name="pp_wrist">Poignet</string>
+    <string name="pp_injury_note">Les exercices qui sollicitent ces zones seront retirés. Si la douleur est forte, consulte un médecin avant de t\'entraîner.</string>
+    <string name="pp_aerobic">Niveau d\'aérobie</string>
+    <string name="pp_low">Faible intensité</string>
+    <string name="pp_moderate">Intensité modérée</string>
+    <string name="pp_high">Haute intensité</string>
+    <string name="pp_type">Type d\'entraînement</string>
+    <string name="pp_jump_free">Sans sauts</string>
+    <string name="pp_duration">Durée de la séance</string>
+    <string name="pp_min">min</string>
+    <string name="pp_create">Créer mon plan</string>
+    <string name="pp_creating">Création de ton plan personnalisé…</string>
+    <string name="pp_plan_name">Mon plan personnalisé</string>
+    <string name="pp_home_title">Plan personnalisé</string>
+    <string name="pp_home_desc">Un plan de 4 semaines adapté à ton objectif, ton niveau et ton corps.</string>
+    <string name="pp_home_create">Créer</string>
+    <string name="pp_edit">Ajuster le plan</string>
+</resources>

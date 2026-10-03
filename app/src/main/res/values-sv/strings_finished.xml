@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fin_title">Passet klart!</string>
+    <string name="fin_duration">Tid</string>
+    <string name="fin_exercises">Övningar</string>
+    <string name="fin_how">Hur kändes passet?</string>
+    <string name="fin_feel_1">För svårt</string>
+    <string name="fin_feel_2">Svårt</string>
+    <string name="fin_feel_3">Lagom</string>
+    <string name="fin_feel_4">Lätt</string>
+    <string name="fin_feel_5">För lätt</string>
+    <string name="fin_weight">Vikt</string>
+    <string name="fin_update">Uppdatera</string>
+    <string name="fin_reminder">Daglig påminnelse</string>
+    <string name="fin_edit">Ändra</string>
+    <string name="fin_share">Dela</string>
+    <string name="fin_done">Klar</string>
+    <string name="streak_finished_first">🔥 Dag 1 — din svit har börjat!</string>
+    <string name="streak_finished_milestone">🎉 Fantastiskt! %d dagar i rad</string>
+    <string name="streak_finished_title">🔥 %d dagar i rad!</string>
+</resources>

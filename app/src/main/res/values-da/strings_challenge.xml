@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ch_restart">Start forfra</string>
+    <string name="ch_start_day">Start dag %d</string>
+    <string name="ch_day_of">Dag %1$d af %2$d</string>
+    <string name="ch_completed">Udfordringen gennemført! 🎉</string>
+    <string name="ch_week_done">Uge %d gennemført</string>
+    <string name="ch_finish_previous">Gennemfør dag %d først</string>
+    <string name="ch_removed">Programmet findes ikke længere</string>
+</resources>

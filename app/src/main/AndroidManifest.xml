@@ -149,8 +149,7 @@
         <activity
             android:name=".activity.ui.premium.LuckyDrawActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.FullScreen" />
+            android:theme="@style/AppTheme.Translucent" />
         <activity
             android:name=".activity.ui.count.CountManagerActivity"
             android:exported="false"
@@ -218,7 +217,7 @@
             android:largeHeap="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.Main">
             <intent-filter>
                 <action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE" />
             </intent-filter>
@@ -254,6 +253,7 @@
         <activity
             android:name=".activity.ui.history.HistoryActivity"
             android:label="@string/mn_history"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".activity.ui.report.ReportActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -292,6 +292,7 @@
         <activity
             android:name=".activity.ExploreDetailActivity"
             android:label="@string/tab_discover"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".activity.ui.main.YogaActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -340,6 +341,18 @@
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
+        <activity
+            android:name=".activity.ui.plan.PersonalPlanActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main" />
+        <!-- Nhắc tập theo lịch (nút Schedule ở Report) và nút "Nhắc sau 1 giờ" trên thông báo. -->
+        <receiver
+            android:name=".notification.NotificationReceiver"
+            android:exported="false" />
+        <receiver
+            android:name=".notification.NotificationActionReceiver"
+            android:exported="false" />
 
         <activity
             android:name=".activity.PolicyActivity"

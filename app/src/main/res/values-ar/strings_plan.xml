@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pp_settings">إعدادات الخطة</string>
+    <string name="pp_goal">هدف اللياقة</string>
+    <string name="pp_goal_lose">إنقاص الوزن</string>
+    <string name="pp_goal_muscle">بناء العضلات</string>
+    <string name="pp_goal_fit">الحفاظ على اللياقة</string>
+    <string name="pp_level">مستوى اللياقة</string>
+    <string name="pp_focus">منطقة التركيز</string>
+    <string name="pp_multiple">(اختيار متعدد)</string>
+    <string name="pp_full_body">الجسم كله</string>
+    <string name="pp_abs">البطن</string>
+    <string name="pp_arm_chest">الذراعان والصدر</string>
+    <string name="pp_back">الظهر</string>
+    <string name="pp_leg">الساقان</string>
+    <string name="pp_butt">الأرداف</string>
+    <string name="pp_injury">المناطق المصابة</string>
+    <string name="pp_none">لا شيء</string>
+    <string name="pp_knee">الركبة</string>
+    <string name="pp_shoulder">الذراع والكتف</string>
+    <string name="pp_wrist">الرسغ</string>
+    <string name="pp_injury_note">سيتم استبعاد التمارين التي تضغط على هذه المناطق. إذا كان الألم شديدًا، استشيري الطبيب قبل التمرين.</string>
+    <string name="pp_aerobic">المستوى الهوائي</string>
+    <string name="pp_low">شدة منخفضة</string>
+    <string name="pp_moderate">شدة متوسطة</string>
+    <string name="pp_high">شدة عالية</string>
+    <string name="pp_type">نوع التمرين</string>
+    <string name="pp_jump_free">بدون قفز</string>
+    <string name="pp_duration">مدة التمرين</string>
+    <string name="pp_min">دقيقة</string>
+    <string name="pp_create">إنشاء خطتي</string>
+    <string name="pp_creating">جارٍ إنشاء خطتك الشخصية…</string>
+    <string name="pp_plan_name">خطتي الشخصية</string>
+    <string name="pp_home_title">خطة شخصية</string>
+    <string name="pp_home_desc">خطة لمدة 4 أسابيع مصممة حسب هدفك ومستواك وجسمك.</string>
+    <string name="pp_home_create">إنشاء</string>
+    <string name="pp_edit">تعديل الخطة</string>
+</resources>

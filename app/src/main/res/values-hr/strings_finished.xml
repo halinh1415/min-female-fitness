@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fin_title">Trening završen!</string>
+    <string name="fin_duration">Trajanje</string>
+    <string name="fin_exercises">Vježbe</string>
+    <string name="fin_how">Kakav je bio ovaj trening?</string>
+    <string name="fin_feel_1">Pretežak</string>
+    <string name="fin_feel_2">Težak</string>
+    <string name="fin_feel_3">Taman</string>
+    <string name="fin_feel_4">Lagan</string>
+    <string name="fin_feel_5">Prelagan</string>
+    <string name="fin_weight">Težina</string>
+    <string name="fin_update">Ažuriraj</string>
+    <string name="fin_reminder">Dnevni podsjetnik</string>
+    <string name="fin_edit">Uredi</string>
+    <string name="fin_share">Podijeli</string>
+    <string name="fin_done">Gotovo</string>
+    <string name="streak_finished_first">🔥 Dan 1 — tvoj niz je počeo!</string>
+    <string name="streak_finished_milestone">🎉 Sjajno! %d dana zaredom</string>
+    <string name="streak_finished_title">🔥 Niz od %d dana!</string>
+</resources>

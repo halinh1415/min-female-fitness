@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nền viên thuốc mờ cho nút Restore để đọc được trên ảnh hero -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#33FFFFFF">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="17dp" />
+            <solid android:color="#59000000" />
+        </shape>
+    </item>
+</ripple>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fin_title">Økten er fullført!</string>
+    <string name="fin_duration">Varighet</string>
+    <string name="fin_exercises">Øvelser</string>
+    <string name="fin_how">Hvordan føltes denne økten?</string>
+    <string name="fin_feel_1">For hard</string>
+    <string name="fin_feel_2">Hard</string>
+    <string name="fin_feel_3">Passe</string>
+    <string name="fin_feel_4">Lett</string>
+    <string name="fin_feel_5">For lett</string>
+    <string name="fin_weight">Vekt</string>
+    <string name="fin_update">Oppdater</string>
+    <string name="fin_reminder">Daglig påminnelse</string>
+    <string name="fin_edit">Rediger</string>
+    <string name="fin_share">Del</string>
+    <string name="fin_done">Ferdig</string>
+    <string name="streak_finished_first">🔥 Dag 1 — rekken din har startet!</string>
+    <string name="streak_finished_milestone">🎉 Fantastisk! %d dager på rad</string>
+    <string name="streak_finished_title">🔥 %d dager på rad!</string>
+</resources>

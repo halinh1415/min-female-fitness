@@ -6,14 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
-import android.text.Html;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -22,20 +18,14 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -44,7 +34,6 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 
@@ -60,18 +49,11 @@ import mint.woman.female.workout.activity.ui.workout.SelectExerciseActivity;
 import mint.woman.female.workout.admodule.MaticAd;
 import mint.woman.female.workout.admodule.MaticAdCallBack;
 import mint.woman.female.workout.admodule.MaticAdKeys;
-import mint.woman.female.workout.common.adapter.PreviewAdapter;
-import mint.woman.female.workout.common.adapter.ExercisePreAdapter;
 import mint.woman.female.workout.common.data.DemoDataProvider;
-import mint.woman.female.workout.custom.CustomAppBarLayoutBehavior;
 import mint.woman.female.workout.custom.DialogEditExercise;
 import mint.woman.female.workout.custom.DialogEditWorkout;
 import mint.woman.female.workout.custom.DialogUnlockTraining;
 import mint.woman.female.workout.custom.EditExerciseListener;
-import mint.woman.female.workout.custom.OnStartDragListener;
-import mint.woman.female.workout.custom.SimpleItemTouchHelperCallback;
-import mint.woman.female.workout.databinding.ActivityPreviewBinding;
-import mint.woman.female.workout.databinding.ContentPreviewBinding;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.PlanObject;
 import mint.woman.female.workout.model.ProgramObject;
@@ -85,7 +67,11 @@ import mint.woman.female.workout.utils.JsonHelper;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 import mint.woman.female.workout.utils.RemoteConfigKeys;
-
+import mint.woman.female.workout.utils.EdgeToEdgeHelper;
+import androidx.activity.EdgeToEdge;
+import androidx.activity.SystemBarStyle;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -95,24 +81,22 @@ import java.util.Locale;
 
 
 @SuppressLint({"NonConstantResourceId", "DefaultLocale", "SetTextI18n"})
-public class PreviewActivity extends AppCompatActivity implements PreviewAdapter.EventDemo, OnStartDragListener, DialogEditWorkout.OnEditFragmentInteractionListener, EditExerciseListener, DialogUnlockTraining.OnUnlockTrainingListener {
+/**
+ * Xem trước buổi tập. Giao diện Jetpack Compose ({@link PreviewScreen}); toàn bộ logic (tải dữ liệu,
+ * mở khóa, quảng cáo, sửa bài) vẫn ở Activity này và chỉ cập nhật {@link PreviewUiState}.
+ */
+public class PreviewActivity extends AppCompatActivity implements PreviewActions, DialogEditWorkout.OnEditFragmentInteractionListener, EditExerciseListener, DialogUnlockTraining.OnUnlockTrainingListener, EdgeToEdgeHelper.HandlesInsets {
 
     private static final String TAG = "PreviewActivity";
-    ActivityPreviewBinding binding;
-    ContentPreviewBinding contentPreviewBinding;
-
-
-    PreviewAdapter mPreviewAdapter;
+    private final PreviewUiState state = new PreviewUiState();
     DemoDataProvider mDemoDataProvider;
     MyPreference myPreference;
     Bundle mBundle;
     boolean flagEdit = false, flagUnlock = false;
-    Menu menu;
     int saveProgress = 0;
     private ProgramObject mProgramObject;
     private int mIndexDay, currentActionIndex;
     private JsonHelper mJsonHelper;
-    private ItemTouchHelper mItemTouchHelper;
     private DialogUnlockTraining dialogUnlockTraining;
     private boolean isRewardedAdLoading = false;
     private Handler handler;
@@ -133,21 +117,17 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                         int time = bundle.getInt("time");
                         String unit = bundle.getString("unit");
                         mDemoDataProvider.replaceAction(currentActionIndex, new PlanObject.ActionObject(id, time, unit, 0, 10));
-                        mPreviewAdapter.notifyItemChanged(currentActionIndex);
+                        refreshItems();
                     }
                 }
             });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Header là ảnh tối: icon status bar màu trắng.
+        EdgeToEdge.enable(this, SystemBarStyle.dark(android.graphics.Color.TRANSPARENT));
         super.onCreate(savedInstanceState);
-        binding = ActivityPreviewBinding.inflate(getLayoutInflater());
-        contentPreviewBinding = binding.contentPreview;
-        setContentView(binding.getRoot());
-
-
-        setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        PreviewCompose.attach(this, state, this);
         initView();
 
         loadInterStart();
@@ -165,9 +145,6 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         mBundle = getIntent().getExtras();
         handler = new Handler();
         mPreviewViewModel = new ViewModelProvider(this).get(PreviewViewModel.class);
-        binding.fabAudio.setOnClickListener(this::goAudioOptions);
-        binding.btnGoto.setOnClickListener(this::gotoWorkout);
-        binding.txtReset.setOnClickListener(this::reset);
         mProgramLocks.add(47);
         mProgramLocks.add(971);
         mProgramLocks.add(1110);
@@ -178,29 +155,23 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
             int id = mBundle.getInt("PROGRAM_ID", 0);
             mProgramObject = FitnessApplication.getApplication().getProgram(id);
             if (mProgramObject == null) {
-                Toast.makeText(this, "This program is removed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.ch_removed, Toast.LENGTH_SHORT).show();
+                finish();
                 return;
             }
             mIndexDay = mBundle.getInt("DAY_NUMBER");
             FitnessApplication.getApplication().setDiscover(mProgramObject.getDiscover());
             FitnessApplication.getApplication().setVersion(mProgramObject.getVersion());
-          //  binding.tvWorkoutDescription.setVisibility(View.GONE);
             mJsonHelper = FitnessApplication.getApplication().mJsonHelper;
-            String baseUrl = "file:///android_asset/images/";
-            if (mProgramObject.getDiscover() > 0) {
-                baseUrl = ApiUtils.BASE_URL_IMAGES;
-            }
-            Glide.with(this).load(Uri.parse(baseUrl + mProgramObject.getBackground())).into(binding.imgBanner);
-            Glide.with(getApplicationContext()).load(Uri.parse(baseUrl + mProgramObject.getImage())).into(binding.imageWorkout);
+            state.setProgram(mProgramObject);
+            state.setCanEdit(mProgramObject.getDiscover() == 0);
             if (mProgramObject.getType() == 1 || mProgramObject.getType() == 3) {
-                binding.tvLevel.setText(getString(R.string.txt_day) + " " + (mIndexDay + 1));
+                state.setLevelText(getString(R.string.txt_day) + " " + (mIndexDay + 1));
             } else if (mProgramObject.getType() == 2) {
-                binding.tvLevel.setText("Level " + mProgramObject.getLevel());
+                state.setLevelText("Level " + mProgramObject.getLevel());
             }
-            String htmlContent = "" + mProgramObject.getTotal() + " " + getString(R.string.minutes) + "";
-            binding.tvWorkoutIntro.setText(htmlContent);
-            binding.tvWorkoutDescription.setText(mProgramObject.getDescription());
-            setTitle(mProgramObject.getName().toUpperCase());
+            state.setMinutes(mProgramObject.getTotal());
+            state.setButtonText(getString(R.string.txt_go_to));
             FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
             crashlytics.setCustomKey("PROGRAM_ID", mProgramObject.getId());
             crashlytics.setCustomKey("VERSION", mProgramObject.getVersion());
@@ -209,49 +180,35 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
             mPreviewViewModel.getDownloadStatus().observe(PreviewActivity.this, downloadStatus -> {
                 switch (downloadStatus) {
                     case DONE:
-                        binding.btnGoto.setEnabled(true);
-                        binding.txtStart.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        binding.txtStart.setText(getString(R.string.txt_go_to));
-                        binding.txtReset.setVisibility(View.GONE);
-                        binding.btnGoto.setVisibility(View.VISIBLE);
-                        if (saveProgress > 0 && saveProgress < mDemoDataProvider.getItemCount()) {
-                            binding.txtReset.setVisibility(View.VISIBLE);
-                            binding.progressReadyBottom.setMax(mDemoDataProvider.getItemCount());
-                            binding.progressReadyBottom.setProgress(saveProgress);
-                            float percent = saveProgress * 100f / mDemoDataProvider.getItemCount();
-                            binding.txtStart.setText(getString(R.string.continue_text) + String.format(" %.0f", percent) + "%");
+                        state.setButtonEnabled(true);
+                        if (mDemoDataProvider != null) {
+                            updateButton();
                         } else {
-                            binding.progressReadyBottom.setMax(100);
-                            binding.progressReadyBottom.setProgress(100);
-                            binding.txtStart.setText(getString(R.string.txt_go_to));
-                            binding.txtReset.setVisibility(View.GONE);
+                            state.setButtonMode(PreviewButtonMode.GO);
+                            state.setButtonText(getString(R.string.txt_go_to));
+                            state.setButtonProgress(1f);
+                            state.setShowRestart(false);
                         }
                         break;
                     case FAIL:
                         Toast.makeText(PreviewActivity.this,"Check your internet and retry!", Toast.LENGTH_SHORT).show();
-                        binding.txtReset.setVisibility(View.GONE);
-                        binding.btnGoto.setEnabled(true);
-                        binding.progressReadyBottom.setProgress(100);
-                        binding.txtStart.setCompoundDrawablesWithIntrinsicBounds(R.drawable.baseline_settings_backup_restore_24, 0, 0, 0);
-                        binding.txtStart.setText(getString(R.string.retry));
-                        binding.btnGoto.setVisibility(View.VISIBLE);
+                        state.setShowRestart(false);
+                        state.setButtonEnabled(true);
+                        state.setButtonProgress(1f);
+                        state.setButtonMode(PreviewButtonMode.RETRY);
+                        state.setButtonText(getString(R.string.retry));
                         break;
                     case NEED_DOWNLOAD:
-                        binding.progressReadyBottom.setProgress(100);
-                        binding.progressReadyBottom.setMax(100);
-                        binding.txtStart.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cloud_download_black_24dp, 0, 0, 0);
+                        state.setButtonProgress(1f);
+                        state.setButtonMode(PreviewButtonMode.NEED_DOWNLOAD);
                     case DOWNLOADING:
-                        binding.txtStart.setText(getString(R.string.download));
-                        binding.txtReset.setVisibility(View.GONE);
-                        binding.btnGoto.setVisibility(View.VISIBLE);
-
+                        if (downloadStatus == DownloadStatus.DOWNLOADING) state.setButtonMode(PreviewButtonMode.DOWNLOADING);
+                        state.setButtonText(getString(R.string.download));
+                        state.setShowRestart(false);
                         break;
                 }
             });
 
-            DividerItemDecoration divider = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-            contentPreviewBinding.rcDemo.addItemDecoration(divider);
-            contentPreviewBinding.rcDemo.setLayoutManager(new GridLayoutManager(this, 1));
             if (mProgramObject.getDiscover() > 0) {
                 File file = new File(getFilesDir(), "discover" + mProgramObject.getDiscover() + "/" + mProgramObject.getVersion());
                 if (file.exists()) {
@@ -263,8 +220,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                 if (myPreference.isPremiumMember()) {
                     if (mProgramObject.getDiscover() > 0 && checkExploreData()) {
                         mPreviewViewModel.setDownloadStatus(DownloadStatus.NEED_DOWNLOAD);
-                        ExercisePreAdapter exercisePreAdapter = new ExercisePreAdapter();
-                        contentPreviewBinding.rcDemo.setAdapter(exercisePreAdapter);
+                        state.setItemsFrom(null);
                         startDownload();
                         return;
                     }
@@ -274,8 +230,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
             } else {
                 if (mProgramObject.getDiscover() > 0 && checkExploreData()) {
                     mPreviewViewModel.setDownloadStatus(DownloadStatus.NEED_DOWNLOAD);
-                    ExercisePreAdapter exercisePreAdapter = new ExercisePreAdapter();
-                    contentPreviewBinding.rcDemo.setAdapter(exercisePreAdapter);
+                    state.setItemsFrom(null);
                     startDownload();
                     return;
                 }
@@ -293,15 +248,12 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
     void updateData() {
         if (mProgramObject.getDiscover() > 0 && checkExploreData()) {
             mPreviewViewModel.setDownloadStatus(DownloadStatus.NEED_DOWNLOAD);
-            ExercisePreAdapter exercisePreAdapter = new ExercisePreAdapter();
-            contentPreviewBinding.rcDemo.setAdapter(exercisePreAdapter);
+            state.setItemsFrom(null);
             return;
         }
         mDemoDataProvider = new DemoDataProvider(PreviewActivity.this, mProgramObject.getDiscover(), mProgramObject.getVersion());
         mDemoDataProvider.setData(mProgramObject.getPlan(), mIndexDay);
-        mPreviewAdapter = new PreviewAdapter(this, this, this, mDemoDataProvider, mProgramObject.getDiscover());
-        contentPreviewBinding.rcDemo.setAdapter(mPreviewAdapter);
-        contentPreviewBinding.rcDemo.setNestedScrollingEnabled(false);
+        refreshItems();
         updatePlan();
         startDownLoadAudio();
     }
@@ -394,15 +346,14 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                         .build();
 
         WorkManager.getInstance(PreviewActivity.this).enqueue(syncWorkRequest);
-        binding.btnGoto.setEnabled(false);
-        binding.txtStart.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cloud_download_black_24dp, 0, 0, 0);
+        state.setButtonEnabled(false);
         mPreviewViewModel.setDownloadStatus(DownloadStatus.DOWNLOADING);
-        binding.progressReadyBottom.setMax(100);
+        state.setButtonProgress(0f);
         WorkManager.getInstance(this).getWorkInfoByIdLiveData(syncWorkRequest.getId()).observe(this, workInfo -> {
             Data progress = workInfo.getProgress();
             int value = progress.getInt("PROGRESS", 0);
-            binding.progressReadyBottom.setProgress(value);
-            binding.txtStart.setText(getString(R.string.download) + "..." + value + "%");
+            state.setButtonProgress(value / 100f);
+            state.setButtonText(getString(R.string.download) + "..." + value + "%");
             if (workInfo.getState() == WorkInfo.State.SUCCEEDED) {
                 mPreviewViewModel.setDownloadStatus(DownloadStatus.DONE);
                 updateData();
@@ -418,8 +369,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
 
     void showAlertInternetConnect() {
         //  Toast.makeText(PreviewActivity.this, "Download Fail!", Toast.LENGTH_SHORT).show();
-        View view = findViewById(R.id.preview_layout);
-        Snackbar.make(view, "Download Fail!", Snackbar.LENGTH_SHORT);
+        // Lỗi đã hiện qua trạng thái FAIL (Toast + nút Retry).
     }
 
 
@@ -466,7 +416,17 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        // Tập dở rồi quay lại: cập nhật ngay nút "Continue x%" (trước đây phải mở lại màn).
+        if (mDemoDataProvider != null && mProgramObject != null) {
+            updatePlan();
+        }
+    }
+
+    @Override
     protected void onDestroy() {
+        if (adView != null) adView.destroy();
         super.onDestroy();
     }
 
@@ -513,31 +473,25 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
 
     }
 
+    private AdView adView;
+
     void requestNewAdBanner() {
-        binding.adView.setVisibility(View.GONE);
+        state.setBanner(null);
         if (myPreference.isShowAds() && myPreference.getOK()) {
-            AdRequest adRequest = new AdRequest.Builder().build();
-            binding.adView.loadAd(adRequest);
-            binding.adView.setAdListener(new AdListener() {
+            if (adView == null) {
+                adView = new AdView(this);
+                adView.setAdSize(AdSize.BANNER);
+                adView.setAdUnitId(getString(R.string.ad_banner_unit_id));
+            }
+            adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdLoaded() {
                     super.onAdLoaded();
-                    binding.adView.setVisibility(View.VISIBLE);
+                    state.setBanner(adView);
                 }
             });
+            adView.loadAd(new AdRequest.Builder().build());
         }
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_preview, menu);
-        this.menu = menu;
-        if (mProgramObject != null && mProgramObject.getDiscover() > 0) {
-            menu.findItem(R.id.action_edit).setVisible(false);
-        }
-        return true;
     }
 
     @Override
@@ -563,94 +517,65 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         super.applyOverrideConfiguration(overrideConfiguration);
     }
 
+    // ------------------------------------------------------------ chế độ sửa (trước đây ở menu toolbar)
+
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            //Home Button!
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-            case R.id.action_save:
-                flagEdit = false;
-                menu.setGroupVisible(R.id.group_edit, false);
-                menu.findItem(R.id.action_edit).setVisible(true);
-                mPreviewAdapter.setFlagEdit(false);
-                binding.appBar.setExpanded(true, true);
-                CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) binding.appBar.getLayoutParams();
-                ((CustomAppBarLayoutBehavior) layoutParams.getBehavior()).setScrollBehavior(true);
-                contentPreviewBinding.rcDemo.setNestedScrollingEnabled(false);
-                if (mProgramObject.getDiscover() == 0) {
-                    ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mPreviewAdapter);
-                    mItemTouchHelper = new ItemTouchHelper(callback);
-                    mItemTouchHelper.attachToRecyclerView(contentPreviewBinding.rcDemo);
-                }
-                File file = new File(getFilesDir().getPath() + "/i");
-                if (!file.exists()) {
-                    file.mkdirs();
-                }
-                myPreference.setVersionPlan(mProgramObject.getPlan(), JsonHelper.VERSION_DAY_PLAN);
-                //Decoder.encryptStringToFile(mDemoDataProvider.convertPlanToJsonString().getBytes(), getFilesDir().getPath() + "/i/" + mProgramObject.getPlan());
-                updatePlan();
-                Toast.makeText(this, "Save!!!", Toast.LENGTH_SHORT).show();
+    public void onEdit() {
+        flagEdit = true;
+        state.setEditMode(true);
+    }
 
-
-                return true;
-            case R.id.action_add:
-                Intent chooseExercise = new Intent(PreviewActivity.this, SelectExerciseActivity.class);
-                mBundle.putInt("PARENT", 0);
-                chooseExercise.putExtras(mBundle);
-                startActivityForResult(chooseExercise, 1010);
-                return true;
-            case R.id.action_reset:
-                if (mProgramObject.getType() <= 2) {
-                    mDemoDataProvider.resetData(mProgramObject.getPlan());
-                }
-
-                updatePlan();
-                mPreviewAdapter.notifyDataSetChanged();
-                //mAdapter.notifyDataSetChanged();
-                return true;
-            case R.id.action_edit:
-
-                flagEdit = true;
-                menu.findItem(R.id.action_edit).setVisible(false);
-                menu.setGroupVisible(R.id.group_edit, true);
-                menu.findItem(R.id.action_add).setVisible(false);
-                mPreviewAdapter.setFlagEdit(flagEdit);
-                binding.appBar.setExpanded(false, true);
-                if (mProgramObject.getDiscover() == 0) {
-                    ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mPreviewAdapter);
-                    mItemTouchHelper = new ItemTouchHelper(callback);
-                    mItemTouchHelper.attachToRecyclerView(contentPreviewBinding.rcDemo);
-                }
-                contentPreviewBinding.rcDemo.setNestedScrollingEnabled(true);
-                CoordinatorLayout.LayoutParams layoutParams1 = (CoordinatorLayout.LayoutParams) binding.appBar.getLayoutParams();
-                ((CustomAppBarLayoutBehavior) layoutParams1.getBehavior()).setScrollBehavior(false);
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+    @Override
+    public void onSave() {
+        flagEdit = false;
+        state.setEditMode(false);
+        File file = new File(getFilesDir().getPath() + "/i");
+        if (!file.exists()) {
+            file.mkdirs();
         }
+        myPreference.setVersionPlan(mProgramObject.getPlan(), JsonHelper.VERSION_DAY_PLAN);
+        updatePlan();
+        Toast.makeText(this, "Save!!!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onResetPlan() {
+        if (mDemoDataProvider == null) return;
+        if (mProgramObject.getType() <= 2) {
+            mDemoDataProvider.resetData(mProgramObject.getPlan());
+        }
+        refreshItems();
+        updatePlan();
+    }
+
+    private void refreshItems() {
+        state.setItemsFrom(mDemoDataProvider == null ? null : mDemoDataProvider.getActionObjectList());
     }
 
     @SuppressLint("DefaultLocale")
     private void updatePlan() {
-        int minutes = mDemoDataProvider.getTotalTime() / 60;
-        String htmlContent = "<h>" + minutes + " " + getString(R.string.minutes) + " &#8226; " + mDemoDataProvider.getItemCount() + " " + getString(R.string.txt_exercises) + "<h>";
-        binding.tvWorkoutIntro.setText(Html.fromHtml(htmlContent));
+        int minutes = Math.max(1, Math.round(mDemoDataProvider.getTotalTime() / 60f));
+        state.setMinutes(minutes);
         float cal = (mDemoDataProvider.getTotalTime() / 3600.0f) * FitnessConstUtils.CALORIES_CONST * (myPreference.getCurrentWeightKG() / 65.0f);
+        state.setCalories(Math.round(cal));
         saveProgress = myPreference.getSaveProgress(mProgramObject.getId(), mIndexDay);
-        if (saveProgress > 0 && saveProgress < mDemoDataProvider.getItemCount()) {
-            binding.txtReset.setVisibility(View.VISIBLE);
-            binding.progressReadyBottom.setMax(mDemoDataProvider.getItemCount());
-            binding.progressReadyBottom.setProgress(saveProgress);
-            float percent = saveProgress * 100f / mDemoDataProvider.getItemCount();
-            binding.txtStart.setText(getString(R.string.continue_text) + String.format(" %.0f", percent) + "%");
+        updateButton();
+    }
+
+    /** Nút chính: "Continue x%" nếu đang tập dở (kèm nút bắt đầu lại), không thì "Go!". */
+    @SuppressLint("DefaultLocale")
+    private void updateButton() {
+        if (mDemoDataProvider != null && saveProgress > 0 && saveProgress < mDemoDataProvider.getItemCount()) {
+            float fraction = saveProgress / (float) mDemoDataProvider.getItemCount();
+            state.setShowRestart(true);
+            state.setButtonMode(PreviewButtonMode.CONTINUE);
+            state.setButtonProgress(fraction);
+            state.setButtonText(getString(R.string.continue_text) + String.format(" %.0f", fraction * 100) + "%");
         } else {
-            binding.progressReadyBottom.setMax(100);
-            binding.progressReadyBottom.setProgress(100);
-            binding.txtStart.setText(getString(R.string.txt_go_to));
-            binding.txtReset.setVisibility(View.GONE);
+            state.setShowRestart(false);
+            state.setButtonMode(PreviewButtonMode.GO);
+            state.setButtonProgress(1f);
+            state.setButtonText(getString(R.string.txt_go_to));
         }
     }
 
@@ -662,6 +587,11 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                 }
             });
 
+
+    @Override
+    public void onAudio() {
+        goAudioOptions(null);
+    }
 
     void goAudioOptions(View view) {
         resultCount.launch(new Intent(PreviewActivity.this, CountManagerActivity.class));
@@ -678,7 +608,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
                 for (Integer action : addList) {
                     mDemoDataProvider.addItem(action);
                 }
-                mPreviewAdapter.notifyItemRangeInserted(start, addList.size());
+                refreshItems();
                 //mAdapter.notifyItemRangeInserted(start, addList.size());
             }
         }
@@ -692,7 +622,59 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         }
     }
 
+    // ------------------------------------------------------------ PreviewActions
+
     @Override
+    public void onBack() {
+        if (flagEdit) {
+            onSave();
+        } else {
+            finish();
+        }
+    }
+
+    @Override
+    public void onItemClick(int index) {
+        if (mDemoDataProvider == null || index >= mDemoDataProvider.getItemCount()) return;
+        PlanObject.ActionObject action = mDemoDataProvider.getItem(index);
+        if (flagEdit) {
+            onRepsEdit(index, action);
+        } else {
+            onDetail(action.actionId);
+        }
+    }
+
+    @Override
+    public void onReplace(int index) {
+        if (mDemoDataProvider == null || index >= mDemoDataProvider.getItemCount()) return;
+        onReplace(index, mDemoDataProvider.getItem(index));
+    }
+
+    @Override
+    public void onMove(int from, int to) {
+        if (mDemoDataProvider == null) return;
+        int count = mDemoDataProvider.getItemCount();
+        if (from < 0 || to < 0 || from >= count || to >= count) return;
+        mDemoDataProvider.moveItem(from, to);
+        refreshItems();
+    }
+
+    @Nullable
+    @Override
+    public ExerciseObject exercise(int actionId) {
+        return mDemoDataProvider == null ? null : mDemoDataProvider.getExerciseItem(actionId);
+    }
+
+    @Override
+    public int discover() {
+        return mProgramObject == null ? 0 : mProgramObject.getDiscover();
+    }
+
+    @Override
+    public int version() {
+        return FitnessApplication.getApplication().getVersion();
+    }
+
     public void onRepsEdit(int position, PlanObject.ActionObject actionObject) {
         //showAlertRepsEdit(position, actionObject);
         currentActionIndex = position;
@@ -702,7 +684,6 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
     }
 
 
-    @Override
     public void onReplace(int position, PlanObject.ActionObject actionObject) {
 
         currentActionIndex = position;
@@ -718,7 +699,6 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         resultLauncher.launch(intent);
     }
 
-    @Override
     public void onDetail(int actionId) {
         Intent intent = new Intent(PreviewActivity.this, ExerciseDetailActivity.class);
         Bundle bundle = new Bundle();
@@ -727,6 +707,17 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
         startActivity(intent);
     }
 
+
+    @Override
+    public void onGo() {
+        gotoWorkout(null);
+    }
+
+    /** Nút "Bắt đầu lại" khi đang tập dở (không đặt tên onRestart: trùng lifecycle của Activity). */
+    @Override
+    public void onStartOver() {
+        reset(null);
+    }
 
     void gotoWorkout(View view) {
         DownloadStatus downloadStatus = mPreviewViewModel.getDownloadStatus().getValue();
@@ -782,20 +773,17 @@ public class PreviewActivity extends AppCompatActivity implements PreviewAdapter
     }
 
     @Override
-    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
-        mItemTouchHelper.startDrag(viewHolder);
-    }
-
-    @Override
     public void onUpdateAction(PlanObject.ActionObject actionObject) {
         mDemoDataProvider.updateItem(currentActionIndex, actionObject);
-        mPreviewAdapter.notifyItemChanged(currentActionIndex);
+        refreshItems();
+        updatePlan();
     }
 
     @Override
     public void onChange(int action, int time, String unit) {
         mDemoDataProvider.updateTime(currentActionIndex, time);
-        mPreviewAdapter.notifyItemChanged(currentActionIndex);
+        refreshItems();
+        updatePlan();
     }
 
     private boolean existsData(String fileName) {

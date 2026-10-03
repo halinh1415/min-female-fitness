@@ -129,6 +129,13 @@ public final class EdgeToEdgeHelper {
                 ? ((ColorDrawable) windowBackground).getColor()
                 : resolveColor(activity, android.R.attr.colorBackground, Color.WHITE);
 
+        // Collapsing image headers (AppBarLayout fitsSystemWindows) draw behind the status bar
+        // themselves; a solid protection band above the image looks detached.
+        final boolean headerBehindStatusBar = hasFitsSystemWindowsAppBar(content);
+        if (headerBehindStatusBar) {
+            statusColor = Color.TRANSPARENT;
+        }
+
         View statusProtection = createProtectionView(activity, statusColor, Gravity.TOP);
         View navigationProtection = createProtectionView(activity, navColor, Gravity.BOTTOM);
         ViewGroup decorGroup = (ViewGroup) decor;
@@ -136,7 +143,7 @@ public final class EdgeToEdgeHelper {
         decorGroup.addView(navigationProtection);
 
         WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(activity.getWindow(), decor);
-        controller.setAppearanceLightStatusBars(isLight(statusColor, windowBgColor));
+        controller.setAppearanceLightStatusBars(!headerBehindStatusBar && isLight(statusColor, windowBgColor));
         controller.setAppearanceLightNavigationBars(isLight(navColor, windowBgColor));
 
         final View target = root;
@@ -146,18 +153,37 @@ public final class EdgeToEdgeHelper {
             Insets tappable = insets.getInsets(WindowInsetsCompat.Type.tappableElement());
             Insets ime = insets.getInsets(WindowInsetsCompat.Type.ime());
             int bottom = Math.max(bars.bottom, ime.bottom);
-            v.setPadding(bars.left, bars.top, bars.right, bottom);
+            v.setPadding(bars.left, headerBehindStatusBar ? 0 : bars.top, bars.right, bottom);
             setProtectionHeight(statusProtection, bars.top);
             // Gesture navigation remains transparent; only 3-button navigation needs protection.
             setProtectionHeight(navigationProtection, tappable.bottom);
             statusProtection.bringToFront();
             navigationProtection.bringToFront();
+            if (headerBehindStatusBar) {
+                // Pass only the top inset down so fitsSystemWindows views offset the toolbar.
+                return new WindowInsetsCompat.Builder()
+                        .setInsets(WindowInsetsCompat.Type.statusBars(), Insets.of(0, bars.top, 0, 0))
+                        .build();
+            }
             return WindowInsetsCompat.CONSUMED;
         });
         if (target instanceof ViewGroup) {
             ((ViewGroup) target).setClipToPadding(true);
         }
         ViewCompat.requestApplyInsets(target);
+    }
+
+    private static boolean hasFitsSystemWindowsAppBar(View view) {
+        if (view instanceof com.google.android.material.appbar.AppBarLayout) {
+            return view.getFitsSystemWindows();
+        }
+        if (view instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) view;
+            for (int i = 0; i < group.getChildCount(); i++) {
+                if (hasFitsSystemWindowsAppBar(group.getChildAt(i))) return true;
+            }
+        }
+        return false;
     }
 
     private static View createProtectionView(Activity activity, int color, int gravity) {

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vòng quay may mắn (LuckyWheel.kt) -->
+<resources>
+    <string name="ld_lucky_title">دولاب الحظ</string>
+    <string name="ld_seg_jackpot">الجائزة الكبرى</string>
+    <string name="ld_seg_next_time">المرة القادمة</string>
+    <string name="ld_seg_off">خصم %1$s</string>
+    <string name="ld_go">ابدأ</string>
+    <string name="ld_title">أديري العجلة واربحي هدية ترحيب 🎁</string>
+    <string name="ld_skip">لا، شكرًا</string>
+</resources>

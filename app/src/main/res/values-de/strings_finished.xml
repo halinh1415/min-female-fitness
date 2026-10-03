@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fin_title">Workout geschafft!</string>
+    <string name="fin_duration">Dauer</string>
+    <string name="fin_exercises">Übungen</string>
+    <string name="fin_how">Wie fühlte sich das Workout an?</string>
+    <string name="fin_feel_1">Zu schwer</string>
+    <string name="fin_feel_2">Schwer</string>
+    <string name="fin_feel_3">Genau richtig</string>
+    <string name="fin_feel_4">Leicht</string>
+    <string name="fin_feel_5">Zu leicht</string>
+    <string name="fin_weight">Gewicht</string>
+    <string name="fin_update">Aktualisieren</string>
+    <string name="fin_reminder">Tägliche Erinnerung</string>
+    <string name="fin_edit">Ändern</string>
+    <string name="fin_share">Teilen</string>
+    <string name="fin_done">Fertig</string>
+    <string name="streak_finished_first">🔥 Tag 1 — deine Serie hat begonnen!</string>
+    <string name="streak_finished_milestone">🎉 Großartig! %d Tage in Folge</string>
+    <string name="streak_finished_title">🔥 %d-Tage-Serie!</string>
+</resources>

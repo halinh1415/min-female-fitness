@@ -21,8 +21,8 @@
             android:id="@+id/workout_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:currentColor="@color/YellowGreen"
-            app:emptyColor="@color/Gray"
+            app:currentColor="@color/colorPrimary"
+            app:emptyColor="#F1E4EA"
             app:fillColor="@color/colorAccent"
             app:separatorColor="@color/White" />
 
@@ -54,7 +54,7 @@
             android:layout_weight="1"
             android:text="1/10"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/Green" />
+            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/txt_workout_time"
@@ -64,7 +64,7 @@
             android:text="00:11"
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="#06970B"
+            android:textColor="@color/colorPrimary"
             android:textSize="30sp" />
     </LinearLayout>
 

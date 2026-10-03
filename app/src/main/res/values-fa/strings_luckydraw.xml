@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vòng quay may mắn (LuckyWheel.kt) -->
+<resources>
+    <string name="ld_lucky_title">گردونهٔ شانس</string>
+    <string name="ld_seg_jackpot">جایزهٔ بزرگ</string>
+    <string name="ld_seg_next_time">دفعهٔ بعد</string>
+    <string name="ld_seg_off">%1$s تخفیف</string>
+    <string name="ld_go">برو</string>
+    <string name="ld_title">گردونه را بچرخانید و هدیه خوش‌آمد ببرید 🎁</string>
+    <string name="ld_skip">نه، ممنون</string>
+</resources>

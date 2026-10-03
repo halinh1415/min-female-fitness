@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noti_action_start">今すぐ始める</string>
+    <string name="noti_action_snooze">1時間後に通知</string>
+    <string name="noti_week_progress">今週 %1$d/%2$d 日</string>
+</resources>

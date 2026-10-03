@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fin_title">Latihan selesai!</string>
+    <string name="fin_duration">Durasi</string>
+    <string name="fin_exercises">Gerakan</string>
+    <string name="fin_how">Bagaimana rasanya latihan ini?</string>
+    <string name="fin_feel_1">Terlalu berat</string>
+    <string name="fin_feel_2">Berat</string>
+    <string name="fin_feel_3">Pas</string>
+    <string name="fin_feel_4">Mudah</string>
+    <string name="fin_feel_5">Terlalu mudah</string>
+    <string name="fin_weight">Berat badan</string>
+    <string name="fin_update">Perbarui</string>
+    <string name="fin_reminder">Pengingat harian</string>
+    <string name="fin_edit">Ubah</string>
+    <string name="fin_share">Bagikan</string>
+    <string name="fin_done">Selesai</string>
+    <string name="streak_finished_first">🔥 Hari 1 — streak kamu dimulai!</string>
+    <string name="streak_finished_milestone">🎉 Luar biasa! %d hari berturut-turut</string>
+    <string name="streak_finished_title">🔥 Streak %d hari!</string>
+</resources>

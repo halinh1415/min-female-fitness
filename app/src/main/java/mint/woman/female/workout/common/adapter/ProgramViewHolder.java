@@ -3,7 +3,6 @@ package mint.woman.female.workout.common.adapter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatTextView;
@@ -16,8 +15,6 @@ final class ProgramViewHolder extends RecyclerView.ViewHolder {
     View mNew;
     AppCompatTextView mProgramName;
     TextView mSubTitle;
-    TextView mProgressTxt;
-    ProgressBar mProgressBar;
     TextView mStartBtn;
     View mContainer;
 
@@ -30,8 +27,6 @@ final class ProgramViewHolder extends RecyclerView.ViewHolder {
         mProgramName = itemView.findViewById(R.id.tv_title);
         mSubTitle = itemView.findViewById(R.id.tv_sub_title);
         mContainer = itemView.findViewById(R.id.container);
-        mProgressBar = itemView.findViewById(R.id.progress);
-        mProgressTxt = itemView.findViewById(R.id.tv_day_left);
     }
 
 }

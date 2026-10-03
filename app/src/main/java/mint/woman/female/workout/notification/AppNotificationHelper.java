@@ -1,5 +1,11 @@
 package mint.woman.female.workout.notification;
 
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import androidx.annotation.WorkerThread;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 
 import android.Manifest;
@@ -33,6 +39,9 @@ import java.util.Calendar;
 public class AppNotificationHelper {
 
     public static final String CHANNEL_ID = "smart_practice_channel";
+    public static final String EXTRA_NOTIFICATION_TYPE = "notification_type";
+    private static final int BRAND_COLOR = Color.parseColor("#E91E63");
+    private static final ExecutorService EXECUTOR = Executors.newSingleThreadExecutor();
     private static final String CHANNEL_NAME = "Smart Practice";
     private static final String CHANNEL_DESC = "Smart workout reminders";
 
@@ -147,43 +156,115 @@ public class AppNotificationHelper {
         }
     }
 
+    /** Hiện thông báo nhắc tập kiểu WomenWorkout. Đọc ảnh và DB nên phải gọi ngoài main thread. */
+    @WorkerThread
     public static void showNotification(Context context, NotificationContent content) {
         if (content == null) return;
+        showStyled(context, content, CHANNEL_ID, content.getType().ordinal() + 1000);
+    }
 
+    /** Dùng trong BroadcastReceiver (main thread): dựng thông báo ở thread nền rồi gọi [onDone]. */
+    public static void showNotificationAsync(Context context, NotificationContent content, Runnable onDone) {
+        int id = content == null ? 0 : content.getType().ordinal() + 1000;
+        showStyledAsync(context, content, CHANNEL_ID, id, onDone);
+    }
+
+    static void showStyledAsync(Context context, NotificationContent content, String channelId,
+                                int notificationId, Runnable onDone) {
+        Context appContext = context.getApplicationContext();
+        EXECUTOR.execute(() -> {
+            try {
+                if (content != null) {
+                    showStyled(appContext, content, channelId != null ? channelId : CHANNEL_ID, notificationId);
+                }
+            } finally {
+                if (onDone != null) onDone.run();
+            }
+        });
+    }
+
+    /**
+     * Giao diện thông báo giống app WomenWorkout: icon nhỏ 1 màu + màu brand, ảnh minh hoạ theo
+     * loại thông báo, thanh tiến độ tuần cho nhắc hằng ngày / giữ streak, nút "Tập ngay" và
+     * "Nhắc sau 1 giờ".
+     */
+    @WorkerThread
+    public static void showStyled(Context context, NotificationContent content, String channelId, int notificationId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+                && ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        if (CHANNEL_ID.equals(channelId)) createChannel(context);
+
+        NotificationType type = content.getType();
         Intent intent = new Intent(context, YogaActivity.class);
         intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(content.getDeepLink()));
+        if (content.getDeepLink() != null && !content.getDeepLink().isEmpty()) {
+            intent.setData(Uri.parse(content.getDeepLink()));
+        }
+        intent.putExtra(EXTRA_NOTIFICATION_TYPE, type.name());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 context,
-                content.getType().ordinal(),
+                notificationId,
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT | pendingIntentFlagImmutable()
         );
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_fitness)
+        String message = content.getMessage() != null ? content.getMessage() : "";
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId)
+                // Icon nhỏ phải 1 màu: hệ thống chỉ lấy kênh alpha.
+                .setSmallIcon(R.drawable.ic_stat_workout)
+                .setColor(BRAND_COLOR)
                 .setContentTitle(content.getTitle())
-                .setContentText(content.getMessage())
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(content.getMessage()))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setCategory(NotificationCompat.CATEGORY_REMINDER)
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent);
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (!message.isEmpty()) builder.setContentText(message);
 
-            builder.setLargeIcon(BitmapFactory.decodeResource(context.getApplicationContext().getResources(), R.drawable.ic_workout));
-        }
-        NotificationManagerCompat manager = NotificationManagerCompat.from(context);
+        Bitmap largeIcon = NotificationVisuals.largeIcon(context, type);
+        if (largeIcon != null) builder.setLargeIcon(largeIcon);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
-                    != PackageManager.PERMISSION_GRANTED) {
-                return;
+        if (type == NotificationType.STREAK_PROTECT || type == NotificationType.DAILY_REMINDER) {
+            // Nhắc giữ streak / hằng ngày: thanh tiến độ tuần (vd 3/5 ngày) thay cho ảnh lớn.
+            int goal = NotificationVisuals.weeklyGoal(context);
+            int done = Math.min(NotificationVisuals.daysTrainedThisWeek(context), goal);
+            if (!message.isEmpty()) {
+                builder.setStyle(new NotificationCompat.BigTextStyle().bigText(message));
+            }
+            builder.setSubText(context.getString(R.string.noti_week_progress, done, goal))
+                    .setProgress(goal, done, false);
+        } else {
+            Bitmap picture = NotificationVisuals.bigPicture(context, type);
+            if (picture != null) {
+                // Mở rộng: ảnh minh hoạ lớn, ẩn icon lớn để không lặp ảnh.
+                builder.setStyle(new NotificationCompat.BigPictureStyle()
+                        .bigPicture(picture)
+                        .bigLargeIcon((Bitmap) null)
+                        .setSummaryText(message));
+            } else if (!message.isEmpty()) {
+                builder.setStyle(new NotificationCompat.BigTextStyle().bigText(message));
             }
         }
 
-        manager.notify(content.getType().ordinal() + 1000, builder.build());
+        // "Tập ngay" mở thẳng bài tập gần nhất (không qua Splash/quảng cáo), "Nhắc sau 1 giờ".
+        PendingIntent startNow = PendingIntent.getActivities(
+                context,
+                3000 + notificationId,
+                NotificationVisuals.startWorkoutIntents(context, type),
+                PendingIntent.FLAG_UPDATE_CURRENT | pendingIntentFlagImmutable()
+        );
+        builder.addAction(0, context.getString(R.string.noti_action_start), startNow);
+        builder.addAction(0, context.getString(R.string.noti_action_snooze),
+                NotificationActionReceiver.snoozeIntent(context, content, channelId, notificationId));
+
+        try {
+            NotificationManagerCompat.from(context).notify(notificationId, builder.build());
+        } catch (SecurityException ignored) {
+            // Người dùng vừa thu hồi quyền thông báo.
+        }
     }
 
     private static int pendingIntentFlagImmutable() {

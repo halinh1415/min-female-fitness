@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">Dokončila jsi %1$d z %2$d cviků</string>
+    <string name="quit_keep_going">Pokračovat</string>
+    <string name="quit_exit">Ukončit trénink</string>
+    <string name="quit_reason_title">Proč končíš?</string>
+    <string name="quit_reason_sub">Tvoje odpověď nám pomůže doporučit ti vhodnější tréninky.</string>
+    <string name="quit_reason_too_hard">Příliš těžké</string>
+    <string name="quit_reason_too_easy">Příliš snadné</string>
+    <string name="quit_reason_no_time">Nemám dost času</string>
+    <string name="quit_reason_tired">Jsem unavená nebo mě něco bolí</string>
+    <string name="quit_reason_dislike">Tyto cviky mě nebaví</string>
+    <string name="quit_reason_just_looking">Jen se rozhlížím</string>
+    <string name="quit_reason_other">Jiný důvod</string>
+    <string name="quit_skip">Přeskočit</string>
+</resources>

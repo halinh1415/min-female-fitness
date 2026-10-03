@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">%1$d از %2$d تمرین را انجام دادید</string>
+    <string name="quit_keep_going">ادامه تمرین</string>
+    <string name="quit_exit">پایان تمرین</string>
+    <string name="quit_reason_title">چرا متوقف می‌شوید؟</string>
+    <string name="quit_reason_sub">پاسخ شما به ما کمک می‌کند تمرین‌های مناسب‌تری پیشنهاد دهیم.</string>
+    <string name="quit_reason_too_hard">برایم خیلی سخت است</string>
+    <string name="quit_reason_too_easy">برایم خیلی آسان است</string>
+    <string name="quit_reason_no_time">وقت ندارم</string>
+    <string name="quit_reason_tired">خسته‌ام یا درد دارم</string>
+    <string name="quit_reason_dislike">این تمرین‌ها را دوست ندارم</string>
+    <string name="quit_reason_just_looking">فقط دارم نگاه می‌کنم</string>
+    <string name="quit_reason_other">دلیل دیگر</string>
+    <string name="quit_skip">رد شدن</string>
+</resources>

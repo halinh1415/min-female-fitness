@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 
 import com.google.gson.Gson;
+import mint.woman.female.workout.activity.ui.plan.PersonalPlanStore;
 import com.google.gson.reflect.TypeToken;
 
 import mint.woman.female.workout.R;
@@ -156,6 +157,11 @@ public class JsonHelper {
         return list;
     }
 
+    /** Bỏ cache danh sách chương trình (vd sau khi tạo lại plan cá nhân). */
+    public void invalidatePrograms() {
+        programHashMap = null;
+    }
+
     public HashMap<Integer, ProgramObject> getAllCategoryHashMap() {
         if (!Decoder.isSuccess){
             return new HashMap<>();
@@ -184,6 +190,11 @@ public class JsonHelper {
             for (ProgramObject pr : list
             ) {
                 programHashMap.put(pr.getId(), pr);
+            }
+            // Plan cá nhân (nếu người dùng đã tạo) được dùng như một thử thách 28 ngày.
+            ProgramObject personal = PersonalPlanStore.program(mContext);
+            if (personal != null) {
+                programHashMap.put(personal.getId(), personal);
             }
         }
 

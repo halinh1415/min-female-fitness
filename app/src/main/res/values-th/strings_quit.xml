@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">คุณทำเสร็จแล้ว %1$d จาก %2$d ท่า</string>
+    <string name="quit_keep_going">ฝึกต่อ</string>
+    <string name="quit_exit">เลิกฝึก</string>
+    <string name="quit_reason_title">ทำไมคุณถึงหยุด?</string>
+    <string name="quit_reason_sub">คำตอบของคุณช่วยให้เราแนะนำการออกกำลังกายที่เหมาะกับคุณมากขึ้น</string>
+    <string name="quit_reason_too_hard">ยากเกินไปสำหรับฉัน</string>
+    <string name="quit_reason_too_easy">ง่ายเกินไปสำหรับฉัน</string>
+    <string name="quit_reason_no_time">มีเวลาไม่พอ</string>
+    <string name="quit_reason_tired">รู้สึกเหนื่อยหรือปวดเมื่อย</string>
+    <string name="quit_reason_dislike">ไม่ชอบท่าเหล่านี้</string>
+    <string name="quit_reason_just_looking">แค่ดูเฉยๆ</string>
+    <string name="quit_reason_other">เหตุผลอื่น</string>
+    <string name="quit_skip">ข้าม</string>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pp_settings">Postavke plana</string>
+    <string name="pp_goal">Fitness cilj</string>
+    <string name="pp_goal_lose">Smršavjeti</string>
+    <string name="pp_goal_muscle">Izgraditi mišiće</string>
+    <string name="pp_goal_fit">Ostati u formi</string>
+    <string name="pp_level">Razina</string>
+    <string name="pp_focus">Područje fokusa</string>
+    <string name="pp_multiple">(Više)</string>
+    <string name="pp_full_body">Cijelo tijelo</string>
+    <string name="pp_abs">Trbuh</string>
+    <string name="pp_arm_chest">Ruke i prsa</string>
+    <string name="pp_back">Leđa</string>
+    <string name="pp_leg">Noge</string>
+    <string name="pp_butt">Stražnjica</string>
+    <string name="pp_injury">Ozlijeđena područja</string>
+    <string name="pp_none">Nema</string>
+    <string name="pp_knee">Koljeno</string>
+    <string name="pp_shoulder">Ruka i rame</string>
+    <string name="pp_wrist">Zapešće</string>
+    <string name="pp_injury_note">Vježbe koje opterećuju ova područja bit će izostavljene. Ako je bol jaka, prije treninga se posavjetuj s liječnikom.</string>
+    <string name="pp_aerobic">Aerobna razina</string>
+    <string name="pp_low">Niski intenzitet</string>
+    <string name="pp_moderate">Umjereni intenzitet</string>
+    <string name="pp_high">Visoki intenzitet</string>
+    <string name="pp_type">Vrsta treninga</string>
+    <string name="pp_jump_free">Bez skokova</string>
+    <string name="pp_duration">Trajanje treninga</string>
+    <string name="pp_min">min</string>
+    <string name="pp_create">Izradi moj plan</string>
+    <string name="pp_creating">Izrađujemo tvoj osobni plan…</string>
+    <string name="pp_plan_name">Moj osobni plan</string>
+    <string name="pp_home_title">Osobni plan</string>
+    <string name="pp_home_desc">Plan od 4 tjedna prema tvom cilju, razini i tijelu.</string>
+    <string name="pp_home_create">Izradi</string>
+    <string name="pp_edit">Prilagodi plan</string>
+</resources>

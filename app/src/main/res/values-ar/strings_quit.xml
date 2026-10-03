@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">أكملت %1$d من %2$d تمارين</string>
+    <string name="quit_keep_going">تابع التمرين</string>
+    <string name="quit_exit">إنهاء التمرين</string>
+    <string name="quit_reason_title">لماذا تتوقف؟</string>
+    <string name="quit_reason_sub">تساعدنا إجابتك على اقتراح تمارين تناسبك أكثر.</string>
+    <string name="quit_reason_too_hard">صعب جدًا بالنسبة لي</string>
+    <string name="quit_reason_too_easy">سهل جدًا بالنسبة لي</string>
+    <string name="quit_reason_no_time">ليس لدي وقت</string>
+    <string name="quit_reason_tired">أشعر بالتعب أو الألم</string>
+    <string name="quit_reason_dislike">لا تعجبني هذه التمارين</string>
+    <string name="quit_reason_just_looking">أتصفح فقط</string>
+    <string name="quit_reason_other">سبب آخر</string>
+    <string name="quit_skip">تخطي</string>
+</resources>

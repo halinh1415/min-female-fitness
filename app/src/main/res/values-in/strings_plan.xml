@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pp_settings">Pengaturan rencana</string>
+    <string name="pp_goal">Tujuan kebugaran</string>
+    <string name="pp_goal_lose">Turunkan berat badan</string>
+    <string name="pp_goal_muscle">Bentuk otot</string>
+    <string name="pp_goal_fit">Tetap bugar</string>
+    <string name="pp_level">Tingkat kebugaran</string>
+    <string name="pp_focus">Area fokus</string>
+    <string name="pp_multiple">(Beberapa)</string>
+    <string name="pp_full_body">Seluruh tubuh</string>
+    <string name="pp_abs">Perut</string>
+    <string name="pp_arm_chest">Lengan &amp; dada</string>
+    <string name="pp_back">Punggung</string>
+    <string name="pp_leg">Kaki</string>
+    <string name="pp_butt">Bokong</string>
+    <string name="pp_injury">Area cedera</string>
+    <string name="pp_none">Tidak ada</string>
+    <string name="pp_knee">Lutut</string>
+    <string name="pp_shoulder">Lengan &amp; bahu</string>
+    <string name="pp_wrist">Pergelangan tangan</string>
+    <string name="pp_injury_note">Latihan yang membebani area ini akan dihapus. Jika nyeri parah, konsultasikan dengan dokter sebelum berlatih.</string>
+    <string name="pp_aerobic">Tingkat aerobik</string>
+    <string name="pp_low">Intensitas rendah</string>
+    <string name="pp_moderate">Intensitas sedang</string>
+    <string name="pp_high">Intensitas tinggi</string>
+    <string name="pp_type">Jenis latihan</string>
+    <string name="pp_jump_free">Tanpa lompatan</string>
+    <string name="pp_duration">Durasi latihan</string>
+    <string name="pp_min">mnt</string>
+    <string name="pp_create">Buat rencanaku</string>
+    <string name="pp_creating">Membuat rencana pribadimu…</string>
+    <string name="pp_plan_name">Rencana pribadiku</string>
+    <string name="pp_home_title">Rencana pribadi</string>
+    <string name="pp_home_desc">Rencana 4 minggu sesuai tujuan, level, dan tubuhmu.</string>
+    <string name="pp_home_create">Buat</string>
+    <string name="pp_edit">Sesuaikan rencana</string>
+</resources>

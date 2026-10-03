@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nền thẻ Go Premium ở Settings: gradient hồng giống nút CTA của paywall, ripple bo theo góc. -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#33FFFFFF">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="0"
+                android:endColor="#E91E63"
+                android:startColor="#FF5C8A" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+</ripple>

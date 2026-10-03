@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fin_title">Antrenman tamamlandı!</string>
+    <string name="fin_duration">Süre</string>
+    <string name="fin_exercises">Egzersiz</string>
+    <string name="fin_how">Antrenman nasıldı?</string>
+    <string name="fin_feel_1">Çok zor</string>
+    <string name="fin_feel_2">Zor</string>
+    <string name="fin_feel_3">Tam kararında</string>
+    <string name="fin_feel_4">Kolay</string>
+    <string name="fin_feel_5">Çok kolay</string>
+    <string name="fin_weight">Kilo</string>
+    <string name="fin_update">Güncelle</string>
+    <string name="fin_reminder">Günlük hatırlatma</string>
+    <string name="fin_edit">Düzenle</string>
+    <string name="fin_share">Paylaş</string>
+    <string name="fin_done">Bitti</string>
+    <string name="streak_finished_first">🔥 1. gün — serin başladı!</string>
+    <string name="streak_finished_milestone">🎉 Harika! Üst üste %d gün</string>
+    <string name="streak_finished_title">🔥 %d günlük seri!</string>
+</resources>

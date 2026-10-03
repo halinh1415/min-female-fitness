@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noti_action_start">Start nå</string>
+    <string name="noti_action_snooze">Minn meg på om 1 t</string>
+    <string name="noti_week_progress">%1$d/%2$d dager denne uken</string>
+</resources>

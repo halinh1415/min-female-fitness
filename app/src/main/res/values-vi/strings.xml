@@ -513,4 +513,14 @@
     <string name="search_face_yoga">Yoga mặt</string>
     <string name="yoga">Yoga</string>
     <string name="butt">mông</string>
+    <!-- Bottom sheet nhập cân nặng / số đo. -->
+    <string name="weight_sheet_title">Cập nhật cân nặng</string>
+    <string name="weight_date_today">Hôm nay</string>
+    <string name="weight_vs_last">%1$s so với lần trước</string>
+    <string name="weight_first_entry">Lần cân đầu tiên, khởi đầu tốt!</string>
+    <string name="weight_error_range">Nhập cân nặng từ %1$s đến %2$s</string>
+    <string name="height_error_range">Nhập chiều cao từ %1$s đến %2$s</string>
+    <string name="waist_error_range">Nhập vòng eo từ %1$s đến %2$s</string>
+    <string name="weight_saved">Đã lưu cân nặng</string>
+    <string name="txt_save">Lưu</string>
 </resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">आपने %2$d में से %1$d व्यायाम पूरे कर लिए</string>
+    <string name="quit_keep_going">जारी रखें</string>
+    <string name="quit_exit">वर्कआउट छोड़ें</string>
+    <string name="quit_reason_title">आप क्यों रुक रही हैं?</string>
+    <string name="quit_reason_sub">आपका जवाब हमें आपके लिए बेहतर वर्कआउट सुझाने में मदद करता है।</string>
+    <string name="quit_reason_too_hard">मेरे लिए बहुत कठिन</string>
+    <string name="quit_reason_too_easy">मेरे लिए बहुत आसान</string>
+    <string name="quit_reason_no_time">पर्याप्त समय नहीं है</string>
+    <string name="quit_reason_tired">थकान या दर्द महसूस हो रहा है</string>
+    <string name="quit_reason_dislike">ये व्यायाम पसंद नहीं हैं</string>
+    <string name="quit_reason_just_looking">बस देख रही थी</string>
+    <string name="quit_reason_other">कोई और कारण</string>
+    <string name="quit_skip">छोड़ें</string>
+</resources>

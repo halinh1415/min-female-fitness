@@ -2,6 +2,13 @@
 
     <!-- Legacy View screens with a framework ActionBar. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Chữ của các thành phần Material (toolbar, tab dưới, nút...) dùng bộ font chung. -->
+        <item name="textAppearanceHeadline6">@style/TextAppearance.App.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.App.Subtitle1</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.App.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.App.Body2</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.App.Caption</item>
+        <item name="textAppearanceButton">@style/TextAppearance.App.Button</item>
         <item name="android:windowAnimationStyle">@style/animfade</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -56,6 +63,17 @@
         <item name="android:state_expanded">false</item>
         <item name="expanded">false</item>
         <item name="android:background">@drawable/rounded_dialog</item>
+    </style>
+
+    <!-- Dialog số đo mới tự vẽ nền Compose và tự xử lý navigation bar / bàn phím. -->
+    <style name="WeightSheetDialogTheme" parent="Theme.MaterialComponents.DayNight.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/WeightSheetStyle</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="WeightSheetStyle" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="paddingBottomSystemWindowInsets">false</item>
     </style>
 
     <style name="DialogAnimation">
@@ -147,5 +165,51 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <!-- Màn trong suốt để vòng quay may mắn hiện như popup đè lên paywall. -->
+    <style name="AppTheme.Translucent" parent="AppTheme.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <!-- Màn chính (YogaActivity): nền sáng, status bar sáng, toolbar không bóng. -->
+    <style name="AppTheme.Main" parent="AppTheme.NoActionBar">
+        <item name="android:statusBarColor">#FFF7FA</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="statusBarProtectionColor">#FFF7FA</item>
+    </style>
+
+    <style name="TextAppearance.Min.ToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:fontFamily">@font/g1_black</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">#1F1A1D</item>
+    </style>
+
+    <style name="TextAppearance.App.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/fonts</item>
+        <item name="android:fontFamily">@font/fonts</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TextAppearance.App.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/fonts</item>
+        <item name="android:fontFamily">@font/fonts</item>
+    </style>
+    <style name="TextAppearance.App.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/fonts</item>
+        <item name="android:fontFamily">@font/fonts</item>
+    </style>
+    <style name="TextAppearance.App.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/fonts</item>
+        <item name="android:fontFamily">@font/fonts</item>
+    </style>
+    <style name="TextAppearance.App.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/fonts</item>
+        <item name="android:fontFamily">@font/fonts</item>
+    </style>
+    <style name="TextAppearance.App.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/fonts</item>
+        <item name="android:fontFamily">@font/fonts</item>
     </style>
 </resources>

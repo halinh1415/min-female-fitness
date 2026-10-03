@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">%2$d種目中%1$d種目を完了しました</string>
+    <string name="quit_keep_going">続ける</string>
+    <string name="quit_exit">トレーニングをやめる</string>
+    <string name="quit_reason_title">やめる理由を教えてください</string>
+    <string name="quit_reason_sub">回答をもとに、あなたに合ったトレーニングをおすすめします。</string>
+    <string name="quit_reason_too_hard">難しすぎる</string>
+    <string name="quit_reason_too_easy">簡単すぎる</string>
+    <string name="quit_reason_no_time">時間がない</string>
+    <string name="quit_reason_tired">疲れた・筋肉痛</string>
+    <string name="quit_reason_dislike">このエクササイズが好きではない</string>
+    <string name="quit_reason_just_looking">ちょっと見てみただけ</string>
+    <string name="quit_reason_other">その他</string>
+    <string name="quit_skip">スキップ</string>
+</resources>

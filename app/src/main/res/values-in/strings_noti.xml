@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noti_action_start">Mulai sekarang</string>
+    <string name="noti_action_snooze">Ingatkan dalam 1 jam</string>
+    <string name="noti_week_progress">%1$d/%2$d hari minggu ini</string>
+</resources>

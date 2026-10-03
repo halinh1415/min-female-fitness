@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vòng quay may mắn (LuckyWheel.kt) -->
+<resources>
+    <string name="ld_lucky_title">Kolo sreće</string>
+    <string name="ld_seg_jackpot">JACKPOT</string>
+    <string name="ld_seg_next_time">Sljedeći put</string>
+    <string name="ld_seg_off">-%1$s</string>
+    <string name="ld_go">ZAVRTI</string>
+    <string name="ld_title">Zavrti i osvoji poklon dobrodošlice 🎁</string>
+    <string name="ld_skip">Ne, hvala</string>
+</resources>

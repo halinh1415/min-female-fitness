@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Icon nhỏ của thông báo: dáng nữ đang chạy, tóc buộc đuôi ngựa.
+  Chỉ 1 màu: hệ thống chỉ dùng kênh alpha để tô icon trên status bar.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- thân -->
+    <path
+        android:pathData="M13.6,7.2 L11.6,12.6"
+        android:strokeWidth="2.1"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <!-- tay trước -->
+    <path
+        android:pathData="M13.3,8 L15.6,10.4 L17.9,9"
+        android:strokeWidth="2.1"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <!-- tay sau -->
+    <path
+        android:pathData="M12.9,8.2 L10.3,9.9 L8.4,8.4"
+        android:strokeWidth="2.1"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <!-- chân trước -->
+    <path
+        android:pathData="M11.6,12.6 L14.6,15.3 L13.9,19.8"
+        android:strokeWidth="2.1"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <!-- chân sau -->
+    <path
+        android:pathData="M11.6,12.6 L9.5,16.4 L6.3,17.6"
+        android:strokeWidth="2.1"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <!-- đầu -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M14.7,3.9m-2.15,0a2.15,2.15 0,1 1,4.3 0a2.15,2.15 0,1 1,-4.3 0" />
+    <!-- tóc đuôi ngựa -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M12.9,2.9C11.4,2.2 9.7,3.1 9.2,4.9C10.4,4 11.6,4.1 12.8,4.8Z" />
+</vector>

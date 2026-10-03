@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vòng quay may mắn (LuckyWheel.kt) -->
+<resources>
+    <string name="ld_lucky_title">Laimes rats</string>
+    <string name="ld_seg_jackpot">DŽEKPOTS</string>
+    <string name="ld_seg_next_time">Nākamreiz</string>
+    <string name="ld_seg_off">-%1$s</string>
+    <string name="ld_go">GRIEZT</string>
+    <string name="ld_title">Griez un laimē sveiciena dāvanu 🎁</string>
+    <string name="ld_skip">Nē, paldies</string>
+</resources>

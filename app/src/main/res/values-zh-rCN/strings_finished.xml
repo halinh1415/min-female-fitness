@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fin_title">训练完成！</string>
+    <string name="fin_duration">时长</string>
+    <string name="fin_exercises">动作</string>
+    <string name="fin_how">这次训练感觉如何？</string>
+    <string name="fin_feel_1">太难</string>
+    <string name="fin_feel_2">难</string>
+    <string name="fin_feel_3">刚好</string>
+    <string name="fin_feel_4">简单</string>
+    <string name="fin_feel_5">太简单</string>
+    <string name="fin_weight">体重</string>
+    <string name="fin_update">更新</string>
+    <string name="fin_reminder">每日提醒</string>
+    <string name="fin_edit">编辑</string>
+    <string name="fin_share">分享</string>
+    <string name="fin_done">完成</string>
+    <string name="streak_finished_first">🔥 第 1 天 — 你的连续记录开始了！</string>
+    <string name="streak_finished_milestone">🎉 太棒了！连续 %d 天</string>
+    <string name="streak_finished_title">🔥 连续 %d 天！</string>
+</resources>

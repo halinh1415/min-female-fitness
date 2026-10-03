@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Dau tich trong vong tron vang, thay cho ic_accept mau xanh duong lac tong -->
+<!-- Dau tich trang trong vong tron hong (bang mau Rose) -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="24dp"
     android:height="24dp"
@@ -7,10 +7,10 @@
     android:viewportHeight="24">
 
     <path
-        android:fillColor="@color/offer_gold"
+        android:fillColor="@color/offer_jade"
         android:pathData="M12,12m-10,0a10,10 0,1 1,20 0a10,10 0,1 1,-20 0" />
 
     <path
-        android:fillColor="@color/offer_ink"
+        android:fillColor="@color/White"
         android:pathData="M10.6,16.2a1,1 0,0 1,-0.71 -0.29l-3,-3a1,1 0,0 1,1.42 -1.42l2.29,2.3 5.29,-5.3a1,1 0,1 1,1.42 1.42l-6,6a1,1 0,0 1,-0.71 0.29z" />
 </vector>

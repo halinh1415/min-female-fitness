@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pp_settings">ตั้งค่าแผน</string>
+    <string name="pp_goal">เป้าหมาย</string>
+    <string name="pp_goal_lose">ลดน้ำหนัก</string>
+    <string name="pp_goal_muscle">เพิ่มกล้ามเนื้อ</string>
+    <string name="pp_goal_fit">รักษารูปร่าง</string>
+    <string name="pp_level">ระดับความฟิต</string>
+    <string name="pp_focus">ส่วนที่ต้องการเน้น</string>
+    <string name="pp_multiple">(เลือกได้หลายข้อ)</string>
+    <string name="pp_full_body">ทั้งตัว</string>
+    <string name="pp_abs">หน้าท้อง</string>
+    <string name="pp_arm_chest">แขนและอก</string>
+    <string name="pp_back">หลัง</string>
+    <string name="pp_leg">ขา</string>
+    <string name="pp_butt">สะโพก</string>
+    <string name="pp_injury">ส่วนที่บาดเจ็บ</string>
+    <string name="pp_none">ไม่มี</string>
+    <string name="pp_knee">เข่า</string>
+    <string name="pp_shoulder">แขนและไหล่</string>
+    <string name="pp_wrist">ข้อมือ</string>
+    <string name="pp_injury_note">ท่าที่ทำให้ส่วนเหล่านี้รับแรงมากจะถูกตัดออก หากปวดมาก ควรปรึกษาแพทย์ก่อนออกกำลังกาย</string>
+    <string name="pp_aerobic">ระดับแอโรบิก</string>
+    <string name="pp_low">ความหนักต่ำ</string>
+    <string name="pp_moderate">ความหนักปานกลาง</string>
+    <string name="pp_high">ความหนักสูง</string>
+    <string name="pp_type">ประเภทการออกกำลังกาย</string>
+    <string name="pp_jump_free">ไม่มีกระโดด</string>
+    <string name="pp_duration">ระยะเวลาต่อครั้ง</string>
+    <string name="pp_min">นาที</string>
+    <string name="pp_create">สร้างแผนของฉัน</string>
+    <string name="pp_creating">กำลังสร้างแผนเฉพาะคุณ…</string>
+    <string name="pp_plan_name">แผนของฉัน</string>
+    <string name="pp_home_title">แผนส่วนตัว</string>
+    <string name="pp_home_desc">แผน 4 สัปดาห์ที่ออกแบบตามเป้าหมาย ระดับ และร่างกายของคุณ</string>
+    <string name="pp_home_create">สร้าง</string>
+    <string name="pp_edit">ปรับแผน</string>
+</resources>

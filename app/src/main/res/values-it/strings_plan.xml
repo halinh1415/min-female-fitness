@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pp_settings">Impostazioni del piano</string>
+    <string name="pp_goal">Obiettivo</string>
+    <string name="pp_goal_lose">Perdere peso</string>
+    <string name="pp_goal_muscle">Aumentare i muscoli</string>
+    <string name="pp_goal_fit">Restare in forma</string>
+    <string name="pp_level">Livello</string>
+    <string name="pp_focus">Zona di allenamento</string>
+    <string name="pp_multiple">(Più scelte)</string>
+    <string name="pp_full_body">Corpo intero</string>
+    <string name="pp_abs">Addominali</string>
+    <string name="pp_arm_chest">Braccia e petto</string>
+    <string name="pp_back">Schiena</string>
+    <string name="pp_leg">Gambe</string>
+    <string name="pp_butt">Glutei</string>
+    <string name="pp_injury">Zone infortunate</string>
+    <string name="pp_none">Nessuna</string>
+    <string name="pp_knee">Ginocchio</string>
+    <string name="pp_shoulder">Braccio e spalla</string>
+    <string name="pp_wrist">Polso</string>
+    <string name="pp_injury_note">Gli esercizi che sollecitano queste zone verranno esclusi. Se il dolore è forte, consulta un medico prima di allenarti.</string>
+    <string name="pp_aerobic">Livello aerobico</string>
+    <string name="pp_low">Bassa intensità</string>
+    <string name="pp_moderate">Intensità moderata</string>
+    <string name="pp_high">Alta intensità</string>
+    <string name="pp_type">Tipo di allenamento</string>
+    <string name="pp_jump_free">Senza salti</string>
+    <string name="pp_duration">Durata dell\'allenamento</string>
+    <string name="pp_min">min</string>
+    <string name="pp_create">Crea il mio piano</string>
+    <string name="pp_creating">Creazione del tuo piano personale…</string>
+    <string name="pp_plan_name">Il mio piano personale</string>
+    <string name="pp_home_title">Piano personale</string>
+    <string name="pp_home_desc">Un piano di 4 settimane basato su obiettivo, livello e corpo.</string>
+    <string name="pp_home_create">Crea</string>
+    <string name="pp_edit">Modifica piano</string>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pp_settings">Plan ayarları</string>
+    <string name="pp_goal">Fitness hedefi</string>
+    <string name="pp_goal_lose">Kilo vermek</string>
+    <string name="pp_goal_muscle">Kas yapmak</string>
+    <string name="pp_goal_fit">Formda kalmak</string>
+    <string name="pp_level">Seviye</string>
+    <string name="pp_focus">Odak bölgesi</string>
+    <string name="pp_multiple">(Birden fazla)</string>
+    <string name="pp_full_body">Tüm vücut</string>
+    <string name="pp_abs">Karın</string>
+    <string name="pp_arm_chest">Kol ve göğüs</string>
+    <string name="pp_back">Sırt</string>
+    <string name="pp_leg">Bacak</string>
+    <string name="pp_butt">Kalça</string>
+    <string name="pp_injury">Sakat bölgeler</string>
+    <string name="pp_none">Yok</string>
+    <string name="pp_knee">Diz</string>
+    <string name="pp_shoulder">Kol ve omuz</string>
+    <string name="pp_wrist">Bilek</string>
+    <string name="pp_injury_note">Bu bölgeleri zorlayan egzersizler çıkarılacak. Ağrı şiddetliyse antrenmandan önce bir doktora danış.</string>
+    <string name="pp_aerobic">Aerobik seviye</string>
+    <string name="pp_low">Düşük yoğunluk</string>
+    <string name="pp_moderate">Orta yoğunluk</string>
+    <string name="pp_high">Yüksek yoğunluk</string>
+    <string name="pp_type">Antrenman türü</string>
+    <string name="pp_jump_free">Zıplamasız</string>
+    <string name="pp_duration">Antrenman süresi</string>
+    <string name="pp_min">dk</string>
+    <string name="pp_create">Planımı oluştur</string>
+    <string name="pp_creating">Kişisel planın oluşturuluyor…</string>
+    <string name="pp_plan_name">Kişisel planım</string>
+    <string name="pp_home_title">Kişisel plan</string>
+    <string name="pp_home_desc">Hedefine, seviyene ve vücuduna göre 4 haftalık plan.</string>
+    <string name="pp_home_create">Oluştur</string>
+    <string name="pp_edit">Planı ayarla</string>
+</resources>

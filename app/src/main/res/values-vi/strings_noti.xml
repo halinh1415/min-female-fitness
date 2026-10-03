@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noti_action_start">Tập ngay</string>
+    <string name="noti_action_snooze">Nhắc sau 1 giờ</string>
+    <string name="noti_week_progress">%1$d/%2$d ngày tuần này</string>
+</resources>

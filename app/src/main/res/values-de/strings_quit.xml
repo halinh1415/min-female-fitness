@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">Du hast %1$d von %2$d Übungen geschafft</string>
+    <string name="quit_keep_going">Weitermachen</string>
+    <string name="quit_exit">Training beenden</string>
+    <string name="quit_reason_title">Warum hörst du auf?</string>
+    <string name="quit_reason_sub">Deine Antwort hilft uns, passendere Trainings vorzuschlagen.</string>
+    <string name="quit_reason_too_hard">Zu schwer für mich</string>
+    <string name="quit_reason_too_easy">Zu leicht für mich</string>
+    <string name="quit_reason_no_time">Nicht genug Zeit</string>
+    <string name="quit_reason_tired">Müde oder Muskelkater</string>
+    <string name="quit_reason_dislike">Mag diese Übungen nicht</string>
+    <string name="quit_reason_just_looking">Schaue mich nur um</string>
+    <string name="quit_reason_other">Anderer Grund</string>
+    <string name="quit_skip">überspringen</string>
+</resources>

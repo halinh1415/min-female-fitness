@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fin_title">वर्कआउट पूरा हुआ!</string>
+    <string name="fin_duration">अवधि</string>
+    <string name="fin_exercises">व्यायाम</string>
+    <string name="fin_how">यह वर्कआउट कैसा लगा?</string>
+    <string name="fin_feel_1">बहुत कठिन</string>
+    <string name="fin_feel_2">कठिन</string>
+    <string name="fin_feel_3">बिल्कुल सही</string>
+    <string name="fin_feel_4">आसान</string>
+    <string name="fin_feel_5">बहुत आसान</string>
+    <string name="fin_weight">वज़न</string>
+    <string name="fin_update">अपडेट</string>
+    <string name="fin_reminder">रोज़ाना रिमाइंडर</string>
+    <string name="fin_edit">बदलें</string>
+    <string name="fin_share">शेयर करें</string>
+    <string name="fin_done">हो गया</string>
+    <string name="streak_finished_first">🔥 दिन 1 — आपकी स्ट्रीक शुरू हो गई!</string>
+    <string name="streak_finished_milestone">🎉 शानदार! लगातार %d दिन</string>
+    <string name="streak_finished_title">🔥 %d दिन की स्ट्रीक!</string>
+</resources>

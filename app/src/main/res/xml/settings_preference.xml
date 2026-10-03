@@ -2,6 +2,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:icon="@drawable/ic_music_note_black_24dp">
 
+    <!-- Chỉ hiện khi chưa mua Premium (SettingFragment.updatePremiumCard). -->
+    <Preference
+        android:key="GO_PREMIUM"
+        android:layout="@layout/preference_premium_card"
+        android:summary="@string/iap_discount_card_title_gpt"
+        android:title="@string/txt_go_premium" />
+
     <mint.woman.female.workout.custom.CustomPreference
         android:icon="@drawable/googleg_disabled_color_18"
         android:key="BACK_UP"

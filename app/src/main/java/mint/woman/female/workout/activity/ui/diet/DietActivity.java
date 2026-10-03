@@ -87,7 +87,7 @@ public class DietActivity extends AppCompatActivity {
     public void onRestart() {
         super.onRestart();
         finish();
-        startActivity(getIntent());
+        startActivity(new Intent(this, DietActivity.class)); // không chạy lại getIntent(): tránh Intent Redirection
     }
 
     private void initView() {

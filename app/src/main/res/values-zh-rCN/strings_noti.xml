@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noti_action_start">立即开始</string>
+    <string name="noti_action_snooze">1小时后提醒</string>
+    <string name="noti_week_progress">本周 %1$d/%2$d 天</string>
+</resources>

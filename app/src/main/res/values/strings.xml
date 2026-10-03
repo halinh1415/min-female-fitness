@@ -729,4 +729,14 @@
     <item quantity="one">month</item>
     <item quantity="other">months</item>
 </plurals>
+    <!-- Bottom sheet nhập cân nặng / số đo. -->
+    <string name="weight_sheet_title">Update weight</string>
+    <string name="weight_date_today">Today</string>
+    <string name="weight_vs_last">%1$s vs last time</string>
+    <string name="weight_first_entry">First weigh-in. A great start!</string>
+    <string name="weight_error_range">Enter a weight between %1$s and %2$s</string>
+    <string name="height_error_range">Enter a height between %1$s and %2$s</string>
+    <string name="waist_error_range">Enter a waist size between %1$s and %2$s</string>
+    <string name="weight_saved">Weight saved</string>
+    <string name="txt_save">Save</string>
 </resources>

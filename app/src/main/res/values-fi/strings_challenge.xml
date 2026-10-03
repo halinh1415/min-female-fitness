@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ch_restart">Aloita alusta</string>
+    <string name="ch_start_day">Aloita päivä %d</string>
+    <string name="ch_day_of">Päivä %1$d/%2$d</string>
+    <string name="ch_completed">Haaste suoritettu! 🎉</string>
+    <string name="ch_week_done">Viikko %d suoritettu</string>
+    <string name="ch_finish_previous">Suorita ensin päivä %d</string>
+    <string name="ch_removed">Ohjelma ei ole enää saatavilla</string>
+</resources>

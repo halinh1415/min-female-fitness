@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">Bạn đã xong %1$d/%2$d bài tập</string>
+    <string name="quit_keep_going">Tiếp tục tập</string>
+    <string name="quit_exit">Dừng buổi tập</string>
+    <string name="quit_reason_title">Vì sao bạn dừng lại?</string>
+    <string name="quit_reason_sub">Câu trả lời giúp app gợi ý bài tập hợp với bạn hơn.</string>
+    <string name="quit_reason_too_hard">Quá khó với tôi</string>
+    <string name="quit_reason_too_easy">Quá dễ với tôi</string>
+    <string name="quit_reason_no_time">Không đủ thời gian</string>
+    <string name="quit_reason_tired">Đang mệt hoặc đau mỏi</string>
+    <string name="quit_reason_dislike">Không thích các bài này</string>
+    <string name="quit_reason_just_looking">Chỉ xem thử thôi</string>
+    <string name="quit_reason_other">Lý do khác</string>
+    <string name="quit_skip">Bỏ qua</string>
+</resources>

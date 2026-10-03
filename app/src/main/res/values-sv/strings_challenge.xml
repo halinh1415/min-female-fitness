@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ch_restart">Börja om</string>
+    <string name="ch_start_day">Starta dag %d</string>
+    <string name="ch_day_of">Dag %1$d av %2$d</string>
+    <string name="ch_completed">Utmaningen klar! 🎉</string>
+    <string name="ch_week_done">Vecka %d klar</string>
+    <string name="ch_finish_previous">Slutför dag %d först</string>
+    <string name="ch_removed">Programmet finns inte längre</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vòng quay may mắn (LuckyWheel.kt) -->
+<resources>
+    <string name="ld_lucky_title">Şans Çarkı</string>
+    <string name="ld_seg_jackpot">BÜYÜK İKRAMİYE</string>
+    <string name="ld_seg_next_time">Bir dahaki sefere</string>
+    <string name="ld_seg_off">%1$s İNDİRİM</string>
+    <string name="ld_go">ÇEVİR</string>
+    <string name="ld_title">Çarkı çevir, hoş geldin hediyesi kazan 🎁</string>
+    <string name="ld_skip">Hayır, teşekkürler</string>
+</resources>

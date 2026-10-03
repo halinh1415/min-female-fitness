@@ -86,7 +86,7 @@ public class CountManagerActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        Intent intent = getIntent();
+        Intent intent = new Intent(); // không trả lại getIntent(): tránh Intent Redirection
         Bundle b = new Bundle();
         b.putInt("OPTION", myPreference.getCountOption());
         intent.putExtras(b);

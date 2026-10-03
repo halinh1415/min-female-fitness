@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ch_restart">Recommencer</string>
+    <string name="ch_start_day">Commencer le jour %d</string>
+    <string name="ch_day_of">Jour %1$d sur %2$d</string>
+    <string name="ch_completed">Défi terminé ! 🎉</string>
+    <string name="ch_week_done">Semaine %d terminée</string>
+    <string name="ch_finish_previous">Termine d\'abord le jour %d</string>
+    <string name="ch_removed">Ce programme n\'est plus disponible</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vòng quay may mắn (LuckyWheel.kt) -->
+<resources>
+    <string name="ld_lucky_title">Lyckohjul</string>
+    <string name="ld_seg_jackpot">JACKPOT</string>
+    <string name="ld_seg_next_time">Nästa gång</string>
+    <string name="ld_seg_off">%1$s RABATT</string>
+    <string name="ld_go">SNURRA</string>
+    <string name="ld_title">Snurra hjulet och vinn en välkomstgåva 🎁</string>
+    <string name="ld_skip">Nej tack</string>
+</resources>

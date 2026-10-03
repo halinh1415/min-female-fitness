@@ -7,6 +7,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
+import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.ProvideTextStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.SizeTransform
@@ -66,6 +68,7 @@ class OnboardFlowActivity : ComponentActivity(), EdgeToEdgeHelper.HandlesInsets 
 
         setContent {
             MaterialTheme {
+                ProvideTextStyle(LocalTextStyle.current.copy(fontFamily = ObFontFamily)) {
                 OnboardFlowScreen(
                     state = state,
                     onStepShown = { step ->
@@ -83,6 +86,7 @@ class OnboardFlowActivity : ComponentActivity(), EdgeToEdgeHelper.HandlesInsets 
                     },
                     onComplete = { completed -> finishFlow(state, completed) }
                 )
+                }
             }
         }
     }
@@ -173,7 +177,7 @@ private fun OnboardFlowScreen(
     Box(
         Modifier
             .fillMaxSize()
-            .background(if (step.isLightChrome()) Color.Black else ObColor.Background)
+            .background(ObColor.Background)
     ) {
         AnimatedContent(
             targetState = state.index,
@@ -189,23 +193,41 @@ private fun OnboardFlowScreen(
             label = "onboardStep"
         ) { index ->
             val current = state.steps[index.coerceIn(0, state.steps.lastIndex)]
-            Column(
-                Modifier
-                    .fillMaxSize()
-                    .then(if (current.isImmersive()) Modifier else Modifier.navigationBarsPadding())
-                    .statusBarsPadding()
-            ) {
-                if (current.hasProgress) {
-                    ObTopBar(
-                        section = current.section,
-                        fraction = state.sectionFraction(),
-                        onBack = ::goBack,
-                        onSkip = ::skipSection,
-                        light = current.isLightChrome()
-                    )
-                }
-                Box(Modifier.weight(1f)) {
+            if (current.isImmersive()) {
+                // Ảnh nền tràn lên dưới status bar, thanh tiến trình nổi phía trên.
+                Box(Modifier.fillMaxSize()) {
                     ObStepContent(step = current, state = state, onNext = ::goNext)
+                    if (current.hasProgress) {
+                        Box(Modifier.statusBarsPadding()) {
+                            ObTopBar(
+                                section = current.section,
+                                fraction = state.sectionFraction(),
+                                onBack = ::goBack,
+                                onSkip = ::skipSection,
+                                light = true
+                            )
+                        }
+                    }
+                }
+            } else {
+                Column(
+                    Modifier
+                        .fillMaxSize()
+                        .navigationBarsPadding()
+                        .statusBarsPadding()
+                ) {
+                    if (current.hasProgress) {
+                        ObTopBar(
+                            section = current.section,
+                            fraction = state.sectionFraction(),
+                            onBack = ::goBack,
+                            onSkip = ::skipSection,
+                            light = current.isLightChrome()
+                        )
+                    }
+                    Box(Modifier.weight(1f)) {
+                        ObStepContent(step = current, state = state, onNext = ::goNext)
+                    }
                 }
             }
         }

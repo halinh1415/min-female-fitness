@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pp_settings">Suunnitelman asetukset</string>
+    <string name="pp_goal">Kuntotavoite</string>
+    <string name="pp_goal_lose">Laihduttaa</string>
+    <string name="pp_goal_muscle">Kasvattaa lihaksia</string>
+    <string name="pp_goal_fit">Pysyä kunnossa</string>
+    <string name="pp_level">Kuntotaso</string>
+    <string name="pp_focus">Painopistealue</string>
+    <string name="pp_multiple">(Useita)</string>
+    <string name="pp_full_body">Koko keho</string>
+    <string name="pp_abs">Vatsa</string>
+    <string name="pp_arm_chest">Kädet &amp; rinta</string>
+    <string name="pp_back">Selkä</string>
+    <string name="pp_leg">Jalat</string>
+    <string name="pp_butt">Pakarat</string>
+    <string name="pp_injury">Loukkaantuneet alueet</string>
+    <string name="pp_none">Ei mitään</string>
+    <string name="pp_knee">Polvi</string>
+    <string name="pp_shoulder">Käsi &amp; olkapää</string>
+    <string name="pp_wrist">Ranne</string>
+    <string name="pp_injury_note">Näitä alueita kuormittavat liikkeet jätetään pois. Jos kipu on kovaa, kysy lääkäriltä ennen treeniä.</string>
+    <string name="pp_aerobic">Aerobinen taso</string>
+    <string name="pp_low">Matala teho</string>
+    <string name="pp_moderate">Kohtalainen teho</string>
+    <string name="pp_high">Korkea teho</string>
+    <string name="pp_type">Treenityyppi</string>
+    <string name="pp_jump_free">Ilman hyppyjä</string>
+    <string name="pp_duration">Treenin kesto</string>
+    <string name="pp_min">min</string>
+    <string name="pp_create">Luo suunnitelmani</string>
+    <string name="pp_creating">Luodaan henkilökohtaista suunnitelmaasi…</string>
+    <string name="pp_plan_name">Oma suunnitelmani</string>
+    <string name="pp_home_title">Henkilökohtainen suunnitelma</string>
+    <string name="pp_home_desc">4 viikon suunnitelma tavoitteesi, tasosi ja kehosi mukaan.</string>
+    <string name="pp_home_create">Luo</string>
+    <string name="pp_edit">Säädä suunnitelmaa</string>
+</resources>

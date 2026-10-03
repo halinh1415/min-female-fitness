@@ -63,6 +63,7 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.settings_preference, rootKey);
         myPreference = new MyPreference(getContext());
+        findPreference("GO_PREMIUM").setOnPreferenceClickListener(this);
         findPreference("ACHIEVEMENTS").setOnPreferenceClickListener(this);
         findPreference("ST_RATE").setOnPreferenceClickListener(this);
         findPreference("ST_FEEDBACK").setOnPreferenceClickListener(this);
@@ -160,6 +161,10 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
     @Override
     public boolean onPreferenceClick(Preference preference) {
         switch (preference.getKey()) {
+            case "GO_PREMIUM":
+                startActivity(new Intent(requireContext(),
+                        mint.woman.female.workout.activity.ui.premium.PremiumActivity.class));
+                break;
             case "ACHIEVEMENTS":
                 startActivity(BadgeActivity.newIntent(requireContext()));
                 break;
@@ -360,6 +365,15 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         super.onResume();
         getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         refreshAchievementSummary();
+        updatePremiumCard();
+    }
+
+    /** Thẻ Go Premium chỉ hiện khi người dùng chưa mua Premium. */
+    private void updatePremiumCard() {
+        Preference premium = findPreference("GO_PREMIUM");
+        if (premium != null) {
+            premium.setVisible(!myPreference.isPremiumMember());
+        }
     }
 
     /** Hien so huy hieu da dat ngay tren dong Achievements, vi du "7 of 29 earned". */

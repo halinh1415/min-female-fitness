@@ -31,8 +31,10 @@ public class NotificationReceiver extends BroadcastReceiver {
                 "🎯 " + programName               // Deep link
         );
 
-        AppNotificationHelper.showNotification(context, content);
         AppNotificationHelper.trackNotificationSent(context, "reminder");
+        // Dựng thông báo (ảnh, DB) ở thread nền.
+        PendingResult pendingResult = goAsync();
+        AppNotificationHelper.showNotificationAsync(context, content, pendingResult::finish);
 
     }
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fin_title">Trénink dokončen!</string>
+    <string name="fin_duration">Doba</string>
+    <string name="fin_exercises">Cviky</string>
+    <string name="fin_how">Jaký byl tento trénink?</string>
+    <string name="fin_feel_1">Příliš těžké</string>
+    <string name="fin_feel_2">Těžké</string>
+    <string name="fin_feel_3">Akorát</string>
+    <string name="fin_feel_4">Lehké</string>
+    <string name="fin_feel_5">Příliš lehké</string>
+    <string name="fin_weight">Hmotnost</string>
+    <string name="fin_update">Upravit</string>
+    <string name="fin_reminder">Denní připomínka</string>
+    <string name="fin_edit">Upravit</string>
+    <string name="fin_share">Sdílet</string>
+    <string name="fin_done">Hotovo</string>
+    <string name="streak_finished_first">🔥 Den 1 — tvoje série začala!</string>
+    <string name="streak_finished_milestone">🎉 Úžasné! %d dní v řadě</string>
+    <string name="streak_finished_title">🔥 Série %d dní!</string>
+</resources>

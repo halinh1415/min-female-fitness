@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pp_settings">Ustawienia planu</string>
+    <string name="pp_goal">Cel</string>
+    <string name="pp_goal_lose">Schudnąć</string>
+    <string name="pp_goal_muscle">Zbudować mięśnie</string>
+    <string name="pp_goal_fit">Utrzymać formę</string>
+    <string name="pp_level">Poziom</string>
+    <string name="pp_focus">Obszar treningu</string>
+    <string name="pp_multiple">(Wiele)</string>
+    <string name="pp_full_body">Całe ciało</string>
+    <string name="pp_abs">Brzuch</string>
+    <string name="pp_arm_chest">Ramiona i klatka</string>
+    <string name="pp_back">Plecy</string>
+    <string name="pp_leg">Nogi</string>
+    <string name="pp_butt">Pośladki</string>
+    <string name="pp_injury">Kontuzjowane obszary</string>
+    <string name="pp_none">Brak</string>
+    <string name="pp_knee">Kolano</string>
+    <string name="pp_shoulder">Ramię i bark</string>
+    <string name="pp_wrist">Nadgarstek</string>
+    <string name="pp_injury_note">Ćwiczenia obciążające te obszary zostaną pominięte. Przy silnym bólu skonsultuj się z lekarzem przed treningiem.</string>
+    <string name="pp_aerobic">Poziom aerobowy</string>
+    <string name="pp_low">Niska intensywność</string>
+    <string name="pp_moderate">Umiarkowana intensywność</string>
+    <string name="pp_high">Wysoka intensywność</string>
+    <string name="pp_type">Rodzaj treningu</string>
+    <string name="pp_jump_free">Bez skoków</string>
+    <string name="pp_duration">Czas treningu</string>
+    <string name="pp_min">min</string>
+    <string name="pp_create">Utwórz mój plan</string>
+    <string name="pp_creating">Tworzymy Twój plan…</string>
+    <string name="pp_plan_name">Mój plan</string>
+    <string name="pp_home_title">Plan osobisty</string>
+    <string name="pp_home_desc">4-tygodniowy plan dopasowany do Twojego celu, poziomu i ciała.</string>
+    <string name="pp_home_create">Utwórz</string>
+    <string name="pp_edit">Dostosuj plan</string>
+</resources>

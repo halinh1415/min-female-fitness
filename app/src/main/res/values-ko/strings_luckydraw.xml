@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vòng quay may mắn (LuckyWheel.kt) -->
+<resources>
+    <string name="ld_lucky_title">행운의 룰렛</string>
+    <string name="ld_seg_jackpot">잭팟</string>
+    <string name="ld_seg_next_time">다음 기회에</string>
+    <string name="ld_seg_off">%1$s 할인</string>
+    <string name="ld_go">GO</string>
+    <string name="ld_title">룰렛을 돌려 웰컴 선물 받기 🎁</string>
+    <string name="ld_skip">괜찮아요</string>
+</resources>

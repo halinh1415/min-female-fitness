@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vòng quay may mắn (LuckyWheel.kt) -->
+<resources>
+    <string name="ld_lucky_title">幸运转盘</string>
+    <string name="ld_seg_jackpot">大奖</string>
+    <string name="ld_seg_next_time">下次好运</string>
+    <string name="ld_seg_off">%1$s 优惠</string>
+    <string name="ld_go">转</string>
+    <string name="ld_title">转动转盘赢取欢迎礼 🎁</string>
+    <string name="ld_skip">不用了</string>
+</resources>

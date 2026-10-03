@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">Je hebt %1$d van %2$d oefeningen gedaan</string>
+    <string name="quit_keep_going">Doorgaan</string>
+    <string name="quit_exit">Training stoppen</string>
+    <string name="quit_reason_title">Waarom stop je?</string>
+    <string name="quit_reason_sub">Je antwoord helpt ons trainingen voor te stellen die beter bij je passen.</string>
+    <string name="quit_reason_too_hard">Te zwaar voor mij</string>
+    <string name="quit_reason_too_easy">Te makkelijk voor mij</string>
+    <string name="quit_reason_no_time">Geen tijd</string>
+    <string name="quit_reason_tired">Moe of spierpijn</string>
+    <string name="quit_reason_dislike">Ik vind deze oefeningen niet leuk</string>
+    <string name="quit_reason_just_looking">Ik kijk alleen even rond</string>
+    <string name="quit_reason_other">Andere reden</string>
+    <string name="quit_skip">Overslaan</string>
+</resources>

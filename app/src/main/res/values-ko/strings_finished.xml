@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fin_title">운동 완료!</string>
+    <string name="fin_duration">시간</string>
+    <string name="fin_exercises">동작</string>
+    <string name="fin_how">운동은 어땠나요?</string>
+    <string name="fin_feel_1">너무 힘듦</string>
+    <string name="fin_feel_2">힘듦</string>
+    <string name="fin_feel_3">딱 좋음</string>
+    <string name="fin_feel_4">쉬움</string>
+    <string name="fin_feel_5">너무 쉬움</string>
+    <string name="fin_weight">체중</string>
+    <string name="fin_update">업데이트</string>
+    <string name="fin_reminder">매일 알림</string>
+    <string name="fin_edit">수정</string>
+    <string name="fin_share">공유</string>
+    <string name="fin_done">완료</string>
+    <string name="streak_finished_first">🔥 1일차 — 연속 기록이 시작됐어요!</string>
+    <string name="streak_finished_milestone">🎉 대단해요! %d일 연속</string>
+    <string name="streak_finished_title">🔥 %d일 연속!</string>
+</resources>

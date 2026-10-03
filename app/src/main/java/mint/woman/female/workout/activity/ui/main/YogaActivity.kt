@@ -1,6 +1,8 @@
 package mint.woman.female.workout.activity.ui.main
 
 import android.Manifest
+import android.graphics.Color
+import android.view.View
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -113,6 +115,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
             setOf(
                 R.id.nav_home,
                 R.id.nav_explore,
+                R.id.nav_report,
                 R.id.nav_report2,
                 R.id.nav_diet_fragment,
                 R.id.nav_setting
@@ -121,6 +124,11 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
          navController = findNavController(this, R.id.nav_host_fragment)
         setupActionBarWithNavController(this, navController, appBarConfiguration)
         setupWithNavController(navigationView, navController)
+        styleLightToolbar(toolbar)
+        // Các tab Compose tự vẽ tiêu đề lớn trong nội dung nên không cần toolbar.
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id in COMPOSE_HEADER_TABS) supportActionBar?.hide() else supportActionBar?.show()
+        }
         initView()
         val file = File(filesDir, "music")
         if (!file.exists()) {
@@ -791,6 +799,20 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
     }
 
 
+    /** Toolbar nền sáng, tiêu đề lớn đậm, không bóng (cho các tab còn dùng toolbar). */
+    private fun styleLightToolbar(toolbar: Toolbar) {
+        val background = Color.parseColor("#FFF7FA")
+        toolbar.setBackgroundColor(background)
+        toolbar.setTitleTextAppearance(this, R.style.TextAppearance_Min_ToolbarTitle)
+        (toolbar.parent as? View)?.apply {
+            setBackgroundColor(background)
+            stateListAnimator = null
+            elevation = 0f
+        }
+        findViewById<androidx.drawerlayout.widget.DrawerLayout>(R.id.drawer_layout)
+            ?.setStatusBarBackgroundColor(background)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.fitness, menu)
 
@@ -822,6 +844,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
         var isFirst: Boolean = true
         const val RC_SIGN_IN: Int = 1201
         const val RC_ACCESS_FITNESS: Int = 1211
+        private val COMPOSE_HEADER_TABS = setOf(R.id.nav_home, R.id.nav_explore, R.id.nav_report, R.id.nav_diet_fragment)
     }
     fun migrateUserHistoryData(userId: String) {
         val database = FirebaseDatabase.getInstance()

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pp_settings">Plāna iestatījumi</string>
+    <string name="pp_goal">Fitnesa mērķis</string>
+    <string name="pp_goal_lose">Notievēt</string>
+    <string name="pp_goal_muscle">Veidot muskuļus</string>
+    <string name="pp_goal_fit">Saglabāt formu</string>
+    <string name="pp_level">Līmenis</string>
+    <string name="pp_focus">Fokusa zona</string>
+    <string name="pp_multiple">(Vairākas)</string>
+    <string name="pp_full_body">Viss ķermenis</string>
+    <string name="pp_abs">Vēders</string>
+    <string name="pp_arm_chest">Rokas un krūtis</string>
+    <string name="pp_back">Mugura</string>
+    <string name="pp_leg">Kājas</string>
+    <string name="pp_butt">Sēžamvieta</string>
+    <string name="pp_injury">Traumētās zonas</string>
+    <string name="pp_none">Nav</string>
+    <string name="pp_knee">Celis</string>
+    <string name="pp_shoulder">Roka un plecs</string>
+    <string name="pp_wrist">Plaukstas locītava</string>
+    <string name="pp_injury_note">Vingrinājumi, kas noslogo šīs zonas, tiks izlaisti. Ja sāpes ir stipras, pirms treniņa konsultējies ar ārstu.</string>
+    <string name="pp_aerobic">Aerobais līmenis</string>
+    <string name="pp_low">Zema intensitāte</string>
+    <string name="pp_moderate">Vidēja intensitāte</string>
+    <string name="pp_high">Augsta intensitāte</string>
+    <string name="pp_type">Treniņa veids</string>
+    <string name="pp_jump_free">Bez lēcieniem</string>
+    <string name="pp_duration">Treniņa ilgums</string>
+    <string name="pp_min">min</string>
+    <string name="pp_create">Izveidot manu plānu</string>
+    <string name="pp_creating">Veidojam tavu personīgo plānu…</string>
+    <string name="pp_plan_name">Mans personīgais plāns</string>
+    <string name="pp_home_title">Personīgais plāns</string>
+    <string name="pp_home_desc">4 nedēļu plāns atbilstoši tavam mērķim, līmenim un ķermenim.</string>
+    <string name="pp_home_create">Izveidot</string>
+    <string name="pp_edit">Pielāgot plānu</string>
+</resources>

@@ -83,7 +83,15 @@ class OnboardState : ViewModel() {
             return (4 + frequency * 2 + activity).coerceIn(4, baseDays / 2)
         }
 
-    val fasterDays: Int get() = (baseDays - earlyDays).coerceAtLeast(14)
+    /** Không bao giờ nhanh hơn mức an toàn [MAX_KG_PER_DAY] (~0.7 kg/tuần). */
+    val fasterDays: Int
+        get() {
+            val safest = kotlin.math.ceil(weightDeltaKg / MAX_KG_PER_DAY).toInt()
+            return maxOf(baseDays - earlyDays, safest, 14).coerceAtMost(baseDays)
+        }
+
+    /** Số ngày thực sự rút ngắn được so với dự đoán đầu. */
+    val savedDays: Int get() = (baseDays - fasterDays).coerceAtLeast(0)
 
     fun targetDate(days: Int): Date = Calendar.getInstance().apply {
         add(Calendar.DAY_OF_YEAR, days)
@@ -195,7 +203,11 @@ class OnboardState : ViewModel() {
 
     companion object {
         const val LB_PER_KG = 2.20462f
-        private const val KG_PER_DAY = 0.085f
+        /** Tốc độ dự đoán mặc định ~0.6 kg/tuần. */
+        const val KG_PER_DAY = 0.085f
+
+        /** Tốc độ tối đa được phép hiển thị ~0.7 kg/tuần. */
+        private const val MAX_KG_PER_DAY = 0.1f
         val FREQUENCY_PER_WEEK = intArrayOf(1, 2, 3, 5)
 
         private val DATE_FORMAT = SimpleDateFormat("MMM dd", Locale.ENGLISH)

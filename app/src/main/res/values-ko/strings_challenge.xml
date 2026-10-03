@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ch_restart">처음부터 다시</string>
+    <string name="ch_start_day">%d일차 시작</string>
+    <string name="ch_day_of">%2$d일 중 %1$d일차</string>
+    <string name="ch_completed">챌린지 완료! 🎉</string>
+    <string name="ch_week_done">%d주차 완료</string>
+    <string name="ch_finish_previous">먼저 %d일차를 완료하세요</string>
+    <string name="ch_removed">더 이상 제공되지 않는 프로그램이에요</string>
+</resources>

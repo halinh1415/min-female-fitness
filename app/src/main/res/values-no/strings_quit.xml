@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">Du har fullført %1$d av %2$d øvelser</string>
+    <string name="quit_keep_going">Fortsett</string>
+    <string name="quit_exit">Avslutt økten</string>
+    <string name="quit_reason_title">Hvorfor stopper du?</string>
+    <string name="quit_reason_sub">Svaret ditt hjelper oss å foreslå økter som passer deg bedre.</string>
+    <string name="quit_reason_too_hard">For vanskelig for meg</string>
+    <string name="quit_reason_too_easy">For lett for meg</string>
+    <string name="quit_reason_no_time">Har ikke nok tid</string>
+    <string name="quit_reason_tired">Føler meg sliten eller støl</string>
+    <string name="quit_reason_dislike">Liker ikke disse øvelsene</string>
+    <string name="quit_reason_just_looking">Bare ser meg rundt</string>
+    <string name="quit_reason_other">Annen grunn</string>
+    <string name="quit_skip">Hopp over</string>
+</resources>

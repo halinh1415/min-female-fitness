@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">%2$d개 중 %1$d개 운동을 완료했어요</string>
+    <string name="quit_keep_going">계속하기</string>
+    <string name="quit_exit">운동 그만하기</string>
+    <string name="quit_reason_title">왜 그만두시나요?</string>
+    <string name="quit_reason_sub">답변을 바탕으로 더 잘 맞는 운동을 추천해 드릴게요.</string>
+    <string name="quit_reason_too_hard">너무 어려워요</string>
+    <string name="quit_reason_too_easy">너무 쉬워요</string>
+    <string name="quit_reason_no_time">시간이 없어요</string>
+    <string name="quit_reason_tired">피곤하거나 근육이 아파요</string>
+    <string name="quit_reason_dislike">이 운동이 마음에 들지 않아요</string>
+    <string name="quit_reason_just_looking">그냥 둘러보는 중이에요</string>
+    <string name="quit_reason_other">기타 이유</string>
+    <string name="quit_skip">건너뛰기</string>
+</resources>

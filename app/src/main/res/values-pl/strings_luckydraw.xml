@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vòng quay may mắn (LuckyWheel.kt) -->
+<resources>
+    <string name="ld_lucky_title">Koło fortuny</string>
+    <string name="ld_seg_jackpot">JACKPOT</string>
+    <string name="ld_seg_next_time">Następnym razem</string>
+    <string name="ld_seg_off">-%1$s</string>
+    <string name="ld_go">KRĘĆ</string>
+    <string name="ld_title">Zakręć kołem i wygraj prezent powitalny 🎁</string>
+    <string name="ld_skip">Nie, dziękuję</string>
+</resources>

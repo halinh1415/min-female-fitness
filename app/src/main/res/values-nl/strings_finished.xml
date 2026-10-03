@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fin_title">Workout voltooid!</string>
+    <string name="fin_duration">Duur</string>
+    <string name="fin_exercises">Oefeningen</string>
+    <string name="fin_how">Hoe voelde deze workout?</string>
+    <string name="fin_feel_1">Te zwaar</string>
+    <string name="fin_feel_2">Zwaar</string>
+    <string name="fin_feel_3">Precies goed</string>
+    <string name="fin_feel_4">Makkelijk</string>
+    <string name="fin_feel_5">Te makkelijk</string>
+    <string name="fin_weight">Gewicht</string>
+    <string name="fin_update">Bijwerken</string>
+    <string name="fin_reminder">Dagelijkse herinnering</string>
+    <string name="fin_edit">Wijzigen</string>
+    <string name="fin_share">Delen</string>
+    <string name="fin_done">Klaar</string>
+    <string name="streak_finished_first">🔥 Dag 1 — je reeks is begonnen!</string>
+    <string name="streak_finished_milestone">🎉 Geweldig! %d dagen op rij</string>
+    <string name="streak_finished_title">🔥 Reeks van %d dagen!</string>
+</resources>

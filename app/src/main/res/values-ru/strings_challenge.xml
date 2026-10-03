@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ch_restart">Начать заново</string>
+    <string name="ch_start_day">Начать день %d</string>
+    <string name="ch_day_of">День %1$d из %2$d</string>
+    <string name="ch_completed">Челлендж завершён! 🎉</string>
+    <string name="ch_week_done">Неделя %d пройдена</string>
+    <string name="ch_finish_previous">Сначала завершите день %d</string>
+    <string name="ch_removed">Эта программа больше недоступна</string>
+</resources>

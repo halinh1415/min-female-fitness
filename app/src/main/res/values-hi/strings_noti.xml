@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noti_action_start">अभी शुरू करें</string>
+    <string name="noti_action_snooze">1 घंटे बाद याद दिलाएँ</string>
+    <string name="noti_week_progress">इस हफ़्ते %1$d/%2$d दिन</string>
+</resources>

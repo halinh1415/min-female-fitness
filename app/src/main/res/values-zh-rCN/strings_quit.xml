@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">已完成 %1$d/%2$d 个动作</string>
+    <string name="quit_keep_going">继续训练</string>
+    <string name="quit_exit">结束训练</string>
+    <string name="quit_reason_title">为什么要停下来？</string>
+    <string name="quit_reason_sub">你的回答能帮助我们推荐更适合你的训练。</string>
+    <string name="quit_reason_too_hard">太难了</string>
+    <string name="quit_reason_too_easy">太简单了</string>
+    <string name="quit_reason_no_time">没有时间</string>
+    <string name="quit_reason_tired">有点累或肌肉酸痛</string>
+    <string name="quit_reason_dislike">不喜欢这些动作</string>
+    <string name="quit_reason_just_looking">只是随便看看</string>
+    <string name="quit_reason_other">其他原因</string>
+    <string name="quit_skip">跳过</string>
+</resources>

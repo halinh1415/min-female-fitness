@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ch_restart">最初からやり直す</string>
+    <string name="ch_start_day">%d日目を始める</string>
+    <string name="ch_day_of">%2$d日中%1$d日目</string>
+    <string name="ch_completed">チャレンジ達成！🎉</string>
+    <string name="ch_week_done">第%d週 達成</string>
+    <string name="ch_finish_previous">先に%d日目を完了してください</string>
+    <string name="ch_removed">このプログラムは利用できません</string>
+</resources>

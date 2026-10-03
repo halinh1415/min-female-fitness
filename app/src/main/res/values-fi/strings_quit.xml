@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">Olet tehnyt %1$d/%2$d liikettä</string>
+    <string name="quit_keep_going">Jatka treeniä</string>
+    <string name="quit_exit">Lopeta treeni</string>
+    <string name="quit_reason_title">Miksi lopetat?</string>
+    <string name="quit_reason_sub">Vastauksesi auttaa meitä ehdottamaan sinulle sopivampia treenejä.</string>
+    <string name="quit_reason_too_hard">Liian vaikea minulle</string>
+    <string name="quit_reason_too_easy">Liian helppo minulle</string>
+    <string name="quit_reason_no_time">Ei aikaa nyt</string>
+    <string name="quit_reason_tired">Väsyttää tai lihaksia kolottaa</string>
+    <string name="quit_reason_dislike">En pidä näistä liikkeistä</string>
+    <string name="quit_reason_just_looking">Katselen vain</string>
+    <string name="quit_reason_other">Muu syy</string>
+    <string name="quit_skip">Ohita</string>
+</resources>

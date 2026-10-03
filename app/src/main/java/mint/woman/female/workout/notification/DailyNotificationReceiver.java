@@ -22,10 +22,13 @@ public class DailyNotificationReceiver extends BroadcastReceiver {
         }
 
         NotificationContent content = buildContent(context, stats);
-        AppNotificationHelper.showNotification(context, content);
 
         // schedule lại cho ngày mai
         DailyNotificationScheduler.scheduleAt19(context);
+
+        // Dựng thông báo (ảnh, DB) ở thread nền.
+        PendingResult pendingResult = goAsync();
+        AppNotificationHelper.showNotificationAsync(context, content, pendingResult::finish);
     }
 
     private NotificationContent buildContent(Context context, PracticeStats stats) {

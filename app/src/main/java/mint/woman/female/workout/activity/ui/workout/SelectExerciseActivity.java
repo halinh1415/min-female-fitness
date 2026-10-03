@@ -146,7 +146,7 @@ public class SelectExerciseActivity extends AppCompatActivity implements SelectA
 
     @Override
     public void onBackPressed() {
-        Intent intent = getIntent();
+        Intent intent = new Intent(); // không trả lại getIntent(): tránh Intent Redirection
         Bundle b = new Bundle();
         b.putIntegerArrayList("ADD_ACTIONS", mActionList);
         intent.putExtras(b);

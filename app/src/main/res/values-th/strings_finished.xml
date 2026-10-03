@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fin_title">ออกกำลังกายเสร็จแล้ว!</string>
+    <string name="fin_duration">ระยะเวลา</string>
+    <string name="fin_exercises">ท่าออกกำลังกาย</string>
+    <string name="fin_how">การออกกำลังกายนี้เป็นอย่างไร?</string>
+    <string name="fin_feel_1">ยากเกินไป</string>
+    <string name="fin_feel_2">ยาก</string>
+    <string name="fin_feel_3">พอดี</string>
+    <string name="fin_feel_4">ง่าย</string>
+    <string name="fin_feel_5">ง่ายเกินไป</string>
+    <string name="fin_weight">น้ำหนัก</string>
+    <string name="fin_update">อัปเดต</string>
+    <string name="fin_reminder">การเตือนรายวัน</string>
+    <string name="fin_edit">แก้ไข</string>
+    <string name="fin_share">แชร์</string>
+    <string name="fin_done">เสร็จสิ้น</string>
+    <string name="streak_finished_first">🔥 วันที่ 1 — สตรีคของคุณเริ่มแล้ว!</string>
+    <string name="streak_finished_milestone">🎉 ยอดเยี่ยม! ต่อเนื่อง %d วัน</string>
+    <string name="streak_finished_title">🔥 สตรีค %d วัน!</string>
+</resources>

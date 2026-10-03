@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">Выполнено %1$d из %2$d упражнений</string>
+    <string name="quit_keep_going">Продолжить</string>
+    <string name="quit_exit">Завершить тренировку</string>
+    <string name="quit_reason_title">Почему вы останавливаетесь?</string>
+    <string name="quit_reason_sub">Ваш ответ поможет нам подбирать более подходящие тренировки.</string>
+    <string name="quit_reason_too_hard">Слишком сложно для меня</string>
+    <string name="quit_reason_too_easy">Слишком легко для меня</string>
+    <string name="quit_reason_no_time">Нет времени</string>
+    <string name="quit_reason_tired">Усталость или боль в мышцах</string>
+    <string name="quit_reason_dislike">Не нравятся эти упражнения</string>
+    <string name="quit_reason_just_looking">Просто смотрю</string>
+    <string name="quit_reason_other">Другая причина</string>
+    <string name="quit_skip">пропускать</string>
+</resources>

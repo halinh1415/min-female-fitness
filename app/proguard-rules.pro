@@ -30,3 +30,8 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+# PlanSettings được lưu bằng Gson: giữ tên field, constructor mặc định và generic Signature
+# (Set<PlanFocus>...). Không giữ thì R8 xoá Signature -> Gson đọc phần tử thành String
+# -> ClassCastException ở PersonalPlanStore.program().
+-keep class mint.woman.female.workout.activity.ui.plan.PlanSettings { *; }
+-keep enum mint.woman.female.workout.activity.ui.plan.Plan* { *; }

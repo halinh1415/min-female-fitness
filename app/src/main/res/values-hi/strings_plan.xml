@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pp_settings">प्लान सेटिंग्स</string>
+    <string name="pp_goal">फिटनेस लक्ष्य</string>
+    <string name="pp_goal_lose">वज़न घटाएँ</string>
+    <string name="pp_goal_muscle">मसल्स बनाएँ</string>
+    <string name="pp_goal_fit">फिट रहें</string>
+    <string name="pp_level">फिटनेस स्तर</string>
+    <string name="pp_focus">फोकस एरिया</string>
+    <string name="pp_multiple">(एक से अधिक)</string>
+    <string name="pp_full_body">पूरा शरीर</string>
+    <string name="pp_abs">पेट</string>
+    <string name="pp_arm_chest">बाँह और छाती</string>
+    <string name="pp_back">पीठ</string>
+    <string name="pp_leg">पैर</string>
+    <string name="pp_butt">नितंब</string>
+    <string name="pp_injury">चोट वाले हिस्से</string>
+    <string name="pp_none">कोई नहीं</string>
+    <string name="pp_knee">घुटना</string>
+    <string name="pp_shoulder">बाँह और कंधा</string>
+    <string name="pp_wrist">कलाई</string>
+    <string name="pp_injury_note">इन हिस्सों पर ज़ोर डालने वाले व्यायाम हटा दिए जाएँगे। दर्द ज़्यादा हो तो व्यायाम से पहले डॉक्टर से सलाह लें।</string>
+    <string name="pp_aerobic">एरोबिक स्तर</string>
+    <string name="pp_low">कम तीव्रता</string>
+    <string name="pp_moderate">मध्यम तीव्रता</string>
+    <string name="pp_high">उच्च तीव्रता</string>
+    <string name="pp_type">वर्कआउट प्रकार</string>
+    <string name="pp_jump_free">बिना कूद</string>
+    <string name="pp_duration">वर्कआउट अवधि</string>
+    <string name="pp_min">मिनट</string>
+    <string name="pp_create">मेरा प्लान बनाएँ</string>
+    <string name="pp_creating">आपका पर्सनल प्लान बन रहा है…</string>
+    <string name="pp_plan_name">मेरा पर्सनल प्लान</string>
+    <string name="pp_home_title">पर्सनल प्लान</string>
+    <string name="pp_home_desc">आपके लक्ष्य, स्तर और शरीर के अनुसार 4 हफ़्ते का प्लान।</string>
+    <string name="pp_home_create">बनाएँ</string>
+    <string name="pp_edit">प्लान बदलें</string>
+</resources>

@@ -69,7 +69,7 @@ public class RulerSliderView extends View {
         setClickable(true);
         setHapticFeedbackEnabled(true);
         setBackgroundColor(Color.TRANSPARENT);
-        paint.setTypeface(ResourcesCompat.getFont(getContext(), R.font.lora_regular));
+        paint.setTypeface(ResourcesCompat.getFont(getContext(), R.font.g1_medium));
 
         ViewConfiguration configuration = ViewConfiguration.get(getContext());
         touchSlop = configuration.getScaledTouchSlop();
@@ -323,7 +323,7 @@ public class RulerSliderView extends View {
         float baseline = getHeight() * 0.62f;
 
         paint.setStrokeWidth(dp(1));
-        paint.setColor(Color.rgb(205, 224, 212));
+        paint.setColor(Color.rgb(239, 227, 232));
         canvas.drawLine(0, baseline, getWidth(), baseline, paint);
 
         int firstValue = Math.max(minValue,
@@ -340,20 +340,20 @@ public class RulerSliderView extends View {
                     ? tickValue % 6 == 0
                     : tickValue % Math.max(1, majorStep / 2) == 0);
             float tickHeight = uniformTicks ? dp(18) : major ? dp(25) : middle ? dp(17) : dp(10);
-            paint.setColor(major ? Color.rgb(45, 126, 93) : Color.rgb(155, 187, 165));
+            paint.setColor(major ? Color.rgb(199, 179, 188) : Color.rgb(230, 215, 221));
             paint.setStrokeWidth(dp(major ? 2 : 1));
             canvas.drawLine(x, baseline - tickHeight, x, baseline, paint);
 
             if (major && showLabels && labelsFit && tickValue % labelInterval == 0) {
                 paint.setTextSize(dp(11));
                 paint.setTextAlign(Paint.Align.CENTER);
-                paint.setColor(Color.rgb(101, 128, 116));
+                paint.setColor(Color.rgb(160, 147, 155));
                 String label = feetAndInches ? (tickValue / 12) + "'" : String.valueOf(tickValue);
                 canvas.drawText(label, x, baseline + dp(22), paint);
             }
         }
 
-        paint.setColor(Color.rgb(24, 65, 51));
+        paint.setColor(Color.rgb(233, 30, 99));
         paint.setStrokeWidth(dp(3));
         canvas.drawLine(centerX, dp(2), centerX, baseline + dp(5), paint);
         paint.setStyle(Paint.Style.FILL);

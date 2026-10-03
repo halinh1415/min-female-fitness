@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ch_restart">Tập lại từ đầu</string>
+    <string name="ch_start_day">Bắt đầu ngày %d</string>
+    <string name="ch_day_of">Ngày %1$d/%2$d</string>
+    <string name="ch_completed">Hoàn thành thử thách! 🎉</string>
+    <string name="ch_week_done">Hoàn thành tuần %d</string>
+    <string name="ch_finish_previous">Hãy hoàn thành ngày %d trước</string>
+    <string name="ch_removed">Chương trình này không còn nữa</string>
+</resources>

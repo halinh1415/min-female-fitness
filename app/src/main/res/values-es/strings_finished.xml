@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fin_title">¡Entrenamiento completado!</string>
+    <string name="fin_duration">Duración</string>
+    <string name="fin_exercises">Ejercicios</string>
+    <string name="fin_how">¿Qué tal te ha parecido?</string>
+    <string name="fin_feel_1">Muy difícil</string>
+    <string name="fin_feel_2">Difícil</string>
+    <string name="fin_feel_3">Perfecto</string>
+    <string name="fin_feel_4">Fácil</string>
+    <string name="fin_feel_5">Muy fácil</string>
+    <string name="fin_weight">Peso</string>
+    <string name="fin_update">Actualizar</string>
+    <string name="fin_reminder">Recordatorio diario</string>
+    <string name="fin_edit">Editar</string>
+    <string name="fin_share">Compartir</string>
+    <string name="fin_done">Listo</string>
+    <string name="streak_finished_first">🔥 Día 1: ¡tu racha ha comenzado!</string>
+    <string name="streak_finished_milestone">🎉 ¡Increíble! %d días seguidos</string>
+    <string name="streak_finished_title">🔥 ¡Racha de %d días!</string>
+</resources>

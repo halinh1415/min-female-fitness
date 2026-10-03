@@ -5,6 +5,9 @@ import static android.content.Context.NOTIFICATION_SERVICE;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import mint.woman.female.workout.notification.AppNotificationHelper;
+import mint.woman.female.workout.notification.NotificationContent;
+import mint.woman.female.workout.notification.NotificationType;
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -251,6 +254,14 @@ public class AlarmReceiver extends BroadcastReceiver {
                     "Reminder",
                     NotificationManager.IMPORTANCE_DEFAULT);
             nm.createNotificationChannel(channel);
+            // Giao diện thông báo giống WomenWorkout (ảnh, tiến độ tuần, nút Tập ngay / Nhắc sau 1 giờ).
+            AppNotificationHelper.showStyled(context, new NotificationContent(
+                    NotificationType.DAILY_REMINDER,
+                    context.getString(R.string.txt_time_to_workout),
+                    context.getString(R.string.noti_reengage_message),
+                    ""
+            ), NOTIFICATION_CHANNEL_ID_REMINDER, 1);
+            return;
         }
         Intent notifyIntent = new Intent(context, SplashActivity.class);
 // Set the Activity to start in a new, empty task

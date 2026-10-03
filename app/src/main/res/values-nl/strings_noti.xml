@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noti_action_start">Nu starten</string>
+    <string name="noti_action_snooze">Herinner me over 1 uur</string>
+    <string name="noti_week_progress">%1$d/%2$d dagen deze week</string>
+</resources>

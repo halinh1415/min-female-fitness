@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pp_settings">Настройки плана</string>
+    <string name="pp_goal">Цель</string>
+    <string name="pp_goal_lose">Похудеть</string>
+    <string name="pp_goal_muscle">Нарастить мышцы</string>
+    <string name="pp_goal_fit">Поддерживать форму</string>
+    <string name="pp_level">Уровень</string>
+    <string name="pp_focus">Зона тренировки</string>
+    <string name="pp_multiple">(Несколько)</string>
+    <string name="pp_full_body">Всё тело</string>
+    <string name="pp_abs">Пресс</string>
+    <string name="pp_arm_chest">Руки и грудь</string>
+    <string name="pp_back">Спина</string>
+    <string name="pp_leg">Ноги</string>
+    <string name="pp_butt">Ягодицы</string>
+    <string name="pp_injury">Травмированные зоны</string>
+    <string name="pp_none">Нет</string>
+    <string name="pp_knee">Колено</string>
+    <string name="pp_shoulder">Рука и плечо</string>
+    <string name="pp_wrist">Запястье</string>
+    <string name="pp_injury_note">Упражнения, нагружающие эти зоны, будут исключены. При сильной боли проконсультируйтесь с врачом перед тренировкой.</string>
+    <string name="pp_aerobic">Аэробный уровень</string>
+    <string name="pp_low">Низкая интенсивность</string>
+    <string name="pp_moderate">Средняя интенсивность</string>
+    <string name="pp_high">Высокая интенсивность</string>
+    <string name="pp_type">Тип тренировки</string>
+    <string name="pp_jump_free">Без прыжков</string>
+    <string name="pp_duration">Длительность тренировки</string>
+    <string name="pp_min">мин</string>
+    <string name="pp_create">Создать мой план</string>
+    <string name="pp_creating">Создаём ваш персональный план…</string>
+    <string name="pp_plan_name">Мой персональный план</string>
+    <string name="pp_home_title">Персональный план</string>
+    <string name="pp_home_desc">План на 4 недели с учётом вашей цели, уровня и тела.</string>
+    <string name="pp_home_create">Создать</string>
+    <string name="pp_edit">Изменить план</string>
+</resources>

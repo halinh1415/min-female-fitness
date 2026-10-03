@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ch_restart">شروع دوباره</string>
+    <string name="ch_start_day">شروع روز %d</string>
+    <string name="ch_day_of">روز %1$d از %2$d</string>
+    <string name="ch_completed">چالش تمام شد! 🎉</string>
+    <string name="ch_week_done">هفته %d تمام شد</string>
+    <string name="ch_finish_previous">ابتدا روز %d را تمام کنید</string>
+    <string name="ch_removed">این برنامه دیگر در دسترس نیست</string>
+</resources>

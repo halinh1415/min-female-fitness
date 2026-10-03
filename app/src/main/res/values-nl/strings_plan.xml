@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pp_settings">Planinstellingen</string>
+    <string name="pp_goal">Fitnessdoel</string>
+    <string name="pp_goal_lose">Afvallen</string>
+    <string name="pp_goal_muscle">Spieren opbouwen</string>
+    <string name="pp_goal_fit">Fit blijven</string>
+    <string name="pp_level">Fitnessniveau</string>
+    <string name="pp_focus">Focusgebied</string>
+    <string name="pp_multiple">(Meerdere)</string>
+    <string name="pp_full_body">Hele lichaam</string>
+    <string name="pp_abs">Buik</string>
+    <string name="pp_arm_chest">Armen &amp; borst</string>
+    <string name="pp_back">Rug</string>
+    <string name="pp_leg">Benen</string>
+    <string name="pp_butt">Billen</string>
+    <string name="pp_injury">Geblesseerde zones</string>
+    <string name="pp_none">Geen</string>
+    <string name="pp_knee">Knie</string>
+    <string name="pp_shoulder">Arm &amp; schouder</string>
+    <string name="pp_wrist">Pols</string>
+    <string name="pp_injury_note">Oefeningen die deze zones belasten worden weggelaten. Bij veel pijn: raadpleeg eerst een arts.</string>
+    <string name="pp_aerobic">Aerobe niveau</string>
+    <string name="pp_low">Lage intensiteit</string>
+    <string name="pp_moderate">Gemiddelde intensiteit</string>
+    <string name="pp_high">Hoge intensiteit</string>
+    <string name="pp_type">Soort training</string>
+    <string name="pp_jump_free">Zonder springen</string>
+    <string name="pp_duration">Trainingsduur</string>
+    <string name="pp_min">min</string>
+    <string name="pp_create">Maak mijn plan</string>
+    <string name="pp_creating">Je persoonlijke plan wordt gemaakt…</string>
+    <string name="pp_plan_name">Mijn persoonlijke plan</string>
+    <string name="pp_home_title">Persoonlijk plan</string>
+    <string name="pp_home_desc">Een plan van 4 weken op basis van je doel, niveau en lichaam.</string>
+    <string name="pp_home_create">Maken</string>
+    <string name="pp_edit">Plan aanpassen</string>
+</resources>

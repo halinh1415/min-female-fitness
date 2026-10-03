@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fin_title">ワークアウト完了！</string>
+    <string name="fin_duration">時間</string>
+    <string name="fin_exercises">エクササイズ</string>
+    <string name="fin_how">このワークアウトはどうでしたか？</string>
+    <string name="fin_feel_1">きつすぎる</string>
+    <string name="fin_feel_2">きつい</string>
+    <string name="fin_feel_3">ちょうどいい</string>
+    <string name="fin_feel_4">楽</string>
+    <string name="fin_feel_5">楽すぎる</string>
+    <string name="fin_weight">体重</string>
+    <string name="fin_update">更新</string>
+    <string name="fin_reminder">毎日のリマインダー</string>
+    <string name="fin_edit">編集</string>
+    <string name="fin_share">シェア</string>
+    <string name="fin_done">完了</string>
+    <string name="streak_finished_first">🔥 1日目 — 連続記録がスタート！</string>
+    <string name="streak_finished_milestone">🎉 すごい！%d日連続</string>
+    <string name="streak_finished_title">🔥 %d日連続！</string>
+</resources>

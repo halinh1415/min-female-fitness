@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">%2$d egzersizden %1$d tanesini tamamladın</string>
+    <string name="quit_keep_going">Devam et</string>
+    <string name="quit_exit">Antrenmandan çık</string>
+    <string name="quit_reason_title">Neden bırakıyorsun?</string>
+    <string name="quit_reason_sub">Cevabın sana daha uygun antrenmanlar önermemize yardımcı olur.</string>
+    <string name="quit_reason_too_hard">Benim için çok zor</string>
+    <string name="quit_reason_too_easy">Benim için çok kolay</string>
+    <string name="quit_reason_no_time">Şu an vaktim yok</string>
+    <string name="quit_reason_tired">Yorgunum veya ağrım var</string>
+    <string name="quit_reason_dislike">Bu egzersizleri sevmedim</string>
+    <string name="quit_reason_just_looking">Sadece göz atıyorum</string>
+    <string name="quit_reason_other">Başka bir neden</string>
+    <string name="quit_skip">Atla</string>
+</resources>

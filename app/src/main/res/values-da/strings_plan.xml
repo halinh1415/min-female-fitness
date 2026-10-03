@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pp_settings">Planindstillinger</string>
+    <string name="pp_goal">Fitnessmål</string>
+    <string name="pp_goal_lose">Tabe vægt</string>
+    <string name="pp_goal_muscle">Opbygge muskler</string>
+    <string name="pp_goal_fit">Holde formen</string>
+    <string name="pp_level">Fitnessniveau</string>
+    <string name="pp_focus">Fokusområde</string>
+    <string name="pp_multiple">(Flere)</string>
+    <string name="pp_full_body">Hele kroppen</string>
+    <string name="pp_abs">Mave</string>
+    <string name="pp_arm_chest">Arme &amp; bryst</string>
+    <string name="pp_back">Ryg</string>
+    <string name="pp_leg">Ben</string>
+    <string name="pp_butt">Balder</string>
+    <string name="pp_injury">Skadede områder</string>
+    <string name="pp_none">Ingen</string>
+    <string name="pp_knee">Knæ</string>
+    <string name="pp_shoulder">Arm &amp; skulder</string>
+    <string name="pp_wrist">Håndled</string>
+    <string name="pp_injury_note">Øvelser, der belaster disse områder, udelades. Ved kraftige smerter bør du tale med en læge før træning.</string>
+    <string name="pp_aerobic">Aerobt niveau</string>
+    <string name="pp_low">Lav intensitet</string>
+    <string name="pp_moderate">Moderat intensitet</string>
+    <string name="pp_high">Høj intensitet</string>
+    <string name="pp_type">Træningstype</string>
+    <string name="pp_jump_free">Uden hop</string>
+    <string name="pp_duration">Træningens varighed</string>
+    <string name="pp_min">min</string>
+    <string name="pp_create">Lav min plan</string>
+    <string name="pp_creating">Din personlige plan oprettes…</string>
+    <string name="pp_plan_name">Min personlige plan</string>
+    <string name="pp_home_title">Personlig plan</string>
+    <string name="pp_home_desc">En 4-ugers plan efter dit mål, niveau og din krop.</string>
+    <string name="pp_home_create">Opret</string>
+    <string name="pp_edit">Justér plan</string>
+</resources>

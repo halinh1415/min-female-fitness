@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">Tu esi pabeigusi %1$d no %2$d vingrinājumiem</string>
+    <string name="quit_keep_going">Turpināt</string>
+    <string name="quit_exit">Pārtraukt treniņu</string>
+    <string name="quit_reason_title">Kāpēc tu apstājies?</string>
+    <string name="quit_reason_sub">Tava atbilde palīdz mums ieteikt tev piemērotākus treniņus.</string>
+    <string name="quit_reason_too_hard">Pārāk grūti man</string>
+    <string name="quit_reason_too_easy">Pārāk viegli man</string>
+    <string name="quit_reason_no_time">Nepietiek laika</string>
+    <string name="quit_reason_tired">Jūtos nogurusi vai sāpīga</string>
+    <string name="quit_reason_dislike">Man nepatīk šie vingrinājumi</string>
+    <string name="quit_reason_just_looking">Tikai apskatos</string>
+    <string name="quit_reason_other">Cits iemesls</string>
+    <string name="quit_skip">Izlaist</string>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pp_settings">Plan Settings</string>
+    <string name="pp_goal">Fitness Goal</string>
+    <string name="pp_goal_lose">Lose weight</string>
+    <string name="pp_goal_muscle">Build muscle</string>
+    <string name="pp_goal_fit">Keep fit</string>
+    <string name="pp_level">Fitness Level</string>
+    <string name="pp_focus">Focus Area</string>
+    <string name="pp_multiple">(Multiple)</string>
+    <string name="pp_full_body">Full body</string>
+    <string name="pp_abs">Abs</string>
+    <string name="pp_arm_chest">Arm &amp; Chest</string>
+    <string name="pp_back">Back</string>
+    <string name="pp_leg">Leg</string>
+    <string name="pp_butt">Butt</string>
+    <string name="pp_injury">Injured Area</string>
+    <string name="pp_none">None</string>
+    <string name="pp_knee">Knee</string>
+    <string name="pp_shoulder">Arm &amp; Shoulder</string>
+    <string name="pp_wrist">Wrist</string>
+    <string name="pp_injury_note">Exercises that strain these areas will be left out. If the pain is serious, check with a doctor before training.</string>
+    <string name="pp_aerobic">Aerobic Level</string>
+    <string name="pp_low">Low intensity</string>
+    <string name="pp_moderate">Moderate intensity</string>
+    <string name="pp_high">High intensity</string>
+    <string name="pp_type">Workout Type</string>
+    <string name="pp_jump_free">Jump-free</string>
+    <string name="pp_duration">Workout Duration</string>
+    <string name="pp_min">min</string>
+    <string name="pp_create">Create My Plan</string>
+    <string name="pp_creating">Creating your personal plan…</string>
+    <string name="pp_plan_name">My Personal Plan</string>
+    <string name="pp_home_title">Personal plan</string>
+    <string name="pp_home_desc">A 4-week plan built around your goal, level and body.</string>
+    <string name="pp_home_create">Create</string>
+    <string name="pp_edit">Adjust plan</string>
+</resources>

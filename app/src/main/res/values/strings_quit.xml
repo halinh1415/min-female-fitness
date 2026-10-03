@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">You\'ve finished %1$d of %2$d exercises</string>
+    <string name="quit_keep_going">Keep going</string>
+    <string name="quit_exit">Quit workout</string>
+    <string name="quit_reason_title">Why are you stopping?</string>
+    <string name="quit_reason_sub">Your answer helps us suggest workouts that suit you better.</string>
+    <string name="quit_reason_too_hard">Too hard for me</string>
+    <string name="quit_reason_too_easy">Too easy for me</string>
+    <string name="quit_reason_no_time">Not enough time</string>
+    <string name="quit_reason_tired">Feeling tired or sore</string>
+    <string name="quit_reason_dislike">Don\'t like these exercises</string>
+    <string name="quit_reason_just_looking">Just looking around</string>
+    <string name="quit_reason_other">Other reason</string>
+    <string name="quit_skip">Skip</string>
+</resources>

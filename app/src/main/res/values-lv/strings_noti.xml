@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noti_action_start">Sākt tagad</string>
+    <string name="noti_action_snooze">Atgādināt pēc 1 h</string>
+    <string name="noti_week_progress">%1$d/%2$d dienas šonedēļ</string>
+</resources>

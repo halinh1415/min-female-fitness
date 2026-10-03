@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pp_settings">플랜 설정</string>
+    <string name="pp_goal">운동 목표</string>
+    <string name="pp_goal_lose">체중 감량</string>
+    <string name="pp_goal_muscle">근육 키우기</string>
+    <string name="pp_goal_fit">몸매 유지</string>
+    <string name="pp_level">레벨</string>
+    <string name="pp_focus">집중 부위</string>
+    <string name="pp_multiple">(복수 선택)</string>
+    <string name="pp_full_body">전신</string>
+    <string name="pp_abs">복근</string>
+    <string name="pp_arm_chest">팔 &amp; 가슴</string>
+    <string name="pp_back">등</string>
+    <string name="pp_leg">다리</string>
+    <string name="pp_butt">엉덩이</string>
+    <string name="pp_injury">부상 부위</string>
+    <string name="pp_none">없음</string>
+    <string name="pp_knee">무릎</string>
+    <string name="pp_shoulder">팔 &amp; 어깨</string>
+    <string name="pp_wrist">손목</string>
+    <string name="pp_injury_note">이 부위에 무리가 가는 운동은 제외됩니다. 통증이 심하면 운동 전에 의사와 상담하세요.</string>
+    <string name="pp_aerobic">유산소 강도</string>
+    <string name="pp_low">저강도</string>
+    <string name="pp_moderate">중강도</string>
+    <string name="pp_high">고강도</string>
+    <string name="pp_type">운동 유형</string>
+    <string name="pp_jump_free">점프 없음</string>
+    <string name="pp_duration">운동 시간</string>
+    <string name="pp_min">분</string>
+    <string name="pp_create">내 플랜 만들기</string>
+    <string name="pp_creating">나만의 플랜을 만드는 중…</string>
+    <string name="pp_plan_name">나의 플랜</string>
+    <string name="pp_home_title">맞춤 플랜</string>
+    <string name="pp_home_desc">목표, 레벨, 몸에 맞춘 4주 플랜.</string>
+    <string name="pp_home_create">만들기</string>
+    <string name="pp_edit">플랜 조정</string>
+</resources>

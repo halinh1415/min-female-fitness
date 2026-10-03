@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">Kamu sudah menyelesaikan %1$d dari %2$d latihan</string>
+    <string name="quit_keep_going">Lanjutkan</string>
+    <string name="quit_exit">Keluar dari latihan</string>
+    <string name="quit_reason_title">Kenapa kamu berhenti?</string>
+    <string name="quit_reason_sub">Jawabanmu membantu kami menyarankan latihan yang lebih cocok untukmu.</string>
+    <string name="quit_reason_too_hard">Terlalu sulit untukku</string>
+    <string name="quit_reason_too_easy">Terlalu mudah untukku</string>
+    <string name="quit_reason_no_time">Tidak sempat</string>
+    <string name="quit_reason_tired">Lelah atau pegal</string>
+    <string name="quit_reason_dislike">Tidak suka latihan ini</string>
+    <string name="quit_reason_just_looking">Hanya melihat-lihat</string>
+    <string name="quit_reason_other">Alasan lain</string>
+    <string name="quit_skip">Melewati</string>
+</resources>

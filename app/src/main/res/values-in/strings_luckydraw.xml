@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vòng quay may mắn (LuckyWheel.kt) -->
+<resources>
+    <string name="ld_lucky_title">Putar Keberuntungan</string>
+    <string name="ld_seg_jackpot">JACKPOT</string>
+    <string name="ld_seg_next_time">Lain kali</string>
+    <string name="ld_seg_off">DISKON %1$s</string>
+    <string name="ld_go">PUTAR</string>
+    <string name="ld_title">Putar roda untuk hadiah selamat datang 🎁</string>
+    <string name="ld_skip">Tidak, terima kasih</string>
+</resources>

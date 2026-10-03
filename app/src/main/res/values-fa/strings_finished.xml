@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fin_title">تمرین تمام شد!</string>
+    <string name="fin_duration">مدت</string>
+    <string name="fin_exercises">تمرین‌ها</string>
+    <string name="fin_how">این تمرین چطور بود؟</string>
+    <string name="fin_feel_1">خیلی سخت</string>
+    <string name="fin_feel_2">سخت</string>
+    <string name="fin_feel_3">مناسب</string>
+    <string name="fin_feel_4">آسان</string>
+    <string name="fin_feel_5">خیلی آسان</string>
+    <string name="fin_weight">وزن</string>
+    <string name="fin_update">به‌روزرسانی</string>
+    <string name="fin_reminder">یادآور روزانه</string>
+    <string name="fin_edit">ویرایش</string>
+    <string name="fin_share">اشتراک‌گذاری</string>
+    <string name="fin_done">تمام</string>
+    <string name="streak_finished_first">🔥 روز ۱ — زنجیره تمرین شما شروع شد!</string>
+    <string name="streak_finished_milestone">🎉 فوق‌العاده! %d روز پشت سر هم</string>
+    <string name="streak_finished_title">🔥 زنجیره %d روزه!</string>
+</resources>

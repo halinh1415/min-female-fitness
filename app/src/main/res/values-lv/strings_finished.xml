@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fin_title">Treniņš pabeigts!</string>
+    <string name="fin_duration">Ilgums</string>
+    <string name="fin_exercises">Vingrinājumi</string>
+    <string name="fin_how">Kāds bija šis treniņš?</string>
+    <string name="fin_feel_1">Pārāk grūts</string>
+    <string name="fin_feel_2">Grūts</string>
+    <string name="fin_feel_3">Tieši laikā</string>
+    <string name="fin_feel_4">Viegls</string>
+    <string name="fin_feel_5">Pārāk viegls</string>
+    <string name="fin_weight">Svars</string>
+    <string name="fin_update">Atjaunināt</string>
+    <string name="fin_reminder">Ikdienas atgādinājums</string>
+    <string name="fin_edit">Rediģēt</string>
+    <string name="fin_share">Kopīgot</string>
+    <string name="fin_done">Gatavs</string>
+    <string name="streak_finished_first">🔥 1. diena — tava sērija ir sākusies!</string>
+    <string name="streak_finished_milestone">🎉 Lieliski! %d dienas pēc kārtas</string>
+    <string name="streak_finished_title">🔥 %d dienu sērija!</string>
+</resources>

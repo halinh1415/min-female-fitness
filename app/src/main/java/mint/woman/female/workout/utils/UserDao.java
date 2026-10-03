@@ -23,6 +23,12 @@ public interface UserDao {
     @Query("SELECT * FROM UserObject WHERE date >= :startDate AND date <= :endDate ORDER BY date ASC")
     List<UserObject> getUsersInRange(long startDate, long endDate);
 
+    @Query("SELECT * FROM UserObject ORDER BY date DESC LIMIT 1")
+    UserObject getLatest();
+
+    @Query("SELECT * FROM UserObject WHERE date < :beforeDate ORDER BY date DESC LIMIT 1")
+    UserObject getLatestBefore(long beforeDate);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(UserObject... userObjects);
 

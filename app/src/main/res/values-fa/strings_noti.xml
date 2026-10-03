@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noti_action_start">همین حالا شروع کن</string>
+    <string name="noti_action_snooze">یک ساعت بعد یادآوری کن</string>
+    <string name="noti_week_progress">%1$d/%2$d روز در این هفته</string>
+</resources>

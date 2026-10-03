@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pp_settings">Configurações do plano</string>
+    <string name="pp_goal">Objetivo</string>
+    <string name="pp_goal_lose">Perder peso</string>
+    <string name="pp_goal_muscle">Ganhar músculos</string>
+    <string name="pp_goal_fit">Manter a forma</string>
+    <string name="pp_level">Nível</string>
+    <string name="pp_focus">Área de foco</string>
+    <string name="pp_multiple">(Várias)</string>
+    <string name="pp_full_body">Corpo inteiro</string>
+    <string name="pp_abs">Abdômen</string>
+    <string name="pp_arm_chest">Braços e peito</string>
+    <string name="pp_back">Costas</string>
+    <string name="pp_leg">Pernas</string>
+    <string name="pp_butt">Glúteos</string>
+    <string name="pp_injury">Áreas lesionadas</string>
+    <string name="pp_none">Nenhuma</string>
+    <string name="pp_knee">Joelho</string>
+    <string name="pp_shoulder">Braço e ombro</string>
+    <string name="pp_wrist">Pulso</string>
+    <string name="pp_injury_note">Exercícios que forçam essas áreas serão removidos. Se a dor for forte, consulte um médico antes de treinar.</string>
+    <string name="pp_aerobic">Nível aeróbico</string>
+    <string name="pp_low">Baixa intensidade</string>
+    <string name="pp_moderate">Intensidade moderada</string>
+    <string name="pp_high">Alta intensidade</string>
+    <string name="pp_type">Tipo de treino</string>
+    <string name="pp_jump_free">Sem saltos</string>
+    <string name="pp_duration">Duração do treino</string>
+    <string name="pp_min">min</string>
+    <string name="pp_create">Criar meu plano</string>
+    <string name="pp_creating">Criando seu plano personalizado…</string>
+    <string name="pp_plan_name">Meu plano personalizado</string>
+    <string name="pp_home_title">Plano personalizado</string>
+    <string name="pp_home_desc">Um plano de 4 semanas feito para seu objetivo, nível e corpo.</string>
+    <string name="pp_home_create">Criar</string>
+    <string name="pp_edit">Ajustar plano</string>
+</resources>

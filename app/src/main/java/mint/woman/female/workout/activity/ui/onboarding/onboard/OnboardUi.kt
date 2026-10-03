@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -52,6 +53,7 @@ import androidx.compose.ui.graphics.PathMeasure
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
@@ -284,7 +286,7 @@ fun ObTitle(
     )
 }
 
-/** Nút CTA đen bo tròn ở đáy màn hình. */
+/** Nút CTA gradient hồng bo tròn ở đáy màn hình. */
 @Composable
 fun ObPrimaryButton(
     text: String,
@@ -299,13 +301,39 @@ fun ObPrimaryButton(
             .height(62.dp)
             .clip(RoundedCornerShape(31.dp))
             .background(
-                if (enabled) Brush.horizontalGradient(listOf(Color(0xFF00BCD4), Color(0xFF03413B)))
+                if (enabled) Brush.horizontalGradient(listOf(ObColor.PinkLight, ObColor.Pink))
                 else Brush.horizontalGradient(listOf(background, background))
             )
             .clickable(enabled = enabled, onClick = onClick),
         contentAlignment = Alignment.Center
     ) {
         Text(text, color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+    }
+}
+
+/** Avatar nhỏ của coach Mia, dùng ở các thẻ phản hồi. */
+@Composable
+fun ObCoachAvatar(size: androidx.compose.ui.unit.Dp = 30.dp) {
+    val art = rememberObArt("coach_kelly")
+    if (art != null) {
+        Image(
+            bitmap = art,
+            contentDescription = null,
+            modifier = Modifier
+                .size(size)
+                .clip(CircleShape),
+            contentScale = ContentScale.Crop
+        )
+    } else {
+        Box(
+            Modifier
+                .size(size)
+                .clip(CircleShape)
+                .background(Brush.linearGradient(listOf(ObColor.PinkLight, ObColor.Pink))),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("M", color = Color.White, fontSize = (size.value * 0.5f).sp, fontWeight = FontWeight.Bold)
+        }
     }
 }
 
@@ -316,7 +344,7 @@ fun ObHintCard(emoji: String, text: String, modifier: Modifier = Modifier) {
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(18.dp))
-            .background(Color(0xFFFBEEF2))
+            .background(ObColor.PinkSoft)
             .padding(horizontal = 18.dp, vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -335,12 +363,12 @@ fun ObAssistantCard(title: String, body: String, modifier: Modifier = Modifier) 
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(18.dp))
-            .background(Color(0xFFF3EBEE))
+            .background(ObColor.PinkSoft.copy(alpha = 0.7f))
             .padding(horizontal = 18.dp, vertical = 16.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("🤖", fontSize = 20.sp)
-            Spacer(Modifier.width(8.dp))
+            ObCoachAvatar()
+            Spacer(Modifier.width(10.dp))
             Text(title, fontSize = 19.sp, fontWeight = FontWeight.Bold, color = ObColor.TextPrimary)
         }
         Spacer(Modifier.height(8.dp))
@@ -777,13 +805,18 @@ fun ObWheelPicker(
 
 /** Hình que vẽ bằng Canvas cho các màn thanh trượt. */
 @Composable
-fun ObFigureArt(figure: ObFigure, modifier: Modifier = Modifier, label: String = "") {
+fun ObFigureArt(
+    figure: ObFigure,
+    modifier: Modifier = Modifier,
+    label: String = "",
+    fraction: Float = 0f
+) {
     Box(modifier, contentAlignment = Alignment.Center) {
         when (figure) {
             ObFigure.PLANK -> Canvas(Modifier.fillMaxSize()) { drawPlank() }
             ObFigure.REACH -> Canvas(Modifier.fillMaxSize()) { drawReach() }
             ObFigure.STAIRS -> Canvas(Modifier.fillMaxSize()) { drawStairs() }
-            ObFigure.GAUGE -> ObGauge(label = label, modifier = Modifier.fillMaxSize())
+            ObFigure.GAUGE -> ObGauge(label = label, modifier = Modifier.fillMaxSize(), fraction = fraction)
             ObFigure.CALENDAR -> ObCalendarBadge(label = label, modifier = Modifier.fillMaxSize())
             ObFigure.NONE -> Unit
         }
@@ -873,8 +906,8 @@ fun ObGauge(label: String, modifier: Modifier = Modifier, fraction: Float = 0.33
                 style = Stroke(width = stroke, cap = StrokeCap.Round)
             )
             drawArc(
-                brush = Brush.sweepGradient(listOf(Color(0xFFFF9800), Color(0xFFFF2E63), Color(0xFFFF9800))),
-                startAngle = -90f, sweepAngle = 360f * (0.25f + animated * 0.6f), useCenter = false,
+                brush = Brush.sweepGradient(listOf(ObColor.Warning, ObColor.Pink, ObColor.Warning)),
+                startAngle = -90f, sweepAngle = 360f * (0.12f + animated * 0.83f), useCenter = false,
                 topLeft = topLeft, size = Size(diameter, diameter),
                 style = Stroke(width = stroke, cap = StrokeCap.Round)
             )
@@ -915,135 +948,237 @@ fun ObCalendarBadge(label: String, modifier: Modifier = Modifier) {
 // ---------------------------------------------------------------- biểu đồ
 
 /**
- * Biểu đồ dự đoán cân nặng (step14/15, 28, 46).
+ * Biểu đồ dự đoán cân nặng (step14, step28) dựng từ số liệu người dùng nhập.
  *
- * @param progress 0f..1f – dùng để chạy hiệu ứng vẽ dần đường cong
- * @param ghostCurve vẽ thêm đường đứt nét của mốc cũ (step28)
+ * Trục X là số ngày tính từ hôm nay; đường đi từ cân nặng hiện tại tới cân nặng mục tiêu
+ * tại đúng ngày dự tính rồi giữ ngang (duy trì). Đường được vẽ dần từ trái sang phải,
+ * khi chạy tới đích mới hiện mốc, nhãn cân nặng và ngày đạt được.
+ *
+ * @param ghostDays nếu > 0 thì vẽ thêm đường đứt nét của dự đoán cũ (step28) để so sánh
  */
 @Composable
 fun ObWeightChart(
-    startLabel: String,
+    currentWeight: Float,
+    targetWeight: Float,
+    unitLabel: String,
+    days: Int,
     endLabel: String,
-    startValue: String,
-    endValue: String,
-    progress: Float,
     modifier: Modifier = Modifier,
-    ghostCurve: Boolean = false,
+    ghostDays: Int = 0,
     ghostLabel: String = ""
 ) {
-    val animated by animateFloatAsState(progress.coerceIn(0f, 1f), tween(900), label = "chart")
+    var started by remember(currentWeight, targetWeight, days) { mutableStateOf(false) }
+    LaunchedEffect(currentWeight, targetWeight, days) {
+        started = false
+        kotlinx.coroutines.delay(250)
+        started = true
+    }
+    val animated by animateFloatAsState(
+        targetValue = if (started) 1f else 0f,
+        animationSpec = tween(durationMillis = 1600, easing = FastOutSlowInEasing),
+        label = "weightChart"
+    )
+    val density = LocalDensity.current
+    var chartSize by remember { mutableStateOf(androidx.compose.ui.unit.IntSize.Zero) }
+
+    // Toạ độ tính theo px dùng chung cho Canvas và các nhãn đặt chồng lên trên.
+    val padStartPx = with(density) { 14.dp.toPx() }
+    val padEndPx = with(density) { 14.dp.toPx() }
+    val padTopPx = with(density) { 52.dp.toPx() }
+    val padBottomPx = with(density) { 12.dp.toPx() }
+    val span = max(max(days, ghostDays), 1).toFloat() * 1.12f
+    val dataMin = min(currentWeight, targetWeight)
+    val dataMax = max(currentWeight, targetWeight)
+    val range = (dataMax - dataMin).coerceAtLeast(1f)
+    val visualMin = dataMin - range * 0.25f
+    val visualMax = dataMax + range * 0.15f
+
+    fun xFor(day: Float): Float {
+        val w = chartSize.width.toFloat()
+        return padStartPx + (w - padStartPx - padEndPx) * (day / span)
+    }
+
+    fun yFor(value: Float): Float {
+        val h = chartSize.height.toFloat()
+        val fraction = ((visualMax - value) / (visualMax - visualMin)).coerceIn(0f, 1f)
+        return padTopPx + (h - padTopPx - padBottomPx) * fraction
+    }
+
+    fun valueLabel(value: Float): String = "${value.format1()} $unitLabel"
+
     Column(modifier) {
         Box(
             Modifier
                 .fillMaxWidth()
                 .weight(1f)
+                .onSizeChanged { chartSize = it }
         ) {
-            Canvas(Modifier.fillMaxSize()) {
-                val w = size.width
-                val h = size.height
-                val top = h * 0.12f
-                val bottom = h * 0.86f
+            if (chartSize.width > 0) {
+                Canvas(Modifier.fillMaxSize()) {
+                    val start = Offset(xFor(0f), yFor(currentWeight))
+                    val end = Offset(xFor(days.toFloat()), yFor(targetWeight))
+                    val right = size.width - padEndPx
+                    val bottom = size.height - padBottomPx
 
-                val curve = Path().apply {
-                    moveTo(0f, top)
-                    cubicTo(w * 0.22f, top, w * 0.30f, bottom * 0.62f, w * 0.55f, bottom * 0.72f)
-                    cubicTo(w * 0.75f, bottom * 0.80f, w * 0.86f, bottom * 0.80f, w, bottom * 0.80f)
-                }
-
-                // vùng tô dưới đường cong
-                val fill = Path().apply {
-                    addPath(curve)
-                    lineTo(w, h)
-                    lineTo(0f, h)
-                    close()
-                }
-                drawPath(
-                    fill,
-                    Brush.verticalGradient(
-                        listOf(Color(0x66FF2E63), Color(0x11673AB7), Color(0x00FFFFFF))
-                    )
-                )
-
-                if (ghostCurve) {
-                    val ghost = Path().apply {
-                        moveTo(w * 0.14f, top * 1.2f)
-                        cubicTo(w * 0.40f, top * 1.2f, w * 0.52f, bottom * 0.70f, w * 0.78f, bottom * 0.78f)
-                        cubicTo(w * 0.88f, bottom * 0.80f, w * 0.94f, bottom * 0.80f, w, bottom * 0.80f)
-                    }
-                    drawPath(
-                        ghost, Color(0xFFBDBDBD),
-                        style = Stroke(
-                            width = 6f, cap = StrokeCap.Round,
-                            pathEffect = PathEffect.dashPathEffect(floatArrayOf(18f, 14f))
+                    fun curveTo(endPoint: Offset): Path = Path().apply {
+                        moveTo(start.x, start.y)
+                        val dx = endPoint.x - start.x
+                        cubicTo(
+                            start.x + dx * 0.45f, start.y,
+                            endPoint.x - dx * 0.45f, endPoint.y,
+                            endPoint.x, endPoint.y
                         )
-                    )
+                        lineTo(right, endPoint.y)
+                    }
+
+                    // lưới ngang mờ
+                    listOf(0f, 0.5f, 1f).forEach { f ->
+                        val y = padTopPx + (bottom - padTopPx) * f
+                        drawLine(ObColor.Track, Offset(padStartPx, y), Offset(right, y), strokeWidth = 1.dp.toPx())
+                    }
+
+                    if (ghostDays > 0) {
+                        drawPath(
+                            curveTo(Offset(xFor(ghostDays.toFloat()), end.y)),
+                            ObColor.TextMuted.copy(alpha = 0.6f),
+                            style = Stroke(
+                                width = 2.dp.toPx(), cap = StrokeCap.Round,
+                                pathEffect = PathEffect.dashPathEffect(floatArrayOf(6.dp.toPx(), 5.dp.toPx()))
+                            )
+                        )
+                    }
+
+                    val curve = curveTo(end)
+                    val fill = Path().apply {
+                        addPath(curve)
+                        lineTo(right, bottom)
+                        lineTo(start.x, bottom)
+                        close()
+                    }
+                    val revealX = start.x + (right - start.x) * animated
+                    clipRect(right = revealX) {
+                        drawPath(
+                            fill,
+                            Brush.verticalGradient(
+                                listOf(ObColor.Pink.copy(alpha = 0.22f), ObColor.Purple.copy(alpha = 0.04f)),
+                                startY = padTopPx, endY = bottom
+                            )
+                        )
+                        drawPath(
+                            curve,
+                            Brush.horizontalGradient(
+                                listOf(ObColor.Pink, ObColor.Plum, ObColor.Purple),
+                                startX = start.x, endX = end.x
+                            ),
+                            style = Stroke(width = 5.dp.toPx(), cap = StrokeCap.Round)
+                        )
+                    }
+
+                    fun milestone(point: Offset, color: Color) {
+                        drawLine(
+                            color.copy(alpha = 0.45f), point, Offset(point.x, bottom),
+                            strokeWidth = 1.dp.toPx(),
+                            pathEffect = PathEffect.dashPathEffect(floatArrayOf(5.dp.toPx(), 5.dp.toPx()))
+                        )
+                        drawCircle(Color.White, radius = 8.dp.toPx(), center = point)
+                        drawCircle(color, radius = 8.dp.toPx(), center = point, style = Stroke(width = 3.dp.toPx()))
+                    }
+                    milestone(start, ObColor.Pink)
+                    if (revealX >= end.x) milestone(end, ObColor.Purple)
                 }
 
-                drawPath(
-                    curve,
-                    Brush.horizontalGradient(
-                        listOf(ObColor.Pink, ObColor.Purple, ObColor.Blue)
-                    ),
-                    style = Stroke(width = 14f, cap = StrokeCap.Round)
+                // nhãn cân nặng hiện tại phía trên mốc bắt đầu
+                ChartBubble(
+                    text = valueLabel(currentWeight),
+                    centerX = xFor(0f),
+                    bottomY = yFor(currentWeight) - with(density) { 12.dp.toPx() },
+                    containerWidth = chartSize.width,
+                    filled = false
                 )
-
-                // mốc bắt đầu
-                val startX = w * 0.14f
-                val startY = top * 1.05f
-                drawLine(
-                    ObColor.Pink.copy(alpha = 0.55f), Offset(startX, startY), Offset(startX, bottom),
-                    strokeWidth = 3f,
-                    pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f))
-                )
-                drawCircle(Color.White, radius = 22f, center = Offset(startX, startY))
-                drawCircle(ObColor.Pink, radius = 22f, center = Offset(startX, startY), style = Stroke(width = 10f))
-
-                // mốc kết thúc chỉ hiện khi hiệu ứng chạy xong
-                if (animated > 0.95f) {
-                    val endX = w * 0.78f
-                    val endY = bottom * 0.795f
-                    drawLine(
-                        ObColor.Blue.copy(alpha = 0.55f), Offset(endX, endY), Offset(endX, bottom),
-                        strokeWidth = 3f,
-                        pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f))
+                val reachedEnd = xFor(0f) + (chartSize.width - padEndPx - xFor(0f)) * animated >= xFor(days.toFloat())
+                if (reachedEnd) {
+                    ChartBubble(
+                        text = valueLabel(targetWeight),
+                        centerX = xFor(days.toFloat()),
+                        bottomY = yFor(targetWeight) - with(density) { 14.dp.toPx() },
+                        containerWidth = chartSize.width,
+                        filled = true
                     )
-                    drawCircle(Color.White, radius = 22f, center = Offset(endX, endY))
-                    drawCircle(ObColor.Blue, radius = 22f, center = Offset(endX, endY), style = Stroke(width = 10f))
-                }
-            }
-
-            Text(
-                startValue,
-                modifier = Modifier
-                    .align(Alignment.TopStart)
-                    .padding(start = 8.dp),
-                fontSize = 20.sp, color = ObColor.TextPrimary
-            )
-
-            if (animated > 0.95f) {
-                Box(
-                    modifier = Modifier
-                        .align(Alignment.CenterEnd)
-                        .padding(end = 24.dp, bottom = 40.dp)
-                        .clip(RoundedCornerShape(16.dp))
-                        .background(ObColor.Pink)
-                        .padding(horizontal = 16.dp, vertical = 8.dp)
-                ) {
-                    Text(endValue, color = Color.White, fontSize = 24.sp, fontWeight = FontWeight.Bold)
                 }
             }
         }
-        Row(
+        // trục ngày: nhãn đặt đúng dưới từng mốc nên luôn theo thứ tự thời gian
+        Box(
             Modifier
                 .fillMaxWidth()
-                .padding(top = 10.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+                .height(28.dp)
         ) {
-            Text(startLabel, fontSize = 17.sp, color = ObColor.TextMuted)
-            if (ghostLabel.isNotEmpty()) {
-                Text(ghostLabel, fontSize = 17.sp, color = ObColor.TextMuted)
+            if (chartSize.width > 0) {
+                AxisLabel("Today", xFor(0f), chartSize.width, ObColor.TextMuted, FontWeight.Normal)
+                val ghostFits = abs(xFor(ghostDays.toFloat()) - xFor(days.toFloat())) >=
+                        with(density) { ChartLabelWidth.toPx() }
+                if (ghostDays > 0 && ghostLabel.isNotEmpty() && ghostFits) {
+                    AxisLabel(ghostLabel, xFor(ghostDays.toFloat()), chartSize.width, ObColor.TextMuted, FontWeight.Normal)
+                }
+                if (animated > 0.6f) {
+                    AxisLabel(endLabel, xFor(days.toFloat()), chartSize.width, ObColor.Pink, FontWeight.Bold)
+                }
             }
-            Text(endLabel, fontSize = 17.sp, fontWeight = FontWeight.Bold, color = ObColor.TextPrimary)
+        }
+    }
+}
+
+private val ChartLabelWidth = 96.dp
+
+/** Nhãn trục X căn giữa theo [centerX] (px), không tràn khỏi mép biểu đồ. */
+@Composable
+private fun AxisLabel(text: String, centerX: Float, containerWidth: Int, color: Color, weight: FontWeight) {
+    val density = LocalDensity.current
+    val widthPx = with(density) { ChartLabelWidth.toPx() }
+    val x = (centerX - widthPx / 2f).coerceIn(0f, (containerWidth - widthPx).coerceAtLeast(0f))
+    Text(
+        text,
+        modifier = Modifier
+            .offset { androidx.compose.ui.unit.IntOffset(x.roundToInt(), 0) }
+            .width(ChartLabelWidth)
+            .padding(top = 6.dp),
+        fontSize = 15.sp,
+        fontWeight = weight,
+        color = color,
+        textAlign = TextAlign.Center,
+        maxLines = 1
+    )
+}
+
+/** Bong bóng giá trị đặt ngay trên một điểm của biểu đồ. */
+@Composable
+private fun ChartBubble(text: String, centerX: Float, bottomY: Float, containerWidth: Int, filled: Boolean) {
+    val density = LocalDensity.current
+    val widthPx = with(density) { ChartLabelWidth.toPx() }
+    val heightPx = with(density) { 34.dp.toPx() }
+    val x = (centerX - widthPx / 2f).coerceIn(0f, (containerWidth - widthPx).coerceAtLeast(0f))
+    val y = (bottomY - heightPx).coerceAtLeast(0f)
+    Box(
+        Modifier
+            .offset { androidx.compose.ui.unit.IntOffset(x.roundToInt(), y.roundToInt()) }
+            .width(ChartLabelWidth)
+            .height(34.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Box(
+            Modifier
+                .clip(RoundedCornerShape(17.dp))
+                .background(if (filled) ObColor.Pink else ObColor.Surface)
+                .border(1.dp, if (filled) ObColor.Pink else ObColor.Track, RoundedCornerShape(17.dp))
+                .padding(horizontal = 12.dp, vertical = 6.dp)
+        ) {
+            Text(
+                text,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                color = if (filled) Color.White else ObColor.TextPrimary,
+                maxLines = 1
+            )
         }
     }
 }
@@ -1154,7 +1289,7 @@ fun ObPlanWeightChart(
                 drawPath(
                     path = visiblePath,
                     brush = Brush.horizontalGradient(
-                        colors = listOf(ObColor.Pink, ObColor.Purple, ObColor.Blue),
+                        colors = listOf(ObColor.Pink, ObColor.Plum, ObColor.Purple),
                         startX = chartLeft,
                         endX = chartRight
                     ),
@@ -1180,8 +1315,8 @@ fun ObPlanWeightChart(
                 }
 
                 drawMilestone(start, ObColor.Pink, true)
-                drawMilestone(week, ObColor.Purple, animated >= 0.48f)
-                drawMilestone(end, ObColor.Blue, animated >= 0.98f)
+                drawMilestone(week, ObColor.Plum, animated >= 0.48f)
+                drawMilestone(end, ObColor.Purple, animated >= 0.98f)
             }
 
             Text(
@@ -1199,7 +1334,7 @@ fun ObPlanWeightChart(
                     modifier = Modifier.align(Alignment.TopCenter),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    color = ObColor.Purple
+                    color = ObColor.Plum
                 )
             }
             if (animated >= 0.98f) {
@@ -1210,7 +1345,7 @@ fun ObPlanWeightChart(
                         .padding(end = 2.dp),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    color = ObColor.Blue
+                    color = ObColor.Purple
                 )
             }
         }
@@ -1250,10 +1385,10 @@ fun ObPotentialChart(modifier: Modifier = Modifier) {
                 lineTo(left, bottom)
                 close()
             }
-            drawPath(fill, Brush.verticalGradient(listOf(Color(0x33FF2E63), Color(0x00FFFFFF))))
+            drawPath(fill, Brush.verticalGradient(listOf(ObColor.Pink.copy(alpha = 0.2f), Color.Transparent)))
             drawPath(
                 curve,
-                Brush.linearGradient(listOf(ObColor.Blue, ObColor.Purple, ObColor.Pink)),
+                Brush.linearGradient(listOf(ObColor.Purple, ObColor.Plum, ObColor.Pink)),
                 style = Stroke(width = 16f, cap = StrokeCap.Round)
             )
 
@@ -1264,7 +1399,7 @@ fun ObPotentialChart(modifier: Modifier = Modifier) {
                     Color(0xFFBDBDBD), Offset(cx, cy), Offset(cx, bottom),
                     strokeWidth = 2.5f, pathEffect = PathEffect.dashPathEffect(floatArrayOf(8f, 8f))
                 )
-                drawCircle(if (fx < 0.3f) ObColor.Blue else ObColor.Purple, radius = 14f, center = Offset(cx, cy))
+                drawCircle(if (fx < 0.3f) ObColor.Purple else ObColor.Plum, radius = 14f, center = Offset(cx, cy))
             }
         }
     }

@@ -144,7 +144,7 @@ public class SetGoalActivity extends AppCompatActivity {
 
         myDB.setGoalOfWeek(goalOfWeek);
         myDB.setFirstDayOfWeek(firstDayOfWeek);
-        Intent intent = getIntent();
+        Intent intent = new Intent(); // không trả lại getIntent(): tránh Intent Redirection
         intent.putExtra("RESULT", false);
         setResult(RESULT_OK, intent);
         finish();

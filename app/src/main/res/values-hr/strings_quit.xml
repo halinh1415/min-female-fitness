@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">Završila si %1$d od %2$d vježbi</string>
+    <string name="quit_keep_going">Nastavi</string>
+    <string name="quit_exit">Prekini trening</string>
+    <string name="quit_reason_title">Zašto staješ?</string>
+    <string name="quit_reason_sub">Tvoj odgovor pomaže nam predložiti treninge koji ti više odgovaraju.</string>
+    <string name="quit_reason_too_hard">Preteško za mene</string>
+    <string name="quit_reason_too_easy">Prelagano za mene</string>
+    <string name="quit_reason_no_time">Nemam dovoljno vremena</string>
+    <string name="quit_reason_tired">Umorna sam ili me boli</string>
+    <string name="quit_reason_dislike">Ne sviđaju mi se ove vježbe</string>
+    <string name="quit_reason_just_looking">Samo razgledavam</string>
+    <string name="quit_reason_other">Drugi razlog</string>
+    <string name="quit_skip">Preskoči</string>
+</resources>

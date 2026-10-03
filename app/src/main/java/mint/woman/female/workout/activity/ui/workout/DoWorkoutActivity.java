@@ -16,6 +16,13 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.core.view.WindowCompat;
+import androidx.fragment.app.Fragment;
+import mint.woman.female.workout.utils.EdgeToEdgeHelper;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.graphics.Insets;
+import android.graphics.Color;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 
@@ -55,7 +62,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @SuppressLint({"SetTextI18n", "NonConstantResourceId"})
-public class DoWorkoutActivity extends AppCompatActivity implements RestFragment.OnRestFragmentInteractionListener, PlayFragment.OnReadyFragmentInteractionListener, DialogQuit.OnQuitListener {
+public class DoWorkoutActivity extends AppCompatActivity implements RestFragment.OnRestFragmentInteractionListener, PlayFragment.OnReadyFragmentInteractionListener, DialogQuit.OnQuitListener, EdgeToEdgeHelper.HandlesInsets {
     private final SimpleDateFormat mFormatDateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
     public static int discover = 0;
     public static int version = 1003;
@@ -104,7 +111,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         super.onCreate(savedInstanceState);
         binding = ActivityDoWorkoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-      
+        applyInsets();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         initView();
     }
@@ -239,8 +246,6 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             });
 
             createHistory();
-            mQuitDialog = new DialogQuit();
-            mQuitDialog.setQuitListener(this);
             try {
                 binding.txtProgress.setText("" + (currentExerciseCount + 1) + "/" + totalExercise);
 
@@ -315,17 +320,22 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
 
         //  super.onBackPressed();
     }
-    void showQuitDialog(){
-        try{
+    void showQuitDialog() {
+        try {
+            if (isFinishing() || isDestroyed()) return;
+            if ((mQuitDialog != null && mQuitDialog.isAdded())
+                    || getSupportFragmentManager().findFragmentByTag("Quit") != null) return;
+            // Tạo mới mỗi lần để hộp thoát hiện đúng tiến độ hiện tại.
+            long elapsedSec = startTime > 0 ? (System.currentTimeMillis() - startTime) / 1000 : 0;
+            mQuitDialog = DialogQuit.newInstance(mProgramObject != null ? mProgramObject.getId() : 0, mDayIndex,
+                    currentExerciseCount, totalExercise, elapsedSec);
+            mQuitDialog.setQuitListener(this);
             quitShow = true;
-            if (mQuitDialog == null){
-                mQuitDialog = new DialogQuit();
-                mQuitDialog.setQuitListener(this);
-            }
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.executePendingTransactions();
-            mQuitDialog.show(fragmentManager, "Quit");
-        }catch (Exception e){
+            // Không gọi executePendingTransactions trong KeyEvent: các transaction bài tập kế tiếp
+            // (inflate + decode ảnh) có thể gây ANR.
+            mQuitDialog.show(getSupportFragmentManager(), "Quit");
+        } catch (Exception e) {
+            quitShow = false;
             e.printStackTrace();
         }
     }
@@ -734,6 +744,34 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         if (hasFocus) {
             hideSystemUI();
         }
+    }
+
+    /**
+     * Màn tập ẩn status bar/nav bar (immersive) nên tự xử lý inset, không để EdgeToEdgeHelper phủ dải
+     * màu nền (trắng) lên chỗ status bar. Chỉ chừa vùng tai thỏ/camera (và thanh hệ thống nếu đang
+     * hiện), tô cùng màu với nội dung đang hiển thị: trắng khi đang tập, đen khi nghỉ / chuẩn bị.
+     */
+    private void applyInsets() {
+        View root = binding.getRoot();
+        setBarAreaColor(false);
+        getSupportFragmentManager().registerFragmentLifecycleCallbacks(new FragmentManager.FragmentLifecycleCallbacks() {
+            @Override
+            public void onFragmentStarted(@NonNull FragmentManager fm, @NonNull Fragment f) {
+                if (f.getId() == R.id.content_workout) setBarAreaColor(f instanceof PlayFragment);
+            }
+        }, false);
+        ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
+            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars()
+                    | WindowInsetsCompat.Type.displayCutout());
+            v.setPadding(bars.left, bars.top, bars.right, bars.bottom);
+            return WindowInsetsCompat.CONSUMED;
+        });
+        ViewCompat.requestApplyInsets(root);
+    }
+
+    private void setBarAreaColor(boolean light) {
+        binding.getRoot().setBackgroundColor(light ? Color.WHITE : Color.BLACK);
+        WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView()).setAppearanceLightNavigationBars(light);
     }
 
     private void hideSystemUI() {

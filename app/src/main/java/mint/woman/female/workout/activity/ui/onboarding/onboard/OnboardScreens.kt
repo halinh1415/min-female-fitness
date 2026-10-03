@@ -128,9 +128,9 @@ private fun WelcomeScreen(step: OnboardStep, onNext: () -> Unit) {
                 Spacer(Modifier.height(16.dp))
                 ObTitle(step.title, fontSize = 32)
                 Spacer(Modifier.height(24.dp))
-                WelcomeStat("Countries Covered Worldwide", "170+")
-                WelcomeStat("Users Keeping Up with Us", "120 Million")
-                WelcomeStat("Calories Burned in Total", "81.9 Billion")
+                WelcomeStat("Minutes a day to get started", "7+")
+                WelcomeStat("Weeks in your first personal plan", "4")
+                WelcomeStat("Equipment needed", "0")
                 Spacer(Modifier.height(8.dp))
             }
             ObPrimaryButton(step.cta, onClick = onNext)
@@ -429,9 +429,9 @@ private fun PotentialScreen(step: OnboardStep, state: OnboardState, onNext: () -
             }
             Spacer(Modifier.height(24.dp))
             Text(
-                "Based on our historical data, for women in their ${state.age / 10 * 10}s, " +
-                        "weight loss is usually delayed at first, but after 7 days, " +
-                        "you can burn calories like crazy!",
+                "For women in their ${state.age / 10 * 10}s, " +
+                        "progress is often slow in the first week, but stay consistent " +
+                        "and your body will start to respond.",
                 fontSize = 18.sp, lineHeight = 25.sp,
                 color = ObColor.TextSecondary, textAlign = TextAlign.Center
             )
@@ -452,19 +452,19 @@ private data class Testimonial(
 
 private val TESTIMONIALS = listOf(
     Testimonial(
-        "-Natalie",
-        "I lost 18 kg in 2 months thanks to this app. It's super easy to use, and the coaching videos are so helpful!",
-        "18 kg", "testimonial_1"
+        "Full body · 4 weeks",
+        "Gentle full-body sessions that build up week by week, no equipment needed.",
+        "no equipment needed", "testimonial_1"
     ),
     Testimonial(
-        "-Kayla",
-        "I finally built a routine I can stick to. 20 minutes a day and I already feel stronger!",
+        "Belly & core · 20 min",
+        "20 minutes a day of core work, mixed with stretching to keep it fun.",
         "20 minutes", "testimonial_2"
     ),
     Testimonial(
-        "-Rachel",
-        "Really loved how the plan adapts to me. My energy levels went up in the first week.",
-        "first week", "testimonial_3"
+        "Legs & butt · Beginner",
+        "Low-impact, jump-free moves that are easy on the knees.",
+        "jump-free", "testimonial_3"
     )
 )
 
@@ -498,17 +498,17 @@ private fun TestimonialScreen(step: OnboardStep, onNext: () -> Unit) {
                             .height(180.dp),
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        BeforeAfterTile("Before", item.art + "_before", Color(0xFF9E9E9E), Modifier.weight(1f))
-                        BeforeAfterTile("After", item.art + "_after", ObColor.Pink, Modifier.weight(1f))
+                        BeforeAfterTile("Start", item.art + "_before", Color(0xFF9E9E9E), Modifier.weight(1f))
+                        BeforeAfterTile("Goal", item.art + "_after", ObColor.Pink, Modifier.weight(1f))
                     }
                     Spacer(Modifier.height(12.dp))
                     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                        Text("⭐⭐⭐⭐⭐", fontSize = 16.sp, modifier = Modifier.weight(1f))
+                        Text("✨ Sample plan", fontSize = 15.sp, modifier = Modifier.weight(1f))
                         Text(item.name, fontSize = 16.sp, color = ObColor.TextSecondary)
                     }
                     Spacer(Modifier.height(8.dp))
                     ObTitle(
-                        "\"${item.quote}\"", item.highlight, fontSize = 17,
+                        item.quote, item.highlight, fontSize = 17,
                         textAlign = TextAlign.Start, color = ObColor.TextPrimary
                     )
                 }
@@ -785,12 +785,12 @@ private fun DesiredBodyScreen(step: OnboardStep, state: OnboardState, onNext: ()
                 Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(18.dp))
-                    .background(Color(0xFFFBEEF2))
+                    .background(ObColor.PinkSoft)
                     .padding(18.dp)
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("🤖", fontSize = 20.sp)
-                    Spacer(Modifier.width(8.dp))
+                    ObCoachAvatar()
+                    Spacer(Modifier.width(10.dp))
                     Text(
                         "Your Target Body Fat", fontSize = 19.sp,
                         fontWeight = FontWeight.Bold, color = ObColor.TextPrimary
@@ -967,10 +967,10 @@ private fun WeightScreen(step: OnboardStep, state: OnboardState, onNext: () -> U
 }
 
 private fun bmiColor(bmi: Float): Color = when {
-    bmi < 18.5f -> ObColor.Blue
+    bmi < 18.5f -> ObColor.Purple
     bmi < 25f -> ObColor.Ok
-    bmi < 30f -> Color(0xFFF59300)
-    else -> ObColor.Warning
+    bmi < 30f -> ObColor.Warning
+    else -> Color(0xFFE5484D)
 }
 
 private fun bmiMessage(bmi: Float): String = when {
@@ -1057,7 +1057,7 @@ private fun SectionScreen(step: OnboardStep, onNext: () -> Unit) {
                 .padding(end = 0.dp),
             fontSize = 260.sp,
             fontWeight = FontWeight.ExtraBold,
-            color = Color(0xFFFCDDE7)
+            color = ObColor.PinkSoft
         )
         Column(
             modifier = Modifier
@@ -1089,11 +1089,6 @@ private fun PredictionScreen(step: OnboardStep, state: OnboardState, onNext: () 
     val days = if (isSecond) state.fasterDays else state.baseDays
     val date = remember(days) { state.targetDate(days) }
     val baseDate = remember(state.baseDays) { state.targetDate(state.baseDays) }
-    var progress by remember(step.design) { mutableStateOf(0f) }
-    LaunchedEffect(step.design) {
-        delay(250)
-        progress = 1f
-    }
 
     val unitLabel = if (state.weightMetric) "kg" else "lbs"
     val targetDisplay =
@@ -1121,35 +1116,48 @@ private fun PredictionScreen(step: OnboardStep, state: OnboardState, onNext: () 
                 textAlign = TextAlign.Center
             )
             Spacer(Modifier.height(6.dp))
+            val deltaDisplay = abs(targetDisplay - currentDisplay)
+            val verb = if (targetDisplay >= currentDisplay) "Gain" else "Lose"
             if (isSecond) {
                 ObTitle(
-                    "${targetDisplay.format1()}$unitLabel by ${OnboardState.formatDate(date)}",
-                    accent = "${targetDisplay.format1()}$unitLabel",
+                    "${targetDisplay.format1()} $unitLabel by ${OnboardState.formatDate(date)}",
+                    accent = "${targetDisplay.format1()} $unitLabel",
                     fontSize = 32
                 )
             } else {
                 ObTitle(
-                    "Lose ${state.weightDeltaKg.format1()}kg by ${OnboardState.formatDate(date)}",
-                    accent = "${state.weightDeltaKg.format1()}kg",
+                    "$verb ${deltaDisplay.format1()} $unitLabel by ${OnboardState.formatDate(date)}",
+                    accent = "${deltaDisplay.format1()} $unitLabel",
                     fontSize = 32
                 )
             }
             Spacer(Modifier.height(30.dp))
             ObWeightChart(
-                startLabel = "Today",
+                currentWeight = currentDisplay,
+                targetWeight = targetDisplay,
+                unitLabel = unitLabel,
+                days = days,
                 endLabel = OnboardState.formatDateShort(date),
-                startValue = "${currentDisplay.roundToInt()} $unitLabel",
-                endValue = "${targetDisplay.format1()} $unitLabel",
-                progress = progress,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(260.dp),
-                ghostCurve = isSecond,
+                    .height(280.dp),
+                ghostDays = if (isSecond && state.savedDays > 0) state.baseDays else 0,
                 ghostLabel = if (isSecond) OnboardState.formatDateShort(baseDate) else ""
             )
             Spacer(Modifier.height(26.dp))
             if (isSecond) {
-                ObTitle("${state.earlyDays} days early!", accent = "${state.earlyDays} days", fontSize = 26)
+                if (state.savedDays > 0) {
+                    ObTitle(
+                        "Your routine gets you there ${state.savedDays} days sooner",
+                        accent = "${state.savedDays} days sooner", fontSize = 22
+                    )
+                }
+                Text(
+                    "Estimated at a safe pace of under 0.7 kg (1.5 lb) per week. Results vary.",
+                    modifier = Modifier.padding(top = 10.dp),
+                    fontSize = 15.sp, lineHeight = 21.sp,
+                    color = ObColor.TextMuted, textAlign = TextAlign.Center
+                )
             } else {
                 Text(
                     step.body,
@@ -1199,7 +1207,8 @@ private fun SliderScreen(step: OnboardStep, state: OnboardState, onNext: () -> U
                 label = when (step.figure) {
                     ObFigure.CALENDAR -> OnboardState.FREQUENCY_PER_WEEK[stop.coerceIn(0, 3)].toString()
                     else -> current.title
-                }
+                },
+                fraction = if (step.stops.size > 1) stop.toFloat() / step.stops.lastIndex else 0f
             )
             Spacer(Modifier.height(20.dp))
             Text(
@@ -1331,6 +1340,8 @@ private fun FullYesNoScreen(step: OnboardStep, state: OnboardState, onNext: () -
                 .fillMaxSize()
                 .background(
                     Brush.verticalGradient(
+                        0f to Color(0x59000000),
+                        0.16f to Color.Transparent,
                         0.35f to Color.Transparent,
                         1f to Color(0xCC000000)
                     )
@@ -1438,14 +1449,18 @@ private fun GeneratingScreen(step: OnboardStep, onNext: () -> Unit) {
         Spacer(Modifier.height(26.dp))
         ObTitle(step.subtitle, fontSize = 26, color = ObColor.Pink)
         Spacer(Modifier.height(20.dp))
-        ObArt(
-            name = "generating_users",
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f),
-            placeholderEmoji = "👩‍👩‍👧",
-            contentScale = ContentScale.Fit
-        )
+        if (rememberObArt("generating_users") != null) {
+            ObArt(
+                name = "generating_users",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                contentScale = ContentScale.Fit
+            )
+        } else {
+            // Chưa có ảnh thì không để khung trống chiếm nửa màn hình.
+            Spacer(Modifier.weight(1f))
+        }
     }
 }
 
@@ -1459,11 +1474,12 @@ private fun PlanResultScreen(step: OnboardStep, state: OnboardState, onNext: () 
     val target =
         if (state.weightMetric) state.targetWeightKg else state.targetWeightKg * OnboardState.LB_PER_KG
     val direction = if (target >= current) 1f else -1f
-    val twoKgInCurrentUnit =
-        if (state.weightMetric) 2f else 2f * OnboardState.LB_PER_KG
-    val weekOneChange = minOf(twoKgInCurrentUnit, abs(target - current))
+    // Mốc tuần 1 theo đúng tốc độ dự đoán (~0.6 kg/tuần), không phóng đại.
+    val weeklyKg = OnboardState.KG_PER_DAY * 7f
+    val weeklyInCurrentUnit =
+        if (state.weightMetric) weeklyKg else weeklyKg * OnboardState.LB_PER_KG
+    val weekOneChange = minOf(weeklyInCurrentUnit, abs(target - current))
     val weekOne = current + direction * weekOneChange
-    val changeVerb = if (direction > 0f) "gained" else "lost"
     val displayDelta = abs(target - current)
 
     Column(Modifier.fillMaxSize()) {
@@ -1495,8 +1511,8 @@ private fun PlanResultScreen(step: OnboardStep, state: OnboardState, onNext: () 
             )
             Spacer(Modifier.height(16.dp))
             ObTitle(
-                "90% of users like you have successfully $changeVerb ${displayDelta.format1()}$unitLabel with our plan",
-                accent = "90%", fontSize = 16, textAlign = TextAlign.Start,
+                "Stick with your plan and you could reach this goal at a safe, steady pace. Results vary.",
+                accent = "safe, steady pace", fontSize = 16, textAlign = TextAlign.Start,
                 color = ObColor.TextSecondary
             )
 

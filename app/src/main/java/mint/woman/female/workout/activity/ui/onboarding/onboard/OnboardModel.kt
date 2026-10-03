@@ -13,22 +13,39 @@ import androidx.compose.ui.graphics.Color
 
 // ---------------------------------------------------------------- palette
 
+/**
+ * Bộ font chung của app (giống res/font/fonts.xml): Inter cho chữ thường đến semibold,
+ * Barlow Semi Condensed (g1_black) cho chữ đậm - tiêu đề, con số, đồng hồ.
+ */
+val ObFontFamily = androidx.compose.ui.text.font.FontFamily(
+    androidx.compose.ui.text.font.Font(mint.woman.female.workout.R.font.inter_regular, androidx.compose.ui.text.font.FontWeight.Light),
+    androidx.compose.ui.text.font.Font(mint.woman.female.workout.R.font.inter_regular, androidx.compose.ui.text.font.FontWeight.Normal),
+    androidx.compose.ui.text.font.Font(mint.woman.female.workout.R.font.inter_medium, androidx.compose.ui.text.font.FontWeight.Medium),
+    androidx.compose.ui.text.font.Font(mint.woman.female.workout.R.font.inter_semibold, androidx.compose.ui.text.font.FontWeight.SemiBold),
+    androidx.compose.ui.text.font.Font(mint.woman.female.workout.R.font.g1_black, androidx.compose.ui.text.font.FontWeight.Bold),
+    androidx.compose.ui.text.font.Font(mint.woman.female.workout.R.font.g1_black, androidx.compose.ui.text.font.FontWeight.ExtraBold),
+    androidx.compose.ui.text.font.Font(mint.woman.female.workout.R.font.g1_black, androidx.compose.ui.text.font.FontWeight.Black)
+)
+
 object ObColor {
-    val Pink = Color(0xFFFF2E63)
-    val PinkSoft = Color(0xFFFFE3EC)
-    val PinkText = Color(0xFFFF2E63)
-    val Background = Color(0xFFF4F4F4)
+    // Bảng màu "Rose" – đồng bộ với colorPrimary #E91E63 của app.
+    val Pink = Color(0xFFE91E63)
+    val PinkLight = Color(0xFFFF5C8A)
+    val PinkSoft = Color(0xFFFDE7EF)
+    val PinkText = Color(0xFFE91E63)
+    val Background = Color(0xFFFFF7FA)
     val Surface = Color.White
-    val TextPrimary = Color(0xFF111111)
-    val TextSecondary = Color(0xFF6B6B6B)
-    val TextMuted = Color(0xFF9A9A9A)
-    val Track = Color(0xFFE6E6E6)
-    val Cta = Color(0xFF111111)
-    val CtaDisabled = Color(0xFF9E9E9E)
-    val Warning = Color(0xFFF4511E)
-    val Ok = Color(0xFF2E9E5B)
-    val Purple = Color(0xFF6C4BF4)
-    val Blue = Color(0xFF29B6F6)
+    val TextPrimary = Color(0xFF1F1A1D)
+    val TextSecondary = Color(0xFF6B5E66)
+    val TextMuted = Color(0xFFA0939B)
+    val Track = Color(0xFFEFE3E8)
+    val Cta = Color(0xFFE91E63)
+    val CtaDisabled = Color(0xFFF3C1D2)
+    val Warning = Color(0xFFFF9F43)
+    val Ok = Color(0xFF2EAD6B)
+    val Purple = Color(0xFF8E5CF7)
+    /** Điểm giữa của gradient biểu đồ hồng → tím. */
+    val Plum = Color(0xFFC2459F)
 }
 
 // ---------------------------------------------------------------- model
@@ -197,14 +214,14 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step1", kind = StepKind.WELCOME,
-        title = "Together we can achieve more!",
+        title = "Your fitness journey starts at home",
         cta = "Start Now", art = "welcome_hero"
     ),
 
     OnboardStep(
         design = "step2", kind = StepKind.COACH,
-        title = "Hello, I'm Kelly!",
-        body = "I'm your personal coach.\nHere are some questions to tailor a personalized plan for you.",
+        title = "Hi, I'm Mia!",
+        body = "I'll be your coach along the way.\nAnswer a few quick questions and I'll build a personalized plan just for you.",
         titleAccent = "personalized plan",
         cta = "I'M READY!", art = "coach_kelly"
     ),
@@ -238,8 +255,8 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step5", kind = StepKind.INFO, section = 1,
-        title = "Weight loss made easy",
-        body = "With our simple workouts, you'll burn fat fast and make your dream figure a reality!",
+        title = "Lose weight at your own pace",
+        body = "Regular home workouts and balanced eating help you lose weight steadily and keep it off.",
         art = "info_scale", hintEmoji = "⚖️"
     ),
 
@@ -290,43 +307,43 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step11", kind = StepKind.CHOICE_IMAGE, section = 2, id = ObId.BELLY,
-        title = "Which belly type matches yours best?", titleAccent = "belly",
+        title = "How would you describe your belly area?", titleAccent = "belly",
         options = listOf(
-            ObOption("normal", "Normal belly", art = "belly_normal"),
-            ObOption("mommy", "Mommy belly", art = "belly_mommy"),
-            ObOption("hormonal", "Hormonal belly", art = "belly_hormonal"),
-            ObOption("alcohol", "Alcohol belly", art = "belly_alcohol"),
-            ObOption("stressed", "Stressed-out belly", art = "belly_stressed")
+            ObOption("normal", "Mostly flat", art = "belly_normal"),
+            ObOption("mommy", "Soft after pregnancy", art = "belly_mommy"),
+            ObOption("hormonal", "Lower belly pooch", art = "belly_hormonal"),
+            ObOption("alcohol", "Round upper belly", art = "belly_alcohol"),
+            ObOption("stressed", "Often bloated", art = "belly_stressed")
         )
     ),
 
     OnboardStep(
         design = "step12", kind = StepKind.CHOICE_IMAGE, section = 2, id = ObId.HIP,
-        title = "Which hip type matches yours best?", titleAccent = "hip",
+        title = "How would you describe your hips and glutes?", titleAccent = "hips",
         options = listOf(
-            ObOption("normal", "Normal", art = "hip_normal"),
+            ObOption("normal", "Balanced", art = "hip_normal"),
             ObOption("flat", "Flat", art = "hip_flat"),
-            ObOption("saggy", "Saggy", art = "hip_saggy"),
-            ObOption("double", "Double", art = "hip_double"),
-            ObOption("bubble", "Bubble", art = "hip_bubble")
+            ObOption("saggy", "Need lifting", art = "hip_saggy"),
+            ObOption("double", "Dips on the sides", art = "hip_double"),
+            ObOption("bubble", "Round", art = "hip_bubble")
         )
     ),
 
     OnboardStep(
         design = "step13", kind = StepKind.CHOICE_IMAGE, section = 2, id = ObId.LEG,
-        title = "Which leg type matches yours best?", titleAccent = "leg",
+        title = "How do your legs line up when you stand?", titleAccent = "legs",
         options = listOf(
-            ObOption("normal", "Normal Legs", art = "leg_normal"),
-            ObOption("x", "X-shaped Legs", art = "leg_x"),
-            ObOption("o", "O-shaped Legs", art = "leg_o"),
-            ObOption("xo", "XO-shaped Legs", art = "leg_xo")
+            ObOption("normal", "Straight", art = "leg_normal"),
+            ObOption("x", "Knees touch (X)", art = "leg_x"),
+            ObOption("o", "Knees apart (O)", art = "leg_o"),
+            ObOption("xo", "Mixed (XO)", art = "leg_xo")
         )
     ),
 
     OnboardStep(
         design = "step14", kind = StepKind.PREDICTION, section = 2,
-        subtitle = "It's totally achievable!",
-        body = "We've predicted this target date based on the progress of 100,000 users like you."
+        subtitle = "Step by step, you can get there!",
+        body = "This estimate assumes a safe, steady pace with regular workouts. Results vary from person to person."
     ),
 
     // ---------------------------------------------------------- phần 3: về bạn
@@ -344,7 +361,7 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step18", kind = StepKind.INFO_POTENTIAL, section = 3,
-        title = "You have great potential to make it!"
+        title = "You've got what it takes!"
     ),
 
     OnboardStep(
@@ -352,7 +369,7 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
         title = "Where do you prefer to work out?",
         options = listOf(
             ObOption(
-                "any", "No Preference", "🚫",
+                "any", "No Preference", "✨",
                 feedbackTitle = "OK!",
                 feedbackBody = "We'll pick the most suitable workouts for you."
             ),
@@ -408,15 +425,15 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
             ObOption(
                 "challenging", "A bit challenging", "🏆",
                 feedbackTitle = "Understood!",
-                feedbackBody = "We'll push you a little harder to get faster results."
+                feedbackBody = "We'll add a bit more intensity to keep you challenged."
             )
         )
     ),
 
     OnboardStep(
         design = "step25", kind = StepKind.INFO, section = 3,
-        title = "7-Minute\nEffective Workout!",
-        body = "Short on time? No worries! Staying fit has never been easier.",
+        title = "Busy day?\nTry a 7-minute session",
+        body = "Even a few minutes counts. Quick sessions make it easy to keep your streak going.",
         art = "info_7min", hintEmoji = "⏱️"
     ),
 
@@ -427,21 +444,21 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
         subtitle = "Less", body = "More",
         stops = listOf(
             ObSliderStop("1 time / week", "I want to start really slowly"),
-            ObSliderStop("2 time / week", "I can manage a couple of sessions"),
-            ObSliderStop("3 time / week", "I enjoy workout as a part of my lifestyle"),
-            ObSliderStop("5 time / week", "I want to train almost every day")
+            ObSliderStop("2 times / week", "I can manage a couple of sessions"),
+            ObSliderStop("3 times / week", "I enjoy workout as a part of my lifestyle"),
+            ObSliderStop("5 times / week", "I want to train almost every day")
         )
     ),
 
     OnboardStep(
         design = "step27", kind = StepKind.MULTI_CHOICE, section = 3, id = ObId.DISCOMFORT,
-        title = "Have you suffered any discomfort?",
+        title = "Any injuries or health conditions?",
         options = listOf(
-            ObOption("none", "None", "🚫"),
+            ObOption("none", "None", "👌"),
             ObOption("back", "Back injury", "🦴"),
             ObOption("arm", "Arm injury", "💪"),
             ObOption("knee", "Knee injury", "🦵"),
-            ObOption("heart", "Cardiomyopathy", "🫀"),
+            ObOption("heart", "Heart condition", "🫀"),
             ObOption("other", "Other", "➕")
         )
     ),
@@ -494,8 +511,8 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step32", kind = StepKind.TESTIMONIAL, section = 4,
-        title = "Become one of our 200,000+ successful users!",
-        titleAccent = "200,000+"
+        title = "Real progress comes from small daily steps",
+        titleAccent = "small daily steps"
     ),
 
     OnboardStep(
@@ -504,7 +521,7 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
         hint = "How far are your hands from toes?",
         figure = ObFigure.REACH, defaultStop = 0,
         stops = listOf(
-            ObSliderStop("It's OK!", "75% of our users face it too. We're here to help you improve it."),
+            ObSliderStop("It's OK!", "Lots of people start here. Daily stretching will help you improve."),
             ObSliderStop("Almost there!", "A bit more stretching and you'll touch your toes."),
             ObSliderStop("Nice!", "You already have good flexibility - let's keep it.")
         )
@@ -524,36 +541,36 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step35", kind = StepKind.STATEMENT, section = 4, id = ObId.STATEMENT_BODY,
-        title = "Do you relate to the statement below?",
-        body = "I often feel dissatisfied with my body when I look in the mirror.",
+        title = "Does this sound like you?",
+        body = "I want to feel more comfortable and confident in my body.",
         art = "statement_mirror"
     ),
 
     OnboardStep(
         design = "step36", kind = StepKind.STATEMENT, section = 4, id = ObId.STATEMENT_CHOICE,
-        title = "Do you relate to the statement below?",
-        body = "I'm unsure how to choose the right workouts for myself.",
+        title = "Is this true for you?",
+        body = "I'm not sure which workouts are right for me.",
         art = "statement_unsure"
     ),
 
     OnboardStep(
         design = "step37", kind = StepKind.STATEMENT, section = 4, id = ObId.STATEMENT_GIVE_UP,
-        title = "Do you relate to the statement below?",
-        body = "I tend to give up easily when exercises become too difficult or boring.",
+        title = "How about this one?",
+        body = "I lose motivation when workouts feel too hard or repetitive.",
         art = "statement_give_up"
     ),
 
     OnboardStep(
         design = "step38", kind = StepKind.INFO, section = 4,
-        title = "Our app is made for people just like you!",
-        subtitle = "83% of users",
-        body = "claim that the workout plan we offer is easy to follow and makes it simple to stay on track.",
+        title = "Made for busy women like you",
+        subtitle = "Short & simple",
+        body = "Follow-along videos, clear timers and a plan that fits into your day.",
         art = "info_community", hintEmoji = "👭"
     ),
 
     OnboardStep(
         design = "step39", kind = StepKind.CHOICE, section = 4, id = ObId.CELEBRATE,
-        title = "How would you celebrate reaching your target weight?",
+        title = "How will you treat yourself when you hit your goal?",
         options = listOf(
             ObOption("clothes", "Buy new clothes", "👕"),
             ObOption("vacation", "Go on vacation", "🏝️"),
@@ -565,7 +582,7 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step40", kind = StepKind.CHOICE, section = 4, id = ObId.FEELING,
-        title = "How will you feel when you reach goal weight?",
+        title = "How do you want to feel when you reach your goal?",
         options = listOf(
             ObOption("proud", "Be proud of myself", "👍"),
             ObOption("energy", "Full of energy", "🔋"),
@@ -577,8 +594,8 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step41", kind = StepKind.INFO, section = 4,
-        title = "How can workout change our looks?",
-        body = "Working out can shed extra fat and tighten skin, making your face slimmer and jawline more beautiful.",
+        title = "What regular workouts can do for you",
+        body = "Exercise improves posture, muscle tone and energy, so you look and feel more confident.",
         art = "info_before_after"
     ),
 
@@ -589,7 +606,7 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step43", kind = StepKind.FULL_YES_NO, section = 4, id = ObId.WANT_ATTRACTIVE,
-        title = "Want to stay active and attractive?", art = "full_active"
+        title = "Want to stay active and feel great?", art = "full_active"
     ),
 
     OnboardStep(
@@ -602,7 +619,7 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
     OnboardStep(
         design = "step45", kind = StepKind.GENERATING,
         title = "Creating your plan...",
-        subtitle = "10M+ Global Women's Fitness Choice"
+        subtitle = "Built around your answers"
     ),
 
     OnboardStep(

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fin_title">أكملتِ التمرين!</string>
+    <string name="fin_duration">المدة</string>
+    <string name="fin_exercises">التمارين</string>
+    <string name="fin_how">كيف كان التمرين؟</string>
+    <string name="fin_feel_1">صعب جدًا</string>
+    <string name="fin_feel_2">صعب</string>
+    <string name="fin_feel_3">مناسب</string>
+    <string name="fin_feel_4">سهل</string>
+    <string name="fin_feel_5">سهل جدًا</string>
+    <string name="fin_weight">الوزن</string>
+    <string name="fin_update">تحديث</string>
+    <string name="fin_reminder">تذكير يومي</string>
+    <string name="fin_edit">تعديل</string>
+    <string name="fin_share">مشاركة</string>
+    <string name="fin_done">تم</string>
+    <string name="streak_finished_first">🔥 اليوم 1 — بدأت سلسلتك!</string>
+    <string name="streak_finished_milestone">🎉 رائع! %d أيام متتالية</string>
+    <string name="streak_finished_title">🔥 سلسلة %d أيام!</string>
+</resources>

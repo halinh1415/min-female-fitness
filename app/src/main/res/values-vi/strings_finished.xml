@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fin_title">Hoàn thành buổi tập!</string>
+    <string name="fin_duration">Thời lượng</string>
+    <string name="fin_exercises">Bài tập</string>
+    <string name="fin_how">Bạn thấy bài tập thế nào?</string>
+    <string name="fin_feel_1">Quá khó</string>
+    <string name="fin_feel_2">Khó</string>
+    <string name="fin_feel_3">Vừa sức</string>
+    <string name="fin_feel_4">Dễ</string>
+    <string name="fin_feel_5">Quá dễ</string>
+    <string name="fin_weight">Cân nặng</string>
+    <string name="fin_update">Cập nhật</string>
+    <string name="fin_reminder">Nhắc tập hằng ngày</string>
+    <string name="fin_edit">Sửa</string>
+    <string name="fin_share">Chia sẻ</string>
+    <string name="fin_done">Xong</string>
+    <string name="streak_finished_first">🔥 Ngày 1 — chuỗi ngày của bạn đã bắt đầu!</string>
+    <string name="streak_finished_milestone">🎉 Tuyệt vời! %d ngày liên tiếp</string>
+    <string name="streak_finished_title">🔥 Chuỗi %d ngày!</string>
+</resources>

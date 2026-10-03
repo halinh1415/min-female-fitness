@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_progress">Du har gjort %1$d av %2$d övningar</string>
+    <string name="quit_keep_going">Fortsätt</string>
+    <string name="quit_exit">Avsluta passet</string>
+    <string name="quit_reason_title">Varför slutar du?</string>
+    <string name="quit_reason_sub">Ditt svar hjälper oss att föreslå träning som passar dig bättre.</string>
+    <string name="quit_reason_too_hard">För svårt för mig</string>
+    <string name="quit_reason_too_easy">För lätt för mig</string>
+    <string name="quit_reason_no_time">Ingen tid just nu</string>
+    <string name="quit_reason_tired">Trött eller öm</string>
+    <string name="quit_reason_dislike">Gillar inte de här övningarna</string>
+    <string name="quit_reason_just_looking">Tittar bara runt</string>
+    <string name="quit_reason_other">Annan anledning</string>
+    <string name="quit_skip">Hoppa</string>
+</resources>

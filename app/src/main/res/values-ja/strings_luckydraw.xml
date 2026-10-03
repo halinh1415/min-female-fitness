@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vòng quay may mắn (LuckyWheel.kt) -->
+<resources>
+    <string name="ld_lucky_title">ラッキースピン</string>
+    <string name="ld_seg_jackpot">大当たり</string>
+    <string name="ld_seg_next_time">また次回</string>
+    <string name="ld_seg_off">%1$s OFF</string>
+    <string name="ld_go">回す</string>
+    <string name="ld_title">ルーレットを回してウェルカムギフトをゲット 🎁</string>
+    <string name="ld_skip">今はしない</string>
+</resources>

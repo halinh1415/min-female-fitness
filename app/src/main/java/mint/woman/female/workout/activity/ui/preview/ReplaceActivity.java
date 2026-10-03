@@ -121,7 +121,7 @@ public class ReplaceActivity extends AppCompatActivity implements ExerciseClickL
     void onReplace(View view){
         int position = replaceAdapter.getSelectPosition();
         if (position!=-1){
-            Intent intent = getIntent();
+            Intent intent = new Intent(); // không trả lại getIntent(): tránh Intent Redirection
             Bundle b = new Bundle();
             int id = replaceList.get(position).getId();
             int time = replaceList.get(position).getTime();
@@ -147,7 +147,7 @@ public class ReplaceActivity extends AppCompatActivity implements ExerciseClickL
 
     @Override
     public void onChange(int action, int time, String unit) {
-        Intent intent = getIntent();
+        Intent intent = new Intent(); // không trả lại getIntent(): tránh Intent Redirection
         Bundle b = new Bundle();
         b.putInt("actionId",action);
         b.putInt("time",time);

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ch_restart">फिर से शुरू करें</string>
+    <string name="ch_start_day">दिन %d शुरू करें</string>
+    <string name="ch_day_of">दिन %1$d / %2$d</string>
+    <string name="ch_completed">चैलेंज पूरा हुआ! 🎉</string>
+    <string name="ch_week_done">सप्ताह %d पूरा हुआ</string>
+    <string name="ch_finish_previous">पहले दिन %d पूरा करें</string>
+    <string name="ch_removed">यह प्रोग्राम अब उपलब्ध नहीं है</string>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pp_settings">Nastavení plánu</string>
+    <string name="pp_goal">Fitness cíl</string>
+    <string name="pp_goal_lose">Zhubnout</string>
+    <string name="pp_goal_muscle">Nabrat svaly</string>
+    <string name="pp_goal_fit">Udržet kondici</string>
+    <string name="pp_level">Úroveň</string>
+    <string name="pp_focus">Oblast zaměření</string>
+    <string name="pp_multiple">(Více možností)</string>
+    <string name="pp_full_body">Celé tělo</string>
+    <string name="pp_abs">Břicho</string>
+    <string name="pp_arm_chest">Paže a hrudník</string>
+    <string name="pp_back">Záda</string>
+    <string name="pp_leg">Nohy</string>
+    <string name="pp_butt">Hýždě</string>
+    <string name="pp_injury">Zraněné oblasti</string>
+    <string name="pp_none">Žádné</string>
+    <string name="pp_knee">Koleno</string>
+    <string name="pp_shoulder">Paže a rameno</string>
+    <string name="pp_wrist">Zápěstí</string>
+    <string name="pp_injury_note">Cviky, které tyto oblasti zatěžují, budou vynechány. Při silné bolesti se před cvičením poraď s lékařem.</string>
+    <string name="pp_aerobic">Aerobní úroveň</string>
+    <string name="pp_low">Nízká intenzita</string>
+    <string name="pp_moderate">Střední intenzita</string>
+    <string name="pp_high">Vysoká intenzita</string>
+    <string name="pp_type">Typ tréninku</string>
+    <string name="pp_jump_free">Bez skoků</string>
+    <string name="pp_duration">Délka tréninku</string>
+    <string name="pp_min">min</string>
+    <string name="pp_create">Vytvořit můj plán</string>
+    <string name="pp_creating">Vytváříme tvůj osobní plán…</string>
+    <string name="pp_plan_name">Můj osobní plán</string>
+    <string name="pp_home_title">Osobní plán</string>
+    <string name="pp_home_desc">4týdenní plán podle tvého cíle, úrovně a těla.</string>
+    <string name="pp_home_create">Vytvořit</string>
+    <string name="pp_edit">Upravit plán</string>
+</resources>
