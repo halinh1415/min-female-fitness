@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">Lås op for din personlige plan</string>
+    <string name="pwb_check_1">Ubegrænsede træningsplaner</string>
+    <string name="pwb_check_2">Alle programmer og 30-dages udfordringer</string>
+    <string name="pwb_check_3">Ingen reklamer</string>
+    <string name="pwb_special_band">SPECIALPRIS</string>
+    <string name="pwb_special_title">Særtilbud: %s rabat</string>
+    <string name="pwb_special_price">%1$s (før %2$s)/år</string>
+    <string name="pwb_trial_title">%d dage gratis</string>
+    <string name="pwb_yearly_title">Årsplan</string>
+    <string name="pwb_yearly_price">%s/år</string>
+    <string name="pwb_monthly_title">Månedsplan</string>
+    <string name="pwb_monthly_price">%s/md.</string>
+    <string name="pwb_lifetime_title">Livstid</string>
+    <string name="pwb_lifetime_price">%s engangsbeløb</string>
+    <string name="pwb_per_week">%s/uge</string>
+    <string name="pwb_forever">For altid</string>
+    <string name="pwb_save">SPAR %s</string>
+    <string name="pwb_cta_trial">%d DAGE GRATIS</string>
+    <string name="pwb_cta_sub">FORTSÆT</string>
+    <string name="pwb_no_payment">Ingen betaling nu</string>
+    <string name="pwb_note_trial">%1$d dage gratis, derefter %2$s/år\nOpsig når som helst via Google Play</string>
+    <string name="pwb_note_sub">Opsig når som helst via Google Play</string>
+    <string name="pwb_note_lifetime">Engangsbetaling, intet abonnement</string>
+    <string name="pwb_restore">Gendan</string>
+    <string name="pwb_terms">1. Alle betalinger sker via Google Play og administreres af Google.\n2. Betalingen trækkes fra din Google Play-konto, når købet bekræftes.\n3. Abonnementer fornyes automatisk, medmindre automatisk fornyelse slås fra mindst 24 timer før slutningen af den aktuelle periode.\n4. Fornyelsen opkræves inden for 24 timer før slutningen af den aktuelle periode.\n5. Du kan administrere abonnementer og slå automatisk fornyelse fra i dine Google Play-kontoindstillinger efter købet.\n6. En ubrugt del af en gratis prøveperiode bortfalder, når du køber et abonnement, hvis relevant.</string>
+    <string name="pwb_badge_original">NORMALPRIS</string>
+    <string name="pwb_badge_best">BEDSTE VALG</string>
+    <string name="pwb_ends_in">Slutter om %s</string>
+    <string name="pwb_prices_error">Kunne ikke hente priser</string>
+    <string name="pwb_retry">Prøv igen</string>
+    <string name="pwb_terms_link">Brugsvilkår</string>
+    <string name="pwb_privacy_link">Privatlivspolitik</string>
+</resources>

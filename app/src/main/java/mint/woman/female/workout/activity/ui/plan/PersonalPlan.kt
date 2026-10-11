@@ -19,6 +19,9 @@ enum class PlanFocus { FULL_BODY, ABS, ARM_CHEST, BACK, LEG, BUTT }
 enum class PlanInjury { BACK, KNEE, ARM_SHOULDER, WRIST }
 enum class PlanAerobic { LOW, MODERATE, HIGH }
 
+/** Mức ngắn / vừa / dài, dùng cho thời gian nghỉ giữa bài và phần khởi động - giãn cơ. */
+enum class PlanPace { SHORT, STANDARD, LONG }
+
 /** Thời lượng mỗi buổi: <10, 10-20, 20-30, >30 phút -> số phút mục tiêu. */
 enum class PlanDuration(val targetMinutes: Int) { UNDER_10(8), MIN_10_20(15), MIN_20_30(25), OVER_30(35) }
 
@@ -30,6 +33,10 @@ data class PlanSettings(
     val aerobic: PlanAerobic = PlanAerobic.MODERATE,
     val jumpFree: Boolean = false,
     val duration: PlanDuration = PlanDuration.MIN_10_20,
+    /** Nghỉ giữa các bài: 10 / 15 / 25 giây. Plan cũ không có trường này -> STANDARD. */
+    val restPace: PlanPace = PlanPace.STANDARD,
+    /** Số bài khởi động và giãn cơ trong mỗi buổi. */
+    val stretch: PlanPace = PlanPace.STANDARD,
 )
 
 /** Một bài trong buổi tập (giống cấu trúc file plan của app). */
@@ -162,10 +169,10 @@ class PersonalPlanGenerator(private val exercises: Map<Int, ExerciseObject>) {
     private fun actionFor(id: Int, settings: PlanSettings, week: Int, stretch: Boolean = false): PlanAction {
         val ex = exercises.getValue(id)
         val timed = ex.unit?.contains("s") == true
-        val rest = when (settings.aerobic) {
-            PlanAerobic.LOW -> 20
-            PlanAerobic.MODERATE -> 15
-            PlanAerobic.HIGH -> 10
+        val rest = when (settings.restPace) {
+            PlanPace.SHORT -> 10
+            PlanPace.STANDARD -> 15
+            PlanPace.LONG -> 25
         }
         if (stretch) return PlanAction(id, 30, "s", 5)
         val levelIndex = settings.level.ordinal
@@ -207,8 +214,13 @@ class PersonalPlanGenerator(private val exercises: Map<Int, ExerciseObject>) {
         random: Random
     ): List<PlanAction> {
         val target = settings.duration.targetMinutes * 60
-        val warmCount = if (settings.duration == PlanDuration.UNDER_10) 1 else 2
-        val coolCount = if (settings.duration == PlanDuration.UNDER_10) 1 else 2
+        val baseCount = if (settings.duration == PlanDuration.UNDER_10) 1 else 2
+        val warmCount = when (settings.stretch) {
+            PlanPace.SHORT -> 1
+            PlanPace.STANDARD -> baseCount
+            PlanPace.LONG -> baseCount + 2
+        }
+        val coolCount = warmCount
         val used = HashSet<Int>()
         val session = ArrayList<PlanAction>()
 

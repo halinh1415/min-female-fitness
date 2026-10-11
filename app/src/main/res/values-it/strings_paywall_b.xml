@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">Sblocca il tuo piano personalizzato</string>
+    <string name="pwb_check_1">Piani di allenamento illimitati</string>
+    <string name="pwb_check_2">Tutti i programmi e le sfide di 30 giorni</string>
+    <string name="pwb_check_3">Niente pubblicità</string>
+    <string name="pwb_special_band">PREZZO SPECIALE</string>
+    <string name="pwb_special_title">Offerta speciale: -%s</string>
+    <string name="pwb_special_price">%1$s (invece di %2$s)/anno</string>
+    <string name="pwb_trial_title">Prova gratuita di %d giorni</string>
+    <string name="pwb_yearly_title">Piano annuale</string>
+    <string name="pwb_yearly_price">%s/anno</string>
+    <string name="pwb_monthly_title">Piano mensile</string>
+    <string name="pwb_monthly_price">%s/mese</string>
+    <string name="pwb_lifetime_title">A vita</string>
+    <string name="pwb_lifetime_price">%s una tantum</string>
+    <string name="pwb_per_week">%s/settimana</string>
+    <string name="pwb_forever">Per sempre</string>
+    <string name="pwb_save">RISPARMIA %s</string>
+    <string name="pwb_cta_trial">PROVA GRATIS DI %d GIORNI</string>
+    <string name="pwb_cta_sub">CONTINUA</string>
+    <string name="pwb_no_payment">Nessun pagamento ora</string>
+    <string name="pwb_note_trial">Prova gratuita di %1$d giorni, poi %2$s/anno\nAnnulla quando vuoi su Google Play</string>
+    <string name="pwb_note_sub">Annulla quando vuoi su Google Play</string>
+    <string name="pwb_note_lifetime">Pagamento unico, nessun abbonamento</string>
+    <string name="pwb_restore">Ripristina</string>
+    <string name="pwb_terms">1. Tutti i pagamenti avvengono tramite Google Play e sono gestiti da Google.\n2. Il pagamento viene addebitato sul tuo account Google Play alla conferma dell\'acquisto.\n3. Gli abbonamenti si rinnovano automaticamente a meno che il rinnovo automatico non venga disattivato almeno 24 ore prima della fine del periodo in corso.\n4. Il rinnovo viene addebitato entro le 24 ore precedenti la fine del periodo in corso.\n5. Puoi gestire gli abbonamenti e disattivare il rinnovo automatico nelle impostazioni del tuo account Google Play dopo l\'acquisto.\n6. L\'eventuale parte non utilizzata di una prova gratuita decade con l\'acquisto di un abbonamento, ove applicabile.</string>
+    <string name="pwb_badge_original">PREZZO PIENO</string>
+    <string name="pwb_badge_best">MIGLIOR PREZZO</string>
+    <string name="pwb_ends_in">Termina tra %s</string>
+    <string name="pwb_prices_error">Impossibile caricare i prezzi</string>
+    <string name="pwb_retry">Riprova</string>
+    <string name="pwb_terms_link">Termini di utilizzo</string>
+    <string name="pwb_privacy_link">Informativa sulla privacy</string>
+</resources>

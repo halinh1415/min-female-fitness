@@ -1,0 +1,179 @@
+# Nhật ký tiến độ
+
+> Mới nhất ở trên.
+
+## 2026-10-11 – Hiệu năng màn Discover (Training) + Report ✅ (yêu cầu Telegram, chưa commit)
+- `ExploreScreen.kt` (DiscoverScreen), `ReportScreen.kt`: LazyColumn → Column + verticalScroll (mỗi màn chỉ ~6–10 khối; các
+  carousel ngang bên trong giữ nguyên LazyRow). Discover bọc mỗi mục `key(title + style)`.
+- Dữ liệu đã nạp ngoài main thread sẵn (ExploreFragment IO, HistoryViewModel, BadgeRepository) → không đổi.
+- Đo release ký debug key, speed-profile, S8+, 3 vòng cuộn mỗi bản (vòng 1 / vòng 2–3):
+  Discover: Lazy jank 20%/4–11%, p99 53/30–42 ms → Column 9%/0%, p99 20/10–11 ms.
+  Report: Lazy 5.4%/0.6%, p99 34/13 ms → Column 0.8%/0–0.2%, p99 14/8–10 ms.
+- Test S8+: cuộn hết Discover (Hot, Random, Goal, carousel, See more) và Report (streak, tuần, cân nặng, BMI, huy hiệu, gợi ý) hiển thị đúng.
+
+## 2026-10-11 – Cải thiện hiệu năng màn Home (theo cách Tai Chi) ✅ (yêu cầu Telegram, chưa commit)
+- `JsonHelper`: danh sách chương trình giải mã + parse 1 lần mỗi ngôn ngữ (`loadProgramList`, có khoá). Trước: `getAllCategory()`
+  giải mã lại cả file mỗi lần gọi (Home gọi mỗi lần LiveData chuỗi ngày đổi); `getAllCategoryHashMap()` gán map rỗng trước rồi
+  mới đổ, không khoá → luồng nền (Home) + main gọi cùng lúc giải mã 2 lần, main có thể nhận map rỗng (mục "tuần này" trống).
+  Map giờ dựng xong mới gán, theo cùng danh sách (đổi ngôn ngữ thì dựng lại). Log `program catalog decoded in N ms`.
+- `FitnessApplication`: `prewarmPrograms()` trên `startupExecutor` lúc mở app (S8+: 77–306 ms, chạy trên luồng `deferred-startup`).
+- `HomeFragment`: tra map cho "bài tập tuần này" chuyển sang Dispatchers.IO.
+- `HomeScreen`: LazyColumn → Column + verticalScroll (Home chỉ ~10 khối; Tai Chi đo LazyColumn giật hơn).
+- `SplashActivity`: `MobileAds.initialize` chạy luồng phụ, xong mới `requestSplashAds()` (giữ thứ tự cũ).
+- Đo bản release (ký debug key, speed-profile) S8+, cuộn Home 8 lần × 3 lượt, xen kẽ 2–3 lần mỗi bản:
+  LazyColumn lượt 2–3 giật 1,8–4,1%, p99 19–29 ms; Column 0–0,2%, p99 9–10 ms. Lượt đầu (nạp ảnh lần đầu) cả hai 12–28%,
+  p99 Column 32–36 ms vs LazyColumn 61–93 ms.
+- Test: mở rộng "See more" (lưới 2 cột), cuộn tới đáy không hụt, mở bài → ChallengeActivity, Back về Home. Không crash.
+
+## 2026-10-11 – DoWorkoutActivity: giảm nguy cơ ANR ✅ (yêu cầu Telegram, chưa commit)
+- **Video động tác**: RestFragment giải mã cả file mp4 trên main thread mỗi lần sang bài (Decoder.decryptToFile), Nghỉ và Tập
+  dùng chung `cache/temp.mp4` (PlayFragment có thể đọc file đang ghi dở). Mới `utils/WorkoutVideoCache`: giải mã ở luồng nền,
+  mỗi động tác một file `cache/workout_video/<discover>_<version>_<actionId>.mp4` (ghi `.part` rồi đổi tên), trả về main;
+  PlayFragment dùng file đó, chưa có (bỏ qua Nghỉ quá nhanh) thì chờ giải mã rồi mới phát, không setVideoURI file chưa có
+  (tránh hộp thoại "Can't play this video"). Thoát màn tập thì xoá thư mục (xếp hàng sau các lần giải mã).
+- **Âm thanh**: tick/beep/chuông trước tạo + release MediaPlayer trên main mỗi giây → SoundPool nạp sẵn 1 lần.
+  Nhạc nền trước `MediaPlayer.create` (prepare đồng bộ) tới 4 lần khi mở màn (3 observer + onResume) → `startMusic()` chỉ tạo
+  khi đổi bài / bật, `prepareAsync`, release ở luồng nền (`stopMusic()`); ringPlayer trước không bao giờ release.
+- AudioAppManager (TTS / giọng tải về) đã chạy nền sẵn, không đổi.
+- Test S8+: Ease Yoga 26 bài – Nghỉ/Tập có video, bấm Skip liên tục 6 vòng (tới 7/26) video đúng bài, không hộp thoại lỗi;
+  Previous, ra Home rồi vào lại, Keep going, Quit → không crash/ANR, thư mục video đã xoá.
+- Lỗi có sẵn chưa sửa: bấm Previous thì nhãn "x/26" trên cùng không giảm (previousExercise không cập nhật txtProgress).
+
+## 2026-10-08 – Thư viện quảng cáo 23.2.0 → 25.5.0 (sửa nút "Đóng" bị thanh trạng thái che trên Android 15/16) ✅ (yêu cầu Telegram, chưa commit)
+- `app/build.gradle`: play-services-ads 25.5.0 (minSdk đã 26); AndroidManifest bỏ `<property AD_SERVICES_CONFIG ... @xml/gma_ad_services_config>` (25.x không còn tài nguyên này).
+- Test S8+: mở app có mạng / không mạng → rời splash, quảng cáo hiện bình thường, không crash.
+
+## 2026-10-08 – Splash: UMP quá 10s không trả lời thì tải quảng cáo luôn ✅ (yêu cầu Telegram, chưa commit)
+- `SplashActivity.java` đã có sẵn chống kẹt (hasStartedMain, chờ onResume, show lỗi → vào màn chính); thêm `CONSENT_TIMEOUT_MS` 10s.
+- Test S8+: có mạng / không mạng → vào Home sau ~7s, không crash.
+
+## 2026-10-08 – Kiểm tra user cũ (onboard cũ) lên bản mới + ProgramRecommenderV3 ✅ (yêu cầu Telegram, chưa commit)
+- Splash chỉ xét `IS_FIRST_OPEN`: user cũ = false → vào thẳng YogaActivity, không qua onboard mới. Pref mới (USER_GOAL,
+  USER_FOCUS_AREAS, USER_EXPERIENCE, TARGET_WEIGHT) đều có mặc định; `PersonalPlan.defaultsFromOnboarding` → giảm cân / beginner / full body.
+- **Sửa**: onboard mới chỉ lưu `USER_FOCUS_AREAS`, không lưu `USER_TARGET_FOCUS` mà ProgramRecommenderV3 (Home, WeekGoalNewFragment)
+  đọc → user mới luôn dùng mặc định "Relaxation", không được cộng điểm theo vùng tập. `OnboardState.persist` giờ ghi
+  `USER_TARGET_FOCUS` theo khoá cũ (belly→abs, arm, butt, leg→thigh, full_body→body; chọn nhiều thì ưu tiên vùng cụ thể đầu tiên).
+  Unit test `OnboardTargetFocusTest` (3) + `OnboardingStepFactoryTest` (6) pass.
+- Test S8+: build 1.1.12 (commit 7d9b88d, onboard cũ FirstSetupActivity) → làm onboard cũ → cài đè bản mới → mở thẳng Home, không crash,
+  gợi ý hôm nay hiện ("Sun salutations flow"), các tab Training / Report / Recipes / Settings / My training / mở bài gợi ý không crash.
+  Data máy test đã khôi phục.
+
+## 2026-10-08 – Màn chào: "Already have an account? SIGN IN" đăng nhập Google thật (phương án A) ✅ (yêu cầu Telegram, chưa commit)
+- `OnboardFlowActivity`: bấm SIGN IN → FirebaseUI Google (giống `YogaActivity.onContinueSync`). Thành công → `setOnboarded(true)`,
+  `setFirstOpen(false)`, log `onboarding_signed_in`, mở YogaActivity (tự `retrieveUserProgress`: tiến độ, diet, lịch sử) + paywall
+  như khi xong onboarding (`openMain()` dùng chung với `finishFlow`). Huỷ → ở lại màn chào; lỗi → toast `oops_sync_failed`.
+  Hồ sơ onboarding (cao, cân, mục tiêu) chưa sao lưu → giữ mặc định.
+- Dòng SIGN IN chỉ hiện khi có Google Play Services và Remote Config `enable_sync` = true (giống mục Back up & Restore).
+- Test S8+: bấm SIGN IN → hiện chọn tài khoản → chọn tài khoản thì lỗi `Code: 10` (DEVELOPER_ERROR) vì SHA-1 debug
+  `1F:4C:FE:37:7F:57:E7:EB:0C:11:72:BC:0D:EA:CC:AF:6B:4C:A2:21` chưa có trong Firebase `female-workout-78582` (chỉ có 2 SHA-1
+  release/Play) → app không crash, ở lại màn chào. Bản Play ký release sẽ chạy như mục Cài đặt. Muốn test đủ trên bản debug: thêm SHA-1 trên.
+- Data máy test đã khôi phục.
+
+## 2026-10-08 – Quay video so sánh 3 nhánh onboarding ✅ (yêu cầu Telegram, không sửa code)
+- Build debug OK. Quay trên S8+ (đã tắt mạng): quick_7 ~32s, standard_26 ~83s, full_4x ~136s (47 màn), đã gửi Telegram.
+- Màn chào: "Already have an account? SIGN IN" chỉ gọi `onNext`, chưa đăng nhập thật. App đã có đăng nhập Google
+  (FirebaseUI, `YogaActivity.onContinueSync`) + sao lưu lên Realtime DB (`syncData` / `retrieveUserProgress`: tiến độ, diet, lịch sử;
+  chưa có hồ sơ onboarding). Đã hỏi chủ app: A làm SIGN IN thật (khuyên) / B bỏ dòng SIGN IN / C bỏ màn chào. **Chờ trả lời.**
+- Data máy test đã khôi phục, bật lại mạng.
+
+## 2026-10-08 – Ảnh màn Onboard tạo bằng Google Flow (Nano Banana Pro) theo video task/onboard.mp4 ✅ (chưa commit)
+- `assets/onboards/v2/`: thêm 64 ảnh `.jpg` (3.9MB), đúng tên trong README → màn tự nhận, không sửa code.
+  Phong cách ảnh chụp như video: áo bra + legging đen, nền xám nhạt; bài tập plan_w* mặc đồ navy, nền trắng.
+  Khung: 4:3 (welcome_hero, coach_kelly – vùng hiển thị rộng), 9:16 (full_*), 1:1 (plan_w1_0..w4_3), còn lại 3:4.
+- Logo ✦ Gemini ở góc dưới phải được xoá bằng ffmpeg `delogo` (máy không có encoder WebP nên giữ JPG q3).
+- Không làm `focus_body` (màn dùng drawable `bg_problem_area` + toạ độ hotspot) và `generating_users` (code không dùng).
+- **Tách nền** (Vision `VNGenerateForegroundInstanceMaskRequest` của macOS, chạy trên máy) cho 46 ảnh đặt trên thẻ / nền hồng:
+  goal_*, shape_*, belly_*, hip_*, leg_*, desired_body_*, change_*, plan_body, plan_w* → `.png` trong suốt (thu nhỏ: thẻ 560px,
+  desired/change/plan_body 720px, plan_w 360px; JPG cùng tên đã xoá). 18 ảnh cảnh thật (welcome, coach, testimonial, statement,
+  info_*, full_*) giữ JPG có nền. Thư mục còn 7.6MB.
+- Ảnh gốc nằm trong project Google Flow "Tháng 10 08 - 19:31" của tài khoản PRO và ở `~/Downloads/ob_*.jpg`.
+- Test S8+ (Android 10): xoá data → onboard từ đầu đến paywall; ảnh mục tiêu / dáng mong muốn / mông / chân / testimonial /
+  statement / cộng đồng / full screen hiển thị đúng, không crash. Đã khôi phục data máy test.
+
+## 2026-10-08 – Onboarding: màn "Building your plan" dùng Lottie như Tai Chi Qigong ✅ (yêu cầu Telegram, chưa commit)
+- `onboarding/onboard/ObGeneratingLottie.kt` (mới): vòng `guide_plan_generate.json` lặp sau con số % (thay vòng Canvas);
+  3 pha dùng `lt/part1` (cộng đồng), `lt/part2` (dải bài tập, speed 0.6), `lt/part3` (cúp + 4.9 + sao) như Tai Chi.
+  `setMaintainOriginalImageBounds(true)` → thay ảnh độ phân giải khác vẫn đúng khung.
+- `OnboardScreens.kt` `GeneratingScreen`: giữ nhịp % (~8s), câu chữ và tiêu đề hồng từng pha; xoá `GeneratingCommunity` / `Exercises` /
+  `Rating` + `GENERATING_PHOTOS`.
+- **Ảnh trong `assets/lt/part*/images` vẫn là ảnh Tai Chi (tạm theo yêu cầu chủ app)**: người mặc đồ Tai Chi, tên động tác, cúp
+  "TAI CHI QIGONG". Thay file cùng tên + cùng tỉ lệ là xong, không cần sửa code.
+- Test S8+: chạy onboarding tới tạo kế hoạch → đủ 3 pha → màn kết quả. Đã khôi phục prefs máy test.
+- **Pha 2 thay ảnh mới** từ `task/onboard_part.jpg` (lưới 3 cột × 4 bài, có tên bài): cắt 12 ô, mỗi dải ghép 8 ô (cột i + cột i+1,
+  xoay vòng) để đủ dài khi trôi → `lt/part2/images/img_{0,1,2}.jpg` (320×2376). `lt/part2/data.json`: `p` → .jpg, `h` theo
+  tỉ lệ mới (950 / 965 / 936), giữ `w` → không méo, không lộ khoảng trống. Bỏ 3 file png Tai Chi. Test S8+ pha 2 OK.
+- **Pha 1 thay avatar** từ `task/onboard_part1.jpg` (lưới 4×4): cắt 7 ô vuông quanh mặt (vẽ mặt, ca sĩ, làm bánh, chơi game,
+  ôm chó, kính, leo núi) → `lt/part1/images/img_0..6.jpg` (376×376), `data.json` `p` → .jpg. Bỏ 7 file webp Tai Chi.
+  Test S8+ pha 1 OK. **Part3 (cúp "TAI CHI QIGONG") vẫn ảnh Tai Chi.**
+- Pha 1 sắp lại vị trí 7 vòng avatar (`lt/part1/data.json`, `ks.p` của layer "1".."7", khung 854×602) cho khác bản Tai Chi:
+  vòng lớn nhất (5) ở giữa, 2 / 6 hai góc trên, 4 / 3 hai góc dưới, 7 giữa trên, 1 (nhỏ) dưới giữa-trái. Giữ kích thước + nhịp bật.
+- Part3: chủ app tự thay `lt/part3/images` (sao 64×64, img_3 "4.9" vòng nguyệt quế 325×181, img_4 cúp "WOMEN WORKOUT" 256×256).
+  img_3 / img_4 lệch tỉ lệ khung asset (490×190, 276×300) → pad trong suốt thành 467×181 / 256×278 để không bị kéo méo
+  (bản gốc chủ app lưu ở scratchpad phiên). Build lại + quay video onboarding gửi Telegram.
+  Lưu ý: data.json part3 vẫn tự vẽ bông lúa 2 bên cúp + 5 sao vàng dưới img_3 → trùng với nguyệt quế + sao trong img_3 mới
+  (đã hỏi chủ app: ẩn trong json hay đổi img_3, chưa trả lời).
+- **Việc chờ (2026-10-08):** chủ app (có Gemini Pro) muốn tạo ảnh cho các màn onboarding qua Gemini / Flow trên Chrome, theo
+  video demo `task/onboard.mp4` + `task/step*.jpg`, bắt đầu từ step 1, thử 1 ảnh gửi duyệt trước. Phiên cũ không có công cụ
+  Claude in Chrome dù đã chạy /chrome → cần chạy lại `claude --chrome`.
+  Phiên 12:10 (2026-10-08) vẫn không có công cụ Chrome → đã nhắn chủ app chạy `claude --chrome` hoặc tự tạo bằng prompt em gửi rồi gửi ảnh qua Telegram.
+  Chỗ gắn ảnh: `WelcomeScreen` (OnboardScreens.kt) qua `ObArt(step.art)`.
+
+## 2026-10-08 – Onboarding theo video task/onboard.mp4 ✅ (yêu cầu Telegram, chưa commit)
+- **3 nhánh thử nghiệm theo tổng số màn** (`OnboardingVariant`): `quick_7` (chào, mục tiêu, chiều cao, cân nặng, cân mục tiêu,
+  tạo kế hoạch, kết quả), `standard_26`, `full_4x` (47 màn). Remote Config `onboarding_experiment_variant` (mặc định full_4x;
+  giá trị cũ control_46/short_28/adaptive vẫn map được). `EXPERIMENT_ID` → `onboarding_flow_v2` để chia nhánh lại. Bỏ nhánh adaptive.
+  Bản debug: chip "TEST: … · N màn ↻" ở màn chào, bấm để đổi nhánh và chạy lại.
+- **Màn cân mục tiêu mới** (`TARGET_WEIGHT`, step10b): thước + mốc cân hiện tại + dải tô; thẻ nhận xét (hợp lý / tham vọng /
+  dài hạn / giữ cân / tăng cân / cảnh báo BMI < 18.5). `targetWeightKg` dùng giá trị người chọn, đổi kg/lbs quy đổi cả 2.
+- **Thước kéo viết lại** (`ObRuler.kt`, Canvas): vạch chỉ vẽ cùng toạ độ với vạch đang chọn, kéo/fling xong bắt đúng vạch,
+  rung nhẹ mỗi nấc → số hiển thị luôn khớp (bản cũ vạch hồng lệch 44dp, không bắt vạch). Xoá `RulerSliderView.java` + 2 thước cũ.
+- **Biểu đồ**: dự đoán 1 có màn "trước / sau" (~2.3s, chạm bỏ qua) rồi biểu đồ; dự đoán 2 mốc đích trượt từ ngày cũ về ngày mới,
+  "sớm hơn N ngày" đếm lên; biểu đồ tiềm năng vẽ dần + emoji Ngày 1/7/30 bật lên, câu chữ theo tuổi; màn tạo kế hoạch ~8s, 3 pha
+  (cộng đồng → lưới ảnh bài tập → đánh giá); lịch tập ở màn kết quả theo số buổi/tuần đã chọn + ngày thật (bản cũ cố định 2/3 ngày, sai ngày cuối tháng).
+- **Câu chữ**: viết lại các tiêu đề / gợi ý / lựa chọn còn trùng nguyên văn app gốc (khoá đáp án giữ nguyên).
+- Unit test `OnboardingStepFactoryTest` viết lại (7 / 26 / 4x, giữ thứ tự, map giá trị cũ). Test S8+: thước cao (cm/ft), cân,
+  cân mục tiêu, dự đoán 1 + 2, tiềm năng, tạo kế hoạch, kết quả, chạy hết nhánh quick_7 → paywall. Đã khôi phục prefs máy test.
+
+## 2026-10-08 – Home: "Thêm" mở rộng ngay trên màn ✅ (yêu cầu Telegram, chưa commit)
+- `home/HomeScreen.kt`: `HomeSectionBlock` (port ý từ Home Workout). Bấm "Thêm ›" → thử thách thành danh sách dọc (thẻ full ngang),
+  bài tập thường thành lưới 2 cột; "Thu gọn ˄" trở lại hàng cuộn ngang. Trạng thái nhớ qua `rememberSaveable(section.title)`.
+  Mục ít thẻ (thử thách ≤1, thường ≤2) không hiện nút. `ChallengeCard` / `ProgramCard` thêm tham số `modifier` (mặc định kích thước cũ).
+  `actions.onSeeMore` không còn dùng ở Home (giữ interface).
+- `compose/MinUi.kt`: `MinSectionHeader` thêm `actionSuffix` (mặc định " ›", các màn khác không đổi).
+- Chuỗi mới `home_show_less` (26 ngôn ngữ, `values*/strings_home_more.xml`).
+- Test S8+ (chế độ tối): mở rộng Thử thách, Tập luyện ngực, Cơ bụng; thu gọn; bấm thẻ trong lưới mở Preview.
+
+## 2026-10-08 – Màn Kết thúc + hộp huy hiệu ở chế độ tối; kiểm tra ProGuard Badges ✅ (yêu cầu Telegram, chưa commit)
+- `compose/FinishedScreen.kt`: 3 ô chỉ số nền `MinColor.Surface` (trước nền trắng cố định + chữ theo theme → chữ sáng trên trắng);
+  hero bản tối gradient hồng trầm; chip streak bản tối nền nâu sẫm.
+- `dialog_badge_unlocked.xml` + `values{,-night}/colors_badge_dialog.xml`: hộp "Achievement earned" có bản tối (vẫn nút xanh + chữ Anh từ Wing Chun).
+- ProGuard Badges: các class JSON đều có @SerializedName, Gson 2.11 tự giữ Signature → không cần thêm rule. Test release minify (ký debug key):
+  thẻ Achievements ở Báo cáo + màn Achievements đủ 29 huy hiệu, tiến độ đúng, không crash.
+- Còn lại: màn Achievements (BadgeActivity) chưa hợp chế độ tối (chữ tối trên nền tối, thẻ đầu trang xanh).
+
+## 2026-10-08 – Làm lại màn nghỉ (RestFragment) và màn tập (PlayFragment) ✅ (yêu cầu Telegram, chưa commit)
+- Bố cục lấy từ Muay Thai (cùng id, Java PlayFragment không đổi): `layout{,-land}/fragment_rest.xml`, `layout{,-land}/fragment_play.xml`,
+  màu `values{,-night}/colors_workout.xml` (wk_*, bảng Rose của MinUi), drawable `wk_*`.
+- Màn nghỉ theo ý chủ app "nhẹ nhàng, chuyên nghiệp": nền tối mờ #A6070809 đè ảnh bài tập như bản cũ, vòng đếm mảnh hồng,
+  +15s viền mảnh, Bỏ qua hồng, thẻ "Kế tiếp" kính mờ. (Bản gradient tím-hồng và bản nền hồng nhạt bị chê lòe loẹt → bỏ.)
+- Màn tập: video vuông, nút tròn mờ, thanh tiến độ hồng, giờ lớn, hàng Trước – Tạm dừng (chạy tiến độ) – Bỏ qua; ngang: video trái.
+- `RestFragment.java`: `bindContent()` + `updateRing()`; bọc FrameLayout để xoay màn hình nạp lại layout và binding đúng
+  (trước đây inflate vào getView() nhưng binding vẫn trỏ view cũ); sau xoay phát lại video.
+- `activity_do_workout.xml`: số bài / giờ trên cùng dùng `wk_accent` (colorPrimary bản tối là #000000 → chữ đen trên nền tối).
+- Test S8+ (chế độ tối): Ready → Bỏ qua → màn tập → xoay ngang → màn nghỉ ngang. Không crash.
+
+## 2026-10-07 – Sửa nút Back màn tập trên SDK 36 (Android 16) ✅ (yêu cầu Telegram)
+- Target 36 trên Android 16: predictive back không gọi `onBackPressed()` → Back ở màn tập thoát luôn, không hỏi Quit.
+- DoWorkoutActivity.java, RestTimeActivity.java: bỏ override `onBackPressed()`, chuyển logic vào `handleBack()` gọi từ `OnBackPressedCallback` đăng ký ngay sau
+  `super.onCreate` (`getOnBackPressedDispatcher().addCallback`). `super.onBackPressed()` cũ → `finishBack()` (tạm tắt callback,
+  `getOnBackPressedDispatcher().onBackPressed()`, bật lại). Code gọi `onBackPressed()` (nút ←) vẫn đi vào callback.
+  Chạy đúng cả khi Manifest bật / tắt predictive back và trên Android cũ.
+- Build OK; cùng cách sửa đã thử trên Muay Thai + Kickboxing (Android 16 & 8).
+
+
+## 2026-10-10 – Chiều cao + vòng eo nhập bằng thước kéo (như Muay Thai) ✅ (yêu cầu Telegram)
+- `custom/weight/WeightEntrySheet.kt`, `WeightEntryState.kt`, `WeightEntryViewModel.kt`, `custom/DialogWeight.kt`: hai dòng Chiều cao và
+  Vòng eo vẫn thu gọn, bấm mở **thước kéo + ±** thay ô gõ số. kg → cm (chiều cao bước 1, eo bước 0.5); lb → inch bước 0.5
+  (chiều cao nhãn 5'6", eo nhãn số inch). Thước dùng chung `ValueRuler`/`RulerRow` với cân nặng; bỏ `NumberField`.
+- Giữ cm gốc (`heightCmExact`, `waistCmExact`) khi kéo / đổi kg↔lb → không lệch số do làm tròn.
+- Build OK.

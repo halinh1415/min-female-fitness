@@ -35,4 +35,10 @@
     <string name="pp_home_desc">Ein 4-Wochen-Plan, abgestimmt auf dein Ziel, Level und deinen Körper.</string>
     <string name="pp_home_create">Erstellen</string>
     <string name="pp_edit">Plan anpassen</string>
+    <string name="pp_rest_between">Pause zwischen den Übungen</string>
+    <string name="pp_warmup_stretch">Aufwärmen &amp; Dehnen</string>
+    <string name="pp_short">Kurz</string>
+    <string name="pp_standard">Standard</string>
+    <string name="pp_long">Lang</string>
+    <string name="pp_limits">Einschränkungen</string>
 </resources>

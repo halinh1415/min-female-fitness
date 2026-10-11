@@ -81,11 +81,11 @@ class ChallengeActions(
 )
 
 // Bảng màu Rose của app Min.
-private val Teal = MinColor.Pink
-private val TealLight = MinColor.PinkLight
+private val Teal get() = MinColor.Pink
+private val TealLight get() = MinColor.PinkLight
 private val Gold = Color(0xFFF4B33D)
-private val Border = Color(0xFFF1E4EA)
-private val Muted = MinColor.TextMuted
+private val Border get() = MinColor.Track
+private val Muted get() = MinColor.TextMuted
 
 /**
  * Màn thử thách nhiều ngày (Compose): header ảnh 2 lớp + vòng tiến độ, lưới từng tuần với số ngày

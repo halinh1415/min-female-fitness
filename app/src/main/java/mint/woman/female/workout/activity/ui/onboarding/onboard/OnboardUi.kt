@@ -3,6 +3,7 @@ package mint.woman.female.workout.activity.ui.onboarding.onboard
 import android.graphics.BitmapFactory
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
@@ -69,10 +70,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import kotlinx.coroutines.launch
-import mint.woman.female.workout.activity.ui.onboarding.RulerSliderView
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.graphics.graphicsLayer
 import kotlin.math.roundToInt
 
 // ---------------------------------------------------------------- ảnh thiết kế
@@ -337,7 +339,7 @@ fun ObCoachAvatar(size: androidx.compose.ui.unit.Dp = 30.dp) {
     }
 }
 
-/** Thẻ gợi ý nền hồng nhạt kèm emoji (step9, step17). */
+/** Thẻ gợi ý nền hồng nhạt kèm icon (step9, step17). */
 @Composable
 fun ObHintCard(emoji: String, text: String, modifier: Modifier = Modifier) {
     Row(
@@ -349,7 +351,7 @@ fun ObHintCard(emoji: String, text: String, modifier: Modifier = Modifier) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         if (emoji.isNotEmpty()) {
-            Text(emoji, fontSize = 30.sp)
+            ObIcon(emoji, size = 44.dp)
             Spacer(Modifier.width(14.dp))
         }
         Text(text, fontSize = 17.sp, color = ObColor.TextPrimary, lineHeight = 23.sp)
@@ -378,7 +380,7 @@ fun ObAssistantCard(title: String, body: String, modifier: Modifier = Modifier) 
 
 // ---------------------------------------------------------------- thẻ lựa chọn
 
-/** Dòng lựa chọn: emoji + nhãn (step3, 19, 27, 29, 39, 40). */
+/** Dòng lựa chọn: icon + nhãn (step3, 19, 27, 29, 39, 40). */
 @Composable
 fun ObOptionRow(
     option: ObOption,
@@ -403,7 +405,8 @@ fun ObOptionRow(
         verticalAlignment = Alignment.CenterVertically
     ) {
         if (option.icon.isNotEmpty()) {
-            Text(option.icon, fontSize = 24.sp, modifier = Modifier.width(44.dp))
+            ObIcon(option.icon)
+            Spacer(Modifier.width(14.dp))
         }
         Text(
             option.label,
@@ -555,147 +558,6 @@ private fun DrawScope.drawRoundRectTrack(centerY: Float) {
 }
 
 // ---------------------------------------------------------------- thước đo
-
-/** Thước ngang tái sử dụng [RulerSliderView] (step10). */
-@Composable
-fun ObHorizontalRuler(
-    min: Int,
-    max: Int,
-    value: Int,
-    majorStep: Int,
-    labelStep: Int,
-    pixelsPerUnitDp: Int,
-    feetAndInches: Boolean,
-    modifier: Modifier = Modifier,
-    onValueChange: (Int) -> Unit
-) {
-    AndroidView(
-        modifier = modifier,
-        factory = { context ->
-            RulerSliderView(context).apply {
-                setOnValueChangeListener { newValue, _ -> onValueChange(newValue) }
-            }
-        },
-        update = { view ->
-            view.setRange(min, max, majorStep)
-            view.setFeetAndInches(feetAndInches)
-            view.setLabelStep(labelStep)
-            view.setPixelsPerUnit(pixelsPerUnitDp * view.resources.displayMetrics.density)
-            if (view.value != value) view.setValue(value)
-        }
-    )
-}
-
-/** Thước dọc bám cạnh phải cho màn chiều cao (step9). */
-@Composable
-fun ObVerticalRuler(
-    min: Int,
-    max: Int,
-    value: Int,
-    labelStep: Int,
-    feetAndInches: Boolean,
-    modifier: Modifier = Modifier,
-    onValueChange: (Int) -> Unit
-) {
-    val density = LocalDensity.current
-    // Chiều cao cũ 14dp nhỏ hơn font 18sp nên nhãn mốc bị parent cắt mất
-    // phần trên/dưới. Giữ một khoảng đủ cho font metrics ở mọi font scale.
-    val itemHeight = 20.dp
-    val itemHeightPx = with(density) { itemHeight.toPx() }
-    val listState = rememberLazyListState()
-    var viewportHeight by remember { mutableStateOf(0) }
-    var userScrolling by remember { mutableStateOf(false) }
-
-    // giá trị lớn nhất nằm trên cùng nên danh sách chạy ngược
-    val values = remember(min, max) { (max downTo min).toList() }
-
-    fun indexOfValue(target: Int) = (max - target).coerceIn(0, values.lastIndex)
-
-    LaunchedEffect(viewportHeight) {
-        if (viewportHeight > 0) {
-            val offset = (viewportHeight / 2f - itemHeightPx / 2f).roundToInt()
-            listState.scrollToItem(indexOfValue(value), -offset)
-        }
-    }
-
-    LaunchedEffect(listState) {
-        snapshotFlow { listState.isScrollInProgress }.collect { userScrolling = it }
-    }
-
-    LaunchedEffect(listState, viewportHeight) {
-        if (viewportHeight <= 0) return@LaunchedEffect
-        snapshotFlow { listState.firstVisibleItemIndex to listState.firstVisibleItemScrollOffset }
-            .collect { (index, offset) ->
-                if (!listState.isScrollInProgress) return@collect
-                val centerPx = index * itemHeightPx + offset + viewportHeight / 2f
-                val centerIndex = (centerPx / itemHeightPx).toInt().coerceIn(0, values.lastIndex)
-                val newValue = values[centerIndex]
-                if (newValue != value) onValueChange(newValue)
-            }
-    }
-
-    LaunchedEffect(value, userScrolling) {
-        if (!userScrolling && viewportHeight > 0) {
-            val offset = (viewportHeight / 2f - itemHeightPx / 2f).roundToInt()
-            listState.animateScrollToItem(indexOfValue(value), -offset)
-        }
-    }
-
-    Box(
-        modifier = modifier.onSizeChangedCompat { viewportHeight = it },
-        contentAlignment = Alignment.CenterEnd
-    ) {
-        LazyColumn(
-            state = listState,
-            modifier = Modifier.fillMaxSize()
-        ) {
-            items(values.size) { index ->
-                val tickValue = values[index]
-                val major = if (feetAndInches) tickValue % 12 == 0
-                else tickValue % labelStep == 0
-                val middle = feetAndInches && !major && tickValue % 6 == 0
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(itemHeight),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.End
-                ) {
-                    if (major) {
-                        Text(
-                            if (feetAndInches) "${tickValue / 12}'" else tickValue.toString(),
-                            fontSize = 16.sp,
-                            lineHeight = 18.sp,
-                            fontWeight = FontWeight.Medium,
-                            color = ObColor.TextSecondary,
-                            maxLines = 1,
-                            softWrap = false,
-                            modifier = Modifier.padding(end = 10.dp)
-                        )
-                    }
-                    Box(
-                        Modifier
-                            .width(
-                                when {
-                                    major -> 34.dp
-                                    middle -> 27.dp
-                                    else -> 20.dp
-                                }
-                            )
-                            .height(2.dp)
-                            .background(
-                                when {
-                                    major -> Color(0xFF9E9E9E)
-                                    middle -> Color(0xFFC7C7C7)
-                                    else -> Color(0xFFE0E0E0)
-                                }
-                            )
-                    )
-                }
-            }
-        }
-    }
-}
 
 /** Bọc `onSizeChanged` để chỉ quan tâm chiều cao vùng hiển thị. */
 private fun Modifier.onSizeChangedCompat(onHeight: (Int) -> Unit): Modifier =
@@ -912,7 +774,7 @@ fun ObGauge(label: String, modifier: Modifier = Modifier, fraction: Float = 0.33
                 style = Stroke(width = stroke, cap = StrokeCap.Round)
             )
         }
-        Text("🔥", fontSize = 44.sp)
+        ObIcon("🔥", size = 52.dp, plain = true)
     }
 }
 
@@ -965,19 +827,27 @@ fun ObWeightChart(
     endLabel: String,
     modifier: Modifier = Modifier,
     ghostDays: Int = 0,
-    ghostLabel: String = ""
+    ghostLabel: String = "",
+    /** > [days]: sau khi vẽ xong, mốc đích trượt từ ngày này về [days] (dự đoán lần 2 "sớm hơn"). */
+    shiftFromDays: Int = 0
 ) {
-    var started by remember(currentWeight, targetWeight, days) { mutableStateOf(false) }
-    LaunchedEffect(currentWeight, targetWeight, days) {
-        started = false
+    // Hai pha nối tiếp: vẽ đường cong, rồi (nếu có) kéo mốc đích về ngày sớm hơn.
+    val reveal = remember(currentWeight, targetWeight, days) { Animatable(0f) }
+    val shift = remember(currentWeight, targetWeight, days) { Animatable(0f) }
+    LaunchedEffect(currentWeight, targetWeight, days, shiftFromDays) {
+        reveal.snapTo(0f)
+        shift.snapTo(0f)
         kotlinx.coroutines.delay(250)
-        started = true
+        reveal.animateTo(1f, tween(durationMillis = 1600, easing = FastOutSlowInEasing))
+        if (shiftFromDays > days) {
+            kotlinx.coroutines.delay(300)
+            shift.animateTo(1f, tween(durationMillis = 1000, easing = FastOutSlowInEasing))
+        } else {
+            shift.snapTo(1f)
+        }
     }
-    val animated by animateFloatAsState(
-        targetValue = if (started) 1f else 0f,
-        animationSpec = tween(durationMillis = 1600, easing = FastOutSlowInEasing),
-        label = "weightChart"
-    )
+    val animated = reveal.value
+    val endDays = if (shiftFromDays > days) shiftFromDays + (days - shiftFromDays) * shift.value else days.toFloat()
     val density = LocalDensity.current
     var chartSize by remember { mutableStateOf(androidx.compose.ui.unit.IntSize.Zero) }
 
@@ -1016,7 +886,7 @@ fun ObWeightChart(
             if (chartSize.width > 0) {
                 Canvas(Modifier.fillMaxSize()) {
                     val start = Offset(xFor(0f), yFor(currentWeight))
-                    val end = Offset(xFor(days.toFloat()), yFor(targetWeight))
+                    val end = Offset(xFor(endDays), yFor(targetWeight))
                     val right = size.width - padEndPx
                     val bottom = size.height - padBottomPx
 
@@ -1095,11 +965,11 @@ fun ObWeightChart(
                     containerWidth = chartSize.width,
                     filled = false
                 )
-                val reachedEnd = xFor(0f) + (chartSize.width - padEndPx - xFor(0f)) * animated >= xFor(days.toFloat())
+                val reachedEnd = xFor(0f) + (chartSize.width - padEndPx - xFor(0f)) * animated >= xFor(endDays)
                 if (reachedEnd) {
                     ChartBubble(
                         text = valueLabel(targetWeight),
-                        centerX = xFor(days.toFloat()),
+                        centerX = xFor(endDays),
                         bottomY = yFor(targetWeight) - with(density) { 14.dp.toPx() },
                         containerWidth = chartSize.width,
                         filled = true
@@ -1120,7 +990,7 @@ fun ObWeightChart(
                 if (ghostDays > 0 && ghostLabel.isNotEmpty() && ghostFits) {
                     AxisLabel(ghostLabel, xFor(ghostDays.toFloat()), chartSize.width, ObColor.TextMuted, FontWeight.Normal)
                 }
-                if (animated > 0.6f) {
+                if (animated > 0.6f && shift.value >= 1f) {
                     AxisLabel(endLabel, xFor(days.toFloat()), chartSize.width, ObColor.Pink, FontWeight.Bold)
                 }
             }
@@ -1365,42 +1235,99 @@ fun ObPlanWeightChart(
 /** Biểu đồ "Fitness Results" đi lên của step18. */
 @Composable
 fun ObPotentialChart(modifier: Modifier = Modifier) {
-    Box(modifier) {
-        Canvas(Modifier.fillMaxSize()) {
-            val w = size.width
-            val h = size.height
-            val left = w * 0.10f
-            val bottom = h * 0.84f
+    // Đường cong vẽ dần từ trái sang phải; tới mốc nào thì mốc + emoji của mốc đó bật lên.
+    val reveal = remember { Animatable(0f) }
+    LaunchedEffect(Unit) {
+        kotlinx.coroutines.delay(200)
+        reveal.animateTo(1f, tween(durationMillis = 1800, easing = FastOutSlowInEasing))
+    }
+    val density = LocalDensity.current
+    var box by remember { mutableStateOf(androidx.compose.ui.unit.IntSize.Zero) }
+    val w = box.width.toFloat()
+    val h = box.height.toFloat()
+    val left = w * 0.10f
+    val right = w * 0.92f
+    val bottom = h * 0.80f
+    val top = h * 0.14f
+    // Mốc ngày 1 / 7 / 30 theo tỉ lệ trục ngang và giá trị của đường cong tại đó.
+    val marks = listOf(
+        Triple(0.04f, "Day 1", "😕"),
+        Triple(0.30f, "Day 7", "🙂"),
+        Triple(1.00f, "Day 30", "😎")
+    )
+    fun curveY(f: Float): Float {
+        // tăng chậm lúc đầu, bứt tốc về sau (dạng mũ)
+        val k = ((Math.pow(8.0, f.toDouble()) - 1) / 7.0).toFloat()
+        return bottom - 0.06f * (bottom - top) - k * 0.94f * (bottom - top)
+    }
+    fun xAt(f: Float) = left + (right - left) * f
 
-            drawLine(Color(0xFFBDBDBD), Offset(left, h * 0.05f), Offset(left, bottom), strokeWidth = 3f)
-            drawLine(Color(0xFFBDBDBD), Offset(left, bottom), Offset(w * 0.97f, bottom), strokeWidth = 3f)
-
-            val curve = Path().apply {
-                moveTo(left, bottom * 0.94f)
-                cubicTo(w * 0.42f, bottom * 0.90f, w * 0.60f, bottom * 0.62f, w * 0.88f, h * 0.12f)
-            }
-            val fill = Path().apply {
-                addPath(curve)
-                lineTo(w * 0.88f, bottom)
-                lineTo(left, bottom)
-                close()
-            }
-            drawPath(fill, Brush.verticalGradient(listOf(ObColor.Pink.copy(alpha = 0.2f), Color.Transparent)))
-            drawPath(
-                curve,
-                Brush.linearGradient(listOf(ObColor.Purple, ObColor.Plum, ObColor.Pink)),
-                style = Stroke(width = 16f, cap = StrokeCap.Round)
-            )
-
-            listOf(0.18f to 0.90f, 0.5f to 0.66f).forEach { (fx, fy) ->
-                val cx = left + (w * 0.88f - left) * fx
-                val cy = bottom * fy
-                drawLine(
-                    Color(0xFFBDBDBD), Offset(cx, cy), Offset(cx, bottom),
-                    strokeWidth = 2.5f, pathEffect = PathEffect.dashPathEffect(floatArrayOf(8f, 8f))
+    Box(modifier.onSizeChanged { box = it }) {
+        if (box.width > 0) {
+            Canvas(Modifier.fillMaxSize()) {
+                drawLine(Color(0xFFD5D5D5), Offset(left, top * 0.4f), Offset(left, bottom), strokeWidth = 3f)
+                drawLine(Color(0xFFD5D5D5), Offset(left, bottom), Offset(w * 0.98f, bottom), strokeWidth = 3f)
+                val steps = 60
+                val upto = reveal.value
+                val curve = Path()
+                val fill = Path()
+                for (i in 0..steps) {
+                    val f = upto * i / steps
+                    val p = Offset(xAt(f), curveY(f))
+                    if (i == 0) { curve.moveTo(p.x, p.y); fill.moveTo(p.x, bottom); fill.lineTo(p.x, p.y) }
+                    else { curve.lineTo(p.x, p.y); fill.lineTo(p.x, p.y) }
+                }
+                fill.lineTo(xAt(upto), bottom); fill.close()
+                drawPath(fill, Brush.verticalGradient(listOf(ObColor.Pink.copy(alpha = 0.22f), Color.Transparent), startY = top, endY = bottom))
+                drawPath(
+                    curve,
+                    Brush.horizontalGradient(listOf(Color(0xFF29B6F6), ObColor.Purple, ObColor.Plum, ObColor.Pink), startX = left, endX = right),
+                    style = Stroke(width = 5.dp.toPx(), cap = StrokeCap.Round)
                 )
-                drawCircle(if (fx < 0.3f) ObColor.Purple else ObColor.Plum, radius = 14f, center = Offset(cx, cy))
+                marks.forEach { (f, _, _) ->
+                    if (upto >= f - 0.001f) {
+                        val c = Offset(xAt(f), curveY(f))
+                        drawLine(
+                            Color(0xFFC9C9C9), c, Offset(c.x, bottom), strokeWidth = 2f,
+                            pathEffect = PathEffect.dashPathEffect(floatArrayOf(8f, 8f))
+                        )
+                        drawCircle(Color.White, 7.dp.toPx(), c)
+                        drawCircle(if (f < 0.5f) ObColor.Purple else ObColor.Pink, 7.dp.toPx(), c, style = Stroke(3.dp.toPx()))
+                    }
+                }
             }
+            // emoji bật lên phía trên từng mốc + nhãn ngày dưới trục, đúng toạ độ mốc
+            marks.forEachIndexed { index, (f, day, emoji) ->
+                val visible = reveal.value >= f - 0.001f
+                val pop by animateFloatAsState(
+                    if (visible) 1f else 0f,
+                    androidx.compose.animation.core.spring(dampingRatio = 0.45f, stiffness = 300f),
+                    label = "potentialEmoji$index"
+                )
+                val size = if (index == 2) 46.dp else 34.dp
+                val sizePx = with(density) { size.toPx() }
+                Box(
+                    Modifier
+                        .offset { IntOffset((xAt(f) - sizePx / 2).roundToInt(), (curveY(f) - sizePx - 14.dp.toPx()).roundToInt()) }
+                        .size(size)
+                        .graphicsLayer { scaleX = pop; scaleY = pop; alpha = pop }
+                        .clip(CircleShape)
+                        .background(Color.White),
+                    contentAlignment = Alignment.Center
+                ) { Text(emoji, fontSize = if (index == 2) 28.sp else 20.sp) }
+                Text(
+                    day,
+                    modifier = Modifier.offset {
+                        IntOffset((xAt(f) - 28.dp.toPx()).roundToInt().coerceIn(0, (w - 56.dp.toPx()).roundToInt()), (bottom + 8.dp.toPx()).roundToInt())
+                    }.width(56.dp),
+                    fontSize = 15.sp, fontWeight = FontWeight.Bold, color = ObColor.TextPrimary, textAlign = TextAlign.Center
+                )
+            }
+            Text(
+                "Your\nprogress",
+                modifier = Modifier.offset { IntOffset((left + 8.dp.toPx()).roundToInt(), 0) },
+                fontSize = 14.sp, fontWeight = FontWeight.Bold, color = ObColor.TextMuted, lineHeight = 16.sp
+            )
         }
     }
 }

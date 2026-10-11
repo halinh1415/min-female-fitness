@@ -44,6 +44,11 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.concurrent.TimeUnit
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * Màn Home viết bằng Jetpack Compose.
@@ -71,6 +76,7 @@ class HomeFragment : Fragment(), HomeActions {
     private var todayIndex = 0
     private var weekHistory: LiveData<List<HistoryItem>>? = null
     private var weekHistoryObserver: Observer<List<HistoryItem>>? = null
+    private var suggestJob: Job? = null
 
     private val setGoalLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -101,7 +107,12 @@ class HomeFragment : Fragment(), HomeActions {
 
         state.dateText = SimpleDateFormat("EEEE, d MMMM", Locale.getDefault()).format(Date())
             .replaceFirstChar { it.titlecase(Locale.getDefault()) }
-        state.sections = buildSections()
+        // Đọc danh sách chương trình (giải mã + parse JSON lần đầu) ở luồng nền, không chặn khung hình.
+        viewLifecycleOwner.lifecycleScope.launch {
+            val sections = withContext(Dispatchers.IO) { buildSections() }
+            state.sections = sections
+            refreshPlanProgress()
+        }
 
         historyViewModel.avgDuration.observe(viewLifecycleOwner) { avg ->
             if (avg != null) avgDuration = avg
@@ -203,9 +214,12 @@ class HomeFragment : Fragment(), HomeActions {
                 if (recentIds.size < 2) recentIds.add(item.programId)
                 ids.add(item.programId)
             }
-            val all = FitnessApplication.getApplication().mJsonHelper.allCategoryHashMap
-            state.recentPrograms = ids.toList().takeLast(3).mapNotNull { all[it] }
-            refreshPlanProgress()
+            // Lần đầu mở app danh sách bài có thể chưa giải mã xong: chờ ở luồng nền, không chặn main.
+            viewLifecycleOwner.lifecycleScope.launch {
+                val all = withContext(Dispatchers.IO) { FitnessApplication.getApplication().mJsonHelper.allCategoryHashMap }
+                state.recentPrograms = ids.toList().takeLast(3).mapNotNull { all[it] }
+                refreshPlanProgress()
+            }
         }
         weekHistory = historyViewModel.findFromTo(firstDayOfWeekMillis, lastDayOfWeekMillis).also {
             it.observe(viewLifecycleOwner, observer)
@@ -213,22 +227,26 @@ class HomeFragment : Fragment(), HomeActions {
         weekHistoryObserver = observer
     }
 
+    /**
+     * Danh sách bài đã cache trong JsonHelper (giải mã sẵn lúc mở app); vẫn chạy ở luồng nền vì
+     * lần đầu có thể phải chờ giải mã xong, và chấm điểm 170+ bài không cần chiếm main thread.
+     */
     private fun suggestProgram(streak: Int) {
-        val programs = FitnessApplication.getApplication().mJsonHelper.allCategory
-        val suggested = ProgramRecommenderV3().suggest(
-            programs,
-            streak,
-            true,
-            timeOfDay(),
-            recentIds,
-            dayOff(pref.lastWorkout),
-            avgDuration,
-            pref.userTargetFocus,
-            false
-        ) ?: return
-        state.suggestion = suggested
-        state.suggestionInfo = programInfo(suggested)
-        historyViewModel.setSuggestProgram(suggested)
+        val timeOfDay = timeOfDay()
+        val recent = LinkedHashSet(recentIds)
+        val dayOff = dayOff(pref.lastWorkout)
+        val avg = avgDuration
+        val focus = pref.userTargetFocus
+        suggestJob?.cancel()
+        suggestJob = viewLifecycleOwner.lifecycleScope.launch {
+            val suggested = withContext(Dispatchers.IO) {
+                val programs = FitnessApplication.getApplication().mJsonHelper.allCategory
+                ProgramRecommenderV3().suggest(programs, streak, true, timeOfDay, recent, dayOff, avg, focus, false)
+            } ?: return@launch
+            state.suggestion = suggested
+            state.suggestionInfo = programInfo(suggested)
+            historyViewModel.setSuggestProgram(suggested)
+        }
     }
 
     private fun programInfo(program: ProgramObject): String {

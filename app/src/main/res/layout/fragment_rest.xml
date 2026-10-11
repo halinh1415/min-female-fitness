@@ -1,96 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Màn nghỉ (nền tối mờ trên ảnh bài tập như bản cũ, một màu nhấn hồng) giữa động tác: đồng hồ vòng tròn ở trên, nút +15s / Bỏ qua, thẻ "Tiếp theo" có video ở dưới. -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:background="#a5070809"
+    android:background="@color/wk_rest_scrim"
     tools:context=".fragment.RestFragment">
 
     <TextView
         android:id="@+id/txt_break"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="72dp"
         android:gravity="center"
+        android:maxLines="1"
         android:text="@string/wp_have_a_rest"
         android:textColor="@color/White"
-        android:textSize="24sp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:autoSizeMaxTextSize="22sp"
+        app:autoSizeMinTextSize="14sp"
+        app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_video"
-        android:layout_width="match_parent"
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/rest_ring"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="20dp"
+        android:max="100"
+        android:progress="100"
+        app:indicatorColor="@color/wk_accent"
+        app:indicatorSize="148dp"
+        app:trackColor="#26FFFFFF"
+        app:trackCornerRadius="6dp"
+        app:trackThickness="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_break">
+        app:layout_constraintTop_toBottomOf="@id/txt_break" />
+
+    <TextView
+        android:id="@+id/rest_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFeatureSettings="tnum"
+        android:text="00:15"
+        android:textColor="@color/White"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/rest_ring"
+        app:layout_constraintEnd_toEndOf="@id/rest_ring"
+        app:layout_constraintStart_toStartOf="@id/rest_ring"
+        app:layout_constraintTop_toTopOf="@id/rest_ring" />
+
+    <TextView
+        android:id="@+id/txt_add_time"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/wk_pill_outline"
+        android:gravity="center"
+        android:text="+15s"
+        android:textColor="@color/White"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/txt_skip"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rest_ring" />
+
+    <TextView
+        android:id="@+id/txt_skip"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/wk_pill_accent"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@string/txt_skip"
+        android:textAllCaps="true"
+        android:textColor="@color/White"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:autoSizeMaxTextSize="18sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1.4"
+        app:layout_constraintStart_toEndOf="@id/txt_add_time"
+        app:layout_constraintTop_toTopOf="@id/txt_add_time" />
+
+    <!-- Thẻ "Tiếp theo": video co giãn theo chỗ còn lại (vuông, lớn nhất có thể) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_video"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/wk_card_glass"
+        android:padding="14dp"
+        app:layout_constraintBottom_toTopOf="@id/adView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_add_time">
 
         <TextView
             android:id="@+id/txt_workout_count"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:letterSpacing="0.08"
+            android:maxLines="1"
             android:text="Next 3/11"
             android:textAllCaps="true"
-            android:textColor="@color/White"
+            android:textColor="#99FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/txt_exercise_count"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_exercise_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFeatureSettings="tnum"
+            android:text="x15"
+            android:textColor="@color/wk_primary_light"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_exercise_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="?attr/selectableItemBackground"
             android:clickable="true"
-            android:drawablePadding="10dp"
-            android:foreground="?attr/selectableItemBackground"
+            android:drawablePadding="8dp"
+            android:focusable="true"
             android:maxLines="2"
-            android:textAlignment="center"
-            android:textAllCaps="true"
             android:textColor="@color/White"
-            android:textSize="18sp"
-            app:drawableRightCompat="@drawable/ic_info_outline_black_24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_workout_count" />
-
-        <TextView
-            android:id="@+id/txt_exercise_count"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="x15"
-            android:textAlignment="center"
-            android:textColor="@color/colorAccent"
+            android:textSize="19sp"
             android:textStyle="bold"
+            app:drawableEndCompat="@drawable/ic_info_outline_black_24dp"
+            app:drawableTint="#99FFFFFF"
+            app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_exercise_name" />
+            app:layout_constraintTop_toBottomOf="@id/txt_workout_count"
+            tools:text="Jump rope" />
 
         <TextView
             android:id="@+id/tv_sub"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Cross"
-            android:textColor="@color/White"
+            android:maxLines="1"
+            android:textColor="#99FFFFFF"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_exercise_count" />
+            app:layout_constraintTop_toBottomOf="@id/tv_exercise_name"
+            tools:text="Cardio" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            app:cardCornerRadius="20dp"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="@color/White"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -104,75 +196,14 @@
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/txt_add_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_text_workout"
-        android:padding="5dp"
-        android:text="+15s"
-        android:textColor="@color/White"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/rest_progress"
-        app:layout_constraintEnd_toStartOf="@+id/rest_progress"
-        app:layout_constraintHorizontal_bias="0.87"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rest_progress" />
-
-
-    <TextView
-        android:id="@+id/rest_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="00:15"
-        android:textColor="@color/White"
-        android:textSize="@dimen/_24sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_video" />
-
-    <TextView
-        android:id="@+id/txt_skip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_round_corner_gradient_primary_10"
-        android:clickable="true"
-        android:focusable="false"
-        android:foreground="?attr/selectableItemBackground"
-        android:gravity="center"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-        android:text="@string/txt_skip"
-        android:textAllCaps="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/White"
-        android:textSize="18sp"
-        android:lines="1"
-        app:autoSizeMaxTextSize="18sp"
-        app:autoSizeMinTextSize="1sp"
-        app:autoSizeStepGranularity="1sp"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="@+id/rest_progress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toEndOf="@+id/rest_progress"
-        app:layout_constraintTop_toTopOf="@+id/rest_progress" />
-
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
+        app:adSize="SMART_BANNER"
+        app:adUnitId="@string/ad_banner_unit_id"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rest_progress"
-        app:layout_constraintVertical_bias="1.0"
-        custom:adSize="SMART_BANNER"
-        custom:adUnitId="@string/ad_banner_unit_id" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

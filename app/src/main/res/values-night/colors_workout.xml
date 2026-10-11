@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="wk_bg">#151013</color>
+    <color name="wk_surface">#221B1F</color>
+    <color name="wk_title">#F4ECEF</color>
+    <color name="wk_muted">#C9BAC2</color>
+    <color name="wk_track">#3A2E34</color>
+    <color name="wk_primary">#F0457E</color>
+    <color name="wk_primary_light">#FF6E98</color>
+    <color name="wk_pause_track">#8A2A4E</color>
+    <color name="wk_soft">#3B2330</color>
+    <color name="wk_good">#43C383</color>
+    <!-- Hồng của Min cố định (colorPrimary bản tối là màu đen) -->
+    <color name="wk_accent">#F0457E</color>
+    <!-- Màn nghỉ: lớp tối mờ đè lên ảnh bài tập (như bản cũ) -->
+    <color name="wk_rest_scrim">#B3070809</color>
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">افتحي خطتك الشخصية</string>
+    <string name="pwb_check_1">خطط تمارين غير محدودة</string>
+    <string name="pwb_check_2">جميع البرامج وتحديات 30 يومًا</string>
+    <string name="pwb_check_3">بدون إعلانات</string>
+    <string name="pwb_special_band">سعر خاص</string>
+    <string name="pwb_special_title">عرض خاص: خصم %s</string>
+    <string name="pwb_special_price">%1$s (بدلًا من %2$s) سنويًا</string>
+    <string name="pwb_trial_title">تجربة مجانية %d أيام</string>
+    <string name="pwb_yearly_title">الخطة السنوية</string>
+    <string name="pwb_yearly_price">%s سنويًا</string>
+    <string name="pwb_monthly_title">الخطة الشهرية</string>
+    <string name="pwb_monthly_price">%s شهريًا</string>
+    <string name="pwb_lifetime_title">مدى الحياة</string>
+    <string name="pwb_lifetime_price">%s مرة واحدة</string>
+    <string name="pwb_per_week">%s أسبوعيًا</string>
+    <string name="pwb_forever">للأبد</string>
+    <string name="pwb_save">وفّري %s</string>
+    <string name="pwb_cta_trial">تجربة مجانية %d أيام</string>
+    <string name="pwb_cta_sub">متابعة</string>
+    <string name="pwb_no_payment">بدون دفع الآن</string>
+    <string name="pwb_note_trial">تجربة مجانية %1$d أيام، ثم %2$s سنويًا\nألغي في أي وقت عبر Google Play</string>
+    <string name="pwb_note_sub">ألغي في أي وقت عبر Google Play</string>
+    <string name="pwb_note_lifetime">دفعة واحدة، بدون اشتراك</string>
+    <string name="pwb_restore">استعادة</string>
+    <string name="pwb_terms">1. تتم جميع المدفوعات عبر Google Play وتديرها Google.\n2. يُخصم المبلغ من حسابك في Google Play عند تأكيد الشراء.\n3. تتجدد الاشتراكات تلقائيًا ما لم يتم إيقاف التجديد التلقائي قبل 24 ساعة على الأقل من نهاية الفترة الحالية.\n4. يُحتسب رسم التجديد خلال 24 ساعة قبل نهاية الفترة الحالية.\n5. يمكنك إدارة الاشتراكات وإيقاف التجديد التلقائي من إعدادات حساب Google Play بعد الشراء.\n6. يسقط أي جزء غير مستخدم من التجربة المجانية عند شراء اشتراك، إن وُجد.</string>
+    <string name="pwb_badge_original">السعر الأصلي</string>
+    <string name="pwb_badge_best">الأفضل قيمة</string>
+    <string name="pwb_ends_in">ينتهي خلال %s</string>
+    <string name="pwb_prices_error">تعذّر تحميل الأسعار</string>
+    <string name="pwb_retry">إعادة المحاولة</string>
+    <string name="pwb_terms_link">شروط الاستخدام</string>
+    <string name="pwb_privacy_link">سياسة الخصوصية</string>
+</resources>

@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.media.AudioAttributes;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -51,6 +54,7 @@ import mint.woman.female.workout.model.Tip;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
+import mint.woman.female.workout.utils.WorkoutVideoCache;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -59,10 +63,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 @SuppressLint({"SetTextI18n", "NonConstantResourceId"})
 public class DoWorkoutActivity extends AppCompatActivity implements RestFragment.OnRestFragmentInteractionListener, PlayFragment.OnReadyFragmentInteractionListener, DialogQuit.OnQuitListener, EdgeToEdgeHelper.HandlesInsets {
+    private final OnBackPressedCallback mBackCallback = new OnBackPressedCallback(true) {
+        @Override
+        public void handleOnBackPressed() {
+            handleBack();
+        }
+    };
+
     private final SimpleDateFormat mFormatDateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
     public static int discover = 0;
     public static int version = 1003;
@@ -74,7 +87,14 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     Bundle mBundle;
     int currentExerciseCount = 0, totalExercise;
     long startPause, endPause, pauseTime, startExercise, endExercise;
-    MediaPlayer musicPlayer, ringPlayer, tickPlayer;
+    /** Nhạc nền: chuẩn bị bất đồng bộ, giải phóng ở luồng nền (prepare/release đồng bộ trên main dễ gây ANR). */
+    MediaPlayer musicPlayer;
+    private String musicPlayerPath;
+    private boolean musicPrepared;
+    /** Tiếng chuông / tick / beep: nạp sẵn một lần, phát không chặn main thread (trước đây tạo MediaPlayer mỗi giây). */
+    private SoundPool soundPool;
+    private int soundStart, soundTick, soundBeep;
+    private static final ExecutorService MEDIA_RELEASE = Executors.newSingleThreadExecutor();
     MyPreference myPreference;
 
     boolean mIsReady = false;
@@ -109,10 +129,12 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getOnBackPressedDispatcher().addCallback(this, mBackCallback);
         binding = ActivityDoWorkoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         applyInsets();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        initSounds();
         initView();
     }
 
@@ -145,13 +167,16 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         if (mAudioAppManager != null) {
             mAudioAppManager.release();
         }
-        if (musicPlayer != null) {
-            musicPlayer.release();
-        }
-        if (tickPlayer != null) {
-            tickPlayer.release();
+        stopMusic();
+        if (soundPool != null) {
+            SoundPool pool = soundPool;
+            soundPool = null;
+            MEDIA_RELEASE.execute(pool::release);
         }
         timerHandler.removeCallbacks(timerRunnable);
+        if (isFinishing()) {
+            WorkoutVideoCache.clear(this);
+        }
         super.onDestroy();
 
     }
@@ -278,27 +303,80 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
 
 
     }
-    void changeMusic(){
-        if (myPreference.isMusicOn()) {
-            if (musicPlayer != null) {
-                musicPlayer.release();
-            }
-            String musicPath = getFilesDir() + "/music/" + myPreference.getMusicFile();
-            if (existsData(musicPath)) {
-                if (musicPlayer != null) {
-                    musicPlayer.release();
+    void changeMusic() {
+        startMusic();
+    }
+
+    private void initSounds() {
+        soundPool = new SoundPool.Builder()
+                .setMaxStreams(3)
+                .setAudioAttributes(new AudioAttributes.Builder()
+                        .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                        .build())
+                .build();
+        soundStart = soundPool.load(this, R.raw.start, 1);
+        soundTick = soundPool.load(this, R.raw.tick, 1);
+        soundBeep = soundPool.load(this, R.raw.beep, 1);
+    }
+
+    private void playEffect(int soundId, float volume) {
+        if (soundPool != null && soundId != 0) {
+            soundPool.play(soundId, volume, volume, 1, 0, 1f);
+        }
+    }
+
+    /** Bật / đổi / chỉnh âm lượng nhạc nền theo cài đặt; gọi lại nhiều lần không tạo lại player. */
+    private void startMusic() {
+        String musicPath = getFilesDir() + "/music/" + myPreference.getMusicFile();
+        if (!myPreference.isMusicOn() || !existsData(musicPath)) {
+            stopMusic();
+            return;
+        }
+        float volume = myPreference.getMusicVolume();
+        if (musicPlayer != null && musicPath.equals(musicPlayerPath)) {
+            // Đang prepare thì onPrepared sẽ tự đọc âm lượng mới.
+            if (musicPrepared) musicPlayer.setVolume(volume, volume);
+            return;
+        }
+        stopMusic();
+        MediaPlayer player = new MediaPlayer();
+        musicPlayer = player;
+        musicPlayerPath = musicPath;
+        musicPrepared = false;
+        try {
+            player.setDataSource(musicPath);
+            player.setLooping(true);
+            player.setOnPreparedListener(mp -> {
+                if (mp != musicPlayer || isFinishing()) return;
+                musicPrepared = true;
+                float v = myPreference.getMusicVolume();
+                mp.setVolume(v, v);
+                mp.start();
+            });
+            player.setOnErrorListener((mp, what, extra) -> {
+                if (mp == musicPlayer) stopMusic();
+                return true;
+            });
+            player.prepareAsync();
+        } catch (Exception e) {
+            Log.w("DoWorkoutActivity", "music failed: " + e.getMessage());
+            stopMusic();
+        }
+    }
+
+    private void stopMusic() {
+        MediaPlayer player = musicPlayer;
+        musicPlayer = null;
+        musicPlayerPath = null;
+        musicPrepared = false;
+        if (player != null) {
+            MEDIA_RELEASE.execute(() -> {
+                try {
+                    player.release();
+                } catch (Exception ignored) {
                 }
-                musicPlayer = MediaPlayer.create(DoWorkoutActivity.this, Uri.parse(musicPath));
-                if (musicPlayer!= null){
-                    musicPlayer.setVolume(myPreference.getMusicVolume(), myPreference.getMusicVolume());
-                    musicPlayer.setLooping(true);
-                    musicPlayer.start();
-                }
-            }
-        } else {
-            if (musicPlayer != null) {
-                musicPlayer.release();
-            }
+            });
         }
     }
 
@@ -308,17 +386,27 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     }
     boolean quitShow = false;
 
-    @Override
-    public void onBackPressed() {
+    /**
+     * Nút Back (cả cử chỉ Back của Android 16 / SDK 36: predictive back không gọi onBackPressed()).
+     * Đăng ký qua OnBackPressedDispatcher trong onCreate; gọi onBackPressed() trong code vẫn chạy vào đây.
+     */
+    private void handleBack() {
         mWorkoutViewModel.setPause(true);
         if (!quitShow){
             showQuitDialog();
         }else{
-            super.onBackPressed();
+            finishBack();
         }
 
 
-        //  super.onBackPressed();
+        //  finishBack();
+    }
+
+    /** Thoát như super.onBackPressed() cũ: tạm tắt callback để dispatcher xử lý mặc định. */
+    private void finishBack() {
+        mBackCallback.setEnabled(false);
+        getOnBackPressedDispatcher().onBackPressed();
+        mBackCallback.setEnabled(true);
     }
     void showQuitDialog() {
         try {
@@ -365,9 +453,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     @Override
     protected void onPause() {
         super.onPause();
-        if (musicPlayer != null) {
-            musicPlayer.release();
-        }
+        stopMusic();
 
         if (currentExerciseCount < totalExercise) {
             mWorkoutViewModel.setPause(true);
@@ -388,23 +474,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             mFlagAds = 0;
             finish();
         }
-        if (myPreference.isMusicOn()) {
-            if (musicPlayer != null) {
-                musicPlayer.release();
-            }
-            String musicPath = getFilesDir() + "/music/" + myPreference.getMusicFile();
-            if (existsData(musicPath)) {
-                if (musicPlayer != null) {
-                    musicPlayer.release();
-                }
-                musicPlayer = MediaPlayer.create(DoWorkoutActivity.this, Uri.parse(musicPath));
-                if (musicPlayer != null) {
-                    musicPlayer.setVolume(myPreference.getMusicVolume(), myPreference.getMusicVolume());
-                    musicPlayer.setLooping(true);
-                    musicPlayer.start();
-                }
-            }
-        }
+        startMusic();
         if (currentExerciseCount < totalExercise) {
             mWorkoutViewModel.setPause(false);
         }
@@ -413,20 +483,8 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     @Override
     public void onFinishRest() {
         mIsReady = true;
-        try {
-            if (myPreference.isRingOn()) {
-                if (ringPlayer != null) {
-                    ringPlayer.release();
-                }
-                ringPlayer = MediaPlayer.create(this, R.raw.start);
-                if (ringPlayer != null) {
-                    ringPlayer.setVolume(0.6f, 0.6f);
-                    ringPlayer.setLooping(false);
-                    ringPlayer.start();
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (myPreference.isRingOn()) {
+            playEffect(soundStart, 0.6f);
         }
         pauseTime = 0;
         startExercise = Calendar.getInstance().getTimeInMillis();
@@ -483,13 +541,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                 }
             }
             if (myPreference.isTick()) {
-                if (tickPlayer != null) {
-                    tickPlayer.release();
-                }
-                tickPlayer = MediaPlayer.create(this, R.raw.tick);
-                if (tickPlayer!= null){
-                    tickPlayer.start();
-                }
+                playEffect(soundTick, 1f);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -507,14 +559,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                 mAudioAppManager.playText("" + timeLeft);
                 Log.d("HAHA", "time left= " + timeLeft);
                 if (myPreference.isTick()) {
-                    if (tickPlayer != null) {
-                        tickPlayer.release();
-                    }
-                    tickPlayer = MediaPlayer.create(this, R.raw.beep);
-
-                    if (tickPlayer != null) {
-                        tickPlayer.start();
-                    }
+                    playEffect(soundBeep, 1f);
                 }
             } else {
                 if (timeLeft == getActionObjectCurrent().time / 2) {
@@ -524,13 +569,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                     playTip();
                 }
                 if (myPreference.isTick()) {
-                    if (tickPlayer != null) {
-                        tickPlayer.release();
-                    }
-                    tickPlayer = MediaPlayer.create(this, R.raw.tick);
-                    if (tickPlayer != null) {
-                        tickPlayer.start();
-                    }
+                    playEffect(soundTick, 1f);
                 }
             }
 
@@ -583,14 +622,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
 
 
         if (myPreference.isRingOn()) {
-            if (ringPlayer != null) {
-                ringPlayer.release();
-            }
-            ringPlayer = MediaPlayer.create(this, R.raw.start);
-            if (ringPlayer != null) {
-                ringPlayer.setLooping(false);
-                ringPlayer.start();
-            }
+            playEffect(soundStart, 1f);
         }
         endExercise = Calendar.getInstance().getTimeInMillis();
         int durationTimeTemp = (int) Math.abs((endExercise - startExercise - pauseTime) / 1000);

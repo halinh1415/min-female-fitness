@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">解锁你的个性化计划</string>
+    <string name="pwb_check_1">无限训练计划</string>
+    <string name="pwb_check_2">所有课程和30天挑战</string>
+    <string name="pwb_check_3">去除广告</string>
+    <string name="pwb_special_band">特价</string>
+    <string name="pwb_special_title">限时优惠：立减 %s</string>
+    <string name="pwb_special_price">%1$s（原价 %2$s）/年</string>
+    <string name="pwb_trial_title">%d天免费试用</string>
+    <string name="pwb_yearly_title">年度计划</string>
+    <string name="pwb_yearly_price">%s/年</string>
+    <string name="pwb_monthly_title">月度计划</string>
+    <string name="pwb_monthly_price">%s/月</string>
+    <string name="pwb_lifetime_title">终身</string>
+    <string name="pwb_lifetime_price">%s 一次性</string>
+    <string name="pwb_per_week">%s/周</string>
+    <string name="pwb_forever">永久</string>
+    <string name="pwb_save">节省 %s</string>
+    <string name="pwb_cta_trial">%d天免费试用</string>
+    <string name="pwb_cta_sub">继续</string>
+    <string name="pwb_no_payment">现在无需付款</string>
+    <string name="pwb_note_trial">免费试用%1$d天，之后%2$s/年\n可随时通过 Google Play 取消</string>
+    <string name="pwb_note_sub">可随时通过 Google Play 取消</string>
+    <string name="pwb_note_lifetime">一次性付款，非订阅</string>
+    <string name="pwb_restore">恢复</string>
+    <string name="pwb_terms">1. 所有付款均通过 Google Play 进行并由 Google 管理。\n2. 确认购买时将从你的 Google Play 账户扣款。\n3. 除非在当前周期结束前至少24小时关闭自动续订，否则订阅将自动续订。\n4. 续订费用将在当前周期结束前24小时内收取。\n5. 购买后可在 Google Play 账户设置中管理订阅并关闭自动续订。\n6. 购买订阅后，免费试用期中未使用的部分将失效（如适用）。</string>
+    <string name="pwb_badge_original">原价</string>
+    <string name="pwb_badge_best">最超值</string>
+    <string name="pwb_ends_in">%s后结束</string>
+    <string name="pwb_prices_error">无法加载价格</string>
+    <string name="pwb_retry">重试</string>
+    <string name="pwb_terms_link">使用条款</string>
+    <string name="pwb_privacy_link">隐私政策</string>
+</resources>

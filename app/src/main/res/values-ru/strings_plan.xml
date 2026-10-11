@@ -35,4 +35,10 @@
     <string name="pp_home_desc">План на 4 недели с учётом вашей цели, уровня и тела.</string>
     <string name="pp_home_create">Создать</string>
     <string name="pp_edit">Изменить план</string>
+    <string name="pp_rest_between">Отдых между упражнениями</string>
+    <string name="pp_warmup_stretch">Разминка и растяжка</string>
+    <string name="pp_short">Коротко</string>
+    <string name="pp_standard">Стандартно</string>
+    <string name="pp_long">Долго</string>
+    <string name="pp_limits">Ограничения</string>
 </resources>

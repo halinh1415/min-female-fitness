@@ -131,74 +131,77 @@ public class JsonHelper {
         return language.substring(0, 2);
     }
 
+    /**
+     * Danh sách chương trình chỉ giải mã + parse JSON một lần cho mỗi ngôn ngữ (như Tai Chi).
+     * Trước đây getAllCategory() giải mã lại cả file mỗi lần gọi (Home gọi mỗi lần cập nhật chuỗi ngày),
+     * và getAllCategoryHashMap() gán map rỗng trước rồi mới đổ dữ liệu, không khoá: luồng nền (Home) và
+     * main thread gọi cùng lúc thì giải mã hai lần, main có thể nhận map đang đổ dở / rỗng.
+     */
+    private final Object programLock = new Object();
+    private List<ProgramObject> programList;
+    private String programListLang;
+    private List<ProgramObject> programHashMapSource;
+
+    private List<ProgramObject> loadProgramList() {
+        String langCode = getLocaleApp();
+        synchronized (programLock) {
+            if (programList != null && langCode.equals(programListLang)) return programList;
+            long startNs = System.nanoTime();
+            String fileName = "programs/all_program_" + langCode;
+            if (!isAssetExists(fileName)) fileName = "programs/all_program_en";
+            byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), fileName);
+            String jsonString = new String(decode, StandardCharsets.UTF_8);
+            List<ProgramObject> list = new Gson().fromJson(jsonString,
+                    TypeToken.getParameterized(List.class, ProgramObject.class).getType());
+            programList = list == null ? new ArrayList<>() : list;
+            programListLang = langCode;
+            android.util.Log.d("JsonHelper", "program catalog decoded in "
+                    + (System.nanoTime() - startNs) / 1_000_000 + " ms on " + Thread.currentThread().getName());
+            return programList;
+        }
+    }
+
+    /** Gọi ở luồng nền lúc mở app để Home / Mục tiêu tuần không phải chờ giải mã danh sách bài. */
+    public void prewarmPrograms() {
+        if (Decoder.isSuccess) getAllCategoryHashMap();
+    }
+
     public List<ProgramObject> getAllCategory() {
         if (!Decoder.isSuccess){
             return new ArrayList<>();
         }
-        String langCode = getLocaleApp();
-        String fileName;
-        fileName = "programs/all_program_" + langCode ;
-        String jsonString = "";
-        if (isAssetExists(fileName)) {
-            //jsonString = loadJSONFromAsset(fileName);
-            byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), fileName);
-            //  jsonString = Decoder.getAllData(mContext.getAssets(), fileName);
-            jsonString = new String(decode, StandardCharsets.UTF_8);
-
-        } else {
-            // jsonString = loadJSONFromAsset("programs/all_program_en.json");
-            byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), "programs/all_program_en");
-            //  jsonString = Decoder.getAllData(mContext.getAssets(), fileName);
-            jsonString = new String(decode, StandardCharsets.UTF_8);
-        }
-
-        Gson gson = new Gson();
-        List<ProgramObject> list = gson.fromJson(jsonString, TypeToken.getParameterized(List.class,ProgramObject.class).getType());
-        return list;
+        // Bản sao danh sách để nơi gọi sắp xếp / lọc không ảnh hưởng cache.
+        return new ArrayList<>(loadProgramList());
     }
 
     /** Bỏ cache danh sách chương trình (vd sau khi tạo lại plan cá nhân). */
     public void invalidatePrograms() {
-        programHashMap = null;
+        synchronized (programLock) {
+            programHashMap = null;
+        }
     }
 
     public HashMap<Integer, ProgramObject> getAllCategoryHashMap() {
         if (!Decoder.isSuccess){
             return new HashMap<>();
         }
-        if (programHashMap == null){
-            programHashMap = new HashMap<>();
-            String langCode = getLocaleApp();
-            String fileName;
-            fileName = "programs/all_program_" + langCode ;
-            String jsonString = "";
-            if (isAssetExists(fileName)) {
-                //jsonString = loadJSONFromAsset(fileName);
-                byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), fileName);
-                //  jsonString = Decoder.getAllData(mContext.getAssets(), fileName);
-                jsonString = new String(decode, StandardCharsets.UTF_8);
-
-            } else {
-                // jsonString = loadJSONFromAsset("programs/all_program_en.json");
-                byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), "programs/all_program_en");
-                //  jsonString = Decoder.getAllData(mContext.getAssets(), fileName);
-                jsonString = new String(decode, StandardCharsets.UTF_8);
-            }
-
-            Gson gson = new Gson();
-            List<ProgramObject> list = gson.fromJson(jsonString, TypeToken.getParameterized(List.class,ProgramObject.class).getType());
-            for (ProgramObject pr : list
-            ) {
-                programHashMap.put(pr.getId(), pr);
+        synchronized (programLock) {
+            List<ProgramObject> list = loadProgramList();
+            // Map theo cùng ngôn ngữ với danh sách: lần mở đầu có thể đã giải mã sẵn trước khi người dùng chọn ngôn ngữ.
+            if (programHashMap != null && list == programHashMapSource) return programHashMap;
+            HashMap<Integer, ProgramObject> map = new HashMap<>();
+            for (ProgramObject pr : list) {
+                map.put(pr.getId(), pr);
             }
             // Plan cá nhân (nếu người dùng đã tạo) được dùng như một thử thách 28 ngày.
             ProgramObject personal = PersonalPlanStore.program(mContext);
             if (personal != null) {
-                programHashMap.put(personal.getId(), personal);
+                map.put(personal.getId(), personal);
             }
+            programHashMap = map;
+            programHashMapSource = list;
+            return map;
         }
-
-        return programHashMap;
     }
 
     public HashMap<Integer, ExerciseObject> getHashMapExercise(int discover,int version) {
@@ -317,8 +320,16 @@ public class JsonHelper {
             } else {
                 baseUrl = mContext.getFilesDir().getPath() + "/discover/" + discover+"/"+version+"/workout";
             }
+            // Lịch người dùng tự tạo / đã sửa (filesDir/custom, mã hoá) được ưu tiên hơn bản trong assets.
+            String saved = discover == 0 && !baseUrl.contains("custom_plan_new_")
+                    ? CustomPlanFiles.read(mContext, fileName) : null;
             if (baseUrl.contains("custom_plan_new_")) {
                 jsonArray = new JSONArray(readFileFromData(fileName));
+            } else if (saved != null) {
+                jsonArray = new JSONArray(saved);
+            } else if (CustomPlanFiles.isUserPlan(fileName)) {
+                // Bài tự tạo chưa có file (lỗi ghi cũ): coi như lịch trống thay vì tìm trong assets.
+                jsonArray = new JSONArray();
             } else if (discover == 0) {
                 if (!existsData(baseUrl) || myPreference.getVersionPlan(fileName) < VERSION_DAY_PLAN) {
                     byte[] decode = Decoder.decryptFromAssets(mContext.getAssets(), baseUrl);
@@ -387,12 +398,18 @@ public class JsonHelper {
             }
             String json = "";
             byte[] decode;
-            if (discover == 0) {
-                decode = Decoder.decryptFromAssets(mContext.getAssets(), baseUrl);
+            if (CustomPlanFiles.isUserPlan(fileName)) {
+                // Bài tự tạo không có bản gốc trong assets: "đặt lại" = bản đã lưu.
+                String saved = CustomPlanFiles.read(mContext, fileName);
+                json = saved == null ? "[]" : saved;
             } else {
-                decode = Decoder.decryptInput( baseUrl);
+                if (discover == 0) {
+                    decode = Decoder.decryptFromAssets(mContext.getAssets(), baseUrl);
+                } else {
+                    decode = Decoder.decryptInput( baseUrl);
+                }
+                json = new String(decode, StandardCharsets.UTF_8);
             }
-            json = new String(decode, StandardCharsets.UTF_8);
             JSONArray jsonArray = new JSONArray(json);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -569,9 +586,9 @@ public class JsonHelper {
             hashMapExercises = null;
 
         }
-        if (programHashMap != null) {
-            programHashMap.clear();
+        synchronized (programLock) {
             programHashMap = null;
+            programList = null;
         }
     }
 

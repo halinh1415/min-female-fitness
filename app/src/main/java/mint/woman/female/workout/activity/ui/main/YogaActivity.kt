@@ -1,7 +1,6 @@
 package mint.woman.female.workout.activity.ui.main
 
 import android.Manifest
-import android.graphics.Color
 import android.view.View
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -710,6 +709,8 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
 
     override fun onResume() {
         super.onResume()
+        // Ghi lần hoạt động cuối: vắng app lâu thì lần vào paywall tới được tặng đợt 50% (win-back).
+        mint.woman.female.workout.activity.ui.premium.PaywallPromo.markAppActive(this)
         // Kiểm tra lại giao dịch mỗi lần quay về app (thanh toán đang chờ, gia hạn, huỷ gói).
         premiumViewModel?.syncPremiumStatus()
         if (flagAds == 1) {
@@ -799,9 +800,9 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
     }
 
 
-    /** Toolbar nền sáng, tiêu đề lớn đậm, không bóng (cho các tab còn dùng toolbar). */
+    /** Toolbar cùng màu nền app (sáng / tối theo theme), tiêu đề lớn đậm, không bóng (cho các tab còn dùng toolbar). */
     private fun styleLightToolbar(toolbar: Toolbar) {
-        val background = Color.parseColor("#FFF7FA")
+        val background = androidx.core.content.ContextCompat.getColor(this, R.color.min_main_bg)
         toolbar.setBackgroundColor(background)
         toolbar.setTitleTextAppearance(this, R.style.TextAppearance_Min_ToolbarTitle)
         (toolbar.parent as? View)?.apply {

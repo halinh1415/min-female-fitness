@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">Buka rencana pribadimu</string>
+    <string name="pwb_check_1">Rencana latihan tanpa batas</string>
+    <string name="pwb_check_2">Semua program &amp; tantangan 30 hari</string>
+    <string name="pwb_check_3">Tanpa iklan</string>
+    <string name="pwb_special_band">HARGA SPESIAL</string>
+    <string name="pwb_special_title">Penawaran spesial: diskon %s</string>
+    <string name="pwb_special_price">%1$s (sebelumnya %2$s)/tahun</string>
+    <string name="pwb_trial_title">Uji coba gratis %d hari</string>
+    <string name="pwb_yearly_title">Paket tahunan</string>
+    <string name="pwb_yearly_price">%s/tahun</string>
+    <string name="pwb_monthly_title">Paket bulanan</string>
+    <string name="pwb_monthly_price">%s/bln</string>
+    <string name="pwb_lifetime_title">Seumur hidup</string>
+    <string name="pwb_lifetime_price">%s sekali bayar</string>
+    <string name="pwb_per_week">%s/minggu</string>
+    <string name="pwb_forever">Selamanya</string>
+    <string name="pwb_save">HEMAT %s</string>
+    <string name="pwb_cta_trial">UJI COBA GRATIS %d HARI</string>
+    <string name="pwb_cta_sub">LANJUTKAN</string>
+    <string name="pwb_no_payment">Tanpa bayar sekarang</string>
+    <string name="pwb_note_trial">Gratis %1$d hari, lalu %2$s/tahun\nBatalkan kapan saja lewat Google Play</string>
+    <string name="pwb_note_sub">Batalkan kapan saja lewat Google Play</string>
+    <string name="pwb_note_lifetime">Pembayaran sekali, bukan langganan</string>
+    <string name="pwb_restore">Pulihkan</string>
+    <string name="pwb_terms">1. Semua pembayaran dilakukan melalui Google Play dan dikelola oleh Google.\n2. Pembayaran ditagihkan ke akun Google Play saat pembelian dikonfirmasi.\n3. Langganan diperpanjang otomatis kecuali perpanjangan otomatis dimatikan setidaknya 24 jam sebelum periode berjalan berakhir.\n4. Biaya perpanjangan ditagihkan dalam 24 jam sebelum periode berjalan berakhir.\n5. Kamu dapat mengelola langganan dan mematikan perpanjangan otomatis di setelan akun Google Play setelah membeli.\n6. Sisa uji coba gratis yang belum terpakai akan hangus saat kamu membeli langganan, jika berlaku.</string>
+    <string name="pwb_badge_original">HARGA NORMAL</string>
+    <string name="pwb_badge_best">PALING HEMAT</string>
+    <string name="pwb_ends_in">Berakhir dalam %s</string>
+    <string name="pwb_prices_error">Gagal memuat harga</string>
+    <string name="pwb_retry">Coba lagi</string>
+    <string name="pwb_terms_link">Ketentuan Penggunaan</string>
+    <string name="pwb_privacy_link">Kebijakan Privasi</string>
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">Odemkni svůj osobní plán</string>
+    <string name="pwb_check_1">Neomezené tréninkové plány</string>
+    <string name="pwb_check_2">Všechny programy a 30denní výzvy</string>
+    <string name="pwb_check_3">Bez reklam</string>
+    <string name="pwb_special_band">SPECIÁLNÍ CENA</string>
+    <string name="pwb_special_title">Speciální nabídka se slevou %s</string>
+    <string name="pwb_special_price">%1$s (dříve %2$s)/rok</string>
+    <string name="pwb_trial_title">%d dní zdarma</string>
+    <string name="pwb_yearly_title">Roční plán</string>
+    <string name="pwb_yearly_price">%s/rok</string>
+    <string name="pwb_monthly_title">Měsíční plán</string>
+    <string name="pwb_monthly_price">%s/měs.</string>
+    <string name="pwb_lifetime_title">Doživotně</string>
+    <string name="pwb_lifetime_price">%s jednorázově</string>
+    <string name="pwb_per_week">%s/týden</string>
+    <string name="pwb_forever">Navždy</string>
+    <string name="pwb_save">UŠETŘI %s</string>
+    <string name="pwb_cta_trial">%d DNÍ ZDARMA</string>
+    <string name="pwb_cta_sub">POKRAČOVAT</string>
+    <string name="pwb_no_payment">Nyní nic neplatíš</string>
+    <string name="pwb_note_trial">%1$d dní zdarma, poté %2$s/rok\nZrušit lze kdykoli v Google Play</string>
+    <string name="pwb_note_sub">Zrušit lze kdykoli v Google Play</string>
+    <string name="pwb_note_lifetime">Jednorázová platba, žádné předplatné</string>
+    <string name="pwb_restore">Obnovit</string>
+    <string name="pwb_terms">1. Všechny platby probíhají přes Google Play a spravuje je Google.\n2. Platba se strhne z tvého účtu Google Play při potvrzení nákupu.\n3. Předplatné se automaticky obnovuje, pokud automatické obnovení nevypneš alespoň 24 hodin před koncem aktuálního období.\n4. Obnovení se z účtu strhne během 24 hodin před koncem aktuálního období.\n5. Předplatné můžeš spravovat a automatické obnovení vypnout v nastavení účtu Google Play po nákupu.\n6. Nevyužitá část zkušební verze zdarma propadá při zakoupení předplatného, pokud je to relevantní.</string>
+    <string name="pwb_badge_original">PŮVODNÍ CENA</string>
+    <string name="pwb_badge_best">NEJVÝHODNĚJŠÍ</string>
+    <string name="pwb_ends_in">Končí za %s</string>
+    <string name="pwb_prices_error">Ceny se nepodařilo načíst</string>
+    <string name="pwb_retry">Zkusit znovu</string>
+    <string name="pwb_terms_link">Podmínky použití</string>
+    <string name="pwb_privacy_link">Zásady ochrany soukromí</string>
+</resources>

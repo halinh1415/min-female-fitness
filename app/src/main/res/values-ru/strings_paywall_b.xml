@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">Откройте свой персональный план</string>
+    <string name="pwb_check_1">Неограниченные планы тренировок</string>
+    <string name="pwb_check_2">Все программы и 30-дневные челленджи</string>
+    <string name="pwb_check_3">Без рекламы</string>
+    <string name="pwb_special_band">СПЕЦИАЛЬНАЯ ЦЕНА</string>
+    <string name="pwb_special_title">Спецпредложение: скидка %s</string>
+    <string name="pwb_special_price">%1$s (было %2$s)/год</string>
+    <string name="pwb_trial_title">%d дн. бесплатно</string>
+    <string name="pwb_yearly_title">Годовой план</string>
+    <string name="pwb_yearly_price">%s/год</string>
+    <string name="pwb_monthly_title">Месячный план</string>
+    <string name="pwb_monthly_price">%s/мес.</string>
+    <string name="pwb_lifetime_title">Навсегда</string>
+    <string name="pwb_lifetime_price">%s разово</string>
+    <string name="pwb_per_week">%s/нед.</string>
+    <string name="pwb_forever">Навсегда</string>
+    <string name="pwb_save">ЭКОНОМИЯ %s</string>
+    <string name="pwb_cta_trial">%d ДН. БЕСПЛАТНО</string>
+    <string name="pwb_cta_sub">ПРОДОЛЖИТЬ</string>
+    <string name="pwb_no_payment">Без оплаты сейчас</string>
+    <string name="pwb_note_trial">%1$d дн. бесплатно, затем %2$s/год\nОтмена в любое время в Google Play</string>
+    <string name="pwb_note_sub">Отмена в любое время в Google Play</string>
+    <string name="pwb_note_lifetime">Разовый платёж, без подписки</string>
+    <string name="pwb_restore">Восстановить</string>
+    <string name="pwb_terms">1. Все платежи проходят через Google Play и управляются Google.\n2. Оплата списывается с аккаунта Google Play при подтверждении покупки.\n3. Подписка продлевается автоматически, если автопродление не отключено не менее чем за 24 часа до окончания текущего периода.\n4. Плата за продление списывается в течение 24 часов до окончания текущего периода.\n5. Управлять подписками и отключить автопродление можно в настройках аккаунта Google Play после покупки.\n6. Неиспользованная часть бесплатного периода сгорает при покупке подписки, если применимо.</string>
+    <string name="pwb_badge_original">ОБЫЧНАЯ ЦЕНА</string>
+    <string name="pwb_badge_best">ВЫГОДНЕЕ ВСЕГО</string>
+    <string name="pwb_ends_in">Закончится через %s</string>
+    <string name="pwb_prices_error">Не удалось загрузить цены</string>
+    <string name="pwb_retry">Повторить</string>
+    <string name="pwb_terms_link">Условия использования</string>
+    <string name="pwb_privacy_link">Политика конфиденциальности</string>
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">Schalte deinen persönlichen Plan frei</string>
+    <string name="pwb_check_1">Unbegrenzte Trainingspläne</string>
+    <string name="pwb_check_2">Alle Programme &amp; 30-Tage-Challenges</string>
+    <string name="pwb_check_3">Keine Werbung</string>
+    <string name="pwb_special_band">SONDERPREIS</string>
+    <string name="pwb_special_title">%s Rabatt – Sonderangebot</string>
+    <string name="pwb_special_price">%1$s (statt %2$s)/Jahr</string>
+    <string name="pwb_trial_title">%d Tage gratis testen</string>
+    <string name="pwb_yearly_title">Jahresabo</string>
+    <string name="pwb_yearly_price">%s/Jahr</string>
+    <string name="pwb_monthly_title">Monatsabo</string>
+    <string name="pwb_monthly_price">%s/Monat</string>
+    <string name="pwb_lifetime_title">Lebenslang</string>
+    <string name="pwb_lifetime_price">%s einmalig</string>
+    <string name="pwb_per_week">%s/Woche</string>
+    <string name="pwb_forever">Für immer</string>
+    <string name="pwb_save">SPARE %s</string>
+    <string name="pwb_cta_trial">%d TAGE GRATIS TESTEN</string>
+    <string name="pwb_cta_sub">WEITER</string>
+    <string name="pwb_no_payment">Jetzt keine Zahlung</string>
+    <string name="pwb_note_trial">%1$d Tage gratis, danach %2$s/Jahr\nJederzeit in Google Play kündbar</string>
+    <string name="pwb_note_sub">Jederzeit in Google Play kündbar</string>
+    <string name="pwb_note_lifetime">Einmalzahlung, kein Abo</string>
+    <string name="pwb_restore">Wiederherstellen</string>
+    <string name="pwb_terms">1. Alle Zahlungen erfolgen über Google Play und werden von Google verwaltet.\n2. Die Zahlung wird bei Kaufbestätigung deinem Google-Play-Konto belastet.\n3. Abos verlängern sich automatisch, sofern die automatische Verlängerung nicht mindestens 24 Stunden vor Ende des aktuellen Zeitraums deaktiviert wird.\n4. Die Verlängerung wird innerhalb von 24 Stunden vor Ende des aktuellen Zeitraums berechnet.\n5. Du kannst Abos verwalten und die automatische Verlängerung nach dem Kauf in deinen Google-Play-Kontoeinstellungen deaktivieren.\n6. Ein ungenutzter Teil eines Gratis-Tests verfällt beim Kauf eines Abos, sofern zutreffend.</string>
+    <string name="pwb_badge_original">ORIGINALPREIS</string>
+    <string name="pwb_badge_best">BESTER WERT</string>
+    <string name="pwb_ends_in">Endet in %s</string>
+    <string name="pwb_prices_error">Preise konnten nicht geladen werden</string>
+    <string name="pwb_retry">Erneut versuchen</string>
+    <string name="pwb_terms_link">Nutzungsbedingungen</string>
+    <string name="pwb_privacy_link">Datenschutzerklärung</string>
+</resources>

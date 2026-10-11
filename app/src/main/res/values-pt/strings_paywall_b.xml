@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">Desbloqueie seu plano personalizado</string>
+    <string name="pwb_check_1">Planos de treino ilimitados</string>
+    <string name="pwb_check_2">Todos os programas e desafios de 30 dias</string>
+    <string name="pwb_check_3">Sem anúncios</string>
+    <string name="pwb_special_band">PREÇO ESPECIAL</string>
+    <string name="pwb_special_title">Oferta especial: %s de desconto</string>
+    <string name="pwb_special_price">%1$s (antes %2$s)/ano</string>
+    <string name="pwb_trial_title">Teste grátis de %d dias</string>
+    <string name="pwb_yearly_title">Plano anual</string>
+    <string name="pwb_yearly_price">%s/ano</string>
+    <string name="pwb_monthly_title">Plano mensal</string>
+    <string name="pwb_monthly_price">%s/mês</string>
+    <string name="pwb_lifetime_title">Vitalício</string>
+    <string name="pwb_lifetime_price">%s pagamento único</string>
+    <string name="pwb_per_week">%s/semana</string>
+    <string name="pwb_forever">Para sempre</string>
+    <string name="pwb_save">ECONOMIZE %s</string>
+    <string name="pwb_cta_trial">TESTE GRÁTIS DE %d DIAS</string>
+    <string name="pwb_cta_sub">CONTINUAR</string>
+    <string name="pwb_no_payment">Sem pagamento agora</string>
+    <string name="pwb_note_trial">Teste grátis de %1$d dias, depois %2$s/ano\nCancele quando quiser no Google Play</string>
+    <string name="pwb_note_sub">Cancele quando quiser no Google Play</string>
+    <string name="pwb_note_lifetime">Pagamento único, sem assinatura</string>
+    <string name="pwb_restore">Restaurar</string>
+    <string name="pwb_terms">1. Todos os pagamentos são feitos pelo Google Play e gerenciados pelo Google.\n2. O pagamento é cobrado na sua conta do Google Play ao confirmar a compra.\n3. As assinaturas são renovadas automaticamente, a menos que a renovação automática seja desativada pelo menos 24 horas antes do fim do período atual.\n4. A renovação é cobrada nas 24 horas anteriores ao fim do período atual.\n5. Você pode gerenciar as assinaturas e desativar a renovação automática nas configurações da sua conta do Google Play após a compra.\n6. Qualquer parte não utilizada de um teste grátis é perdida ao comprar uma assinatura, quando aplicável.</string>
+    <string name="pwb_badge_original">PREÇO ORIGINAL</string>
+    <string name="pwb_badge_best">MELHOR VALOR</string>
+    <string name="pwb_ends_in">Termina em %s</string>
+    <string name="pwb_prices_error">Não foi possível carregar os preços</string>
+    <string name="pwb_retry">Tentar novamente</string>
+    <string name="pwb_terms_link">Termos de uso</string>
+    <string name="pwb_privacy_link">Política de privacidade</string>
+</resources>

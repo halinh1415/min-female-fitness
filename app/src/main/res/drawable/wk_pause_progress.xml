@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nút Tạm dừng chạy tiến độ: nền hồng nhạt, phần đã tập gradient hồng → mận (như nút CTA của Min) -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape><corners android:radius="28dp" /><solid android:color="@color/wk_pause_track" /></shape>
+    </item>
+    <item android:id="@android:id/progress">
+        <clip><shape><corners android:radius="28dp" />
+            <gradient android:angle="0" android:startColor="@color/wk_primary_light" android:endColor="@color/wk_primary" />
+        </shape></clip>
+    </item>
+</layer-list>

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
@@ -22,6 +23,13 @@ import mint.woman.female.workout.utils.MyPreference;
 import java.util.Locale;
 
 public class RestTimeActivity extends AppCompatActivity implements View.OnClickListener {
+    private final OnBackPressedCallback mBackCallback = new OnBackPressedCallback(true) {
+        @Override
+        public void handleOnBackPressed() {
+            handleBack();
+        }
+    };
+
 
     InterstitialAd mInterstitialAd;
     AdView mAdBanner;
@@ -33,20 +41,31 @@ public class RestTimeActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getOnBackPressedDispatcher().addCallback(this, mBackCallback);
         setContentView(R.layout.activity_rest_time);
         initView();
         requestNewAdBanner();
         requestNewInterstitialAd();
     }
 
-    @Override
-    public void onBackPressed() {
+    /**
+     * Nút Back (cả cử chỉ Back của Android 16 / SDK 36: predictive back không gọi onBackPressed()).
+     * Đăng ký qua OnBackPressedDispatcher trong onCreate; gọi onBackPressed() trong code vẫn chạy vào đây.
+     */
+    private void handleBack() {
         if (mInterstitialAd != null ) {
             flagAds = true;
             mInterstitialAd.show(RestTimeActivity.this);
         } else {
-            super.onBackPressed();
+            finishBack();
         }
+    }
+
+    /** Thoát như super.onBackPressed() cũ: tạm tắt callback để dispatcher xử lý mặc định. */
+    private void finishBack() {
+        mBackCallback.setEnabled(false);
+        getOnBackPressedDispatcher().onBackPressed();
+        mBackCallback.setEnabled(true);
     }
 
     @Override

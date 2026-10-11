@@ -35,4 +35,10 @@
     <string name="pp_home_desc">برنامه ۴ هفته‌ای بر اساس هدف، سطح و بدن شما.</string>
     <string name="pp_home_create">ساختن</string>
     <string name="pp_edit">تنظیم برنامه</string>
+    <string name="pp_rest_between">استراحت بین تمرین‌ها</string>
+    <string name="pp_warmup_stretch">گرم کردن و کشش</string>
+    <string name="pp_short">کوتاه</string>
+    <string name="pp_standard">معمولی</string>
+    <string name="pp_long">طولانی</string>
+    <string name="pp_limits">محدودیت‌ها</string>
 </resources>

@@ -35,4 +35,10 @@
     <string name="pp_home_desc">Kế hoạch 4 tuần thiết kế theo mục tiêu, trình độ và cơ thể bạn.</string>
     <string name="pp_home_create">Tạo</string>
     <string name="pp_edit">Điều chỉnh</string>
+    <string name="pp_rest_between">Nghỉ giữa các bài</string>
+    <string name="pp_warmup_stretch">Khởi động &amp; giãn cơ</string>
+    <string name="pp_short">Ngắn</string>
+    <string name="pp_standard">Vừa</string>
+    <string name="pp_long">Dài</string>
+    <string name="pp_limits">Hạn chế</string>
 </resources>

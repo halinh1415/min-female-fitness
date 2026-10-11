@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">Odblokuj swój spersonalizowany plan</string>
+    <string name="pwb_check_1">Nieograniczone plany treningowe</string>
+    <string name="pwb_check_2">Wszystkie programy i 30-dniowe wyzwania</string>
+    <string name="pwb_check_3">Bez reklam</string>
+    <string name="pwb_special_band">CENA SPECJALNA</string>
+    <string name="pwb_special_title">Oferta specjalna: -%s</string>
+    <string name="pwb_special_price">%1$s (zamiast %2$s)/rok</string>
+    <string name="pwb_trial_title">%d dni za darmo</string>
+    <string name="pwb_yearly_title">Plan roczny</string>
+    <string name="pwb_yearly_price">%s/rok</string>
+    <string name="pwb_monthly_title">Plan miesięczny</string>
+    <string name="pwb_monthly_price">%s/mies.</string>
+    <string name="pwb_lifetime_title">Dożywotnio</string>
+    <string name="pwb_lifetime_price">%s jednorazowo</string>
+    <string name="pwb_per_week">%s/tydz.</string>
+    <string name="pwb_forever">Na zawsze</string>
+    <string name="pwb_save">OSZCZĘDZASZ %s</string>
+    <string name="pwb_cta_trial">%d DNI ZA DARMO</string>
+    <string name="pwb_cta_sub">DALEJ</string>
+    <string name="pwb_no_payment">Bez płatności teraz</string>
+    <string name="pwb_note_trial">%1$d dni za darmo, potem %2$s/rok\nAnuluj w każdej chwili w Google Play</string>
+    <string name="pwb_note_sub">Anuluj w każdej chwili w Google Play</string>
+    <string name="pwb_note_lifetime">Płatność jednorazowa, bez subskrypcji</string>
+    <string name="pwb_restore">Przywróć</string>
+    <string name="pwb_terms">1. Wszystkie płatności odbywają się przez Google Play i są obsługiwane przez Google.\n2. Opłata jest pobierana z konta Google Play po potwierdzeniu zakupu.\n3. Subskrypcje odnawiają się automatycznie, chyba że automatyczne odnawianie zostanie wyłączone co najmniej 24 godziny przed końcem bieżącego okresu.\n4. Opłata za odnowienie jest pobierana w ciągu 24 godzin przed końcem bieżącego okresu.\n5. Po zakupie możesz zarządzać subskrypcjami i wyłączyć automatyczne odnawianie w ustawieniach konta Google Play.\n6. Niewykorzystana część darmowego okresu próbnego przepada po zakupie subskrypcji, jeśli dotyczy.</string>
+    <string name="pwb_badge_original">CENA REGULARNA</string>
+    <string name="pwb_badge_best">NAJLEPSZA OFERTA</string>
+    <string name="pwb_ends_in">Kończy się za %s</string>
+    <string name="pwb_prices_error">Nie udało się wczytać cen</string>
+    <string name="pwb_retry">Spróbuj ponownie</string>
+    <string name="pwb_terms_link">Warunki korzystania</string>
+    <string name="pwb_privacy_link">Polityka prywatności</string>
+</resources>

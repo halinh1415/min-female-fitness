@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">Débloque ton programme personnalisé</string>
+    <string name="pwb_check_1">Programmes d\'entraînement illimités</string>
+    <string name="pwb_check_2">Tous les programmes et défis de 30 jours</string>
+    <string name="pwb_check_3">Sans publicité</string>
+    <string name="pwb_special_band">PRIX SPÉCIAL</string>
+    <string name="pwb_special_title">Offre spéciale : -%s</string>
+    <string name="pwb_special_price">%1$s (au lieu de %2$s)/an</string>
+    <string name="pwb_trial_title">Essai gratuit de %d jours</string>
+    <string name="pwb_yearly_title">Abonnement annuel</string>
+    <string name="pwb_yearly_price">%s/an</string>
+    <string name="pwb_monthly_title">Abonnement mensuel</string>
+    <string name="pwb_monthly_price">%s/mois</string>
+    <string name="pwb_lifetime_title">À vie</string>
+    <string name="pwb_lifetime_price">%s en une fois</string>
+    <string name="pwb_per_week">%s/semaine</string>
+    <string name="pwb_forever">Pour toujours</string>
+    <string name="pwb_save">ÉCONOMISE %s</string>
+    <string name="pwb_cta_trial">ESSAI GRATUIT DE %d JOURS</string>
+    <string name="pwb_cta_sub">CONTINUER</string>
+    <string name="pwb_no_payment">Aucun paiement maintenant</string>
+    <string name="pwb_note_trial">Essai gratuit de %1$d jours, puis %2$s/an\nAnnulable à tout moment sur Google Play</string>
+    <string name="pwb_note_sub">Annulable à tout moment sur Google Play</string>
+    <string name="pwb_note_lifetime">Paiement unique, sans abonnement</string>
+    <string name="pwb_restore">Restaurer</string>
+    <string name="pwb_terms">1. Tous les paiements sont effectués via Google Play et gérés par Google.\n2. Le paiement est débité de ton compte Google Play à la confirmation de l\'achat.\n3. Les abonnements se renouvellent automatiquement sauf si le renouvellement automatique est désactivé au moins 24 heures avant la fin de la période en cours.\n4. Le renouvellement est facturé dans les 24 heures précédant la fin de la période en cours.\n5. Tu peux gérer tes abonnements et désactiver le renouvellement automatique dans les paramètres de ton compte Google Play après l\'achat.\n6. Toute partie non utilisée d\'un essai gratuit est perdue lors de l\'achat d\'un abonnement, le cas échéant.</string>
+    <string name="pwb_badge_original">PRIX D\'ORIGINE</string>
+    <string name="pwb_badge_best">MEILLEURE OFFRE</string>
+    <string name="pwb_ends_in">Se termine dans %s</string>
+    <string name="pwb_prices_error">Impossible de charger les prix</string>
+    <string name="pwb_retry">Réessayer</string>
+    <string name="pwb_terms_link">Conditions d\'utilisation</string>
+    <string name="pwb_privacy_link">Politique de confidentialité</string>
+</resources>

@@ -54,7 +54,7 @@
             android:layout_weight="1"
             android:text="1/10"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/wk_accent" />
 
         <TextView
             android:id="@+id/txt_workout_time"
@@ -64,7 +64,7 @@
             android:text="00:11"
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/wk_accent"
             android:textSize="30sp" />
     </LinearLayout>
 

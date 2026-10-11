@@ -1,5 +1,13 @@
 package mint.woman.female.workout.activity.ui.onboarding.onboard
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.spring
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -53,9 +61,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.ui.graphics.asImageBitmap
 import kotlinx.coroutines.delay
 import mint.woman.female.workout.R
 import java.util.Calendar
+import androidx.compose.ui.text.withStyle
 import kotlin.math.max
 import kotlin.math.abs
 import kotlin.math.roundToInt
@@ -73,10 +84,11 @@ private const val AUTO_ADVANCE_MS = 260L
 fun ObStepContent(
     step: OnboardStep,
     state: OnboardState,
-    onNext: () -> Unit
+    onNext: () -> Unit,
+    onSignIn: (() -> Unit)? = null
 ) {
     when (step.kind) {
-        StepKind.WELCOME -> WelcomeScreen(step, onNext)
+        StepKind.WELCOME -> WelcomeScreen(step, onNext, onSignIn)
         StepKind.COACH -> CoachScreen(step, onNext)
         StepKind.CHOICE -> ChoiceScreen(step, state, onNext)
         StepKind.CHOICE_IMAGE -> ChoiceImageScreen(step, state, onNext)
@@ -89,6 +101,7 @@ fun ObStepContent(
         StepKind.DESIRED_BODY -> DesiredBodyScreen(step, state, onNext)
         StepKind.HEIGHT -> HeightScreen(step, state, onNext)
         StepKind.WEIGHT -> WeightScreen(step, state, onNext)
+        StepKind.TARGET_WEIGHT -> TargetWeightScreen(step, state, onNext)
         StepKind.AGE -> AgeScreen(step, state, onNext)
         StepKind.SECTION -> SectionScreen(step, onNext)
         StepKind.PREDICTION -> PredictionScreen(step, state, onNext)
@@ -104,7 +117,7 @@ fun ObStepContent(
 // ---------------------------------------------------------------- step1 / step2
 
 @Composable
-private fun WelcomeScreen(step: OnboardStep, onNext: () -> Unit) {
+private fun WelcomeScreen(step: OnboardStep, onNext: () -> Unit, onSignIn: (() -> Unit)?) {
     Column(Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
@@ -134,14 +147,17 @@ private fun WelcomeScreen(step: OnboardStep, onNext: () -> Unit) {
                 Spacer(Modifier.height(8.dp))
             }
             ObPrimaryButton(step.cta, onClick = onNext)
-            Spacer(Modifier.height(18.dp))
-            Text(
-                "Already have an account? SIGN IN",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                color = ObColor.TextPrimary,
-                modifier = Modifier.clickable(onClick = onNext)
-            )
+            if (onSignIn != null) {
+                // Người dùng cũ: đăng nhập Google, lấy lại dữ liệu đã sao lưu và bỏ qua onboarding
+                Spacer(Modifier.height(18.dp))
+                Text(
+                    "Already have an account? SIGN IN",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = ObColor.TextPrimary,
+                    modifier = Modifier.clickable(onClick = onSignIn)
+                )
+            }
             Spacer(Modifier.height(16.dp))
         }
     }
@@ -408,30 +424,15 @@ private fun PotentialScreen(step: OnboardStep, state: OnboardState, onNext: () -
                     .height(280.dp)
             ) {
                 ObPotentialChart(Modifier.fillMaxSize())
-                Row(
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .fillMaxWidth()
-                        .padding(start = 32.dp, end = 8.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    listOf("Day 1", "Day 7", "Day 30").forEach {
-                        Text(it, fontSize = 17.sp, fontWeight = FontWeight.Bold, color = ObColor.TextPrimary)
-                    }
-                }
-                Text(
-                    "Fitness\nResults",
-                    modifier = Modifier
-                        .align(Alignment.TopStart)
-                        .padding(start = 32.dp),
-                    fontSize = 17.sp, fontWeight = FontWeight.Bold, color = ObColor.TextPrimary
-                )
             }
             Spacer(Modifier.height(24.dp))
+            val ageGroup = "women in their ${(state.age / 10 * 10).coerceAtLeast(10)}s"
             Text(
-                "For women in their ${state.age / 10 * 10}s, " +
-                        "progress is often slow in the first week, but stay consistent " +
-                        "and your body will start to respond.",
+                androidx.compose.ui.text.buildAnnotatedString {
+                    append("For ")
+                    withStyle(androidx.compose.ui.text.SpanStyle(fontWeight = FontWeight.Bold, color = ObColor.TextPrimary)) { append(ageGroup) }
+                    append(", the first week can feel slow. Keep going - by week two most people notice more energy and faster progress.")
+                },
                 fontSize = 18.sp, lineHeight = 25.sp,
                 color = ObColor.TextSecondary, textAlign = TextAlign.Center
             )
@@ -503,7 +504,9 @@ private fun TestimonialScreen(step: OnboardStep, onNext: () -> Unit) {
                     }
                     Spacer(Modifier.height(12.dp))
                     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                        Text("✨ Sample plan", fontSize = 15.sp, modifier = Modifier.weight(1f))
+                        ObIcon("✨", size = 18.dp, plain = true)
+                        Spacer(Modifier.width(6.dp))
+                        Text("Sample plan", fontSize = 15.sp, modifier = Modifier.weight(1f))
                         Text(item.name, fontSize = 16.sp, color = ObColor.TextSecondary)
                     }
                     Spacer(Modifier.height(8.dp))
@@ -792,7 +795,7 @@ private fun DesiredBodyScreen(step: OnboardStep, state: OnboardState, onNext: ()
                     ObCoachAvatar()
                     Spacer(Modifier.width(10.dp))
                     Text(
-                        "Your Target Body Fat", fontSize = 19.sp,
+                        "Body fat at this shape", fontSize = 19.sp,
                         fontWeight = FontWeight.Bold, color = ObColor.TextPrimary
                     )
                 }
@@ -837,29 +840,29 @@ private fun HeightScreen(step: OnboardStep, state: OnboardState, onNext: () -> U
         Spacer(Modifier.height(16.dp))
 
         Box(Modifier.weight(1f)) {
-            // Tạo lại state của ruler khi đổi hệ đo. Nếu giữ LazyListState cũ,
-            // vị trí index của cm sẽ bị tái sử dụng cho inch và làm thước nhảy sai.
+            // Thước tự vẽ vạch chỉ ở giữa; số đặt ngay trên vạch chỉ nên luôn khớp nhau.
             key(metric) {
-                ObVerticalRuler(
+                ObRuler(
                     min = if (metric) 120 else 47,
                     max = if (metric) 220 else 87,
                     value = displayValue,
-                    labelStep = if (metric) 10 else 12,
-                    feetAndInches = !metric,
+                    vertical = true,
+                    majorEvery = if (metric) 10 else 12,
+                    midEvery = if (metric) 5 else 6,
+                    label = { if (metric) it.toString() else "${it / 12}'" },
                     modifier = Modifier.fillMaxSize()
                 ) { newValue ->
-                    state.heightCm =
-                        if (metric) newValue else (newValue * 2.54f).roundToInt()
+                    state.heightCm = if (metric) newValue else (newValue * 2.54f).roundToInt()
                 }
             }
             Row(
                 modifier = Modifier
-                    .align(Alignment.Center)
-                    .fillMaxWidth(),
+                    .align(Alignment.CenterStart)
+                    .offset(y = (-34).dp),
                 verticalAlignment = Alignment.Bottom
             ) {
                 Text(
-                    if (metric) state.heightCm.toString() else "${displayValue / 12}' ${displayValue % 12}\"",
+                    if (metric) displayValue.toString() else "${displayValue / 12}' ${displayValue % 12}\"",
                     fontSize = 56.sp, fontWeight = FontWeight.ExtraBold, color = ObColor.TextPrimary
                 )
                 Spacer(Modifier.width(8.dp))
@@ -869,14 +872,6 @@ private fun HeightScreen(step: OnboardStep, state: OnboardState, onNext: () -> U
                     modifier = Modifier.padding(bottom = 10.dp)
                 )
             }
-            Box(
-                Modifier
-                    .align(Alignment.CenterEnd)
-                    .offset(y = 44.dp)
-                    .fillMaxWidth(0.72f)
-                    .height(3.dp)
-                    .background(ObColor.Pink)
-            )
         }
         ObPrimaryButton(step.cta, onClick = onNext)
         Spacer(Modifier.height(20.dp))
@@ -903,16 +898,7 @@ private fun WeightScreen(step: OnboardStep, state: OnboardState, onNext: () -> U
             Spacer(Modifier.height(20.dp))
             ObTitle(step.title, step.titleAccent)
             Spacer(Modifier.height(22.dp))
-            UnitToggle(leftLabel = "lbs", rightLabel = "kg", rightActive = metric) { newMetric ->
-                if (newMetric != metric) {
-                    state.weightValue = if (newMetric) {
-                        (state.weightValue / OnboardState.LB_PER_KG).roundToInt()
-                    } else {
-                        (state.weightValue * OnboardState.LB_PER_KG).roundToInt()
-                    }
-                    state.weightMetric = newMetric
-                }
-            }
+            UnitToggle(leftLabel = "lbs", rightLabel = "kg", rightActive = metric) { state.switchWeightUnit(it) }
             Spacer(Modifier.height(28.dp))
             Row(verticalAlignment = Alignment.Bottom) {
                 Text(
@@ -927,18 +913,21 @@ private fun WeightScreen(step: OnboardStep, state: OnboardState, onNext: () -> U
                 )
             }
             Spacer(Modifier.height(12.dp))
-            ObHorizontalRuler(
-                min = if (metric) 30 else 66,
-                max = if (metric) 200 else 440,
-                value = state.weightValue,
-                majorStep = if (metric) 5 else 10,
-                labelStep = if (metric) 5 else 10,
-                pixelsPerUnitDp = if (metric) 14 else 7,
-                feetAndInches = false,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(110.dp)
-            ) { state.weightValue = it }
+            key(metric) {
+                ObRuler(
+                    min = if (metric) 30 else 66,
+                    max = if (metric) 200 else 440,
+                    value = state.weightValue,
+                    vertical = false,
+                    majorEvery = if (metric) 5 else 10,
+                    midEvery = 0,
+                    unitSpacing = if (metric) 12.dp else 7.dp,
+                    label = { it.toString() },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(110.dp)
+                ) { state.weightValue = it }
+            }
             Spacer(Modifier.height(24.dp))
             Column(
                 Modifier
@@ -947,7 +936,7 @@ private fun WeightScreen(step: OnboardStep, state: OnboardState, onNext: () -> U
                     .background(Color(0xFFFBEEF2))
                     .padding(18.dp)
             ) {
-                Text("CURRENT BMI", fontSize = 17.sp, fontWeight = FontWeight.Bold, color = ObColor.TextPrimary)
+                Text("YOUR BMI", fontSize = 17.sp, fontWeight = FontWeight.Bold, color = ObColor.TextPrimary)
                 Spacer(Modifier.height(10.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
@@ -966,6 +955,124 @@ private fun WeightScreen(step: OnboardStep, state: OnboardState, onNext: () -> U
     }
 }
 
+@Composable
+private fun TargetWeightScreen(step: OnboardStep, state: OnboardState, onNext: () -> Unit) {
+    val metric = state.weightMetric
+    // Lần đầu vào màn: gợi ý theo mục tiêu chính (người dùng kéo lại tuỳ ý).
+    LaunchedEffect(Unit) {
+        if (state.targetValue <= 0) state.targetValue = state.suggestedTargetValue()
+    }
+    val target = if (state.targetValue > 0) state.targetValue else state.suggestedTargetValue()
+    val unit = if (metric) "kg" else "lbs"
+
+    Column(
+        Modifier
+            .fillMaxSize()
+            .padding(horizontal = ScreenPadding),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Spacer(Modifier.height(20.dp))
+            ObTitle(step.title, step.titleAccent)
+            Spacer(Modifier.height(22.dp))
+            UnitToggle(leftLabel = "lbs", rightLabel = "kg", rightActive = metric) { state.switchWeightUnit(it) }
+            Spacer(Modifier.height(28.dp))
+            Row(verticalAlignment = Alignment.Bottom) {
+                Text(
+                    target.toFloat().format1(),
+                    fontSize = 56.sp, fontWeight = FontWeight.ExtraBold, color = ObColor.TextPrimary
+                )
+                Spacer(Modifier.width(8.dp))
+                Text(unit, fontSize = 22.sp, color = ObColor.TextSecondary, modifier = Modifier.padding(bottom = 10.dp))
+            }
+            Text(
+                "Now: ${state.weightValue.toFloat().format1()} $unit",
+                fontSize = 15.sp, color = ObColor.Pink, fontWeight = FontWeight.SemiBold
+            )
+            Spacer(Modifier.height(8.dp))
+            key(metric) {
+                ObRuler(
+                    min = if (metric) 30 else 66,
+                    max = if (metric) 200 else 440,
+                    value = target,
+                    vertical = false,
+                    majorEvery = if (metric) 5 else 10,
+                    unitSpacing = if (metric) 12.dp else 7.dp,
+                    label = { it.toString() },
+                    markValue = state.weightValue,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(110.dp)
+                ) { state.targetValue = it }
+            }
+            Spacer(Modifier.height(24.dp))
+            TargetFeedbackCard(state, target, unit)
+            Spacer(Modifier.height(8.dp))
+        }
+        Spacer(Modifier.height(16.dp))
+        ObPrimaryButton(step.cta, onClick = onNext)
+        Spacer(Modifier.height(20.dp))
+    }
+}
+
+/** Nhận xét mục tiêu: % cân giảm / tăng, cảnh báo khi BMI mục tiêu dưới mức khoẻ mạnh. */
+@Composable
+private fun TargetFeedbackCard(state: OnboardState, target: Int, unit: String) {
+    val current = state.weightValue
+    val percent = if (current > 0) abs(current - target) * 100f / current else 0f
+    val pctText = "${percent.format1()}%"
+    val healthyMin = 18.5f * state.heightMeters * state.heightMeters
+    val healthyMinDisplay = if (state.weightMetric) healthyMin else healthyMin * OnboardState.LB_PER_KG
+    val (title, body, warn) = when {
+        state.targetBmi < 18.5f -> Triple(
+            "⚠️ That's below a healthy weight",
+            "For your height, a healthy weight starts at about ${healthyMinDisplay.roundToInt()} $unit. Let's aim a little higher.",
+            true
+        )
+        target == current -> Triple(
+            "🎯 Keep your weight",
+            "We'll focus on toning, posture and energy while you stay where you are.",
+            false
+        )
+        target > current -> Triple(
+            "💪 Gain $pctText",
+            "Healthy weight gain works best with strength training, so your plan will lean into that.",
+            false
+        )
+        percent <= 10f -> Triple(
+            "👍 A realistic goal!",
+            "That's $pctText of your body weight. Even a small change can make stairs easier, help you sleep better and lift your mood.",
+            false
+        )
+        percent <= 20f -> Triple(
+            "🔥 Ambitious, but doable",
+            "That's $pctText of your body weight. We'll split it into weekly milestones so it never feels like too much.",
+            false
+        )
+        else -> Triple(
+            "🧭 A long-term goal",
+            "Losing $pctText takes a few months. We'll start with a first milestone and adjust as you go.",
+            false
+        )
+    }
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(18.dp))
+            .background(if (warn) Color(0xFFFFF3E0) else Color(0xFFFBEEF2))
+            .padding(18.dp)
+    ) {
+        Text(title, fontSize = 17.sp, fontWeight = FontWeight.Bold, color = if (warn) Color(0xFFB45309) else ObColor.TextPrimary)
+        Spacer(Modifier.height(8.dp))
+        Text(body, fontSize = 16.sp, lineHeight = 22.sp, color = ObColor.TextSecondary)
+    }
+}
+
 private fun bmiColor(bmi: Float): Color = when {
     bmi < 18.5f -> ObColor.Purple
     bmi < 25f -> ObColor.Ok
@@ -976,7 +1083,7 @@ private fun bmiColor(bmi: Float): Color = when {
 private fun bmiMessage(bmi: Float): String = when {
     bmi < 18.5f -> "You are on the slim side - let's build strength together!"
     bmi < 25f -> "Your BMI is in a healthy range. Let's keep it that way!"
-    bmi < 30f -> "You only need a bit more sweat exercises to see a fitter you!"
+    bmi < 30f -> "A little regular movement will make a visible difference."
     else -> "A steady plan will help you get back to a healthy range."
 }
 
@@ -1085,6 +1192,120 @@ private fun SectionScreen(step: OnboardStep, onNext: () -> Unit) {
 
 @Composable
 private fun PredictionScreen(step: OnboardStep, state: OnboardState, onNext: () -> Unit) {
+    // Dự đoán lần 1: màn "trước / sau" chạy ~2 giây rồi tự chuyển sang biểu đồ (chạm để bỏ qua).
+    if (step.design != "step28") {
+        var showChart by rememberSaveable(step.design) { mutableStateOf(false) }
+        LaunchedEffect(showChart) {
+            if (!showChart) {
+                delay(2300)
+                showChart = true
+            }
+        }
+        androidx.compose.animation.Crossfade(targetState = showChart, animationSpec = tween(450), label = "predictionIntro") { chart ->
+            if (chart) PredictionChartScreen(step, state, onNext)
+            else BeforeAfterIntro(state) { showChart = true }
+        }
+    } else {
+        PredictionChartScreen(step, state, onNext)
+    }
+}
+
+/** "Hình dung bạn ở cân nặng mục tiêu": 2 thẻ hiện tại → mục tiêu, thẻ mục tiêu bật lên kèm pháo sáng. */
+@Composable
+private fun BeforeAfterIntro(state: OnboardState, onSkip: () -> Unit) {
+    val unit = if (state.weightMetric) "kg" else "lbs"
+    val target = if (state.weightMetric) state.targetWeightKg else state.targetWeightKg * OnboardState.LB_PER_KG
+    val current = state.weightValue.toFloat()
+    val goalIn = remember { Animatable(0f) }
+    val burst = remember { Animatable(0f) }
+    LaunchedEffect(Unit) {
+        delay(350)
+        goalIn.animateTo(1f, spring(dampingRatio = 0.55f, stiffness = 260f))
+        burst.animateTo(1f, tween(900))
+    }
+    Column(
+        Modifier
+            .fillMaxSize()
+            .clickable(interactionSource = remember { MutableInteractionSource() }, indication = null, onClick = onSkip)
+            .padding(horizontal = ScreenPadding),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Spacer(Modifier.height(20.dp))
+        ObTitle("Picture yourself at your goal weight", accent = "your goal weight", fontSize = 30)
+        Spacer(Modifier.height(40.dp))
+        Box(Modifier.fillMaxWidth().height(320.dp), contentAlignment = Alignment.Center) {
+            // pháo sáng: các tia toả ra quanh thẻ mục tiêu
+            androidx.compose.foundation.Canvas(Modifier.fillMaxSize()) {
+                val c = Offset(size.width * 0.66f, size.height * 0.45f)
+                val b = burst.value
+                if (b > 0f && b < 1f) {
+                    repeat(12) { i ->
+                        val angle = Math.toRadians(i * 30.0)
+                        val r1 = 60.dp.toPx() + 70.dp.toPx() * b
+                        val r2 = r1 + 18.dp.toPx()
+                        drawLine(
+                            ObColor.Pink.copy(alpha = 1f - b),
+                            Offset(c.x + (r1 * kotlin.math.cos(angle)).toFloat(), c.y + (r1 * kotlin.math.sin(angle)).toFloat()),
+                            Offset(c.x + (r2 * kotlin.math.cos(angle)).toFloat(), c.y + (r2 * kotlin.math.sin(angle)).toFloat()),
+                            strokeWidth = 3.dp.toPx(), cap = androidx.compose.ui.graphics.StrokeCap.Round
+                        )
+                    }
+                }
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                WeightCard("Now", "${current.format1()} $unit", art = "change_before", highlight = false, modifier = Modifier.width(130.dp).height(200.dp))
+                Text("➜", fontSize = 26.sp, color = ObColor.Pink, modifier = Modifier.padding(horizontal = 8.dp))
+                WeightCard(
+                    "Goal", "${target.format1()} $unit", art = "change_after", highlight = true,
+                    modifier = Modifier
+                        .width(150.dp)
+                        .height(230.dp)
+                        .graphicsLayer {
+                            scaleX = 0.6f + 0.4f * goalIn.value
+                            scaleY = 0.6f + 0.4f * goalIn.value
+                            alpha = goalIn.value.coerceIn(0f, 1f)
+                        }
+                )
+            }
+        }
+        Spacer(Modifier.height(24.dp))
+        Text(
+            "Small, steady steps add up. Let's see when you could get there.",
+            fontSize = 18.sp, lineHeight = 25.sp, color = ObColor.TextSecondary, textAlign = TextAlign.Center
+        )
+    }
+}
+
+@Composable
+private fun WeightCard(caption: String, weight: String, art: String, highlight: Boolean, modifier: Modifier) {
+    Column(
+        modifier
+            .clip(RoundedCornerShape(20.dp))
+            .background(if (highlight) Color.White else Color(0xFFEDE7EA))
+            .border(if (highlight) 3.dp else 0.dp, if (highlight) ObColor.Pink else Color.Transparent, RoundedCornerShape(20.dp))
+    ) {
+        Box(Modifier.fillMaxWidth().weight(1f), contentAlignment = Alignment.Center) {
+            if (rememberObArt(art) != null) {
+                ObArt(name = art, modifier = Modifier.fillMaxSize(), contentScale = ContentScale.Crop)
+            } else {
+                Text(if (highlight) "🙋‍♀️" else "🧍‍♀️", fontSize = if (highlight) 64.sp else 52.sp)
+            }
+        }
+        Column(
+            Modifier
+                .fillMaxWidth()
+                .background(if (highlight) ObColor.Pink else Color(0xFFB9AFB4))
+                .padding(vertical = 8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(caption, fontSize = 12.sp, color = Color.White.copy(alpha = 0.85f))
+            Text(weight, fontSize = if (highlight) 20.sp else 17.sp, fontWeight = FontWeight.ExtraBold, color = Color.White)
+        }
+    }
+}
+
+@Composable
+private fun PredictionChartScreen(step: OnboardStep, state: OnboardState, onNext: () -> Unit) {
     val isSecond = step.design == "step28"
     val days = if (isSecond) state.fasterDays else state.baseDays
     val date = remember(days) { state.targetDate(days) }
@@ -1142,15 +1363,24 @@ private fun PredictionScreen(step: OnboardStep, state: OnboardState, onNext: () 
                     .fillMaxWidth()
                     .height(280.dp),
                 ghostDays = if (isSecond && state.savedDays > 0) state.baseDays else 0,
-                ghostLabel = if (isSecond) OnboardState.formatDateShort(baseDate) else ""
+                ghostLabel = if (isSecond) OnboardState.formatDateShort(baseDate) else "",
+                shiftFromDays = if (isSecond && state.savedDays > 0) state.baseDays else 0
             )
             Spacer(Modifier.height(26.dp))
             if (isSecond) {
                 if (state.savedDays > 0) {
-                    ObTitle(
-                        "Your routine gets you there ${state.savedDays} days sooner",
-                        accent = "${state.savedDays} days sooner", fontSize = 22
-                    )
+                    // hiện sau khi mốc đích đã trượt về ngày mới (≈3.2 giây), số ngày đếm lên
+                    var shown by remember { mutableIntStateOf(0) }
+                    LaunchedEffect(state.savedDays) {
+                        delay(3200)
+                        for (d in 1..state.savedDays) { shown = d; delay(40) }
+                    }
+                    AnimatedVisibility(visible = shown > 0, enter = fadeIn() + expandVertically()) {
+                        ObTitle(
+                            "Your routine gets you there $shown days sooner",
+                            accent = "$shown days sooner", fontSize = 22
+                        )
+                    }
                 }
                 Text(
                     "Estimated at a safe pace of under 0.7 kg (1.5 lb) per week. Results vary.",
@@ -1316,7 +1546,7 @@ private fun YesNoButton(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(glyph, fontSize = 24.sp, fontWeight = FontWeight.Bold, color = glyphColor)
+        ObIcon(glyph, size = 28.dp, plain = true, tint = glyphColor)
         Spacer(Modifier.width(12.dp))
         Text(label, fontSize = 22.sp, fontWeight = FontWeight.Bold, color = ObColor.TextPrimary)
     }
@@ -1394,24 +1624,34 @@ private fun FullYesNoScreen(step: OnboardStep, state: OnboardState, onNext: () -
 // ---------------------------------------------------------------- step45 / 46 / 47
 
 private val GENERATING_MESSAGES = listOf(
-    "Analyzing your answers...",
-    "Calculating your fitness level...",
-    "Picking the right exercises...",
-    "Finalizing your personal plan..."
+    "Reading your answers…",
+    "Matching your fitness level…",
+    "Choosing the right exercises…",
+    "Putting your weeks together…"
 )
 
+/**
+ * Màn tạo kế hoạch: vòng % chạy ~8 giây, phần dưới đổi 3 pha theo % như video tham khảo
+ * (cộng đồng → thư viện bài tập → đánh giá), mỗi pha một tiêu đề và một Lottie như Tai Chi Qigong
+ * (xem ObGeneratingLottie.kt).
+ */
 @Composable
 private fun GeneratingScreen(step: OnboardStep, onNext: () -> Unit) {
     var percent by remember { mutableIntStateOf(0) }
     LaunchedEffect(Unit) {
         while (percent < 100) {
-            delay(45)
+            // chậm dần ở cuối cho cảm giác "đang hoàn thiện"
+            delay(if (percent < 85) 70 else 130)
             percent += 1
         }
-        delay(320)
+        delay(450)
         onNext()
     }
-    val animated by animateFloatAsState(percent / 100f, tween(220), label = "generating")
+    val phase = when {
+        percent < 35 -> 0
+        percent < 85 -> 1
+        else -> 2
+    }
 
     Column(
         Modifier
@@ -1419,47 +1659,45 @@ private fun GeneratingScreen(step: OnboardStep, onNext: () -> Unit) {
             .padding(horizontal = ScreenPadding),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(Modifier.height(60.dp))
-        Text(step.title, fontSize = 30.sp, fontWeight = FontWeight.ExtraBold, color = ObColor.TextPrimary)
-        Spacer(Modifier.height(30.dp))
+        Spacer(Modifier.height(40.dp))
+        Text(step.title, fontSize = 26.sp, fontWeight = FontWeight.ExtraBold, color = ObColor.TextPrimary)
+        Spacer(Modifier.height(22.dp))
         Box(Modifier.size(170.dp), contentAlignment = Alignment.Center) {
-            androidx.compose.foundation.Canvas(Modifier.fillMaxSize()) {
-                val stroke = size.minDimension * 0.08f
-                drawArc(
-                    color = ObColor.Track,
-                    startAngle = -90f, sweepAngle = 360f, useCenter = false,
-                    style = androidx.compose.ui.graphics.drawscope.Stroke(width = stroke)
-                )
-                drawArc(
-                    color = ObColor.Pink,
-                    startAngle = -90f, sweepAngle = 360f * animated, useCenter = false,
-                    style = androidx.compose.ui.graphics.drawscope.Stroke(
-                        width = stroke,
-                        cap = androidx.compose.ui.graphics.StrokeCap.Round
-                    )
-                )
-            }
-            Text("$percent%", fontSize = 40.sp, fontWeight = FontWeight.ExtraBold, color = ObColor.TextPrimary)
+            GeneratingRingLottie(Modifier.fillMaxSize())
+            Text("$percent%", fontSize = 34.sp, fontWeight = FontWeight.ExtraBold, color = ObColor.TextPrimary)
         }
-        Spacer(Modifier.height(26.dp))
+        Spacer(Modifier.height(14.dp))
         Text(
             GENERATING_MESSAGES[(percent / 26).coerceIn(0, GENERATING_MESSAGES.lastIndex)],
-            fontSize = 18.sp, color = ObColor.TextSecondary
+            fontSize = 16.sp, color = ObColor.TextSecondary
         )
-        Spacer(Modifier.height(26.dp))
-        ObTitle(step.subtitle, fontSize = 26, color = ObColor.Pink)
-        Spacer(Modifier.height(20.dp))
-        if (rememberObArt("generating_users") != null) {
-            ObArt(
-                name = "generating_users",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
-                contentScale = ContentScale.Fit
-            )
-        } else {
-            // Chưa có ảnh thì không để khung trống chiếm nửa màn hình.
-            Spacer(Modifier.weight(1f))
+        Spacer(Modifier.height(22.dp))
+        androidx.compose.animation.Crossfade(
+            targetState = phase,
+            animationSpec = tween(400),
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
+            label = "generatingPhase"
+        ) { current ->
+            Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxSize()) {
+                ObTitle(
+                    when (current) {
+                        0 -> "Women like you are training with us"
+                        1 -> "Hundreds of guided exercises"
+                        else -> "Highly rated by our users"
+                    },
+                    fontSize = 22, color = ObColor.Pink
+                )
+                Spacer(Modifier.height(12.dp))
+                GeneratingStageLottie(
+                    stage = GeneratingStage.entries[current],
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f)
+                        .padding(bottom = 16.dp)
+                )
+            }
         }
     }
 }
@@ -1517,9 +1755,9 @@ private fun PlanResultScreen(step: OnboardStep, state: OnboardState, onNext: () 
             )
 
             Spacer(Modifier.height(26.dp))
-            SectionHeader("FITNESS ROUTINE")
+            SectionHeader("YOUR TRAINING WEEK")
             Spacer(Modifier.height(12.dp))
-            RoutineCalendar(days)
+            RoutineCalendar(days, state.trainingDaysPerWeek)
 
             Spacer(Modifier.height(26.dp))
             SectionHeader("DESIGNED FOR YOU")
@@ -1550,10 +1788,21 @@ private fun SectionHeader(text: String) {
 }
 
 @Composable
-private fun RoutineCalendar(days: Int) {
+private fun RoutineCalendar(days: Int, perWeek: Int) {
     val calendar = remember { Calendar.getInstance() }
-    val startDay = remember { calendar.get(Calendar.DAY_OF_MONTH) }
     val startWeekday = remember { calendar.get(Calendar.DAY_OF_WEEK) - 1 }
+    // Buổi tập rải đều trong mỗi 7 ngày kể từ hôm bắt đầu, đúng số buổi/tuần đã chọn.
+    val pattern = when (perWeek) {
+        1 -> setOf(0)
+        2 -> setOf(0, 3)
+        3 -> setOf(0, 2, 4)
+        4 -> setOf(0, 1, 3, 5)
+        else -> setOf(0, 1, 2, 4, 5)
+    }
+    // Ngày trong tháng tính theo lịch thật (qua cuối tháng không bị sai số).
+    fun dayOfMonth(offset: Int): Int = (calendar.clone() as Calendar).apply {
+        add(Calendar.DAY_OF_YEAR, offset)
+    }.get(Calendar.DAY_OF_MONTH)
 
     Column(
         Modifier
@@ -1592,12 +1841,15 @@ private fun RoutineCalendar(days: Int) {
                             offset < 0 -> Spacer(Modifier.height(44.dp))
                             offset == 0 -> CalendarCell("Start", true, ObColor.Pink, Color.White)
                             offset == days -> CalendarCell("Success", true, Color.White, ObColor.Pink, bordered = true)
-                            else -> CalendarCell(
-                                ((startDay + offset - 1) % 31 + 1).toString(),
-                                offset % 3 != 0,
-                                if (offset % 3 != 0) Color(0xFFFDE7EF) else Color.Transparent,
-                                ObColor.TextPrimary
-                            )
+                            else -> {
+                                val training = offset % 7 in pattern
+                                CalendarCell(
+                                    dayOfMonth(offset).toString(),
+                                    training,
+                                    if (training) Color(0xFFFDE7EF) else Color.Transparent,
+                                    ObColor.TextPrimary
+                                )
+                            }
                         }
                     }
                 }
@@ -1674,7 +1926,7 @@ private fun DesignedForYouCard(state: OnboardState) {
 @Composable
 private fun PlanFact(emoji: String, label: String, value: String) {
     Row(verticalAlignment = Alignment.CenterVertically) {
-        Text(emoji, fontSize = 24.sp)
+        ObIcon(emoji, size = 40.dp)
         Spacer(Modifier.width(12.dp))
         Column {
             Text(label, fontSize = 14.sp, color = ObColor.TextSecondary)
@@ -1717,7 +1969,7 @@ private fun PlanPreviewCard() {
                         fontWeight = FontWeight.Bold, color = ObColor.TextPrimary
                     )
                     Spacer(Modifier.width(6.dp))
-                    Text(week.emoji, fontSize = 17.sp)
+                    ObIcon(week.emoji, size = 20.dp, plain = true)
                 }
                 Spacer(Modifier.height(10.dp))
                 Row(
@@ -1768,7 +2020,15 @@ private fun TrialIntroScreen(step: OnboardStep, onNext: () -> Unit) {
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text("🎁", fontSize = 72.sp)
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .size(120.dp)
+                    .clip(CircleShape)
+                    .background(Brush.linearGradient(listOf(ObColor.PinkLight, ObColor.Pink)))
+            ) {
+                ObIcon("🎁", size = 64.dp, plain = true, tint = Color.White)
+            }
             Spacer(Modifier.height(16.dp))
             ObTitle(step.title, step.titleAccent, fontSize = 32)
         }

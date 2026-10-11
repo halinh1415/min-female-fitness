@@ -35,4 +35,10 @@
     <string name="pp_home_desc">आपके लक्ष्य, स्तर और शरीर के अनुसार 4 हफ़्ते का प्लान।</string>
     <string name="pp_home_create">बनाएँ</string>
     <string name="pp_edit">प्लान बदलें</string>
+    <string name="pp_rest_between">व्यायामों के बीच आराम</string>
+    <string name="pp_warmup_stretch">वार्म-अप और स्ट्रेचिंग</string>
+    <string name="pp_short">छोटा</string>
+    <string name="pp_standard">सामान्य</string>
+    <string name="pp_long">लंबा</string>
+    <string name="pp_limits">सीमाएँ</string>
 </resources>

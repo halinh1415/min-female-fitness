@@ -35,4 +35,10 @@
     <string name="pp_home_desc">4týdenní plán podle tvého cíle, úrovně a těla.</string>
     <string name="pp_home_create">Vytvořit</string>
     <string name="pp_edit">Upravit plán</string>
+    <string name="pp_rest_between">Odpočinek mezi cviky</string>
+    <string name="pp_warmup_stretch">Rozcvička a protažení</string>
+    <string name="pp_short">Krátký</string>
+    <string name="pp_standard">Standardní</string>
+    <string name="pp_long">Dlouhý</string>
+    <string name="pp_limits">Omezení</string>
 </resources>

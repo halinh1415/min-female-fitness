@@ -39,4 +39,16 @@ public class RemoteConfigKeys {
     public static final String PAYWALL_EXIT_OFFER_ENABLED = "paywall_exit_offer_enabled";
     /** Offer id (Play Console) of the yearly discounted offer used for the exit offer. */
     public static final String PAYWALL_EXIT_OFFER_ID = "paywall_exit_offer_id";
+    /** Từ lần mở paywall thứ mấy thì mở đợt giảm 50% (2 tiếng, tối đa 1 đợt / 7 ngày); 0 = tắt. */
+    public static final String PAYWALL_PROMO_OPEN_COUNT = "paywall_promo_open_count";
+    /** Mở paywall từ lần thứ N mà không có đợt 50%: chào ngẫu nhiên Trọn đời hoặc giảm 34%. 0 = tắt. */
+    public static final String PAYWALL_OFFER_ROTATE_OPEN_COUNT = "paywall_offer_rotate_open_count";
+    /** Đợt 50%: số ngày chỉ giá gốc sau khi cài / LuckyDraw. */
+    public static final String PAYWALL_PROMO_MIN_DAYS = "paywall_promo_min_days";
+    /** Đợt 50%: số ngày tối thiểu giữa hai đợt. */
+    public static final String PAYWALL_PROMO_COOLDOWN_DAYS = "paywall_promo_cooldown_days";
+    /** Đợt 50%: tối đa bao nhiêu đợt trong 30 ngày (0 = không giới hạn). */
+    public static final String PAYWALL_PROMO_MAX_PER_MONTH = "paywall_promo_max_per_month";
+    /** Vắng app bao nhiêu ngày thì lần vào paywall kế tiếp được tặng đợt 50% (0 = tắt). */
+    public static final String PAYWALL_PROMO_WINBACK_DAYS = "paywall_promo_winback_days";
 }

@@ -1,251 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Màn tập (ngang): video vuông bên trái, bên phải tên + đồng hồ + điều khiển. -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:background="#FFFDFD"
+    android:background="@color/wk_bg"
     tools:context=".fragment.PlayFragment">
 
     <mint.woman.female.workout.custom.CustomVideoView
         android:id="@+id/videoView"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <ImageView
-        android:id="@+id/img_setting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="8dp"
-        android:background="@drawable/bg_icon_circle"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_whistle" />
-
-    <TextView
-        android:id="@+id/txt_speed"
-        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/bg_icon_circle"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        android:text="1.0x"
-        android:textColor="@color/White"
-        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/progress_ready_bottom"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="@+id/img_setting"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/img_setting"
-        app:layout_constraintTop_toBottomOf="@+id/img_setting" />
-    <ImageView
-        android:id="@+id/img_rotate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        app:srcCompat="@drawable/ic_baseline_screen_rotation_24"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@drawable/bg_icon_circle"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="10dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_speed" />
-
-
-    <TextView
-        android:id="@+id/tv_exercise_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:drawableRight="@drawable/ic_info_outline_black_24dp"
-        android:foreground="?attr/selectableItemBackground"
-        android:maxWidth="200dp"
-        android:singleLine="false"
-        android:text="Easy Pose Easy Pose Easy Pose Easy PoseEasy PoseEasy PoseEasy Pose"
-        android:textAlignment="viewStart"
-        android:textAllCaps="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/Black"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/txt_time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_sub"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="@dimen/_12sdp"
-        android:textColor="@color/Black"
-        app:layout_constraintEnd_toEndOf="@+id/tv_exercise_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_exercise_name" />
-    <ProgressBar
-        android:id="@+id/progress_ready_bottom"
-        style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_width="0dp"
-        android:layout_height="3dp"
-        android:max="100"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-
-    <TextView
-        android:id="@+id/txt_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="24dp"
-        android:text='00:00'
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/Black"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/img_previous"
-        app:layout_constraintLeft_toLeftOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/img_previous"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:background="@drawable/bg_transparent_btn_r_6"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginHorizontal="@dimen/_8sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:padding="@dimen/_5sdp">
-
-        <TextView
-            android:id="@+id/tv_pr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_baseline_skip_previous_24"
-            android:drawablePadding="10dp"
-            android:gravity="center"
-            android:textColor="@color/gray_600"
-            android:text="@string/txt_previous"
-            android:textAlignment="center"
-            android:textSize="@dimen/_12sdp" />
-    </LinearLayout>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/btn_pause"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/bg_transparent_btn_ripple_white"
-        android:clickable="true"
-        android:focusable="false"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/img_done">
-
-        <ProgressBar
-            android:id="@+id/progress_ready"
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_width="@dimen/_150sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:max="100"
-            android:progress="0"
-            android:progressDrawable="@drawable/horizontal_blue_progress"
-            app:layout_constraintBottom_toBottomOf="@id/txt_pause"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/txt_pause" />
-
-        <TextView
-            android:id="@+id/txt_pause"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:drawableLeft="@drawable/ic_baseline_pause_circle_outline_24"
-            android:drawablePadding="10dp"
-            android:gravity="center"
-            android:text="@string/txt_touch_to_pause"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/Gray"
-            android:textSize="@dimen/_14sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.54"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageView
-        android:id="@+id/img_done"
-        android:layout_width="@dimen/_56sdp"
-        android:layout_height="@dimen/_56sdp"
-        android:layout_gravity="center"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_checked"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:visibility="visible" />
-
-    <LinearLayout
-        android:id="@+id/img_next"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_transparent_btn_r_6"
-        android:padding="@dimen/_5sdp"
-        android:layout_marginHorizontal="@dimen/_8sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_previous">
-        <TextView
-            android:id="@+id/tv_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_baseline_skip_next_24"
-            android:gravity="center"
-            android:textColor="@color/gray_600"
-            android:text="@string/txt_skip"
-            android:textSize="@dimen/_12sdp" />
-    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_count_down"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawablePadding="5dp"
-        android:gravity="center"
         android:text="3"
-        android:textAlignment="center"
-        android:textColor="@color/Orange"
-        android:textSize="60sp"
+        android:textColor="@color/wk_primary"
+        android:textSize="72sp"
         android:textStyle="bold"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/videoView"
+        app:layout_constraintEnd_toEndOf="@id/videoView"
+        app:layout_constraintStart_toStartOf="@id/videoView"
+        app:layout_constraintTop_toTopOf="@id/videoView" />
+
+    <LinearLayout
+        android:id="@+id/layout_control"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="12dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txt_speed"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/wk_circle_soft"
+            android:gravity="center"
+            android:text="1.0x"
+            android:textColor="@color/wk_primary"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/img_setting"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/wk_circle_soft"
+            android:contentDescription="@null"
+            android:padding="9dp"
+            app:srcCompat="@drawable/ic_baseline_more_vert_24"
+            app:tint="@color/wk_primary" />
+
+        <ImageView
+            android:id="@+id/img_rotate"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/wk_circle_soft"
+            android:contentDescription="@null"
+            android:padding="9dp"
+            app:srcCompat="@drawable/ic_baseline_screen_rotation_24"
+            app:tint="@color/wk_primary" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_exercise_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="12dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:drawablePadding="8dp"
+        android:focusable="true"
+        android:maxLines="2"
+        android:textColor="@color/wk_title"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        app:drawableEndCompat="@drawable/ic_info_outline_black_24dp"
+        app:drawableTint="@color/wk_muted"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/tv_sub"
+        app:layout_constraintEnd_toStartOf="@id/layout_control"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/videoView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Jump rope" />
+
+    <TextView
+        android:id="@+id/tv_sub"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textColor="@color/wk_muted"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@id/txt_time"
+        app:layout_constraintEnd_toStartOf="@id/layout_control"
+        app:layout_constraintStart_toStartOf="@id/tv_exercise_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_exercise_name" />
+
+    <TextView
+        android:id="@+id/txt_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFeatureSettings="tnum"
+        android:text="00:00"
+        android:textColor="@color/wk_title"
+        android:textSize="52sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/btn_pause"
+        app:layout_constraintStart_toStartOf="@id/tv_exercise_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_sub" />
+
+    <ImageView
+        android:id="@+id/img_done"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/wk_circle_done"
+        android:contentDescription="@null"
+        android:padding="12dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/txt_time"
+        app:layout_constraintStart_toEndOf="@id/txt_time"
+        app:layout_constraintTop_toTopOf="@id/txt_time"
+        app:srcCompat="@drawable/ic_baseline_done_24"
+        app:tint="@color/White"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/img_previous"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:drawablePadding="2dp"
+        android:focusable="true"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@string/txt_previous"
+        android:textColor="@color/wk_muted"
+        android:textSize="11sp"
+        app:drawableTint="@color/wk_title"
+        app:drawableTopCompat="@drawable/ic_baseline_skip_previous_24"
+        app:layout_constraintBottom_toBottomOf="@id/btn_pause"
+        app:layout_constraintStart_toEndOf="@id/videoView"
+        app:layout_constraintTop_toTopOf="@id/btn_pause" />
+
+    <FrameLayout
+        android:id="@+id/btn_pause"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintBottom_toTopOf="@id/progress_ready_bottom"
+        app:layout_constraintEnd_toStartOf="@id/img_next"
+        app:layout_constraintStart_toEndOf="@id/img_previous"
+        app:layout_constraintTop_toBottomOf="@id/txt_time">
+
+        <ProgressBar
+            android:id="@+id/progress_ready"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/wk_pause_progress" />
+
+        <TextView
+            android:id="@+id/txt_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawablePadding="8dp"
+            android:maxLines="1"
+            android:text="@string/txt_touch_to_pause"
+            android:textColor="@color/White"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/ic_baseline_pause_circle_outline_24"
+            app:drawableTint="@color/White" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/img_next"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:drawablePadding="2dp"
+        android:focusable="true"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@string/txt_skip"
+        android:textColor="@color/wk_muted"
+        android:textSize="11sp"
+        app:drawableTint="@color/wk_title"
+        app:drawableTopCompat="@drawable/ic_baseline_skip_next_24"
+        app:layout_constraintBottom_toBottomOf="@id/btn_pause"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_pause" />
+
+    <ProgressBar
+        android:id="@+id/progress_ready_bottom"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:max="100"
+        android:progressDrawable="@drawable/wk_progress_line"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

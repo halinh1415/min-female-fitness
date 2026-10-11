@@ -35,4 +35,10 @@
     <string name="pp_home_desc">แผน 4 สัปดาห์ที่ออกแบบตามเป้าหมาย ระดับ และร่างกายของคุณ</string>
     <string name="pp_home_create">สร้าง</string>
     <string name="pp_edit">ปรับแผน</string>
+    <string name="pp_rest_between">พักระหว่างท่า</string>
+    <string name="pp_warmup_stretch">วอร์มอัพและยืดเหยียด</string>
+    <string name="pp_short">สั้น</string>
+    <string name="pp_standard">มาตรฐาน</string>
+    <string name="pp_long">ยาว</string>
+    <string name="pp_limits">ข้อจำกัด</string>
 </resources>

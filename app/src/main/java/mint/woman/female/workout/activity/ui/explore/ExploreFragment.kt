@@ -22,6 +22,10 @@ import mint.woman.female.workout.activity.ui.workout.ChallengeActivity
 import mint.woman.female.workout.model.CategoryObject
 import mint.woman.female.workout.model.ProgramObject
 import mint.woman.female.workout.utils.MyPreference
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /** Màn Discover (tab Training) viết bằng Jetpack Compose, cùng dữ liệu với bản cũ. */
 class ExploreFragment : Fragment(), DiscoverActions {
@@ -37,7 +41,10 @@ class ExploreFragment : Fragment(), DiscoverActions {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sections = buildSections()
+        // Map chương trình giải mã lần đầu khá nặng: dựng danh sách ở luồng nền.
+        viewLifecycleOwner.lifecycleScope.launch {
+            sections = withContext(Dispatchers.IO) { buildSections() }
+        }
     }
 
     override fun onResume() {

@@ -49,6 +49,13 @@ class OnboardingAnalytics(
         )
     }
 
+    /** Người dùng cũ bấm SIGN IN ở màn chào và đăng nhập thành công. */
+    fun signedIn(step: OnboardStep, visibleStepCount: Int) {
+        firebase.logEvent(EVENT_SIGNED_IN, commonBundle(visibleStepCount).apply {
+            putString(PARAM_STEP_ID, step.stableKey.take(MAX_PARAM_LENGTH))
+        })
+    }
+
     private fun commonBundle(visibleStepCount: Int) = Bundle().apply {
         putString(PARAM_EXPERIMENT_ID, OnboardingExperimentRepository.EXPERIMENT_ID)
         putString(PARAM_VARIANT, variant.remoteValue)
@@ -63,6 +70,7 @@ class OnboardingAnalytics(
         const val EVENT_SECTION_SKIPPED = "onboarding_section_skipped"
         const val EVENT_COMPLETED = "onboarding_completed"
         const val EVENT_EXITED = "onboarding_exited"
+        const val EVENT_SIGNED_IN = "onboarding_signed_in"
 
         const val PARAM_EXPERIMENT_ID = "experiment_id"
         const val PARAM_VARIANT = "onboarding_variant"

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">अपना पर्सनल प्लान अनलॉक करें</string>
+    <string name="pwb_check_1">असीमित वर्कआउट प्लान</string>
+    <string name="pwb_check_2">सभी प्रोग्राम और 30 दिन की चुनौतियाँ</string>
+    <string name="pwb_check_3">कोई विज्ञापन नहीं</string>
+    <string name="pwb_special_band">विशेष कीमत</string>
+    <string name="pwb_special_title">%s छूट का विशेष ऑफ़र</string>
+    <string name="pwb_special_price">%1$s (पहले %2$s)/वर्ष</string>
+    <string name="pwb_trial_title">%d दिन का मुफ़्त ट्रायल</string>
+    <string name="pwb_yearly_title">वार्षिक प्लान</string>
+    <string name="pwb_yearly_price">%s/वर्ष</string>
+    <string name="pwb_monthly_title">मासिक प्लान</string>
+    <string name="pwb_monthly_price">%s/माह</string>
+    <string name="pwb_lifetime_title">आजीवन</string>
+    <string name="pwb_lifetime_price">%s एक बार</string>
+    <string name="pwb_per_week">%s/सप्ताह</string>
+    <string name="pwb_forever">हमेशा के लिए</string>
+    <string name="pwb_save">%s बचाएँ</string>
+    <string name="pwb_cta_trial">%d दिन का मुफ़्त ट्रायल</string>
+    <string name="pwb_cta_sub">जारी रखें</string>
+    <string name="pwb_no_payment">अभी कोई भुगतान नहीं</string>
+    <string name="pwb_note_trial">%1$d दिन मुफ़्त, फिर %2$s/वर्ष\nGoogle Play में कभी भी रद्द करें</string>
+    <string name="pwb_note_sub">Google Play में कभी भी रद्द करें</string>
+    <string name="pwb_note_lifetime">एक बार भुगतान, कोई सदस्यता नहीं</string>
+    <string name="pwb_restore">रीस्टोर करें</string>
+    <string name="pwb_terms">1. सभी भुगतान Google Play के माध्यम से होते हैं और Google द्वारा प्रबंधित किए जाते हैं।\n2. खरीदारी की पुष्टि होने पर भुगतान आपके Google Play खाते से लिया जाता है।\n3. सदस्यता अपने आप नवीनीकृत होती है, जब तक कि मौजूदा अवधि खत्म होने से कम से कम 24 घंटे पहले ऑटो-रिन्यू बंद न किया जाए।\n4. नवीनीकरण का शुल्क मौजूदा अवधि खत्म होने से 24 घंटे के भीतर आपके खाते से लिया जाता है।\n5. खरीदारी के बाद आप Google Play खाता सेटिंग में सदस्यता प्रबंधित कर सकते हैं और ऑटो-रिन्यू बंद कर सकते हैं।\n6. सदस्यता खरीदने पर, जहाँ लागू हो, मुफ़्त ट्रायल का बचा हुआ हिस्सा समाप्त हो जाता है।</string>
+    <string name="pwb_badge_original">मूल कीमत</string>
+    <string name="pwb_badge_best">सबसे बेहतर</string>
+    <string name="pwb_ends_in">%s में खत्म</string>
+    <string name="pwb_prices_error">कीमतें लोड नहीं हो सकीं</string>
+    <string name="pwb_retry">फिर कोशिश करें</string>
+    <string name="pwb_terms_link">उपयोग की शर्तें</string>
+    <string name="pwb_privacy_link">गोपनीयता नीति</string>
+</resources>

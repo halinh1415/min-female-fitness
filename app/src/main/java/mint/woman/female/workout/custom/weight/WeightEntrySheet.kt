@@ -31,8 +31,6 @@ import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.SelectableDates
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -139,18 +137,14 @@ fun WeightEntrySheet(state: WeightEntryState, gender: Int, actions: WeightEntryA
         }
 
         val current = WeightEntryMath.parseDecimal(state.weightText)
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(top = 8.dp),
-        ) {
-            StepButton("−") { actions.onStep(-0.1f) }
-            WeightRuler(
-                value = current ?: if (state.isKg) 60f else 132f,
-                onValueChange = actions.onWeightValue,
-                modifier = Modifier.weight(1f).height(64.dp).padding(horizontal = 8.dp),
-            )
-            StepButton("+") { actions.onStep(0.1f) }
-        }
+        RulerRow(
+            value = current ?: if (state.isKg) 60f else 132f,
+            step = 0.1f,
+            ticksPerLabel = 10,
+            label = { it.roundToInt().toString() },
+            onValue = actions.onWeightValue,
+            onStep = actions.onStep,
+        )
 
         if (state.weightError) {
             ErrorText(
@@ -172,35 +166,39 @@ fun WeightEntrySheet(state: WeightEntryState, gender: Int, actions: WeightEntryA
             label = stringResource(R.string.txt_height),
             isKg = state.isKg,
             cm = state.heightCm,
-            cmText = state.heightCmText,
-            feetText = state.heightFeetText,
-            inchesText = state.heightInchesText,
+            display = state.heightDisplay,
+            fallback = if (state.isKg) 165f else 65f,
+            cmStep = 1f,
+            cmTicksPerLabel = 10,
+            inchTicksPerLabel = 12,
+            feetLabels = true,
             expanded = state.heightExpanded,
             error = state.heightError,
             minCm = WeightEntryMath.MIN_HEIGHT_CM,
             maxCm = WeightEntryMath.MAX_HEIGHT_CM,
             errorTextRes = R.string.height_error_range,
             onToggle = actions.onToggleHeight,
-            onCm = actions.onHeightCm,
-            onFeet = actions.onHeightFeet,
-            onInches = actions.onHeightInches,
+            onValue = actions.onHeightValue,
+            onStep = actions.onHeightStep,
         )
         MeasurementSection(
             label = stringResource(R.string.txt_waist_circumference),
             isKg = state.isKg,
             cm = state.waistCm,
-            cmText = state.waistCmText,
-            feetText = state.waistFeetText,
-            inchesText = state.waistInchesText,
+            display = state.waistDisplay,
+            fallback = if (state.isKg) 75f else 30f,
+            cmStep = 0.5f,
+            cmTicksPerLabel = 10,
+            inchTicksPerLabel = 10,
+            feetLabels = false,
             expanded = state.waistExpanded,
             error = state.waistError,
             minCm = WeightEntryMath.MIN_WAIST_CM,
             maxCm = WeightEntryMath.MAX_WAIST_CM,
             errorTextRes = R.string.waist_error_range,
             onToggle = actions.onToggleWaist,
-            onCm = actions.onWaistCm,
-            onFeet = actions.onWaistFeet,
-            onInches = actions.onWaistInches,
+            onValue = actions.onWaistValue,
+            onStep = actions.onWaistStep,
         )
 
         Spacer(Modifier.height(18.dp))
@@ -249,13 +247,11 @@ class WeightEntryActions(
     val onStep: (Float) -> Unit,
     val onUnitKg: (Boolean) -> Unit,
     val onToggleHeight: () -> Unit,
-    val onHeightCm: (String) -> Unit,
-    val onHeightFeet: (String) -> Unit,
-    val onHeightInches: (String) -> Unit,
+    val onHeightValue: (Float) -> Unit,
+    val onHeightStep: (Float) -> Unit,
     val onToggleWaist: () -> Unit,
-    val onWaistCm: (String) -> Unit,
-    val onWaistFeet: (String) -> Unit,
-    val onWaistInches: (String) -> Unit,
+    val onWaistValue: (Float) -> Unit,
+    val onWaistStep: (Float) -> Unit,
     val onDate: (Long) -> Unit,
     val onSave: () -> Unit,
     val onCancel: () -> Unit,
@@ -301,7 +297,7 @@ private fun UnitToggle(options: List<String>, selected: Int, onSelect: (Int) -> 
 }
 
 @Composable
-private fun StepButton(label: String, onClick: () -> Unit) {
+private fun StepButton(label: String, step: Float, onClick: () -> Unit) {
     val colors = WeightEntryThemeValues.colors
     OutlinedButton(
         onClick = onClick,
@@ -309,16 +305,26 @@ private fun StepButton(label: String, onClick: () -> Unit) {
         border = BorderStroke(1.dp, colors.border),
         contentPadding = PaddingValues(0.dp),
         modifier = Modifier.size(44.dp).semantics {
-            contentDescription = if (label == "+") "+0.1" else "-0.1"
+            contentDescription = (if (label == "+") "+" else "-") + WeightEntryMath.format1(step)
         },
     ) {
         Text(label, color = colors.primary, fontSize = 22.sp)
     }
 }
 
-/** Thước ngang: kéo sang trái tăng, sang phải giảm, mỗi vạch ứng với 0,1 đơn vị. */
+/**
+ * Thước trượt: kéo ngang để đổi giá trị, mỗi vạch một [step], vạch dài + nhãn mỗi [ticksPerLabel] vạch.
+ * Vạch giữa (màu chính) là giá trị hiện tại. Dùng chung cho cân nặng, chiều cao, vòng eo.
+ */
 @Composable
-private fun WeightRuler(value: Float, onValueChange: (Float) -> Unit, modifier: Modifier = Modifier) {
+private fun ValueRuler(
+    value: Float,
+    step: Float,
+    ticksPerLabel: Int,
+    label: (Float) -> String,
+    onValueChange: (Float) -> Unit,
+    modifier: Modifier = Modifier,
+) {
     val colors = WeightEntryThemeValues.colors
     val textMeasurer = rememberTextMeasurer()
     val labelStyle = TextStyle(color = colors.muted, fontSize = 10.sp)
@@ -326,8 +332,8 @@ private fun WeightRuler(value: Float, onValueChange: (Float) -> Unit, modifier: 
     val onChange by rememberUpdatedState(onValueChange)
 
     Canvas(
-        modifier.pointerInput(Unit) {
-            val pxPerTenth = 9.dp.toPx()
+        modifier = modifier.pointerInput(step) {
+            val pxPerTick = 9.dp.toPx()
             var startValue = 0f
             var dragged = 0f
             detectHorizontalDragGestures(
@@ -335,46 +341,60 @@ private fun WeightRuler(value: Float, onValueChange: (Float) -> Unit, modifier: 
                     startValue = currentValue
                     dragged = 0f
                 },
-            ) { change, dragAmount ->
+            ) { change, dx ->
                 change.consume()
-                dragged += dragAmount
-                onChange(startValue - dragged / pxPerTenth * 0.1f)
+                dragged += dx
+                onChange(startValue - dragged / pxPerTick * step)
             }
-        },
+        }
     ) {
-        val pxPerTenth = 9.dp.toPx()
+        val pxPerTick = 9.dp.toPx()
         val centerX = size.width / 2
-        val baseTenth = (value * 10).roundToInt()
-        val offset = (value * 10 - baseTenth) * pxPerTenth
-        val visible = (size.width / pxPerTenth / 2).toInt() + 2
+        val baseTick = (value / step).roundToInt()
+        val offset = (value / step - baseTick) * pxPerTick
+        val visible = (size.width / pxPerTick / 2).toInt() + 2
         for (i in -visible..visible) {
-            val tenth = baseTenth + i
-            if (tenth < 0) continue
-            val x = centerX + i * pxPerTenth - offset
-            val major = tenth % 10 == 0
-            val half = tenth % 5 == 0
-            val tickHeight = when {
+            val tick = baseTick + i
+            if (tick < 0) continue
+            val x = centerX + i * pxPerTick - offset
+            val major = tick % ticksPerLabel == 0
+            val half = ticksPerLabel % 2 == 0 && tick % (ticksPerLabel / 2) == 0
+            val h = when {
                 major -> size.height * 0.5f
                 half -> size.height * 0.35f
                 else -> size.height * 0.22f
             }
-            drawLine(
-                colors.border,
-                Offset(x, 0f),
-                Offset(x, tickHeight),
-                strokeWidth = if (major) 2.dp.toPx() else 1.dp.toPx(),
-            )
+            drawLine(colors.border, Offset(x, 0f), Offset(x, h), strokeWidth = if (major) 2.dp.toPx() else 1.dp.toPx())
             if (major) {
-                val label = textMeasurer.measure((tenth / 10).toString(), labelStyle)
-                drawText(label, topLeft = Offset(x - label.size.width / 2, tickHeight + 4.dp.toPx()))
+                val text = textMeasurer.measure(label(tick * step), labelStyle)
+                drawText(text, topLeft = Offset(x - text.size.width / 2, h + 4.dp.toPx()))
             }
         }
-        drawLine(
-            colors.primary,
-            Offset(centerX, 0f),
-            Offset(centerX, size.height * 0.62f),
-            strokeWidth = 3.dp.toPx(),
+        drawLine(colors.primary, Offset(centerX, 0f), Offset(centerX, size.height * 0.62f), strokeWidth = 3.dp.toPx())
+    }
+}
+
+/** Hàng "−  thước  +" dùng chung. */
+@Composable
+private fun RulerRow(
+    value: Float,
+    step: Float,
+    ticksPerLabel: Int,
+    label: (Float) -> String,
+    onValue: (Float) -> Unit,
+    onStep: (Float) -> Unit,
+) {
+    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 4.dp)) {
+        StepButton("−", step) { onStep(-step) }
+        ValueRuler(
+            value = value,
+            step = step,
+            ticksPerLabel = ticksPerLabel,
+            label = label,
+            onValueChange = onValue,
+            modifier = Modifier.weight(1f).height(64.dp).padding(horizontal = 8.dp),
         )
+        StepButton("+", step) { onStep(step) }
     }
 }
 
@@ -436,23 +456,27 @@ private fun MeasurementSection(
     label: String,
     isKg: Boolean,
     cm: Float?,
-    cmText: String,
-    feetText: String,
-    inchesText: String,
+    display: Float?,
+    fallback: Float,
+    cmStep: Float,
+    cmTicksPerLabel: Int,
+    inchTicksPerLabel: Int,
+    feetLabels: Boolean,
     expanded: Boolean,
     error: Boolean,
     minCm: Float,
     maxCm: Float,
     errorTextRes: Int,
     onToggle: () -> Unit,
-    onCm: (String) -> Unit,
-    onFeet: (String) -> Unit,
-    onInches: (String) -> Unit,
+    onValue: (Float) -> Unit,
+    onStep: (Float) -> Unit,
 ) {
     val colors = WeightEntryThemeValues.colors
     val summary = when {
         cm == null -> "–"
         isKg -> "${WeightEntryMath.format1(cm)} cm"
+        // Vòng eo ghi thẳng số inch (khớp thước), chiều cao ghi ft + in.
+        !feetLabels -> "${WeightEntryMath.format1(cm / WeightEntryMath.CM_PER_INCH)} in"
         else -> WeightEntryMath.cmToFtIn(cm).let { (ft, inch) -> "$ft ft ${WeightEntryMath.format1(inch)} in" }
     }
     Row(
@@ -466,14 +490,18 @@ private fun MeasurementSection(
     }
     if (!expanded && !error) return
 
-    if (isKg) {
-        NumberField(cmText, "cm", onCm, error, Modifier.fillMaxWidth())
-    } else {
-        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            NumberField(feetText, "ft", onFeet, error, Modifier.weight(1f), decimal = false)
-            NumberField(inchesText, "in", onInches, error, Modifier.weight(1f))
-        }
-    }
+    // Kéo thước thay cho gõ số: cm (kg) hoặc inch (lb, bước 0.5); chiều cao ghi nhãn dạng 5'6".
+    RulerRow(
+        value = display ?: fallback,
+        step = if (isKg) cmStep else 0.5f,
+        ticksPerLabel = if (isKg) cmTicksPerLabel else inchTicksPerLabel,
+        label = { v ->
+            val whole = v.roundToInt()
+            if (!isKg && feetLabels) "${whole / 12}'${whole % 12}\"" else whole.toString()
+        },
+        onValue = onValue,
+        onStep = onStep,
+    )
     if (error) {
         ErrorText(
             stringResource(
@@ -483,36 +511,6 @@ private fun MeasurementSection(
             ),
         )
     }
-}
-
-@Composable
-private fun NumberField(
-    value: String,
-    suffix: String,
-    onChange: (String) -> Unit,
-    isError: Boolean,
-    modifier: Modifier,
-    decimal: Boolean = true,
-) {
-    val colors = WeightEntryThemeValues.colors
-    OutlinedTextField(
-        value = value,
-        onValueChange = onChange,
-        singleLine = true,
-        isError = isError,
-        suffix = { Text(suffix, color = colors.muted) },
-        keyboardOptions = KeyboardOptions(
-            keyboardType = if (decimal) KeyboardType.Decimal else KeyboardType.Number,
-        ),
-        colors = OutlinedTextFieldDefaults.colors(
-            focusedBorderColor = colors.primary,
-            unfocusedBorderColor = colors.border,
-            focusedTextColor = colors.title,
-            unfocusedTextColor = colors.title,
-        ),
-        shape = RoundedCornerShape(12.dp),
-        modifier = modifier,
-    )
 }
 
 @Composable

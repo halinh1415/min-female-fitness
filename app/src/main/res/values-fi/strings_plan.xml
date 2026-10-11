@@ -35,4 +35,10 @@
     <string name="pp_home_desc">4 viikon suunnitelma tavoitteesi, tasosi ja kehosi mukaan.</string>
     <string name="pp_home_create">Luo</string>
     <string name="pp_edit">Säädä suunnitelmaa</string>
+    <string name="pp_rest_between">Tauko liikkeiden välillä</string>
+    <string name="pp_warmup_stretch">Lämmittely ja venyttely</string>
+    <string name="pp_short">Lyhyt</string>
+    <string name="pp_standard">Normaali</string>
+    <string name="pp_long">Pitkä</string>
+    <string name="pp_limits">Rajoitukset</string>
 </resources>

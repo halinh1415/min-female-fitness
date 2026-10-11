@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="badge_dialog_bg">#221B1F</color>
+    <color name="badge_dialog_ink">#F4ECEF</color>
+    <color name="badge_dialog_muted">#C9BAC2</color>
+    <color name="badge_dialog_accent">#3FA67E</color>
+    <color name="badge_dialog_border">#3A2E34</color>
+</resources>

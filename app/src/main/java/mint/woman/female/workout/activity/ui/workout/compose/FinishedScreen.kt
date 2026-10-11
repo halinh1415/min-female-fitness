@@ -78,8 +78,11 @@ class FinishedActions(
 )
 
 // Bảng màu Rose của app Min.
-private val HeroGradient = listOf(Color(0xFFC2185B), MinColor.Pink, MinColor.PinkLight)
-private val Border = Color(0xFFF1E4EA)
+// Bản tối: hồng trầm hơn để hero không chói giữa nền gần đen
+private val HeroGradient get() =
+    if (MinColor.isDark) listOf(Color(0xFF6E1238), Color(0xFF9C1C4F), Color(0xFFB8336A))
+    else listOf(Color(0xFFC2185B), MinColor.Pink, MinColor.PinkLight)
+private val Border get() = MinColor.Track
 private val FeelEmojis = listOf("😫", "😓", "🙂", "😄", "😎")
 private val FeelLabels = listOf(R.string.fin_feel_1, R.string.fin_feel_2, R.string.fin_feel_3, R.string.fin_feel_4, R.string.fin_feel_5)
 
@@ -191,14 +194,14 @@ private fun Hero(state: FinishedState, onClose: () -> Unit) {
             AnimatedVisibility(state.streakText != null, enter = fadeIn() + slideInVertically { it / 2 }) {
                 Text(
                     state.streakText.orEmpty(),
-                    color = Color(0xFFC2541A),
+                    color = if (MinColor.isDark) Color(0xFFFFB066) else Color(0xFFC2541A),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .padding(top = 14.dp, start = 16.dp, end = 16.dp)
                         .clip(RoundedCornerShape(50))
-                        .background(Color(0xFFFFEFE5))
+                        .background(if (MinColor.isDark) Color(0xFF3A2A1E) else Color(0xFFFFEFE5))
                         .padding(horizontal = 16.dp, vertical = 8.dp),
                 )
             }
@@ -215,7 +218,8 @@ private fun Stat(emoji: String, value: String, label: String, modifier: Modifier
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
             .clip(RoundedCornerShape(18.dp))
-            .background(Color.White.copy(alpha = 0.95f))
+            // Nền theo theme: chữ TextPrimary bản tối là màu sáng, nền trắng cố định thì chữ biến mất
+            .background(MinColor.Surface.copy(alpha = 0.95f))
             .padding(vertical = 12.dp),
     ) {
         Text(emoji, fontSize = 18.sp)

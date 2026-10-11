@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">ปลดล็อกแผนส่วนตัวของคุณ</string>
+    <string name="pwb_check_1">แผนการออกกำลังกายไม่จำกัด</string>
+    <string name="pwb_check_2">ทุกโปรแกรมและชาเลนจ์ 30 วัน</string>
+    <string name="pwb_check_3">ไม่มีโฆษณา</string>
+    <string name="pwb_special_band">ราคาพิเศษ</string>
+    <string name="pwb_special_title">ข้อเสนอพิเศษ ลด %s</string>
+    <string name="pwb_special_price">%1$s (จาก %2$s)/ปี</string>
+    <string name="pwb_trial_title">ทดลองใช้ฟรี %d วัน</string>
+    <string name="pwb_yearly_title">แพ็กเกจรายปี</string>
+    <string name="pwb_yearly_price">%s/ปี</string>
+    <string name="pwb_monthly_title">แพ็กเกจรายเดือน</string>
+    <string name="pwb_monthly_price">%s/เดือน</string>
+    <string name="pwb_lifetime_title">ตลอดชีพ</string>
+    <string name="pwb_lifetime_price">%s จ่ายครั้งเดียว</string>
+    <string name="pwb_per_week">%s/สัปดาห์</string>
+    <string name="pwb_forever">ตลอดไป</string>
+    <string name="pwb_save">ประหยัด %s</string>
+    <string name="pwb_cta_trial">ทดลองใช้ฟรี %d วัน</string>
+    <string name="pwb_cta_sub">ดำเนินการต่อ</string>
+    <string name="pwb_no_payment">ยังไม่ต้องจ่ายตอนนี้</string>
+    <string name="pwb_note_trial">ทดลองใช้ฟรี %1$d วัน จากนั้น %2$s/ปี\nยกเลิกได้ทุกเมื่อใน Google Play</string>
+    <string name="pwb_note_sub">ยกเลิกได้ทุกเมื่อใน Google Play</string>
+    <string name="pwb_note_lifetime">จ่ายครั้งเดียว ไม่ใช่การสมัครสมาชิก</string>
+    <string name="pwb_restore">กู้คืน</string>
+    <string name="pwb_terms">1. การชำระเงินทั้งหมดดำเนินการผ่าน Google Play และจัดการโดย Google\n2. ระบบจะเรียกเก็บเงินจากบัญชี Google Play ของคุณเมื่อยืนยันการซื้อ\n3. การสมัครสมาชิกจะต่ออายุอัตโนมัติ เว้นแต่จะปิดการต่ออายุอัตโนมัติอย่างน้อย 24 ชั่วโมงก่อนสิ้นสุดรอบปัจจุบัน\n4. ระบบจะเรียกเก็บค่าต่ออายุภายใน 24 ชั่วโมงก่อนสิ้นสุดรอบปัจจุบัน\n5. คุณจัดการการสมัครสมาชิกและปิดการต่ออายุอัตโนมัติได้ในการตั้งค่าบัญชี Google Play หลังการซื้อ\n6. ระยะเวลาทดลองใช้ฟรีที่เหลือจะสิ้นสุดลงเมื่อคุณซื้อการสมัครสมาชิก หากมี</string>
+    <string name="pwb_badge_original">ราคาปกติ</string>
+    <string name="pwb_badge_best">คุ้มที่สุด</string>
+    <string name="pwb_ends_in">สิ้นสุดใน %s</string>
+    <string name="pwb_prices_error">โหลดราคาไม่ได้</string>
+    <string name="pwb_retry">ลองอีกครั้ง</string>
+    <string name="pwb_terms_link">ข้อกำหนดการใช้งาน</string>
+    <string name="pwb_privacy_link">นโยบายความเป็นส่วนตัว</string>
+</resources>

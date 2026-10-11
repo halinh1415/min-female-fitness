@@ -18,6 +18,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -40,30 +44,108 @@ import mint.woman.female.workout.activity.ui.onboarding.onboard.ObFontFamily
 import mint.woman.female.workout.model.ProgramObject
 import mint.woman.female.workout.retrofit.ApiUtils
 
-/** Bảng màu "Rose" dùng chung cho các màn Compose (Home, Report...). */
-object MinColor {
-    val Pink = Color(0xFFE91E63)
-    val PinkLight = Color(0xFFFF5C8A)
-    val PinkSoft = Color(0xFFFDE7EF)
-    val Background = Color(0xFFFFF7FA)
-    val Surface = Color.White
-    val TextPrimary = Color(0xFF1F1A1D)
-    val TextSecondary = Color(0xFF6B5E66)
-    val TextMuted = Color(0xFFA0939B)
-    val Track = Color(0xFFF1E4EA)
-    val Purple = Color(0xFF8E5CF7)
-    val Plum = Color(0xFFC2459F)
-    val Ok = Color(0xFF2EAD6B)
-    val Warning = Color(0xFFFF9F43)
-    val Danger = Color(0xFFE5484D)
+/** Một bộ màu "Rose" (sáng hoặc tối). */
+@Immutable
+class MinPalette(
+    val pink: Color,
+    val pinkLight: Color,
+    val pinkSoft: Color,
+    val background: Color,
+    val surface: Color,
+    val textPrimary: Color,
+    val textSecondary: Color,
+    val textMuted: Color,
+    val track: Color,
+    val purple: Color,
+    val plum: Color,
+    val ok: Color,
+    val warning: Color,
+    val danger: Color,
+    val isDark: Boolean,
+)
 
-    val CtaBrush = Brush.horizontalGradient(listOf(PinkLight, Pink))
-    val HeroBrush = Brush.verticalGradient(listOf(Pink, PinkLight))
+val LightMinPalette = MinPalette(
+    pink = Color(0xFFE91E63),
+    pinkLight = Color(0xFFFF5C8A),
+    pinkSoft = Color(0xFFFDE7EF),
+    background = Color(0xFFFFF7FA),
+    surface = Color.White,
+    textPrimary = Color(0xFF1F1A1D),
+    textSecondary = Color(0xFF6B5E66),
+    textMuted = Color(0xFFA0939B),
+    track = Color(0xFFF1E4EA),
+    purple = Color(0xFF8E5CF7),
+    plum = Color(0xFFC2459F),
+    ok = Color(0xFF2EAD6B),
+    warning = Color(0xFFFF9F43),
+    danger = Color(0xFFE5484D),
+    isDark = false,
+)
+
+/** Nền gần đen ánh hồng, thẻ xám hồng đậm, chữ sáng; màu nhấn giữ hồng nhưng sáng hơn chút để đủ tương phản. */
+val DarkMinPalette = MinPalette(
+    pink = Color(0xFFF0457E),
+    pinkLight = Color(0xFFFF6E98),
+    pinkSoft = Color(0xFF3B2330),
+    background = Color(0xFF151013),
+    surface = Color(0xFF221B1F),
+    textPrimary = Color(0xFFF4ECEF),
+    textSecondary = Color(0xFFC9BAC2),
+    textMuted = Color(0xFF94868D),
+    track = Color(0xFF3A2E34),
+    purple = Color(0xFFA680FA),
+    plum = Color(0xFFD66BB8),
+    ok = Color(0xFF43C383),
+    warning = Color(0xFFFFB066),
+    danger = Color(0xFFFF6B6F),
+    isDark = true,
+)
+
+/**
+ * Bảng màu "Rose" dùng chung cho các màn Compose (Home, Report...). Đọc theo bộ màu hiện hành
+ * ([MinTheme] chọn sáng / tối theo cài đặt giao diện của app), nên dùng được cả trong DrawScope.
+ */
+object MinColor {
+    internal var palette by mutableStateOf(LightMinPalette)
+
+    val isDark get() = palette.isDark
+    val Pink get() = palette.pink
+    val PinkLight get() = palette.pinkLight
+    val PinkSoft get() = palette.pinkSoft
+    val Background get() = palette.background
+    val Surface get() = palette.surface
+    val TextPrimary get() = palette.textPrimary
+    val TextSecondary get() = palette.textSecondary
+    val TextMuted get() = palette.textMuted
+    val Track get() = palette.track
+    val Purple get() = palette.purple
+    val Plum get() = palette.plum
+    val Ok get() = palette.ok
+    val Warning get() = palette.warning
+    val Danger get() = palette.danger
+
+    val CtaBrush get() = Brush.horizontalGradient(listOf(PinkLight, Pink))
+    val HeroBrush get() = Brush.verticalGradient(listOf(Pink, PinkLight))
 }
 
+/**
+ * Theme Compose của Min. [darkTheme] mặc định theo cấu hình (Cài đặt → Giao diện: sáng / tối / theo
+ * hệ thống, áp qua AppCompatDelegate nên isSystemInDarkTheme() phản ánh đúng lựa chọn đó).
+ */
 @Composable
-fun MinTheme(content: @Composable () -> Unit) {
-    MaterialTheme {
+fun MinTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+    val palette = if (darkTheme) DarkMinPalette else LightMinPalette
+    // Gán trước khi vẽ nội dung để khung hình đầu đã đúng màu (giá trị không đổi thì không recompose).
+    if (MinColor.palette !== palette) MinColor.palette = palette
+    MaterialTheme(
+        colorScheme = if (darkTheme) {
+            darkColorScheme(primary = palette.pink, background = palette.background, surface = palette.surface,
+                onSurface = palette.textPrimary, onBackground = palette.textPrimary)
+        } else {
+            lightColorScheme(primary = palette.pink, background = palette.background, surface = palette.surface,
+                onSurface = palette.textPrimary, onBackground = palette.textPrimary)
+        },
+    ) {
         // Màu chữ mặc định qua LocalContentColor (không đặt trong TextStyle) để Button,
         // DropdownMenu... vẫn tự đổi màu chữ theo nền của chúng.
         CompositionLocalProvider(LocalContentColor provides MinColor.TextPrimary) {
@@ -99,7 +181,8 @@ fun MinSectionHeader(
     title: String,
     modifier: Modifier = Modifier,
     action: String? = null,
-    onAction: (() -> Unit)? = null
+    onAction: (() -> Unit)? = null,
+    actionSuffix: String = " ›"
 ) {
     Row(
         modifier.fillMaxWidth(),
@@ -117,7 +200,7 @@ fun MinSectionHeader(
         )
         if (action != null && onAction != null) {
             Text(
-                "$action ›",
+                action + actionSuffix,
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Bold,
                 color = MinColor.Pink,

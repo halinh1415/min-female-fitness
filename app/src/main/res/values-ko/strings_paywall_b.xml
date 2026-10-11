@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">나만의 맞춤 플랜 잠금 해제</string>
+    <string name="pwb_check_1">무제한 운동 플랜</string>
+    <string name="pwb_check_2">모든 프로그램과 30일 챌린지</string>
+    <string name="pwb_check_3">광고 제거</string>
+    <string name="pwb_special_band">특별가</string>
+    <string name="pwb_special_title">%s 할인 특별 혜택</string>
+    <string name="pwb_special_price">%1$s (정가 %2$s)/년</string>
+    <string name="pwb_trial_title">%d일 무료 체험</string>
+    <string name="pwb_yearly_title">연간 플랜</string>
+    <string name="pwb_yearly_price">%s/년</string>
+    <string name="pwb_monthly_title">월간 플랜</string>
+    <string name="pwb_monthly_price">%s/월</string>
+    <string name="pwb_lifetime_title">평생</string>
+    <string name="pwb_lifetime_price">%s 일회 결제</string>
+    <string name="pwb_per_week">%s/주</string>
+    <string name="pwb_forever">평생</string>
+    <string name="pwb_save">%s 절약</string>
+    <string name="pwb_cta_trial">%d일 무료 체험</string>
+    <string name="pwb_cta_sub">계속</string>
+    <string name="pwb_no_payment">지금은 결제 없음</string>
+    <string name="pwb_note_trial">%1$d일 무료, 이후 연 %2$s\nGoogle Play에서 언제든 취소 가능</string>
+    <string name="pwb_note_sub">Google Play에서 언제든 취소 가능</string>
+    <string name="pwb_note_lifetime">일회성 결제, 구독 아님</string>
+    <string name="pwb_restore">복원</string>
+    <string name="pwb_terms">1. 모든 결제는 Google Play를 통해 이루어지며 Google이 관리합니다.\n2. 구매 확인 시 Google Play 계정으로 결제됩니다.\n3. 현재 기간이 끝나기 최소 24시간 전에 자동 갱신을 끄지 않으면 구독이 자동으로 갱신됩니다.\n4. 갱신 요금은 현재 기간이 끝나기 전 24시간 이내에 청구됩니다.\n5. 구매 후 Google Play 계정 설정에서 구독을 관리하고 자동 갱신을 끌 수 있습니다.\n6. 구독을 구매하면 무료 체험의 사용하지 않은 기간은 소멸됩니다(해당하는 경우).</string>
+    <string name="pwb_badge_original">정가</string>
+    <string name="pwb_badge_best">최고의 가치</string>
+    <string name="pwb_ends_in">%s 후 종료</string>
+    <string name="pwb_prices_error">가격을 불러오지 못했어요</string>
+    <string name="pwb_retry">다시 시도</string>
+    <string name="pwb_terms_link">이용약관</string>
+    <string name="pwb_privacy_link">개인정보 처리방침</string>
+</resources>

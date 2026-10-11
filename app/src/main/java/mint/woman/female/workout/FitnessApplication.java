@@ -67,6 +67,10 @@ public class FitnessApplication extends Application implements Configuration.Pro
         }else if (id ==23){
             id = 882;
         }
+        if (id > Database.MY_WORKOUT_ID_BASE) {
+            // Bài tự tạo trong My Workout (ID riêng, lưu ở file JSON, không nằm trong chương trình có sẵn).
+            return mint.woman.female.workout.utils.MyWorkoutStore.find(this, id);
+        }
         return mJsonHelper.getAllCategoryHashMap().get(id);
     }
 
@@ -126,6 +130,9 @@ public class FitnessApplication extends Application implements Configuration.Pro
             }
         }
         mJsonHelper = JsonHelper.newInstance(getApplicationContext());
+        // Giải mã sẵn danh sách bài ở luồng phụ trong lúc Splash chạy; Home lấy từ cache (như Tai Chi).
+        final JsonHelper helper = mJsonHelper;
+        startupExecutor.execute(helper::prewarmPrograms);
         mDatabase = Database.newInstance(getApplicationContext(), "workout.db");
         setTheme();
         startupExecutor.execute(() -> {

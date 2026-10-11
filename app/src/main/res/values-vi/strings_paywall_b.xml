@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">Mở khoá kế hoạch cá nhân của bạn</string>
+    <string name="pwb_check_1">Kế hoạch tập không giới hạn</string>
+    <string name="pwb_check_2">Mọi chương trình &amp; thử thách 30 ngày</string>
+    <string name="pwb_check_3">Không quảng cáo</string>
+    <string name="pwb_special_band">GIÁ ĐẶC BIỆT</string>
+    <string name="pwb_special_title">Ưu đãi đặc biệt giảm %s</string>
+    <string name="pwb_special_price">%1$s (giá gốc %2$s)/năm</string>
+    <string name="pwb_trial_title">Dùng thử miễn phí %d ngày</string>
+    <string name="pwb_yearly_title">Gói năm</string>
+    <string name="pwb_yearly_price">%s/năm</string>
+    <string name="pwb_monthly_title">Gói tháng</string>
+    <string name="pwb_monthly_price">%s/tháng</string>
+    <string name="pwb_lifetime_title">Trọn đời</string>
+    <string name="pwb_lifetime_price">%s trả một lần</string>
+    <string name="pwb_per_week">%s/tuần</string>
+    <string name="pwb_forever">Mãi mãi</string>
+    <string name="pwb_save">TIẾT KIỆM %s</string>
+    <string name="pwb_cta_trial">DÙNG THỬ MIỄN PHÍ %d NGÀY</string>
+    <string name="pwb_cta_sub">TIẾP TỤC</string>
+    <string name="pwb_no_payment">Không cần thanh toán ngay</string>
+    <string name="pwb_note_trial">Miễn phí %1$d ngày, sau đó %2$s/năm\nHuỷ bất cứ lúc nào trên Google Play</string>
+    <string name="pwb_note_sub">Huỷ bất cứ lúc nào trên Google Play</string>
+    <string name="pwb_note_lifetime">Thanh toán một lần, không phải gói đăng ký</string>
+    <string name="pwb_restore">Khôi phục</string>
+    <string name="pwb_terms">1. Mọi thanh toán được thực hiện và quản lý qua Google Play.\n2. Tiền được trừ vào tài khoản Google Play khi bạn xác nhận mua.\n3. Gói đăng ký tự động gia hạn trừ khi bạn tắt tự gia hạn ít nhất 24 giờ trước khi hết kỳ hiện tại.\n4. Phí gia hạn được trừ trong vòng 24 giờ trước khi hết kỳ hiện tại.\n5. Bạn có thể quản lý gói và tắt tự gia hạn trong cài đặt tài khoản Google Play sau khi mua.\n6. Thời gian dùng thử chưa dùng hết (nếu có) sẽ mất khi bạn mua gói đăng ký.</string>
+    <string name="pwb_badge_original">GIÁ GỐC</string>
+    <string name="pwb_badge_best">ĐÁNG GIÁ NHẤT</string>
+    <string name="pwb_ends_in">Kết thúc sau %s</string>
+    <string name="pwb_prices_error">Không tải được giá</string>
+    <string name="pwb_retry">Thử lại</string>
+    <string name="pwb_terms_link">Điều khoản sử dụng</string>
+    <string name="pwb_privacy_link">Chính sách quyền riêng tư</string>
+</resources>

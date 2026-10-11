@@ -35,4 +35,10 @@
     <string name="pp_home_desc">Een plan van 4 weken op basis van je doel, niveau en lichaam.</string>
     <string name="pp_home_create">Maken</string>
     <string name="pp_edit">Plan aanpassen</string>
+    <string name="pp_rest_between">Rust tussen oefeningen</string>
+    <string name="pp_warmup_stretch">Opwarming en rekken</string>
+    <string name="pp_short">Kort</string>
+    <string name="pp_standard">Standaard</string>
+    <string name="pp_long">Lang</string>
+    <string name="pp_limits">Beperkingen</string>
 </resources>

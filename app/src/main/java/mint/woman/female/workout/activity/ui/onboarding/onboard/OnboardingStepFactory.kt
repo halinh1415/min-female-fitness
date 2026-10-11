@@ -3,58 +3,24 @@ package mint.woman.female.workout.activity.ui.onboarding.onboard
 /** Tạo danh sách bước từ cùng một bộ component, không nhân bản Activity. */
 object OnboardingStepFactory {
 
-    fun create(
-        variant: OnboardingVariant,
-        answers: Map<String, String>
-    ): List<OnboardStep> = when (variant) {
-        OnboardingVariant.CONTROL_46 -> ONBOARD_STEPS
-        OnboardingVariant.SHORT_28 -> shortSteps()
-        OnboardingVariant.ADAPTIVE -> adaptiveSteps(answers)
+    fun create(variant: OnboardingVariant): List<OnboardStep> = when (variant) {
+        OnboardingVariant.FULL -> ONBOARD_STEPS
+        OnboardingVariant.STANDARD_26 -> ONBOARD_STEPS.filter { it.kind == StepKind.SECTION || it.design in STANDARD_DESIGNS }
+        OnboardingVariant.QUICK_7 -> ONBOARD_STEPS.filter { it.design in QUICK_DESIGNS }
     }
 
-    private fun shortSteps(): List<OnboardStep> = ONBOARD_STEPS.filterNot { step ->
-        step.design in SHORT_EXCLUDED_DESIGNS
-    }
+    /** 7 màn: chào → mục tiêu → chiều cao → cân nặng → cân mục tiêu → tạo kế hoạch → kết quả. */
+    private val QUICK_DESIGNS = setOf("step1", "step4", "step9", "step10", "step10b", "step45", "step46")
 
-    /**
-     * Bản adaptive đầu tiên chỉ rẽ nhánh trên dữ liệu hiện đã có trong UI.
-     * Các safety branch mới sẽ được bổ sung bằng step riêng ở giai đoạn tiếp theo.
-     */
-    private fun adaptiveSteps(answers: Map<String, String>): List<OnboardStep> {
-        val excluded = SHORT_EXCLUDED_DESIGNS.toMutableSet()
-        val goal = answers[ObId.GOAL]
-        if (goal != "lose_weight") {
-            excluded += WEIGHT_LOSS_ONLY_DESIGNS
-        }
-        if (answers[ObId.WORKOUT_LEVEL] != "easy") {
-            excluded += BEGINNER_ONLY_DESIGNS
-        }
-        return ONBOARD_STEPS.filterNot { it.design in excluded }
-    }
-
-    private val SHORT_EXCLUDED_DESIGNS = setOf(
-        "step7",  // current body shape
-        "step8",  // desired body shape
-        "step11", // belly type
-        "step12", // hip type
-        "step13", // leg type
-        "step18", // generic potential screen
-        "step28", // second prediction
-        "step30", // overlaps typical day/fitness level
-        "step33", // flexibility does not yet alter the plan
-        "step34", // aerobic overlaps fitness level
-        "step35", // duplicate motivation statement
-        "step36", // duplicate motivation statement
-        "step37", // duplicate motivation statement
-        "step38", // social proof already exists in testimonial
-        "step39", // celebration prompt
-        "step41", // generic appearance claim
-        "step43", // duplicate full-screen commitment
-        "step44"  // duplicate full-screen commitment
+    /** 26 màn = 22 màn dưới đây + 4 màn chuyển phần. */
+    private val STANDARD_DESIGNS = setOf(
+        "step1", "step2",
+        "step3", "step4", "step6",                      // mục tiêu
+        "step9", "step10", "step10b", "step14",         // số đo + dự đoán lần 1
+        "step17", "step18", "step19", "step22", "step26", "step27", "step28", // về bạn + dự đoán lần 2
+        "step29", "step31", "step32",                   // lối sống
+        "step45", "step46", "step47"                    // tạo kế hoạch, kết quả, mời dùng thử
     )
-
-    private val WEIGHT_LOSS_ONLY_DESIGNS = setOf("step5", "step14", "step42")
-    private val BEGINNER_ONLY_DESIGNS = setOf("step25")
 }
 
 internal val OnboardStep.stableKey: String

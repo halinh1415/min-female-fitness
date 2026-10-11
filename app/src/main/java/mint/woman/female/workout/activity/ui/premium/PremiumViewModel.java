@@ -66,6 +66,8 @@ public class PremiumViewModel extends AndroidViewModel implements PurchasesUpdat
     public static final int PLAN_LIFETIME = 0;
     public static final int PLAN_YEARLY = 1;
     public static final int PLAN_MONTHLY = 2;
+    /** Gói năm giá ưu đãi (base plan giảm 50% / 34%), xem PaywallPromo. */
+    public static final int PLAN_SPECIAL = 3;
 
     private final BillingClient billingClient;
     private final MyPreference myDB;
@@ -125,6 +127,15 @@ public class PremiumViewModel extends AndroidViewModel implements PurchasesUpdat
 
     public boolean isReady() {
         return billingClient.isReady();
+    }
+
+    /** Tải lại giá (nút "Thử lại" trên paywall): chưa kết nối được Play thì kết nối lại. */
+    public void reloadProducts() {
+        if (billingClient.isReady()) {
+            querySkuDetails();
+        } else {
+            billingClient.startConnection(this);
+        }
     }
 
     // ------------------------------------------------------------------ purchases

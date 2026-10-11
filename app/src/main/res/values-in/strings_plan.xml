@@ -35,4 +35,10 @@
     <string name="pp_home_desc">Rencana 4 minggu sesuai tujuan, level, dan tubuhmu.</string>
     <string name="pp_home_create">Buat</string>
     <string name="pp_edit">Sesuaikan rencana</string>
+    <string name="pp_rest_between">Istirahat antar latihan</string>
+    <string name="pp_warmup_stretch">Pemanasan &amp; peregangan</string>
+    <string name="pp_short">Singkat</string>
+    <string name="pp_standard">Standar</string>
+    <string name="pp_long">Panjang</string>
+    <string name="pp_limits">Batasan</string>
 </resources>

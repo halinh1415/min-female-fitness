@@ -1,6 +1,7 @@
 package mint.woman.female.workout.activity.ui.home
 
 import android.widget.ImageView
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -20,7 +21,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -28,8 +30,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -101,48 +105,80 @@ interface HomeActions {
 
 @Composable
 fun HomeScreen(state: HomeUiState, actions: HomeActions) {
-    LazyColumn(
+    // Column cuộn thường thay vì LazyColumn (như Tai Chi): Home chỉ ~10 khối, dựng sẵn hết thì lúc cuộn
+    // không phải dựng thêm khối mới (đo trên S8+: LazyColumn giật hơn hẳn trên máy cũ).
+    Column(
         Modifier
             .fillMaxSize()
-            .background(MinColor.Background),
-        contentPadding = PaddingValues(bottom = 28.dp)
+            .background(MinColor.Background)
+            .verticalScroll(rememberScrollState())
+            .padding(bottom = 28.dp)
     ) {
-        item { HeroAndCoach(state, actions) }
-        item { PersonalPlanCard(state, actions, Modifier.padding(start = 16.dp, end = 16.dp, top = 14.dp, bottom = 4.dp)) }
-        item {
-            WeekGoalCard(
-                state,
-                actions,
-                Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-            )
-        }
+        HeroAndCoach(state, actions)
+        PersonalPlanCard(state, actions, Modifier.padding(start = 16.dp, end = 16.dp, top = 14.dp, bottom = 4.dp))
+        WeekGoalCard(
+            state,
+            actions,
+            Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+        )
         if (state.recentPrograms.isNotEmpty()) {
-            item {
-                RecentCard(state, actions, Modifier.padding(horizontal = 16.dp, vertical = 8.dp))
-            }
+            RecentCard(state, actions, Modifier.padding(horizontal = 16.dp, vertical = 8.dp))
         }
-        item { MyTrainingTile(actions, Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) }
+        MyTrainingTile(actions, Modifier.padding(horizontal = 16.dp, vertical = 8.dp))
         state.sections.forEach { section ->
-            item(key = section.title) {
-                Column(Modifier.padding(top = 18.dp)) {
-                    MinSectionHeader(
-                        section.title,
-                        Modifier.padding(horizontal = 16.dp),
-                        action = stringResource(R.string.explore_more),
-                        onAction = { actions.onSeeMore(section) }
-                    )
-                    Spacer(Modifier.height(10.dp))
-                    LazyRow(
-                        contentPadding = PaddingValues(horizontal = 16.dp),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp)
-                    ) {
-                        items(section.programs, key = { it.id }) { program ->
-                            if (section.challenge) {
-                                ChallengeCard(program, state) { actions.onProgramClick(program) }
-                            } else {
-                                ProgramCard(program, state) { actions.onProgramClick(program) }
-                            }
+            key(section.title) { HomeSectionBlock(section, state, actions) }
+        }
+    }
+}
+
+/**
+ * Một mục bài tập ở Home. "Thêm" mở rộng ngay tại chỗ (như Home Workout) thay vì sang màn khác:
+ * thử thách thành danh sách dọc, bài tập thường thành lưới 2 cột; "Thu gọn" trở lại hàng cuộn ngang.
+ */
+@Composable
+private fun HomeSectionBlock(section: HomeSection, state: HomeUiState, actions: HomeActions) {
+    var expanded by rememberSaveable(section.title) { mutableStateOf(false) }
+    val canExpand = section.programs.size > if (section.challenge) 1 else 2
+    Column(
+        Modifier
+            .padding(top = 18.dp)
+            .animateContentSize()
+    ) {
+        MinSectionHeader(
+            section.title,
+            Modifier.padding(horizontal = 16.dp),
+            action = if (!canExpand) null else stringResource(if (expanded) R.string.home_show_less else R.string.explore_more),
+            onAction = if (!canExpand) null else ({ expanded = !expanded }),
+            actionSuffix = if (expanded) " ˄" else " ›"
+        )
+        Spacer(Modifier.height(10.dp))
+        if (expanded && section.challenge) {
+            Column(Modifier.padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                section.programs.forEach { program ->
+                    ChallengeCard(program, state, Modifier.fillMaxWidth().height(180.dp)) { actions.onProgramClick(program) }
+                }
+            }
+        } else if (expanded) {
+            Column(Modifier.padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                section.programs.chunked(2).forEach { row ->
+                    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        row.forEach { program ->
+                            ProgramCard(program, state, Modifier.weight(1f)) { actions.onProgramClick(program) }
                         }
+                        if (row.size == 1) Spacer(Modifier.weight(1f))
+                    }
+                }
+            }
+        } else {
+            LazyRow(
+                contentPadding = PaddingValues(horizontal = 16.dp),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                items(section.programs, key = { it.id }) { program ->
+                    if (section.challenge) {
+                        ChallengeCard(program, state) { actions.onProgramClick(program) }
+                    } else {
+                        ProgramCard(program, state) { actions.onProgramClick(program) }
                     }
                 }
             }
@@ -238,8 +274,9 @@ private fun CoachCard(state: HomeUiState, actions: HomeActions) {
                     .fillMaxSize()
                     .background(
                         Brush.horizontalGradient(
-                            0f to Color.White.copy(alpha = 0.95f),
-                            0.55f to Color.White.copy(alpha = 0.55f),
+                            // Màu nền thẻ (trắng / tối) phủ lên ảnh để chữ luôn đọc được ở cả 2 giao diện.
+                            0f to MinColor.Surface.copy(alpha = 0.95f),
+                            0.55f to MinColor.Surface.copy(alpha = 0.55f),
                             1f to Color.Transparent
                         )
                     )
@@ -419,7 +456,7 @@ private fun DayBubble(day: WeekDay) {
             when {
                 day.done -> base.background(MinColor.CtaBrush)
                 day.today -> base
-                    .background(Color.White)
+                    .background(MinColor.Surface)
                     .border(2.dp, MinColor.Pink, CircleShape)
                 else -> base.background(MinColor.Track)
             },
@@ -518,13 +555,16 @@ private fun MyTrainingTile(actions: HomeActions, modifier: Modifier) {
 // ---------------------------------------------------------------- thẻ chương trình
 
 @Composable
-private fun ChallengeCard(program: ProgramObject, state: HomeUiState, onClick: () -> Unit) {
+private fun ChallengeCard(
+    program: ProgramObject,
+    state: HomeUiState,
+    modifier: Modifier = Modifier.width(290.dp).height(180.dp),
+    onClick: () -> Unit
+) {
     val done = state.planProgress[program.id] ?: 0
     val total = program.total.coerceAtLeast(1)
     Box(
-        Modifier
-            .width(290.dp)
-            .height(180.dp)
+        modifier
             .clip(RoundedCornerShape(24.dp))
             .clipToBounds()
             .clickable(onClick = onClick)
@@ -584,10 +624,14 @@ private fun ChallengeCard(program: ProgramObject, state: HomeUiState, onClick: (
 }
 
 @Composable
-private fun ProgramCard(program: ProgramObject, state: HomeUiState, onClick: () -> Unit) {
+private fun ProgramCard(
+    program: ProgramObject,
+    state: HomeUiState,
+    modifier: Modifier = Modifier.width(200.dp),
+    onClick: () -> Unit
+) {
     Column(
-        Modifier
-            .width(200.dp)
+        modifier
             .clip(RoundedCornerShape(20.dp))
             .background(MinColor.Surface)
             .clickable(onClick = onClick)

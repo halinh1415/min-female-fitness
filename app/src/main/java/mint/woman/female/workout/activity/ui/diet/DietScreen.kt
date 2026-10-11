@@ -106,8 +106,8 @@ private fun PlanBanner(state: DietUiState, actions: DietActions) {
                 .fillMaxSize()
                 .background(
                     Brush.horizontalGradient(
-                        0f to Color.White.copy(alpha = 0.95f),
-                        0.55f to Color.White.copy(alpha = 0.6f),
+                        0f to MinColor.Surface.copy(alpha = 0.95f),
+                        0.55f to MinColor.Surface.copy(alpha = 0.6f),
                         1f to Color.Transparent
                     )
                 )
@@ -224,7 +224,7 @@ private fun DayCell(day: Int, done: Boolean, next: Boolean, modifier: Modifier, 
     cell = when {
         done -> cell.background(MinColor.CtaBrush)
         next -> cell
-            .background(Color.White)
+            .background(MinColor.Surface)
             .border(2.dp, MinColor.Pink, RoundedCornerShape(16.dp))
         else -> cell.background(MinColor.Track)
     }

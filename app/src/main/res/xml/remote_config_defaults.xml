@@ -70,7 +70,7 @@
   </entry>
   <entry>
     <key>onboarding_experiment_variant</key>
-    <value>control_46</value>
+    <value>full_4x</value>
   </entry>
   <entry>
     <key>paywall_after_onboarding</key>
@@ -103,6 +103,30 @@
   <entry>
     <key>paywall_exit_offer_id</key>
     <value>exit-offer</value>
+  </entry>
+  <entry>
+    <key>paywall_promo_open_count</key>
+    <value>3</value>
+  </entry>
+  <entry>
+    <key>paywall_offer_rotate_open_count</key>
+    <value>5</value>
+  </entry>
+  <entry>
+    <key>paywall_promo_min_days</key>
+    <value>3</value>
+  </entry>
+  <entry>
+    <key>paywall_promo_cooldown_days</key>
+    <value>7</value>
+  </entry>
+  <entry>
+    <key>paywall_promo_max_per_month</key>
+    <value>2</value>
+  </entry>
+  <entry>
+    <key>paywall_promo_winback_days</key>
+    <value>7</value>
   </entry>
   <entry>
     <key>voice</key>

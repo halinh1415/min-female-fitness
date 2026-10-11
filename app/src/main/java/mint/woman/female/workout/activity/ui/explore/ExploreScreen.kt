@@ -17,7 +17,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.runtime.key
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -83,15 +85,18 @@ interface DiscoverActions {
 
 @Composable
 fun DiscoverScreen(sections: List<DiscoverSection>, isPremium: Boolean, actions: DiscoverActions) {
-    LazyColumn(
+    // Column cuộn thường thay vì LazyColumn (như Home / Tai Chi): Discover chỉ ~9 khối, dựng sẵn hết thì
+    // lúc cuộn không phải dựng thêm khối mới (LazyColumn giật hơn trên máy cũ).
+    Column(
         Modifier
             .fillMaxSize()
-            .background(MinColor.Background),
-        contentPadding = PaddingValues(bottom = 28.dp)
+            .background(MinColor.Background)
+            .verticalScroll(rememberScrollState())
+            .padding(bottom = 28.dp)
     ) {
-        item { SearchHeader(actions) }
+        SearchHeader(actions)
         sections.forEach { section ->
-            item(key = section.title + section.style) {
+            key(section.title + section.style) {
                 Column(Modifier.padding(top = 20.dp)) {
                     MinSectionHeader(
                         section.title,

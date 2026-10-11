@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">あなた専用プランのロックを解除</string>
+    <string name="pwb_check_1">無制限のトレーニングプラン</string>
+    <string name="pwb_check_2">すべてのプログラムと30日チャレンジ</string>
+    <string name="pwb_check_3">広告なし</string>
+    <string name="pwb_special_band">特別価格</string>
+    <string name="pwb_special_title">%sオフの特別オファー</string>
+    <string name="pwb_special_price">%1$s（通常%2$s）/年</string>
+    <string name="pwb_trial_title">%d日間無料トライアル</string>
+    <string name="pwb_yearly_title">年間プラン</string>
+    <string name="pwb_yearly_price">%s/年</string>
+    <string name="pwb_monthly_title">月間プラン</string>
+    <string name="pwb_monthly_price">%s/月</string>
+    <string name="pwb_lifetime_title">買い切り</string>
+    <string name="pwb_lifetime_price">%s（一回払い）</string>
+    <string name="pwb_per_week">%s/週</string>
+    <string name="pwb_forever">ずっと</string>
+    <string name="pwb_save">%sお得</string>
+    <string name="pwb_cta_trial">%d日間無料で試す</string>
+    <string name="pwb_cta_sub">続ける</string>
+    <string name="pwb_no_payment">今は支払い不要</string>
+    <string name="pwb_note_trial">%1$d日間無料、その後%2$s/年\nGoogle Playでいつでも解約できます</string>
+    <string name="pwb_note_sub">Google Playでいつでも解約できます</string>
+    <string name="pwb_note_lifetime">一回払い、サブスクなし</string>
+    <string name="pwb_restore">復元</string>
+    <string name="pwb_terms">1. すべての支払いはGoogle Playを通じて行われ、Googleが管理します。\n2. 購入の確定時にGoogle Playアカウントに請求されます。\n3. 現在の期間終了の24時間前までに自動更新をオフにしない限り、サブスクリプションは自動更新されます。\n4. 更新料金は現在の期間終了前の24時間以内に請求されます。\n5. 購入後、Google Playのアカウント設定でサブスクリプションの管理と自動更新のオフができます。\n6. サブスクリプションを購入すると、無料トライアルの未使用分は失効します（該当する場合）。</string>
+    <string name="pwb_badge_original">通常価格</string>
+    <string name="pwb_badge_best">いちばんお得</string>
+    <string name="pwb_ends_in">残り %s</string>
+    <string name="pwb_prices_error">価格を読み込めませんでした</string>
+    <string name="pwb_retry">再試行</string>
+    <string name="pwb_terms_link">利用規約</string>
+    <string name="pwb_privacy_link">プライバシーポリシー</string>
+</resources>

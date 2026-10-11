@@ -86,6 +86,13 @@ public class ProgramActivity extends AppCompatActivity implements DayAdapter.Cli
             mBundle = getIntent().getExtras();
             if (mBundle != null) {
                 mProgramObject = mBundle.getParcelable("PLAN");
+                if (mProgramObject == null && mBundle.containsKey("PROGRAM_ID")) {
+                    mProgramObject = FitnessApplication.getApplication().getProgram(mBundle.getInt("PROGRAM_ID"));
+                }
+            }
+            if (mProgramObject == null) {
+                finish();
+                return;
             }
 
 

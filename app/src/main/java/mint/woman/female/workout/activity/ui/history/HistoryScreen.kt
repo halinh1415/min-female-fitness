@@ -287,7 +287,7 @@ private fun DayCell(day: Long, active: Boolean, today: Boolean, selected: Boolea
         .clip(CircleShape)
     modifier = when {
         active -> modifier.background(MinColor.CtaBrush)
-        today -> modifier.background(Color.White)
+        today -> modifier.background(MinColor.Surface)
         else -> modifier
     }
     if (today && !active) modifier = modifier.border(2.dp, MinColor.Pink, CircleShape)

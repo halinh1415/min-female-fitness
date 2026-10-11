@@ -39,8 +39,10 @@ class LuckyDrawActivity : AppCompatActivity(), DiscountDialogFragment.DismissLis
                 jackpotLabel = "50%",
                 onWon = {
                     FirebaseAnalytics.getInstance(this).logEvent("lucky_draw_won", null)
+                    // Mở đợt 50% (2 tiếng) dùng chung đồng hồ với paywall, tính vào bậc thang PaywallPromo.
+                    val end = PaywallPromo.startNow(this)
                     if (!isFinishing && supportFragmentManager.findFragmentByTag("discount") == null) {
-                        DiscountDialogFragment.newInstance().show(supportFragmentManager, "discount")
+                        DiscountDialogFragment.newInstance(end - System.currentTimeMillis()).show(supportFragmentManager, "discount")
                     }
                 },
                 onSkip = ::close,

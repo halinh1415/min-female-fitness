@@ -35,4 +35,10 @@
     <string name="pp_home_desc">En 4-ukers plan etter målet, nivået og kroppen din.</string>
     <string name="pp_home_create">Lag</string>
     <string name="pp_edit">Juster plan</string>
+    <string name="pp_rest_between">Pause mellom øvelser</string>
+    <string name="pp_warmup_stretch">Oppvarming og tøying</string>
+    <string name="pp_short">Kort</string>
+    <string name="pp_standard">Standard</string>
+    <string name="pp_long">Lang</string>
+    <string name="pp_limits">Begrensninger</string>
 </resources>

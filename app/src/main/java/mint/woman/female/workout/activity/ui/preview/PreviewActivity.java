@@ -809,6 +809,8 @@ public class PreviewActivity extends AppCompatActivity implements PreviewActions
             @Override
             public void onAdDismissedFullScreenContent() {
                 mRewardedVideoAd = null;
+                // Đóng video trước khi nhận thưởng: cho bấm "Xem video" lại.
+                if (dialogUnlockTraining != null && !flagUnlock) dialogUnlockTraining.loadDone();
             }
         });
         mRewardedVideoAd.show(PreviewActivity.this, rewardItem -> {
@@ -827,7 +829,8 @@ public class PreviewActivity extends AppCompatActivity implements PreviewActions
     void showUnlock() {
         try {
             if (dialogUnlockTraining == null) {
-                dialogUnlockTraining = DialogUnlockTraining.newInstance(mProgramLocks.contains(mProgramObject.getId()));
+                dialogUnlockTraining = DialogUnlockTraining.newInstance(mProgramObject,
+                        !mProgramLocks.contains(mProgramObject.getId()) && myPreference.getOK());
             }
             FragmentManager fragmentManager = getSupportFragmentManager();
             dialogUnlockTraining.show(fragmentManager, "UnlockTraining");
@@ -849,6 +852,10 @@ public class PreviewActivity extends AppCompatActivity implements PreviewActions
 
     @Override
     public void watchVideo() {
+        if (!myPreference.getOK()) {
+            loadRewardFail();
+            return;
+        }
         if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.PRO_VIDEO_REWARD)){
             loadRewardedVideoAd();
         } else {

@@ -35,4 +35,10 @@
     <string name="pp_home_desc">Hedefine, seviyene ve vücuduna göre 4 haftalık plan.</string>
     <string name="pp_home_create">Oluştur</string>
     <string name="pp_edit">Planı ayarla</string>
+    <string name="pp_rest_between">Egzersizler arası dinlenme</string>
+    <string name="pp_warmup_stretch">Isınma ve esneme</string>
+    <string name="pp_short">Kısa</string>
+    <string name="pp_standard">Standart</string>
+    <string name="pp_long">Uzun</string>
+    <string name="pp_limits">Kısıtlamalar</string>
 </resources>

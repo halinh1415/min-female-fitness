@@ -22,7 +22,8 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -133,24 +134,25 @@ interface ReportActions {
 
 @Composable
 fun ReportScreen(state: ReportUiState, actions: ReportActions) {
-    LazyColumn(
+    // Column cuộn thường thay vì LazyColumn (như Home / Tai Chi): Report chỉ ~9 thẻ, dựng sẵn hết thì lúc
+    // cuộn không phải dựng lại thẻ biểu đồ.
+    Column(
         Modifier
             .fillMaxSize()
-            .background(MinColor.Background),
-        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 0.dp, bottom = 28.dp),
+            .background(MinColor.Background)
+            .verticalScroll(rememberScrollState())
+            .padding(start = 16.dp, end = 16.dp, top = 0.dp, bottom = 28.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
-        item {
-            MinLargeHeader(stringResource(R.string.report_center_title), horizontalPadding = 0.dp)
-        }
-        item { StreakHero(state) }
-        item { TodayCard(state) }
-        item { WeekCard(state) }
-        item { WeightCard(state, actions) }
-        item { CaloriesCard(state) }
-        item { BmiCard(state, actions) }
-        if (state.badgeTotal > 0) item { BadgeCard(state, actions) }
-        if (state.suggestionText.isNotEmpty()) item { NextCard(state, actions) }
+        MinLargeHeader(stringResource(R.string.report_center_title), horizontalPadding = 0.dp)
+        StreakHero(state)
+        TodayCard(state)
+        WeekCard(state)
+        WeightCard(state, actions)
+        CaloriesCard(state)
+        BmiCard(state, actions)
+        if (state.badgeTotal > 0) BadgeCard(state, actions)
+        if (state.suggestionText.isNotEmpty()) NextCard(state, actions)
     }
 }
 

@@ -35,4 +35,10 @@
     <string name="pp_home_desc">Un piano di 4 settimane basato su obiettivo, livello e corpo.</string>
     <string name="pp_home_create">Crea</string>
     <string name="pp_edit">Modifica piano</string>
+    <string name="pp_rest_between">Riposo tra gli esercizi</string>
+    <string name="pp_warmup_stretch">Riscaldamento e stretching</string>
+    <string name="pp_short">Breve</string>
+    <string name="pp_standard">Standard</string>
+    <string name="pp_long">Lungo</string>
+    <string name="pp_limits">Limitazioni</string>
 </resources>

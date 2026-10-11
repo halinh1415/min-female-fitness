@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="28dp"
     android:layout_marginEnd="28dp"
-    app:cardBackgroundColor="@android:color/white"
+    app:cardBackgroundColor="@color/badge_dialog_bg"
     app:cardCornerRadius="26dp"
     app:cardElevation="8dp">
 
@@ -26,7 +26,7 @@
             android:letterSpacing="0.12"
             android:text="@string/badge_unlocked_celebration_title"
             android:textAllCaps="true"
-            android:textColor="@color/badge_muted"
+            android:textColor="@color/badge_dialog_muted"
             android:textSize="11sp"
             android:textStyle="bold" />
 
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:textColor="@color/badge_ink"
+            android:textColor="@color/badge_dialog_ink"
             android:textSize="22sp"
             android:textStyle="bold"
             tools:text="Seven Stars" />
@@ -57,7 +57,7 @@
             android:layout_marginTop="8dp"
             android:gravity="center"
             android:lineSpacingExtra="3dp"
-            android:textColor="@color/badge_muted"
+            android:textColor="@color/badge_dialog_muted"
             android:textSize="14sp"
             tools:text="Practice 7 days in a row." />
 
@@ -66,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textColor="@color/badge_jade"
+            android:textColor="@color/badge_dialog_accent"
             android:textSize="13sp"
             android:textStyle="bold"
             android:visibility="gone"
@@ -80,8 +80,9 @@
             android:layout_marginTop="20dp"
             android:text="@string/badge_continue"
             android:textAllCaps="false"
+            android:textColor="@android:color/white"
             android:textSize="16sp"
-            app:backgroundTint="@color/badge_jade"
+            app:backgroundTint="@color/badge_dialog_accent"
             app:cornerRadius="24dp" />
 
         <!-- Chi hien khi huy hieu da dat duoc; BadgeUnlockedDialog bat/tat. -->
@@ -93,14 +94,14 @@
             android:layout_marginTop="8dp"
             android:text="@string/badge_share"
             android:textAllCaps="false"
-            android:textColor="@color/badge_jade"
+            android:textColor="@color/badge_dialog_accent"
             android:textSize="16sp"
             android:visibility="gone"
             app:cornerRadius="24dp"
             app:icon="@drawable/ic_share_black_24dp"
             app:iconGravity="textStart"
-            app:iconTint="@color/badge_jade"
-            app:strokeColor="@color/jade_border_soft"
+            app:iconTint="@color/badge_dialog_accent"
+            app:strokeColor="@color/badge_dialog_border"
             app:strokeWidth="1dp"
             tools:visibility="visible" />
 
@@ -112,6 +113,6 @@
             android:layout_marginTop="2dp"
             android:text="@string/badge_view_all"
             android:textAllCaps="false"
-            android:textColor="@color/badge_muted" />
+            android:textColor="@color/badge_dialog_muted" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

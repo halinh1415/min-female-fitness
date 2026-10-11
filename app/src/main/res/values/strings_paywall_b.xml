@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">Unlock your personalized plan</string>
+    <string name="pwb_check_1">Unlimited workout plans</string>
+    <string name="pwb_check_2">All programs &amp; 30-day challenges</string>
+    <string name="pwb_check_3">Remove ads</string>
+    <string name="pwb_special_band">SPECIAL PRICE</string>
+    <string name="pwb_special_title">%s Off Special Offer</string>
+    <string name="pwb_special_price">%1$s (was %2$s)/year</string>
+    <string name="pwb_trial_title">Free %d Days Trial</string>
+    <string name="pwb_yearly_title">Yearly Plan</string>
+    <string name="pwb_yearly_price">%s/year</string>
+    <string name="pwb_monthly_title">Monthly Plan</string>
+    <string name="pwb_monthly_price">%s/mo.</string>
+    <string name="pwb_lifetime_title">Lifetime</string>
+    <string name="pwb_lifetime_price">%s one-time</string>
+    <string name="pwb_per_week">%s/week</string>
+    <string name="pwb_forever">Forever</string>
+    <string name="pwb_save">SAVE %s</string>
+    <string name="pwb_cta_trial">%d-DAY FREE TRIAL</string>
+    <string name="pwb_cta_sub">CONTINUE</string>
+    <string name="pwb_no_payment">No payment now</string>
+    <string name="pwb_note_trial">Free %1$d days trial, then %2$s/year\nCancel anytime via Google Play</string>
+    <string name="pwb_note_sub">Cancel anytime via Google Play</string>
+    <string name="pwb_note_lifetime">One-time payment, no subscription</string>
+    <string name="pwb_restore">Restore</string>
+    <string name="pwb_terms">1. All payments are made through Google Play and managed by Google.\n2. Payment is charged to your Google Play account at confirmation of purchase.\n3. Subscriptions renew automatically unless auto-renew is turned off at least 24 hours before the end of the current period.\n4. Your account is charged for renewal within 24 hours prior to the end of the current period.\n5. You can manage subscriptions and turn off auto-renewal in your Google Play account settings after purchase.\n6. Any unused portion of a free trial is forfeited when you purchase a subscription, where applicable.</string>
+    <string name="pwb_badge_original">ORIGINAL PRICE</string>
+    <string name="pwb_badge_best">BEST VALUE</string>
+    <string name="pwb_ends_in">Ends in %s</string>
+    <string name="pwb_prices_error">Couldn\'t load prices</string>
+    <string name="pwb_retry">Try again</string>
+    <string name="pwb_terms_link">Terms of Use</string>
+    <string name="pwb_privacy_link">Privacy Policy</string>
+</resources>

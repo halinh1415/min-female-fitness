@@ -55,7 +55,7 @@ enum class StepKind {
     /** step1 – màn chào, số liệu, "Start Now". */
     WELCOME,
 
-    /** step2 – huấn luyện viên tự giới thiệu, "I'M READY!". */
+    /** step2 – huấn luyện viên tự giới thiệu, nút bắt đầu. */
     COACH,
 
     /** step3, 29, 39, 40 – danh sách lựa chọn có icon, chọn xong tự sang màn kế. */
@@ -90,6 +90,9 @@ enum class StepKind {
 
     /** step10 – cân nặng hiện tại (thước ngang, lbs/kg) + thẻ BMI. */
     WEIGHT,
+
+    /** step10b – cân nặng mục tiêu do người dùng chọn (thước ngang) + thẻ nhận xét mục tiêu. */
+    TARGET_WEIGHT,
 
     /** step17 – tuổi (bánh xe chọn số). */
     AGE,
@@ -178,6 +181,7 @@ object ObId {
     const val DESIRED_SHAPE = "desired_shape"
     const val HEIGHT = "height"
     const val WEIGHT = "weight"
+    const val TARGET_WEIGHT = "target_weight"
     const val BELLY = "belly"
     const val HIP = "hip"
     const val LEG = "leg"
@@ -223,7 +227,7 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
         title = "Hi, I'm Mia!",
         body = "I'll be your coach along the way.\nAnswer a few quick questions and I'll build a personalized plan just for you.",
         titleAccent = "personalized plan",
-        cta = "I'M READY!", art = "coach_kelly"
+        cta = "LET'S GO!", art = "coach_kelly"
     ),
 
     // ---------------------------------------------------------- phần 1: mục tiêu
@@ -233,23 +237,23 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
     ),
     OnboardStep(
         design = "step3", kind = StepKind.CHOICE, section = 1, id = ObId.MOTIVATION,
-        title = "What motivates you the most?",
+        title = "What drives you to work out?",
         options = listOf(
-            ObOption("confident", "Feel confident", "👍"),
-            ObOption("stress", "Release stress", "🙂"),
-            ObOption("health", "Improve health", "❤️"),
-            ObOption("energy", "Boost energy", "🔋"),
-            ObOption("shape", "Get shaped", "💪")
+            ObOption("confident", "Feel more confident", "👍"),
+            ObOption("stress", "Let go of stress", "🙂"),
+            ObOption("health", "Get healthier", "❤️"),
+            ObOption("energy", "Have more energy", "🔋"),
+            ObOption("shape", "Tone my body", "💪")
         )
     ),
 
     OnboardStep(
         design = "step4", kind = StepKind.CHOICE_IMAGE, section = 1, id = ObId.GOAL,
-        title = "What's your main goal?",
+        title = "What would you like to achieve first?",
         options = listOf(
             ObOption("lose_weight", "Lose weight", art = "goal_lose_weight"),
             ObOption("build_muscle", "Build muscle", art = "goal_build_muscle"),
-            ObOption("keep_fit", "Keep fit", art = "goal_keep_fit")
+            ObOption("keep_fit", "Stay in shape", art = "goal_keep_fit")
         )
     ),
 
@@ -262,7 +266,7 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step6", kind = StepKind.FOCUS_BODY, section = 1, id = ObId.FOCUS,
-        title = "Which area would you like to focus on?",
+        title = "Which areas should we work on?",
         options = listOf(
             ObOption("arm", "Arm"),
             ObOption("belly", "Belly"),
@@ -274,18 +278,18 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step7", kind = StepKind.CHOICE_IMAGE, section = 1, id = ObId.BODY_SHAPE,
-        title = "What's your current body shape?", titleAccent = "current",
+        title = "How would you describe your body today?", titleAccent = "today",
         options = listOf(
-            ObOption("medium", "Medium", art = "shape_medium"),
-            ObOption("flabby", "Flabby", art = "shape_flabby"),
-            ObOption("skinny", "Skinny", art = "shape_skinny"),
-            ObOption("toned", "Toned", art = "shape_toned")
+            ObOption("medium", "Average", art = "shape_medium"),
+            ObOption("flabby", "Soft", art = "shape_flabby"),
+            ObOption("skinny", "Slim", art = "shape_skinny"),
+            ObOption("toned", "Fit", art = "shape_toned")
         )
     ),
 
     OnboardStep(
         design = "step8", kind = StepKind.DESIRED_BODY, section = 1, id = ObId.DESIRED_SHAPE,
-        title = "What's your desired body shape?", titleAccent = "desired",
+        title = "Which shape are you aiming for?", titleAccent = "aiming",
         defaultStop = 2
     ),
 
@@ -296,13 +300,18 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
     ),
     OnboardStep(
         design = "step9", kind = StepKind.HEIGHT, section = 2, id = ObId.HEIGHT,
-        title = "What's your height?",
-        hint = "This will help us make adjustment to your personal plan.", hintEmoji = "✨"
+        title = "How tall are you?",
+        hint = "We use this to set the right intensity for you.", hintEmoji = "✨"
     ),
 
     OnboardStep(
         design = "step10", kind = StepKind.WEIGHT, section = 2, id = ObId.WEIGHT,
-        title = "What's your current weight?", titleAccent = "current"
+        title = "How much do you weigh now?", titleAccent = "now"
+    ),
+
+    OnboardStep(
+        design = "step10b", kind = StepKind.TARGET_WEIGHT, section = 2, id = ObId.TARGET_WEIGHT,
+        title = "Pick a goal weight", titleAccent = "goal"
     ),
 
     OnboardStep(
@@ -355,8 +364,8 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step17", kind = StepKind.AGE, section = 3, id = ObId.AGE,
-        title = "What's your age?",
-        hint = "This will help us to adjust the workouts for your age.", hintEmoji = "🎂"
+        title = "How old are you?",
+        hint = "Your age helps us choose a safe pace and recovery time.", hintEmoji = "🎂"
     ),
 
     OnboardStep(
@@ -366,17 +375,17 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step19", kind = StepKind.CHOICE_FEEDBACK, section = 3, id = ObId.PLACE,
-        title = "Where do you prefer to work out?",
+        title = "Where will you usually train?",
         options = listOf(
             ObOption(
-                "any", "No Preference", "✨",
+                "any", "Anywhere is fine", "✨",
                 feedbackTitle = "OK!",
                 feedbackBody = "We'll pick the most suitable workouts for you."
             ),
             ObOption(
                 "bed", "Bed", "🛏️",
                 feedbackTitle = "OK!",
-                feedbackBody = "It's suitable for specific workouts, and we've got just what you need."
+                feedbackBody = "Plenty of moves work on a bed - we'll pick those for you."
             ),
             ObOption(
                 "mat", "Yoga mat", "🧘",
@@ -388,20 +397,20 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step21", kind = StepKind.CHOICE_FEEDBACK, section = 3, id = ObId.WORKOUT_TYPE,
-        title = "What's your preferred workout type?",
+        title = "Which workout style suits you?",
         options = listOf(
             ObOption(
                 "no_equipment", "No equipment", "🏋️",
                 feedbackTitle = "Got it!",
-                feedbackBody = "We'll provide you with equipment-free and easy-to-follow workouts."
+                feedbackBody = "Your plan will use only body weight, with moves that are easy to follow."
             ),
             ObOption(
-                "no_jumping", "No Jumping", "🤸",
+                "no_jumping", "Jump-free", "🤸",
                 feedbackTitle = "Got it!",
                 feedbackBody = "We'll keep your plan jump-free and joint-friendly."
             ),
             ObOption(
-                "lying_down", "More lying down", "🛌",
+                "lying_down", "Mostly on the floor", "🛌",
                 feedbackTitle = "Got it!",
                 feedbackBody = "We'll add more floor and lying-down exercises for you."
             )
@@ -410,20 +419,20 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step22", kind = StepKind.CHOICE_FEEDBACK, section = 3, id = ObId.WORKOUT_LEVEL,
-        title = "What's your preferred workout level?",
+        title = "How hard should workouts feel?",
         options = listOf(
             ObOption(
-                "easy", "Easy Enough", "🙂",
+                "easy", "Gentle", "🙂",
                 feedbackTitle = "Understood!",
-                feedbackBody = "We'll provide beginner-friendly exercises to help you start smoothly."
+                feedbackBody = "We'll start with beginner-friendly moves so you can ease in."
             ),
             ObOption(
-                "light_sweat", "Break a light sweat", "💧",
+                "light_sweat", "A light sweat", "💧",
                 feedbackTitle = "Understood!",
                 feedbackBody = "We'll keep the intensity moderate so you sweat but stay comfortable."
             ),
             ObOption(
-                "challenging", "A bit challenging", "🏆",
+                "challenging", "Push me a little", "🏆",
                 feedbackTitle = "Understood!",
                 feedbackBody = "We'll add a bit more intensity to keep you challenged."
             )
@@ -439,14 +448,14 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step26", kind = StepKind.SLIDER, section = 3, id = ObId.FREQUENCY,
-        title = "How often would you like to work out?",
+        title = "How many days a week can you train?",
         figure = ObFigure.CALENDAR, defaultStop = 2,
         subtitle = "Less", body = "More",
         stops = listOf(
-            ObSliderStop("1 time / week", "I want to start really slowly"),
-            ObSliderStop("2 times / week", "I can manage a couple of sessions"),
-            ObSliderStop("3 times / week", "I enjoy workout as a part of my lifestyle"),
-            ObSliderStop("5 times / week", "I want to train almost every day")
+            ObSliderStop("1 day a week", "I'd like to start slowly"),
+            ObSliderStop("2 days a week", "A couple of sessions fits my schedule"),
+            ObSliderStop("3 days a week", "Exercise is becoming part of my routine"),
+            ObSliderStop("5 days a week", "I'm ready to move almost every day")
         )
     ),
 
@@ -465,7 +474,7 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step28", kind = StepKind.PREDICTION, section = 3,
-        subtitle = "We predict that you'll reach"
+        subtitle = "With your routine, you'll reach"
     ),
 
     // ---------------------------------------------------------- phần 4: lối sống
@@ -475,18 +484,18 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
     ),
     OnboardStep(
         design = "step29", kind = StepKind.CHOICE, section = 4, id = ObId.TYPICAL_DAY,
-        title = "What does your typical day look like?",
+        title = "How do you spend most of your day?",
         options = listOf(
-            ObOption("seated", "Mostly seated at work", "🖥️"),
-            ObOption("home", "Mostly sedentary at home", "🏠"),
-            ObOption("walking", "Walking daily", "👣"),
-            ObOption("feet", "On my feet all day", "🚶")
+            ObOption("seated", "Sitting at a desk", "🖥️"),
+            ObOption("home", "Relaxing at home", "🏠"),
+            ObOption("walking", "Walking around a lot", "👣"),
+            ObOption("feet", "Standing most of the time", "🚶")
         )
     ),
 
     OnboardStep(
         design = "step30", kind = StepKind.SLIDER, section = 4, id = ObId.ACTIVITY,
-        title = "What's your activity level?",
+        title = "How active are you right now?",
         figure = ObFigure.PLANK, defaultStop = 2,
         subtitle = "Not active", body = "Very active",
         stops = listOf(
@@ -499,11 +508,11 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step31", kind = StepKind.SLIDER, section = 4, id = ObId.FITNESS,
-        title = "What's your fitness level?",
+        title = "How would you rate your fitness?",
         figure = ObFigure.GAUGE, defaultStop = 0,
         subtitle = "Beginner", body = "Advanced",
         stops = listOf(
-            ObSliderStop("Beginner", "I'm new to fitness and want a solid foundation"),
+            ObSliderStop("Beginner", "I'm just getting started"),
             ObSliderStop("Intermediate", "I work out from time to time"),
             ObSliderStop("Advanced", "I train regularly and know my limits")
         )
@@ -517,11 +526,11 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step33", kind = StepKind.SLIDER, section = 4, id = ObId.FLEXIBILITY,
-        title = "Your flexibility", subtitle = "Far", body = "Touch",
-        hint = "How far are your hands from toes?",
+        title = "How flexible are you?", subtitle = "Far", body = "Touch",
+        hint = "Bend forward with straight legs - where do your fingertips reach?",
         figure = ObFigure.REACH, defaultStop = 0,
         stops = listOf(
-            ObSliderStop("It's OK!", "Lots of people start here. Daily stretching will help you improve."),
+            ObSliderStop("No problem!", "Lots of people start here. A few minutes of stretching a day makes a difference."),
             ObSliderStop("Almost there!", "A bit more stretching and you'll touch your toes."),
             ObSliderStop("Nice!", "You already have good flexibility - let's keep it.")
         )
@@ -529,11 +538,11 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step34", kind = StepKind.SLIDER, section = 4, id = ObId.AEROBIC,
-        title = "Your aerobic level", subtitle = "Too hard", body = "Easy",
-        hint = "How do you feel after climbing 5 floors?",
+        title = "How's your stamina?", subtitle = "Too hard", body = "Easy",
+        hint = "How do you feel after a few flights of stairs?",
         figure = ObFigure.STAIRS, defaultStop = 0,
         stops = listOf(
-            ObSliderStop("Out of breath", "Got it! Our tailored workouts will gradually boost your endurance."),
+            ObSliderStop("Out of breath", "That's fine - your plan will build stamina little by little."),
             ObSliderStop("A little tired", "Good! We'll build your endurance step by step."),
             ObSliderStop("Totally fine", "Great! We can start with a higher intensity.")
         )
@@ -572,11 +581,11 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
         design = "step39", kind = StepKind.CHOICE, section = 4, id = ObId.CELEBRATE,
         title = "How will you treat yourself when you hit your goal?",
         options = listOf(
-            ObOption("clothes", "Buy new clothes", "👕"),
-            ObOption("vacation", "Go on vacation", "🏝️"),
-            ObOption("photos", "Take photos", "📷"),
-            ObOption("concert", "Attend a concert", "🎸"),
-            ObOption("other", "Other", "💬")
+            ObOption("clothes", "New outfit", "👕"),
+            ObOption("vacation", "A trip somewhere", "🏝️"),
+            ObOption("photos", "A photo shoot", "📷"),
+            ObOption("concert", "A night out", "🎸"),
+            ObOption("other", "Something else", "💬")
         )
     ),
 
@@ -584,11 +593,11 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
         design = "step40", kind = StepKind.CHOICE, section = 4, id = ObId.FEELING,
         title = "How do you want to feel when you reach your goal?",
         options = listOf(
-            ObOption("proud", "Be proud of myself", "👍"),
-            ObOption("energy", "Full of energy", "🔋"),
-            ObOption("healthy", "Healthy & vibrant", "🙂"),
-            ObOption("happy", "Self-assured and happy", "👗"),
-            ObOption("less_worry", "Worry less about body image", "⚖️")
+            ObOption("proud", "Proud of myself", "👍"),
+            ObOption("energy", "Energetic", "🔋"),
+            ObOption("healthy", "Healthy and strong", "🙂"),
+            ObOption("happy", "Happy in my own skin", "👗"),
+            ObOption("less_worry", "Relaxed about how I look", "⚖️")
         )
     ),
 
@@ -601,7 +610,7 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step42", kind = StepKind.FULL_YES_NO, section = 4, id = ObId.WANT_LOSE_WEIGHT,
-        title = "Want to lose weight?", art = "full_lose_weight"
+        title = "Ready to slim down?", art = "full_lose_weight"
     ),
 
     OnboardStep(
@@ -611,26 +620,26 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step44", kind = StepKind.FULL_YES_NO, section = 4, id = ObId.WANT_HEALTHY,
-        title = "Want to live a longer and healthier life?", art = "full_healthy"
+        title = "Want to feel good for years to come?", art = "full_healthy"
     ),
 
     // ---------------------------------------------------------- kết thúc
 
     OnboardStep(
         design = "step45", kind = StepKind.GENERATING,
-        title = "Creating your plan...",
+        title = "Building your plan…",
         subtitle = "Built around your answers"
     ),
 
     OnboardStep(
         design = "step46", kind = StepKind.PLAN_RESULT,
-        title = "Based on your answers, you will be",
+        title = "Following your plan, you could reach",
         cta = "Get my plan"
     ),
 
     OnboardStep(
         design = "step47", kind = StepKind.TRIAL_INTRO,
-        title = "Start 7-day free trial\nNo payment now!",
+        title = "Try every workout free for 7 days",
         titleAccent = "free"
     )
 )

@@ -1,7 +1,6 @@
 package mint.woman.female.workout.activity.ui.onboarding.onboard
 
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
 import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -9,66 +8,56 @@ import org.junit.Test
 class OnboardingStepFactoryTest {
 
     @Test
-    fun unknownRemoteValueFallsBackToControl() {
-        assertEquals(
-            OnboardingVariant.CONTROL_46,
-            OnboardingVariant.fromRemoteValue("unknown")
-        )
+    fun unknownRemoteValueFallsBackToFull() {
+        assertEquals(OnboardingVariant.FULL, OnboardingVariant.fromRemoteValue("unknown"))
+        assertEquals(OnboardingVariant.FULL, OnboardingVariant.fromRemoteValue(null))
     }
 
     @Test
-    fun controlUsesTheUnmodifiedProductionDefinition() {
-        val steps = OnboardingStepFactory.create(OnboardingVariant.CONTROL_46, emptyMap())
+    fun legacyRemoteValuesStillMap() {
+        assertEquals(OnboardingVariant.FULL, OnboardingVariant.fromRemoteValue("control_46"))
+        assertEquals(OnboardingVariant.STANDARD_26, OnboardingVariant.fromRemoteValue("short_28"))
+        assertEquals(OnboardingVariant.STANDARD_26, OnboardingVariant.fromRemoteValue("adaptive"))
+        assertEquals(OnboardingVariant.QUICK_7, OnboardingVariant.fromRemoteValue(" Quick_7 "))
+    }
 
+    @Test
+    fun fullUsesEveryScreen() {
+        val steps = OnboardingStepFactory.create(OnboardingVariant.FULL)
         assertSame(ONBOARD_STEPS, steps)
+        assertTrue("full should be 4x screens, was ${steps.size}", steps.size in 40..49)
         assertEquals(steps.size, steps.map { it.stableKey }.distinct().size)
     }
 
     @Test
-    fun shortFlowIsSmallerAndKeepsCriticalScreens() {
-        val steps = OnboardingStepFactory.create(OnboardingVariant.SHORT_28, emptyMap())
-
-        assertEquals(28, steps.size)
+    fun standardHasTwentySixScreensInOriginalOrder() {
+        val steps = OnboardingStepFactory.create(OnboardingVariant.STANDARD_26)
+        assertEquals(26, steps.size)
+        assertOrderKept(steps)
+        assertTrue(steps.any { it.kind == StepKind.TARGET_WEIGHT })
         assertTrue(steps.any { it.id == ObId.DISCOMFORT })
-        assertTrue(steps.any { it.kind == StepKind.GENERATING })
-        assertTrue(steps.any { it.kind == StepKind.PLAN_RESULT })
-        assertTrue(steps.any { it.kind == StepKind.TRIAL_INTRO })
+        assertEquals(StepKind.TRIAL_INTRO, steps.last().kind)
     }
 
     @Test
-    fun adaptiveOmitsWeightLossPitchForKeepFitGoal() {
-        val steps = OnboardingStepFactory.create(
-            OnboardingVariant.ADAPTIVE,
-            mapOf(ObId.GOAL to "keep_fit")
-        )
-
-        assertFalse(steps.any { it.design in setOf("step5", "step14", "step42") })
+    fun quickHasSevenScreensAndStillBuildsAPlan() {
+        val steps = OnboardingStepFactory.create(OnboardingVariant.QUICK_7)
+        assertEquals(7, steps.size)
+        assertOrderKept(steps)
+        assertEquals(StepKind.WELCOME, steps.first().kind)
+        assertTrue(steps.any { it.kind == StepKind.WEIGHT })
+        assertTrue(steps.any { it.kind == StepKind.TARGET_WEIGHT })
+        assertEquals(StepKind.PLAN_RESULT, steps.last().kind)
     }
 
     @Test
-    fun adaptiveKeepsWeightLossPitchForLoseWeightGoal() {
-        val steps = OnboardingStepFactory.create(
-            OnboardingVariant.ADAPTIVE,
-            mapOf(ObId.GOAL to "lose_weight", ObId.WORKOUT_LEVEL to "easy")
-        )
-
-        assertTrue(steps.any { it.design == "step5" })
-        assertTrue(steps.any { it.design == "step14" })
-        assertTrue(steps.any { it.design == "step42" })
+    fun targetWeightComesRightAfterCurrentWeight() {
+        val weight = ONBOARD_STEPS.indexOfFirst { it.kind == StepKind.WEIGHT }
+        assertEquals(StepKind.TARGET_WEIGHT, ONBOARD_STEPS[weight + 1].kind)
     }
 
-    @Test
-    fun adaptiveShowsBeginnerEducationOnlyForEasyLevel() {
-        val easy = OnboardingStepFactory.create(
-            OnboardingVariant.ADAPTIVE,
-            mapOf(ObId.WORKOUT_LEVEL to "easy")
-        )
-        val challenging = OnboardingStepFactory.create(
-            OnboardingVariant.ADAPTIVE,
-            mapOf(ObId.WORKOUT_LEVEL to "challenging")
-        )
-
-        assertTrue(easy.any { it.design == "step25" })
-        assertFalse(challenging.any { it.design == "step25" })
+    private fun assertOrderKept(steps: List<OnboardStep>) {
+        val positions = steps.map { step -> ONBOARD_STEPS.indexOfFirst { it.stableKey == step.stableKey } }
+        assertEquals(positions.sorted(), positions)
     }
 }

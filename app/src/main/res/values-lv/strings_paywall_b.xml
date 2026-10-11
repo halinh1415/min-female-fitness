@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">Atbloķē savu personīgo plānu</string>
+    <string name="pwb_check_1">Neierobežoti treniņu plāni</string>
+    <string name="pwb_check_2">Visas programmas un 30 dienu izaicinājumi</string>
+    <string name="pwb_check_3">Bez reklāmām</string>
+    <string name="pwb_special_band">ĪPAŠA CENA</string>
+    <string name="pwb_special_title">Īpašais piedāvājums ar %s atlaidi</string>
+    <string name="pwb_special_price">%1$s (iepriekš %2$s)/gadā</string>
+    <string name="pwb_trial_title">%d dienu bezmaksas izmēģinājums</string>
+    <string name="pwb_yearly_title">Gada plāns</string>
+    <string name="pwb_yearly_price">%s/gadā</string>
+    <string name="pwb_monthly_title">Mēneša plāns</string>
+    <string name="pwb_monthly_price">%s/mēn.</string>
+    <string name="pwb_lifetime_title">Uz mūžu</string>
+    <string name="pwb_lifetime_price">%s vienreizēji</string>
+    <string name="pwb_per_week">%s/nedēļā</string>
+    <string name="pwb_forever">Uz visiem laikiem</string>
+    <string name="pwb_save">IETAUPI %s</string>
+    <string name="pwb_cta_trial">%d DIENU BEZMAKSAS IZMĒĢINĀJUMS</string>
+    <string name="pwb_cta_sub">TURPINĀT</string>
+    <string name="pwb_no_payment">Tagad nav jāmaksā</string>
+    <string name="pwb_note_trial">%1$d dienas bez maksas, pēc tam %2$s/gadā\nAtcel jebkurā laikā Google Play</string>
+    <string name="pwb_note_sub">Atcel jebkurā laikā Google Play</string>
+    <string name="pwb_note_lifetime">Vienreizējs maksājums, bez abonementa</string>
+    <string name="pwb_restore">Atjaunot</string>
+    <string name="pwb_terms">1. Visi maksājumi tiek veikti, izmantojot Google Play, un tos pārvalda Google.\n2. Maksa tiek iekasēta no tava Google Play konta, apstiprinot pirkumu.\n3. Abonementi tiek automātiski atjaunoti, ja vien automātiskā atjaunošana netiek izslēgta vismaz 24 stundas pirms pašreizējā perioda beigām.\n4. Maksa par atjaunošanu tiek iekasēta 24 stundu laikā pirms pašreizējā perioda beigām.\n5. Pēc pirkuma abonementus vari pārvaldīt un automātisko atjaunošanu izslēgt Google Play konta iestatījumos.\n6. Bezmaksas izmēģinājuma neizmantotā daļa tiek zaudēta, iegādājoties abonementu, ja piemērojams.</string>
+    <string name="pwb_badge_original">SĀKOTNĒJĀ CENA</string>
+    <string name="pwb_badge_best">LABĀKAIS PIEDĀVĀJUMS</string>
+    <string name="pwb_ends_in">Beidzas pēc %s</string>
+    <string name="pwb_prices_error">Neizdevās ielādēt cenas</string>
+    <string name="pwb_retry">Mēģināt vēlreiz</string>
+    <string name="pwb_terms_link">Lietošanas noteikumi</string>
+    <string name="pwb_privacy_link">Privātuma politika</string>
+</resources>

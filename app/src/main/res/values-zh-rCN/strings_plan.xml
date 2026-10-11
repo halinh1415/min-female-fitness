@@ -35,4 +35,10 @@
     <string name="pp_home_desc">根据你的目标、水平和身体定制的4周计划。</string>
     <string name="pp_home_create">生成</string>
     <string name="pp_edit">调整计划</string>
+    <string name="pp_rest_between">动作间休息</string>
+    <string name="pp_warmup_stretch">热身与拉伸</string>
+    <string name="pp_short">短</string>
+    <string name="pp_standard">标准</string>
+    <string name="pp_long">长</string>
+    <string name="pp_limits">限制</string>
 </resources>

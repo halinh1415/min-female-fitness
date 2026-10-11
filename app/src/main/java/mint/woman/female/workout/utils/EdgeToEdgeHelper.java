@@ -132,6 +132,9 @@ public final class EdgeToEdgeHelper {
         // Collapsing image headers (AppBarLayout fitsSystemWindows) draw behind the status bar
         // themselves; a solid protection band above the image looks detached.
         final boolean headerBehindStatusBar = hasFitsSystemWindowsAppBar(content);
+        // Theme có action bar (của AppCompat, không phải Toolbar trong layout).
+        final boolean hasDecorActionBar = activity instanceof androidx.appcompat.app.AppCompatActivity
+                && ((androidx.appcompat.app.AppCompatActivity) activity).getSupportActionBar() != null;
         if (headerBehindStatusBar) {
             statusColor = Color.TRANSPARENT;
         }
@@ -165,12 +168,38 @@ public final class EdgeToEdgeHelper {
                         .setInsets(WindowInsetsCompat.Type.statusBars(), Insets.of(0, bars.top, 0, 0))
                         .build();
             }
+            if (hasDecorActionBar) {
+                // Để ActionBarOverlayLayout vẫn nhận insets: nó cộng chiều cao action bar vào insets
+                // gửi cho khung nội dung (xem fitBelowActionBar).
+                return insets.inset(bars.left, bars.top, bars.right, bottom);
+            }
             return WindowInsetsCompat.CONSUMED;
         });
+        if (hasDecorActionBar && content != target) {
+            fitBelowActionBar(content);
+        }
         if (target instanceof ViewGroup) {
             ((ViewGroup) target).setClipToPadding(true);
         }
         ViewCompat.requestApplyInsets(target);
+    }
+
+    /**
+     * Cửa sổ edge-to-edge mang cờ LAYOUT_STABLE nên ActionBarOverlayLayout của AppCompat không đẩy
+     * nội dung xuống dưới action bar nữa (action bar đè lên nội dung, vd màn Achievements), mà chỉ báo
+     * chiều cao action bar qua insets gửi cho khung nội dung. Đệm khung nội dung theo insets đó.
+     */
+    private static void fitBelowActionBar(@NonNull View contentFrame) {
+        final int startLeft = contentFrame.getPaddingLeft();
+        final int startTop = contentFrame.getPaddingTop();
+        final int startRight = contentFrame.getPaddingRight();
+        final int startBottom = contentFrame.getPaddingBottom();
+        ViewCompat.setOnApplyWindowInsetsListener(contentFrame, (v, windowInsets) -> {
+            Insets bars = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(startLeft + bars.left, startTop + bars.top,
+                    startRight + bars.right, startBottom + bars.bottom);
+            return windowInsets.inset(bars.left, bars.top, bars.right, bars.bottom);
+        });
     }
 
     private static boolean hasFitsSystemWindowsAppBar(View view) {

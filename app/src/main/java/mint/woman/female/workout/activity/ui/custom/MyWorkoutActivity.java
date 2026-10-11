@@ -1,5 +1,7 @@
 package mint.woman.female.workout.activity.ui.custom;
 
+import mint.woman.female.workout.utils.MyWorkoutStore;
+import mint.woman.female.workout.utils.CustomPlanFiles;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -68,7 +70,7 @@ public class MyWorkoutActivity extends AppCompatActivity implements MyWorkoutAda
     private void initData() {
         mDatabase = FitnessApplication.getApplication().mDatabase;
         mAdapter = new MyWorkoutAdapter();
-        List<ProgramObject> list = mDatabase.getMyWorkoutList();
+        List<ProgramObject> list = MyWorkoutStore.list(this);
         mAdapter.setData(list);
         if (list.isEmpty()){
             binding.adView.setVisibility(View.GONE);
@@ -109,17 +111,15 @@ public class MyWorkoutActivity extends AppCompatActivity implements MyWorkoutAda
             if (workoutName.getText().toString().isEmpty()) {
                 Toast.makeText(MyWorkoutActivity.this, "Please enter workout name!!!", Toast.LENGTH_SHORT).show();
             } else {
-                ProgramObject myWorkoutObject = new ProgramObject();
-                myWorkoutObject.setName(workoutName.getText().toString());
-                myWorkoutObject.setPlan("custom_plan_"+mDatabase.getNewId()+".json");
-                myWorkoutObject.setTotal(daysNumber.getValue());
-                myWorkoutObject.setImage("custom_workout.webp");
-                int newId = mDatabase.insertMyWorkout(myWorkoutObject);
-                //myWorkoutObject.setPlan("custom_plan_" + newId + ".json");
-               // myWorkoutObject.setId(newId);
-               // mDatabase.updateMyWorkout(myWorkoutObject);
-                Decoder.encryptStringToFile(mCustomWorkoutDataProvider.convertPlanToJsonString().getBytes(),getFilesDir().getPath() + "/i/" + myWorkoutObject.getPlan());
-                //mJsonHelper.writeFileToData(myWorkoutObject.getPlan(), mCustomWorkoutDataProvider.convertPlanToJsonString());
+                // Lưu vào file JSON (MyWorkoutStore): cấp ID riêng, tên file lịch theo ID.
+                ProgramObject myWorkoutObject = MyWorkoutStore.create(MyWorkoutActivity.this,
+                        workoutName.getText().toString(), daysNumber.getValue(), "custom_workout.webp",
+                        mCustomWorkoutDataProvider.convertPlanToJsonString());
+                if (myWorkoutObject == null) {
+                    Toast.makeText(MyWorkoutActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                int newId = myWorkoutObject.getId();
                 flagRefresh = true;
                 Intent intent = new Intent(MyWorkoutActivity.this, CustomMyWorkoutActivity.class);
                 myPreference.setPlanProgress(newId, 0);
@@ -223,7 +223,9 @@ public class MyWorkoutActivity extends AppCompatActivity implements MyWorkoutAda
         Bundle mBundle = new Bundle();
         mBundle.putInt("PROGRAM_ID", myWorkoutObject.getId());
         if (myWorkoutObject.getTotal() > 1) {
-            Intent intent = new Intent(MyWorkoutActivity.this, ProgramActivity.class);
+            // Lịch nhiều ngày mở bằng màn thử thách Compose (đọc theo PROGRAM_ID); ProgramActivity cũ
+            // chỉ nhận PLAN dạng Parcelable nên mở bài tự tạo ra màn trống.
+            Intent intent = new Intent(MyWorkoutActivity.this, mint.woman.female.workout.activity.ui.workout.ChallengeActivity.class);
             intent.putExtras(mBundle);
             startActivity(intent);
         } else if (myWorkoutObject.getTotal() == 1) {
@@ -256,8 +258,8 @@ public class MyWorkoutActivity extends AppCompatActivity implements MyWorkoutAda
         deleteDialog.setTitle(getString(R.string.txt_delete_confirm));
         deleteDialog.setNegativeButton(getString(android.R.string.cancel), null);
         deleteDialog.setPositiveButton(getString(android.R.string.ok), (dialogInterface, i) -> {
-            mDatabase.deleteMyWorkout(id);
-            mAdapter.setData(mDatabase.getMyWorkoutList());
+            MyWorkoutStore.delete(this, id);
+            mAdapter.setData(MyWorkoutStore.list(this));
             Toast.makeText(this, "Deleted this workout!", Toast.LENGTH_SHORT).show();
         });
         deleteDialog.show();

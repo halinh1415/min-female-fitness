@@ -35,4 +35,10 @@
     <string name="pp_home_desc">En 4-veckorsplan efter ditt mål, din nivå och din kropp.</string>
     <string name="pp_home_create">Skapa</string>
     <string name="pp_edit">Justera plan</string>
+    <string name="pp_rest_between">Vila mellan övningar</string>
+    <string name="pp_warmup_stretch">Uppvärmning och stretching</string>
+    <string name="pp_short">Kort</string>
+    <string name="pp_standard">Standard</string>
+    <string name="pp_long">Lång</string>
+    <string name="pp_limits">Begränsningar</string>
 </resources>

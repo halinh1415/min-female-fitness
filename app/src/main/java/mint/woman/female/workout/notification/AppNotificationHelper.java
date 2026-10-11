@@ -38,7 +38,12 @@ import java.util.Calendar;
 
 public class AppNotificationHelper {
 
-    public static final String CHANNEL_ID = "smart_practice_channel";
+    /**
+     * Kênh mức HIGH (hiện popup, xếp trên thông báo thường và hiện thẻ trên màn khoá). Mức của kênh
+     * đã tạo không đổi được với máy đã cài, nên dùng id mới và xoá kênh DEFAULT cũ.
+     */
+    public static final String CHANNEL_ID = "smart_practice_high";
+    private static final String LEGACY_CHANNEL_ID = "smart_practice_channel";
     public static final String EXTRA_NOTIFICATION_TYPE = "notification_type";
     private static final int BRAND_COLOR = Color.parseColor("#E91E63");
     private static final ExecutorService EXECUTOR = Executors.newSingleThreadExecutor();
@@ -50,13 +55,15 @@ public class AppNotificationHelper {
             NotificationChannel channel = new NotificationChannel(
                     CHANNEL_ID,
                     CHANNEL_NAME,
-                    NotificationManager.IMPORTANCE_DEFAULT
+                    NotificationManager.IMPORTANCE_HIGH
             );
             channel.setDescription(CHANNEL_DESC);
+            channel.setLockscreenVisibility(android.app.Notification.VISIBILITY_PUBLIC);
 
             NotificationManager manager =
                     (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             if (manager != null) {
+                manager.deleteNotificationChannel(LEGACY_CHANNEL_ID);
                 manager.createNotificationChannel(channel);
             }
         }
@@ -218,7 +225,9 @@ public class AppNotificationHelper {
                 .setSmallIcon(R.drawable.ic_stat_workout)
                 .setColor(BRAND_COLOR)
                 .setContentTitle(content.getTitle())
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                // Nhắc tập không có nội dung nhạy cảm: hiện đầy đủ trên màn khoá.
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCategory(NotificationCompat.CATEGORY_REMINDER)
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent);

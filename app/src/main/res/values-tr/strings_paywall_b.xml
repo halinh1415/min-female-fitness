@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">Kişisel planının kilidini aç</string>
+    <string name="pwb_check_1">Sınırsız antrenman planı</string>
+    <string name="pwb_check_2">Tüm programlar ve 30 günlük meydan okumalar</string>
+    <string name="pwb_check_3">Reklamsız</string>
+    <string name="pwb_special_band">ÖZEL FİYAT</string>
+    <string name="pwb_special_title">Özel teklif: %s indirim</string>
+    <string name="pwb_special_price">%1$s (önceki %2$s)/yıl</string>
+    <string name="pwb_trial_title">%d gün ücretsiz deneme</string>
+    <string name="pwb_yearly_title">Yıllık plan</string>
+    <string name="pwb_yearly_price">%s/yıl</string>
+    <string name="pwb_monthly_title">Aylık plan</string>
+    <string name="pwb_monthly_price">%s/ay</string>
+    <string name="pwb_lifetime_title">Ömür boyu</string>
+    <string name="pwb_lifetime_price">%s tek seferlik</string>
+    <string name="pwb_per_week">%s/hafta</string>
+    <string name="pwb_forever">Sonsuza kadar</string>
+    <string name="pwb_save">%s TASARRUF</string>
+    <string name="pwb_cta_trial">%d GÜN ÜCRETSİZ DENE</string>
+    <string name="pwb_cta_sub">DEVAM</string>
+    <string name="pwb_no_payment">Şimdi ödeme yok</string>
+    <string name="pwb_note_trial">%1$d gün ücretsiz, ardından %2$s/yıl\nGoogle Play üzerinden istediğin zaman iptal et</string>
+    <string name="pwb_note_sub">Google Play üzerinden istediğin zaman iptal et</string>
+    <string name="pwb_note_lifetime">Tek seferlik ödeme, abonelik yok</string>
+    <string name="pwb_restore">Geri yükle</string>
+    <string name="pwb_terms">1. Tüm ödemeler Google Play üzerinden yapılır ve Google tarafından yönetilir.\n2. Ödeme, satın alma onaylandığında Google Play hesabından tahsil edilir.\n3. Otomatik yenileme mevcut dönemin bitiminden en az 24 saat önce kapatılmadıkça abonelikler otomatik olarak yenilenir.\n4. Yenileme ücreti mevcut dönemin bitiminden önceki 24 saat içinde tahsil edilir.\n5. Satın aldıktan sonra abonelikleri yönetebilir ve otomatik yenilemeyi Google Play hesap ayarlarından kapatabilirsin.\n6. Abonelik satın alındığında, varsa ücretsiz denemenin kullanılmayan kısmı geçersiz olur.</string>
+    <string name="pwb_badge_original">NORMAL FİYAT</string>
+    <string name="pwb_badge_best">EN İYİ DEĞER</string>
+    <string name="pwb_ends_in">%s içinde bitiyor</string>
+    <string name="pwb_prices_error">Fiyatlar yüklenemedi</string>
+    <string name="pwb_retry">Tekrar dene</string>
+    <string name="pwb_terms_link">Kullanım Koşulları</string>
+    <string name="pwb_privacy_link">Gizlilik Politikası</string>
+</resources>

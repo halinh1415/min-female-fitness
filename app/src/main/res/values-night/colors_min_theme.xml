@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="min_main_bg">#151013</color>
+    <color name="min_main_text">#F4ECEF</color>
+    <bool name="min_light_status_bar">false</bool>
+</resources>

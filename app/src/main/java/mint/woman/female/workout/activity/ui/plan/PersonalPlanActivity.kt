@@ -64,8 +64,8 @@ import mint.woman.female.workout.utils.LanguageHelper
 import java.util.Locale
 
 /**
- * Màn "Plan Settings": người dùng chọn mục tiêu, trình độ, vùng tập, vùng chấn thương, cường độ,
- * kiểu bài và thời lượng; bấm tạo thì sinh plan 28 ngày ([PersonalPlanStore]) và mở màn Challenge.
+ * Màn "Plan Settings" (bản riêng của Min): mục tiêu, thời lượng, trình độ, vùng tập, thời gian nghỉ
+ * giữa bài, khởi động - giãn cơ và các hạn chế (chấn thương, không nhảy); bấm tạo thì sinh plan 28 ngày ([PersonalPlanStore]) và mở màn Challenge.
  */
 class PersonalPlanActivity : AppCompatActivity() {
 
@@ -74,7 +74,9 @@ class PersonalPlanActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        settings = PersonalPlanStore.settings(this) ?: PersonalPlanStore.defaultsFromOnboarding(this)
+        // Bản Min không có mục cường độ aerobic (nghỉ giữa bài chọn riêng): plan cũ từng chọn thì đưa về mặc định.
+        settings = (PersonalPlanStore.settings(this) ?: PersonalPlanStore.defaultsFromOnboarding(this))
+            .copy(aerobic = PlanAerobic.MODERATE)
         setContent {
             MinTheme {
                 PlanSettingsScreen(
@@ -97,8 +99,9 @@ class PersonalPlanActivity : AppCompatActivity() {
             putString("level", chosen.level.name)
             putString("focus", chosen.focus.joinToString(",") { it.name })
             putString("injuries", chosen.injuries.joinToString(",") { it.name })
-            putString("aerobic", chosen.aerobic.name)
             putBoolean("jump_free", chosen.jumpFree)
+            putString("rest_pace", chosen.restPace.name)
+            putString("stretch", chosen.stretch.name)
             putString("duration", chosen.duration.name)
         })
         lifecycleScope.launch {
@@ -192,6 +195,22 @@ fun PlanSettingsScreen(
                         onClick = { onChange(settings.copy(goal = it)) }
                     )
                 }
+                Section(stringResource(R.string.pp_duration)) {
+                    val min = stringResource(R.string.pp_min)
+                    ChipRow(
+                        options = PlanDuration.values().toList(),
+                        label = {
+                            when (it) {
+                                PlanDuration.UNDER_10 -> "<10 $min"
+                                PlanDuration.MIN_10_20 -> "10-20 $min"
+                                PlanDuration.MIN_20_30 -> "20-30 $min"
+                                PlanDuration.OVER_30 -> ">30 $min"
+                            }
+                        },
+                        selected = { it == settings.duration },
+                        onClick = { onChange(settings.copy(duration = it)) }
+                    )
+                }
                 Section(stringResource(R.string.pp_level)) {
                     ChipRow(
                         options = PlanLevel.values().toList(),
@@ -211,10 +230,50 @@ fun PlanSettingsScreen(
                 Section(stringResource(R.string.pp_focus), stringResource(R.string.pp_multiple)) {
                     FocusGrid(settings, onChange)
                 }
-                Section(stringResource(R.string.pp_injury), stringResource(R.string.pp_multiple)) {
-                    val none = "none"
+                Section(stringResource(R.string.pp_rest_between)) {
                     ChipRow(
-                        options = listOf<Any>(none) + PlanInjury.values().toList(),
+                        options = PlanPace.values().toList(),
+                        label = {
+                            val name = stringResource(
+                                when (it) {
+                                    PlanPace.SHORT -> R.string.pp_short
+                                    PlanPace.STANDARD -> R.string.pp_standard
+                                    PlanPace.LONG -> R.string.pp_long
+                                }
+                            )
+                            when (it) {
+                                PlanPace.SHORT -> "$name · 10s"
+                                PlanPace.STANDARD -> "$name · 15s"
+                                PlanPace.LONG -> "$name · 25s"
+                            }
+                        },
+                        selected = { it == settings.restPace },
+                        onClick = { onChange(settings.copy(restPace = it)) }
+                    )
+                }
+                Section(stringResource(R.string.pp_warmup_stretch)) {
+                    ChipRow(
+                        options = PlanPace.values().toList(),
+                        label = {
+                            val name = stringResource(
+                                when (it) {
+                                    PlanPace.SHORT -> R.string.pp_short
+                                    PlanPace.STANDARD -> R.string.pp_standard
+                                    PlanPace.LONG -> R.string.pp_long
+                                }
+                            )
+                            name
+                        },
+                        selected = { it == settings.stretch },
+                        onClick = { onChange(settings.copy(stretch = it)) }
+                    )
+                }
+                // Gộp chấn thương và "không nhảy" thành một mục hạn chế (chọn nhiều).
+                Section(stringResource(R.string.pp_limits), stringResource(R.string.pp_multiple)) {
+                    val none = "none"
+                    val noJump = "no_jump"
+                    ChipRow(
+                        options = listOf<Any>(none) + PlanInjury.values().toList() + noJump,
                         label = {
                             stringResource(
                                 when (it) {
@@ -222,16 +281,25 @@ fun PlanSettingsScreen(
                                     PlanInjury.KNEE -> R.string.pp_knee
                                     PlanInjury.ARM_SHOULDER -> R.string.pp_shoulder
                                     PlanInjury.WRIST -> R.string.pp_wrist
+                                    noJump -> R.string.pp_jump_free
                                     else -> R.string.pp_none
                                 }
                             )
                         },
-                        selected = { if (it == none) settings.injuries.isEmpty() else it in settings.injuries },
+                        selected = {
+                            when (it) {
+                                none -> settings.injuries.isEmpty() && !settings.jumpFree
+                                noJump -> settings.jumpFree
+                                else -> it in settings.injuries
+                            }
+                        },
                         onClick = {
                             onChange(
-                                if (it is PlanInjury) {
-                                    settings.copy(injuries = if (it in settings.injuries) settings.injuries - it else settings.injuries + it)
-                                } else settings.copy(injuries = emptySet())
+                                when (it) {
+                                    is PlanInjury -> settings.copy(injuries = if (it in settings.injuries) settings.injuries - it else settings.injuries + it)
+                                    noJump -> settings.copy(jumpFree = !settings.jumpFree)
+                                    else -> settings.copy(injuries = emptySet(), jumpFree = false)
+                                }
                             )
                         }
                     )
@@ -244,46 +312,6 @@ fun PlanSettingsScreen(
                             modifier = Modifier.padding(start = 20.dp, end = 20.dp, top = 8.dp)
                         )
                     }
-                }
-                Section(stringResource(R.string.pp_aerobic)) {
-                    ChipRow(
-                        options = PlanAerobic.values().toList(),
-                        label = {
-                            stringResource(
-                                when (it) {
-                                    PlanAerobic.LOW -> R.string.pp_low
-                                    PlanAerobic.MODERATE -> R.string.pp_moderate
-                                    PlanAerobic.HIGH -> R.string.pp_high
-                                }
-                            )
-                        },
-                        selected = { it == settings.aerobic },
-                        onClick = { onChange(settings.copy(aerobic = it)) }
-                    )
-                }
-                Section(stringResource(R.string.pp_type)) {
-                    ChipRow(
-                        options = listOf(false, true),
-                        label = { stringResource(if (it) R.string.pp_jump_free else R.string.pp_none) },
-                        selected = { it == settings.jumpFree },
-                        onClick = { onChange(settings.copy(jumpFree = it)) }
-                    )
-                }
-                Section(stringResource(R.string.pp_duration)) {
-                    val min = stringResource(R.string.pp_min)
-                    ChipRow(
-                        options = PlanDuration.values().toList(),
-                        label = {
-                            when (it) {
-                                PlanDuration.UNDER_10 -> "<10 $min"
-                                PlanDuration.MIN_10_20 -> "10-20 $min"
-                                PlanDuration.MIN_20_30 -> "20-30 $min"
-                                PlanDuration.OVER_30 -> ">30 $min"
-                            }
-                        },
-                        selected = { it == settings.duration },
-                        onClick = { onChange(settings.copy(duration = it)) }
-                    )
                 }
             }
             MinButton(

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Màn tập / màn nghỉ (PlayFragment, RestFragment), cùng bảng màu Rose của MinUi -->
+    <color name="wk_bg">#FFF7FA</color>
+    <color name="wk_surface">#FFFFFF</color>
+    <color name="wk_title">#1F1A1D</color>
+    <color name="wk_muted">#6B5E66</color>
+    <color name="wk_track">#F1E4EA</color>
+    <color name="wk_primary">#E91E63</color>
+    <color name="wk_primary_light">#FF5C8A</color>
+    <color name="wk_pause_track">#F06292</color>
+    <color name="wk_soft">#FDE7EF</color>
+    <color name="wk_good">#2EAD6B</color>
+    <!-- Hồng của Min cố định (colorPrimary bản tối là màu đen) -->
+    <color name="wk_accent">#E91E63</color>
+    <!-- Màn nghỉ: lớp tối mờ đè lên ảnh bài tập (như bản cũ) -->
+    <color name="wk_rest_scrim">#A6070809</color>
+</resources>

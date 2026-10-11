@@ -35,4 +35,10 @@
     <string name="pp_home_desc">목표, 레벨, 몸에 맞춘 4주 플랜.</string>
     <string name="pp_home_create">만들기</string>
     <string name="pp_edit">플랜 조정</string>
+    <string name="pp_rest_between">운동 사이 휴식</string>
+    <string name="pp_warmup_stretch">워밍업 &amp; 스트레칭</string>
+    <string name="pp_short">짧게</string>
+    <string name="pp_standard">보통</string>
+    <string name="pp_long">길게</string>
+    <string name="pp_limits">제한 사항</string>
 </resources>

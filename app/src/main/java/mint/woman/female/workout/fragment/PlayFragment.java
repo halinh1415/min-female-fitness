@@ -30,6 +30,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
+import java.io.File;
+
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.count.CountManagerActivity;
@@ -43,6 +45,7 @@ import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.PlanObject;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.MyPreference;
+import mint.woman.female.workout.utils.WorkoutVideoCache;
 
 
 @SuppressLint({"NonConstantResourceId", "UseSwitchCompatOrMaterialCode", "DefaultLocale", "SetTextI18n"})
@@ -88,7 +91,9 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
             crashlytics.setCustomKey("TIME", mActionObject.time);
         }
         mWorkoutViewModel = new ViewModelProvider(getActivity()).get(WorkoutViewModel.class);
-        path = getContext().getCacheDir() + "/temp.mp4";
+        // Video đã giải mã sẵn ở luồng nền (WorkoutVideoCache), mỗi động tác một file.
+        path = WorkoutVideoCache.fileFor(requireContext(), DoWorkoutActivity.discover,
+                FitnessApplication.getApplication().getVersion(), mActionObject != null ? mActionObject.actionId : 0).getPath();
         myPreference = new MyPreference(getContext());
 
 
@@ -116,7 +121,17 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         }
         mTotalTime = mActionObject.time;
         binding.txtSpeed.setText("" + myPreference.getSpeed() + "x");
-        binding.videoView.setVideoURI(Uri.parse(path));
+        if (isVideoReady()) {
+            binding.videoView.setVideoURI(Uri.parse(path));
+        } else {
+            // Bỏ qua màn Nghỉ quá nhanh: video chưa giải mã xong, chờ luồng nền rồi mới phát.
+            WorkoutVideoCache.prepare(requireContext(), DoWorkoutActivity.discover,
+                    FitnessApplication.getApplication().getVersion(), mActionObject.actionId, video -> {
+                        if (video == null || getView() == null) return;
+                        binding.videoView.setVideoURI(Uri.parse(path));
+                        binding.videoView.start();
+                    });
+        }
         binding.videoView.setOnPreparedListener(mediaPlayer -> {
             mediaPlayer.setLooping(true);
 
@@ -211,9 +226,14 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         binding.txtSpeed.setText("" + myPreference.getSpeed() + "x");
         binding.tvExerciseName.setText(mExerciseObject.getName());
         binding.tvCountDown.setVisibility(View.INVISIBLE);
-        binding.videoView.setVideoURI(Uri.parse(path));
+        if (isVideoReady()) binding.videoView.setVideoURI(Uri.parse(path));
         playExercise();
 
+    }
+
+    /** Chưa có file mà setVideoURI thì VideoView hiện hộp thoại lỗi "Can't play this video". */
+    private boolean isVideoReady() {
+        return path != null && new File(path).length() > 0;
     }
 
     public void playExercise() {

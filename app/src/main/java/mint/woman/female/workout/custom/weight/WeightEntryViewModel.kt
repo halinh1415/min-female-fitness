@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.math.roundToInt
 import mint.woman.female.workout.model.UserObject
 import mint.woman.female.workout.utils.MyPreference
 import mint.woman.female.workout.utils.UserDatabase
@@ -74,19 +75,41 @@ class WeightEntryViewModel(application: Application) : AndroidViewModel(applicat
                 isKg = isKg,
                 weightText = kg?.let { value -> WeightEntryMath.format1(if (isKg) value else WeightEntryMath.kgToLb(value)) }
                     ?: it.weightText,
-            ).withMeasurements(height, waist)
+            ).withMeasurements(height, waist).copy(heightCmExact = height, waistCmExact = waist)
         }
     }
 
     fun toggleHeightExpanded() = _state.update { it.copy(heightExpanded = !it.heightExpanded) }
     fun toggleWaistExpanded() = _state.update { it.copy(waistExpanded = !it.waistExpanded) }
 
-    fun setHeightCmText(text: String) = updateDecimal(text) { copy(heightCmText = it) }
-    fun setHeightFeetText(text: String) = updateFeet(text) { copy(heightFeetText = it) }
-    fun setHeightInchesText(text: String) = updateDecimal(text) { copy(heightInchesText = it) }
-    fun setWaistCmText(text: String) = updateDecimal(text) { copy(waistCmText = it) }
-    fun setWaistFeetText(text: String) = updateFeet(text) { copy(waistFeetText = it) }
-    fun setWaistInchesText(text: String) = updateDecimal(text) { copy(waistInchesText = it) }
+    /** Thước chiều cao: [value] là cm (kg) hoặc tổng inch (lb); bước 1 cm / 0.5 in. */
+    fun setHeightValue(value: Float) {
+        val cm = toCm(value, cmStep = 1f, min = WeightEntryMath.MIN_HEIGHT_CM, max = WeightEntryMath.MAX_HEIGHT_CM)
+        _state.update { it.withMeasurements(cm, null).copy(heightCmExact = cm) }
+    }
+
+    fun stepHeight(delta: Float) {
+        val current = _state.value.heightDisplay ?: return
+        setHeightValue(current + delta)
+    }
+
+    /** Thước vòng eo: [value] là cm (kg) hoặc tổng inch (lb); bước 0.5. */
+    fun setWaistValue(value: Float) {
+        val cm = toCm(value, cmStep = 0.5f, min = WeightEntryMath.MIN_WAIST_CM, max = WeightEntryMath.MAX_WAIST_CM)
+        _state.update { it.withMeasurements(null, cm).copy(waistCmExact = cm) }
+    }
+
+    fun stepWaist(delta: Float) {
+        val current = _state.value.waistDisplay ?: return
+        setWaistValue(current + delta)
+    }
+
+    private fun toCm(display: Float, cmStep: Float, min: Float, max: Float): Float {
+        val isKg = _state.value.isKg
+        val step = if (isKg) cmStep else 0.5f
+        val stepped = (display / step).roundToInt() * step
+        return (if (isKg) stepped else stepped * WeightEntryMath.CM_PER_INCH).coerceIn(min, max)
+    }
 
     fun setDate(millis: Long) {
         val now = System.currentTimeMillis()
@@ -151,15 +174,7 @@ class WeightEntryViewModel(application: Application) : AndroidViewModel(applicat
         )
     }
 
-    private fun updateDecimal(text: String, block: WeightEntryState.(String) -> WeightEntryState) {
-        if (!isDecimalInput(text)) return
-        _state.update { state -> state.block(text.take(6)) }
-    }
 
-    private fun updateFeet(text: String, block: WeightEntryState.(String) -> WeightEntryState) {
-        if (text.any { !it.isDigit() }) return
-        _state.update { state -> state.block(text.take(1)) }
-    }
 
     private fun isDecimalInput(text: String): Boolean =
         text.all { it.isDigit() || it == '.' || it == ',' } &&

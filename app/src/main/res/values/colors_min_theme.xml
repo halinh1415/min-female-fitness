@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Màu khung của màn chính, đổi theo giao diện sáng / tối (bản tối ở values-night). -->
+<resources>
+    <color name="min_main_bg">#FFF7FA</color>
+    <color name="min_main_text">#1F1A1D</color>
+    <bool name="min_light_status_bar">true</bool>
+</resources>

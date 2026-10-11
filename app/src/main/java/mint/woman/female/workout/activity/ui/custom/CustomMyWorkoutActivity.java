@@ -1,5 +1,7 @@
 package mint.woman.female.workout.activity.ui.custom;
 
+import mint.woman.female.workout.utils.MyWorkoutStore;
+import mint.woman.female.workout.utils.CustomPlanFiles;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -83,7 +85,11 @@ public class CustomMyWorkoutActivity extends AppCompatActivity implements Dialog
                 int id = mBundle.getInt("PROGRAM_ID",0);
                 myWorkoutObject = FitnessApplication.getApplication().getProgram(id);
             } else {
-                myWorkoutObject = mDatabase.getMyWorkoutObject(mCustomId);
+                myWorkoutObject = MyWorkoutStore.find(this, mCustomId);
+                if (myWorkoutObject == null) {
+                    finish();
+                    return;
+                }
             }
 
             version = myWorkoutObject.getVersion();
@@ -193,7 +199,8 @@ public class CustomMyWorkoutActivity extends AppCompatActivity implements Dialog
                     menuItem.setVisible(false);
                     item.setTitle(R.string.txt_edit);
                   //  mJsonHelper.writeFileToData(myWorkoutObject.getPlan(), mProvider.convertPlanToJsonString());
-                    Decoder.encryptStringToFile(mProvider.convertPlanToJsonString().getBytes(),getFilesDir().getPath() + "/i/" + myWorkoutObject.getPlan());
+                    // Lưu vào filesDir/custom (tạo thư mục nếu chưa có); bản cũ ghi vào /i/ chưa tạo thư mục nên crash.
+                    CustomPlanFiles.save(this, myWorkoutObject.getPlan(), mProvider.convertPlanToJsonString());
                     Toast.makeText(this, "Update plan " + myWorkoutObject.getName(), Toast.LENGTH_SHORT).show();
                 } else {
                     menuItem.setVisible(true);

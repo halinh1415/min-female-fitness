@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">Lås upp din personliga plan</string>
+    <string name="pwb_check_1">Obegränsade träningsplaner</string>
+    <string name="pwb_check_2">Alla program och 30-dagarsutmaningar</string>
+    <string name="pwb_check_3">Inga annonser</string>
+    <string name="pwb_special_band">SPECIALPRIS</string>
+    <string name="pwb_special_title">Specialerbjudande: %s rabatt</string>
+    <string name="pwb_special_price">%1$s (ord. %2$s)/år</string>
+    <string name="pwb_trial_title">%d dagar gratis</string>
+    <string name="pwb_yearly_title">Årsplan</string>
+    <string name="pwb_yearly_price">%s/år</string>
+    <string name="pwb_monthly_title">Månadsplan</string>
+    <string name="pwb_monthly_price">%s/mån</string>
+    <string name="pwb_lifetime_title">Livstid</string>
+    <string name="pwb_lifetime_price">%s engångsbelopp</string>
+    <string name="pwb_per_week">%s/vecka</string>
+    <string name="pwb_forever">För alltid</string>
+    <string name="pwb_save">SPARA %s</string>
+    <string name="pwb_cta_trial">%d DAGAR GRATIS</string>
+    <string name="pwb_cta_sub">FORTSÄTT</string>
+    <string name="pwb_no_payment">Ingen betalning nu</string>
+    <string name="pwb_note_trial">%1$d dagar gratis, sedan %2$s/år\nAvsluta när som helst via Google Play</string>
+    <string name="pwb_note_sub">Avsluta när som helst via Google Play</string>
+    <string name="pwb_note_lifetime">Engångsbetalning, ingen prenumeration</string>
+    <string name="pwb_restore">Återställ</string>
+    <string name="pwb_terms">1. Alla betalningar sker via Google Play och hanteras av Google.\n2. Betalningen debiteras ditt Google Play-konto när köpet bekräftas.\n3. Prenumerationer förnyas automatiskt om inte automatisk förnyelse stängs av minst 24 timmar före slutet av den aktuella perioden.\n4. Förnyelsen debiteras inom 24 timmar före slutet av den aktuella perioden.\n5. Du kan hantera prenumerationer och stänga av automatisk förnyelse i dina Google Play-kontoinställningar efter köpet.\n6. Oanvänd del av en gratis provperiod förfaller när du köper en prenumeration, i förekommande fall.</string>
+    <string name="pwb_badge_original">ORDINARIE PRIS</string>
+    <string name="pwb_badge_best">BÄSTA VALET</string>
+    <string name="pwb_ends_in">Slutar om %s</string>
+    <string name="pwb_prices_error">Kunde inte ladda priser</string>
+    <string name="pwb_retry">Försök igen</string>
+    <string name="pwb_terms_link">Användarvillkor</string>
+    <string name="pwb_privacy_link">Integritetspolicy</string>
+</resources>

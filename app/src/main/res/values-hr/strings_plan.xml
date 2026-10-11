@@ -35,4 +35,10 @@
     <string name="pp_home_desc">Plan od 4 tjedna prema tvom cilju, razini i tijelu.</string>
     <string name="pp_home_create">Izradi</string>
     <string name="pp_edit">Prilagodi plan</string>
+    <string name="pp_rest_between">Odmor između vježbi</string>
+    <string name="pp_warmup_stretch">Zagrijavanje i istezanje</string>
+    <string name="pp_short">Kratko</string>
+    <string name="pp_standard">Standardno</string>
+    <string name="pp_long">Dugo</string>
+    <string name="pp_limits">Ograničenja</string>
 </resources>

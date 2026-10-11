@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">برنامه شخصی خود را باز کنید</string>
+    <string name="pwb_check_1">برنامه‌های تمرینی نامحدود</string>
+    <string name="pwb_check_2">همه برنامه‌ها و چالش‌های ۳۰ روزه</string>
+    <string name="pwb_check_3">بدون تبلیغات</string>
+    <string name="pwb_special_band">قیمت ویژه</string>
+    <string name="pwb_special_title">پیشنهاد ویژه: %s تخفیف</string>
+    <string name="pwb_special_price">%1$s (قبلاً %2$s) در سال</string>
+    <string name="pwb_trial_title">%d روز آزمایش رایگان</string>
+    <string name="pwb_yearly_title">اشتراک سالانه</string>
+    <string name="pwb_yearly_price">%s در سال</string>
+    <string name="pwb_monthly_title">اشتراک ماهانه</string>
+    <string name="pwb_monthly_price">%s در ماه</string>
+    <string name="pwb_lifetime_title">مادام‌العمر</string>
+    <string name="pwb_lifetime_price">%s یک‌باره</string>
+    <string name="pwb_per_week">%s در هفته</string>
+    <string name="pwb_forever">برای همیشه</string>
+    <string name="pwb_save">%s صرفه‌جویی</string>
+    <string name="pwb_cta_trial">%d روز آزمایش رایگان</string>
+    <string name="pwb_cta_sub">ادامه</string>
+    <string name="pwb_no_payment">الان پرداختی نیست</string>
+    <string name="pwb_note_trial">%1$d روز رایگان، سپس %2$s در سال\nهر زمان از طریق Google Play لغو کنید</string>
+    <string name="pwb_note_sub">هر زمان از طریق Google Play لغو کنید</string>
+    <string name="pwb_note_lifetime">پرداخت یک‌باره، بدون اشتراک</string>
+    <string name="pwb_restore">بازیابی</string>
+    <string name="pwb_terms">۱. همه پرداخت‌ها از طریق Google Play انجام و توسط Google مدیریت می‌شود.\n۲. مبلغ هنگام تأیید خرید از حساب Google Play شما کسر می‌شود.\n۳. اشتراک‌ها به‌طور خودکار تمدید می‌شوند مگر اینکه تمدید خودکار دست‌کم ۲۴ ساعت پیش از پایان دوره فعلی خاموش شود.\n۴. هزینه تمدید طی ۲۴ ساعت پیش از پایان دوره فعلی کسر می‌شود.\n۵. پس از خرید می‌توانید اشتراک‌ها را مدیریت و تمدید خودکار را در تنظیمات حساب Google Play خاموش کنید.\n۶. بخش استفاده‌نشده دوره آزمایشی رایگان با خرید اشتراک از بین می‌رود، در صورت وجود.</string>
+    <string name="pwb_badge_original">قیمت اصلی</string>
+    <string name="pwb_badge_best">بهترین ارزش</string>
+    <string name="pwb_ends_in">پایان تا %s دیگر</string>
+    <string name="pwb_prices_error">قیمت‌ها بارگیری نشد</string>
+    <string name="pwb_retry">تلاش دوباره</string>
+    <string name="pwb_terms_link">شرایط استفاده</string>
+    <string name="pwb_privacy_link">سیاست حفظ حریم خصوصی</string>
+</resources>

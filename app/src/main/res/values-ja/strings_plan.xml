@@ -35,4 +35,10 @@
     <string name="pp_home_desc">目標・レベル・体に合わせた4週間プラン。</string>
     <string name="pp_home_create">作成</string>
     <string name="pp_edit">プランを調整</string>
+    <string name="pp_rest_between">エクササイズ間の休憩</string>
+    <string name="pp_warmup_stretch">ウォームアップとストレッチ</string>
+    <string name="pp_short">短め</string>
+    <string name="pp_standard">標準</string>
+    <string name="pp_long">長め</string>
+    <string name="pp_limits">制限事項</string>
 </resources>

@@ -78,6 +78,12 @@ public class SplashActivity extends AppCompatActivity {
     private boolean hasStartedAdLoading = false;
     private boolean hasScheduledInterstitialCheck = false;
     private boolean hasStartedMain = false;
+    /** UMP không trả lời (mạng chập chờn) quá thời gian này thì bỏ qua, tải quảng cáo như bình thường. */
+    private static final long CONSENT_TIMEOUT_MS = 10000;
+    private boolean consentInfoReturned = false;
+    private final Runnable consentTimeout = () -> {
+        if (!consentInfoReturned) startLoadAd();
+    };
     private boolean isActivityResumed = false;
     private boolean startMainWhenResumed = false;
 
@@ -160,11 +166,16 @@ public class SplashActivity extends AppCompatActivity {
                 .build();
 
         consentInformation = UserMessagingPlatform.getConsentInformation(this);
+        mHandler.postDelayed(consentTimeout, CONSENT_TIMEOUT_MS);
         //  consentInformation.reset();
         consentInformation.requestConsentInfoUpdate(
                 this,
                 params,
                 (ConsentInformation.OnConsentInfoUpdateSuccessListener) () -> {
+                    // Đã có trả lời: form (nếu có) do người dùng tự đóng, không tính giờ nữa
+                    consentInfoReturned = true;
+                    mHandler.removeCallbacks(consentTimeout);
+                    if (hasStartedAdLoading) return;
                     UserMessagingPlatform.loadAndShowConsentFormIfRequired(
                             this,
                             (ConsentForm.OnConsentFormDismissedListener) loadAndShowError -> {
@@ -181,6 +192,8 @@ public class SplashActivity extends AppCompatActivity {
 
                 },
                 (ConsentInformation.OnConsentInfoUpdateFailureListener) requestConsentError -> {
+                    consentInfoReturned = true;
+                    mHandler.removeCallbacks(consentTimeout);
                     // Consent gathering failed.
                     Log.w(TAG, "consent requestConsentError " + String.format("%s: %s",
                             requestConsentError.getErrorCode(),
@@ -246,11 +259,22 @@ public class SplashActivity extends AppCompatActivity {
             return;
         }
         hasStartedAdLoading = true;
-        if (myPreference.isShowAds() && myPreference.getOK())
-            MobileAds.initialize(this, initializationStatus -> {
+        if (myPreference.isShowAds() && myPreference.getOK()) {
+            // initialize() chặn luồng chính ~0.5s trên máy yếu (Splash đứng hình); Google khuyên gọi trên
+            // luồng phụ (như Tai Chi). Vẫn giữ thứ tự cũ: initialize xong mới tải quảng cáo splash.
+            Context appContext = getApplicationContext();
+            new Thread(() -> {
+                MobileAds.initialize(appContext, initializationStatus -> {
+                });
+                mHandler.post(this::requestSplashAds);
+            }, "ads-init").start();
+        } else {
+            requestSplashAds();
+        }
+    }
 
-            });
-
+    private void requestSplashAds() {
+        if (hasStartedMain || isFinishing() || isDestroyed()) return;
         if (myPreference.isShowAds() && myPreference.isFirstOpen()) {
             requestNativeLanguage();
             requestNativeOnBoard();

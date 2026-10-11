@@ -29,6 +29,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import android.widget.Toast
+import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
+import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.GoogleApiAvailability
+import com.google.firebase.auth.FirebaseAuth
+import mint.woman.female.workout.BuildConfig
+import mint.woman.female.workout.R
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -52,6 +69,11 @@ class OnboardFlowActivity : ComponentActivity(), EdgeToEdgeHelper.HandlesInsets 
     private lateinit var preference: MyPreference
     private lateinit var analytics: OnboardingAnalytics
     private var finished = false
+    private lateinit var onboardState: OnboardState
+
+    private val signInLauncher = registerForActivityResult(
+        FirebaseAuthUIActivityResultContract()
+    ) { result -> onSignInResult(result) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -59,7 +81,9 @@ class OnboardFlowActivity : ComponentActivity(), EdgeToEdgeHelper.HandlesInsets 
         preference = MyPreference(this)
 
         val state = ViewModelProvider(this)[OnboardState::class.java]
-        val variant = OnboardingExperimentRepository(this).resolveVariant()
+        onboardState = state
+        val experiment = OnboardingExperimentRepository(this)
+        val variant = experiment.resolveVariant()
         state.configure(variant)
         analytics = OnboardingAnalytics(FirebaseAnalytics.getInstance(this), variant)
         if (savedInstanceState == null) {
@@ -84,7 +108,16 @@ class OnboardFlowActivity : ComponentActivity(), EdgeToEdgeHelper.HandlesInsets 
                         analytics.flowFinished(false, state.step, state.steps.size)
                         finish()
                     },
-                    onComplete = { completed -> finishFlow(state, completed) }
+                    onComplete = { completed -> finishFlow(state, completed) },
+                    onSignIn = if (canSignIn()) ({ startSignIn() }) else null,
+                    debugLabel = if (BuildConfig.DEBUG) "TEST: ${variant.remoteValue} · ${state.steps.size} màn  ↻" else null,
+                    onDebugCycle = {
+                        // Bản debug: đổi sang nhánh kế tiếp rồi chạy lại onboarding từ đầu
+                        val next = OnboardingVariant.entries[(variant.ordinal + 1) % OnboardingVariant.entries.size]
+                        experiment.setDebugVariant(next)
+                        finish()
+                        startActivity(Intent(this, OnboardFlowActivity::class.java))
+                    }
                 )
                 }
             }
@@ -97,7 +130,41 @@ class OnboardFlowActivity : ComponentActivity(), EdgeToEdgeHelper.HandlesInsets 
 
         state.persist(preference)
         analytics.flowFinished(completed, state.step, state.steps.size)
+        openMain()
+    }
 
+    /** Đăng nhập dùng chung FirebaseUI + Realtime DB với mục Back up & Restore trong Cài đặt. */
+    private fun canSignIn(): Boolean =
+        GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS &&
+            FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.ENABLE_SYNC)
+
+    private fun startSignIn() {
+        val intent = AuthUI.getInstance().createSignInIntentBuilder()
+            .setAvailableProviders(listOf(AuthUI.IdpConfig.GoogleBuilder().build()))
+            .build()
+        signInLauncher.launch(intent)
+    }
+
+    private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
+        if (result.resultCode != RESULT_OK || FirebaseAuth.getInstance().currentUser == null) {
+            // Bấm huỷ (idpResponse null) thì ở lại màn chào, không báo lỗi
+            if (result.idpResponse != null) {
+                Toast.makeText(this, getString(R.string.oops_sync_failed), Toast.LENGTH_SHORT).show()
+            }
+            return
+        }
+        if (finished) return
+        finished = true
+
+        // Dữ liệu sao lưu (tiến độ, diet, lịch sử) được YogaActivity tải về khi mở;
+        // hồ sơ onboarding chưa có trên server nên chỉ đánh dấu đã onboard, giữ giá trị mặc định.
+        preference.setOnboarded(true)
+        preference.setFirstOpen(false)
+        analytics.signedIn(onboardState.step, onboardState.steps.size)
+        openMain()
+    }
+
+    private fun openMain() {
         val main = Intent(this, YogaActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
@@ -147,7 +214,10 @@ private fun OnboardFlowScreen(
     onBackClicked: (OnboardStep) -> Unit,
     onSectionSkipped: (OnboardStep) -> Unit,
     onExit: () -> Unit,
-    onComplete: (Boolean) -> Unit
+    onComplete: (Boolean) -> Unit,
+    onSignIn: (() -> Unit)? = null,
+    debugLabel: String? = null,
+    onDebugCycle: () -> Unit = {}
 ) {
     val step = state.step
 
@@ -196,7 +266,7 @@ private fun OnboardFlowScreen(
             if (current.isImmersive()) {
                 // Ảnh nền tràn lên dưới status bar, thanh tiến trình nổi phía trên.
                 Box(Modifier.fillMaxSize()) {
-                    ObStepContent(step = current, state = state, onNext = ::goNext)
+                    ObStepContent(step = current, state = state, onNext = ::goNext, onSignIn = onSignIn)
                     if (current.hasProgress) {
                         Box(Modifier.statusBarsPadding()) {
                             ObTopBar(
@@ -226,10 +296,25 @@ private fun OnboardFlowScreen(
                         )
                     }
                     Box(Modifier.weight(1f)) {
-                        ObStepContent(step = current, state = state, onNext = ::goNext)
+                        ObStepContent(step = current, state = state, onNext = ::goNext, onSignIn = onSignIn)
                     }
                 }
             }
+        }
+        if (debugLabel != null && state.index == 0) {
+            Text(
+                debugLabel,
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .statusBarsPadding()
+                    .padding(top = 6.dp)
+                    .clip(RoundedCornerShape(50))
+                    .background(Color(0xCC1F1A1D))
+                    .clickable(onClick = onDebugCycle)
+                    .padding(horizontal = 14.dp, vertical = 6.dp),
+                color = Color.White,
+                fontSize = 13.sp
+            )
         }
     }
 }

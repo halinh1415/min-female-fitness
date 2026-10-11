@@ -240,8 +240,25 @@ public class Database {
         this.mDatabase.execSQL("DELETE FROM workout");
     }
 
+    /** ID bài tự tạo bắt đầu từ đây để không trùng ID chương trình có sẵn (< 10000) và plan cá nhân. */
+    public static final int MY_WORKOUT_ID_BASE = 100000;
+    private boolean myWorkoutIdsMigrated = false;
+
+    /** Bản cũ đánh ID 201, 202... trùng ID chương trình có sẵn: dời sang dải riêng một lần. */
+    private void migrateMyWorkoutIds() {
+        if (myWorkoutIdsMigrated) return;
+        myWorkoutIdsMigrated = true;
+        try {
+            this.mDatabase.execSQL("UPDATE my_workout SET id = id + " + MY_WORKOUT_ID_BASE
+                    + " WHERE type = 3 AND id < " + MY_WORKOUT_ID_BASE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @SuppressLint("Range")
     public List<ProgramObject> getMyWorkoutList() {
+        migrateMyWorkoutIds();
         List<ProgramObject> list = new ArrayList<>();
         try {
             Cursor cursor = this.mDatabase.rawQuery("select * from my_workout where type = 3", null);
@@ -268,8 +285,16 @@ public class Database {
         return list;
     }
 
+    /** Bài tự tạo theo ID, null nếu không còn. */
+    @SuppressLint("Range")
+    public ProgramObject findMyWorkout(int id) {
+        ProgramObject p = getMyWorkoutObject(id);
+        return p.getPlan() == null ? null : p;
+    }
+
     @SuppressLint("Range")
     public ProgramObject getMyWorkoutObject(int id) {
+        migrateMyWorkoutIds();
         ProgramObject myWorkoutObject = new ProgramObject();
         try {
             Cursor cursor = this.mDatabase.rawQuery("select * from my_workout where id =" + id, null);
@@ -294,7 +319,9 @@ public class Database {
 
     public void updateMyWorkout(ProgramObject myWorkoutObject) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put("data", myWorkoutObject.getPlan());
+        contentValues.put("plan", myWorkoutObject.getPlan());
+        contentValues.put("name", myWorkoutObject.getName());
+        contentValues.put("total", myWorkoutObject.getTotal());
         this.mDatabase.update("my_workout", contentValues, "id = " + myWorkoutObject.getId(), null);
     }
     public int getNewId(){
@@ -308,8 +335,19 @@ public class Database {
         return newId;
     }
 
+    /** Thêm bài tự tạo với ID riêng (≥ MY_WORKOUT_ID_BASE + 1). @return ID mới, -1 nếu lỗi. */
     public int insertMyWorkout(ProgramObject myWorkoutObject) {
+        migrateMyWorkoutIds();
+        int nextId = MY_WORKOUT_ID_BASE + 1;
+        try {
+            Cursor cursor = this.mDatabase.rawQuery("SELECT MAX(id) FROM my_workout", null);
+            if (cursor.moveToFirst()) nextId = Math.max(nextId, cursor.getInt(0) + 1);
+            cursor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         ContentValues contentValues = new ContentValues();
+        contentValues.put("id", nextId);
         contentValues.put("name", myWorkoutObject.getName());
         contentValues.put("plan", myWorkoutObject.getPlan());
         contentValues.put("total", myWorkoutObject.getTotal());

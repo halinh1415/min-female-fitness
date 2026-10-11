@@ -35,4 +35,10 @@
     <string name="pp_home_desc">خطة لمدة 4 أسابيع مصممة حسب هدفك ومستواك وجسمك.</string>
     <string name="pp_home_create">إنشاء</string>
     <string name="pp_edit">تعديل الخطة</string>
+    <string name="pp_rest_between">الراحة بين التمارين</string>
+    <string name="pp_warmup_stretch">الإحماء والتمدد</string>
+    <string name="pp_short">قصير</string>
+    <string name="pp_standard">عادي</string>
+    <string name="pp_long">طويل</string>
+    <string name="pp_limits">القيود</string>
 </resources>

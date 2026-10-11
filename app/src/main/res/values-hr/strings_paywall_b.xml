@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">Otključaj svoj osobni plan</string>
+    <string name="pwb_check_1">Neograničeni planovi treninga</string>
+    <string name="pwb_check_2">Svi programi i izazovi od 30 dana</string>
+    <string name="pwb_check_3">Bez oglasa</string>
+    <string name="pwb_special_band">POSEBNA CIJENA</string>
+    <string name="pwb_special_title">Posebna ponuda s popustom od %s</string>
+    <string name="pwb_special_price">%1$s (prije %2$s)/god.</string>
+    <string name="pwb_trial_title">Besplatna proba %d dana</string>
+    <string name="pwb_yearly_title">Godišnji plan</string>
+    <string name="pwb_yearly_price">%s/god.</string>
+    <string name="pwb_monthly_title">Mjesečni plan</string>
+    <string name="pwb_monthly_price">%s/mj.</string>
+    <string name="pwb_lifetime_title">Doživotno</string>
+    <string name="pwb_lifetime_price">%s jednokratno</string>
+    <string name="pwb_per_week">%s/tjedan</string>
+    <string name="pwb_forever">Zauvijek</string>
+    <string name="pwb_save">UŠTEDI %s</string>
+    <string name="pwb_cta_trial">BESPLATNA PROBA %d DANA</string>
+    <string name="pwb_cta_sub">NASTAVI</string>
+    <string name="pwb_no_payment">Bez plaćanja sada</string>
+    <string name="pwb_note_trial">Besplatna proba %1$d dana, zatim %2$s/god.\nOtkaži bilo kada na Google Playu</string>
+    <string name="pwb_note_sub">Otkaži bilo kada na Google Playu</string>
+    <string name="pwb_note_lifetime">Jednokratno plaćanje, bez pretplate</string>
+    <string name="pwb_restore">Vrati kupnju</string>
+    <string name="pwb_terms">1. Sva plaćanja obavljaju se putem Google Playa i njima upravlja Google.\n2. Plaćanje se naplaćuje s tvog Google Play računa pri potvrdi kupnje.\n3. Pretplate se automatski obnavljaju osim ako automatsko obnavljanje ne isključiš najmanje 24 sata prije kraja trenutnog razdoblja.\n4. Obnova se naplaćuje s računa unutar 24 sata prije kraja trenutnog razdoblja.\n5. Pretplatama možeš upravljati i isključiti automatsko obnavljanje u postavkama Google Play računa nakon kupnje.\n6. Neiskorišteni dio besplatne probe gubi se kupnjom pretplate, gdje je primjenjivo.</string>
+    <string name="pwb_badge_original">IZVORNA CIJENA</string>
+    <string name="pwb_badge_best">NAJBOLJA VRIJEDNOST</string>
+    <string name="pwb_ends_in">Završava za %s</string>
+    <string name="pwb_prices_error">Cijene se nisu mogle učitati</string>
+    <string name="pwb_retry">Pokušaj ponovno</string>
+    <string name="pwb_terms_link">Uvjeti korištenja</string>
+    <string name="pwb_privacy_link">Pravila privatnosti</string>
+</resources>

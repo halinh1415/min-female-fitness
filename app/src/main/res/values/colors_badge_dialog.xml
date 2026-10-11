@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Hộp "Đạt huy hiệu" hiện trên màn Kết thúc: có bản tối (values-night) -->
+    <color name="badge_dialog_bg">#FFFFFF</color>
+    <color name="badge_dialog_ink">#1F2A2E</color>
+    <color name="badge_dialog_muted">#6C7A80</color>
+    <color name="badge_dialog_accent">#1C6B4E</color>
+    <color name="badge_dialog_border">#D8E9DF</color>
+</resources>

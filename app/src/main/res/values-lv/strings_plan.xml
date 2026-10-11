@@ -35,4 +35,10 @@
     <string name="pp_home_desc">4 nedēļu plāns atbilstoši tavam mērķim, līmenim un ķermenim.</string>
     <string name="pp_home_create">Izveidot</string>
     <string name="pp_edit">Pielāgot plānu</string>
+    <string name="pp_rest_between">Atpūta starp vingrinājumiem</string>
+    <string name="pp_warmup_stretch">Iesildīšanās un stiepšanās</string>
+    <string name="pp_short">Īss</string>
+    <string name="pp_standard">Standarta</string>
+    <string name="pp_long">Garš</string>
+    <string name="pp_limits">Ierobežojumi</string>
 </resources>

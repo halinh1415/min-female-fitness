@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Home: nút thu gọn mục đã mở rộng ("Thêm" → mở ngay trên màn) -->
+    <string name="home_show_less">Näytä vähemmän</string>
+</resources>

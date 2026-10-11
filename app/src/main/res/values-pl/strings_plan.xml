@@ -35,4 +35,10 @@
     <string name="pp_home_desc">4-tygodniowy plan dopasowany do Twojego celu, poziomu i ciała.</string>
     <string name="pp_home_create">Utwórz</string>
     <string name="pp_edit">Dostosuj plan</string>
+    <string name="pp_rest_between">Przerwa między ćwiczeniami</string>
+    <string name="pp_warmup_stretch">Rozgrzewka i rozciąganie</string>
+    <string name="pp_short">Krótko</string>
+    <string name="pp_standard">Standardowo</string>
+    <string name="pp_long">Długo</string>
+    <string name="pp_limits">Ograniczenia</string>
 </resources>

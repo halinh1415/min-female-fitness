@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paywall B (giống WomenWorkout) -->
+<resources>
+    <string name="pwb_title">Avaa henkilökohtainen suunnitelmasi</string>
+    <string name="pwb_check_1">Rajattomasti treenisuunnitelmia</string>
+    <string name="pwb_check_2">Kaikki ohjelmat ja 30 päivän haasteet</string>
+    <string name="pwb_check_3">Ei mainoksia</string>
+    <string name="pwb_special_band">ERIKOISHINTA</string>
+    <string name="pwb_special_title">Erikoistarjous: -%s</string>
+    <string name="pwb_special_price">%1$s (ennen %2$s)/vuosi</string>
+    <string name="pwb_trial_title">%d päivää ilmaiseksi</string>
+    <string name="pwb_yearly_title">Vuositilaus</string>
+    <string name="pwb_yearly_price">%s/vuosi</string>
+    <string name="pwb_monthly_title">Kuukausitilaus</string>
+    <string name="pwb_monthly_price">%s/kk</string>
+    <string name="pwb_lifetime_title">Elinikäinen</string>
+    <string name="pwb_lifetime_price">%s kertamaksu</string>
+    <string name="pwb_per_week">%s/vko</string>
+    <string name="pwb_forever">Ikuisesti</string>
+    <string name="pwb_save">SÄÄSTÄ %s</string>
+    <string name="pwb_cta_trial">%d PÄIVÄÄ ILMAISEKSI</string>
+    <string name="pwb_cta_sub">JATKA</string>
+    <string name="pwb_no_payment">Ei maksua nyt</string>
+    <string name="pwb_note_trial">%1$d päivää ilmaiseksi, sitten %2$s/vuosi\nPeru milloin tahansa Google Playssa</string>
+    <string name="pwb_note_sub">Peru milloin tahansa Google Playssa</string>
+    <string name="pwb_note_lifetime">Kertamaksu, ei tilausta</string>
+    <string name="pwb_restore">Palauta</string>
+    <string name="pwb_terms">1. Kaikki maksut tehdään Google Playn kautta, ja niitä hallinnoi Google.\n2. Maksu veloitetaan Google Play -tililtäsi, kun osto vahvistetaan.\n3. Tilaukset uusiutuvat automaattisesti, ellei automaattista uusimista poisteta käytöstä vähintään 24 tuntia ennen nykyisen jakson loppua.\n4. Uusiminen veloitetaan 24 tunnin sisällä ennen nykyisen jakson loppua.\n5. Voit hallita tilauksia ja poistaa automaattisen uusimisen käytöstä Google Play -tilisi asetuksissa oston jälkeen.\n6. Ilmaisen kokeilun käyttämätön osa raukeaa, kun ostat tilauksen, jos sovellettavissa.</string>
+    <string name="pwb_badge_original">NORMAALIHINTA</string>
+    <string name="pwb_badge_best">PARAS VALINTA</string>
+    <string name="pwb_ends_in">Päättyy %s kuluttua</string>
+    <string name="pwb_prices_error">Hintoja ei voitu ladata</string>
+    <string name="pwb_retry">Yritä uudelleen</string>
+    <string name="pwb_terms_link">Käyttöehdot</string>
+    <string name="pwb_privacy_link">Tietosuojakäytäntö</string>
+</resources>
