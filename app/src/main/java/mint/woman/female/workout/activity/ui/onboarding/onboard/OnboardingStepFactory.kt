@@ -9,8 +9,11 @@ object OnboardingStepFactory {
         OnboardingVariant.QUICK_7 -> ONBOARD_STEPS.filter { it.design in QUICK_DESIGNS }
     }
 
-    /** 7 màn: chào → mục tiêu → chiều cao → cân nặng → cân mục tiêu → tạo kế hoạch → kết quả. */
-    private val QUICK_DESIGNS = setOf("step1", "step4", "step9", "step10", "step10b", "step45", "step46")
+    /**
+     * 8 màn: chào → mục tiêu → vùng tập → chiều cao → cân nặng → cân mục tiêu → tạo kế hoạch → kết quả.
+     * Giữ tên nhánh quick_7 (giá trị Remote Config / analytics) dù đã thêm màn vùng tập.
+     */
+    private val QUICK_DESIGNS = setOf("step1", "step4", "step6", "step9", "step10", "step10b", "step45", "step46")
 
     /** 26 màn = 22 màn dưới đây + 4 màn chuyển phần. */
     private val STANDARD_DESIGNS = setOf(

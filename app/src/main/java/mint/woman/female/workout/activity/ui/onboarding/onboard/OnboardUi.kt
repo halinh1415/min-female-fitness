@@ -316,7 +316,7 @@ fun ObPrimaryButton(
 /** Avatar nhỏ của coach Mia, dùng ở các thẻ phản hồi. */
 @Composable
 fun ObCoachAvatar(size: androidx.compose.ui.unit.Dp = 30.dp) {
-    val art = rememberObArt("coach_kelly")
+    val art = rememberObArt("coach_mia")
     if (art != null) {
         Image(
             bitmap = art,

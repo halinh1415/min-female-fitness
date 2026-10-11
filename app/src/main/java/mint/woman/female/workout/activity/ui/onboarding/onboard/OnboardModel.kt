@@ -227,7 +227,7 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
         title = "Hi, I'm Mia!",
         body = "I'll be your coach along the way.\nAnswer a few quick questions and I'll build a personalized plan just for you.",
         titleAccent = "personalized plan",
-        cta = "LET'S GO!", art = "coach_kelly"
+        cta = "LET'S GO!", art = "coach_mia"
     ),
 
     // ---------------------------------------------------------- phần 1: mục tiêu
@@ -306,7 +306,7 @@ val ONBOARD_STEPS: List<OnboardStep> = listOf(
 
     OnboardStep(
         design = "step10", kind = StepKind.WEIGHT, section = 2, id = ObId.WEIGHT,
-        title = "How much do you weigh now?", titleAccent = "now"
+        title = "How much do you weight now?", titleAccent = "now"
     ),
 
     OnboardStep(

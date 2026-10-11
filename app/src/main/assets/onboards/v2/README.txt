@@ -3,7 +3,7 @@ Thả file vào đúng thư mục này, đặt đúng tên bên dưới, đuôi 
 Màn hình tự nhận ảnh, không cần sửa code. Tên nào chưa có file thì hiện ô giữ chỗ.
 
 step1   welcome_hero
-step2   coach_kelly
+step2   coach_mia
 step4   goal_lose_weight, goal_build_muscle, goal_keep_fit
 step5   info_scale
 step6   focus_body

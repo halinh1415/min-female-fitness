@@ -56,6 +56,8 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.Layout
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -554,6 +556,7 @@ private fun BeforeAfterTile(label: String, art: String, badgeColor: Color, modif
 @Composable
 private fun FocusBodyScreen(step: OnboardStep, state: OnboardState, onNext: () -> Unit) {
     val selected = state.answers[step.id]
+    val onSelected: (String) -> Unit = { state.answers[step.id] = it }
     Column(
         Modifier
             .fillMaxSize()
@@ -561,51 +564,105 @@ private fun FocusBodyScreen(step: OnboardStep, state: OnboardState, onNext: () -
     ) {
         Spacer(Modifier.height(20.dp))
         ObTitle(step.title, step.titleAccent)
-        Spacer(Modifier.height(16.dp))
-        Row(Modifier.weight(1f)) {
-            Column(
-                modifier = Modifier
-                    .weight(0.46f)
-                    .verticalScroll(rememberScrollState())
-                    .padding(top = 24.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                step.options.forEach { option ->
-                    val isSelected = selected == option.key
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(24.dp))
-                            .background(if (isSelected) ObColor.PinkSoft else ObColor.Surface)
-                            .then(
-                                if (isSelected) Modifier.border(2.dp, ObColor.Pink, RoundedCornerShape(24.dp))
-                                else Modifier
-                            )
-                            .clickable { state.answers[step.id] = option.key }
-                            .padding(horizontal = 16.dp, vertical = 18.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(
-                            option.label,
-                            modifier = Modifier.weight(1f),
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = if (isSelected) ObColor.PinkText else ObColor.TextPrimary
-                        )
-                        ObCheckCircle(isSelected)
-                    }
-                }
-            }
-            FocusBodyArt(
-                selected = selected,
-                onSelected = { state.answers[step.id] = it },
-                modifier = Modifier
-                    .weight(0.54f)
+        Spacer(Modifier.height(12.dp))
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth(),
+            contentAlignment = Alignment.Center
+        ) {
+            // Giữ đúng tỉ lệ ảnh để chip rơi đúng đầu đường kẻ vẽ sẵn trong ảnh
+            Box(
+                Modifier
                     .fillMaxHeight()
-            )
+                    .aspectRatio(FOCUS_BODY_ASPECT, matchHeightConstraintsFirst = true)
+            ) {
+                FocusBodyArt(selected = selected, onSelected = onSelected, modifier = Modifier.fillMaxSize())
+                FocusBodyChips(
+                    options = step.options,
+                    selected = selected,
+                    onSelected = onSelected,
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
         }
+        Spacer(Modifier.height(12.dp))
         ObPrimaryButton(step.cta, enabled = selected != null, onClick = onNext)
         Spacer(Modifier.height(20.dp))
+    }
+}
+
+/** Kích thước drawable bg_problem_area (528 x 780). */
+private const val FOCUS_BODY_ASPECT = 528f / 780f
+
+/**
+ * Đầu tự do của các đường kẻ cam vẽ sẵn trong bg_problem_area, chuẩn hoá theo ảnh. Chip đặt ngay trên
+ * đầu đường kẻ như FocusFragment cũ (fragment_focus_area); "Full body" ở góc trên bên trái.
+ */
+private val FOCUS_CHIP_ANCHORS = mapOf(
+    "arm" to Offset(0.932f, 0.087f),
+    "belly" to Offset(0.063f, 0.528f),
+    "butt" to Offset(0.915f, 0.676f),
+    "leg" to Offset(0.081f, 0.921f)
+)
+
+@Composable
+private fun FocusBodyChips(
+    options: List<ObOption>,
+    selected: String?,
+    onSelected: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Layout(
+        modifier = modifier,
+        content = {
+            options.forEach { option ->
+                FocusBodyChip(option.label, selected == option.key) { onSelected(option.key) }
+            }
+        }
+    ) { measurables, constraints ->
+        val width = constraints.maxWidth
+        val height = constraints.maxHeight
+        val gap = 4.dp.roundToPx()
+        val placeables = measurables.map { it.measure(constraints.copy(minWidth = 0, minHeight = 0)) }
+        layout(width, height) {
+            placeables.forEachIndexed { index, placeable ->
+                val anchor = FOCUS_CHIP_ANCHORS[options[index].key]
+                if (anchor == null) {
+                    placeable.place(0, 0)
+                } else {
+                    val x = (anchor.x * width - placeable.width / 2f).roundToInt()
+                        .coerceIn(0, max(0, width - placeable.width))
+                    val y = ((anchor.y * height).roundToInt() - placeable.height - gap).coerceAtLeast(0)
+                    placeable.place(x, y)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun FocusBodyChip(label: String, selected: Boolean, onClick: () -> Unit) {
+    val shape = RoundedCornerShape(50)
+    Row(
+        modifier = Modifier
+            .clip(shape)
+            .background(if (selected) ObColor.Pink else Color.White)
+            .border(1.5.dp, ObColor.Pink, shape)
+            .clickable(onClick = onClick)
+            .padding(horizontal = 14.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        if (selected) {
+            Text("✓", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+            Spacer(Modifier.width(6.dp))
+        }
+        Text(
+            label.uppercase(),
+            color = if (selected) Color.White else ObColor.PinkText,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold
+        )
     }
 }
 
@@ -618,7 +675,7 @@ private data class FocusBodyHotspot(
 )
 
 /**
- * Các toạ độ được chuẩn hoá theo drawable bg_problem_area (500 x 780).
+ * Các toạ độ được chuẩn hoá theo drawable bg_problem_area (528 x 780).
  *
  * Một vùng có thể có nhiều hotspot (hai tay/hai chân). Vùng cụ thể luôn được kiểm tra
  * trước vùng full body để thao tác trên cơ thể cho kết quả ổn định và dễ đoán.
@@ -671,6 +728,14 @@ private fun FocusBodyArt(
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
         )
+        // Đáy ảnh mờ dần về trắng → hoà về nền hồng nhạt của onboarding
+        Box(
+            Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .fillMaxHeight(0.12f)
+                .background(Brush.verticalGradient(listOf(Color.Transparent, ObColor.Background)))
+        )
         Canvas(
             modifier = Modifier
                 .fillMaxSize()
@@ -710,10 +775,11 @@ private fun FocusBodyArt(
             }
 
             val marker = when (selected) {
-                "arm" -> Offset(size.width * 0.76f, size.height * 0.25f)
-                "belly" -> Offset(size.width * 0.43f, size.height * 0.60f)
-                "butt" -> Offset(size.width * 0.66f, size.height * 0.75f)
-                "leg" -> Offset(size.width * 0.38f, size.height * 0.88f)
+                // Chấm cam cuối đường kẻ trong ảnh
+                "arm" -> Offset(size.width * 0.725f, size.height * 0.232f)
+                "belly" -> Offset(size.width * 0.337f, size.height * 0.626f)
+                "butt" -> Offset(size.width * 0.640f, size.height * 0.791f)
+                "leg" -> Offset(size.width * 0.299f, size.height * 0.921f)
                 "full_body" -> Offset(size.width * 0.50f, size.height * 0.40f)
                 else -> null
             }

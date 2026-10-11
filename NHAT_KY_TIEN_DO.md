@@ -2,6 +2,23 @@
 
 > Mới nhất ở trên.
 
+## 2026-10-11 – Short flow thêm màn vùng tập (Focus area), chip đúng đầu đường kẻ như FocusFragment ✅ (yêu cầu Telegram, chưa commit)
+- `OnboardingStepFactory.kt`: QUICK_DESIGNS thêm `step6` → 8 màn (giữ tên nhánh quick_7 cho Remote Config / analytics).
+- `OnboardScreens.kt` (FocusBodyScreen, dùng chung cho mọi nhánh): bỏ danh sách thẻ bên trái; ảnh bg_problem_area giữ đúng tỉ lệ
+  528x780 (trước FillBounds bị méo), chip ARM / BELLY / BUTT / LEG đặt ngay trên đầu tự do của 4 đường kẻ cam vẽ sẵn trong ảnh
+  (đo toạ độ theo ảnh, như guideline của fragment_focus_area), FULL BODY góc trên trái. Chip chọn: nền hồng + ✓. Chấm đánh dấu
+  chuyển về đúng chấm cam cuối đường kẻ. Đáy ảnh (trắng) hoà dần về nền ObColor.Background.
+- Test S8+: bấm từng chip + bấm lên cơ thể đều chọn đúng, Next bật khi đã chọn. Quay video tới màn chiều cao thì một phiên khác
+  mở Wing Chun qua thông báo trên cùng máy → dừng test, cắt video trước đoạn đó.
+
+## 2026-10-11 – Onboarding mặc định bản rút gọn quick_7 ✅ (yêu cầu Telegram, chưa commit)
+- `remote_config_defaults.xml`: `onboarding_experiment_variant` full_4x → quick_7.
+- `OnboardingVariant.kt`: thêm `DEFAULT = QUICK_7`; giá trị Remote Config trống / lạ → QUICK_7 (trước là FULL).
+- Máy đã chia nhánh giữ nhánh cũ (lưu local theo EXPERIMENT_ID). Nếu Firebase console có đặt key này thì console thắng → cần sửa / xoá trên console.
+- Test S8+ (debug, pm clear): Ngôn ngữ → màn chào (TEST: quick_7) → Mục tiêu → Chiều cao → Cân nặng → Cân nặng mục tiêu → Building plan → Kết quả
+  → Paywall → Lucky Spin → quảng cáo → Home. Quay video gửi chủ app. Lưu ý: Home vẫn hiện "Create" ở Personal plan (kế hoạch chỉ tạo
+  trong PersonalPlanActivity, như các nhánh khác); câu "How much do you weight now?" sai chính tả (weigh).
+
 ## 2026-10-11 – Hiệu năng màn Discover (Training) + Report ✅ (yêu cầu Telegram, chưa commit)
 - `ExploreScreen.kt` (DiscoverScreen), `ReportScreen.kt`: LazyColumn → Column + verticalScroll (mỗi màn chỉ ~6–10 khối; các
   carousel ngang bên trong giữ nguyên LazyRow). Discover bọc mỗi mục `key(title + style)`.

@@ -10,6 +10,9 @@ enum class OnboardingVariant(val remoteValue: String) {
     FULL("full_4x");
 
     companion object {
+        /** Mặc định khi Remote Config chưa đặt / giá trị lạ: bản rút gọn 7 màn (chủ app chốt 11/10/2026). */
+        val DEFAULT = QUICK_7
+
         /** Giá trị cũ trên Remote Config vẫn đọc được: control_46 → đầy đủ, short_28 / adaptive → 26 màn. */
         private val LEGACY = mapOf(
             "control_46" to FULL,
@@ -19,7 +22,7 @@ enum class OnboardingVariant(val remoteValue: String) {
 
         fun fromRemoteValue(value: String?): OnboardingVariant {
             val key = value?.trim()?.lowercase()
-            return entries.firstOrNull { it.remoteValue == key } ?: LEGACY[key] ?: FULL
+            return entries.firstOrNull { it.remoteValue == key } ?: LEGACY[key] ?: DEFAULT
         }
     }
 }
