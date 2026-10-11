@@ -25,8 +25,11 @@ class OnboardState : ViewModel() {
     var variant by mutableStateOf(OnboardingVariant.FULL)
         private set
 
-    var steps by mutableStateOf(ONBOARD_STEPS)
+    var steps by mutableStateOf<List<OnboardStep>>(emptyList())
         private set
+
+    /** Toàn bộ màn (đã dịch theo ngôn ngữ app), để tra nhãn lựa chọn của màn không có trong variant. */
+    private var allSteps: List<OnboardStep> = emptyList()
 
     private var configured = false
 
@@ -137,10 +140,11 @@ class OnboardState : ViewModel() {
 
     val step: OnboardStep get() = steps[index.coerceIn(0, steps.lastIndex)]
 
-    fun configure(assignedVariant: OnboardingVariant) {
+    fun configure(assignedVariant: OnboardingVariant, all: List<OnboardStep>) {
         if (configured) return
         variant = assignedVariant
-        steps = OnboardingStepFactory.create(variant)
+        allSteps = all
+        steps = OnboardingStepFactory.create(variant, all)
         index = index.coerceIn(0, steps.lastIndex)
         configured = true
     }
@@ -188,7 +192,7 @@ class OnboardState : ViewModel() {
             ?.options
             ?.firstOrNull { it.key == key }
             ?.label
-            ?: ONBOARD_STEPS.firstOrNull { it.id == id }
+            ?: allSteps.firstOrNull { it.id == id }
                 ?.options
                 ?.firstOrNull { it.key == key }
                 ?.label
@@ -247,11 +251,15 @@ class OnboardState : ViewModel() {
             }
         }
 
-        private val DATE_FORMAT = SimpleDateFormat("MMM dd", Locale.ENGLISH)
-        private val DATE_FORMAT_SHORT = SimpleDateFormat("MMM d", Locale.ENGLISH)
 
-        fun formatDate(date: Date): String = DATE_FORMAT.format(date)
-        fun formatDateShort(date: Date): String = DATE_FORMAT_SHORT.format(date)
+        // Ngày theo ngôn ngữ app (LanguageHelper đã Locale.setDefault): "Oct 31", "31 thg 10", "10月31日"…
+        fun formatDate(date: Date): String = format(date, "MMMdd")
+        fun formatDateShort(date: Date): String = format(date, "MMMd")
+
+        private fun format(date: Date, skeleton: String): String {
+            val locale = Locale.getDefault()
+            return SimpleDateFormat(android.text.format.DateFormat.getBestDateTimePattern(locale, skeleton), locale).format(date)
+        }
     }
 }
 

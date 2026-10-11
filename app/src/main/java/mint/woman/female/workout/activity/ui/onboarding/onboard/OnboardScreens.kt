@@ -67,6 +67,9 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.ui.graphics.asImageBitmap
 import kotlinx.coroutines.delay
 import mint.woman.female.workout.R
+import androidx.annotation.StringRes
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import java.util.Calendar
 import androidx.compose.ui.text.withStyle
 import kotlin.math.max
@@ -143,17 +146,17 @@ private fun WelcomeScreen(step: OnboardStep, onNext: () -> Unit, onSignIn: (() -
                 Spacer(Modifier.height(16.dp))
                 ObTitle(step.title, fontSize = 32)
                 Spacer(Modifier.height(24.dp))
-                WelcomeStat("Minutes a day to get started", "7+")
-                WelcomeStat("Weeks in your first personal plan", "4")
-                WelcomeStat("Equipment needed", "0")
+                WelcomeStat(stringResource(R.string.obf_welcome_stat_minutes), "7+")
+                WelcomeStat(stringResource(R.string.obf_welcome_stat_weeks), "4")
+                WelcomeStat(stringResource(R.string.obf_welcome_stat_equipment), "0")
                 Spacer(Modifier.height(8.dp))
             }
-            ObPrimaryButton(step.cta, onClick = onNext)
+            ObPrimaryButton(step.ctaText(), onClick = onNext)
             if (onSignIn != null) {
                 // Người dùng cũ: đăng nhập Google, lấy lại dữ liệu đã sao lưu và bỏ qua onboarding
                 Spacer(Modifier.height(18.dp))
                 Text(
-                    "Already have an account? SIGN IN",
+                    stringResource(R.string.obf_sign_in),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     color = ObColor.TextPrimary,
@@ -207,7 +210,7 @@ private fun CoachScreen(step: OnboardStep, onNext: () -> Unit) {
                 )
                 Spacer(Modifier.height(8.dp))
             }
-            ObPrimaryButton(step.cta, onClick = onNext)
+            ObPrimaryButton(step.ctaText(), onClick = onNext)
             Spacer(Modifier.height(24.dp))
         }
     }
@@ -305,7 +308,7 @@ private fun ChoiceFeedbackScreen(step: OnboardStep, state: OnboardState, onNext:
                 }
             }
         }
-        ObPrimaryButton(step.cta, enabled = selected != null, onClick = onNext)
+        ObPrimaryButton(step.ctaText(), enabled = selected != null, onClick = onNext)
         Spacer(Modifier.height(20.dp))
     }
 }
@@ -343,7 +346,7 @@ private fun MultiChoiceScreen(step: OnboardStep, state: OnboardState, onNext: ()
                 ObOptionRow(option, selected.contains(option.key)) { toggle(option.key) }
             }
         }
-        ObPrimaryButton(step.cta, enabled = selected.isNotEmpty(), onClick = onNext)
+        ObPrimaryButton(step.ctaText(), enabled = selected.isNotEmpty(), onClick = onNext)
         Spacer(Modifier.height(20.dp))
     }
 }
@@ -398,7 +401,7 @@ private fun InfoScreen(step: OnboardStep, onNext: () -> Unit) {
             Spacer(Modifier.height(8.dp))
         }
         Spacer(Modifier.height(20.dp))
-        ObPrimaryButton(step.cta, onClick = onNext)
+        ObPrimaryButton(step.ctaText(), onClick = onNext)
         Spacer(Modifier.height(20.dp))
     }
 }
@@ -428,12 +431,18 @@ private fun PotentialScreen(step: OnboardStep, state: OnboardState, onNext: () -
                 ObPotentialChart(Modifier.fillMaxSize())
             }
             Spacer(Modifier.height(24.dp))
-            val ageGroup = "women in their ${(state.age / 10 * 10).coerceAtLeast(10)}s"
+            val ageGroup = stringResource(R.string.obf_potential_age_group, (state.age / 10 * 10).coerceAtLeast(10))
+            val note = stringResource(R.string.obf_potential_note, ageGroup)
+            val bold = note.indexOf(ageGroup)
             Text(
                 androidx.compose.ui.text.buildAnnotatedString {
-                    append("For ")
-                    withStyle(androidx.compose.ui.text.SpanStyle(fontWeight = FontWeight.Bold, color = ObColor.TextPrimary)) { append(ageGroup) }
-                    append(", the first week can feel slow. Keep going - by week two most people notice more energy and faster progress.")
+                    if (bold < 0) {
+                        append(note)
+                    } else {
+                        append(note.substring(0, bold))
+                        withStyle(androidx.compose.ui.text.SpanStyle(fontWeight = FontWeight.Bold, color = ObColor.TextPrimary)) { append(ageGroup) }
+                        append(note.substring(bold + ageGroup.length))
+                    }
                 },
                 fontSize = 18.sp, lineHeight = 25.sp,
                 color = ObColor.TextSecondary, textAlign = TextAlign.Center
@@ -441,34 +450,22 @@ private fun PotentialScreen(step: OnboardStep, state: OnboardState, onNext: () -
             Spacer(Modifier.height(8.dp))
         }
         Spacer(Modifier.height(24.dp))
-        ObPrimaryButton(step.cta, onClick = onNext)
+        ObPrimaryButton(step.ctaText(), onClick = onNext)
         Spacer(Modifier.height(20.dp))
     }
 }
 
 private data class Testimonial(
-    val name: String,
-    val quote: String,
-    val highlight: String,
+    @StringRes val name: Int,
+    @StringRes val quote: Int,
+    @StringRes val highlight: Int,
     val art: String
 )
 
 private val TESTIMONIALS = listOf(
-    Testimonial(
-        "Full body · 4 weeks",
-        "Gentle full-body sessions that build up week by week, no equipment needed.",
-        "no equipment needed", "testimonial_1"
-    ),
-    Testimonial(
-        "Belly & core · 20 min",
-        "20 minutes a day of core work, mixed with stretching to keep it fun.",
-        "20 minutes", "testimonial_2"
-    ),
-    Testimonial(
-        "Legs & butt · Beginner",
-        "Low-impact, jump-free moves that are easy on the knees.",
-        "jump-free", "testimonial_3"
-    )
+    Testimonial(R.string.obf_testi1_name, R.string.obf_testi1_quote, R.string.obf_testi1_accent, "testimonial_1"),
+    Testimonial(R.string.obf_testi2_name, R.string.obf_testi2_quote, R.string.obf_testi2_accent, "testimonial_2"),
+    Testimonial(R.string.obf_testi3_name, R.string.obf_testi3_quote, R.string.obf_testi3_accent, "testimonial_3")
 )
 
 @Composable
@@ -501,19 +498,19 @@ private fun TestimonialScreen(step: OnboardStep, onNext: () -> Unit) {
                             .height(180.dp),
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        BeforeAfterTile("Start", item.art + "_before", Color(0xFF9E9E9E), Modifier.weight(1f))
-                        BeforeAfterTile("Goal", item.art + "_after", ObColor.Pink, Modifier.weight(1f))
+                        BeforeAfterTile(stringResource(R.string.obf_start), item.art + "_before", Color(0xFF9E9E9E), Modifier.weight(1f))
+                        BeforeAfterTile(stringResource(R.string.obf_goal), item.art + "_after", ObColor.Pink, Modifier.weight(1f))
                     }
                     Spacer(Modifier.height(12.dp))
                     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                         ObIcon("✨", size = 18.dp, plain = true)
                         Spacer(Modifier.width(6.dp))
-                        Text("Sample plan", fontSize = 15.sp, modifier = Modifier.weight(1f))
-                        Text(item.name, fontSize = 16.sp, color = ObColor.TextSecondary)
+                        Text(stringResource(R.string.obf_sample_plan), fontSize = 15.sp, modifier = Modifier.weight(1f))
+                        Text(stringResource(item.name), fontSize = 16.sp, color = ObColor.TextSecondary)
                     }
                     Spacer(Modifier.height(8.dp))
                     ObTitle(
-                        item.quote, item.highlight, fontSize = 17,
+                        stringResource(item.quote), stringResource(item.highlight), fontSize = 17,
                         textAlign = TextAlign.Start, color = ObColor.TextPrimary
                     )
                 }
@@ -521,7 +518,7 @@ private fun TestimonialScreen(step: OnboardStep, onNext: () -> Unit) {
         }
         Spacer(Modifier.height(20.dp))
         ObPrimaryButton(
-            step.cta,
+            step.ctaText(),
             modifier = Modifier.padding(horizontal = ScreenPadding),
             onClick = onNext
         )
@@ -587,7 +584,7 @@ private fun FocusBodyScreen(step: OnboardStep, state: OnboardState, onNext: () -
             }
         }
         Spacer(Modifier.height(12.dp))
-        ObPrimaryButton(step.cta, enabled = selected != null, onClick = onNext)
+        ObPrimaryButton(step.ctaText(), enabled = selected != null, onClick = onNext)
         Spacer(Modifier.height(20.dp))
     }
 }
@@ -724,7 +721,7 @@ private fun FocusBodyArt(
     Box(modifier = modifier) {
         Image(
             painter = painterResource(R.drawable.bg_problem_area),
-            contentDescription = "Tap a body area to select it",
+            contentDescription = stringResource(R.string.obf_focus_tap_hint),
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
         )
@@ -808,18 +805,20 @@ private fun FocusBodyArt(
 
 /** Các mốc tỉ lệ mỡ tương ứng từng nấc của thanh trượt step8. */
 private val BODY_FAT_STOPS = listOf(
-    Triple("10%~15%", "This is an athletic body fat level - it takes serious training to hold.", ObColor.Warning),
-    Triple("16%~20%", "A lean and toned level that most users are happy with.", ObColor.Ok),
-    Triple("21%~25%", "A healthy level for women - great for long term results.", ObColor.Ok),
-    Triple("26%~30%", "Still within a healthy range, with some room to tone up.", ObColor.Ok),
-    Triple("31%~35%", "A bit above the healthy range, we'll help you bring it down.", ObColor.Warning),
-    Triple("36%~45% (Consult a doctor)", "This body fat level seems too high for you, which might cause some health issues...", ObColor.Warning)
+    Triple(R.string.obf_bf_range1, R.string.obf_bf_note1, ObColor.Warning),
+    Triple(R.string.obf_bf_range2, R.string.obf_bf_note2, ObColor.Ok),
+    Triple(R.string.obf_bf_range3, R.string.obf_bf_note3, ObColor.Ok),
+    Triple(R.string.obf_bf_range4, R.string.obf_bf_note4, ObColor.Ok),
+    Triple(R.string.obf_bf_range5, R.string.obf_bf_note5, ObColor.Warning),
+    Triple(R.string.obf_bf_range6, R.string.obf_bf_note6, ObColor.Warning)
 )
 
 @Composable
 private fun DesiredBodyScreen(step: OnboardStep, state: OnboardState, onNext: () -> Unit) {
     val stop = state.sliderStops[step.id] ?: step.defaultStop
-    val (range, note, color) = BODY_FAT_STOPS[stop.coerceIn(0, BODY_FAT_STOPS.lastIndex)]
+    val (rangeRes, noteRes, color) = BODY_FAT_STOPS[stop.coerceIn(0, BODY_FAT_STOPS.lastIndex)]
+    val range = stringResource(rangeRes)
+    val note = stringResource(noteRes)
 
     Column(
         Modifier
@@ -846,8 +845,8 @@ private fun DesiredBodyScreen(step: OnboardStep, state: OnboardState, onNext: ()
             ObDiscreteSlider(
                 stopCount = BODY_FAT_STOPS.size,
                 value = stop,
-                leftLabel = "Cut",
-                rightLabel = "Extra"
+                leftLabel = stringResource(R.string.obf_cut),
+                rightLabel = stringResource(R.string.obf_extra)
             ) { state.sliderStops[step.id] = it }
             Spacer(Modifier.height(20.dp))
             Column(
@@ -861,7 +860,7 @@ private fun DesiredBodyScreen(step: OnboardStep, state: OnboardState, onNext: ()
                     ObCoachAvatar()
                     Spacer(Modifier.width(10.dp))
                     Text(
-                        "Body fat at this shape", fontSize = 19.sp,
+                        stringResource(R.string.obf_body_fat_title), fontSize = 19.sp,
                         fontWeight = FontWeight.Bold, color = ObColor.TextPrimary
                     )
                 }
@@ -873,7 +872,7 @@ private fun DesiredBodyScreen(step: OnboardStep, state: OnboardState, onNext: ()
             Spacer(Modifier.height(8.dp))
         }
         Spacer(Modifier.height(16.dp))
-        ObPrimaryButton(step.cta) {
+        ObPrimaryButton(step.ctaText()) {
             state.answers[step.id] = range
             onNext()
         }
@@ -939,7 +938,7 @@ private fun HeightScreen(step: OnboardStep, state: OnboardState, onNext: () -> U
                 )
             }
         }
-        ObPrimaryButton(step.cta, onClick = onNext)
+        ObPrimaryButton(step.ctaText(), onClick = onNext)
         Spacer(Modifier.height(20.dp))
     }
 }
@@ -1002,7 +1001,7 @@ private fun WeightScreen(step: OnboardStep, state: OnboardState, onNext: () -> U
                     .background(Color(0xFFFBEEF2))
                     .padding(18.dp)
             ) {
-                Text("YOUR BMI", fontSize = 17.sp, fontWeight = FontWeight.Bold, color = ObColor.TextPrimary)
+                Text(stringResource(R.string.obf_your_bmi), fontSize = 17.sp, fontWeight = FontWeight.Bold, color = ObColor.TextPrimary)
                 Spacer(Modifier.height(10.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
@@ -1010,13 +1009,13 @@ private fun WeightScreen(step: OnboardStep, state: OnboardState, onNext: () -> U
                         fontSize = 30.sp, fontWeight = FontWeight.ExtraBold,
                         color = bmiColor(bmi), modifier = Modifier.width(92.dp)
                     )
-                    Text(bmiMessage(bmi), fontSize = 17.sp, color = ObColor.TextSecondary, lineHeight = 23.sp)
+                    Text(stringResource(bmiMessage(bmi)), fontSize = 17.sp, color = ObColor.TextSecondary, lineHeight = 23.sp)
                 }
             }
             Spacer(Modifier.height(8.dp))
         }
         Spacer(Modifier.height(16.dp))
-        ObPrimaryButton(step.cta, onClick = onNext)
+        ObPrimaryButton(step.ctaText(), onClick = onNext)
         Spacer(Modifier.height(20.dp))
     }
 }
@@ -1057,7 +1056,7 @@ private fun TargetWeightScreen(step: OnboardStep, state: OnboardState, onNext: (
                 Text(unit, fontSize = 22.sp, color = ObColor.TextSecondary, modifier = Modifier.padding(bottom = 10.dp))
             }
             Text(
-                "Now: ${state.weightValue.toFloat().format1()} $unit",
+                stringResource(R.string.obf_now_value, "${state.weightValue.toFloat().format1()} $unit"),
                 fontSize = 15.sp, color = ObColor.Pink, fontWeight = FontWeight.SemiBold
             )
             Spacer(Modifier.height(8.dp))
@@ -1081,7 +1080,7 @@ private fun TargetWeightScreen(step: OnboardStep, state: OnboardState, onNext: (
             Spacer(Modifier.height(8.dp))
         }
         Spacer(Modifier.height(16.dp))
-        ObPrimaryButton(step.cta, onClick = onNext)
+        ObPrimaryButton(step.ctaText(), onClick = onNext)
         Spacer(Modifier.height(20.dp))
     }
 }
@@ -1096,33 +1095,33 @@ private fun TargetFeedbackCard(state: OnboardState, target: Int, unit: String) {
     val healthyMinDisplay = if (state.weightMetric) healthyMin else healthyMin * OnboardState.LB_PER_KG
     val (title, body, warn) = when {
         state.targetBmi < 18.5f -> Triple(
-            "⚠️ That's below a healthy weight",
-            "For your height, a healthy weight starts at about ${healthyMinDisplay.roundToInt()} $unit. Let's aim a little higher.",
+            stringResource(R.string.obf_target_low_title),
+            stringResource(R.string.obf_target_low_body, "${healthyMinDisplay.roundToInt()} $unit"),
             true
         )
         target == current -> Triple(
-            "🎯 Keep your weight",
-            "We'll focus on toning, posture and energy while you stay where you are.",
+            stringResource(R.string.obf_target_keep_title),
+            stringResource(R.string.obf_target_keep_body),
             false
         )
         target > current -> Triple(
-            "💪 Gain $pctText",
-            "Healthy weight gain works best with strength training, so your plan will lean into that.",
+            stringResource(R.string.obf_target_gain_title, pctText),
+            stringResource(R.string.obf_target_gain_body),
             false
         )
         percent <= 10f -> Triple(
-            "👍 A realistic goal!",
-            "That's $pctText of your body weight. Even a small change can make stairs easier, help you sleep better and lift your mood.",
+            stringResource(R.string.obf_target_realistic_title),
+            stringResource(R.string.obf_target_realistic_body, pctText),
             false
         )
         percent <= 20f -> Triple(
-            "🔥 Ambitious, but doable",
-            "That's $pctText of your body weight. We'll split it into weekly milestones so it never feels like too much.",
+            stringResource(R.string.obf_target_ambitious_title),
+            stringResource(R.string.obf_target_ambitious_body, pctText),
             false
         )
         else -> Triple(
-            "🧭 A long-term goal",
-            "Losing $pctText takes a few months. We'll start with a first milestone and adjust as you go.",
+            stringResource(R.string.obf_target_long_title),
+            stringResource(R.string.obf_target_long_body, pctText),
             false
         )
     }
@@ -1146,11 +1145,12 @@ private fun bmiColor(bmi: Float): Color = when {
     else -> Color(0xFFE5484D)
 }
 
-private fun bmiMessage(bmi: Float): String = when {
-    bmi < 18.5f -> "You are on the slim side - let's build strength together!"
-    bmi < 25f -> "Your BMI is in a healthy range. Let's keep it that way!"
-    bmi < 30f -> "A little regular movement will make a visible difference."
-    else -> "A steady plan will help you get back to a healthy range."
+@StringRes
+private fun bmiMessage(bmi: Float): Int = when {
+    bmi < 18.5f -> R.string.obf_bmi_slim
+    bmi < 25f -> R.string.obf_bmi_healthy
+    bmi < 30f -> R.string.obf_bmi_over
+    else -> R.string.obf_bmi_obese
 }
 
 @Composable
@@ -1209,7 +1209,7 @@ private fun AgeScreen(step: OnboardStep, state: OnboardState, onNext: () -> Unit
             min = 14, max = 90, value = state.age,
             modifier = Modifier.weight(1f)
         ) { state.age = it }
-        ObPrimaryButton(step.cta, onClick = onNext)
+        ObPrimaryButton(step.ctaText(), onClick = onNext)
         Spacer(Modifier.height(20.dp))
     }
 }
@@ -1297,7 +1297,7 @@ private fun BeforeAfterIntro(state: OnboardState, onSkip: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(Modifier.height(20.dp))
-        ObTitle("Picture yourself at your goal weight", accent = "your goal weight", fontSize = 30)
+        ObTitle(stringResource(R.string.obf_change_title), accent = stringResource(R.string.obf_change_accent), fontSize = 30)
         Spacer(Modifier.height(40.dp))
         Box(Modifier.fillMaxWidth().height(320.dp), contentAlignment = Alignment.Center) {
             // pháo sáng: các tia toả ra quanh thẻ mục tiêu
@@ -1319,10 +1319,10 @@ private fun BeforeAfterIntro(state: OnboardState, onSkip: () -> Unit) {
                 }
             }
             Row(verticalAlignment = Alignment.CenterVertically) {
-                WeightCard("Now", "${current.format1()} $unit", art = "change_before", highlight = false, modifier = Modifier.width(130.dp).height(200.dp))
+                WeightCard(stringResource(R.string.obf_now), "${current.format1()} $unit", art = "change_before", highlight = false, modifier = Modifier.width(130.dp).height(200.dp))
                 Text("➜", fontSize = 26.sp, color = ObColor.Pink, modifier = Modifier.padding(horizontal = 8.dp))
                 WeightCard(
-                    "Goal", "${target.format1()} $unit", art = "change_after", highlight = true,
+                    stringResource(R.string.obf_goal), "${target.format1()} $unit", art = "change_after", highlight = true,
                     modifier = Modifier
                         .width(150.dp)
                         .height(230.dp)
@@ -1336,7 +1336,7 @@ private fun BeforeAfterIntro(state: OnboardState, onSkip: () -> Unit) {
         }
         Spacer(Modifier.height(24.dp))
         Text(
-            "Small, steady steps add up. Let's see when you could get there.",
+            stringResource(R.string.obf_change_body),
             fontSize = 18.sp, lineHeight = 25.sp, color = ObColor.TextSecondary, textAlign = TextAlign.Center
         )
     }
@@ -1404,16 +1404,19 @@ private fun PredictionChartScreen(step: OnboardStep, state: OnboardState, onNext
             )
             Spacer(Modifier.height(6.dp))
             val deltaDisplay = abs(targetDisplay - currentDisplay)
-            val verb = if (targetDisplay >= currentDisplay) "Gain" else "Lose"
+            val gain = targetDisplay >= currentDisplay
             if (isSecond) {
                 ObTitle(
-                    "${targetDisplay.format1()} $unitLabel by ${OnboardState.formatDate(date)}",
+                    stringResource(R.string.obf_pred_by, "${targetDisplay.format1()} $unitLabel", OnboardState.formatDate(date)),
                     accent = "${targetDisplay.format1()} $unitLabel",
                     fontSize = 32
                 )
             } else {
                 ObTitle(
-                    "$verb ${deltaDisplay.format1()} $unitLabel by ${OnboardState.formatDate(date)}",
+                    stringResource(
+                        if (gain) R.string.obf_pred_gain_by else R.string.obf_pred_lose_by,
+                        "${deltaDisplay.format1()} $unitLabel", OnboardState.formatDate(date)
+                    ),
                     accent = "${deltaDisplay.format1()} $unitLabel",
                     fontSize = 32
                 )
@@ -1442,14 +1445,15 @@ private fun PredictionChartScreen(step: OnboardStep, state: OnboardState, onNext
                         for (d in 1..state.savedDays) { shown = d; delay(40) }
                     }
                     AnimatedVisibility(visible = shown > 0, enter = fadeIn() + expandVertically()) {
+                        val res = LocalContext.current.resources
                         ObTitle(
-                            "Your routine gets you there $shown days sooner",
-                            accent = "$shown days sooner", fontSize = 22
+                            res.getQuantityString(R.plurals.obf_pred_sooner, shown, shown),
+                            accent = res.getQuantityString(R.plurals.obf_pred_sooner_accent, shown, shown), fontSize = 22
                         )
                     }
                 }
                 Text(
-                    "Estimated at a safe pace of under 0.7 kg (1.5 lb) per week. Results vary.",
+                    stringResource(R.string.obf_pred_estimate),
                     modifier = Modifier.padding(top = 10.dp),
                     fontSize = 15.sp, lineHeight = 21.sp,
                     color = ObColor.TextMuted, textAlign = TextAlign.Center
@@ -1464,7 +1468,7 @@ private fun PredictionChartScreen(step: OnboardStep, state: OnboardState, onNext
             Spacer(Modifier.height(8.dp))
         }
         Spacer(Modifier.height(26.dp))
-        ObPrimaryButton(step.cta, onClick = onNext)
+        ObPrimaryButton(step.ctaText(), onClick = onNext)
         Spacer(Modifier.height(20.dp))
     }
 }
@@ -1528,7 +1532,7 @@ private fun SliderScreen(step: OnboardStep, state: OnboardState, onNext: () -> U
             Spacer(Modifier.height(8.dp))
         }
         Spacer(Modifier.height(18.dp))
-        ObPrimaryButton(step.cta) {
+        ObPrimaryButton(step.ctaText()) {
             state.answers[step.id] = current.title
             onNext()
         }
@@ -1588,8 +1592,8 @@ private fun StatementScreen(step: OnboardStep, state: OnboardState, onNext: () -
         }
         Spacer(Modifier.height(22.dp))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(14.dp)) {
-            YesNoButton("No", "✕", ObColor.Pink, Modifier.weight(1f)) { answer("no") }
-            YesNoButton("Yes", "✓", ObColor.Ok, Modifier.weight(1f)) { answer("yes") }
+            YesNoButton(stringResource(R.string.obf_no), "✕", ObColor.Pink, Modifier.weight(1f)) { answer("no") }
+            YesNoButton(stringResource(R.string.obf_yes), "✓", ObColor.Ok, Modifier.weight(1f)) { answer("yes") }
         }
         Spacer(Modifier.height(22.dp))
     }
@@ -1668,7 +1672,7 @@ private fun FullYesNoScreen(step: OnboardStep, state: OnboardState, onNext: () -
                         .clickable { answer("no") },
                     contentAlignment = Alignment.Center
                 ) {
-                    Text("No", fontSize = 22.sp, color = Color.White)
+                    Text(stringResource(R.string.obf_no), fontSize = 22.sp, color = Color.White)
                 }
                 Box(
                     modifier = Modifier
@@ -1679,7 +1683,7 @@ private fun FullYesNoScreen(step: OnboardStep, state: OnboardState, onNext: () -
                         .clickable { answer("yes") },
                     contentAlignment = Alignment.Center
                 ) {
-                    Text("Yes", fontSize = 22.sp, fontWeight = FontWeight.Bold, color = ObColor.TextPrimary)
+                    Text(stringResource(R.string.obf_yes), fontSize = 22.sp, fontWeight = FontWeight.Bold, color = ObColor.TextPrimary)
                 }
             }
             Spacer(Modifier.height(30.dp))
@@ -1690,10 +1694,10 @@ private fun FullYesNoScreen(step: OnboardStep, state: OnboardState, onNext: () -
 // ---------------------------------------------------------------- step45 / 46 / 47
 
 private val GENERATING_MESSAGES = listOf(
-    "Reading your answers…",
-    "Matching your fitness level…",
-    "Choosing the right exercises…",
-    "Putting your weeks together…"
+    R.string.obf_gen_msg1,
+    R.string.obf_gen_msg2,
+    R.string.obf_gen_msg3,
+    R.string.obf_gen_msg4
 )
 
 /**
@@ -1734,7 +1738,7 @@ private fun GeneratingScreen(step: OnboardStep, onNext: () -> Unit) {
         }
         Spacer(Modifier.height(14.dp))
         Text(
-            GENERATING_MESSAGES[(percent / 26).coerceIn(0, GENERATING_MESSAGES.lastIndex)],
+            stringResource(GENERATING_MESSAGES[(percent / 26).coerceIn(0, GENERATING_MESSAGES.lastIndex)]),
             fontSize = 16.sp, color = ObColor.TextSecondary
         )
         Spacer(Modifier.height(22.dp))
@@ -1749,9 +1753,9 @@ private fun GeneratingScreen(step: OnboardStep, onNext: () -> Unit) {
             Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxSize()) {
                 ObTitle(
                     when (current) {
-                        0 -> "Women like you are training with us"
-                        1 -> "Hundreds of guided exercises"
-                        else -> "Highly rated by our users"
+                        0 -> stringResource(R.string.obf_gen_phase1)
+                        1 -> stringResource(R.string.obf_gen_phase2)
+                        else -> stringResource(R.string.obf_gen_phase3)
                     },
                     fontSize = 22, color = ObColor.Pink
                 )
@@ -1798,7 +1802,7 @@ private fun PlanResultScreen(step: OnboardStep, state: OnboardState, onNext: () 
             Text(step.title, fontSize = 19.sp, fontWeight = FontWeight.Bold, color = ObColor.TextPrimary)
             Spacer(Modifier.height(6.dp))
             ObTitle(
-                "${target.format1()}$unitLabel on ${OnboardState.formatDate(date)}",
+                stringResource(R.string.obf_plan_on, "${target.format1()}$unitLabel", OnboardState.formatDate(date)),
                 accent = "${target.format1()}$unitLabel",
                 fontSize = 28
             )
@@ -1815,29 +1819,29 @@ private fun PlanResultScreen(step: OnboardStep, state: OnboardState, onNext: () 
             )
             Spacer(Modifier.height(16.dp))
             ObTitle(
-                "Stick with your plan and you could reach this goal at a safe, steady pace. Results vary.",
-                accent = "safe, steady pace", fontSize = 16, textAlign = TextAlign.Start,
+                stringResource(R.string.obf_plan_stick),
+                accent = stringResource(R.string.obf_plan_stick_accent), fontSize = 16, textAlign = TextAlign.Start,
                 color = ObColor.TextSecondary
             )
 
             Spacer(Modifier.height(26.dp))
-            SectionHeader("YOUR TRAINING WEEK")
+            SectionHeader(stringResource(R.string.obf_your_training_week))
             Spacer(Modifier.height(12.dp))
             RoutineCalendar(days, state.trainingDaysPerWeek)
 
             Spacer(Modifier.height(26.dp))
-            SectionHeader("DESIGNED FOR YOU")
+            SectionHeader(stringResource(R.string.obf_designed_for_you))
             Spacer(Modifier.height(12.dp))
             DesignedForYouCard(state)
 
             Spacer(Modifier.height(26.dp))
-            SectionHeader("PLAN PREVIEW")
+            SectionHeader(stringResource(R.string.obf_plan_preview))
             Spacer(Modifier.height(12.dp))
             PlanPreviewCard()
             Spacer(Modifier.height(24.dp))
         }
         Box(Modifier.padding(horizontal = ScreenPadding, vertical = 12.dp)) {
-            ObPrimaryButton(step.cta, onClick = onNext)
+            ObPrimaryButton(step.ctaText(), onClick = onNext)
         }
     }
 }
@@ -1878,7 +1882,13 @@ private fun RoutineCalendar(days: Int, perWeek: Int) {
             .padding(14.dp)
     ) {
         Row(Modifier.fillMaxWidth()) {
-            listOf("S", "M", "T", "W", "T", "F", "S").forEach {
+            // Chữ viết tắt thứ trong tuần theo ngôn ngữ app (CN/T2…, 日/一…), bắt đầu Chủ nhật như lưới bên dưới
+            val weekdays = remember {
+                android.icu.text.DateFormatSymbols.getInstance(java.util.Locale.getDefault())
+                    .getWeekdays(android.icu.text.DateFormatSymbols.STANDALONE, android.icu.text.DateFormatSymbols.NARROW)
+                    .drop(1)
+            }
+            weekdays.forEach {
                 Text(
                     it,
                     modifier = Modifier.weight(1f),
@@ -1905,8 +1915,8 @@ private fun RoutineCalendar(days: Int, perWeek: Int) {
                     ) {
                         when {
                             offset < 0 -> Spacer(Modifier.height(44.dp))
-                            offset == 0 -> CalendarCell("Start", true, ObColor.Pink, Color.White)
-                            offset == days -> CalendarCell("Success", true, Color.White, ObColor.Pink, bordered = true)
+                            offset == 0 -> CalendarCell(stringResource(R.string.obf_start), true, ObColor.Pink, Color.White)
+                            offset == days -> CalendarCell(stringResource(R.string.obf_success), true, Color.White, ObColor.Pink, bordered = true)
                             else -> {
                                 val training = offset % 7 in pattern
                                 CalendarCell(
@@ -1946,9 +1956,16 @@ private fun CalendarCell(
     ) {
         Text(
             label,
-            fontSize = if (label.length > 3) 11.sp else 15.sp,
+            // nhãn dịch có thể dài hơn "Start"/"Success" → một dòng, chữ nhỏ dần, không tràn ô
+            fontSize = when {
+                label.length > 7 -> 9.sp
+                label.length > 3 -> 11.sp
+                else -> 15.sp
+            },
             fontWeight = if (active) FontWeight.Bold else FontWeight.Normal,
-            color = textColor
+            color = textColor,
+            maxLines = 1,
+            softWrap = false
         )
     }
 }
@@ -1958,7 +1975,7 @@ private fun DesignedForYouCard(state: OnboardState) {
     val focusLabel = state.optionLabel(
         id = ObId.FOCUS,
         key = state.answers[ObId.FOCUS],
-        fallback = "Full body"
+        fallback = stringResource(R.string.obf_step6_opt_full_body)
     )
     val calories = (state.weightKg * 20).roundToInt()
 
@@ -1974,9 +1991,9 @@ private fun DesignedForYouCard(state: OnboardState) {
                 .padding(18.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            PlanFact("🎯", "Focus Area", focusLabel)
-            PlanFact("⏱️", "Duration", "7-14 min")
-            PlanFact("🔥", "Calories", "$calories kcal/day")
+            PlanFact("🎯", stringResource(R.string.obf_focus_area), focusLabel)
+            PlanFact("⏱️", stringResource(R.string.obf_duration), stringResource(R.string.obf_duration_value))
+            PlanFact("🔥", stringResource(R.string.obf_calories), stringResource(R.string.obf_kcal_day, calories))
         }
         ObArt(
             name = "plan_body",
@@ -2001,13 +2018,13 @@ private fun PlanFact(emoji: String, label: String, value: String) {
     }
 }
 
-private data class PlanWeek(val title: String, val emoji: String, val reps: List<String>)
+private data class PlanWeek(@StringRes val title: Int, val emoji: String, val reps: List<String>)
 
 private val PLAN_WEEKS = listOf(
-    PlanWeek("Week 1: Wake up your body", "😊", listOf("20s", "×20", "×16", "×20")),
-    PlanWeek("Week 2: Burn fat", "🔥", listOf("30s", "×26", "×20", "×14")),
-    PlanWeek("Week 3: Build muscle", "💪", listOf("20s", "×30", "×26", "×20")),
-    PlanWeek("Week 4: Sculpt your body", "🤩", listOf("30s", "×30", "×16", "40s"))
+    PlanWeek(R.string.obf_week1, "😊", listOf("20s", "×20", "×16", "×20")),
+    PlanWeek(R.string.obf_week2, "🔥", listOf("30s", "×26", "×20", "×14")),
+    PlanWeek(R.string.obf_week3, "💪", listOf("20s", "×30", "×26", "×20")),
+    PlanWeek(R.string.obf_week4, "🤩", listOf("30s", "×30", "×16", "40s"))
 )
 
 @Composable
@@ -2031,7 +2048,7 @@ private fun PlanPreviewCard() {
                     )
                     Spacer(Modifier.width(10.dp))
                     Text(
-                        week.title, fontSize = 17.sp,
+                        stringResource(week.title), fontSize = 17.sp,
                         fontWeight = FontWeight.Bold, color = ObColor.TextPrimary
                     )
                     Spacer(Modifier.width(6.dp))
@@ -2100,3 +2117,7 @@ private fun TrialIntroScreen(step: OnboardStep, onNext: () -> Unit) {
         }
     }
 }
+
+/** Chữ nút chính của màn; rỗng → "Next" theo ngôn ngữ app. */
+@Composable
+internal fun OnboardStep.ctaText(): String = cta.ifEmpty { stringResource(R.string.obf_next) }

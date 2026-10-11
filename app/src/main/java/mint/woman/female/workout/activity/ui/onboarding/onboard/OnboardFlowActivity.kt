@@ -84,7 +84,7 @@ class OnboardFlowActivity : ComponentActivity(), EdgeToEdgeHelper.HandlesInsets 
         onboardState = state
         val experiment = OnboardingExperimentRepository(this)
         val variant = experiment.resolveVariant()
-        state.configure(variant)
+        state.configure(variant, onboardSteps(resources))
         analytics = OnboardingAnalytics(FirebaseAnalytics.getInstance(this), variant)
         if (savedInstanceState == null) {
             analytics.flowStarted(state.steps.size)

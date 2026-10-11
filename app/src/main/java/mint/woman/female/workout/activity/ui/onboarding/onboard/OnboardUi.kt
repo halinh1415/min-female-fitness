@@ -60,6 +60,8 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import mint.woman.female.workout.R
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -203,7 +205,7 @@ fun ObTopBar(
         }
 
         Text(
-            text = "Skip",
+            text = stringResource(R.string.obf_skip),
             color = foreground,
             fontSize = 17.sp,
             modifier = Modifier
@@ -984,7 +986,7 @@ fun ObWeightChart(
                 .height(28.dp)
         ) {
             if (chartSize.width > 0) {
-                AxisLabel("Today", xFor(0f), chartSize.width, ObColor.TextMuted, FontWeight.Normal)
+                AxisLabel(stringResource(R.string.obf_today), xFor(0f), chartSize.width, ObColor.TextMuted, FontWeight.Normal)
                 val ghostFits = abs(xFor(ghostDays.toFloat()) - xFor(days.toFloat())) >=
                         with(density) { ChartLabelWidth.toPx() }
                 if (ghostDays > 0 && ghostLabel.isNotEmpty() && ghostFits) {
@@ -1225,8 +1227,8 @@ fun ObPlanWeightChart(
                 .padding(top = 8.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text("Today", fontSize = 15.sp, color = ObColor.TextMuted)
-            Text("1 week", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = ObColor.TextSecondary)
+            Text(stringResource(R.string.obf_today), fontSize = 15.sp, color = ObColor.TextMuted)
+            Text(stringResource(R.string.obf_one_week), fontSize = 15.sp, fontWeight = FontWeight.Bold, color = ObColor.TextSecondary)
             Text(endLabel, fontSize = 15.sp, fontWeight = FontWeight.Bold, color = ObColor.TextPrimary)
         }
     }
@@ -1251,9 +1253,9 @@ fun ObPotentialChart(modifier: Modifier = Modifier) {
     val top = h * 0.14f
     // Mốc ngày 1 / 7 / 30 theo tỉ lệ trục ngang và giá trị của đường cong tại đó.
     val marks = listOf(
-        Triple(0.04f, "Day 1", "😕"),
-        Triple(0.30f, "Day 7", "🙂"),
-        Triple(1.00f, "Day 30", "😎")
+        Triple(0.04f, stringResource(R.string.obf_day_n, 1), "😕"),
+        Triple(0.30f, stringResource(R.string.obf_day_n, 7), "🙂"),
+        Triple(1.00f, stringResource(R.string.obf_day_n, 30), "😎")
     )
     fun curveY(f: Float): Float {
         // tăng chậm lúc đầu, bứt tốc về sau (dạng mũ)
@@ -1324,7 +1326,7 @@ fun ObPotentialChart(modifier: Modifier = Modifier) {
                 )
             }
             Text(
-                "Your\nprogress",
+                stringResource(R.string.obf_your_progress),
                 modifier = Modifier.offset { IntOffset((left + 8.dp.toPx()).roundToInt(), 0) },
                 fontSize = 14.sp, fontWeight = FontWeight.Bold, color = ObColor.TextMuted, lineHeight = 16.sp
             )

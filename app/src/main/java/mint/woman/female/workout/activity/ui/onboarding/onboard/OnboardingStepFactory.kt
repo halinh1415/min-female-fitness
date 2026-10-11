@@ -3,10 +3,10 @@ package mint.woman.female.workout.activity.ui.onboarding.onboard
 /** Tạo danh sách bước từ cùng một bộ component, không nhân bản Activity. */
 object OnboardingStepFactory {
 
-    fun create(variant: OnboardingVariant): List<OnboardStep> = when (variant) {
-        OnboardingVariant.FULL -> ONBOARD_STEPS
-        OnboardingVariant.STANDARD_26 -> ONBOARD_STEPS.filter { it.kind == StepKind.SECTION || it.design in STANDARD_DESIGNS }
-        OnboardingVariant.QUICK_7 -> ONBOARD_STEPS.filter { it.design in QUICK_DESIGNS }
+    fun create(variant: OnboardingVariant, all: List<OnboardStep>): List<OnboardStep> = when (variant) {
+        OnboardingVariant.FULL -> all
+        OnboardingVariant.STANDARD_26 -> all.filter { it.kind == StepKind.SECTION || it.design in STANDARD_DESIGNS }
+        OnboardingVariant.QUICK_7 -> all.filter { it.design in QUICK_DESIGNS }
     }
 
     /**

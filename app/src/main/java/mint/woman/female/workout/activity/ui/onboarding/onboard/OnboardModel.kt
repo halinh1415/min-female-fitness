@@ -1,6 +1,9 @@
 package mint.woman.female.workout.activity.ui.onboarding.onboard
 
+import android.content.res.Resources
+import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.Color
+import mint.woman.female.workout.R
 
 /**
  * Định nghĩa toàn bộ luồng Onboard mới (theo thứ tự ảnh thiết kế `task/step1..step48`).
@@ -157,7 +160,8 @@ data class OnboardStep(
     val titleAccent: String = "",
     val subtitle: String = "",
     val body: String = "",
-    val cta: String = "Next",
+    /** Rỗng = "Next" theo ngôn ngữ (R.string.obf_next), lấy lúc vẽ. */
+    val cta: String = "",
     val options: List<ObOption> = emptyList(),
     val stops: List<ObSliderStop> = emptyList(),
     val defaultStop: Int = 0,
@@ -214,432 +218,439 @@ object ObId {
  * `step15` là khung animation của `step14`, `step24` của `step22` nên gộp làm một màn.
  * `step23` không có trong thư mục. `step48` là màn "Mine" của app (đã tồn tại), không thuộc onboard.
  */
-val ONBOARD_STEPS: List<OnboardStep> = listOf(
+/**
+ * Danh sách màn onboard, chữ lấy từ strings_onboard_flow.xml (values, values-xx) theo ngôn ngữ của [res]
+ * (Activity đã áp ngôn ngữ app trong attachBaseContext).
+ */
+fun onboardSteps(res: Resources): List<OnboardStep> {
+    fun s(@StringRes id: Int): String = res.getString(id)
+    return listOf(
 
     OnboardStep(
         design = "step1", kind = StepKind.WELCOME,
-        title = "Your fitness journey starts at home",
-        cta = "Start Now", art = "welcome_hero"
+        title = s(R.string.obf_step1_title),
+        cta = s(R.string.obf_step1_cta), art = "welcome_hero"
     ),
 
     OnboardStep(
         design = "step2", kind = StepKind.COACH,
-        title = "Hi, I'm Mia!",
-        body = "I'll be your coach along the way.\nAnswer a few quick questions and I'll build a personalized plan just for you.",
-        titleAccent = "personalized plan",
-        cta = "LET'S GO!", art = "coach_mia"
+        title = s(R.string.obf_step2_title),
+        body = s(R.string.obf_step2_body),
+        titleAccent = s(R.string.obf_step2_accent),
+        cta = s(R.string.obf_step2_cta), art = "coach_mia"
     ),
 
     // ---------------------------------------------------------- phần 1: mục tiêu
     OnboardStep(
         design = "step0", kind = StepKind.SECTION,
-        title = "Your Goals", subtitle = "1"
+        title = s(R.string.obf_step0_title), subtitle = "1"
     ),
     OnboardStep(
         design = "step3", kind = StepKind.CHOICE, section = 1, id = ObId.MOTIVATION,
-        title = "What drives you to work out?",
+        title = s(R.string.obf_step3_title),
         options = listOf(
-            ObOption("confident", "Feel more confident", "👍"),
-            ObOption("stress", "Let go of stress", "🙂"),
-            ObOption("health", "Get healthier", "❤️"),
-            ObOption("energy", "Have more energy", "🔋"),
-            ObOption("shape", "Tone my body", "💪")
+            ObOption("confident", s(R.string.obf_step3_opt_confident), "👍"),
+            ObOption("stress", s(R.string.obf_step3_opt_stress), "🙂"),
+            ObOption("health", s(R.string.obf_step3_opt_health), "❤️"),
+            ObOption("energy", s(R.string.obf_step3_opt_energy), "🔋"),
+            ObOption("shape", s(R.string.obf_step3_opt_shape), "💪")
         )
     ),
 
     OnboardStep(
         design = "step4", kind = StepKind.CHOICE_IMAGE, section = 1, id = ObId.GOAL,
-        title = "What would you like to achieve first?",
+        title = s(R.string.obf_step4_title),
         options = listOf(
-            ObOption("lose_weight", "Lose weight", art = "goal_lose_weight"),
-            ObOption("build_muscle", "Build muscle", art = "goal_build_muscle"),
-            ObOption("keep_fit", "Stay in shape", art = "goal_keep_fit")
+            ObOption("lose_weight", s(R.string.obf_step4_opt_lose_weight), art = "goal_lose_weight"),
+            ObOption("build_muscle", s(R.string.obf_step4_opt_build_muscle), art = "goal_build_muscle"),
+            ObOption("keep_fit", s(R.string.obf_step4_opt_keep_fit), art = "goal_keep_fit")
         )
     ),
 
     OnboardStep(
         design = "step5", kind = StepKind.INFO, section = 1,
-        title = "Lose weight at your own pace",
-        body = "Regular home workouts and balanced eating help you lose weight steadily and keep it off.",
+        title = s(R.string.obf_step5_title),
+        body = s(R.string.obf_step5_body),
         art = "info_scale", hintEmoji = "⚖️"
     ),
 
     OnboardStep(
         design = "step6", kind = StepKind.FOCUS_BODY, section = 1, id = ObId.FOCUS,
-        title = "Which areas should we work on?",
+        title = s(R.string.obf_step6_title),
         options = listOf(
-            ObOption("arm", "Arm"),
-            ObOption("belly", "Belly"),
-            ObOption("butt", "Butt"),
-            ObOption("leg", "Leg"),
-            ObOption("full_body", "Full body")
+            ObOption("arm", s(R.string.obf_step6_opt_arm)),
+            ObOption("belly", s(R.string.obf_step6_opt_belly)),
+            ObOption("butt", s(R.string.obf_step6_opt_butt)),
+            ObOption("leg", s(R.string.obf_step6_opt_leg)),
+            ObOption("full_body", s(R.string.obf_step6_opt_full_body))
         )
     ),
 
     OnboardStep(
         design = "step7", kind = StepKind.CHOICE_IMAGE, section = 1, id = ObId.BODY_SHAPE,
-        title = "How would you describe your body today?", titleAccent = "today",
+        title = s(R.string.obf_step7_title), titleAccent = s(R.string.obf_step7_accent),
         options = listOf(
-            ObOption("medium", "Average", art = "shape_medium"),
-            ObOption("flabby", "Soft", art = "shape_flabby"),
-            ObOption("skinny", "Slim", art = "shape_skinny"),
-            ObOption("toned", "Fit", art = "shape_toned")
+            ObOption("medium", s(R.string.obf_step7_opt_medium), art = "shape_medium"),
+            ObOption("flabby", s(R.string.obf_step7_opt_flabby), art = "shape_flabby"),
+            ObOption("skinny", s(R.string.obf_step7_opt_skinny), art = "shape_skinny"),
+            ObOption("toned", s(R.string.obf_step7_opt_toned), art = "shape_toned")
         )
     ),
 
     OnboardStep(
         design = "step8", kind = StepKind.DESIRED_BODY, section = 1, id = ObId.DESIRED_SHAPE,
-        title = "Which shape are you aiming for?", titleAccent = "aiming",
+        title = s(R.string.obf_step8_title), titleAccent = s(R.string.obf_step8_accent),
         defaultStop = 2
     ),
 
     // ---------------------------------------------------------- phần 2: số đo
     OnboardStep(
         design = "step0", kind = StepKind.SECTION,
-        title = "Body Data", subtitle = "2"
+        title = s(R.string.obf_step0_title_2), subtitle = "2"
     ),
     OnboardStep(
         design = "step9", kind = StepKind.HEIGHT, section = 2, id = ObId.HEIGHT,
-        title = "How tall are you?",
-        hint = "We use this to set the right intensity for you.", hintEmoji = "✨"
+        title = s(R.string.obf_step9_title),
+        hint = s(R.string.obf_step9_hint), hintEmoji = "✨"
     ),
 
     OnboardStep(
         design = "step10", kind = StepKind.WEIGHT, section = 2, id = ObId.WEIGHT,
-        title = "How much do you weight now?", titleAccent = "now"
+        title = s(R.string.obf_step10_title), titleAccent = s(R.string.obf_step10_accent)
     ),
 
     OnboardStep(
         design = "step10b", kind = StepKind.TARGET_WEIGHT, section = 2, id = ObId.TARGET_WEIGHT,
-        title = "Pick a goal weight", titleAccent = "goal"
+        title = s(R.string.obf_step10b_title), titleAccent = s(R.string.obf_step10b_accent)
     ),
 
     OnboardStep(
         design = "step11", kind = StepKind.CHOICE_IMAGE, section = 2, id = ObId.BELLY,
-        title = "How would you describe your belly area?", titleAccent = "belly",
+        title = s(R.string.obf_step11_title), titleAccent = s(R.string.obf_step11_accent),
         options = listOf(
-            ObOption("normal", "Mostly flat", art = "belly_normal"),
-            ObOption("mommy", "Soft after pregnancy", art = "belly_mommy"),
-            ObOption("hormonal", "Lower belly pooch", art = "belly_hormonal"),
-            ObOption("alcohol", "Round upper belly", art = "belly_alcohol"),
-            ObOption("stressed", "Often bloated", art = "belly_stressed")
+            ObOption("normal", s(R.string.obf_step11_opt_normal), art = "belly_normal"),
+            ObOption("mommy", s(R.string.obf_step11_opt_mommy), art = "belly_mommy"),
+            ObOption("hormonal", s(R.string.obf_step11_opt_hormonal), art = "belly_hormonal"),
+            ObOption("alcohol", s(R.string.obf_step11_opt_alcohol), art = "belly_alcohol"),
+            ObOption("stressed", s(R.string.obf_step11_opt_stressed), art = "belly_stressed")
         )
     ),
 
     OnboardStep(
         design = "step12", kind = StepKind.CHOICE_IMAGE, section = 2, id = ObId.HIP,
-        title = "How would you describe your hips and glutes?", titleAccent = "hips",
+        title = s(R.string.obf_step12_title), titleAccent = s(R.string.obf_step12_accent),
         options = listOf(
-            ObOption("normal", "Balanced", art = "hip_normal"),
-            ObOption("flat", "Flat", art = "hip_flat"),
-            ObOption("saggy", "Need lifting", art = "hip_saggy"),
-            ObOption("double", "Dips on the sides", art = "hip_double"),
-            ObOption("bubble", "Round", art = "hip_bubble")
+            ObOption("normal", s(R.string.obf_step12_opt_normal), art = "hip_normal"),
+            ObOption("flat", s(R.string.obf_step12_opt_flat), art = "hip_flat"),
+            ObOption("saggy", s(R.string.obf_step12_opt_saggy), art = "hip_saggy"),
+            ObOption("double", s(R.string.obf_step12_opt_double), art = "hip_double"),
+            ObOption("bubble", s(R.string.obf_step12_opt_bubble), art = "hip_bubble")
         )
     ),
 
     OnboardStep(
         design = "step13", kind = StepKind.CHOICE_IMAGE, section = 2, id = ObId.LEG,
-        title = "How do your legs line up when you stand?", titleAccent = "legs",
+        title = s(R.string.obf_step13_title), titleAccent = s(R.string.obf_step13_accent),
         options = listOf(
-            ObOption("normal", "Straight", art = "leg_normal"),
-            ObOption("x", "Knees touch (X)", art = "leg_x"),
-            ObOption("o", "Knees apart (O)", art = "leg_o"),
-            ObOption("xo", "Mixed (XO)", art = "leg_xo")
+            ObOption("normal", s(R.string.obf_step13_opt_normal), art = "leg_normal"),
+            ObOption("x", s(R.string.obf_step13_opt_x), art = "leg_x"),
+            ObOption("o", s(R.string.obf_step13_opt_o), art = "leg_o"),
+            ObOption("xo", s(R.string.obf_step13_opt_xo), art = "leg_xo")
         )
     ),
 
     OnboardStep(
         design = "step14", kind = StepKind.PREDICTION, section = 2,
-        subtitle = "Step by step, you can get there!",
-        body = "This estimate assumes a safe, steady pace with regular workouts. Results vary from person to person."
+        subtitle = s(R.string.obf_step14_subtitle),
+        body = s(R.string.obf_step14_body)
     ),
 
     // ---------------------------------------------------------- phần 3: về bạn
 
     OnboardStep(
         design = "step16", kind = StepKind.SECTION,
-        title = "About you", subtitle = "3"
+        title = s(R.string.obf_step16_title), subtitle = "3"
     ),
 
     OnboardStep(
         design = "step17", kind = StepKind.AGE, section = 3, id = ObId.AGE,
-        title = "How old are you?",
-        hint = "Your age helps us choose a safe pace and recovery time.", hintEmoji = "🎂"
+        title = s(R.string.obf_step17_title),
+        hint = s(R.string.obf_step17_hint), hintEmoji = "🎂"
     ),
 
     OnboardStep(
         design = "step18", kind = StepKind.INFO_POTENTIAL, section = 3,
-        title = "You've got what it takes!"
+        title = s(R.string.obf_step18_title)
     ),
 
     OnboardStep(
         design = "step19", kind = StepKind.CHOICE_FEEDBACK, section = 3, id = ObId.PLACE,
-        title = "Where will you usually train?",
+        title = s(R.string.obf_step19_title),
         options = listOf(
             ObOption(
-                "any", "Anywhere is fine", "✨",
-                feedbackTitle = "OK!",
-                feedbackBody = "We'll pick the most suitable workouts for you."
+                "any", s(R.string.obf_step19_opt_any), "✨",
+                feedbackTitle = s(R.string.obf_step19_fb_title),
+                feedbackBody = s(R.string.obf_step19_fb_body)
             ),
             ObOption(
-                "bed", "Bed", "🛏️",
-                feedbackTitle = "OK!",
-                feedbackBody = "Plenty of moves work on a bed - we'll pick those for you."
+                "bed", s(R.string.obf_step19_opt_bed), "🛏️",
+                feedbackTitle = s(R.string.obf_step19_fb_title),
+                feedbackBody = s(R.string.obf_step19_fb_body_2)
             ),
             ObOption(
-                "mat", "Yoga mat", "🧘",
-                feedbackTitle = "Great!",
-                feedbackBody = "A mat makes floor workouts much more comfortable."
+                "mat", s(R.string.obf_step19_opt_mat), "🧘",
+                feedbackTitle = s(R.string.obf_step19_fb_title_2),
+                feedbackBody = s(R.string.obf_step19_fb_body_3)
             )
         )
     ),
 
     OnboardStep(
         design = "step21", kind = StepKind.CHOICE_FEEDBACK, section = 3, id = ObId.WORKOUT_TYPE,
-        title = "Which workout style suits you?",
+        title = s(R.string.obf_step21_title),
         options = listOf(
             ObOption(
-                "no_equipment", "No equipment", "🏋️",
-                feedbackTitle = "Got it!",
-                feedbackBody = "Your plan will use only body weight, with moves that are easy to follow."
+                "no_equipment", s(R.string.obf_step21_opt_no_equipment), "🏋️",
+                feedbackTitle = s(R.string.obf_step21_fb_title),
+                feedbackBody = s(R.string.obf_step21_fb_body)
             ),
             ObOption(
-                "no_jumping", "Jump-free", "🤸",
-                feedbackTitle = "Got it!",
-                feedbackBody = "We'll keep your plan jump-free and joint-friendly."
+                "no_jumping", s(R.string.obf_step21_opt_no_jumping), "🤸",
+                feedbackTitle = s(R.string.obf_step21_fb_title),
+                feedbackBody = s(R.string.obf_step21_fb_body_2)
             ),
             ObOption(
-                "lying_down", "Mostly on the floor", "🛌",
-                feedbackTitle = "Got it!",
-                feedbackBody = "We'll add more floor and lying-down exercises for you."
+                "lying_down", s(R.string.obf_step21_opt_lying_down), "🛌",
+                feedbackTitle = s(R.string.obf_step21_fb_title),
+                feedbackBody = s(R.string.obf_step21_fb_body_3)
             )
         )
     ),
 
     OnboardStep(
         design = "step22", kind = StepKind.CHOICE_FEEDBACK, section = 3, id = ObId.WORKOUT_LEVEL,
-        title = "How hard should workouts feel?",
+        title = s(R.string.obf_step22_title),
         options = listOf(
             ObOption(
-                "easy", "Gentle", "🙂",
-                feedbackTitle = "Understood!",
-                feedbackBody = "We'll start with beginner-friendly moves so you can ease in."
+                "easy", s(R.string.obf_step22_opt_easy), "🙂",
+                feedbackTitle = s(R.string.obf_step22_fb_title),
+                feedbackBody = s(R.string.obf_step22_fb_body)
             ),
             ObOption(
-                "light_sweat", "A light sweat", "💧",
-                feedbackTitle = "Understood!",
-                feedbackBody = "We'll keep the intensity moderate so you sweat but stay comfortable."
+                "light_sweat", s(R.string.obf_step22_opt_light_sweat), "💧",
+                feedbackTitle = s(R.string.obf_step22_fb_title),
+                feedbackBody = s(R.string.obf_step22_fb_body_2)
             ),
             ObOption(
-                "challenging", "Push me a little", "🏆",
-                feedbackTitle = "Understood!",
-                feedbackBody = "We'll add a bit more intensity to keep you challenged."
+                "challenging", s(R.string.obf_step22_opt_challenging), "🏆",
+                feedbackTitle = s(R.string.obf_step22_fb_title),
+                feedbackBody = s(R.string.obf_step22_fb_body_3)
             )
         )
     ),
 
     OnboardStep(
         design = "step25", kind = StepKind.INFO, section = 3,
-        title = "Busy day?\nTry a 7-minute session",
-        body = "Even a few minutes counts. Quick sessions make it easy to keep your streak going.",
+        title = s(R.string.obf_step25_title),
+        body = s(R.string.obf_step25_body),
         art = "info_7min", hintEmoji = "⏱️"
     ),
 
     OnboardStep(
         design = "step26", kind = StepKind.SLIDER, section = 3, id = ObId.FREQUENCY,
-        title = "How many days a week can you train?",
+        title = s(R.string.obf_step26_title),
         figure = ObFigure.CALENDAR, defaultStop = 2,
-        subtitle = "Less", body = "More",
+        subtitle = s(R.string.obf_step26_subtitle), body = s(R.string.obf_step26_body),
         stops = listOf(
-            ObSliderStop("1 day a week", "I'd like to start slowly"),
-            ObSliderStop("2 days a week", "A couple of sessions fits my schedule"),
-            ObSliderStop("3 days a week", "Exercise is becoming part of my routine"),
-            ObSliderStop("5 days a week", "I'm ready to move almost every day")
+            ObSliderStop(s(R.string.obf_step26_stop0), s(R.string.obf_step26_stop0_desc)),
+            ObSliderStop(s(R.string.obf_step26_stop1), s(R.string.obf_step26_stop1_desc)),
+            ObSliderStop(s(R.string.obf_step26_stop2), s(R.string.obf_step26_stop2_desc)),
+            ObSliderStop(s(R.string.obf_step26_stop3), s(R.string.obf_step26_stop3_desc))
         )
     ),
 
     OnboardStep(
         design = "step27", kind = StepKind.MULTI_CHOICE, section = 3, id = ObId.DISCOMFORT,
-        title = "Any injuries or health conditions?",
+        title = s(R.string.obf_step27_title),
         options = listOf(
-            ObOption("none", "None", "👌"),
-            ObOption("back", "Back injury", "🦴"),
-            ObOption("arm", "Arm injury", "💪"),
-            ObOption("knee", "Knee injury", "🦵"),
-            ObOption("heart", "Heart condition", "🫀"),
-            ObOption("other", "Other", "➕")
+            ObOption("none", s(R.string.obf_step27_opt_none), "👌"),
+            ObOption("back", s(R.string.obf_step27_opt_back), "🦴"),
+            ObOption("arm", s(R.string.obf_step27_opt_arm), "💪"),
+            ObOption("knee", s(R.string.obf_step27_opt_knee), "🦵"),
+            ObOption("heart", s(R.string.obf_step27_opt_heart), "🫀"),
+            ObOption("other", s(R.string.obf_step27_opt_other), "➕")
         )
     ),
 
     OnboardStep(
         design = "step28", kind = StepKind.PREDICTION, section = 3,
-        subtitle = "With your routine, you'll reach"
+        subtitle = s(R.string.obf_step28_subtitle)
     ),
 
     // ---------------------------------------------------------- phần 4: lối sống
     OnboardStep(
         design = "step0", kind = StepKind.SECTION,
-        title = "Life Style", subtitle = "4"
+        title = s(R.string.obf_step0_title_3), subtitle = "4"
     ),
     OnboardStep(
         design = "step29", kind = StepKind.CHOICE, section = 4, id = ObId.TYPICAL_DAY,
-        title = "How do you spend most of your day?",
+        title = s(R.string.obf_step29_title),
         options = listOf(
-            ObOption("seated", "Sitting at a desk", "🖥️"),
-            ObOption("home", "Relaxing at home", "🏠"),
-            ObOption("walking", "Walking around a lot", "👣"),
-            ObOption("feet", "Standing most of the time", "🚶")
+            ObOption("seated", s(R.string.obf_step29_opt_seated), "🖥️"),
+            ObOption("home", s(R.string.obf_step29_opt_home), "🏠"),
+            ObOption("walking", s(R.string.obf_step29_opt_walking), "👣"),
+            ObOption("feet", s(R.string.obf_step29_opt_feet), "🚶")
         )
     ),
 
     OnboardStep(
         design = "step30", kind = StepKind.SLIDER, section = 4, id = ObId.ACTIVITY,
-        title = "How active are you right now?",
+        title = s(R.string.obf_step30_title),
         figure = ObFigure.PLANK, defaultStop = 2,
-        subtitle = "Not active", body = "Very active",
+        subtitle = s(R.string.obf_step30_subtitle), body = s(R.string.obf_step30_body),
         stops = listOf(
-            ObSliderStop("Not active", "I barely exercise at the moment"),
-            ObSliderStop("Lightly active", "I move a little during the day"),
-            ObSliderStop("Moderately active", "I do moderate exercises several times a week for overall health"),
-            ObSliderStop("Very active", "I train hard almost every day")
+            ObSliderStop(s(R.string.obf_step30_subtitle), s(R.string.obf_step30_stop0_desc)),
+            ObSliderStop(s(R.string.obf_step30_stop1), s(R.string.obf_step30_stop1_desc)),
+            ObSliderStop(s(R.string.obf_step30_stop2), s(R.string.obf_step30_stop2_desc)),
+            ObSliderStop(s(R.string.obf_step30_body), s(R.string.obf_step30_stop3_desc))
         )
     ),
 
     OnboardStep(
         design = "step31", kind = StepKind.SLIDER, section = 4, id = ObId.FITNESS,
-        title = "How would you rate your fitness?",
+        title = s(R.string.obf_step31_title),
         figure = ObFigure.GAUGE, defaultStop = 0,
-        subtitle = "Beginner", body = "Advanced",
+        subtitle = s(R.string.obf_step31_subtitle), body = s(R.string.obf_step31_body),
         stops = listOf(
-            ObSliderStop("Beginner", "I'm just getting started"),
-            ObSliderStop("Intermediate", "I work out from time to time"),
-            ObSliderStop("Advanced", "I train regularly and know my limits")
+            ObSliderStop(s(R.string.obf_step31_subtitle), s(R.string.obf_step31_stop0_desc)),
+            ObSliderStop(s(R.string.obf_step31_stop1), s(R.string.obf_step31_stop1_desc)),
+            ObSliderStop(s(R.string.obf_step31_body), s(R.string.obf_step31_stop2_desc))
         )
     ),
 
     OnboardStep(
         design = "step32", kind = StepKind.TESTIMONIAL, section = 4,
-        title = "Real progress comes from small daily steps",
-        titleAccent = "small daily steps"
+        title = s(R.string.obf_step32_title),
+        titleAccent = s(R.string.obf_step32_accent)
     ),
 
     OnboardStep(
         design = "step33", kind = StepKind.SLIDER, section = 4, id = ObId.FLEXIBILITY,
-        title = "How flexible are you?", subtitle = "Far", body = "Touch",
-        hint = "Bend forward with straight legs - where do your fingertips reach?",
+        title = s(R.string.obf_step33_title), subtitle = s(R.string.obf_step33_subtitle), body = s(R.string.obf_step33_body),
+        hint = s(R.string.obf_step33_hint),
         figure = ObFigure.REACH, defaultStop = 0,
         stops = listOf(
-            ObSliderStop("No problem!", "Lots of people start here. A few minutes of stretching a day makes a difference."),
-            ObSliderStop("Almost there!", "A bit more stretching and you'll touch your toes."),
-            ObSliderStop("Nice!", "You already have good flexibility - let's keep it.")
+            ObSliderStop(s(R.string.obf_step33_stop0), s(R.string.obf_step33_stop0_desc)),
+            ObSliderStop(s(R.string.obf_step33_stop1), s(R.string.obf_step33_stop1_desc)),
+            ObSliderStop(s(R.string.obf_step33_stop2), s(R.string.obf_step33_stop2_desc))
         )
     ),
 
     OnboardStep(
         design = "step34", kind = StepKind.SLIDER, section = 4, id = ObId.AEROBIC,
-        title = "How's your stamina?", subtitle = "Too hard", body = "Easy",
-        hint = "How do you feel after a few flights of stairs?",
+        title = s(R.string.obf_step34_title), subtitle = s(R.string.obf_step34_subtitle), body = s(R.string.obf_step34_body),
+        hint = s(R.string.obf_step34_hint),
         figure = ObFigure.STAIRS, defaultStop = 0,
         stops = listOf(
-            ObSliderStop("Out of breath", "That's fine - your plan will build stamina little by little."),
-            ObSliderStop("A little tired", "Good! We'll build your endurance step by step."),
-            ObSliderStop("Totally fine", "Great! We can start with a higher intensity.")
+            ObSliderStop(s(R.string.obf_step34_stop0), s(R.string.obf_step34_stop0_desc)),
+            ObSliderStop(s(R.string.obf_step34_stop1), s(R.string.obf_step34_stop1_desc)),
+            ObSliderStop(s(R.string.obf_step34_stop2), s(R.string.obf_step34_stop2_desc))
         )
     ),
 
     OnboardStep(
         design = "step35", kind = StepKind.STATEMENT, section = 4, id = ObId.STATEMENT_BODY,
-        title = "Does this sound like you?",
-        body = "I want to feel more comfortable and confident in my body.",
+        title = s(R.string.obf_step35_title),
+        body = s(R.string.obf_step35_body),
         art = "statement_mirror"
     ),
 
     OnboardStep(
         design = "step36", kind = StepKind.STATEMENT, section = 4, id = ObId.STATEMENT_CHOICE,
-        title = "Is this true for you?",
-        body = "I'm not sure which workouts are right for me.",
+        title = s(R.string.obf_step36_title),
+        body = s(R.string.obf_step36_body),
         art = "statement_unsure"
     ),
 
     OnboardStep(
         design = "step37", kind = StepKind.STATEMENT, section = 4, id = ObId.STATEMENT_GIVE_UP,
-        title = "How about this one?",
-        body = "I lose motivation when workouts feel too hard or repetitive.",
+        title = s(R.string.obf_step37_title),
+        body = s(R.string.obf_step37_body),
         art = "statement_give_up"
     ),
 
     OnboardStep(
         design = "step38", kind = StepKind.INFO, section = 4,
-        title = "Made for busy women like you",
-        subtitle = "Short & simple",
-        body = "Follow-along videos, clear timers and a plan that fits into your day.",
+        title = s(R.string.obf_step38_title),
+        subtitle = s(R.string.obf_step38_subtitle),
+        body = s(R.string.obf_step38_body),
         art = "info_community", hintEmoji = "👭"
     ),
 
     OnboardStep(
         design = "step39", kind = StepKind.CHOICE, section = 4, id = ObId.CELEBRATE,
-        title = "How will you treat yourself when you hit your goal?",
+        title = s(R.string.obf_step39_title),
         options = listOf(
-            ObOption("clothes", "New outfit", "👕"),
-            ObOption("vacation", "A trip somewhere", "🏝️"),
-            ObOption("photos", "A photo shoot", "📷"),
-            ObOption("concert", "A night out", "🎸"),
-            ObOption("other", "Something else", "💬")
+            ObOption("clothes", s(R.string.obf_step39_opt_clothes), "👕"),
+            ObOption("vacation", s(R.string.obf_step39_opt_vacation), "🏝️"),
+            ObOption("photos", s(R.string.obf_step39_opt_photos), "📷"),
+            ObOption("concert", s(R.string.obf_step39_opt_concert), "🎸"),
+            ObOption("other", s(R.string.obf_step39_opt_other), "💬")
         )
     ),
 
     OnboardStep(
         design = "step40", kind = StepKind.CHOICE, section = 4, id = ObId.FEELING,
-        title = "How do you want to feel when you reach your goal?",
+        title = s(R.string.obf_step40_title),
         options = listOf(
-            ObOption("proud", "Proud of myself", "👍"),
-            ObOption("energy", "Energetic", "🔋"),
-            ObOption("healthy", "Healthy and strong", "🙂"),
-            ObOption("happy", "Happy in my own skin", "👗"),
-            ObOption("less_worry", "Relaxed about how I look", "⚖️")
+            ObOption("proud", s(R.string.obf_step40_opt_proud), "👍"),
+            ObOption("energy", s(R.string.obf_step40_opt_energy), "🔋"),
+            ObOption("healthy", s(R.string.obf_step40_opt_healthy), "🙂"),
+            ObOption("happy", s(R.string.obf_step40_opt_happy), "👗"),
+            ObOption("less_worry", s(R.string.obf_step40_opt_less_worry), "⚖️")
         )
     ),
 
     OnboardStep(
         design = "step41", kind = StepKind.INFO, section = 4,
-        title = "What regular workouts can do for you",
-        body = "Exercise improves posture, muscle tone and energy, so you look and feel more confident.",
+        title = s(R.string.obf_step41_title),
+        body = s(R.string.obf_step41_body),
         art = "info_before_after"
     ),
 
     OnboardStep(
         design = "step42", kind = StepKind.FULL_YES_NO, section = 4, id = ObId.WANT_LOSE_WEIGHT,
-        title = "Ready to slim down?", art = "full_lose_weight"
+        title = s(R.string.obf_step42_title), art = "full_lose_weight"
     ),
 
     OnboardStep(
         design = "step43", kind = StepKind.FULL_YES_NO, section = 4, id = ObId.WANT_ATTRACTIVE,
-        title = "Want to stay active and feel great?", art = "full_active"
+        title = s(R.string.obf_step43_title), art = "full_active"
     ),
 
     OnboardStep(
         design = "step44", kind = StepKind.FULL_YES_NO, section = 4, id = ObId.WANT_HEALTHY,
-        title = "Want to feel good for years to come?", art = "full_healthy"
+        title = s(R.string.obf_step44_title), art = "full_healthy"
     ),
 
     // ---------------------------------------------------------- kết thúc
 
     OnboardStep(
         design = "step45", kind = StepKind.GENERATING,
-        title = "Building your plan…",
-        subtitle = "Built around your answers"
+        title = s(R.string.obf_step45_title),
+        subtitle = s(R.string.obf_step45_subtitle)
     ),
 
     OnboardStep(
         design = "step46", kind = StepKind.PLAN_RESULT,
-        title = "Following your plan, you could reach",
-        cta = "Get my plan"
+        title = s(R.string.obf_step46_title),
+        cta = s(R.string.obf_step46_cta)
     ),
 
     OnboardStep(
         design = "step47", kind = StepKind.TRIAL_INTRO,
-        title = "Try every workout free for 7 days",
-        titleAccent = "free"
+        title = s(R.string.obf_step47_title),
+        titleAccent = s(R.string.obf_step47_accent)
     )
 )
+}

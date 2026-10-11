@@ -2,6 +2,40 @@
 
 > Mới nhất ở trên.
 
+## 2026-10-11 – Vừa mở app (Splash) đã hiện thông báo "smart" ✅ (yêu cầu Telegram, chưa commit)
+- Nguyên nhân: `FitnessApplication` đặt job định kỳ `SmartNotificationWorker` (6 giờ) mỗi lần mở; job định kỳ MỚI chạy ngay
+  lần đầu → máy mới cài / xoá dữ liệu nhận thông báo (id 1000, kênh smart_practice_high) sau ~5-8 giây, lúc đang ở Splash.
+  Tái hiện S8+: pm clear → mở app → 8s có thông báo.
+- `notification/NotificationScheduler.java`: `setInitialDelay(6, HOURS)` (máy đã có job giữ nguyên nhờ KEEP).
+- `notification/SmartNotificationWorker.java`: bỏ qua khi chưa xong lần mở đầu (`isFirstOpen`) hoặc app đang hiển thị
+  (`getMyMemoryState` ≤ IMPORTANCE_VISIBLE) - không nhắc tập khi người dùng đang trong app.
+- Build OK. Test S8+: pm clear → mở app 25s không có thông báo; JobScheduler: Minimum latency +5h59m.
+- Cùng lỗi ở 10 app khác dùng chung code (Tai Chi, Muay Thai, Karate, Taekwondo, Home, Women, Kickboxing, Wing Chun, BajiQuan,
+  Capoeira) - chưa sửa, chờ chủ app.
+
+## 2026-10-11 – Onboarding: thêm bản dịch tiếng Việt ✅ (yêu cầu Telegram, chưa commit)
+- `res/values-vi/strings_onboard_flow.xml` (274 string + plurals; 5 mốc % mỡ không cần dịch). Các đoạn tô hồng (*_accent) nằm
+  đúng trong câu tiêu đề tiếng Việt.
+- `OnboardScreens.kt` CalendarCell: nhãn 1 dòng, chữ nhỏ dần theo độ dài (bản dịch dài như "Thành công" bị xuống dòng tràn ô);
+  tiếng Việt dùng "Về đích".
+- Build OK. Test S8+ (cài sạch, chọn Tiếng Việt): đủ 8 màn nhánh rút gọn, ngày "31 thg 10", thứ CN/T2…, kết quả → Paywall.
+  Quay video gửi chủ app.
+
+## 2026-10-11 – Onboarding: sửa "weigh", tách toàn bộ chữ ra strings (chuẩn bị bản địa hóa) ✅ (yêu cầu Telegram, chưa commit)
+- Câu cân nặng: "How much do you weigh now?" (bản đang chạy bị đổi thành "weight" - sai ngữ pháp).
+- `res/values/strings_onboard_flow.xml` (mới, 274 string + 2 plurals, tiền tố `obf_`): mọi chữ hiển thị của onboarding mới
+  (cả 3 nhánh 8 / 26 / 46 màn). Chủ app cho người khác dịch → chỉ có bản tiếng Anh; ngôn ngữ chưa dịch tự dùng tiếng Anh.
+  Lưu ý: file `strings_onboarding.xml` cũ (pw_*, ob_* của paywall / onboard cũ) giữ nguyên - không đặt trùng tên.
+- `OnboardModel.kt`: `ONBOARD_STEPS` → `onboardSteps(res: Resources)` lấy chữ từ resource (Activity đã áp ngôn ngữ app);
+  `cta` mặc định rỗng → `OnboardStep.ctaText()` = R.string.obf_next. `OnboardingStepFactory.create(variant, all)`,
+  `OnboardState.configure(variant, all)` (tra nhãn lựa chọn qua `allSteps`), `OnboardFlowActivity` truyền `onboardSteps(resources)`.
+- `OnboardScreens.kt`, `OnboardUi.kt`: chữ trong composable → `stringResource`; danh sách cố định (testimonial, mốc mỡ, thông điệp
+  tạo kế hoạch, tuần mẫu, BMI) → @StringRes. Câu có số dùng tham số (%1$s / %1$d), "x ngày sớm hơn" dùng plurals.
+  Thứ trong tuần ở lịch tập lấy từ ICU theo ngôn ngữ (trước cố định S M T W T F S). `OnboardState.formatDate*` theo ngôn ngữ app
+  (trước Locale.ENGLISH "MMM dd").
+- Build OK. Test S8+ (tiếng Anh, cài sạch): đủ 8 màn nhánh rút gọn, chữ đúng, kết quả kế hoạch cuộn hết (Designed for you, Plan preview).
+  Chưa đi hết nhánh 26 / 46 màn trên máy (chỉ biên dịch).
+
 ## 2026-10-11 – Short flow thêm màn vùng tập (Focus area), chip đúng đầu đường kẻ như FocusFragment ✅ (yêu cầu Telegram, chưa commit)
 - `OnboardingStepFactory.kt`: QUICK_DESIGNS thêm `step6` → 8 màn (giữ tên nhánh quick_7 cho Remote Config / analytics).
 - `OnboardScreens.kt` (FocusBodyScreen, dùng chung cho mọi nhánh): bỏ danh sách thẻ bên trái; ảnh bg_problem_area giữ đúng tỉ lệ

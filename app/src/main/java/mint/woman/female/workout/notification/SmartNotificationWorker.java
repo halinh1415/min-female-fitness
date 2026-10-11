@@ -1,10 +1,13 @@
 package mint.woman.female.workout.notification;
 
+import android.app.ActivityManager;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
+
+import mint.woman.female.workout.utils.MyPreference;
 
 import java.util.Calendar;
 
@@ -21,6 +24,11 @@ public class SmartNotificationWorker extends Worker {
     @Override
     public Result doWork() {
         Context context = getApplicationContext();
+
+        // Chưa xong lần mở đầu (Splash / ngôn ngữ / onboarding) hoặc người dùng đang mở app → không nhắc tập
+        if (MyPreference.newInstance(context).isFirstOpen() || isAppInForeground()) {
+            return Result.success();
+        }
 
         AppNotificationHelper.createChannel(context);
 
@@ -41,5 +49,11 @@ public class SmartNotificationWorker extends Worker {
         }
 
         return Result.success();
+    }
+
+    private static boolean isAppInForeground() {
+        ActivityManager.RunningAppProcessInfo info = new ActivityManager.RunningAppProcessInfo();
+        ActivityManager.getMyMemoryState(info);
+        return info.importance <= ActivityManager.RunningAppProcessInfo.IMPORTANCE_VISIBLE;
     }
 }

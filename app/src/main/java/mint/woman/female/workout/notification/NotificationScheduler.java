@@ -16,6 +16,9 @@ public class NotificationScheduler {
     public static void schedule(Context context) {
         PeriodicWorkRequest request =
                 new PeriodicWorkRequest.Builder(SmartNotificationWorker.class, 6, TimeUnit.HOURS)
+                        // Job định kỳ mới đặt sẽ chạy NGAY lần đầu → máy mới cài / xoá dữ liệu nhận thông báo
+                        // khi đang ở màn Splash. Lùi lần chạy đầu một chu kỳ (máy đã có job: KEEP, không đổi).
+                        .setInitialDelay(6, TimeUnit.HOURS)
                         .build();
 
         // KEEP: được gọi ở mỗi lần process khởi động (kể cả khởi động ngầm do alarm / job / FCM).
