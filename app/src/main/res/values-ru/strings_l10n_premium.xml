@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bản dịch paywall / vé ưu đãi / Flash Sale / Home còn thiếu (2026-10-13) -->
+<resources>
+    <string name="discount_claim">Получить сейчас!</string>
+    <string name="discount_monthly_price_format">Всего %1$s/мес.</string>
+    <string name="discount_off">скидка</string>
+    <string name="discount_original_price_format">(%1$s)</string>
+    <string name="discount_price_loading">Загрузка цены…</string>
+    <string name="discount_title">Специальная скидка</string>
+    <string name="discount_total_price_format">Итого %1$s/год</string>
+    <string name="paywall_band_special">Специальная цена</string>
+    <string name="paywall_per_week">%1$s/нед.</string>
+    <string name="paywall_special_offer">Скидка %1$d%% — спецпредложение</string>
+    <string name="paywall_special_price">%1$s (было %2$s)/год</string>
+    <string name="txt_close">Закрыть</string>
+    <string name="txt_premium_exercise_extend">Более 150 упражнений с инструкциями</string>
+    <string name="txt_premium_plan_unlimited">Неограниченные программы тренировок</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fs_title_percent">⚡ Flash sale: Premium %1$s korting</string>
+    <string name="fs_ends">Eindigt over %s</string>
+    <string name="fs_cta">Pak het</string>
+</resources>

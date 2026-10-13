@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fs_title_percent">⚡ 限时抢购：Premium %1$s 优惠</string>
+    <string name="fs_ends">%s后结束</string>
+    <string name="fs_cta">立即领取</string>
+</resources>

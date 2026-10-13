@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fs_title_percent">⚡ 플래시 세일: Premium %1$s 할인</string>
+    <string name="fs_ends">%s 후 종료</string>
+    <string name="fs_cta">받기</string>
+</resources>

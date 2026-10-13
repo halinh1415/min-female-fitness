@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fs_title_percent">⚡ Oferta relâmpago: Premium com %1$s OFF</string>
+    <string name="fs_ends">Termina em %s</string>
+    <string name="fs_cta">Quero</string>
+</resources>

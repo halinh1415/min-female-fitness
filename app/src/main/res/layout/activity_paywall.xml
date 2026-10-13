@@ -41,7 +41,7 @@
                 <View
                     android:id="@+id/v_hero_fade"
                     android:layout_width="0dp"
-                    android:layout_height="96dp"
+                    android:layout_height="190dp"
                     android:background="@drawable/bg_paywall_hero_fade"
                     app:layout_constraintBottom_toBottomOf="@id/iv_hero"
                     app:layout_constraintEnd_toEndOf="parent"

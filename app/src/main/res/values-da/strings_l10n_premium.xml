@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bản dịch paywall / vé ưu đãi / Flash Sale / Home còn thiếu (2026-10-13) -->
+<resources>
+    <string name="discount_claim">Hent nu!</string>
+    <string name="discount_monthly_price_format">Kun %1$s/måned</string>
+    <string name="discount_off">rabat</string>
+    <string name="discount_original_price_format">(%1$s)</string>
+    <string name="discount_price_loading">Indlæser pris…</string>
+    <string name="discount_title">Særlig rabat</string>
+    <string name="discount_total_price_format">I alt %1$s/år</string>
+    <string name="paywall_band_special">Særpris</string>
+    <string name="paywall_per_week">%1$s/uge</string>
+    <string name="paywall_special_offer">%1$d%% rabat – særtilbud</string>
+    <string name="paywall_special_price">%1$s (før %2$s)/år</string>
+    <string name="pw_best_value">BEDSTE VALG</string>
+    <string name="pw_cancel_anytime">Opsig når som helst i Google Play</string>
+    <string name="pw_cta_continue">Fortsæt</string>
+    <string name="pw_cta_trial">Start min gratis prøve på %d dage</string>
+    <string name="pw_disclosure_sub">%s. Fornyes automatisk, indtil den opsiges.</string>
+    <string name="pw_disclosure_trial">%1$d dage gratis, derefter %2$s. Fornyes automatisk, indtil den opsiges.</string>
+    <string name="pw_loading">Indlæser priser…</string>
+    <string name="pw_manage">Administrer abonnement</string>
+    <string name="pw_no_payment_today">Ingen betaling i dag</string>
+    <string name="pw_not_selected">Ikke valgt</string>
+    <string name="pw_per_month">%s / måned</string>
+    <string name="pw_per_year">%s / år</string>
+    <string name="pw_plan_monthly">Månedligt</string>
+    <string name="pw_plan_yearly">Årligt</string>
+    <string name="pw_privacy">Privatliv</string>
+    <string name="pw_purchase_pending">Dit køb afventer. Premium låses op, når Google Play bekræfter betalingen.</string>
+    <string name="pw_purchase_success">Velkommen til Premium! 🎉</string>
+    <string name="pw_restore">Gendan</string>
+    <string name="pw_restore_checking">Tjekker dine køb…</string>
+    <string name="pw_restore_error">Dine køb kunne ikke tjekkes. Prøv igen.</string>
+    <string name="pw_restore_none">Der blev ikke fundet noget tidligere køb.</string>
+    <string name="pw_restore_success">Dit Premium er gendannet.</string>
+    <string name="pw_selected">Valgt</string>
+    <string name="pw_timeline_charge">Dag %d</string>
+    <string name="pw_timeline_charge_desc">Du bliver opkrævet %s, medmindre du opsiger inden da.</string>
+    <string name="pw_timeline_reminder">Dag %d</string>
+    <string name="pw_timeline_reminder_desc">Din prøveperiode slutter snart. Opsig når som helst i Google Play.</string>
+    <string name="pw_timeline_row">• %1$s — %2$s</string>
+    <string name="pw_timeline_title">Sådan fungerer din gratis prøveperiode</string>
+    <string name="pw_timeline_today">I dag</string>
+    <string name="pw_timeline_today_desc">Få fuld adgang til alle Premium-funktioner.</string>
+    <string name="pw_title">Lås op for hele din plan</string>
+    <string name="pw_trial_badge">%d DAGE GRATIS</string>
+    <string name="pw_unavailable">Butikken er ikke tilgængelig lige nu. Prøv igen senere.</string>
+    <string name="txt_close">Tæt</string>
+    <string name="txt_premium_exercise_extend">150+ guidede øvelser</string>
+    <string name="txt_premium_plan_unlimited">Ubegrænsede træningsplaner</string>
+</resources>

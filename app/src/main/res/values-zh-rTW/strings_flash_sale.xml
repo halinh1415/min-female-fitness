@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fs_title_percent">⚡ 限時搶購：Premium %1$s 優惠</string>
+    <string name="fs_ends">%s後結束</string>
+    <string name="fs_cta">立即領取</string>
+</resources>

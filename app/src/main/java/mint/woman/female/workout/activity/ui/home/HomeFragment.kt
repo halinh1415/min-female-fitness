@@ -24,6 +24,11 @@ import mint.woman.female.workout.activity.ui.history.HistoryActivity
 import mint.woman.female.workout.activity.ui.plan.PersonalPlanActivity
 import mint.woman.female.workout.activity.ui.plan.PersonalPlanStore
 import mint.woman.female.workout.activity.ui.history.HistoryViewModel
+import mint.woman.female.workout.activity.ui.premium.DiscountDialogFragment
+import mint.woman.female.workout.activity.ui.premium.InAppKey
+import mint.woman.female.workout.activity.ui.premium.PaywallOffers
+import mint.woman.female.workout.activity.ui.premium.PaywallPromo
+import mint.woman.female.workout.activity.ui.premium.PremiumViewModel
 import mint.woman.female.workout.activity.ui.premium.PremiumActivity
 import mint.woman.female.workout.activity.ui.preview.PreviewActivity
 import mint.woman.female.workout.activity.ui.weekgoal.SetGoalActivity
@@ -66,6 +71,7 @@ class HomeFragment : Fragment(), HomeActions {
     private var listener: OnHomeFragmentInteractionListener? = null
     private lateinit var pref: MyPreference
     private lateinit var historyViewModel: HistoryViewModel
+    private lateinit var premiumViewModel: PremiumViewModel
     private val state = HomeUiState()
 
     private val recentIds = LinkedHashSet<Int>()
@@ -104,6 +110,14 @@ class HomeFragment : Fragment(), HomeActions {
         super.onViewCreated(view, savedInstanceState)
         pref = MyPreference(requireContext())
         historyViewModel = ViewModelProvider(requireActivity())[HistoryViewModel::class.java]
+        // Billing cho nút "Nhận ngay" của thẻ Flash Sale (mua thẳng gói 50%): tạo sớm để giá có sẵn khi bấm.
+        premiumViewModel = ViewModelProvider(requireActivity())[PremiumViewModel::class.java]
+        premiumViewModel.isPremium.observe(viewLifecycleOwner) { premium ->
+            if (premium == true) {
+                state.isPremium = true
+                state.promoEndsAt = null
+            }
+        }
 
         state.dateText = SimpleDateFormat("EEEE, d MMMM", Locale.getDefault()).format(Date())
             .replaceFirstChar { it.titlecase(Locale.getDefault()) }
@@ -148,6 +162,7 @@ class HomeFragment : Fragment(), HomeActions {
     override fun onResume() {
         super.onResume()
         state.isPremium = pref.isPremiumMember
+        state.promoEndsAt = if (pref.isPremiumMember) null else PaywallPromo.activeEndTime(requireContext())
         state.personalPlan = PersonalPlanStore.program(requireContext())
         refreshPlanProgress()
     }
@@ -349,6 +364,29 @@ class HomeFragment : Fragment(), HomeActions {
 
     override fun onPremium() {
         startActivity(Intent(requireActivity(), PremiumActivity::class.java))
+    }
+
+    /**
+     * Thẻ Flash Sale: mở thẳng hộp thanh toán Google Play cho gói năm giảm 50% (base plan yearly-special-50-off).
+     * Play chưa trả giá / không có base plan đó thì mở vé ưu đãi, hết đợt thì vào paywall.
+     */
+    override fun onFlashSale() {
+        log("click_flash_sale_scr_home")
+        val activity = requireActivity()
+        val yearly = premiumViewModel.getSubscription(InAppKey.PREMIUM_YEARLY)
+        val offer = PaywallOffers.offerByBasePlanId(yearly, InAppKey.YEARLY_SPECIAL_50)
+        if (offer != null && PaywallPromo.activeEndTime(activity) != null) {
+            premiumViewModel.launchSubscription(activity, InAppKey.PREMIUM_YEARLY, offer)
+        } else if (!DiscountDialogFragment.showIfPromoActive(activity)) {
+            startActivity(
+                Intent(activity, PremiumActivity::class.java)
+                    .putExtra(PremiumActivity.EXTRA_SOURCE, "flash_sale"),
+            )
+        }
+    }
+
+    override fun onPromoExpired() {
+        state.promoEndsAt = null
     }
 
     override fun onMyWorkouts() {

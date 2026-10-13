@@ -162,8 +162,12 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
     public boolean onPreferenceClick(Preference preference) {
         switch (preference.getKey()) {
             case "GO_PREMIUM":
-                startActivity(new Intent(requireContext(),
-                        mint.woman.female.workout.activity.ui.premium.PremiumActivity.class));
+                // Đang có đợt giảm 50% thì mở vé ưu đãi (giống Women Workout), không thì vào paywall.
+                if (getActivity() == null || !mint.woman.female.workout.activity.ui.premium.DiscountDialogFragment
+                        .showIfPromoActive(getActivity())) {
+                    startActivity(new Intent(requireContext(),
+                            mint.woman.female.workout.activity.ui.premium.PremiumActivity.class));
+                }
                 break;
             case "ACHIEVEMENTS":
                 startActivity(BadgeActivity.newIntent(requireContext()));

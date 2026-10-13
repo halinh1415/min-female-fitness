@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/offer_jade_darkest">
+    android:background="@color/offer_dialog_scrim">
 
     <ImageButton
         android:id="@+id/iv_close_discount"
@@ -67,7 +68,7 @@
                     android:fontFamily="@font/lora_bold_italic"
                     android:gravity="center"
                     android:rotation="-3"
-                    android:text="Special Discount"
+                    android:text="@string/discount_title"
                     android:textColor="@color/offer_gold"
                     android:textSize="28sp"
                     android:textStyle="bold|italic" />
@@ -202,7 +203,7 @@
                             android:layout_marginTop="-8dp"
                             android:fontFamily="@font/g1_black"
                             android:includeFontPadding="false"
-                            android:text="off"
+                            android:text="@string/discount_off"
                             android:textColor="@android:color/white"
                             android:textSize="32sp"
                             android:textStyle="bold" />
@@ -241,7 +242,8 @@
                     android:id="@+id/tv_discount_total"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total 509.000 ₫/year "
+                    android:text="@string/discount_price_loading"
+                    tools:text="Total 509.000 ₫/year "
                     android:textColor="@color/offer_ink"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -250,7 +252,9 @@
                     android:id="@+id/tv_original_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="(1.550.000 ₫)"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    tools:text="(1.550.000 ₫)"
                     android:textColor="@color/offer_ink"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -262,7 +266,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:layout_marginBottom="20dp"
-                android:text="Only 42.417 ₫/month"
+                android:visibility="invisible"
+                tools:visibility="visible"
+                tools:text="Only 42.417 ₫/month"
                 android:textColor="@color/offer_ink_muted"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -279,7 +285,7 @@
             android:background="@drawable/bg_discount_claim_button"
             android:fontFamily="@font/fonts"
             android:gravity="center"
-            android:text="Claim Now!"
+            android:text="@string/discount_claim"
             android:textColor="@color/offer_ink"
             android:textSize="22sp"
             android:textStyle="bold"

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fs_title_percent">⚡ Wyprzedaż: Premium -%1$s</string>
+    <string name="fs_ends">Kończy się za %s</string>
+    <string name="fs_cta">Odbierz</string>
+</resources>

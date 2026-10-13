@@ -45,9 +45,25 @@ public class DiscountDialogFragment extends DialogFragment {
     private CountDownTimer countDownTimer;
     private PremiumViewModel premiumViewModel;
     private long durationMillis = DEFAULT_DURATION_MILLIS;
+    private Boolean savedPremiumAtOpen;
 
     public static DiscountDialogFragment newInstance() {
         return new DiscountDialogFragment();
+    }
+
+    /**
+     * Đang có đợt giảm 50% và người dùng chưa Premium thì hiện vé ưu đãi (thay cho paywall).
+     * @return true nếu đã hiện, nơi gọi không cần mở paywall nữa.
+     */
+    public static boolean showIfPromoActive(@NonNull androidx.fragment.app.FragmentActivity activity) {
+        Long end = PaywallPromo.activeEndTime(activity, System.currentTimeMillis());
+        if (end == null || new MyPreference(activity).isPremiumMember()) return false;
+        androidx.fragment.app.FragmentManager manager = activity.getSupportFragmentManager();
+        if (manager.isStateSaved()) return false;
+        if (manager.findFragmentByTag("discount") == null) {
+            newInstance(end - System.currentTimeMillis()).show(manager, "discount");
+        }
+        return true;
     }
 
     public static DiscountDialogFragment newInstance(long durationMillis) {
@@ -97,6 +113,11 @@ public class DiscountDialogFragment extends DialogFragment {
 
         premiumViewModel = new ViewModelProvider(requireActivity()).get(PremiumViewModel.class);
         premiumViewModel.productSkuDetailsMap.observe(getViewLifecycleOwner(), this::updateDiscountPrice);
+        // Mua xong (kể cả khi mở từ Settings) thì đóng vé.
+        savedPremiumAtOpen = Boolean.TRUE.equals(premiumViewModel.isPremium.getValue());
+        premiumViewModel.isPremium.observe(getViewLifecycleOwner(), premium -> {
+            if (Boolean.TRUE.equals(premium) && !savedPremiumAtOpen) dismissAllowingStateLoss();
+        });
 
         binding.ivCloseDiscount.setOnClickListener(v -> dismiss());
         binding.btnClaimDiscount.setOnClickListener(v -> claimDiscount());
@@ -117,6 +138,13 @@ public class DiscountDialogFragment extends DialogFragment {
                 ViewGroup.LayoutParams.MATCH_PARENT
         );
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        // Nền mờ như Women Workout: layout có nền trong suốt ~80%, thêm làm nhoè màn phía sau (Android 12+).
+        dialog.getWindow().setDimAmount(0f);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            dialog.getWindow().addFlags(android.view.WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+            dialog.getWindow().getAttributes().setBlurBehindRadius(48);
+            dialog.getWindow().setAttributes(dialog.getWindow().getAttributes());
+        }
     }
 
     private void startCountdown() {
@@ -210,6 +238,7 @@ public class DiscountDialogFragment extends DialogFragment {
                 R.string.discount_monthly_price_format,
                 getMonthlyPrice(salePhase)
         ));
+        binding.tvDiscountMonthly.setVisibility(View.VISIBLE);
     }
 
     /** Giá gốc nằm trong ngoặc; chỉ con số bị gạch ngang, hai dấu ngoặc để nguyên. */
@@ -233,12 +262,16 @@ public class DiscountDialogFragment extends DialogFragment {
         }
     }
 
+    /** Giá năm chia 12, định dạng theo đúng tiền tệ (VND không có phần lẻ, ký hiệu đúng vị trí). Trước đây ghép ký hiệu
+     *  lấy từ chuỗi giá với "%.2f" → "₫42416.67" thay vì "42.417 ₫". */
     private String getMonthlyPrice(ProductDetails.PricingPhase yearlyPhase) {
         try {
-            long monthlyMicros = yearlyPhase.getPriceAmountMicros() / 12L;
-            return String.format(Locale.getDefault(), "%s%.2f",
-                    yearlyPhase.getFormattedPrice().replaceAll("[0-9.,\\s]", ""),
-                    monthlyMicros / 1_000_000.0);
+            java.util.Currency currency = java.util.Currency.getInstance(yearlyPhase.getPriceCurrencyCode());
+            java.text.NumberFormat format = java.text.NumberFormat.getCurrencyInstance();
+            format.setCurrency(currency);
+            format.setMaximumFractionDigits(currency.getDefaultFractionDigits());
+            format.setMinimumFractionDigits(currency.getDefaultFractionDigits());
+            return format.format(yearlyPhase.getPriceAmountMicros() / 12.0 / 1_000_000.0);
         } catch (Exception ignored) {
             return yearlyPhase.getFormattedPrice();
         }

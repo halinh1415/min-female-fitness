@@ -240,7 +240,7 @@ private fun Hero() {
     val colors = PwColors
     Box(Modifier.fillMaxWidth().height(340.dp)) {
         AsyncImage(
-            model = "file:///android_asset/onboards/onboard_intro_1.png",
+            model = "file:///android_asset/images/img_premium.webp",
             contentDescription = null,
             contentScale = ContentScale.Crop,
             alignment = Alignment.TopCenter,

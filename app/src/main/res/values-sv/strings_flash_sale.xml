@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fs_title_percent">⚡ Blixtrea: Premium %1$s rabatt</string>
+    <string name="fs_ends">Slutar om %s</string>
+    <string name="fs_cta">Hämta</string>
+</resources>

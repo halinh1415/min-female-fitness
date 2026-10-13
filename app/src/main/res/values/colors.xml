@@ -5,6 +5,8 @@
     <color name="app_center_color">#FF5C8A</color>
     <color name="app_end_color">#8FBC8F</color>
     <color name="offer_jade_darkest">#3A0F22</color>
+    <!-- Nền vé ưu đãi: màu offer_jade_darkest trong suốt ~80% để thấy mờ màn phía sau (như Women Workout) -->
+    <color name="offer_dialog_scrim">#CC3A0F22</color>
     <color name="offer_jade_deep">#5A1533</color>
     <color name="offer_jade_dark">#C2185B</color>
     <color name="offer_jade">#E91E63</color>

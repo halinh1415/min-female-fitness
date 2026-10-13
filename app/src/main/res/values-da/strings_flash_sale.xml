@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fs_title_percent">⚡ Flash sale: Premium %1$s rabat</string>
+    <string name="fs_ends">Slutter om %s</string>
+    <string name="fs_cta">Hent</string>
+</resources>

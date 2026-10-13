@@ -2,6 +2,55 @@
 
 > Mới nhất ở trên.
 
+## 2026-10-13 – Bản địa hóa paywall / vé ưu đãi / Flash Sale / Home (yêu cầu Telegram, chưa commit)
+- Rà các chuỗi dùng ở paywall (PaywallActivity, PaywallScreenB), vé ưu đãi, thẻ Flash Sale, Home: 26 ngôn ngữ thiếu
+  tổng cộng ~900 chuỗi (cs/hi/hr/lv/no thiếu cả paywall cũ; da/fa/th/fi/sv thiếu pw_*; mọi ngôn ngữ thiếu
+  discount_* và chữ "Loading price…").
+- `res/layout/layout_dialog_discount.xml`: bỏ chữ viết cứng "Special Discount", "off", "Claim Now!" →
+  `discount_title`, `discount_off`, `discount_claim` (tiếng Anh trong `values/strings_flash_sale.xml`).
+- Mới `res/values-*/strings_l10n_premium.xml` (26 ngôn ngữ): 283 chuỗi lấy nguyên từ bản dịch đã có của các app anh em
+  (cùng key, cùng tiếng Anh), phần còn lại tự dịch; kiểm tra placeholder khớp tiếng Anh. Sau sửa: 0 chuỗi thiếu.
+- Build OK. Test máy ảo Android 16 ở tiếng Pháp, Bồ Đào Nha, Hindi: thẻ Flash Sale, vé ưu đãi ("de desconto" dài
+  nhất vẫn vừa), paywall đều hiện đúng ngôn ngữ, không tràn chữ.
+
+## 2026-10-13 – Flash Sale "Nhận ngay" mở thanh toán, Settings mở vé ưu đãi, vé ưu đãi nền mờ (yêu cầu Telegram, chưa commit)
+- `HomeFragment.kt`: nút "Nhận ngay" của thẻ Flash Sale mở thẳng hộp thanh toán Google Play gói năm base plan
+  `yearly-special-50-off` (PremiumViewModel dùng chung activity, tạo sớm để có giá); Play chưa trả giá / không có base
+  plan → mở vé ưu đãi; hết đợt → paywall. Mua xong ẩn thẻ.
+- `SettingFragment.java`: thẻ Go Premium khi đang có đợt 50% mở `DiscountDialogFragment` thay cho paywall.
+- `DiscountDialogFragment.java`: thêm `showIfPromoActive(activity)`; tự đóng khi mua xong; nền vé trong suốt ~80%
+  (`offer_dialog_scrim`, thấy mờ màn phía sau như Women Workout) + làm nhoè phía sau trên Android 12+.
+- Build OK. Test máy ảo Android 16 (S8+ đang bị dùng qua Android Studio mirroring): thẻ Flash Sale đếm ngược,
+  "Nhận ngay" (debug không có base plan → vé ưu đãi), Settings → Go Premium → vé ưu đãi, nền mờ thấy màn sau.
+  Chưa test được hộp thanh toán thật (cần bản ký đúng key cài từ Play).
+
+## 2026-10-13 – Giá vé ưu đãi 50% + thẻ Flash Sale đếm ngược ở Home (yêu cầu Telegram, chưa commit)
+- `activity/ui/premium/DiscountDialogFragment.java`: giá theo tháng định dạng bằng `NumberFormat` theo mã tiền tệ
+  (trước đây ghép ký hiệu + "%.2f" → "₫42416.67" thay vì "42.417 ₫"); hiện dòng giá tháng khi đã có giá.
+- `res/layout/layout_dialog_discount.xml`: bỏ giá mẫu cứng (509.000 ₫ / 1.550.000 ₫ / 42.417 ₫) hiện trước khi Play
+  trả giá → "Loading price…" (`discount_price_loading`), giá gốc / giá tháng ẩn tới khi có giá thật.
+- Mới `activity/ui/premium/FlashSaleCard.kt` (`FlashSaleBanner`, port Women Workout) + `HomeScreen.kt` / `HomeFragment.kt`:
+  thẻ "⚡ Flash sale: Premium giảm 50%" kèm đếm ngược tới `PaywallPromo.activeEndTime`, bấm mở PremiumActivity
+  (source flash_sale) với giá 50%; hết giờ / đã Premium thì ẩn.
+- Mới `res/values*/strings_flash_sale.xml` (fs_title_percent, fs_ends, fs_cta) lấy từ Women Workout cho 21 ngôn ngữ;
+  cs, hi, hr, lv, no, th chưa có bản dịch (dùng tiếng Anh).
+- Build OK. Test S8+ dở dang: vé ưu đãi Lucky Draw đếm ngược đúng (01:59:56), giá hiện "Loading price…" vì bản debug
+  không lấy được base plan yearly-special-50-off. Dừng test vì S8+ đang bị điều khiển song song qua Android Studio
+  Running Devices (screen-sharing-agent từ 09:36: tự mở luồng mua 09:38, mở Cài đặt → Play Store → Bộ nhớ 09:49).
+
+## 2026-10-13 – Banner PaywallActivity dùng ảnh img_premium.webp ✅ (yêu cầu Telegram, chưa commit)
+- `activity/ui/premium/PaywallActivity.java`: `iv_hero` nạp `file:///android_asset/images/img_premium.webp` bằng Glide
+  (thay nền sóng `background_1`), giữ centerCrop.
+- `res/layout/activity_paywall.xml` + `res/drawable/bg_paywall_hero_fade.xml`: lớp mờ chân ảnh cao 96dp → 190dp, thêm
+  điểm giữa trắng 85% để tiêu đề và 3 dòng quyền lợi đè lên ảnh vẫn đọc rõ.
+- Build OK. Test máy ảo Android 16: onboarding → Get my plan → PaywallActivity hiện banner, chữ rõ.
+
+## 2026-10-13 – Banner PaywallScreenB dùng ảnh img_premium.webp ✅ (yêu cầu Telegram, chưa commit)
+- `activity/ui/premium/PaywallScreenB.kt` (`Hero`): ảnh nền đổi từ `onboards/onboard_intro_1.png` sang
+  `file:///android_asset/images/img_premium.webp` (1202x745, giữ Crop + TopCenter và lớp mờ dần sẵn có).
+- Build OK. Test máy ảo Android 16: Home → nút kim cương → PremiumActivity hiện banner mới, chữ / dấu tick vẫn rõ.
+- Lưu ý: PaywallActivity (paywall sau onboarding, nền sóng) là màn khác, không đổi.
+
 ## 2026-10-11 – Vừa mở app (Splash) đã hiện thông báo "smart" ✅ (yêu cầu Telegram, chưa commit)
 - Nguyên nhân: `FitnessApplication` đặt job định kỳ `SmartNotificationWorker` (6 giờ) mỗi lần mở; job định kỳ MỚI chạy ngay
   lần đầu → máy mới cài / xoá dữ liệu nhận thông báo (id 1000, kênh smart_practice_high) sau ~5-8 giây, lúc đang ở Splash.

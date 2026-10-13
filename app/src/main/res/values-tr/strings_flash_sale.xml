@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fs_title_percent">⚡ Flaş indirim: Premium\'da %1$s</string>
+    <string name="fs_ends">%s içinde bitiyor</string>
+    <string name="fs_cta">Al</string>
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bản dịch paywall / vé ưu đãi / Flash Sale / Home còn thiếu (2026-10-13) -->
+<resources>
+    <string name="discount_claim">Klaim Sekarang!</string>
+    <string name="discount_monthly_price_format">Hanya %1$s/bulan</string>
+    <string name="discount_off">diskon</string>
+    <string name="discount_original_price_format">(%1$s)</string>
+    <string name="discount_price_loading">Memuat harga…</string>
+    <string name="discount_title">Diskon Spesial</string>
+    <string name="discount_total_price_format">Total %1$s/tahun</string>
+    <string name="paywall_band_special">Harga spesial</string>
+    <string name="paywall_per_week">%1$s/minggu</string>
+    <string name="paywall_special_offer">Penawaran spesial diskon %1$d%%</string>
+    <string name="paywall_special_price">%1$s (semula %2$s)/tahun</string>
+    <string name="txt_close">Tutup</string>
+    <string name="txt_premium_exercise_extend">150+ latihan terpandu</string>
+    <string name="txt_premium_plan_unlimited">Rencana latihan tanpa batas</string>
+</resources>

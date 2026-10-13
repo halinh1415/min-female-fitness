@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fs_title_percent">⚡ تخفيض سريع: خصم %1$s على Premium</string>
+    <string name="fs_ends">ينتهي خلال %s</string>
+    <string name="fs_cta">احصلي عليه</string>
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bản dịch paywall / vé ưu đãi / Flash Sale / Home còn thiếu (2026-10-13) -->
+<resources>
+    <string name="discount_claim">J\'en profite !</string>
+    <string name="discount_monthly_price_format">Seulement %1$s/mois</string>
+    <string name="discount_off">de remise</string>
+    <string name="discount_original_price_format">(%1$s)</string>
+    <string name="discount_price_loading">Chargement du prix…</string>
+    <string name="discount_title">Remise spéciale</string>
+    <string name="discount_total_price_format">Total %1$s/an</string>
+    <string name="paywall_band_special">Prix spécial</string>
+    <string name="paywall_per_week">%1$s/semaine</string>
+    <string name="paywall_special_offer">Offre spéciale -%1$d%%</string>
+    <string name="paywall_special_price">%1$s (au lieu de %2$s)/an</string>
+    <string name="txt_close">Fermer</string>
+    <string name="txt_premium_exercise_extend">Plus de 150 exercices guidés</string>
+    <string name="txt_premium_plan_unlimited">Parcours de pratique illimités</string>
+</resources>

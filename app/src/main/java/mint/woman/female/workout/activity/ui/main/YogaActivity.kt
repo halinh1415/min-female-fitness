@@ -236,8 +236,9 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
         var isReport = intent.getBooleanExtra("IS_REPORT", false);
         // Passing each menu ID as a set of Ids because each
         if (isReport) {
-            navController.popBackStack(R.id.nav_home, false);
-            navController.navigate(R.id.nav_report)
+            // Chuyển tab như khi bấm thanh điều hướng dưới (lưu/khôi phục back stack từng tab). Trước đây
+            // navigate(nav_report) đẩy Report lên back stack của tab Home → bấm Home lại khôi phục chính Report.
+            findViewById<BottomNavigationView>(R.id.nav_view).selectedItemId = R.id.nav_report
         }
     }
     private fun requestReview() {

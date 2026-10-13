@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bản dịch paywall / vé ưu đãi / Flash Sale / Home còn thiếu (2026-10-13) -->
+<resources>
+    <string name="discount_claim">همین حالا دریافت کنید!</string>
+    <string name="discount_monthly_price_format">فقط %1$s/ماه</string>
+    <string name="discount_off">تخفیف</string>
+    <string name="discount_original_price_format">(%1$s)</string>
+    <string name="discount_price_loading">در حال بارگیری قیمت…</string>
+    <string name="discount_title">تخفیف ویژه</string>
+    <string name="discount_total_price_format">مجموع %1$s/سال</string>
+    <string name="paywall_band_special">قیمت ویژه</string>
+    <string name="paywall_per_week">%1$s/هفته</string>
+    <string name="paywall_special_offer">پیشنهاد ویژه با %1$d%% تخفیف</string>
+    <string name="paywall_special_price">%1$s (قبلاً %2$s)/سال</string>
+    <string name="pw_best_value">بهترین ارزش</string>
+    <string name="pw_cancel_anytime">هر زمان در Google Play لغو کنید</string>
+    <string name="pw_cta_continue">ادامه</string>
+    <string name="pw_cta_trial">شروع دوره آزمایشی رایگان %d روزه</string>
+    <string name="pw_disclosure_sub">%s. تا زمان لغو به‌طور خودکار تمدید می‌شود.</string>
+    <string name="pw_disclosure_trial">%1$d روز رایگان، سپس %2$s. تا زمان لغو به‌طور خودکار تمدید می‌شود.</string>
+    <string name="pw_loading">در حال بارگیری قیمت‌ها…</string>
+    <string name="pw_manage">مدیریت اشتراک</string>
+    <string name="pw_no_payment_today">امروز پرداختی ندارید</string>
+    <string name="pw_not_selected">انتخاب نشده</string>
+    <string name="pw_per_month">%s / ماه</string>
+    <string name="pw_per_year">%s / سال</string>
+    <string name="pw_plan_monthly">ماهانه</string>
+    <string name="pw_plan_yearly">سالانه</string>
+    <string name="pw_privacy">حریم خصوصی</string>
+    <string name="pw_purchase_pending">خرید شما در انتظار است. پس از تأیید پرداخت توسط Google Play، Premium فعال می‌شود.</string>
+    <string name="pw_purchase_success">به Premium خوش آمدید! 🎉</string>
+    <string name="pw_restore">بازیابی</string>
+    <string name="pw_restore_checking">در حال بررسی خریدهای شما…</string>
+    <string name="pw_restore_error">بررسی خریدها ممکن نشد. لطفاً دوباره تلاش کنید.</string>
+    <string name="pw_restore_none">هیچ خرید قبلی پیدا نشد.</string>
+    <string name="pw_restore_success">Premium شما بازیابی شد.</string>
+    <string name="pw_selected">انتخاب شده</string>
+    <string name="pw_timeline_charge">روز %d</string>
+    <string name="pw_timeline_charge_desc">اگر پیش از آن لغو نکنید، %s از شما دریافت می‌شود.</string>
+    <string name="pw_timeline_reminder">روز %d</string>
+    <string name="pw_timeline_reminder_desc">دوره آزمایشی شما به‌زودی تمام می‌شود. هر زمان در Google Play لغو کنید.</string>
+    <string name="pw_timeline_row">• %1$s — %2$s</string>
+    <string name="pw_timeline_title">دوره آزمایشی رایگان چگونه کار می‌کند</string>
+    <string name="pw_timeline_today">امروز</string>
+    <string name="pw_timeline_today_desc">به همه امکانات Premium دسترسی کامل داشته باشید.</string>
+    <string name="pw_title">برنامج کامل خود را باز کنید</string>
+    <string name="pw_trial_badge">%d روز رایگان</string>
+    <string name="pw_unavailable">فروشگاه در حال حاضر در دسترس نیست. لطفاً بعداً تلاش کنید.</string>
+    <string name="txt_close">بستن</string>
+    <string name="txt_premium_exercise_extend">بیش از ۱۵۰ تمرین با راهنما</string>
+    <string name="txt_premium_plan_unlimited">برنامه های تمرینی نامحدود</string>
+</resources>

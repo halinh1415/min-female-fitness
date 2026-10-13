@@ -60,6 +60,7 @@ import mint.woman.female.workout.activity.ui.compose.backgroundUrl
 import mint.woman.female.workout.activity.ui.compose.fallbackBackgroundUrl
 import mint.woman.female.workout.activity.ui.compose.modelUrl
 import mint.woman.female.workout.model.ProgramObject
+import mint.woman.female.workout.activity.ui.premium.FlashSaleBanner
 
 // ---------------------------------------------------------------- state
 
@@ -81,6 +82,9 @@ class HomeUiState {
     var sections by mutableStateOf<List<HomeSection>>(emptyList())
     var isPremium by mutableStateOf(false)
 
+    /** Thời điểm hết đợt giảm 50% đang chạy (null = không có / đã Premium) → thẻ Flash Sale có đếm ngược. */
+    var promoEndsAt by mutableStateOf<Long?>(null)
+
     /** Plan cá nhân đã tạo (null = chưa có). */
     var personalPlan by mutableStateOf<ProgramObject?>(null)
 
@@ -97,6 +101,8 @@ interface HomeActions {
     fun onOpenHistory()
     fun onMyWorkouts()
     fun onPremium()
+    fun onFlashSale()
+    fun onPromoExpired()
     fun onOpenPersonalPlan()
     fun onAdjustPersonalPlan()
 }
@@ -115,6 +121,14 @@ fun HomeScreen(state: HomeUiState, actions: HomeActions) {
             .padding(bottom = 28.dp)
     ) {
         HeroAndCoach(state, actions)
+        state.promoEndsAt?.let { endsAt ->
+            FlashSaleBanner(
+                endsAt = endsAt,
+                onExpired = actions::onPromoExpired,
+                onClick = actions::onFlashSale,
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 14.dp),
+            )
+        }
         PersonalPlanCard(state, actions, Modifier.padding(start = 16.dp, end = 16.dp, top = 14.dp, bottom = 4.dp))
         WeekGoalCard(
             state,

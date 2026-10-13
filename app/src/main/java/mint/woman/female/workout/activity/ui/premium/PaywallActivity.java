@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+
+import com.bumptech.glide.Glide;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -107,6 +109,10 @@ public class PaywallActivity extends AppCompatActivity implements EdgeToEdgeHelp
         super.onCreate(savedInstanceState);
         binding = ActivityPaywallBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        // Banner giống PaywallScreenB (màn Premium): ảnh ngang trong assets, iv_hero centerCrop chỉ cắt 2 bên.
+        Glide.with(this)
+                .load(Uri.parse("file:///android_asset/images/img_premium.webp"))
+                .into(binding.ivHero);
 
         remoteConfig = FirebaseRemoteConfig.getInstance();
         myPreference = new MyPreference(this);
@@ -715,11 +721,12 @@ public class PaywallActivity extends AppCompatActivity implements EdgeToEdgeHelp
     protected void attachBaseContext(Context newBase) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(newBase);
         String lang = preferences.getString("ST_LANGUAGE", "");
-        if (lang != null && lang.length() > 1) {
-            lang = lang.substring(0, 2);
-        } else {
-            lang = Locale.getDefault().getLanguage();
+        if (lang == null || lang.length() < 2) {
+            lang = Locale.getDefault().toLanguageTag();
+        } else if ("nlL".equals(lang)) {
+            lang = "nl";
         }
+        // Preserve region codes for Simplified/Traditional Chinese.
         super.attachBaseContext(LanguageHelper.setLanguage(newBase, lang));
     }
 }

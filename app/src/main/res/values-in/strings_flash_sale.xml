@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fs_title_percent">⚡ Flash sale: Premium diskon %1$s</string>
+    <string name="fs_ends">Berakhir dalam %s</string>
+    <string name="fs_cta">Ambil</string>
+</resources>

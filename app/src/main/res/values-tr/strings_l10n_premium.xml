@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bản dịch paywall / vé ưu đãi / Flash Sale / Home còn thiếu (2026-10-13) -->
+<resources>
+    <string name="discount_claim">Hemen Al!</string>
+    <string name="discount_monthly_price_format">Sadece %1$s/ay</string>
+    <string name="discount_off">indirim</string>
+    <string name="discount_original_price_format">(%1$s)</string>
+    <string name="discount_price_loading">Fiyat yükleniyor…</string>
+    <string name="discount_title">Özel İndirim</string>
+    <string name="discount_total_price_format">Toplam %1$s/yıl</string>
+    <string name="paywall_band_special">Özel fiyat</string>
+    <string name="paywall_per_week">%1$s/hafta</string>
+    <string name="paywall_special_offer">%% %1$d indirim — özel teklif</string>
+    <string name="paywall_special_price">%1$s (önce %2$s)/yıl</string>
+    <string name="txt_close">Kapat</string>
+    <string name="txt_premium_exercise_extend">150+ rehberli egzersiz</string>
+    <string name="txt_premium_plan_unlimited">Sınırsız pratik planı</string>
+</resources>

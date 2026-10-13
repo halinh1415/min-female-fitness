@@ -529,6 +529,7 @@
     <string name="butt">Butt</string>
 
     <!-- New onboarding (Compose) + Paywall + Lucky Draw screens, ported from tai-chi app -->
+<string name="discount_price_loading">Loading price…</string>
 <string name="discount_monthly_price_format">Only %1$s/month</string>
 <string name="discount_original_price_format">(%1$s)</string>
 <string name="discount_total_price_format">Total %1$s/year </string>

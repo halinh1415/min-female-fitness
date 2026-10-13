@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fs_title_percent">⚡ Flash-Sale: %1$s auf Premium</string>
+    <string name="fs_ends">Endet in %s</string>
+    <string name="fs_cta">Sichern</string>
+</resources>

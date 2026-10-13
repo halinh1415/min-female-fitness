@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fs_title_percent">⚡ Offerta lampo: Premium al %1$s</string>
+    <string name="fs_ends">Termina tra %s</string>
+    <string name="fs_cta">Approfitta</string>
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bản dịch paywall / vé ưu đãi / Flash Sale / Home còn thiếu (2026-10-13) -->
+<resources>
+    <string name="discount_claim">รับเลย!</string>
+    <string name="discount_monthly_price_format">เพียง %1$s/เดือน</string>
+    <string name="discount_off">ลด</string>
+    <string name="discount_original_price_format">(%1$s)</string>
+    <string name="discount_price_loading">กำลังโหลดราคา…</string>
+    <string name="discount_title">ส่วนลดพิเศษ</string>
+    <string name="discount_total_price_format">รวม %1$s/ปี </string>
+    <string name="fs_cta">รับเลย</string>
+    <string name="fs_ends">สิ้นสุดใน %s</string>
+    <string name="fs_title_percent">⚡ แฟลชเซล: Premium ลด %1$s</string>
+    <string name="paywall_band_special">ราคาพิเศษ</string>
+    <string name="paywall_per_week">%1$s/สัปดาห์</string>
+    <string name="paywall_special_offer">ข้อเสนอพิเศษลด %1$d%%</string>
+    <string name="paywall_special_price">%1$s (เดิม %2$s)/ปี</string>
+    <string name="pw_best_value">คุ้มค่าที่สุด</string>
+    <string name="pw_cancel_anytime">ยกเลิกได้ทุกเมื่อใน Google Play</string>
+    <string name="pw_cta_continue">ดำเนินการต่อ</string>
+    <string name="pw_cta_trial">เริ่มทดลองใช้ฟรี %d วัน</string>
+    <string name="pw_disclosure_sub">%s ต่ออายุอัตโนมัติจนกว่าจะยกเลิก</string>
+    <string name="pw_disclosure_trial">ฟรี %1$d วัน จากนั้น %2$s ต่ออายุอัตโนมัติจนกว่าจะยกเลิก</string>
+    <string name="pw_loading">กำลังโหลดราคา…</string>
+    <string name="pw_manage">จัดการการสมัครสมาชิก</string>
+    <string name="pw_no_payment_today">ไม่ต้องชำระเงินวันนี้</string>
+    <string name="pw_not_selected">ไม่ได้เลือก</string>
+    <string name="pw_per_month">%s / เดือน</string>
+    <string name="pw_per_year">%s / ปี</string>
+    <string name="pw_plan_monthly">รายเดือน</string>
+    <string name="pw_plan_yearly">รายปี</string>
+    <string name="pw_privacy">ความเป็นส่วนตัว</string>
+    <string name="pw_purchase_pending">การซื้อของคุณอยู่ระหว่างดำเนินการ Premium จะปลดล็อกเมื่อ Google Play ยืนยันการชำระเงิน</string>
+    <string name="pw_purchase_success">ยินดีต้อนรับสู่ Premium! 🎉</string>
+    <string name="pw_restore">กู้คืน</string>
+    <string name="pw_restore_checking">กำลังตรวจสอบการซื้อของคุณ…</string>
+    <string name="pw_restore_error">ไม่สามารถตรวจสอบการซื้อได้ โปรดลองอีกครั้ง</string>
+    <string name="pw_restore_none">ไม่พบการซื้อก่อนหน้านี้</string>
+    <string name="pw_restore_success">กู้คืน Premium ของคุณแล้ว</string>
+    <string name="pw_selected">เลือกแล้ว</string>
+    <string name="pw_timeline_charge">วันที่ %d</string>
+    <string name="pw_timeline_charge_desc">คุณจะถูกเรียกเก็บ %s หากไม่ยกเลิกก่อน</string>
+    <string name="pw_timeline_reminder">วันที่ %d</string>
+    <string name="pw_timeline_reminder_desc">การทดลองใช้ของคุณใกล้สิ้นสุดแล้ว ยกเลิกได้ทุกเมื่อใน Google Play</string>
+    <string name="pw_timeline_row">• %1$s — %2$s</string>
+    <string name="pw_timeline_title">การทดลองใช้ฟรีทำงานอย่างไร</string>
+    <string name="pw_timeline_today">วันนี้</string>
+    <string name="pw_timeline_today_desc">เข้าถึงฟีเจอร์ Premium ทั้งหมดได้เต็มที่</string>
+    <string name="pw_title">ปลดล็อกแผนทั้งหมดของคุณ</string>
+    <string name="pw_trial_badge">ฟรี %d วัน</string>
+    <string name="pw_unavailable">ร้านค้าไม่พร้อมใช้งานในขณะนี้ โปรดลองอีกครั้งในภายหลัง</string>
+    <string name="txt_close">ปิด</string>
+    <string name="txt_premium_exercise_extend">ท่าออกกำลังกายพร้อมคำแนะนำ 150+ ท่า</string>
+    <string name="txt_premium_plan_unlimited">แผนการฝึกฝนแบบไม่จำกัด</string>
+</resources>

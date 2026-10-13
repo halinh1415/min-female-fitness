@@ -182,7 +182,11 @@ class OnboardFlowActivity : ComponentActivity(), EdgeToEdgeHelper.HandlesInsets 
     override fun attachBaseContext(newBase: Context) {
         val preferences = PreferenceManager.getDefaultSharedPreferences(newBase)
         val saved = preferences.getString("ST_LANGUAGE", "").orEmpty()
-        val lang = if (saved.length > 1) saved.substring(0, 2) else Locale.getDefault().language
+        val lang = when {
+            saved.length < 2 -> Locale.getDefault().toLanguageTag()
+            saved == "nlL" -> "nl" // Legacy language-picker code.
+            else -> saved // Keep region codes for Simplified/Traditional Chinese.
+        }
         super.attachBaseContext(LanguageHelper.setLanguage(newBase, lang))
     }
 

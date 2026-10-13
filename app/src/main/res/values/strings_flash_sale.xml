@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fs_title_percent">⚡ Flash sale: %1$s OFF Premium</string>
+    <string name="fs_ends">Ends in %s</string>
+    <string name="fs_cta">Get it</string>
+    <string name="discount_title">Special Discount</string>
+    <string name="discount_off">off</string>
+    <string name="discount_claim">Claim Now!</string>
+</resources>
