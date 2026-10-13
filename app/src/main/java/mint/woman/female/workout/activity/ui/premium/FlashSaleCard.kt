@@ -18,7 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
+import androidx.compose.foundation.border
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import mint.woman.female.workout.R
+import mint.woman.female.workout.activity.ui.compose.MinColor
 import java.util.Locale
 
 /**
@@ -55,32 +56,34 @@ fun FlashSaleBanner(endsAt: Long, onExpired: () -> Unit, onClick: () -> Unit, mo
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(18.dp))
-            .background(Brush.horizontalGradient(listOf(Color(0xFFFF5C8A), Color(0xFFE91E63))))
+            // Nền hồng nhạt + viền hồng thay cho gradient hồng đậm (Home bớt chói); chữ và nút giữ màu hồng nhấn.
+            .background(MinColor.PinkSoft)
+            .border(1.dp, MinColor.Pink.copy(alpha = 0.35f), RoundedCornerShape(18.dp))
             .clickable(onClick = onClick)
             .padding(horizontal = 16.dp, vertical = 14.dp),
     ) {
         Column(Modifier.weight(1f)) {
             Text(
                 stringResource(R.string.fs_title_percent, "50%"),
-                color = Color.White,
+                color = MinColor.Pink,
                 fontSize = 15.sp,
                 fontWeight = FontWeight.ExtraBold,
             )
             Text(
                 stringResource(R.string.fs_ends, time),
-                color = Color.White.copy(alpha = 0.9f),
+                color = MinColor.TextSecondary,
                 fontSize = 13.sp,
                 style = TextStyle(fontFeatureSettings = "tnum"),
             )
         }
         Text(
             stringResource(R.string.fs_cta),
-            color = Color(0xFFE91E63),
+            color = Color.White,
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
                 .clip(RoundedCornerShape(50))
-                .background(Color.White)
+                .background(MinColor.Pink)
                 .padding(horizontal = 14.dp, vertical = 7.dp),
         )
     }

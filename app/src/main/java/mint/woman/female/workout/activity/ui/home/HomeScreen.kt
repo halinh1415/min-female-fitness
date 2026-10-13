@@ -41,6 +41,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -227,9 +228,9 @@ private fun HeroAndCoach(state: HomeUiState, actions: HomeActions) {
             Text(state.dateText, fontSize = 14.sp, color = MinColor.TextMuted)
             Text(
                 state.coachMessage,
-                fontSize = 17.sp,
-                lineHeight = 22.sp,
-                fontWeight = FontWeight.Bold,
+                fontSize = 15.sp,
+                lineHeight = 20.sp,
+                fontWeight = FontWeight.Medium,
                 color = MinColor.TextSecondary,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
@@ -258,83 +259,101 @@ private fun StreakChip(days: Int) {
 
 @Composable
 private fun CoachCard(state: HomeUiState, actions: HomeActions) {
+    // Thẻ ảnh tràn viền kiểu thẻ bài tập (như thẻ thử thách bên dưới): ảnh + người mẫu phủ toàn thẻ, gradient tối
+    // dưới đáy, chữ trắng và nút "Bắt đầu" dạng viên thuốc. Trước đây: nửa trên ảnh bị phủ trắng, 2 nhãn xanh lá /
+    // cam lệch tông, nửa dưới trắng với nút hồng to in hoa → rời rạc và chói.
     val program = state.suggestion
-    MinCard(Modifier.fillMaxWidth(), padding = 0.dp) {
+    Box(
+        Modifier
+            .fillMaxWidth()
+            .height(210.dp)
+            .clip(RoundedCornerShape(24.dp))
+            .clipToBounds()
+            .background(MinColor.PinkSoft)
+            .clickable(onClick = actions::onStartSuggestion)
+    ) {
+        if (program != null) {
+            GlideImage(
+                program.backgroundUrl(),
+                Modifier.fillMaxSize(),
+                errorUrl = program.fallbackBackgroundUrl()
+            )
+            GlideImage(
+                program.modelUrl(),
+                Modifier
+                    .fillMaxHeight()
+                    .width(190.dp)
+                    .align(Alignment.BottomEnd),
+                scaleType = ImageView.ScaleType.FIT_END
+            )
+        }
         Box(
             Modifier
-                .fillMaxWidth()
-                .height(150.dp)
-                .clipToBounds()
-        ) {
-            if (program != null) {
-                GlideImage(
-                    program.backgroundUrl(),
-                    Modifier.fillMaxSize(),
-                    errorUrl = program.fallbackBackgroundUrl()
-                )
-                GlideImage(
-                    program.modelUrl(),
-                    Modifier
-                        .fillMaxHeight()
-                        .width(170.dp)
-                        .align(Alignment.BottomEnd),
-                    scaleType = ImageView.ScaleType.FIT_END
-                )
-            } else {
-                Box(Modifier.fillMaxSize().background(MinColor.PinkSoft))
-            }
-            Box(
-                Modifier
-                    .fillMaxSize()
-                    .background(
-                        Brush.horizontalGradient(
-                            // Màu nền thẻ (trắng / tối) phủ lên ảnh để chữ luôn đọc được ở cả 2 giao diện.
-                            0f to MinColor.Surface.copy(alpha = 0.95f),
-                            0.55f to MinColor.Surface.copy(alpha = 0.55f),
-                            1f to Color.Transparent
-                        )
+                .fillMaxSize()
+                .background(
+                    Brush.verticalGradient(
+                        0f to Color.Black.copy(alpha = 0.10f),
+                        0.45f to Color.Black.copy(alpha = 0.18f),
+                        1f to Color.Black.copy(alpha = 0.68f)
                     )
+                )
+        )
+        Text(
+            stringResource(R.string.suggestion_today),
+            color = Color.White,
+            fontSize = 12.sp,
+            fontWeight = FontWeight.SemiBold,
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .padding(14.dp)
+                .clip(RoundedCornerShape(50))
+                .background(Color.Black.copy(alpha = 0.28f))
+                .padding(horizontal = 10.dp, vertical = 5.dp)
+        )
+        Column(
+            Modifier
+                .align(Alignment.BottomStart)
+                .padding(16.dp)
+                .fillMaxWidth(0.66f)
+        ) {
+            Text(
+                program?.name ?: "…",
+                color = Color.White,
+                fontSize = 22.sp,
+                lineHeight = 26.sp,
+                fontWeight = FontWeight.Bold,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
             )
-            Column(
-                Modifier
-                    .align(Alignment.CenterStart)
-                    .padding(horizontal = 18.dp)
-                    .fillMaxWidth(0.62f)
-            ) {
+            if (state.suggestionInfo.isNotEmpty()) {
+                Spacer(Modifier.height(2.dp))
                 Text(
-                    stringResource(R.string.ai_coach),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = MinColor.Ok
-                )
-                Spacer(Modifier.height(4.dp))
-                Text(
-                    stringResource(R.string.suggestion_today),
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = MinColor.Warning
-                )
-                Spacer(Modifier.height(4.dp))
-                Text(
-                    program?.name ?: "…",
-                    fontSize = 21.sp,
-                    lineHeight = 25.sp,
-                    fontWeight = FontWeight.Bold,
-                    maxLines = 2,
+                    state.suggestionInfo,
+                    color = Color.White.copy(alpha = 0.88f),
+                    fontSize = 13.sp,
+                    maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
             }
-        }
-        Column(Modifier.padding(horizontal = 18.dp, vertical = 14.dp)) {
-            if (state.suggestionInfo.isNotEmpty()) {
-                Text(state.suggestionInfo, fontSize = 14.sp, color = MinColor.TextSecondary, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                Spacer(Modifier.height(12.dp))
+            Spacer(Modifier.height(12.dp))
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .clip(RoundedCornerShape(50))
+                    .background(Color.White)
+                    .clickable(onClick = actions::onStartSuggestion)
+                    .padding(start = 14.dp, end = 18.dp, top = 9.dp, bottom = 9.dp)
+            ) {
+                Text("▶", color = MinColor.Pink, fontSize = 13.sp)
+                Spacer(Modifier.width(8.dp))
+                Text(
+                    stringResource(R.string.start_now),
+                    color = MinColor.Pink,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1
+                )
             }
-            MinButton(
-                stringResource(R.string.start_now).uppercase(),
-                Modifier.fillMaxWidth(),
-                onClick = actions::onStartSuggestion
-            )
         }
     }
 }
@@ -348,7 +367,14 @@ private fun PersonalPlanCard(state: HomeUiState, actions: HomeActions, modifier:
         modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(22.dp))
-            .background(Brush.linearGradient(listOf(MinColor.Purple, MinColor.Plum, MinColor.Pink)))
+            // Nền pastel (hồng nhạt → tím nhạt) thay cho gradient tím-hồng đậm: Home bớt chói, nút chính
+            // "Bắt đầu" vẫn là điểm nhấn hồng đậm duy nhất.
+            .background(
+                Brush.linearGradient(
+                    listOf(MinColor.PinkSoft, MinColor.Purple.copy(alpha = 0.14f).compositeOver(MinColor.Surface))
+                )
+            )
+            .border(1.dp, MinColor.Purple.copy(alpha = 0.12f), RoundedCornerShape(22.dp))
             .clickable(onClick = actions::onOpenPersonalPlan)
             .padding(18.dp),
         verticalAlignment = Alignment.CenterVertically
@@ -356,7 +382,7 @@ private fun PersonalPlanCard(state: HomeUiState, actions: HomeActions, modifier:
         Column(Modifier.weight(1f)) {
             Text(
                 "✦ " + stringResource(R.string.pp_home_title),
-                color = Color.White,
+                color = MinColor.TextPrimary,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -364,7 +390,7 @@ private fun PersonalPlanCard(state: HomeUiState, actions: HomeActions, modifier:
             if (plan == null) {
                 Text(
                     stringResource(R.string.pp_home_desc),
-                    color = Color.White.copy(alpha = 0.9f),
+                    color = MinColor.TextSecondary,
                     fontSize = 14.sp,
                     lineHeight = 19.sp
                 )
@@ -372,7 +398,7 @@ private fun PersonalPlanCard(state: HomeUiState, actions: HomeActions, modifier:
                 val done = state.planProgress[plan.id] ?: 0
                 Text(
                     "${stringResource(R.string.txt_day)} ${(done + 1).coerceAtMost(plan.total)}/${plan.total}",
-                    color = Color.White.copy(alpha = 0.9f),
+                    color = MinColor.TextSecondary,
                     fontSize = 14.sp
                 )
                 Spacer(Modifier.height(8.dp))
@@ -380,13 +406,13 @@ private fun PersonalPlanCard(state: HomeUiState, actions: HomeActions, modifier:
                     done / plan.total.coerceAtLeast(1).toFloat(),
                     Modifier.fillMaxWidth(0.9f),
                     height = 6.dp,
-                    track = Color.White.copy(alpha = 0.3f),
-                    brush = Brush.horizontalGradient(listOf(Color.White, Color.White))
+                    track = MinColor.Track,
+                    brush = Brush.horizontalGradient(listOf(MinColor.Purple, MinColor.Pink))
                 )
                 Spacer(Modifier.height(8.dp))
                 Text(
                     "⚙ " + stringResource(R.string.pp_edit),
-                    color = Color.White,
+                    color = MinColor.Purple,
                     fontSize = 13.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
@@ -399,13 +425,13 @@ private fun PersonalPlanCard(state: HomeUiState, actions: HomeActions, modifier:
         Spacer(Modifier.width(12.dp))
         Text(
             if (plan == null) stringResource(R.string.pp_home_create) else stringResource(R.string.continue_text),
-            color = MinColor.Pink,
+            color = Color.White,
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
             maxLines = 1,
             modifier = Modifier
                 .clip(RoundedCornerShape(20.dp))
-                .background(Color.White)
+                .background(MinColor.Purple)
                 .padding(horizontal = 14.dp, vertical = 10.dp)
         )
     }

@@ -2,6 +2,36 @@
 
 > Mới nhất ở trên.
 
+## 2026-10-13 – SetGoalActivity chuyển sang Jetpack Compose (yêu cầu Telegram, chưa commit)
+- Mới `activity/ui/weekgoal/SetGoalActivity.kt` (thay `SetGoalActivity.java` + `res/layout/activity_set_goal.xml`, đã xoá):
+  thanh trên ← + "Week Goal", icon mục tiêu trong vòng hồng nhạt, tiêu đề + mô tả, thẻ "Số ngày tập" 7 ô tròn 1–7
+  (thay NumberPicker), thẻ "Ngày đầu tuần" 3 nút Thứ Hai / Thứ Bảy / Chủ Nhật theo ngôn ngữ app (thay Spinner), nút Save
+  hồng. Lưu MyPreference goalOfWeek / firstDayOfWeek + trả RESULT_OK như cũ; giữ lựa chọn khi xoay / bị kill.
+  Bỏ AdView không bao giờ được nạp quảng cáo trong layout cũ.
+- `AndroidManifest.xml`: SetGoalActivity dùng theme `AppTheme.Main` (không action bar, như các màn Compose khác).
+- Build OK. Test máy ảo Android 16: Home ✎ → chọn 3 ngày + Chủ Nhật → Save → Home hiện 1/3, tuần bắt đầu CN.
+
+## 2026-10-13 – Làm lại card Fitness Coach (AI) đầu Home (yêu cầu Telegram, chưa commit)
+- `activity/ui/home/HomeScreen.kt` (`CoachCard`): thẻ ảnh tràn viền 210dp bo 24dp (cùng kiểu thẻ thử thách): ảnh nền +
+  người mẫu, gradient tối dưới đáy, nhãn "✨ Gợi ý hôm nay" dạng chip mờ góc trên, tên bài 22sp + thông tin chữ trắng,
+  nút viên thuốc trắng "▶ Bắt đầu" chữ hồng; bấm cả thẻ cũng mở bài. Bỏ nhãn xanh lá "Fitness Coach (AI)" + nhãn cam,
+  nửa dưới trắng và nút hồng to in hoa. Dòng nhắc streak phía trên nhẹ hơn (15sp, Medium).
+- Build OK. Test máy ảo Android 16: hiển thị đúng, bấm "Start now" mở PreviewActivity.
+
+## 2026-10-13 – Home bớt chói (yêu cầu Telegram, chưa commit)
+- `activity/ui/home/HomeScreen.kt` (PersonalPlanCard): gradient tím → mận → hồng đậm chữ trắng → nền pastel hồng nhạt →
+  tím nhạt, viền tím mờ, chữ tối; nút Create/Continue tím đặc chữ trắng; thanh tiến độ tím → hồng.
+- `activity/ui/premium/FlashSaleCard.kt`: gradient hồng đậm → nền hồng nhạt (PinkSoft) + viền hồng, tiêu đề hồng, giờ chữ
+  xám, nút "Nhận ngay" hồng đặc. Nút START NOW giữ là điểm nhấn hồng đậm duy nhất. Dùng màu MinColor nên chế độ tối tự đổi.
+- Build OK. Ảnh trước/sau trên máy ảo Android 16.
+
+## 2026-10-13 – Report sau khi tập xong, bấm Home không quay về Home ✅ (yêu cầu Telegram, chưa commit)
+- Nguyên nhân: `YogaActivity.onNewIntent` (IS_REPORT) gọi `navController.navigate(nav_report)` → Report bị đẩy lên back
+  stack của tab Home; bottom nav (multiple back stacks) bấm Home lại khôi phục stack đã lưu của Home = Report.
+- Sửa `activity/ui/main/YogaActivity.kt`: chuyển tab bằng `nav_view.selectedItemId = nav_report` (giống bấm tab).
+- Build OK. Test máy ảo Android 16: tập Morning warmup → Done → Report (tab Report sáng) → Home về đúng Home; đổi
+  tab Settings ↔ Home bình thường. Có video.
+
 ## 2026-10-13 – Bản địa hóa paywall / vé ưu đãi / Flash Sale / Home (yêu cầu Telegram, chưa commit)
 - Rà các chuỗi dùng ở paywall (PaywallActivity, PaywallScreenB), vé ưu đãi, thẻ Flash Sale, Home: 26 ngôn ngữ thiếu
   tổng cộng ~900 chuỗi (cs/hi/hr/lv/no thiếu cả paywall cũ; da/fa/th/fi/sv thiếu pw_*; mọi ngôn ngữ thiếu

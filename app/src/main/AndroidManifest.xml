@@ -189,6 +189,7 @@
             android:name=".activity.ui.weekgoal.SetGoalActivity"
             android:exported="false"
             android:label="@string/txt_set_your_goal"
+            android:theme="@style/AppTheme.Main"
             android:parentActivityName=".activity.ui.main.YogaActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

@@ -21,6 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.core.view.WindowCompat;
 import androidx.fragment.app.Fragment;
+
+import mint.woman.female.workout.activity.ui.history.HistoryActivity;
 import mint.woman.female.workout.utils.EdgeToEdgeHelper;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.ViewCompat;
@@ -673,8 +675,8 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             homeIntent.putExtra("IS_REPORT", true);
             startActivity(homeIntent);
-//            Intent historyIntent = new Intent(DoWorkoutActivity.this, ReportActivity.class);
-//            startActivity(historyIntent);
+            Intent historyIntent = new Intent(DoWorkoutActivity.this, HistoryActivity.class);
+            startActivity(historyIntent);
             Intent intent = new Intent(DoWorkoutActivity.this, FinishedActivity.class);
             mBundle.putParcelable("HISTORY", mHistoryItem);
             intent.putExtras(mBundle);
