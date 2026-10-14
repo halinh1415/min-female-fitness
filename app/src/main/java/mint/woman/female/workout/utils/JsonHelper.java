@@ -49,6 +49,8 @@ public class JsonHelper {
     MyPreference myPreference;
     Decode mDecode;
     private int currentDiscover = -1;
+    private int currentExerciseVersion = -1;
+    private String currentExerciseLocale;
 
 
 
@@ -204,14 +206,14 @@ public class JsonHelper {
         }
     }
 
-    public HashMap<Integer, ExerciseObject> getHashMapExercise(int discover,int version) {
+    public synchronized HashMap<Integer, ExerciseObject> getHashMapExercise(int discover,int version) {
         if (!Decoder.isSuccess){
             return new HashMap<>();
         }
-        if (hashMapExercises == null || discover != currentDiscover) {
-            hashMapExercises = new HashMap<>();
-
-            String langCode = getLocaleApp();
+        String langCode = getLocaleApp();
+        if (hashMapExercises == null || discover != currentDiscover
+                || version != currentExerciseVersion || !langCode.equals(currentExerciseLocale)) {
+            HashMap<Integer, ExerciseObject> loadedExercises = new HashMap<>();
             String fileName;
             String baseUrl;
             if (discover == 0) {
@@ -242,14 +244,21 @@ public class JsonHelper {
                 }
                 Gson gson = new Gson();
                 List<ExerciseObject> list = gson.fromJson(jsonString, TypeToken.getParameterized(List.class,ExerciseObject.class).getType());
-                for (ExerciseObject exe : list
-                ) {
-                    hashMapExercises.put(exe.getId(), exe);
+                if (list == null || list.isEmpty()) {
+                    return new HashMap<>();
                 }
-
-
+                for (ExerciseObject exe : list) {
+                    if (exe != null) loadedExercises.put(exe.getId(), exe);
+                }
+                if (loadedExercises.isEmpty()) return loadedExercises;
+                // Publish only a successfully loaded catalog; failed loads must remain retryable.
+                hashMapExercises = loadedExercises;
+                currentDiscover = discover;
+                currentExerciseVersion = version;
+                currentExerciseLocale = langCode;
             } catch (Exception e) {
                 e.printStackTrace();
+                return new HashMap<>();
             }
         }
 

@@ -64,6 +64,7 @@ import mint.woman.female.workout.utils.DownloadAndUnzipWorker;
 import mint.woman.female.workout.utils.DownloadVoiceWorker;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.JsonHelper;
+import mint.woman.female.workout.utils.WorkoutDataValidation;
 import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 import mint.woman.female.workout.utils.RemoteConfigKeys;
@@ -760,6 +761,20 @@ public class PreviewActivity extends AppCompatActivity implements PreviewActions
     }
 
     void goWorkout() {
+        if (mProgramObject == null || mDemoDataProvider == null) {
+            WorkoutDataValidation.report(this, "preview", mBundle == null ? -1 : mBundle.getInt("PROGRAM_ID", -1),
+                    -1, -1, mBundle == null ? -1 : mBundle.getInt("DAY_NUMBER", -1), -1, -1, "missing_program_or_provider");
+            Toast.makeText(this, "No workout!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        // Recheck after any interstitial callback, using the same catalog as the workout screen.
+        if (!WorkoutDataValidation.validate(this, "preview", mProgramObject.getId(),
+                mProgramObject.getDiscover(), mProgramObject.getVersion(), mBundle.getInt("DAY_NUMBER", -1),
+                mDemoDataProvider.getActionObjectList(), FitnessApplication.getApplication().mJsonHelper
+                        .getHashMapExercise(mProgramObject.getDiscover(), mProgramObject.getVersion()))) {
+            Toast.makeText(this, "No workout!", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (mDemoDataProvider.getActionObjectList() != null && !mDemoDataProvider.getActionObjectList().isEmpty()) {
             mBundle.putParcelableArrayList("ACTION_LIST", (ArrayList<? extends Parcelable>) mDemoDataProvider.getActionObjectList());
             mBundle.putInt("SIZE", mDemoDataProvider.getActionObjectList().size());

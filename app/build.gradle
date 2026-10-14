@@ -14,8 +14,8 @@ android {
         applicationId "mint.woman.female.workout"
         minSdk 26
         targetSdk 36
-        versionCode 115
-        versionName "1.1.15"
+        versionCode 126
+        versionName "1.1.26"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

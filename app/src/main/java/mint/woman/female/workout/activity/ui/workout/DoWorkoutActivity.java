@@ -39,6 +39,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import mint.woman.female.workout.FitnessApplication;
+import mint.woman.female.workout.utils.WorkoutDataValidation;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.main.YogaActivity;
 import mint.woman.female.workout.activity.ui.report.ReportActivity;
@@ -194,15 +195,27 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         if (mBundle != null) {
             int id = mBundle.getInt("PROGRAM_ID", 0);
             mProgramObject = FitnessApplication.getApplication().getProgram(id);
+            if (mProgramObject == null) {
+                WorkoutDataValidation.report(this, "workout", id, -1, -1,
+                        mBundle.getInt("DAY_NUMBER", -1), -1, -1, "missing_program");
+                finish();
+                return;
+            }
             discover = mProgramObject.getDiscover();
             version = mProgramObject.getVersion();
             mDayIndex = mBundle.getInt("DAY_NUMBER", 0);
             currentExerciseCount = mBundle.getInt("PROGRESS", 0);
             actionObjectList = mBundle.getParcelableArrayList("ACTION_LIST");
             FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
-            crashlytics.setCustomKey("ACTION_SIZE", actionObjectList.size());
+            crashlytics.setCustomKey("PROGRAM_ID", mProgramObject.getId());
+            crashlytics.setCustomKey("ACTION_SIZE", actionObjectList == null ? 0 : actionObjectList.size());
             discover = mProgramObject.getDiscover();
             hashMap = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(discover, mProgramObject.getVersion());
+            if (!WorkoutDataValidation.validate(this, "workout", mProgramObject.getId(), discover, version,
+                    mDayIndex, actionObjectList, hashMap)) {
+                finish();
+                return;
+            }
 
             startTime = System.currentTimeMillis();
             timerHandler.postDelayed(timerRunnable, 0);

@@ -29,7 +29,9 @@ import mint.woman.female.workout.custom.DialogDemoWorkout;
 import mint.woman.female.workout.databinding.FragmentRestBinding;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.PlanObject;
+import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.utils.WorkoutVideoCache;
+import mint.woman.female.workout.utils.WorkoutDataValidation;
 import mint.woman.female.workout.utils.FitnessConstUtils;
 import mint.woman.female.workout.utils.MyPreference;
 
@@ -58,6 +60,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
     private CountDownTimer countDownTimer;
     private String videoPath;
     private ExerciseObject mExerciseObject;
+    private int exerciseDiscover, exerciseVersion;
     private PlanObject.ActionObject mActionObject;
     private OnRestFragmentInteractionListener mListener;
 
@@ -70,6 +73,8 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         RestFragment fragment = new RestFragment();
         Bundle args = new Bundle();
         args.putParcelable("action_object", actionObject);
+        args.putInt("exercise_discover", DoWorkoutActivity.discover);
+        args.putInt("exercise_version", DoWorkoutActivity.version);
         args.putInt("rest", restTime);
         args.putString("count", exerciseProgressCount);
         fragment.setArguments(args);
@@ -79,16 +84,36 @@ public class RestFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mWorkoutViewModel = new ViewModelProvider(getActivity()).get(WorkoutViewModel.class);
+        mWorkoutViewModel = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
         if (getArguments() != null) {
             mActionObject = getArguments().getParcelable("action_object");
-            mExerciseObject = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(DoWorkoutActivity.discover, DoWorkoutActivity.version).get(mActionObject.actionId);
+            exerciseDiscover = getArguments().getInt("exercise_discover", DoWorkoutActivity.discover);
+            exerciseVersion = getArguments().getInt("exercise_version", DoWorkoutActivity.version);
+            // Older saved fragments have no catalog arguments. Resolve from the activity intent,
+            // since static workout fields may still contain defaults after process recreation.
+            if (!getArguments().containsKey("exercise_discover")
+                    || !getArguments().containsKey("exercise_version")) {
+                int programId = requireActivity().getIntent().getIntExtra("PROGRAM_ID", 0);
+                ProgramObject program = FitnessApplication.getApplication().getProgram(programId);
+                if (program != null) {
+                    exerciseDiscover = program.getDiscover();
+                    exerciseVersion = program.getVersion();
+                }
+                getArguments().putInt("exercise_discover", exerciseDiscover);
+                getArguments().putInt("exercise_version", exerciseVersion);
+            }
+            if (mActionObject != null) {
+                mExerciseObject = FitnessApplication.getApplication().mJsonHelper
+                        .getHashMapExercise(exerciseDiscover, exerciseVersion).get(mActionObject.actionId);
+            }
             mRestTime = getArguments().getInt("rest");
             mCurrentTime = mRestTime;
             exerciseProgressCount = getArguments().getString("count");
             FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
-            crashlytics.setCustomKey("ACTION_ID", mActionObject.actionId);
-            crashlytics.setCustomKey("TIME", mActionObject.time);
+            if (mActionObject != null) {
+                crashlytics.setCustomKey("ACTION_ID", mActionObject.actionId);
+                crashlytics.setCustomKey("TIME", mActionObject.time);
+            }
         }
 
 
@@ -108,9 +133,21 @@ public class RestFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (mActionObject == null || mExerciseObject == null) {
+            int programId = requireActivity().getIntent().getIntExtra("PROGRAM_ID", -1);
+            ProgramObject program = FitnessApplication.getApplication().getProgram(programId);
+            WorkoutDataValidation.report(requireContext(), "rest", program == null ? programId : program.getId(),
+                    exerciseDiscover, exerciseVersion,
+                    requireActivity().getIntent().getIntExtra("DAY_NUMBER", -1), -1,
+                    mActionObject == null ? -1 : mActionObject.actionId,
+                    mActionObject == null ? "null_action" : "missing_exercise");
+            // Do not continue to a workout screen with an unavailable exercise.
+            requireActivity().finish();
+            return;
+        }
         // Giải mã video ở luồng nền (trước đây chạy trên main thread mỗi lần sang bài -> nguy cơ ANR).
-        WorkoutVideoCache.prepare(requireContext(), DoWorkoutActivity.discover,
-                FitnessApplication.getApplication().getVersion(), mActionObject.actionId, video -> {
+        WorkoutVideoCache.prepare(requireContext(), exerciseDiscover,
+                exerciseVersion, mActionObject.actionId, video -> {
                     if (video == null || binding == null || getView() == null) return;
                     videoPath = video.getPath();
                     binding.videoView.setOnPreparedListener(mediaPlayer -> mediaPlayer.setLooping(true));
@@ -135,6 +172,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
     /** Đổ dữ liệu + gắn sự kiện vào view hiện tại (gọi lại sau khi xoay màn hình). */
     @SuppressLint("SetTextI18n")
     private void bindContent() {
+        if (binding == null || mActionObject == null || mExerciseObject == null) return;
         if (readyToGo) binding.txtBreak.setText(getString(R.string.wp_ready_to_go));
         binding.tvExerciseName.setText(mExerciseObject.getName());
         if (mActionObject.getUnit().contains("s")) {
@@ -172,6 +210,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initTimer(int time) {
+        if (binding == null || mActionObject == null || mExerciseObject == null) return;
 
         if (countDownTimer != null) {
             countDownTimer.cancel();
@@ -179,6 +218,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         countDownTimer = new CountDownTimer(time * 1000, 1000) {
             @Override
             public void onTick(long l) {
+                if (binding == null) return;
                 if (mCurrentTime != (int) (l / 1000)) {
                     mCurrentTime = (int) (l / 1000);
 
@@ -193,6 +233,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onFinish() {
+                if (binding == null) return;
                 mCurrentTime = 0;
                 binding.restProgress.setText(FitnessConstUtils.toTime(0));
                 updateRing(true);
@@ -209,10 +250,11 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
-         binding.videoView.pause();
+        if (binding != null) binding.videoView.pause();
     }
 
     public void onResumeRest() {
+        if (binding == null || mActionObject == null || mExerciseObject == null) return;
         initTimer(mCurrentTime);
         // videoPath chỉ có sau khi luồng nền giải mã xong; chưa xong thì callback tự phát video.
         if (videoPath != null) {
@@ -234,7 +276,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
 
     }
     private void showDialogDemoWorkout() {
-        if (!isAdded() || getParentFragmentManager().findFragmentByTag("images") != null) return;
+        if (mActionObject == null || mExerciseObject == null || !isAdded() || getParentFragmentManager().findFragmentByTag("images") != null) return;
 
         DialogDemoWorkout dialogDemoWorkout = DialogDemoWorkout.newInstance(mActionObject.actionId);
         dialogDemoWorkout.show(getParentFragmentManager(), "images");
@@ -263,9 +305,15 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
-        if ( binding.videoView != null) {
-             binding.videoView.stopPlayback();
-        }
+        if (binding != null) binding.videoView.stopPlayback();
+    }
+
+    @Override
+    public void onDestroyView() {
+        releaseTimer();
+        if (binding != null) binding.videoView.stopPlayback();
+        binding = null;
+        super.onDestroyView();
     }
 
     private void releaseTimer() {
@@ -285,6 +333,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        if (getView() == null || mActionObject == null || mExerciseObject == null) return;
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         populateViewForOrientation(inflater, (ViewGroup) getView());
         bindContent();
