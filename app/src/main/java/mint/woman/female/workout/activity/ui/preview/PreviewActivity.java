@@ -38,6 +38,8 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
+import mint.woman.female.workout.activity.ui.settings.CoachOptionActivity;
 
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
@@ -419,10 +421,45 @@ public class PreviewActivity extends AppCompatActivity implements PreviewActions
     @Override
     protected void onResume() {
         super.onResume();
+        refreshCoachVoice();
         // Tập dở rồi quay lại: cập nhật ngay nút "Continue x%" (trước đây phải mở lại màn).
         if (mDemoDataProvider != null && mProgramObject != null) {
             updatePlan();
         }
+    }
+
+    private String shownVoiceModel;
+
+    private void refreshCoachVoice() {
+        if (myPreference == null) return;
+        String language = myPreference.getLanguage();
+        boolean available = false;
+        if (!language.isEmpty() && FirebaseRemoteConfig.getInstance().getBoolean("enable_voice")) {
+            try {
+                JSONObject voices = new JSONObject(FirebaseRemoteConfig.getInstance().getString("voice"));
+                Iterator<String> keys = voices.keys();
+                while (keys.hasNext()) {
+                    if (voices.optString(keys.next()).contains(language)) available = true;
+                }
+            } catch (org.json.JSONException e) {
+                Log.w(TAG, "Invalid coach voice configuration", e);
+            }
+        }
+        String model = myPreference.getVoiceModel(language);
+        String label = "default".equals(model) ? getString(R.string.default_text)
+                : "woman".equals(model) ? getString(R.string.name_female)
+                : "man".equals(model) ? getString(R.string.name_male)
+                : "Bella".equals(model) ? "Jennifer" : model;
+        state.setVoice(available ? label : null);
+        if (shownVoiceModel != null && !shownVoiceModel.equals(model) && mDemoDataProvider != null) {
+            startDownLoadAudio();
+        }
+        shownVoiceModel = model;
+    }
+
+    @Override
+    public void onCoachVoice() {
+        startActivity(new Intent(this, CoachOptionActivity.class));
     }
 
     @Override

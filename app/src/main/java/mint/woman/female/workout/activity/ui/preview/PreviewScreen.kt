@@ -88,6 +88,7 @@ enum class PreviewButtonMode { GO, CONTINUE, NEED_DOWNLOAD, DOWNLOADING, RETRY }
  */
 class PreviewUiState {
     var program by mutableStateOf<ProgramObject?>(null)
+    var voice by mutableStateOf<String?>(null)
     var levelText by mutableStateOf("")
     var minutes by mutableIntStateOf(0)
     var calories by mutableIntStateOf(0)
@@ -121,6 +122,7 @@ interface PreviewActions {
     fun onBack()
     fun onGo()
     fun onStartOver()
+    fun onCoachVoice()
     fun onAudio()
     fun onEdit()
     fun onSave()
@@ -301,6 +303,24 @@ private fun Header(program: ProgramObject, state: PreviewUiState, actions: Previ
             StatCell("⏱", "${state.minutes}", stringResource(R.string.minutes), Modifier.weight(1f))
             StatCell("🏋️", "${state.items?.size ?: 0}", stringResource(R.string.txt_exercises), Modifier.weight(1f))
             StatCell("🔥", "${state.calories}", "kcal", Modifier.weight(1f))
+        }
+        state.voice?.let { voice ->
+            Row(
+                Modifier
+                    .padding(start = 16.dp, end = 16.dp, top = 14.dp)
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(16.dp))
+                    .background(MinColor.Surface)
+                    .clickable(onClick = actions::onCoachVoice)
+                    .padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(stringResource(R.string.coach_voice), color = MinColor.TextSecondary,
+                    fontSize = 14.sp, modifier = Modifier.weight(1f))
+                Text(voice, color = MinColor.Pink, fontSize = 14.sp,
+                    maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f))
+                Text(" ›", color = MinColor.TextSecondary, fontSize = 22.sp)
+            }
         }
         program.description?.takeIf { it.isNotBlank() }?.let {
             Text(

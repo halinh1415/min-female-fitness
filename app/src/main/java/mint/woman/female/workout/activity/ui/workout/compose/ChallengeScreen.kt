@@ -158,10 +158,10 @@ private fun Header(program: ProgramObject, done: Int, total: Int, state: Challen
             Box {
                 IconCircle("⋮") { menu = true }
                 DropdownMenu(expanded = menu, onDismissRequest = { menu = false }) {
-                    DropdownMenuItem(text = { Text(stringResource(R.string.txt_set_progress)) }, onClick = {
-                        menu = false
-                        actions.onSetProgress()
-                    })
+//                    DropdownMenuItem(text = { Text(stringResource(R.string.txt_set_progress)) }, onClick = {
+//                        menu = false
+//                        actions.onSetProgress()
+//                    })
                     if (state.showEdit) {
                         DropdownMenuItem(text = { Text(stringResource(R.string.txt_edit)) }, onClick = {
                             menu = false

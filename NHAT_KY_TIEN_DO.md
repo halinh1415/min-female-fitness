@@ -307,3 +307,8 @@
   (chiều cao nhãn 5'6", eo nhãn số inch). Thước dùng chung `ValueRuler`/`RulerRow` với cân nặng; bỏ `NumberField`.
 - Giữ cm gốc (`heightCmExact`, `waistCmExact`) khi kéo / đổi kg↔lb → không lệch số do làm tròn.
 - Build OK.
+
+## 2026-10-14 – Chọn giọng huấn luyện viên từ Preview như Tai Chi Qigong
+- `PreviewScreen.kt`, `PreviewActivity.java`: thêm dòng Coach voice theo Remote Config/ngôn ngữ, mở màn chọn và nghe thử, cập nhật tên khi quay lại; tải bổ sung khi đổi giọng. Dòng nằm trong header nên không ảnh hưởng chỉ số kéo sắp xếp bài tập.
+- `CoachOptionActivity.java`: sửa điều kiện Adam/Bella bị đảo, xử lý cấu hình thiếu key/JSON lỗi; giữ trạng thái tải tới khi worker kết thúc, giải phóng MediaPlayer.
+- Build `./gradlew assembleDebug`: BUILD SUCCESSFUL. Đã cài APK lên máy thật; kiểm tra Preview → Coach voice, danh sách Default/Jennifer/Adam/Sophia/Alexander, chọn Default → quay lại hiển thị Default. Chưa xác minh tải/phát trọn gói giọng từ máy chủ. Đã tắt màn hình máy test.

@@ -103,22 +103,22 @@ public class CoachOptionActivity extends AppCompatActivity implements VoiceAdapt
             try {
                 JSONObject jsonObject = new JSONObject(remoteVoice);
 
-                if (jsonObject.getString("Adam").contains(myPreference.getLanguage())) {
+                if (jsonObject.optString("Bella").contains(myPreference.getLanguage())) {
                     voiceList.add(new VoiceItem(R.drawable.ic_coach_jennifer, "Jennifer", "Bella"));
                 }
-                if (jsonObject.getString("Bella").contains(myPreference.getLanguage())) {
+                if (jsonObject.optString("Adam").contains(myPreference.getLanguage())) {
                     voiceList.add(new VoiceItem(R.drawable.ic_coach_adam, "Adam", "Adam"));
                 }
-                if (jsonObject.getString("woman").contains(myPreference.getLanguage())) {
+                if (jsonObject.optString("woman").contains(myPreference.getLanguage())) {
                     voiceList.add(new VoiceItem(R.drawable.ic_coach_woman, getString(R.string.name_female), "woman"));
                 }
-                if (jsonObject.getString("man").contains(myPreference.getLanguage())) {
+                if (jsonObject.optString("man").contains(myPreference.getLanguage())) {
                     voiceList.add(new VoiceItem(R.drawable.ic_coach_male, getString(R.string.name_male), "man"));
                 }
 
 
             } catch (JSONException e) {
-                throw new RuntimeException(e);
+                Log.w("CoachOptionActivity", "Invalid coach voice configuration", e);
             }
         }else {
             myPreference.setVoiceModel(myPreference.getLanguage(),"default");
@@ -240,6 +240,7 @@ public class CoachOptionActivity extends AppCompatActivity implements VoiceAdapt
 
             WorkManager.getInstance(CoachOptionActivity.this).enqueue(syncWorkRequest);
             WorkManager.getInstance(this).getWorkInfoByIdLiveData(syncWorkRequest.getId()).observe(this, workInfo -> {
+                if (workInfo == null) return;
                 if (workInfo.getState() == WorkInfo.State.SUCCEEDED) {
                     if (!isFinishing() && !isDestroyed()) {
                         if (voiceAdapter != null) {
@@ -260,7 +261,7 @@ public class CoachOptionActivity extends AppCompatActivity implements VoiceAdapt
                         Toast.makeText(CoachOptionActivity.this, "Download Failed!", Toast.LENGTH_SHORT).show();
                     }
                 }
-                isDownloading = false;
+                if (workInfo.getState().isFinished()) isDownloading = false;
             });
         }
     }
@@ -275,6 +276,7 @@ public class CoachOptionActivity extends AppCompatActivity implements VoiceAdapt
             mediaPlayer.stop();
             mediaPlayer.reset();
         }
+        mediaPlayer.release();
     }
 
     @Override
