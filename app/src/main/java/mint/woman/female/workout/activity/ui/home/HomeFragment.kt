@@ -7,15 +7,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import mint.woman.female.workout.FitnessApplication
 import mint.woman.female.workout.R
 import mint.woman.female.workout.activity.ExploreDetailActivity
@@ -83,6 +86,7 @@ class HomeFragment : Fragment(), HomeActions {
     private var weekHistory: LiveData<List<HistoryItem>>? = null
     private var weekHistoryObserver: Observer<List<HistoryItem>>? = null
     private var suggestJob: Job? = null
+    private var programLaunchInFlight = false
 
     private val setGoalLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -161,6 +165,7 @@ class HomeFragment : Fragment(), HomeActions {
 
     override fun onResume() {
         super.onResume()
+        programLaunchInFlight = false
         state.isPremium = pref.isPremiumMember
         state.promoEndsAt = if (pref.isPremiumMember) null else PaywallPromo.activeEndTime(requireContext())
         state.personalPlan = PersonalPlanStore.program(requireContext())
@@ -306,17 +311,47 @@ class HomeFragment : Fragment(), HomeActions {
     // ------------------------------------------------------------ hành động
 
     private fun openProgram(program: ProgramObject) {
+        val host = activity ?: return
+        val owner = viewLifecycleOwnerLiveData.value ?: return
+        if (!isAdded || host.isFinishing || host.isDestroyed || programLaunchInFlight
+            || !owner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) return
         val target = when (program.type) {
-            1 -> Intent(requireActivity(), ChallengeActivity::class.java)
+            1 -> Intent(host, ChallengeActivity::class.java)
                 .putExtras(Bundle().apply { putInt("PROGRAM_ID", program.id) })
-            2 -> Intent(requireActivity(), PreviewActivity::class.java)
+            2 -> Intent(host, PreviewActivity::class.java)
                 .putExtras(Bundle().apply {
                     putInt("PROGRAM_ID", program.id)
                     putInt("DAY_NUMBER", 0)
                 })
             else -> null
         }
-        target?.let(::startActivity)
+        if (target == null) return
+        programLaunchInFlight = true
+        try {
+            startActivity(target)
+        } catch (error: NullPointerException) {
+            // Some Android builds return an NPE from ActivityTaskManager through Parcel.
+            // Limit recovery to the launch call; do not swallow errors while building the intent.
+            programLaunchInFlight = false
+            val crashlytics = FirebaseCrashlytics.getInstance()
+            val destination = target.component?.className.orEmpty()
+            crashlytics.setCustomKey("PROGRAM_ID", program.id)
+            crashlytics.setCustomKey("HOME_PROGRAM_TYPE", program.type)
+            crashlytics.setCustomKey("HOME_PROGRAM_DISCOVER", program.discover)
+            crashlytics.setCustomKey("HOME_PROGRAM_VERSION", program.version)
+            crashlytics.setCustomKey("HOME_LAUNCH_TARGET", destination)
+            crashlytics.log("Home program launch failed: programId=${program.id}, type=${program.type}, "
+                + "discover=${program.discover}, version=${program.version}, target=$destination")
+            crashlytics.recordException(error)
+            FirebaseAnalytics.getInstance(host).logEvent("home_program_launch_error", Bundle().apply {
+                putInt("program_id", program.id)
+                putInt("program_type", program.type)
+                putInt("discover", program.discover)
+                putInt("data_version", program.version)
+                putString("target", destination)
+            })
+            Toast.makeText(host, R.string.retry, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun log(event: String) {
