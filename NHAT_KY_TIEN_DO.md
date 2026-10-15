@@ -8,6 +8,10 @@
 - `layout_dialog_discount.xml`: giá tổng 16sp đậm màu đậm (font hệ thống), giá gốc gạch ngang dòng riêng 14sp nhạt, giá tháng 13sp nhạt.
 - `PaywallScreenB.kt`, `item_paywall_plan.xml`: giá tổng 16sp đậm, giá/tuần 12sp nhạt (trước cùng 14sp).
 - Test S8+ (bản debug): vé sau Lucky Draw và paywall B hiện đúng. Nâng 1.1.27 (127).
+- Sửa thêm: gói năm ở paywall B hiện / mua nhầm giá base plan giảm giá (`baseOffer()` lấy offer không offerId đầu tiên của
+  premium_yearly – có 3 base plan). Thêm `PaywallOffers.yearlyBaseOffer()` (base plan premium-yearly-base); PremiumActivity và
+  `PremiumViewModel.getDefaultOffer()` (cả dùng thử) dùng base plan này. S8+: Yearly 1.000.000 ₫ (trước 752.000 ₫), ưu đãi
+  "48% Off (was 1.000.000 ₫)" (trước "31% … was 752.000"). Bản debug không mở được Google Play nên chưa thấy hộp mua.
 
 ## 2026-10-13 – SetGoalActivity chuyển sang Jetpack Compose (yêu cầu Telegram, chưa commit)
 - Mới `activity/ui/weekgoal/SetGoalActivity.kt` (thay `SetGoalActivity.java` + `res/layout/activity_set_goal.xml`, đã xoá):

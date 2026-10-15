@@ -42,6 +42,17 @@ public final class PaywallOffers {
         return list.get(0);
     }
 
+    /**
+     * Gói năm giá gốc (base plan {@link InAppKey#YEARLY_BASE}). premium_yearly còn các base plan giảm giá
+     * (yearly-special-50-off, yearly-special-34-off) cũng có offer không offerId; {@link #baseOffer} lấy offer đầu
+     * tiên Play trả về nên có thể hiện / bán nhầm giá giảm làm giá năm mặc định.
+     */
+    @Nullable
+    public static ProductDetails.SubscriptionOfferDetails yearlyBaseOffer(@Nullable ProductDetails yearly) {
+        ProductDetails.SubscriptionOfferDetails offer = offerByBasePlanId(yearly, InAppKey.YEARLY_BASE);
+        return offer != null ? offer : baseOffer(yearly);
+    }
+
     /** An offer that starts with a free phase (free trial), if the user is eligible. */
     @Nullable
     public static ProductDetails.SubscriptionOfferDetails trialOffer(@Nullable ProductDetails details) {

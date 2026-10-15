@@ -183,7 +183,7 @@ class PremiumActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
         val yearly = vm.getSubscription(InAppKey.PREMIUM_YEARLY)
         val monthly = vm.getSubscription(InAppKey.PREMIUM_MONTHLY)
         val lifetime = vm.getInApp(InAppKey.PREMIUM_LIFETIME)?.oneTimePurchaseOfferDetails
-        val year = PaywallOffers.recurringPhase(PaywallOffers.baseOffer(yearly))
+        val year = PaywallOffers.recurringPhase(PaywallOffers.yearlyBaseOffer(yearly))
         val month = PaywallOffers.recurringPhase(PaywallOffers.baseOffer(monthly))
         val trialDays = PaywallOffers.trialDays(vm.getDefaultOffer(InAppKey.PREMIUM_YEARLY))
 

@@ -355,11 +355,15 @@ public class PremiumViewModel extends AndroidViewModel implements PurchasesUpdat
     @Nullable
     public ProductDetails.SubscriptionOfferDetails getDefaultOffer(String productId) {
         ProductDetails details = getSubscription(productId);
+        boolean yearly = InAppKey.PREMIUM_YEARLY.equals(productId);
         if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.ENABLE_TRIAL)) {
-            ProductDetails.SubscriptionOfferDetails trial = PaywallOffers.trialOffer(details);
+            // Gói năm: chỉ lấy dùng thử của base plan giá gốc, không lấy nhầm base plan giảm giá.
+            ProductDetails.SubscriptionOfferDetails trial = yearly
+                    ? PaywallOffers.trialOfferByBasePlanId(details, InAppKey.YEARLY_BASE)
+                    : PaywallOffers.trialOffer(details);
             if (trial != null) return trial;
         }
-        return PaywallOffers.baseOffer(details);
+        return yearly ? PaywallOffers.yearlyBaseOffer(details) : PaywallOffers.baseOffer(details);
     }
 
     // ------------------------------------------------------------------ billing flows
