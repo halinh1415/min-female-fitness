@@ -25,6 +25,7 @@ import java.util.Locale
 class LuckyDrawActivity : AppCompatActivity(), DiscountDialogFragment.DismissListener {
 
     private var closing = false
+    private var pendingDiscount = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -40,14 +41,36 @@ class LuckyDrawActivity : AppCompatActivity(), DiscountDialogFragment.DismissLis
                 onWon = {
                     FirebaseAnalytics.getInstance(this).logEvent("lucky_draw_won", null)
                     // Mở đợt 50% (2 tiếng) dùng chung đồng hồ với paywall, tính vào bậc thang PaywallPromo.
-                    val end = PaywallPromo.startNow(this)
-                    if (!isFinishing && supportFragmentManager.findFragmentByTag("discount") == null) {
-                        DiscountDialogFragment.newInstance(end - System.currentTimeMillis()).show(supportFragmentManager, "discount")
-                    }
+                    PaywallPromo.startNow(this)
+                    showDiscount()
                 },
                 onSkip = ::close,
             )
         }
+    }
+
+    /**
+     * Vòng quay dừng sau ~7 giây; nếu lúc đó người dùng đã rời app (Home, tắt màn hình) thì
+     * show() sẽ crash "Can not perform this action after onSaveInstanceState" (hoặc vé bị bỏ qua)
+     * -> để dành, mở lại khi quay về ở [onPostResume].
+     */
+    private fun showDiscount() {
+        if (isFinishing || isDestroyed) return
+        if (supportFragmentManager.isStateSaved) {
+            pendingDiscount = true
+            return
+        }
+        pendingDiscount = false
+        if (supportFragmentManager.findFragmentByTag("discount") == null) {
+            // startNow không mở đợt mới khi đợt vừa trúng còn chạy, chỉ trả giờ kết thúc.
+            val end = PaywallPromo.startNow(this)
+            DiscountDialogFragment.newInstance(end - System.currentTimeMillis()).show(supportFragmentManager, "discount")
+        }
+    }
+
+    override fun onPostResume() {
+        super.onPostResume()
+        if (pendingDiscount) showDiscount()
     }
 
     /** Đóng vé ưu đãi mà chưa mua: cho xem quảng cáo rồi mới đóng (như bản cũ). */
