@@ -229,7 +229,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 app:layout_constraintBottom_toTopOf="@id/tv_discount_monthly"
@@ -244,6 +244,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/discount_price_loading"
                     tools:text="Total 509.000 ₫/year "
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
                     android:textColor="@color/offer_ink"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -255,9 +257,10 @@
                     android:visibility="gone"
                     tools:visibility="visible"
                     tools:text="(1.550.000 ₫)"
-                    android:textColor="@color/offer_ink"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/offer_ink_muted"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <TextView
@@ -269,8 +272,9 @@
                 android:visibility="invisible"
                 tools:visibility="visible"
                 tools:text="Only 42.417 ₫/month"
+                android:fontFamily="sans-serif"
                 android:textColor="@color/offer_ink_muted"
-                android:textSize="16sp"
+                android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

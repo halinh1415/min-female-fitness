@@ -2,6 +2,13 @@
 
 > Mới nhất ở trên.
 
+## 2026-10-15 – Sửa vi phạm chính sách Subscriptions (giá chia nhỏ nổi bật) – 1.1.27 (127) ✅
+- Google từ chối bản 125: vé giảm giá hiện "Total …/year" và "Only …/month" cùng 16sp → giá tổng không nổi bật hơn giá theo tháng;
+  ký hiệu ₱ ở giá tổng hiện ô vuông (font đậm của app thiếu ký tự).
+- `layout_dialog_discount.xml`: giá tổng 16sp đậm màu đậm (font hệ thống), giá gốc gạch ngang dòng riêng 14sp nhạt, giá tháng 13sp nhạt.
+- `PaywallScreenB.kt`, `item_paywall_plan.xml`: giá tổng 16sp đậm, giá/tuần 12sp nhạt (trước cùng 14sp).
+- Test S8+ (bản debug): vé sau Lucky Draw và paywall B hiện đúng. Nâng 1.1.27 (127).
+
 ## 2026-10-13 – SetGoalActivity chuyển sang Jetpack Compose (yêu cầu Telegram, chưa commit)
 - Mới `activity/ui/weekgoal/SetGoalActivity.kt` (thay `SetGoalActivity.java` + `res/layout/activity_set_goal.xml`, đã xoá):
   thanh trên ← + "Week Goal", icon mục tiêu trong vòng hồng nhạt, tiêu đề + mô tả, thẻ "Số ngày tập" 7 ô tròn 1–7

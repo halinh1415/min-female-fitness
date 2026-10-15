@@ -323,8 +323,9 @@ private fun SpecialCard(special: SpecialOffer, selected: Boolean, onExpired: () 
                             addStyle(SpanStyle(textDecoration = TextDecoration.LineThrough), start, start + special.original.length)
                         }
                     },
-                    color = colors.body,
-                    fontSize = 14.sp,
+                    color = colors.title,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.SemiBold,
                 )
             },
             right = special.weekly?.let { stringResource(R.string.pwb_per_week, it) },
@@ -407,11 +408,12 @@ private fun PlanRow(
                 Text(title, color = colors.title, fontSize = 18.sp, fontWeight = FontWeight.Bold)
                 when {
                     subtitleRich != null -> subtitleRich()
-                    subtitle != null -> Text(subtitle, color = colors.body, fontSize = 14.sp)
-                    else -> Text("—", color = colors.muted, fontSize = 14.sp)
+                    // Chính sách Google Play: giá tổng bị trừ phải nổi bật hơn giá quy đổi (tuần / tháng).
+                    subtitle != null -> Text(subtitle, color = colors.title, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+                    else -> Text("—", color = colors.muted, fontSize = 16.sp)
                 }
             }
-            Text(right ?: "", color = colors.body, fontSize = 14.sp, fontWeight = FontWeight.Medium)
+            Text(right ?: "", color = colors.muted, fontSize = 12.sp)
         }
         if (badge != null) {
             // Tag góc trên phải: vàng khi gói được chọn, mờ khi không (như Karate).
