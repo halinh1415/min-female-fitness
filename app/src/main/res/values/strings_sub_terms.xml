@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Điều khoản gói đăng ký (chính sách Subscriptions của Google Play): giá, chu kỳ trừ tiền, tự gia hạn, không bắt buộc. -->
+<resources>
+    <string name="sub_terms_yearly">Yearly subscription: %s, charged every year. Renews automatically until canceled. Cancel anytime in Google Play.</string>
+    <string name="sub_terms_monthly">Monthly subscription: %s, charged every month. Renews automatically until canceled. Cancel anytime in Google Play.</string>
+    <string name="sub_terms_trial">Free for %1$d days, then %2$s, charged every year. Renews automatically until canceled. Cancel in Google Play before the trial ends to avoid being charged.</string>
+    <string name="sub_terms_optional">A subscription is not required to use the app. Free workouts stay available.</string>
+</resources>

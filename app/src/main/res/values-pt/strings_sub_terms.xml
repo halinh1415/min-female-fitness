@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">Assinatura anual: %s, cobrada todo ano. Renova automaticamente até ser cancelada. Cancele quando quiser no Google Play.</string>
+    <string name="sub_terms_monthly">Assinatura mensal: %s, cobrada todo mês. Renova automaticamente até ser cancelada. Cancele quando quiser no Google Play.</string>
+    <string name="sub_terms_trial">Grátis por %1$d dias, depois %2$s cobrados todo ano. Renova automaticamente até ser cancelada. Cancele no Google Play antes do fim do teste para não ser cobrado.</string>
+    <string name="sub_terms_optional">Não é necessário assinar para usar o app. Os treinos gratuitos continuam disponíveis.</string>
+</resources>

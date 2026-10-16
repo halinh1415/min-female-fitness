@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">Jaarabonnement: %s, elk jaar in rekening gebracht. Wordt automatisch verlengd tot je opzegt. Zeg op elk moment op via Google Play.</string>
+    <string name="sub_terms_monthly">Maandabonnement: %s, elke maand in rekening gebracht. Wordt automatisch verlengd tot je opzegt. Zeg op elk moment op via Google Play.</string>
+    <string name="sub_terms_trial">%1$d dagen gratis, daarna %2$s per jaar. Wordt automatisch verlengd tot je opzegt. Zeg op via Google Play vóór het einde van de proefperiode om niet te betalen.</string>
+    <string name="sub_terms_optional">Je hebt geen abonnement nodig om de app te gebruiken. Gratis workouts blijven beschikbaar.</string>
+</resources>

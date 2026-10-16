@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">Årsabonnement: %s, belastes hvert år. Fornyes automatisk til det sies opp. Si opp når som helst i Google Play.</string>
+    <string name="sub_terms_monthly">Månedsabonnement: %s, belastes hver måned. Fornyes automatisk til det sies opp. Si opp når som helst i Google Play.</string>
+    <string name="sub_terms_trial">Gratis i %1$d dager, deretter %2$s hvert år. Fornyes automatisk til det sies opp. Si opp i Google Play før prøveperioden slutter for å unngå belastning.</string>
+    <string name="sub_terms_optional">Du trenger ikke abonnement for å bruke appen. Gratis treningsøkter er fortsatt tilgjengelige.</string>
+</resources>

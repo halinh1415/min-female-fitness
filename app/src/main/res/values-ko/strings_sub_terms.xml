@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">연간 구독: %s, 매년 청구됩니다. 해지할 때까지 자동으로 갱신됩니다. Google Play에서 언제든지 해지할 수 있습니다.</string>
+    <string name="sub_terms_monthly">월간 구독: %s, 매월 청구됩니다. 해지할 때까지 자동으로 갱신됩니다. Google Play에서 언제든지 해지할 수 있습니다.</string>
+    <string name="sub_terms_trial">%1$d일 무료, 이후 매년 %2$s 청구. 해지할 때까지 자동으로 갱신됩니다. 요금이 청구되지 않으려면 체험 기간이 끝나기 전에 Google Play에서 해지하세요.</string>
+    <string name="sub_terms_optional">앱을 사용하는 데 구독이 필요하지 않습니다. 무료 운동은 계속 이용할 수 있습니다.</string>
+</resources>

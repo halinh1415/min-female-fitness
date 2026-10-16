@@ -239,6 +239,9 @@ public class DiscountDialogFragment extends DialogFragment {
                 getMonthlyPrice(salePhase)
         ));
         binding.tvDiscountMonthly.setVisibility(View.VISIBLE);
+        binding.tvDiscountTerms.setText(getString(R.string.sub_terms_yearly, salePrice)
+                + "\n" + getString(R.string.sub_terms_optional));
+        binding.tvDiscountTerms.setVisibility(View.VISIBLE);
     }
 
     /** Giá gốc nằm trong ngoặc; chỉ con số bị gạch ngang, hai dấu ngoặc để nguyên. */

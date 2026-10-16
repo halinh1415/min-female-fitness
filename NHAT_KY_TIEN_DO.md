@@ -2,6 +2,20 @@
 
 > Mới nhất ở trên.
 
+## 2026-10-16 – Chính sách Subscriptions lần 2: ghi rõ điều khoản gói đăng ký – 1.1.28 (128) ✅ (yêu cầu Telegram, chưa commit)
+- Google vẫn từ chối bản 125 ("Terms of subscription offer are unclear"), ảnh kèm: vé giảm 50% ("Claim Now!") và thẻ Flash sale ở Home
+  "Get it" mở thẳng hộp thanh toán Google Play – trong app không ghi tự gia hạn / chu kỳ trừ tiền / có bắt buộc đăng ký không.
+- Mới `values*/strings_sub_terms.xml` (27 ngôn ngữ): `sub_terms_yearly` / `sub_terms_monthly` / `sub_terms_trial` (giá, trừ tiền mỗi năm/tháng,
+  tự gia hạn đến khi huỷ, huỷ trên Google Play) + `sub_terms_optional` (không bắt buộc đăng ký, bài miễn phí vẫn dùng được).
+- `layout_dialog_discount.xml`, `DiscountDialogFragment.java`: dưới nút Claim Now! thêm dòng điều khoản (giá ưu đãi/năm, tự gia hạn, không bắt buộc).
+- `HomeFragment.kt`: Flash sale "Get it" mở vé ưu đãi (có điều khoản) thay vì mở thẳng hộp thanh toán; hết đợt thì vào paywall.
+- `PaywallScreenB.kt`: dòng dưới nút CONTINUE theo gói đang chọn (năm / tháng / ưu đãi / dùng thử) ghi giá + chu kỳ + tự gia hạn + không bắt buộc
+  (trước gói năm / tháng chỉ ghi "Cancel anytime via Google Play"), chữ đậm hơn.
+- `PaywallActivity.java` (paywall onboarding): dòng thanh toán dùng cùng chuỗi + thêm câu không bắt buộc.
+- Nâng 1.1.28 (128). Build OK. Test S8+: paywall gói năm ưu đãi / tháng; Home → Flash sale → vé hiện điều khoản dưới nút. Đã tắt màn hình.
+- Lưu ý phát hành: Google báo lỗi bản 125 vì 125 còn nằm ở một track (thường là Production) – phải đưa bản mới vào chính track đó
+  (bản 127 chỉ ở beta không thay được 125).
+
 ## 2026-10-15 – Sửa vi phạm chính sách Subscriptions (giá chia nhỏ nổi bật) – 1.1.27 (127) ✅
 - Google từ chối bản 125: vé giảm giá hiện "Total …/year" và "Only …/month" cùng 16sp → giá tổng không nổi bật hơn giá theo tháng;
   ký hiệu ₱ ở giá tổng hiện ô vuông (font đậm của app thiếu ký tự).

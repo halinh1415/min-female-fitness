@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">年度訂閱：%s，每年扣款。除非取消，否則自動續訂。可隨時在 Google Play 中取消。</string>
+    <string name="sub_terms_monthly">月度訂閱：%s，每月扣款。除非取消，否則自動續訂。可隨時在 Google Play 中取消。</string>
+    <string name="sub_terms_trial">免費 %1$d 天，之後每年扣款 %2$s。除非取消，否則自動續訂。如不想被扣款，請在試用結束前於 Google Play 中取消。</string>
+    <string name="sub_terms_optional">使用本應用程式無需訂閱，免費訓練仍可使用。</string>
+</resources>

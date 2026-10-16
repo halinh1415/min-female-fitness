@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">Abonnement annuel : %s, facturé chaque année. Renouvelé automatiquement jusqu\'à résiliation. Annulez à tout moment dans Google Play.</string>
+    <string name="sub_terms_monthly">Abonnement mensuel : %s, facturé chaque mois. Renouvelé automatiquement jusqu\'à résiliation. Annulez à tout moment dans Google Play.</string>
+    <string name="sub_terms_trial">Gratuit pendant %1$d jours, puis %2$s facturé chaque année. Renouvelé automatiquement jusqu\'à résiliation. Annulez dans Google Play avant la fin de l\'essai pour ne pas être facturé.</string>
+    <string name="sub_terms_optional">Aucun abonnement n\'est requis pour utiliser l\'application. Les entraînements gratuits restent disponibles.</string>
+</resources>

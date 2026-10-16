@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">年間プラン：%s（毎年請求）。解約するまで自動更新されます。Google Play でいつでも解約できます。</string>
+    <string name="sub_terms_monthly">月間プラン：%s（毎月請求）。解約するまで自動更新されます。Google Play でいつでも解約できます。</string>
+    <string name="sub_terms_trial">%1$d日間無料、その後は毎年%2$sを請求。解約するまで自動更新されます。請求を避けるには無料期間終了前に Google Play で解約してください。</string>
+    <string name="sub_terms_optional">アプリの利用にサブスクリプションは必要ありません。無料のワークアウトは引き続きご利用いただけます。</string>
+</resources>

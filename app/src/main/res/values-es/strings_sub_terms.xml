@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">Suscripción anual: %s, se cobra cada año. Se renueva automáticamente hasta que la canceles. Cancela cuando quieras en Google Play.</string>
+    <string name="sub_terms_monthly">Suscripción mensual: %s, se cobra cada mes. Se renueva automáticamente hasta que la canceles. Cancela cuando quieras en Google Play.</string>
+    <string name="sub_terms_trial">Gratis durante %1$d días, luego %2$s, se cobra cada año. Se renueva automáticamente hasta que la canceles. Cancela en Google Play antes de que termine la prueba para no pagar.</string>
+    <string name="sub_terms_optional">No necesitas una suscripción para usar la app. Los entrenamientos gratuitos siguen disponibles.</string>
+</resources>

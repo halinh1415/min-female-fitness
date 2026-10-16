@@ -285,7 +285,7 @@
             android:id="@+id/btn_claim_discount"
             android:layout_width="0dp"
             android:layout_height="58dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/bg_discount_claim_button"
             android:fontFamily="@font/fonts"
             android:gravity="center"
@@ -293,9 +293,28 @@
             android:textColor="@color/offer_ink"
             android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_discount_terms"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/discount_ticket" />
+
+        <!-- Chính sách Subscriptions: giá, chu kỳ trừ tiền, tự gia hạn, không bắt buộc đăng ký (điền khi có giá). -->
+        <TextView
+            android:id="@+id/tv_discount_terms"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:lineSpacingExtra="2dp"
+            android:textColor="#E6FFFFFF"
+            android:textSize="12sp"
+            android:visibility="gone"
+            tools:text="Yearly subscription: 509.000 ₫, charged every year. Renews automatically until canceled. Cancel anytime in Google Play.\nA subscription is not required to use the app. Free workouts stay available."
+            tools:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_claim_discount" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

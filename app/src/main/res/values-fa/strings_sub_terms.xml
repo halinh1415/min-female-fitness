@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">اشتراک سالانه: %s، هر سال پرداخت می‌شود. تا زمان لغو به‌طور خودکار تمدید می‌شود. هر زمان در Google Play لغو کنید.</string>
+    <string name="sub_terms_monthly">اشتراک ماهانه: %s، هر ماه پرداخت می‌شود. تا زمان لغو به‌طور خودکار تمدید می‌شود. هر زمان در Google Play لغو کنید.</string>
+    <string name="sub_terms_trial">%1$d روز رایگان، سپس %2$s هر سال. تا زمان لغو به‌طور خودکار تمدید می‌شود. برای پرداخت نکردن، پیش از پایان دوره آزمایشی در Google Play لغو کنید.</string>
+    <string name="sub_terms_optional">برای استفاده از برنامه نیازی به اشتراک نیست. تمرین‌های رایگان همچنان در دسترس هستند.</string>
+</resources>

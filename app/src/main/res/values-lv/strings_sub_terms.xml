@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">Gada abonements: %s, maksa katru gadu. Automātiski atjaunojas līdz atcelšanai. Atceliet jebkurā laikā Google Play.</string>
+    <string name="sub_terms_monthly">Mēneša abonements: %s, maksa katru mēnesi. Automātiski atjaunojas līdz atcelšanai. Atceliet jebkurā laikā Google Play.</string>
+    <string name="sub_terms_trial">Bez maksas %1$d dienas, pēc tam %2$s katru gadu. Automātiski atjaunojas līdz atcelšanai. Lai netiktu iekasēta maksa, atceliet Google Play pirms izmēģinājuma beigām.</string>
+    <string name="sub_terms_optional">Lietotnes izmantošanai abonements nav obligāts. Bezmaksas treniņi paliek pieejami.</string>
+</resources>

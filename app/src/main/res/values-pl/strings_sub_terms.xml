@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">Subskrypcja roczna: %s, pobierana co roku. Odnawia się automatycznie do czasu anulowania. Anuluj w dowolnym momencie w Google Play.</string>
+    <string name="sub_terms_monthly">Subskrypcja miesięczna: %s, pobierana co miesiąc. Odnawia się automatycznie do czasu anulowania. Anuluj w dowolnym momencie w Google Play.</string>
+    <string name="sub_terms_trial">Bezpłatnie przez %1$d dni, potem %2$s co roku. Odnawia się automatycznie do czasu anulowania. Anuluj w Google Play przed końcem okresu próbnego, aby uniknąć opłaty.</string>
+    <string name="sub_terms_optional">Subskrypcja nie jest wymagana, aby korzystać z aplikacji. Darmowe treningi pozostają dostępne.</string>
+</resources>

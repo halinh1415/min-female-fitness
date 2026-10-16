@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">Vuositilaus: %s, veloitetaan vuosittain. Uusiutuu automaattisesti, kunnes peruutat. Peruuta milloin tahansa Google Playssa.</string>
+    <string name="sub_terms_monthly">Kuukausitilaus: %s, veloitetaan kuukausittain. Uusiutuu automaattisesti, kunnes peruutat. Peruuta milloin tahansa Google Playssa.</string>
+    <string name="sub_terms_trial">Ilmainen %1$d päivää, sitten %2$s vuosittain. Uusiutuu automaattisesti, kunnes peruutat. Peruuta Google Playssa ennen kokeilun loppua, niin sinua ei veloiteta.</string>
+    <string name="sub_terms_optional">Sovelluksen käyttö ei vaadi tilausta. Ilmaiset treenit ovat edelleen käytettävissä.</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">Årligt abonnement: %s, opkræves hvert år. Fornyes automatisk, indtil det opsiges. Opsig når som helst i Google Play.</string>
+    <string name="sub_terms_monthly">Månedligt abonnement: %s, opkræves hver måned. Fornyes automatisk, indtil det opsiges. Opsig når som helst i Google Play.</string>
+    <string name="sub_terms_trial">Gratis i %1$d dage, derefter %2$s, opkræves hvert år. Fornyes automatisk, indtil det opsiges. Opsig i Google Play før prøveperioden slutter for at undgå betaling.</string>
+    <string name="sub_terms_optional">Et abonnement er ikke påkrævet for at bruge appen. Gratis træninger er stadig tilgængelige.</string>
+</resources>

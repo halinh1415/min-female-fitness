@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">Gói năm: %s, trừ tiền mỗi năm. Tự động gia hạn cho đến khi huỷ. Huỷ bất cứ lúc nào trên Google Play.</string>
+    <string name="sub_terms_monthly">Gói tháng: %s, trừ tiền mỗi tháng. Tự động gia hạn cho đến khi huỷ. Huỷ bất cứ lúc nào trên Google Play.</string>
+    <string name="sub_terms_trial">Miễn phí %1$d ngày, sau đó %2$s, trừ tiền mỗi năm. Tự động gia hạn cho đến khi huỷ. Huỷ trên Google Play trước khi hết dùng thử để không bị trừ tiền.</string>
+    <string name="sub_terms_optional">Không bắt buộc đăng ký để dùng ứng dụng. Các bài tập miễn phí vẫn dùng được.</string>
+</resources>

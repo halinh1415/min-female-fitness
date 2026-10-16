@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">Roční předplatné: %s, účtováno každý rok. Automaticky se obnovuje až do zrušení. Zrušit můžete kdykoli v Google Play.</string>
+    <string name="sub_terms_monthly">Měsíční předplatné: %s, účtováno každý měsíc. Automaticky se obnovuje až do zrušení. Zrušit můžete kdykoli v Google Play.</string>
+    <string name="sub_terms_trial">Zdarma %1$d dní, poté %2$s účtováno každý rok. Automaticky se obnovuje až do zrušení. Zrušte v Google Play před koncem zkušební doby, abyste nebyli zpoplatněni.</string>
+    <string name="sub_terms_optional">K používání aplikace není předplatné nutné. Bezplatná cvičení zůstávají dostupná.</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">Langganan tahunan: %s, ditagih setiap tahun. Diperpanjang otomatis hingga dibatalkan. Batalkan kapan saja di Google Play.</string>
+    <string name="sub_terms_monthly">Langganan bulanan: %s, ditagih setiap bulan. Diperpanjang otomatis hingga dibatalkan. Batalkan kapan saja di Google Play.</string>
+    <string name="sub_terms_trial">Gratis %1$d hari, lalu %2$s ditagih setiap tahun. Diperpanjang otomatis hingga dibatalkan. Batalkan di Google Play sebelum masa uji coba berakhir agar tidak ditagih.</string>
+    <string name="sub_terms_optional">Langganan tidak wajib untuk menggunakan aplikasi. Latihan gratis tetap tersedia.</string>
+</resources>

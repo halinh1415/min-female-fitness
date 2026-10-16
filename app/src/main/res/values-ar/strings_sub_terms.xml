@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">اشتراك سنوي: %s، يُحصَّل كل سنة. يتجدد تلقائيًا حتى الإلغاء. يمكنك الإلغاء في أي وقت من Google Play.</string>
+    <string name="sub_terms_monthly">اشتراك شهري: %s، يُحصَّل كل شهر. يتجدد تلقائيًا حتى الإلغاء. يمكنك الإلغاء في أي وقت من Google Play.</string>
+    <string name="sub_terms_trial">مجانًا لمدة %1$d أيام، ثم %2$s يُحصَّل كل سنة. يتجدد تلقائيًا حتى الإلغاء. ألغِ من Google Play قبل انتهاء الفترة التجريبية لتجنب الدفع.</string>
+    <string name="sub_terms_optional">الاشتراك غير مطلوب لاستخدام التطبيق. تبقى التمارين المجانية متاحة.</string>
+</resources>

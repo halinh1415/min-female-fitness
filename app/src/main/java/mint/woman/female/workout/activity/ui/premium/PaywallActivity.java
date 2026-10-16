@@ -468,13 +468,21 @@ public class PaywallActivity extends AppCompatActivity implements EdgeToEdgeHelp
                 selected ? R.color.White : R.color.offer_ink_muted));
     }
 
+    /** Chính sách Subscriptions: giá, chu kỳ trừ tiền, tự gia hạn và không bắt buộc đăng ký. */
     private String billingDisclosure(int trialDays) {
-        String recurring = selectedRecurringText();
-        if (recurring.isEmpty()) return getString(R.string.pw_cancel_anytime);
-        String terms = trialDays > 0
-                ? getString(R.string.pw_disclosure_trial, trialDays, recurring)
-                : getString(R.string.pw_disclosure_sub, recurring);
-        return terms + " " + getString(R.string.pw_cancel_anytime) + ".";
+        String optional = "\n" + getString(R.string.sub_terms_optional);
+        String price = selectedPlan == PLAN_SPECIAL ? specialPriceText
+                : selectedPlan == PLAN_MONTHLY ? monthlyPriceText : yearlyPriceText;
+        if (price.isEmpty()) return getString(R.string.pw_cancel_anytime) + optional;
+        if (selectedPlan == PLAN_MONTHLY) {
+            return (trialDays > 0
+                    ? getString(R.string.pw_disclosure_trial, trialDays, selectedRecurringText())
+                            + " " + getString(R.string.pw_cancel_anytime) + "."
+                    : getString(R.string.sub_terms_monthly, price)) + optional;
+        }
+        return (trialDays > 0
+                ? getString(R.string.sub_terms_trial, trialDays, price)
+                : getString(R.string.sub_terms_yearly, price)) + optional;
     }
 
     private String selectedRecurringText() {

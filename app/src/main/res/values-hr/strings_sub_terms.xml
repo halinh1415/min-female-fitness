@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">Godišnja pretplata: %s, naplaćuje se svake godine. Automatski se obnavlja do otkazivanja. Otkažite bilo kada u Google Playu.</string>
+    <string name="sub_terms_monthly">Mjesečna pretplata: %s, naplaćuje se svaki mjesec. Automatski se obnavlja do otkazivanja. Otkažite bilo kada u Google Playu.</string>
+    <string name="sub_terms_trial">Besplatno %1$d dana, zatim %2$s svake godine. Automatski se obnavlja do otkazivanja. Otkažite u Google Playu prije kraja probnog razdoblja da izbjegnete naplatu.</string>
+    <string name="sub_terms_optional">Pretplata nije potrebna za korištenje aplikacije. Besplatni treninzi ostaju dostupni.</string>
+</resources>

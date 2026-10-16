@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">वार्षिक सदस्यता: %s, हर साल शुल्क। रद्द करने तक अपने-आप नवीनीकृत होती है। Google Play में कभी भी रद्द करें।</string>
+    <string name="sub_terms_monthly">मासिक सदस्यता: %s, हर महीने शुल्क। रद्द करने तक अपने-आप नवीनीकृत होती है। Google Play में कभी भी रद्द करें।</string>
+    <string name="sub_terms_trial">%1$d दिन मुफ़्त, फिर हर साल %2$s। रद्द करने तक अपने-आप नवीनीकृत होती है। शुल्क से बचने के लिए ट्रायल खत्म होने से पहले Google Play में रद्द करें।</string>
+    <string name="sub_terms_optional">ऐप इस्तेमाल करने के लिए सदस्यता ज़रूरी नहीं है। मुफ़्त वर्कआउट उपलब्ध रहते हैं।</string>
+</resources>

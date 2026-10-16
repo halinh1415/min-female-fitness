@@ -28,8 +28,6 @@ import mint.woman.female.workout.activity.ui.plan.PersonalPlanActivity
 import mint.woman.female.workout.activity.ui.plan.PersonalPlanStore
 import mint.woman.female.workout.activity.ui.history.HistoryViewModel
 import mint.woman.female.workout.activity.ui.premium.DiscountDialogFragment
-import mint.woman.female.workout.activity.ui.premium.InAppKey
-import mint.woman.female.workout.activity.ui.premium.PaywallOffers
 import mint.woman.female.workout.activity.ui.premium.PaywallPromo
 import mint.woman.female.workout.activity.ui.premium.PremiumViewModel
 import mint.woman.female.workout.activity.ui.premium.PremiumActivity
@@ -402,17 +400,13 @@ class HomeFragment : Fragment(), HomeActions {
     }
 
     /**
-     * Thẻ Flash Sale: mở thẳng hộp thanh toán Google Play cho gói năm giảm 50% (base plan yearly-special-50-off).
-     * Play chưa trả giá / không có base plan đó thì mở vé ưu đãi, hết đợt thì vào paywall.
+     * Thẻ Flash Sale: mở vé ưu đãi (có ghi giá, chu kỳ trừ tiền, tự gia hạn – chính sách Subscriptions của Google Play),
+     * không mở thẳng hộp thanh toán. Hết đợt thì vào paywall.
      */
     override fun onFlashSale() {
         log("click_flash_sale_scr_home")
         val activity = requireActivity()
-        val yearly = premiumViewModel.getSubscription(InAppKey.PREMIUM_YEARLY)
-        val offer = PaywallOffers.offerByBasePlanId(yearly, InAppKey.YEARLY_SPECIAL_50)
-        if (offer != null && PaywallPromo.activeEndTime(activity) != null) {
-            premiumViewModel.launchSubscription(activity, InAppKey.PREMIUM_YEARLY, offer)
-        } else if (!DiscountDialogFragment.showIfPromoActive(activity)) {
+        if (!DiscountDialogFragment.showIfPromoActive(activity)) {
             startActivity(
                 Intent(activity, PremiumActivity::class.java)
                     .putExtra(PremiumActivity.EXTRA_SOURCE, "flash_sale"),

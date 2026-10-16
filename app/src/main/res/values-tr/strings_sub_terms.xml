@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">Yıllık abonelik: %s, her yıl ücretlendirilir. İptal edilene kadar otomatik yenilenir. Google Play\'den istediğiniz zaman iptal edin.</string>
+    <string name="sub_terms_monthly">Aylık abonelik: %s, her ay ücretlendirilir. İptal edilene kadar otomatik yenilenir. Google Play\'den istediğiniz zaman iptal edin.</string>
+    <string name="sub_terms_trial">%1$d gün ücretsiz, ardından her yıl %2$s. İptal edilene kadar otomatik yenilenir. Ücretlendirilmemek için deneme bitmeden Google Play\'den iptal edin.</string>
+    <string name="sub_terms_optional">Uygulamayı kullanmak için abonelik gerekmez. Ücretsiz antrenmanlar kullanılabilir olmaya devam eder.</string>
+</resources>

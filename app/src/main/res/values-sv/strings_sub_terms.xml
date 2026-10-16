@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">Årsprenumeration: %s, debiteras varje år. Förnyas automatiskt tills du avslutar. Avsluta när som helst i Google Play.</string>
+    <string name="sub_terms_monthly">Månadsprenumeration: %s, debiteras varje månad. Förnyas automatiskt tills du avslutar. Avsluta när som helst i Google Play.</string>
+    <string name="sub_terms_trial">Gratis i %1$d dagar, sedan %2$s varje år. Förnyas automatiskt tills du avslutar. Avsluta i Google Play innan provperioden slutar för att undvika debitering.</string>
+    <string name="sub_terms_optional">Du behöver ingen prenumeration för att använda appen. Gratis träningspass finns kvar.</string>
+</resources>

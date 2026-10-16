@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">แพ็กเกจรายปี: %s เรียกเก็บทุกปี ต่ออายุอัตโนมัติจนกว่าจะยกเลิก ยกเลิกได้ทุกเมื่อใน Google Play</string>
+    <string name="sub_terms_monthly">แพ็กเกจรายเดือน: %s เรียกเก็บทุกเดือน ต่ออายุอัตโนมัติจนกว่าจะยกเลิก ยกเลิกได้ทุกเมื่อใน Google Play</string>
+    <string name="sub_terms_trial">ฟรี %1$d วัน จากนั้น %2$s เรียกเก็บทุกปี ต่ออายุอัตโนมัติจนกว่าจะยกเลิก ยกเลิกใน Google Play ก่อนสิ้นสุดช่วงทดลองเพื่อไม่ให้ถูกเรียกเก็บเงิน</string>
+    <string name="sub_terms_optional">ไม่จำเป็นต้องสมัครสมาชิกเพื่อใช้แอป การออกกำลังกายฟรียังใช้งานได้</string>
+</resources>

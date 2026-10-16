@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">Abbonamento annuale: %s, addebitato ogni anno. Si rinnova automaticamente fino all\'annullamento. Annulla quando vuoi su Google Play.</string>
+    <string name="sub_terms_monthly">Abbonamento mensile: %s, addebitato ogni mese. Si rinnova automaticamente fino all\'annullamento. Annulla quando vuoi su Google Play.</string>
+    <string name="sub_terms_trial">Gratis per %1$d giorni, poi %2$s addebitato ogni anno. Si rinnova automaticamente fino all\'annullamento. Annulla su Google Play prima della fine della prova per non pagare.</string>
+    <string name="sub_terms_optional">Non è necessario un abbonamento per usare l\'app. Gli allenamenti gratuiti restano disponibili.</string>
+</resources>

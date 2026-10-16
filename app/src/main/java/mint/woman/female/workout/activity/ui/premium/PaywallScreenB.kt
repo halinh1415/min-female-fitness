@@ -185,15 +185,19 @@ fun PaywallScreenB(
                     }
                 }
                 PriceErrorRow(footer)
+                // Chính sách Subscriptions: ngay dưới nút mua ghi rõ giá, chu kỳ trừ tiền, tự gia hạn và không bắt buộc đăng ký.
+                val terms = when {
+                    selected == PaywallPlan.LIFETIME -> stringResource(R.string.pwb_note_lifetime)
+                    trialShown && prices.yearly != null -> stringResource(R.string.sub_terms_trial, prices.trialDays, prices.yearly)
+                    selected == PaywallPlan.SPECIAL && prices.special != null ->
+                        stringResource(R.string.sub_terms_yearly, prices.special.price)
+                    selected == PaywallPlan.MONTHLY && prices.monthly != null -> stringResource(R.string.sub_terms_monthly, prices.monthly)
+                    selected == PaywallPlan.YEARLY && prices.yearly != null -> stringResource(R.string.sub_terms_yearly, prices.yearly)
+                    else -> stringResource(R.string.pwb_note_sub)
+                }
                 Text(
-                    when {
-                        trialShown && prices.yearly != null -> stringResource(R.string.pwb_note_trial, prices.trialDays, prices.yearly)
-                        selected == PaywallPlan.LIFETIME -> stringResource(R.string.pwb_note_lifetime)
-                        selected == PaywallPlan.SPECIAL && prices.special != null ->
-                            stringResource(R.string.pwb_yearly_price, prices.special.price) + "\n" + stringResource(R.string.pwb_note_sub)
-                        else -> stringResource(R.string.pwb_note_sub)
-                    },
-                    color = colors.muted,
+                    terms + "\n" + stringResource(R.string.sub_terms_optional),
+                    color = colors.body,
                     fontSize = 12.sp,
                     lineHeight = 16.sp,
                     textAlign = TextAlign.Center,

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sub_terms_yearly">Jahresabo: %s, jährlich berechnet. Verlängert sich automatisch bis zur Kündigung. Jederzeit in Google Play kündbar.</string>
+    <string name="sub_terms_monthly">Monatsabo: %s, monatlich berechnet. Verlängert sich automatisch bis zur Kündigung. Jederzeit in Google Play kündbar.</string>
+    <string name="sub_terms_trial">%1$d Tage kostenlos, danach %2$s, jährlich berechnet. Verlängert sich automatisch bis zur Kündigung. Kündige vor Ende des Testzeitraums in Google Play, um keine Kosten zu haben.</string>
+    <string name="sub_terms_optional">Für die Nutzung der App ist kein Abo erforderlich. Kostenlose Workouts bleiben verfügbar.</string>
+</resources>
