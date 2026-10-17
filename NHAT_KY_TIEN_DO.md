@@ -2,6 +2,15 @@
 
 > Mới nhất ở trên.
 
+## 2026-10-17 – Màn Lịch sử không hiện ảnh chương trình ✅ (yêu cầu Telegram, chưa push)
+- Nguyên nhân: `DoWorkoutActivity.createHistory()` không bao giờ lưu `image` → `HistoryActivity.imageUrl()` ghép
+  "file:///android_asset/images/" + "" → URL chỉ là thư mục, ảnh trống.
+- `HistoryActivity.imageUrl()`: lấy ảnh hiện tại của chương trình (`imageBase()` + `image`, bài discover lấy từ server),
+  nếu không tra được chương trình thì dùng tên ảnh đã lưu, cuối cùng ảnh mặc định `custom_workout.webp`.
+- `HistoryScreen`: `errorUrl` = ảnh mặc định khi tải lỗi. `DoWorkoutActivity`: lưu `image` cho lịch sử mới.
+- Build OK. Test S8+: tập xong "Tập luyện văn phòng" → Lịch sử hiện đúng ảnh chương trình, không crash.
+  (Trên máy test còn lại 1 dòng lịch sử + huy hiệu "Buổi tập đầu tiên" từ lần test này.)
+
 ## 2026-10-17 – Dịch Cài đặt + màn Thành tích sang 26 ngôn ngữ ✅ (yêu cầu Telegram, đã push)
 - `res/xml/settings_preference.xml`, `sound_settings.xml`: bỏ chữ tiếng Anh cứng (General, Music, Voice Guide, TTS Engine,
   Privacy Policy, Version) → string resource (`pref_category_general`, `pref_tts_engine`, `pref_version` mới; dùng lại

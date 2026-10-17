@@ -377,7 +377,8 @@ private fun HistoryRow(item: HistoryItem, actions: HistoryActions) {
                     .background(MinColor.PinkSoft)
                     .clipToBounds()
             ) {
-                GlideImage(actions.imageUrl(item), Modifier.fillMaxSize(), scaleType = ImageView.ScaleType.CENTER_CROP)
+                GlideImage(actions.imageUrl(item), Modifier.fillMaxSize(), scaleType = ImageView.ScaleType.CENTER_CROP,
+                    errorUrl = HISTORY_IMAGE_FALLBACK)
             }
             Spacer(Modifier.width(12.dp))
             Column(Modifier.weight(1f)) {

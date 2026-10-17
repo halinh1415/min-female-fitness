@@ -463,6 +463,8 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
         mHistoryItem.setStart(mFormatDateTime.format(Calendar.getInstance().getTimeInMillis()));
         mHistoryItem.setProgramId(mProgramObject.getId());
         mHistoryItem.setDayIndex(mDayIndex);
+        // Lưu tên ảnh để màn Lịch sử vẫn có ảnh khi chương trình không còn tra được theo id.
+        mHistoryItem.setImage(mProgramObject.getImage());
     }
 
     @Override

@@ -14,9 +14,9 @@ import androidx.preference.PreferenceManager
 import mint.woman.female.workout.FitnessApplication
 import mint.woman.female.workout.R
 import mint.woman.female.workout.activity.ui.compose.MinTheme
+import mint.woman.female.workout.activity.ui.compose.imageBase
 import mint.woman.female.workout.activity.ui.preview.PreviewActivity
 import mint.woman.female.workout.model.HistoryItem
-import mint.woman.female.workout.retrofit.ApiUtils
 import mint.woman.female.workout.utils.LanguageHelper
 import mint.woman.female.workout.utils.MyPreference
 import java.util.Calendar
@@ -80,10 +80,12 @@ class HistoryActivity : AppCompatActivity(), HistoryActions {
     }
 
     override fun imageUrl(item: HistoryItem): String {
+        // Lịch sử cũ không lưu tên ảnh (image = null) nên trước đây URL chỉ còn thư mục → không hiện ảnh.
+        // Ưu tiên ảnh hiện tại của chương trình, sau đó tên ảnh đã lưu, cuối cùng là ảnh mặc định.
         val program = FitnessApplication.getApplication().getProgram(item.programId)
-        val base = if (program != null && program.discover > 0) ApiUtils.BASE_URL_IMAGES
-        else "file:///android_asset/images/"
-        return base + item.image.orEmpty()
+        if (program != null && !program.image.isNullOrEmpty()) return program.imageBase() + program.image
+        val saved = item.image
+        return if (!saved.isNullOrEmpty()) ASSET_IMAGES + saved else HISTORY_IMAGE_FALLBACK
     }
 
     override fun onBack() {
@@ -113,3 +115,8 @@ class HistoryActivity : AppCompatActivity(), HistoryActions {
         super.applyOverrideConfiguration(overrideConfiguration)
     }
 }
+
+private const val ASSET_IMAGES = "file:///android_asset/images/"
+
+/** Ảnh dùng khi chương trình đã bị xoá hoặc ảnh không tải được. */
+internal const val HISTORY_IMAGE_FALLBACK = ASSET_IMAGES + "custom_workout.webp"
