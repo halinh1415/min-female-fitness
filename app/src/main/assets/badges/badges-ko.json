@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "첫걸음",
+   "subtitle": "모든 여정은 한 번의 운동에서 시작됩니다"
+  },
+  {
+   "id": "consistency",
+   "title": "꾸준함",
+   "subtitle": "매일의 작은 노력이 큰 결과를 만듭니다"
+  },
+  {
+   "id": "rhythm",
+   "title": "운동 시간대",
+   "subtitle": "나에게 맞는 시간에 운동하세요"
+  },
+  {
+   "id": "endurance",
+   "title": "지구력",
+   "subtitle": "쌓인 시간이 진짜 성장이 됩니다"
+  },
+  {
+   "id": "variety",
+   "title": "다양성",
+   "subtitle": "변화를 주고 몸에 도전하세요"
+  },
+  {
+   "id": "journey",
+   "title": "장기적인 성장",
+   "subtitle": "하루가 아닌 주와 달로 재는 성장"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "첫 운동",
+   "description": "첫 운동을 완료하세요.",
+   "hint": "아무 운동이나 끝내고 여정을 시작하세요."
+  },
+  {
+   "id": "ten_workouts",
+   "title": "본격 시작",
+   "description": "운동 10회를 완료하세요.",
+   "hint": "반복이 추진력을 만듭니다."
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "50회 달성",
+   "description": "운동 50회를 완료하세요.",
+   "hint": "50회를 넘어서도 계속 가는 중."
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "100회 클럽",
+   "description": "운동 100회를 완료하세요.",
+   "hint": "세 자릿수, 이제 진짜 습관입니다."
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "멈출 수 없음",
+   "description": "운동 300회를 완료하세요.",
+   "hint": "여기까지 오는 사람은 드물어요. 당신은 해냈어요."
+  },
+  {
+   "id": "three_day_streak",
+   "title": "3일 연속",
+   "description": "3일 연속 운동하세요.",
+   "hint": "첫 연속 기록이 시작하기 가장 어렵습니다."
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "일주일 완주",
+   "description": "7일 연속 운동하세요.",
+   "hint": "하루도 빠짐없이 일주일 내내."
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "습관 형성",
+   "description": "21일 연속 운동하세요.",
+   "hint": "21일이면 습관이 자리 잡기 시작해요."
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "7주 연속",
+   "description": "49일 연속 기록을 달성하세요.",
+   "hint": "7주 동안 하루도 거르지 않았어요."
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "100일 연속",
+   "description": "100일 연속 기록을 달성하세요.",
+   "hint": "100일 연속, 진정한 헌신입니다."
+  },
+  {
+   "id": "early_bird",
+   "title": "아침형",
+   "description": "오전 8시 전에 한 번 운동하세요.",
+   "hint": "가장 이른 시간, 가장 조용한 운동."
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "새벽 전사",
+   "description": "오전 8시 전에 10번 운동하세요.",
+   "hint": "이른 아침, 시원한 공기, 차분한 집중."
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "아침 습관",
+   "description": "오전 8시 전에 40번 운동하세요.",
+   "hint": "해 뜰 무렵 운동이 자연스러워졌어요."
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "저녁 마무리",
+   "description": "오후 6시 이후에 10번 운동하세요.",
+   "hint": "마지막 노력으로 하루를 마무리해요."
+  },
+  {
+   "id": "night_owl",
+   "title": "올빼미",
+   "description": "오후 6시 이후에 40번 운동하세요.",
+   "hint": "저녁 운동은 당신의 시간입니다."
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "주말 전사",
+   "description": "주말 8일 동안 운동하세요.",
+   "hint": "쉬는 날도 운동하는 날이 될 수 있어요."
+  },
+  {
+   "id": "first_hour",
+   "title": "첫 1시간",
+   "description": "운동 시간 60분을 쌓으세요.",
+   "hint": "1시간의 노력은 결코 헛되지 않아요."
+  },
+  {
+   "id": "ten_hours",
+   "title": "10시간 돌파",
+   "description": "운동 시간 600분을 쌓으세요.",
+   "hint": "동작이 자연스러워지기 시작해요."
+  },
+  {
+   "id": "fifty_hours",
+   "title": "50시간 돌파",
+   "description": "운동 시간 3000분을 쌓으세요.",
+   "hint": "꾸준히 투자한 시간은 보답합니다."
+  },
+  {
+   "id": "long_workout",
+   "title": "끝까지 간다",
+   "description": "20분 이상 운동을 10회 완료하세요.",
+   "hint": "긴 운동이 진짜 지구력을 키워요."
+  },
+  {
+   "id": "full_hour_day",
+   "title": "꽉 찬 1시간",
+   "description": "하루에 60분 운동하세요.",
+   "hint": "오래 집중해서 운동한 하루."
+  },
+  {
+   "id": "three_programs",
+   "title": "프로그램 3개",
+   "description": "서로 다른 운동 프로그램 3개를 해 보세요.",
+   "hint": "프로그램마다 다른 도전이 있어요."
+  },
+  {
+   "id": "five_programs",
+   "title": "프로그램 5개",
+   "description": "서로 다른 운동 프로그램 5개를 해 보세요.",
+   "hint": "몸이 익숙해지지 않게 하세요."
+  },
+  {
+   "id": "eight_programs",
+   "title": "프로그램 8개",
+   "description": "서로 다른 운동 프로그램 8개를 해 보세요.",
+   "hint": "하나씩 쌓아 만든 균형 잡힌 루틴."
+  },
+  {
+   "id": "one_month_days",
+   "title": "한 달",
+   "description": "서로 다른 30일 동안 운동하세요.",
+   "hint": "한 달 내내 꾸준히 나왔어요."
+  },
+  {
+   "id": "four_months",
+   "title": "4개월",
+   "description": "서로 다른 4개월 동안 운동하세요.",
+   "hint": "계절이 바뀌어도 습관은 이어져요."
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "피트니스 1년",
+   "description": "서로 다른 12개월 동안 운동하세요.",
+   "hint": "빠르지도 요란하지도 않게, 그저 멈추지 않았어요."
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "12주",
+   "description": "서로 다른 12주 동안 운동하세요.",
+   "hint": "석 달 동안 계속 돌아왔어요."
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "5,000kcal 소모",
+   "description": "운동으로 5000kcal를 소모하세요.",
+   "hint": "꾸준한 노력을 끈기 있게 반복해요."
+  }
+ ]
+}

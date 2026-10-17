@@ -1,0 +1,129 @@
+str.badge_screen_title|ความสำเร็จ
+str.badge_screen_subtitle|หมุดหมายที่ได้มาด้วยความพยายาม ไม่ใช่ของที่ได้มาฟรี
+str.badge_summary|ได้รับแล้ว %1$d จาก %2$d
+str.badge_locked|ล็อกอยู่
+str.badge_earned|ได้รับแล้ว
+str.badge_earned_on|ได้รับเมื่อ %1$s
+str.badge_remaining|อีก %1$d %2$s
+str.badge_empty|ยังไม่มีการตั้งค่าความสำเร็จ
+str.badge_next_up|ความสำเร็จที่ใกล้ที่สุด
+str.badge_view_all|ดูทั้งหมด
+str.badge_unlocked_celebration_title|ได้รับความสำเร็จ
+str.badge_unlocked_celebration_more|+%1$d รายการเพิ่มเติม
+str.badge_continue|ดำเนินการต่อ
+str.badge_share|แชร์
+str.badge_share_chooser|แชร์ความสำเร็จ
+str.badge_share_message|ฉันเพิ่งได้รับความสำเร็จ \"%1$s\" ใน %2$s!
+str.badge_tier_bronze|ทองแดง
+str.badge_tier_silver|เงิน
+str.badge_tier_gold|ทอง
+str.badge_tier_jade|หยก
+str.pref_category_general|ทั่วไป
+str.pref_tts_engine|เอนจินแปลงข้อความเป็นเสียง
+str.pref_version|เวอร์ชัน
+plural.badge_unit_session.other|ครั้ง
+plural.badge_unit_day.other|วัน
+plural.badge_unit_minute.other|นาที
+plural.badge_unit_kcal.other|kcal
+plural.badge_unit_program.other|โปรแกรม
+plural.badge_unit_week.other|สัปดาห์
+plural.badge_unit_month.other|เดือน
+cat.beginnings.title|ก้าวแรก
+cat.beginnings.subtitle|ทุกการเดินทางเริ่มต้นจากการออกกำลังกายหนึ่งครั้ง
+cat.consistency.title|ความสม่ำเสมอ
+cat.consistency.subtitle|ความพยายามเล็ก ๆ ทุกวันสร้างผลลัพธ์ที่ยิ่งใหญ่
+cat.rhythm.title|ช่วงเวลาของวัน
+cat.rhythm.subtitle|ออกกำลังกายในเวลาที่สะดวกสำหรับคุณ
+cat.endurance.title|ความอดทน
+cat.endurance.subtitle|ทุกนาทีรวมกันเป็นความก้าวหน้าจริง
+cat.variety.title|ความหลากหลาย
+cat.variety.subtitle|เปลี่ยนรูปแบบและท้าทายร่างกาย
+cat.journey.title|ความก้าวหน้าระยะยาว
+cat.journey.subtitle|วัดกันเป็นสัปดาห์และเดือน ไม่ใช่เป็นวัน
+badge.first_workout.title|การออกกำลังกายครั้งแรก
+badge.first_workout.description|ออกกำลังกายครั้งแรกให้สำเร็จ
+badge.first_workout.hint|ทำการออกกำลังกายใดก็ได้ให้จบเพื่อเริ่มต้นการเดินทาง
+badge.ten_workouts.title|เริ่มเข้าที่
+badge.ten_workouts.description|ออกกำลังกายครบ 10 ครั้ง
+badge.ten_workouts.hint|การทำซ้ำสร้างแรงส่ง
+badge.fifty_workouts.title|ห้าสิบครั้งแกร่ง
+badge.fifty_workouts.description|ออกกำลังกายครบ 50 ครั้ง
+badge.fifty_workouts.hint|ห้าสิบครั้งแล้ว และยังไปต่อ
+badge.hundred_workouts.title|ชมรม 100 ครั้ง
+badge.hundred_workouts.description|ออกกำลังกายครบ 100 ครั้ง
+badge.hundred_workouts.hint|สามหลักแล้ว - ตอนนี้เป็นนิสัยจริง ๆ
+badge.three_hundred_workouts.title|ไม่มีใครหยุดได้
+badge.three_hundred_workouts.description|ออกกำลังกายครบ 300 ครั้ง
+badge.three_hundred_workouts.hint|น้อยคนจะมาถึงจุดนี้ แต่คุณทำได้
+badge.three_day_streak.title|สามวันติด
+badge.three_day_streak.description|ออกกำลังกาย 3 วันติดต่อกัน
+badge.three_day_streak.hint|สถิติต่อเนื่องครั้งแรกเริ่มยากที่สุด
+badge.seven_day_streak.title|ครบหนึ่งสัปดาห์
+badge.seven_day_streak.description|ออกกำลังกาย 7 วันติดต่อกัน
+badge.seven_day_streak.hint|ทั้งสัปดาห์โดยไม่พลาดสักวัน
+badge.twenty_one_day_streak.title|สร้างนิสัยสำเร็จ
+badge.twenty_one_day_streak.description|ออกกำลังกาย 21 วันติดต่อกัน
+badge.twenty_one_day_streak.hint|21 วันคือช่วงที่นิสัยเริ่มติดตัว
+badge.seven_sevens_streak.title|เจ็ดสัปดาห์แกร่ง
+badge.seven_sevens_streak.description|ทำสถิติต่อเนื่อง 49 วัน
+badge.seven_sevens_streak.hint|เจ็ดสัปดาห์โดยไม่เคยข้ามสักวัน
+badge.hundred_day_streak.title|ต่อเนื่อง 100 วัน
+badge.hundred_day_streak.description|ทำสถิติต่อเนื่อง 100 วัน
+badge.hundred_day_streak.hint|หนึ่งร้อยวันติดต่อกัน - ความทุ่มเทอย่างแท้จริง
+badge.early_bird.title|นกตื่นเช้า
+badge.early_bird.description|ออกกำลังกายหนึ่งครั้งก่อน 8 โมงเช้า
+badge.early_bird.hint|ชั่วโมงที่เช้าที่สุด การฝึกที่เงียบสงบที่สุด
+badge.dawn_warrior.title|นักรบรุ่งอรุณ
+badge.dawn_warrior.description|ออกกำลังกาย 10 ครั้งก่อน 8 โมงเช้า
+badge.dawn_warrior.hint|เช้าตรู่ อากาศเย็นสบาย จิตใจสงบนิ่ง
+badge.sunrise_habit.title|นิสัยยามเช้า
+badge.sunrise_habit.description|ออกกำลังกาย 40 ครั้งก่อน 8 โมงเช้า
+badge.sunrise_habit.hint|การออกกำลังกายยามรุ่งอรุณกลายเป็นธรรมชาติของคุณแล้ว
+badge.evening_wind_down.title|ผ่อนคลายยามเย็น
+badge.evening_wind_down.description|ออกกำลังกาย 10 ครั้งหลัง 6 โมงเย็น
+badge.evening_wind_down.hint|ปิดท้ายวันด้วยความพยายามครั้งสุดท้าย
+badge.night_owl.title|นกฮูกกลางคืน
+badge.night_owl.description|ออกกำลังกาย 40 ครั้งหลัง 6 โมงเย็น
+badge.night_owl.hint|การออกกำลังกายตอนเย็นเป็นเวลาของคุณ
+badge.weekend_warrior.title|นักรบวันหยุด
+badge.weekend_warrior.description|ออกกำลังกายในวันหยุดสุดสัปดาห์ 8 วัน
+badge.weekend_warrior.hint|วันพักก็เป็นวันออกกำลังกายได้
+badge.first_hour.title|ชั่วโมงแรก
+badge.first_hour.description|สะสมเวลาออกกำลังกาย 60 นาที
+badge.first_hour.hint|ความพยายามหนึ่งชั่วโมงไม่เคยสูญเปล่า
+badge.ten_hours.title|สิบชั่วโมง
+badge.ten_hours.description|สะสมเวลาออกกำลังกาย 600 นาที
+badge.ten_hours.hint|ท่าทางเริ่มเป็นธรรมชาติ
+badge.fifty_hours.title|ห้าสิบชั่วโมง
+badge.fifty_hours.description|สะสมเวลาออกกำลังกาย 3000 นาที
+badge.fifty_hours.hint|เวลาที่ลงทุนอย่างสม่ำเสมอให้ผลตอบแทนเสมอ
+badge.long_workout.title|ไปให้สุด
+badge.long_workout.description|ออกกำลังกายครั้งละ 20 นาทีขึ้นไปครบ 10 ครั้ง
+badge.long_workout.hint|การฝึกที่นานขึ้นสร้างความอดทนที่แท้จริง
+badge.full_hour_day.title|เต็มหนึ่งชั่วโมง
+badge.full_hour_day.description|ออกกำลังกาย 60 นาทีภายในวันเดียว
+badge.full_hour_day.hint|หนึ่งวันแห่งการฝึกอย่างยาวนานและมีสมาธิ
+badge.three_programs.title|สามโปรแกรม
+badge.three_programs.description|ลองโปรแกรมออกกำลังกาย 3 แบบที่ต่างกัน
+badge.three_programs.hint|แต่ละโปรแกรมท้าทายคุณต่างกัน
+badge.five_programs.title|ห้าโปรแกรม
+badge.five_programs.description|ลองโปรแกรมออกกำลังกาย 5 แบบที่ต่างกัน
+badge.five_programs.hint|ทำให้ร่างกายไม่ชินอยู่เสมอ
+badge.eight_programs.title|แปดโปรแกรม
+badge.eight_programs.description|ลองโปรแกรมออกกำลังกาย 8 แบบที่ต่างกัน
+badge.eight_programs.hint|กิจวัตรที่ครบถ้วน สร้างขึ้นทีละส่วน
+badge.one_month_days.title|หนึ่งเดือน
+badge.one_month_days.description|ออกกำลังกายใน 30 วันที่ต่างกัน
+badge.one_month_days.hint|มาฝึกอย่างสม่ำเสมอตลอดทั้งเดือน
+badge.four_months.title|สี่เดือน
+badge.four_months.description|ออกกำลังกายใน 4 เดือนที่ต่างกัน
+badge.four_months.hint|นิสัยผ่านพ้นการเปลี่ยนฤดูกาลไปได้
+badge.year_of_fitness.title|หนึ่งปีแห่งฟิตเนส
+badge.year_of_fitness.description|ออกกำลังกายใน 12 เดือนที่ต่างกัน
+badge.year_of_fitness.hint|ไม่เร็ว ไม่โฉ่งฉ่าง แค่ไม่เคยหยุด
+badge.twelve_weeks.title|สิบสองสัปดาห์
+badge.twelve_weeks.description|ออกกำลังกายใน 12 สัปดาห์ที่ต่างกัน
+badge.twelve_weeks.hint|สามเดือนที่กลับมาฝึกครั้งแล้วครั้งเล่า
+badge.calorie_burn_5000.title|เผาผลาญ 5,000 kcal
+badge.calorie_burn_5000.description|เผาผลาญ 5000 kcal จากการออกกำลังกาย
+badge.calorie_burn_5000.hint|ความพยายามที่มั่นคง ทำซ้ำอย่างอดทน

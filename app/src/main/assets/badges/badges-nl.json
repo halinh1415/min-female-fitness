@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "Eerste stappen",
+   "subtitle": "Elke reis begint met één training"
+  },
+  {
+   "id": "consistency",
+   "title": "Volharding",
+   "subtitle": "Kleine dagelijkse inspanningen leveren veel op"
+  },
+  {
+   "id": "rhythm",
+   "title": "Tijdstip",
+   "subtitle": "Train wanneer het jou uitkomt"
+  },
+  {
+   "id": "endurance",
+   "title": "Uithoudingsvermogen",
+   "subtitle": "Minuten tellen op tot echte vooruitgang"
+  },
+  {
+   "id": "variety",
+   "title": "Afwisseling",
+   "subtitle": "Wissel af en daag je lichaam uit"
+  },
+  {
+   "id": "journey",
+   "title": "Langetermijnvooruitgang",
+   "subtitle": "Gemeten in weken en maanden, niet in dagen"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "Eerste training",
+   "description": "Voltooi je allereerste training.",
+   "hint": "Rond een willekeurige training af om te beginnen."
+  },
+  {
+   "id": "ten_workouts",
+   "title": "Op gang",
+   "description": "Voltooi 10 trainingen.",
+   "hint": "Herhaling zorgt voor vaart."
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "Sterke vijftig",
+   "description": "Voltooi 50 trainingen.",
+   "hint": "Vijftig trainingen en je gaat nog steeds door."
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "Honderdclub",
+   "description": "Voltooi 100 trainingen.",
+   "hint": "Drie cijfers: nu echt een gewoonte."
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "Niet te stoppen",
+   "description": "Voltooi 300 trainingen.",
+   "hint": "Weinigen komen zo ver. Jij wel."
+  },
+  {
+   "id": "three_day_streak",
+   "title": "Drie op rij",
+   "description": "Train 3 dagen achter elkaar.",
+   "hint": "De eerste reeks is het moeilijkst om te beginnen."
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "Volle week",
+   "description": "Train 7 dagen achter elkaar.",
+   "hint": "Een hele week zonder een dag over te slaan."
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "Gewoonte gevormd",
+   "description": "Train 21 dagen achter elkaar.",
+   "hint": "Na 21 dagen begint een gewoonte te blijven hangen."
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "Zeven sterke weken",
+   "description": "Bereik een reeks van 49 dagen.",
+   "hint": "Zeven weken zonder ook maar één dag over te slaan."
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "Reeks van 100 dagen",
+   "description": "Bereik een reeks van 100 dagen.",
+   "hint": "Honderd dagen achter elkaar: echte toewijding."
+  },
+  {
+   "id": "early_bird",
+   "title": "Vroege vogel",
+   "description": "Train één keer voor 8 uur 's ochtends.",
+   "hint": "Het vroegste uur, de rustigste training."
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "Ochtendstrijder",
+   "description": "Train 10 keer voor 8 uur 's ochtends.",
+   "hint": "Vroege ochtenden, frisse lucht, rustige focus."
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "Ochtendgewoonte",
+   "description": "Train 40 keer voor 8 uur 's ochtends.",
+   "hint": "Trainen bij zonsopgang is een tweede natuur geworden."
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "Avondafsluiter",
+   "description": "Train 10 keer na 18.00 uur.",
+   "hint": "De dag afsluiten met een laatste inspanning."
+  },
+  {
+   "id": "night_owl",
+   "title": "Nachtuil",
+   "description": "Train 40 keer na 18.00 uur.",
+   "hint": "De avondtraining is van jou."
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "Weekendstrijder",
+   "description": "Train op 8 weekenddagen.",
+   "hint": "Vrije dagen kunnen ook trainingsdagen zijn."
+  },
+  {
+   "id": "first_hour",
+   "title": "Het eerste uur",
+   "description": "Verzamel 60 trainingsminuten.",
+   "hint": "Een uur inspanning is nooit verspild."
+  },
+  {
+   "id": "ten_hours",
+   "title": "Tien uur",
+   "description": "Verzamel 600 trainingsminuten.",
+   "hint": "De bewegingen beginnen natuurlijk te voelen."
+  },
+  {
+   "id": "fifty_hours",
+   "title": "Vijftig sterke uren",
+   "description": "Verzamel 3000 trainingsminuten.",
+   "hint": "Gestaag geïnvesteerde tijd betaalt zich terug."
+  },
+  {
+   "id": "long_workout",
+   "title": "De lange adem",
+   "description": "Voltooi 10 trainingen van 20 minuten of langer.",
+   "hint": "Langere sessies bouwen echt uithoudingsvermogen op."
+  },
+  {
+   "id": "full_hour_day",
+   "title": "Vol uur",
+   "description": "Train 60 minuten op één dag.",
+   "hint": "Eén lange, gefocuste trainingsdag."
+  },
+  {
+   "id": "three_programs",
+   "title": "Drie programma's",
+   "description": "Probeer 3 verschillende trainingsprogramma's.",
+   "hint": "Elk programma daagt je anders uit."
+  },
+  {
+   "id": "five_programs",
+   "title": "Vijf programma's",
+   "description": "Probeer 5 verschillende trainingsprogramma's.",
+   "hint": "Houd je lichaam scherp."
+  },
+  {
+   "id": "eight_programs",
+   "title": "Acht programma's",
+   "description": "Probeer 8 verschillende trainingsprogramma's.",
+   "hint": "Een veelzijdige routine, stukje bij beetje opgebouwd."
+  },
+  {
+   "id": "one_month_days",
+   "title": "Eén maand",
+   "description": "Train op 30 verschillende dagen.",
+   "hint": "Een hele maand blijven komen."
+  },
+  {
+   "id": "four_months",
+   "title": "Vier maanden",
+   "description": "Train in 4 verschillende maanden.",
+   "hint": "De gewoonte overleeft de wisseling van seizoen."
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "Een jaar fitness",
+   "description": "Train in 12 verschillende maanden.",
+   "hint": "Niet snel. Niet luid. Gewoon nooit gestopt."
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "Twaalf weken",
+   "description": "Train in 12 verschillende weken.",
+   "hint": "Drie maanden lang steeds teruggekomen."
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "5.000 kcal verbrand",
+   "description": "Verbrand 5000 kcal met trainen.",
+   "hint": "Gestage inzet, geduldig herhaald."
+  }
+ ]
+}

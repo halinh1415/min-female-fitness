@@ -23,7 +23,7 @@
             app:useSimpleSummaryProvider="true"
             />
     </PreferenceCategory>
-    <PreferenceCategory app:title="General">
+    <PreferenceCategory app:title="@string/pref_category_general">
         <SwitchPreference
             app:defaultValue="true"
             app:icon="@drawable/ic_access_time_black_24dp"

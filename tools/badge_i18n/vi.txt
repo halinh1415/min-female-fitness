@@ -1,0 +1,129 @@
+str.badge_screen_title|Thành tích
+str.badge_screen_subtitle|Những cột mốc đạt được bằng nỗ lực, không phải được tặng.
+str.badge_summary|Đã đạt %1$d/%2$d
+str.badge_locked|Chưa mở
+str.badge_earned|Đã đạt
+str.badge_earned_on|Đạt ngày %1$s
+str.badge_remaining|Còn %1$d %2$s
+str.badge_empty|Chưa có thành tích nào.
+str.badge_next_up|Thành tích gần nhất
+str.badge_view_all|Xem tất cả
+str.badge_unlocked_celebration_title|Đạt thành tích mới
+str.badge_unlocked_celebration_more|+%1$d thành tích khác
+str.badge_continue|Tiếp tục
+str.badge_share|Chia sẻ
+str.badge_share_chooser|Chia sẻ thành tích
+str.badge_share_message|Mình vừa đạt thành tích \"%1$s\" trên %2$s!
+str.badge_tier_bronze|Đồng
+str.badge_tier_silver|Bạc
+str.badge_tier_gold|Vàng
+str.badge_tier_jade|Ngọc
+str.pref_category_general|Chung
+str.pref_tts_engine|Công cụ đọc văn bản
+str.pref_version|Phiên bản
+plural.badge_unit_session.other|buổi tập
+plural.badge_unit_day.other|ngày
+plural.badge_unit_minute.other|phút
+plural.badge_unit_kcal.other|kcal
+plural.badge_unit_program.other|chương trình
+plural.badge_unit_week.other|tuần
+plural.badge_unit_month.other|tháng
+cat.beginnings.title|Bước đầu tiên
+cat.beginnings.subtitle|Mọi hành trình đều bắt đầu từ một buổi tập
+cat.consistency.title|Kiên trì
+cat.consistency.subtitle|Nỗ lực nhỏ mỗi ngày tạo nên kết quả lớn
+cat.rhythm.title|Thời điểm tập
+cat.rhythm.subtitle|Tập vào lúc phù hợp với bạn
+cat.endurance.title|Sức bền
+cat.endurance.subtitle|Từng phút cộng lại thành tiến bộ thật
+cat.variety.title|Đa dạng
+cat.variety.subtitle|Đổi mới bài tập để thử thách cơ thể
+cat.journey.title|Tiến bộ lâu dài
+cat.journey.subtitle|Đo bằng tuần và tháng, không phải từng ngày
+badge.first_workout.title|Buổi tập đầu tiên
+badge.first_workout.description|Hoàn thành buổi tập đầu tiên.
+badge.first_workout.hint|Hoàn thành một bài tập bất kỳ để bắt đầu hành trình.
+badge.ten_workouts.title|Bắt nhịp
+badge.ten_workouts.description|Hoàn thành 10 buổi tập.
+badge.ten_workouts.hint|Lặp lại tạo nên đà tiến.
+badge.fifty_workouts.title|Năm mươi buổi
+badge.fifty_workouts.description|Hoàn thành 50 buổi tập.
+badge.fifty_workouts.hint|Năm mươi buổi và vẫn đang tiếp tục.
+badge.hundred_workouts.title|Câu lạc bộ 100
+badge.hundred_workouts.description|Hoàn thành 100 buổi tập.
+badge.hundred_workouts.hint|Ba chữ số - giờ đã thành thói quen thật sự.
+badge.three_hundred_workouts.title|Không thể cản
+badge.three_hundred_workouts.description|Hoàn thành 300 buổi tập.
+badge.three_hundred_workouts.hint|Ít ai đi được xa thế này. Bạn đã làm được.
+badge.three_day_streak.title|Ba ngày liền
+badge.three_day_streak.description|Tập 3 ngày liên tiếp.
+badge.three_day_streak.hint|Chuỗi đầu tiên là khó bắt đầu nhất.
+badge.seven_day_streak.title|Trọn một tuần
+badge.seven_day_streak.description|Tập 7 ngày liên tiếp.
+badge.seven_day_streak.hint|Cả tuần không bỏ ngày nào.
+badge.twenty_one_day_streak.title|Thành thói quen
+badge.twenty_one_day_streak.description|Tập 21 ngày liên tiếp.
+badge.twenty_one_day_streak.hint|21 ngày là lúc thói quen bắt đầu bền vững.
+badge.seven_sevens_streak.title|Bảy tuần bền bỉ
+badge.seven_sevens_streak.description|Đạt chuỗi 49 ngày.
+badge.seven_sevens_streak.hint|Bảy tuần không bỏ một ngày nào.
+badge.hundred_day_streak.title|Chuỗi 100 ngày
+badge.hundred_day_streak.description|Đạt chuỗi 100 ngày.
+badge.hundred_day_streak.hint|Một trăm ngày liền - sự tận tâm thật sự.
+badge.early_bird.title|Dậy sớm
+badge.early_bird.description|Tập một lần trước 8 giờ sáng.
+badge.early_bird.hint|Giờ sớm nhất, phòng tập yên tĩnh nhất.
+badge.dawn_warrior.title|Chiến binh bình minh
+badge.dawn_warrior.description|Tập 10 lần trước 8 giờ sáng.
+badge.dawn_warrior.hint|Sáng sớm, không khí mát, tâm trí tập trung.
+badge.sunrise_habit.title|Thói quen buổi sáng
+badge.sunrise_habit.description|Tập 40 lần trước 8 giờ sáng.
+badge.sunrise_habit.hint|Tập lúc bình minh đã trở thành bản năng.
+badge.evening_wind_down.title|Thư giãn buổi tối
+badge.evening_wind_down.description|Tập 10 lần sau 6 giờ tối.
+badge.evening_wind_down.hint|Khép lại một ngày bằng nỗ lực cuối cùng.
+badge.night_owl.title|Cú đêm
+badge.night_owl.description|Tập 40 lần sau 6 giờ tối.
+badge.night_owl.hint|Buổi tập tối là của riêng bạn.
+badge.weekend_warrior.title|Chiến binh cuối tuần
+badge.weekend_warrior.description|Tập vào 8 ngày cuối tuần.
+badge.weekend_warrior.hint|Ngày nghỉ vẫn có thể là ngày tập.
+badge.first_hour.title|Giờ tập đầu tiên
+badge.first_hour.description|Tích lũy 60 phút tập luyện.
+badge.first_hour.hint|Một giờ nỗ lực không bao giờ uổng phí.
+badge.ten_hours.title|Mười giờ tập
+badge.ten_hours.description|Tích lũy 600 phút tập luyện.
+badge.ten_hours.hint|Các động tác bắt đầu trở nên tự nhiên.
+badge.fifty_hours.title|Năm mươi giờ bền bỉ
+badge.fifty_hours.description|Tích lũy 3000 phút tập luyện.
+badge.fifty_hours.hint|Thời gian đầu tư đều đặn sẽ được đền đáp.
+badge.long_workout.title|Đi đường dài
+badge.long_workout.description|Hoàn thành 10 buổi tập từ 20 phút trở lên.
+badge.long_workout.hint|Buổi tập dài xây dựng sức bền thật sự.
+badge.full_hour_day.title|Một giờ trọn vẹn
+badge.full_hour_day.description|Tập 60 phút trong một ngày.
+badge.full_hour_day.hint|Một ngày tập trung luyện tập thật lâu.
+badge.three_programs.title|Ba chương trình
+badge.three_programs.description|Thử 3 chương trình tập khác nhau.
+badge.three_programs.hint|Mỗi chương trình thử thách bạn một kiểu.
+badge.five_programs.title|Năm chương trình
+badge.five_programs.description|Thử 5 chương trình tập khác nhau.
+badge.five_programs.hint|Khiến cơ thể luôn bất ngờ.
+badge.eight_programs.title|Tám chương trình
+badge.eight_programs.description|Thử 8 chương trình tập khác nhau.
+badge.eight_programs.hint|Một lịch tập toàn diện, xây dựng từng phần.
+badge.one_month_days.title|Một tháng
+badge.one_month_days.description|Tập vào 30 ngày khác nhau.
+badge.one_month_days.hint|Trọn một tháng có mặt đều đặn.
+badge.four_months.title|Bốn tháng
+badge.four_months.description|Tập trong 4 tháng khác nhau.
+badge.four_months.hint|Thói quen vẫn vững qua mùa thay đổi.
+badge.year_of_fitness.title|Một năm luyện tập
+badge.year_of_fitness.description|Tập trong 12 tháng khác nhau.
+badge.year_of_fitness.hint|Không nhanh. Không ồn ào. Chỉ là chưa từng dừng lại.
+badge.twelve_weeks.title|Mười hai tuần
+badge.twelve_weeks.description|Tập trong 12 tuần khác nhau.
+badge.twelve_weeks.hint|Ba tháng liên tục quay lại tập.
+badge.calorie_burn_5000.title|Đốt 5.000 kcal
+badge.calorie_burn_5000.description|Đốt 5000 kcal qua các buổi tập.
+badge.calorie_burn_5000.hint|Nỗ lực đều đặn, kiên nhẫn lặp lại.

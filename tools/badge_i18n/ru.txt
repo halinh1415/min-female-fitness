@@ -1,0 +1,150 @@
+str.badge_screen_title|Достижения
+str.badge_screen_subtitle|Рубежи, которые зарабатывают усилием, а не получают в подарок.
+str.badge_summary|Получено %1$d из %2$d
+str.badge_locked|Закрыто
+str.badge_earned|Получено
+str.badge_earned_on|Получено %1$s
+str.badge_remaining|Осталось %1$d %2$s
+str.badge_empty|Достижения пока не настроены.
+str.badge_next_up|Ближайшее достижение
+str.badge_view_all|Смотреть все
+str.badge_unlocked_celebration_title|Достижение получено
+str.badge_unlocked_celebration_more|+%1$d ещё
+str.badge_continue|Продолжить
+str.badge_share|Поделиться
+str.badge_share_chooser|Поделиться достижением
+str.badge_share_message|Я только что получила достижение «%1$s» в %2$s!
+str.badge_tier_bronze|Бронза
+str.badge_tier_silver|Серебро
+str.badge_tier_gold|Золото
+str.badge_tier_jade|Нефрит
+str.pref_category_general|Общие
+str.pref_tts_engine|Движок синтеза речи
+str.pref_version|Версия
+plural.badge_unit_session.one|тренировка
+plural.badge_unit_session.few|тренировки
+plural.badge_unit_session.many|тренировок
+plural.badge_unit_session.other|тренировки
+plural.badge_unit_day.one|день
+plural.badge_unit_day.few|дня
+plural.badge_unit_day.many|дней
+plural.badge_unit_day.other|дня
+plural.badge_unit_minute.one|минута
+plural.badge_unit_minute.few|минуты
+plural.badge_unit_minute.many|минут
+plural.badge_unit_minute.other|минуты
+plural.badge_unit_kcal.one|ккал
+plural.badge_unit_kcal.few|ккал
+plural.badge_unit_kcal.many|ккал
+plural.badge_unit_kcal.other|ккал
+plural.badge_unit_program.one|программа
+plural.badge_unit_program.few|программы
+plural.badge_unit_program.many|программ
+plural.badge_unit_program.other|программы
+plural.badge_unit_week.one|неделя
+plural.badge_unit_week.few|недели
+plural.badge_unit_week.many|недель
+plural.badge_unit_week.other|недели
+plural.badge_unit_month.one|месяц
+plural.badge_unit_month.few|месяца
+plural.badge_unit_month.many|месяцев
+plural.badge_unit_month.other|месяца
+cat.beginnings.title|Первые шаги
+cat.beginnings.subtitle|Любой путь начинается с одной тренировки
+cat.consistency.title|Постоянство
+cat.consistency.subtitle|Маленькие ежедневные усилия дают большой результат
+cat.rhythm.title|Время дня
+cat.rhythm.subtitle|Тренируйтесь, когда вам удобно
+cat.endurance.title|Выносливость
+cat.endurance.subtitle|Минуты складываются в настоящий прогресс
+cat.variety.title|Разнообразие
+cat.variety.subtitle|Меняйте нагрузку и бросайте вызов телу
+cat.journey.title|Долгий путь
+cat.journey.subtitle|Измеряется неделями и месяцами, а не днями
+badge.first_workout.title|Первая тренировка
+badge.first_workout.description|Завершите свою первую тренировку.
+badge.first_workout.hint|Завершите любую тренировку, чтобы начать путь.
+badge.ten_workouts.title|Втягиваюсь
+badge.ten_workouts.description|Завершите 10 тренировок.
+badge.ten_workouts.hint|Повторение создаёт импульс.
+badge.fifty_workouts.title|Пятьдесят
+badge.fifty_workouts.description|Завершите 50 тренировок.
+badge.fifty_workouts.hint|Пятьдесят тренировок, и вы продолжаете.
+badge.hundred_workouts.title|Клуб 100
+badge.hundred_workouts.description|Завершите 100 тренировок.
+badge.hundred_workouts.hint|Трёхзначное число — это уже настоящая привычка.
+badge.three_hundred_workouts.title|Неудержимая
+badge.three_hundred_workouts.description|Завершите 300 тренировок.
+badge.three_hundred_workouts.hint|Мало кто доходит так далеко. Вы дошли.
+badge.three_day_streak.title|Три подряд
+badge.three_day_streak.description|Тренируйтесь 3 дня подряд.
+badge.three_day_streak.hint|Первую серию начать труднее всего.
+badge.seven_day_streak.title|Целая неделя
+badge.seven_day_streak.description|Тренируйтесь 7 дней подряд.
+badge.seven_day_streak.hint|Целая неделя без пропусков.
+badge.twenty_one_day_streak.title|Привычка сформирована
+badge.twenty_one_day_streak.description|Тренируйтесь 21 день подряд.
+badge.twenty_one_day_streak.hint|За 21 день привычка начинает закрепляться.
+badge.seven_sevens_streak.title|Семь сильных недель
+badge.seven_sevens_streak.description|Достигните серии в 49 дней.
+badge.seven_sevens_streak.hint|Семь недель без единого пропуска.
+badge.hundred_day_streak.title|Серия 100 дней
+badge.hundred_day_streak.description|Достигните серии в 100 дней.
+badge.hundred_day_streak.hint|Сто дней подряд — настоящая преданность делу.
+badge.early_bird.title|Ранняя пташка
+badge.early_bird.description|Потренируйтесь один раз до 8 утра.
+badge.early_bird.hint|Самый ранний час, самая спокойная тренировка.
+badge.dawn_warrior.title|Воин рассвета
+badge.dawn_warrior.description|Потренируйтесь 10 раз до 8 утра.
+badge.dawn_warrior.hint|Раннее утро, свежий воздух, спокойная концентрация.
+badge.sunrise_habit.title|Утренняя привычка
+badge.sunrise_habit.description|Потренируйтесь 40 раз до 8 утра.
+badge.sunrise_habit.hint|Тренировки на рассвете стали второй натурой.
+badge.evening_wind_down.title|Вечерняя разрядка
+badge.evening_wind_down.description|Потренируйтесь 10 раз после 18:00.
+badge.evening_wind_down.hint|Завершить день последним усилием.
+badge.night_owl.title|Сова
+badge.night_owl.description|Потренируйтесь 40 раз после 18:00.
+badge.night_owl.hint|Вечерняя тренировка — ваше время.
+badge.weekend_warrior.title|Воин выходных
+badge.weekend_warrior.description|Потренируйтесь в 8 выходных дней.
+badge.weekend_warrior.hint|Выходные тоже могут быть днями тренировок.
+badge.first_hour.title|Первый час
+badge.first_hour.description|Наберите 60 минут тренировок.
+badge.first_hour.hint|Час усилий никогда не бывает напрасным.
+badge.ten_hours.title|Десять часов
+badge.ten_hours.description|Наберите 600 минут тренировок.
+badge.ten_hours.hint|Движения начинают получаться естественно.
+badge.fifty_hours.title|Пятьдесят часов
+badge.fifty_hours.description|Наберите 3000 минут тренировок.
+badge.fifty_hours.hint|Время, вложенное постоянно, окупается.
+badge.long_workout.title|На длинной дистанции
+badge.long_workout.description|Завершите 10 тренировок по 20 минут и дольше.
+badge.long_workout.hint|Длинные тренировки развивают настоящую выносливость.
+badge.full_hour_day.title|Полный час
+badge.full_hour_day.description|Тренируйтесь 60 минут за один день.
+badge.full_hour_day.hint|Один долгий день сосредоточенных тренировок.
+badge.three_programs.title|Три программы
+badge.three_programs.description|Попробуйте 3 разные программы тренировок.
+badge.three_programs.hint|Каждая программа бросает вызов по-своему.
+badge.five_programs.title|Пять программ
+badge.five_programs.description|Попробуйте 5 разных программ тренировок.
+badge.five_programs.hint|Не давайте телу привыкнуть.
+badge.eight_programs.title|Восемь программ
+badge.eight_programs.description|Попробуйте 8 разных программ тренировок.
+badge.eight_programs.hint|Разносторонний режим, собранный по частям.
+badge.one_month_days.title|Один месяц
+badge.one_month_days.description|Тренируйтесь в 30 разных дней.
+badge.one_month_days.hint|Целый месяц регулярных занятий.
+badge.four_months.title|Четыре месяца
+badge.four_months.description|Тренируйтесь в течение 4 разных месяцев.
+badge.four_months.hint|Привычка пережила смену сезона.
+badge.year_of_fitness.title|Год фитнеса
+badge.year_of_fitness.description|Тренируйтесь в течение 12 разных месяцев.
+badge.year_of_fitness.hint|Не быстро. Не громко. Просто ни разу не остановились.
+badge.twelve_weeks.title|Двенадцать недель
+badge.twelve_weeks.description|Тренируйтесь в течение 12 разных недель.
+badge.twelve_weeks.hint|Три месяца вы возвращались снова и снова.
+badge.calorie_burn_5000.title|Сожжено 5000 ккал
+badge.calorie_burn_5000.description|Сожгите 5000 ккал на тренировках.
+badge.calorie_burn_5000.hint|Постоянные усилия, терпеливо повторяемые.

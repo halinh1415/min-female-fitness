@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "İlk adımlar",
+   "subtitle": "Her yolculuk tek bir antrenmanla başlar"
+  },
+  {
+   "id": "consistency",
+   "title": "İstikrar",
+   "subtitle": "Küçük günlük çabalar büyük sonuçlar getirir"
+  },
+  {
+   "id": "rhythm",
+   "title": "Günün saati",
+   "subtitle": "Sana uyan saatte antrenman yap"
+  },
+  {
+   "id": "endurance",
+   "title": "Dayanıklılık",
+   "subtitle": "Dakikalar gerçek ilerlemeye dönüşür"
+  },
+  {
+   "id": "variety",
+   "title": "Çeşitlilik",
+   "subtitle": "Değişiklik yap ve vücuduna meydan oku"
+  },
+  {
+   "id": "journey",
+   "title": "Uzun vadeli ilerleme",
+   "subtitle": "Günlerle değil, haftalar ve aylarla ölçülür"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "İlk antrenman",
+   "description": "İlk antrenmanını tamamla.",
+   "hint": "Yolculuğuna başlamak için herhangi bir antrenmanı bitir."
+  },
+  {
+   "id": "ten_workouts",
+   "title": "Isınıyorsun",
+   "description": "10 antrenman tamamla.",
+   "hint": "Tekrar ivme kazandırır."
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "Güçlü elli",
+   "description": "50 antrenman tamamla.",
+   "hint": "Elli antrenman ve hâlâ devam ediyorsun."
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "Yüzler kulübü",
+   "description": "100 antrenman tamamla.",
+   "hint": "Üç haneli: artık gerçek bir alışkanlık."
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "Durdurulamaz",
+   "description": "300 antrenman tamamla.",
+   "hint": "Çok az kişi buraya kadar gelir. Sen geldin."
+  },
+  {
+   "id": "three_day_streak",
+   "title": "Üst üste üç",
+   "description": "3 gün üst üste antrenman yap.",
+   "hint": "İlk seri başlaması en zor olandır."
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "Tam bir hafta",
+   "description": "7 gün üst üste antrenman yap.",
+   "hint": "Bir gün bile kaçırmadan koca bir hafta."
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "Alışkanlık oluştu",
+   "description": "21 gün üst üste antrenman yap.",
+   "hint": "21 gün, bir alışkanlığın yerleşmeye başladığı zamandır."
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "Yedi güçlü hafta",
+   "description": "49 günlük seriye ulaş.",
+   "hint": "Bir gün bile atlamadan yedi hafta."
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "100 günlük seri",
+   "description": "100 günlük seriye ulaş.",
+   "hint": "Yüz gün üst üste: gerçek bağlılık."
+  },
+  {
+   "id": "early_bird",
+   "title": "Erkenci kuş",
+   "description": "Sabah 8'den önce bir kez antrenman yap.",
+   "hint": "En erken saat, en sakin antrenman."
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "Şafak savaşçısı",
+   "description": "Sabah 8'den önce 10 kez antrenman yap.",
+   "hint": "Erken sabahlar, serin hava, sakin odak."
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "Sabah alışkanlığı",
+   "description": "Sabah 8'den önce 40 kez antrenman yap.",
+   "hint": "Gün doğumunda antrenman artık ikinci doğa haline geldi."
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "Akşam kapanışı",
+   "description": "Akşam 6'dan sonra 10 kez antrenman yap.",
+   "hint": "Günü son bir çabayla kapatmak."
+  },
+  {
+   "id": "night_owl",
+   "title": "Gece kuşu",
+   "description": "Akşam 6'dan sonra 40 kez antrenman yap.",
+   "hint": "Akşam antrenmanı senin zamanın."
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "Hafta sonu savaşçısı",
+   "description": "8 hafta sonu gününde antrenman yap.",
+   "hint": "Tatil günleri de antrenman günü olabilir."
+  },
+  {
+   "id": "first_hour",
+   "title": "İlk saat",
+   "description": "Toplam 60 dakika antrenman yap.",
+   "hint": "Bir saatlik emek asla boşa gitmez."
+  },
+  {
+   "id": "ten_hours",
+   "title": "On saat",
+   "description": "Toplam 600 dakika antrenman yap.",
+   "hint": "Hareketler doğal gelmeye başlar."
+  },
+  {
+   "id": "fifty_hours",
+   "title": "Elli güçlü saat",
+   "description": "Toplam 3000 dakika antrenman yap.",
+   "hint": "Düzenli yatırılan zaman karşılığını verir."
+  },
+  {
+   "id": "long_workout",
+   "title": "Sonuna kadar",
+   "description": "20 dakika veya daha uzun 10 antrenman tamamla.",
+   "hint": "Uzun seanslar gerçek dayanıklılık kazandırır."
+  },
+  {
+   "id": "full_hour_day",
+   "title": "Dolu bir saat",
+   "description": "Tek bir günde 60 dakika antrenman yap.",
+   "hint": "Uzun ve odaklı bir antrenman günü."
+  },
+  {
+   "id": "three_programs",
+   "title": "Üç program",
+   "description": "3 farklı antrenman programı dene.",
+   "hint": "Her program sana farklı şekilde meydan okur."
+  },
+  {
+   "id": "five_programs",
+   "title": "Beş program",
+   "description": "5 farklı antrenman programı dene.",
+   "hint": "Vücudunu hep şaşırt."
+  },
+  {
+   "id": "eight_programs",
+   "title": "Sekiz program",
+   "description": "8 farklı antrenman programı dene.",
+   "hint": "Parça parça kurulmuş dengeli bir rutin."
+  },
+  {
+   "id": "one_month_days",
+   "title": "Bir ay",
+   "description": "30 farklı günde antrenman yap.",
+   "hint": "Koca bir ay boyunca hep oradaydın."
+  },
+  {
+   "id": "four_months",
+   "title": "Dört ay",
+   "description": "4 farklı ayda antrenman yap.",
+   "hint": "Alışkanlık mevsim değişimini atlattı."
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "Fitness dolu bir yıl",
+   "description": "12 farklı ayda antrenman yap.",
+   "hint": "Hızlı değil. Gürültülü değil. Sadece hiç durmadın."
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "On iki hafta",
+   "description": "12 farklı haftada antrenman yap.",
+   "hint": "Üç ay boyunca hep geri döndün."
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "5.000 kcal yakıldı",
+   "description": "Antrenmanlarla 5000 kcal yak.",
+   "hint": "İstikrarlı çaba, sabırla tekrarlandı."
+  }
+ ]
+}

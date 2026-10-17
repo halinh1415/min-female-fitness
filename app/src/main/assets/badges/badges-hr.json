@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "Prvi koraci",
+   "subtitle": "Svako putovanje počinje jednim treningom"
+  },
+  {
+   "id": "consistency",
+   "title": "Ustrajnost",
+   "subtitle": "Mali svakodnevni napori donose velike rezultate"
+  },
+  {
+   "id": "rhythm",
+   "title": "Doba dana",
+   "subtitle": "Treniraj kad ti odgovara"
+  },
+  {
+   "id": "endurance",
+   "title": "Izdržljivost",
+   "subtitle": "Minute se zbrajaju u pravi napredak"
+  },
+  {
+   "id": "variety",
+   "title": "Raznolikost",
+   "subtitle": "Mijenjaj vježbe i izazovi svoje tijelo"
+  },
+  {
+   "id": "journey",
+   "title": "Dugoročni napredak",
+   "subtitle": "Mjeri se tjednima i mjesecima, a ne danima"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "Prvi trening",
+   "description": "Završi svoj prvi trening.",
+   "hint": "Završi bilo koji trening i započni svoje putovanje."
+  },
+  {
+   "id": "ten_workouts",
+   "title": "Ulazim u ritam",
+   "description": "Završi 10 treninga.",
+   "hint": "Ponavljanje stvara zamah."
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "Snažnih pedeset",
+   "description": "Završi 50 treninga.",
+   "hint": "Pedeset treninga, a ti i dalje nastavljaš."
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "Klub stotke",
+   "description": "Završi 100 treninga.",
+   "hint": "Troznamenkasto – sada prava navika."
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "Nezaustavljiva",
+   "description": "Završi 300 treninga.",
+   "hint": "Malo tko stigne ovako daleko. Ti jesi."
+  },
+  {
+   "id": "three_day_streak",
+   "title": "Tri zaredom",
+   "description": "Treniraj 3 dana zaredom.",
+   "hint": "Prvi niz najteže je započeti."
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "Cijeli tjedan",
+   "description": "Treniraj 7 dana zaredom.",
+   "hint": "Cijeli tjedan bez propuštenog dana."
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "Navika stvorena",
+   "description": "Treniraj 21 dan zaredom.",
+   "hint": "Nakon 21 dana navika se počinje ustaljivati."
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "Sedam snažnih tjedana",
+   "description": "Ostvari niz od 49 dana.",
+   "hint": "Sedam tjedana bez ijednog propuštenog dana."
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "Niz od 100 dana",
+   "description": "Ostvari niz od 100 dana.",
+   "hint": "Sto dana zaredom – prava predanost."
+  },
+  {
+   "id": "early_bird",
+   "title": "Ranoranilica",
+   "description": "Treniraj jednom prije 8 ujutro.",
+   "hint": "Najraniji sat, najmirniji trening."
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "Ratnica zore",
+   "description": "Treniraj 10 puta prije 8 ujutro.",
+   "hint": "Rana jutra, svjež zrak, mirna usredotočenost."
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "Jutarnja navika",
+   "description": "Treniraj 40 puta prije 8 ujutro.",
+   "hint": "Trening u zoru postao ti je druga priroda."
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "Večernje opuštanje",
+   "description": "Treniraj 10 puta nakon 18 sati.",
+   "hint": "Završi dan posljednjim naporom."
+  },
+  {
+   "id": "night_owl",
+   "title": "Noćna ptica",
+   "description": "Treniraj 40 puta nakon 18 sati.",
+   "hint": "Večernji trening pripada tebi."
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "Vikend ratnica",
+   "description": "Treniraj 8 vikend dana.",
+   "hint": "I slobodni dani mogu biti dani treninga."
+  },
+  {
+   "id": "first_hour",
+   "title": "Prvi sat",
+   "description": "Skupi 60 minuta treninga.",
+   "hint": "Sat truda nikad nije uzaludan."
+  },
+  {
+   "id": "ten_hours",
+   "title": "Deset sati",
+   "description": "Skupi 600 minuta treninga.",
+   "hint": "Pokreti počinju biti prirodni."
+  },
+  {
+   "id": "fifty_hours",
+   "title": "Pedeset sati",
+   "description": "Skupi 3000 minuta treninga.",
+   "hint": "Ustrajno uloženo vrijeme se isplati."
+  },
+  {
+   "id": "long_workout",
+   "title": "Do kraja",
+   "description": "Završi 10 treninga od 20 minuta ili duže.",
+   "hint": "Duži treninzi grade pravu izdržljivost."
+  },
+  {
+   "id": "full_hour_day",
+   "title": "Puni sat",
+   "description": "Treniraj 60 minuta u jednom danu.",
+   "hint": "Jedan dug, usredotočen dan treninga."
+  },
+  {
+   "id": "three_programs",
+   "title": "Tri programa",
+   "description": "Isprobaj 3 različita programa treninga.",
+   "hint": "Svaki program izaziva te na drugačiji način."
+  },
+  {
+   "id": "five_programs",
+   "title": "Pet programa",
+   "description": "Isprobaj 5 različitih programa treninga.",
+   "hint": "Neka tijelo stalno pogađa."
+  },
+  {
+   "id": "eight_programs",
+   "title": "Osam programa",
+   "description": "Isprobaj 8 različitih programa treninga.",
+   "hint": "Svestrana rutina, građena dio po dio."
+  },
+  {
+   "id": "one_month_days",
+   "title": "Jedan mjesec",
+   "description": "Treniraj u 30 različitih dana.",
+   "hint": "Cijeli mjesec dolaženja."
+  },
+  {
+   "id": "four_months",
+   "title": "Četiri mjeseca",
+   "description": "Treniraj u 4 različita mjeseca.",
+   "hint": "Navika je preživjela promjenu godišnjeg doba."
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "Godina fitnessa",
+   "description": "Treniraj u 12 različitih mjeseci.",
+   "hint": "Ne brzo. Ne glasno. Jednostavno nikad nisi stala."
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "Dvanaest tjedana",
+   "description": "Treniraj u 12 različitih tjedana.",
+   "hint": "Tri mjeseca stalnog vraćanja po još."
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "Potrošeno 5000 kcal",
+   "description": "Potroši 5000 kcal treningom.",
+   "hint": "Stalan trud, strpljivo ponavljan."
+  }
+ ]
+}

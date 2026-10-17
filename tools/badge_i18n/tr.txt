@@ -1,0 +1,136 @@
+str.badge_screen_title|Başarılar
+str.badge_screen_subtitle|Hediye edilmeyen, emekle kazanılan kilometre taşları.
+str.badge_summary|%2$d başarıdan %1$d tanesi kazanıldı
+str.badge_locked|Kilitli
+str.badge_earned|Kazanıldı
+str.badge_earned_on|%1$s tarihinde kazanıldı
+str.badge_remaining|%1$d %2$s kaldı
+str.badge_empty|Henüz ayarlanmış başarı yok.
+str.badge_next_up|En yakın başarı
+str.badge_view_all|Tümünü gör
+str.badge_unlocked_celebration_title|Başarı kazanıldı
+str.badge_unlocked_celebration_more|+%1$d tane daha kazanıldı
+str.badge_continue|Devam et
+str.badge_share|Paylaş
+str.badge_share_chooser|Başarıyı paylaş
+str.badge_share_message|%2$s uygulamasında \"%1$s\" başarısını kazandım!
+str.badge_tier_bronze|Bronz
+str.badge_tier_silver|Gümüş
+str.badge_tier_gold|Altın
+str.badge_tier_jade|Yeşim
+str.pref_category_general|Genel
+str.pref_tts_engine|Metin okuma motoru
+str.pref_version|Sürüm
+plural.badge_unit_session.one|antrenman
+plural.badge_unit_session.other|antrenman
+plural.badge_unit_day.one|gün
+plural.badge_unit_day.other|gün
+plural.badge_unit_minute.one|dakika
+plural.badge_unit_minute.other|dakika
+plural.badge_unit_kcal.one|kcal
+plural.badge_unit_kcal.other|kcal
+plural.badge_unit_program.one|program
+plural.badge_unit_program.other|program
+plural.badge_unit_week.one|hafta
+plural.badge_unit_week.other|hafta
+plural.badge_unit_month.one|ay
+plural.badge_unit_month.other|ay
+cat.beginnings.title|İlk adımlar
+cat.beginnings.subtitle|Her yolculuk tek bir antrenmanla başlar
+cat.consistency.title|İstikrar
+cat.consistency.subtitle|Küçük günlük çabalar büyük sonuçlar getirir
+cat.rhythm.title|Günün saati
+cat.rhythm.subtitle|Sana uyan saatte antrenman yap
+cat.endurance.title|Dayanıklılık
+cat.endurance.subtitle|Dakikalar gerçek ilerlemeye dönüşür
+cat.variety.title|Çeşitlilik
+cat.variety.subtitle|Değişiklik yap ve vücuduna meydan oku
+cat.journey.title|Uzun vadeli ilerleme
+cat.journey.subtitle|Günlerle değil, haftalar ve aylarla ölçülür
+badge.first_workout.title|İlk antrenman
+badge.first_workout.description|İlk antrenmanını tamamla.
+badge.first_workout.hint|Yolculuğuna başlamak için herhangi bir antrenmanı bitir.
+badge.ten_workouts.title|Isınıyorsun
+badge.ten_workouts.description|10 antrenman tamamla.
+badge.ten_workouts.hint|Tekrar ivme kazandırır.
+badge.fifty_workouts.title|Güçlü elli
+badge.fifty_workouts.description|50 antrenman tamamla.
+badge.fifty_workouts.hint|Elli antrenman ve hâlâ devam ediyorsun.
+badge.hundred_workouts.title|Yüzler kulübü
+badge.hundred_workouts.description|100 antrenman tamamla.
+badge.hundred_workouts.hint|Üç haneli: artık gerçek bir alışkanlık.
+badge.three_hundred_workouts.title|Durdurulamaz
+badge.three_hundred_workouts.description|300 antrenman tamamla.
+badge.three_hundred_workouts.hint|Çok az kişi buraya kadar gelir. Sen geldin.
+badge.three_day_streak.title|Üst üste üç
+badge.three_day_streak.description|3 gün üst üste antrenman yap.
+badge.three_day_streak.hint|İlk seri başlaması en zor olandır.
+badge.seven_day_streak.title|Tam bir hafta
+badge.seven_day_streak.description|7 gün üst üste antrenman yap.
+badge.seven_day_streak.hint|Bir gün bile kaçırmadan koca bir hafta.
+badge.twenty_one_day_streak.title|Alışkanlık oluştu
+badge.twenty_one_day_streak.description|21 gün üst üste antrenman yap.
+badge.twenty_one_day_streak.hint|21 gün, bir alışkanlığın yerleşmeye başladığı zamandır.
+badge.seven_sevens_streak.title|Yedi güçlü hafta
+badge.seven_sevens_streak.description|49 günlük seriye ulaş.
+badge.seven_sevens_streak.hint|Bir gün bile atlamadan yedi hafta.
+badge.hundred_day_streak.title|100 günlük seri
+badge.hundred_day_streak.description|100 günlük seriye ulaş.
+badge.hundred_day_streak.hint|Yüz gün üst üste: gerçek bağlılık.
+badge.early_bird.title|Erkenci kuş
+badge.early_bird.description|Sabah 8'den önce bir kez antrenman yap.
+badge.early_bird.hint|En erken saat, en sakin antrenman.
+badge.dawn_warrior.title|Şafak savaşçısı
+badge.dawn_warrior.description|Sabah 8'den önce 10 kez antrenman yap.
+badge.dawn_warrior.hint|Erken sabahlar, serin hava, sakin odak.
+badge.sunrise_habit.title|Sabah alışkanlığı
+badge.sunrise_habit.description|Sabah 8'den önce 40 kez antrenman yap.
+badge.sunrise_habit.hint|Gün doğumunda antrenman artık ikinci doğa haline geldi.
+badge.evening_wind_down.title|Akşam kapanışı
+badge.evening_wind_down.description|Akşam 6'dan sonra 10 kez antrenman yap.
+badge.evening_wind_down.hint|Günü son bir çabayla kapatmak.
+badge.night_owl.title|Gece kuşu
+badge.night_owl.description|Akşam 6'dan sonra 40 kez antrenman yap.
+badge.night_owl.hint|Akşam antrenmanı senin zamanın.
+badge.weekend_warrior.title|Hafta sonu savaşçısı
+badge.weekend_warrior.description|8 hafta sonu gününde antrenman yap.
+badge.weekend_warrior.hint|Tatil günleri de antrenman günü olabilir.
+badge.first_hour.title|İlk saat
+badge.first_hour.description|Toplam 60 dakika antrenman yap.
+badge.first_hour.hint|Bir saatlik emek asla boşa gitmez.
+badge.ten_hours.title|On saat
+badge.ten_hours.description|Toplam 600 dakika antrenman yap.
+badge.ten_hours.hint|Hareketler doğal gelmeye başlar.
+badge.fifty_hours.title|Elli güçlü saat
+badge.fifty_hours.description|Toplam 3000 dakika antrenman yap.
+badge.fifty_hours.hint|Düzenli yatırılan zaman karşılığını verir.
+badge.long_workout.title|Sonuna kadar
+badge.long_workout.description|20 dakika veya daha uzun 10 antrenman tamamla.
+badge.long_workout.hint|Uzun seanslar gerçek dayanıklılık kazandırır.
+badge.full_hour_day.title|Dolu bir saat
+badge.full_hour_day.description|Tek bir günde 60 dakika antrenman yap.
+badge.full_hour_day.hint|Uzun ve odaklı bir antrenman günü.
+badge.three_programs.title|Üç program
+badge.three_programs.description|3 farklı antrenman programı dene.
+badge.three_programs.hint|Her program sana farklı şekilde meydan okur.
+badge.five_programs.title|Beş program
+badge.five_programs.description|5 farklı antrenman programı dene.
+badge.five_programs.hint|Vücudunu hep şaşırt.
+badge.eight_programs.title|Sekiz program
+badge.eight_programs.description|8 farklı antrenman programı dene.
+badge.eight_programs.hint|Parça parça kurulmuş dengeli bir rutin.
+badge.one_month_days.title|Bir ay
+badge.one_month_days.description|30 farklı günde antrenman yap.
+badge.one_month_days.hint|Koca bir ay boyunca hep oradaydın.
+badge.four_months.title|Dört ay
+badge.four_months.description|4 farklı ayda antrenman yap.
+badge.four_months.hint|Alışkanlık mevsim değişimini atlattı.
+badge.year_of_fitness.title|Fitness dolu bir yıl
+badge.year_of_fitness.description|12 farklı ayda antrenman yap.
+badge.year_of_fitness.hint|Hızlı değil. Gürültülü değil. Sadece hiç durmadın.
+badge.twelve_weeks.title|On iki hafta
+badge.twelve_weeks.description|12 farklı haftada antrenman yap.
+badge.twelve_weeks.hint|Üç ay boyunca hep geri döndün.
+badge.calorie_burn_5000.title|5.000 kcal yakıldı
+badge.calorie_burn_5000.description|Antrenmanlarla 5000 kcal yak.
+badge.calorie_burn_5000.hint|İstikrarlı çaba, sabırla tekrarlandı.

@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "Premiers pas",
+   "subtitle": "Chaque parcours commence par une séance"
+  },
+  {
+   "id": "consistency",
+   "title": "Régularité",
+   "subtitle": "De petits efforts quotidiens font de grands résultats"
+  },
+  {
+   "id": "rhythm",
+   "title": "Moment de la journée",
+   "subtitle": "Entraîne-toi quand ça te convient"
+  },
+  {
+   "id": "endurance",
+   "title": "Endurance",
+   "subtitle": "Les minutes deviennent de vrais progrès"
+  },
+  {
+   "id": "variety",
+   "title": "Variété",
+   "subtitle": "Varie les séances et challenge ton corps"
+  },
+  {
+   "id": "journey",
+   "title": "Progrès à long terme",
+   "subtitle": "Mesuré en semaines et en mois, pas en jours"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "Première séance",
+   "description": "Termine ta toute première séance.",
+   "hint": "Termine n'importe quelle séance pour commencer."
+  },
+  {
+   "id": "ten_workouts",
+   "title": "Ça démarre",
+   "description": "Termine 10 séances.",
+   "hint": "La répétition crée l'élan."
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "Cinquante et forte",
+   "description": "Termine 50 séances.",
+   "hint": "Cinquante séances, et ça continue."
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "Club des 100",
+   "description": "Termine 100 séances.",
+   "hint": "Trois chiffres : c'est devenu une vraie habitude."
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "Inarrêtable",
+   "description": "Termine 300 séances.",
+   "hint": "Peu arrivent jusqu'ici. Toi, si."
+  },
+  {
+   "id": "three_day_streak",
+   "title": "Trois d'affilée",
+   "description": "Entraîne-toi 3 jours d'affilée.",
+   "hint": "La première série est la plus dure à lancer."
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "Semaine complète",
+   "description": "Entraîne-toi 7 jours d'affilée.",
+   "hint": "Une semaine entière sans manquer un jour."
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "Habitude prise",
+   "description": "Entraîne-toi 21 jours d'affilée.",
+   "hint": "C'est vers 21 jours qu'une habitude s'installe."
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "Sept semaines solides",
+   "description": "Atteins une série de 49 jours.",
+   "hint": "Sept semaines sans sauter un seul jour."
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "Série de 100 jours",
+   "description": "Atteins une série de 100 jours.",
+   "hint": "Cent jours d'affilée : un vrai engagement."
+  },
+  {
+   "id": "early_bird",
+   "title": "Lève-tôt",
+   "description": "Entraîne-toi une fois avant 8 h du matin.",
+   "hint": "L'heure la plus matinale, la séance la plus calme."
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "Guerrière de l'aube",
+   "description": "Entraîne-toi 10 fois avant 8 h du matin.",
+   "hint": "Matins tôt, air frais, concentration paisible."
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "Habitude matinale",
+   "description": "Entraîne-toi 40 fois avant 8 h du matin.",
+   "hint": "S'entraîner au lever du soleil est devenu naturel."
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "Fin de journée",
+   "description": "Entraîne-toi 10 fois après 18 h.",
+   "hint": "Clore la journée par un dernier effort."
+  },
+  {
+   "id": "night_owl",
+   "title": "Oiseau de nuit",
+   "description": "Entraîne-toi 40 fois après 18 h.",
+   "hint": "La séance du soir t'appartient."
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "Guerrière du week-end",
+   "description": "Entraîne-toi 8 jours de week-end.",
+   "hint": "Les jours de repos peuvent aussi être des jours d'entraînement."
+  },
+  {
+   "id": "first_hour",
+   "title": "La première heure",
+   "description": "Cumule 60 minutes d'entraînement.",
+   "hint": "Une heure d'effort n'est jamais perdue."
+  },
+  {
+   "id": "ten_hours",
+   "title": "Dix heures",
+   "description": "Cumule 600 minutes d'entraînement.",
+   "hint": "Les mouvements deviennent naturels."
+  },
+  {
+   "id": "fifty_hours",
+   "title": "Cinquante heures",
+   "description": "Cumule 3000 minutes d'entraînement.",
+   "hint": "Le temps investi avec régularité finit par payer."
+  },
+  {
+   "id": "long_workout",
+   "title": "Jusqu'au bout",
+   "description": "Termine 10 séances de 20 minutes ou plus.",
+   "hint": "Les longues séances bâtissent une vraie endurance."
+  },
+  {
+   "id": "full_hour_day",
+   "title": "Une heure pleine",
+   "description": "Entraîne-toi 60 minutes en une seule journée.",
+   "hint": "Une longue journée d'entraînement concentrée."
+  },
+  {
+   "id": "three_programs",
+   "title": "Trois programmes",
+   "description": "Essaie 3 programmes d'entraînement différents.",
+   "hint": "Chaque programme te challenge autrement."
+  },
+  {
+   "id": "five_programs",
+   "title": "Cinq programmes",
+   "description": "Essaie 5 programmes d'entraînement différents.",
+   "hint": "Surprends ton corps."
+  },
+  {
+   "id": "eight_programs",
+   "title": "Huit programmes",
+   "description": "Essaie 8 programmes d'entraînement différents.",
+   "hint": "Une routine complète, construite pièce par pièce."
+  },
+  {
+   "id": "one_month_days",
+   "title": "Un mois",
+   "description": "Entraîne-toi sur 30 jours différents.",
+   "hint": "Un mois entier de présence."
+  },
+  {
+   "id": "four_months",
+   "title": "Quatre mois",
+   "description": "Entraîne-toi sur 4 mois différents.",
+   "hint": "L'habitude résiste au changement de saison."
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "Une année de fitness",
+   "description": "Entraîne-toi sur 12 mois différents.",
+   "hint": "Pas vite. Pas fort. Simplement sans jamais t'arrêter."
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "Douze semaines",
+   "description": "Entraîne-toi sur 12 semaines différentes.",
+   "hint": "Trois mois à revenir encore et encore."
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "5 000 kcal brûlées",
+   "description": "Brûle 5000 kcal en t'entraînant.",
+   "hint": "Un effort régulier, répété avec patience."
+  }
+ ]
+}

@@ -1,0 +1,143 @@
+str.badge_screen_title|Sasniegumi
+str.badge_screen_subtitle|Atskaites punkti, kas nopelnīti ar pūlēm, nevis dāvināti.
+str.badge_summary|Iegūti %1$d no %2$d
+str.badge_locked|Bloķēts
+str.badge_earned|Iegūts
+str.badge_earned_on|Iegūts %1$s
+str.badge_remaining|Vēl %1$d %2$s
+str.badge_empty|Sasniegumi vēl nav iestatīti.
+str.badge_next_up|Tuvākais sasniegums
+str.badge_view_all|Skatīt visus
+str.badge_unlocked_celebration_title|Sasniegums iegūts
+str.badge_unlocked_celebration_more|+%1$d vēl iegūti
+str.badge_continue|Turpināt
+str.badge_share|Kopīgot
+str.badge_share_chooser|Kopīgot sasniegumu
+str.badge_share_message|Es tikko ieguvu sasniegumu \"%1$s\" lietotnē %2$s!
+str.badge_tier_bronze|Bronza
+str.badge_tier_silver|Sudrabs
+str.badge_tier_gold|Zelts
+str.badge_tier_jade|Nefrīts
+str.pref_category_general|Vispārīgi
+str.pref_tts_engine|Teksta pārveides runā programma
+str.pref_version|Versija
+plural.badge_unit_session.zero|treniņu
+plural.badge_unit_session.one|treniņš
+plural.badge_unit_session.other|treniņi
+plural.badge_unit_day.zero|dienu
+plural.badge_unit_day.one|diena
+plural.badge_unit_day.other|dienas
+plural.badge_unit_minute.zero|minūšu
+plural.badge_unit_minute.one|minūte
+plural.badge_unit_minute.other|minūtes
+plural.badge_unit_kcal.zero|kcal
+plural.badge_unit_kcal.one|kcal
+plural.badge_unit_kcal.other|kcal
+plural.badge_unit_program.zero|programmu
+plural.badge_unit_program.one|programma
+plural.badge_unit_program.other|programmas
+plural.badge_unit_week.zero|nedēļu
+plural.badge_unit_week.one|nedēļa
+plural.badge_unit_week.other|nedēļas
+plural.badge_unit_month.zero|mēnešu
+plural.badge_unit_month.one|mēnesis
+plural.badge_unit_month.other|mēneši
+cat.beginnings.title|Pirmie soļi
+cat.beginnings.subtitle|Katrs ceļš sākas ar vienu treniņu
+cat.consistency.title|Regularitāte
+cat.consistency.subtitle|Mazas ikdienas pūles dod lielus rezultātus
+cat.rhythm.title|Diennakts laiks
+cat.rhythm.subtitle|Trenējies, kad tev ērti
+cat.endurance.title|Izturība
+cat.endurance.subtitle|Minūtes saskaitās īstā progresā
+cat.variety.title|Daudzveidība
+cat.variety.subtitle|Mainies un izaicini savu ķermeni
+cat.journey.title|Ilgtermiņa progress
+cat.journey.subtitle|Mēra nedēļās un mēnešos, nevis dienās
+badge.first_workout.title|Pirmais treniņš
+badge.first_workout.description|Pabeidz savu pirmo treniņu.
+badge.first_workout.hint|Pabeidz jebkuru treniņu, lai sāktu savu ceļu.
+badge.ten_workouts.title|Iesildos
+badge.ten_workouts.description|Pabeidz 10 treniņus.
+badge.ten_workouts.hint|Atkārtošana rada impulsu.
+badge.fifty_workouts.title|Spēcīgie piecdesmit
+badge.fifty_workouts.description|Pabeidz 50 treniņus.
+badge.fifty_workouts.hint|Piecdesmit treniņi, un tu turpini.
+badge.hundred_workouts.title|Simtnieku klubs
+badge.hundred_workouts.description|Pabeidz 100 treniņus.
+badge.hundred_workouts.hint|Trīsciparu skaitlis – tagad īsts ieradums.
+badge.three_hundred_workouts.title|Neapturama
+badge.three_hundred_workouts.description|Pabeidz 300 treniņus.
+badge.three_hundred_workouts.hint|Retais tiek tik tālu. Tu tiki.
+badge.three_day_streak.title|Trīs pēc kārtas
+badge.three_day_streak.description|Trenējies 3 dienas pēc kārtas.
+badge.three_day_streak.hint|Pirmo sēriju sākt ir visgrūtāk.
+badge.seven_day_streak.title|Visa nedēļa
+badge.seven_day_streak.description|Trenējies 7 dienas pēc kārtas.
+badge.seven_day_streak.hint|Vesela nedēļa bez izlaistas dienas.
+badge.twenty_one_day_streak.title|Ieradums izveidots
+badge.twenty_one_day_streak.description|Trenējies 21 dienu pēc kārtas.
+badge.twenty_one_day_streak.hint|Pēc 21 dienas ieradums sāk nostiprināties.
+badge.seven_sevens_streak.title|Septiņas spēcīgas nedēļas
+badge.seven_sevens_streak.description|Sasniedz 49 dienu sēriju.
+badge.seven_sevens_streak.hint|Septiņas nedēļas bez nevienas izlaistas dienas.
+badge.hundred_day_streak.title|100 dienu sērija
+badge.hundred_day_streak.description|Sasniedz 100 dienu sēriju.
+badge.hundred_day_streak.hint|Simts dienas pēc kārtas – īsta apņēmība.
+badge.early_bird.title|Agrais putns
+badge.early_bird.description|Trenējies vienreiz pirms 8 rītā.
+badge.early_bird.hint|Agrākā stunda, mierīgākais treniņš.
+badge.dawn_warrior.title|Rītausmas karotāja
+badge.dawn_warrior.description|Trenējies 10 reizes pirms 8 rītā.
+badge.dawn_warrior.hint|Agri rīti, svaigs gaiss, mierīga koncentrēšanās.
+badge.sunrise_habit.title|Rīta ieradums
+badge.sunrise_habit.description|Trenējies 40 reizes pirms 8 rītā.
+badge.sunrise_habit.hint|Treniņi saullēktā ir kļuvuši par otro dabu.
+badge.evening_wind_down.title|Vakara nomierināšanās
+badge.evening_wind_down.description|Trenējies 10 reizes pēc 18:00.
+badge.evening_wind_down.hint|Noslēdz dienu ar pēdējo piepūli.
+badge.night_owl.title|Nakts pūce
+badge.night_owl.description|Trenējies 40 reizes pēc 18:00.
+badge.night_owl.hint|Vakara treniņš pieder tev.
+badge.weekend_warrior.title|Nedēļas nogales karotāja
+badge.weekend_warrior.description|Trenējies 8 nedēļas nogales dienās.
+badge.weekend_warrior.hint|Arī brīvdienas var būt treniņu dienas.
+badge.first_hour.title|Pirmā stunda
+badge.first_hour.description|Sakrāj 60 treniņu minūtes.
+badge.first_hour.hint|Stunda pūļu nekad nav veltīga.
+badge.ten_hours.title|Desmit stundas
+badge.ten_hours.description|Sakrāj 600 treniņu minūtes.
+badge.ten_hours.hint|Kustības sāk šķist dabiskas.
+badge.fifty_hours.title|Piecdesmit stundas
+badge.fifty_hours.description|Sakrāj 3000 treniņu minūtes.
+badge.fifty_hours.hint|Regulāri ieguldīts laiks atmaksājas.
+badge.long_workout.title|Līdz galam
+badge.long_workout.description|Pabeidz 10 treniņus, kas ilgst 20 minūtes vai vairāk.
+badge.long_workout.hint|Garāki treniņi veido īstu izturību.
+badge.full_hour_day.title|Pilna stunda
+badge.full_hour_day.description|Trenējies 60 minūtes vienā dienā.
+badge.full_hour_day.hint|Viena gara, koncentrēta treniņu diena.
+badge.three_programs.title|Trīs programmas
+badge.three_programs.description|Izmēģini 3 dažādas treniņu programmas.
+badge.three_programs.hint|Katra programma izaicina citādi.
+badge.five_programs.title|Piecas programmas
+badge.five_programs.description|Izmēģini 5 dažādas treniņu programmas.
+badge.five_programs.hint|Neļauj ķermenim pierast.
+badge.eight_programs.title|Astoņas programmas
+badge.eight_programs.description|Izmēģini 8 dažādas treniņu programmas.
+badge.eight_programs.hint|Vispusīga rutīna, veidota pa gabaliņam.
+badge.one_month_days.title|Viens mēnesis
+badge.one_month_days.description|Trenējies 30 dažādās dienās.
+badge.one_month_days.hint|Vesels mēnesis regulāras klātbūtnes.
+badge.four_months.title|Četri mēneši
+badge.four_months.description|Trenējies 4 dažādos mēnešos.
+badge.four_months.hint|Ieradums pārdzīvoja gadalaiku maiņu.
+badge.year_of_fitness.title|Fitnesa gads
+badge.year_of_fitness.description|Trenējies 12 dažādos mēnešos.
+badge.year_of_fitness.hint|Ne ātri. Ne skaļi. Vienkārši nekad neapstājies.
+badge.twelve_weeks.title|Divpadsmit nedēļas
+badge.twelve_weeks.description|Trenējies 12 dažādās nedēļās.
+badge.twelve_weeks.hint|Trīs mēneši, atgriežoties atkal un atkal.
+badge.calorie_burn_5000.title|Sadedzinātas 5000 kcal
+badge.calorie_burn_5000.description|Sadedzini 5000 kcal treniņos.
+badge.calorie_burn_5000.hint|Pastāvīgas pūles, pacietīgi atkārtotas.

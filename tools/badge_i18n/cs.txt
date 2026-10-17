@@ -1,0 +1,150 @@
+str.badge_screen_title|Úspěchy
+str.badge_screen_subtitle|Milníky získané úsilím, ne darem.
+str.badge_summary|Získáno %1$d z %2$d
+str.badge_locked|Zamčeno
+str.badge_earned|Získáno
+str.badge_earned_on|Získáno %1$s
+str.badge_remaining|Zbývá %1$d %2$s
+str.badge_empty|Zatím nejsou nastaveny žádné úspěchy.
+str.badge_next_up|Nejbližší úspěch
+str.badge_view_all|Zobrazit vše
+str.badge_unlocked_celebration_title|Úspěch získán
+str.badge_unlocked_celebration_more|+%1$d dalších
+str.badge_continue|Pokračovat
+str.badge_share|Sdílet
+str.badge_share_chooser|Sdílet úspěch
+str.badge_share_message|Právě jsem v %2$s získala úspěch „%1$s“!
+str.badge_tier_bronze|Bronz
+str.badge_tier_silver|Stříbro
+str.badge_tier_gold|Zlato
+str.badge_tier_jade|Nefrit
+str.pref_category_general|Obecné
+str.pref_tts_engine|Modul převodu textu na řeč
+str.pref_version|Verze
+plural.badge_unit_session.one|trénink
+plural.badge_unit_session.few|tréninky
+plural.badge_unit_session.many|tréninku
+plural.badge_unit_session.other|tréninků
+plural.badge_unit_day.one|den
+plural.badge_unit_day.few|dny
+plural.badge_unit_day.many|dne
+plural.badge_unit_day.other|dní
+plural.badge_unit_minute.one|minuta
+plural.badge_unit_minute.few|minuty
+plural.badge_unit_minute.many|minuty
+plural.badge_unit_minute.other|minut
+plural.badge_unit_kcal.one|kcal
+plural.badge_unit_kcal.few|kcal
+plural.badge_unit_kcal.many|kcal
+plural.badge_unit_kcal.other|kcal
+plural.badge_unit_program.one|program
+plural.badge_unit_program.few|programy
+plural.badge_unit_program.many|programu
+plural.badge_unit_program.other|programů
+plural.badge_unit_week.one|týden
+plural.badge_unit_week.few|týdny
+plural.badge_unit_week.many|týdne
+plural.badge_unit_week.other|týdnů
+plural.badge_unit_month.one|měsíc
+plural.badge_unit_month.few|měsíce
+plural.badge_unit_month.many|měsíce
+plural.badge_unit_month.other|měsíců
+cat.beginnings.title|První kroky
+cat.beginnings.subtitle|Každá cesta začíná jedním tréninkem
+cat.consistency.title|Pravidelnost
+cat.consistency.subtitle|Malé každodenní úsilí přináší velké výsledky
+cat.rhythm.title|Denní doba
+cat.rhythm.subtitle|Cvič, kdy se ti to hodí
+cat.endurance.title|Vytrvalost
+cat.endurance.subtitle|Minuty se sčítají ve skutečný pokrok
+cat.variety.title|Rozmanitost
+cat.variety.subtitle|Střídej cviky a vyzvi své tělo
+cat.journey.title|Dlouhodobý pokrok
+cat.journey.subtitle|Měřeno v týdnech a měsících, ne ve dnech
+badge.first_workout.title|První trénink
+badge.first_workout.description|Dokonči svůj úplně první trénink.
+badge.first_workout.hint|Dokonči jakýkoli trénink a vydej se na cestu.
+badge.ten_workouts.title|Rozjíždím se
+badge.ten_workouts.description|Dokonči 10 tréninků.
+badge.ten_workouts.hint|Opakování buduje hybnost.
+badge.fifty_workouts.title|Silná padesátka
+badge.fifty_workouts.description|Dokonči 50 tréninků.
+badge.fifty_workouts.hint|Padesát tréninků a pořád pokračuješ.
+badge.hundred_workouts.title|Klub stovky
+badge.hundred_workouts.description|Dokonči 100 tréninků.
+badge.hundred_workouts.hint|Trojciferné číslo – teď už skutečný zvyk.
+badge.three_hundred_workouts.title|Nezastavitelná
+badge.three_hundred_workouts.description|Dokonči 300 tréninků.
+badge.three_hundred_workouts.hint|Jen málokdo dojde tak daleko. Ty ano.
+badge.three_day_streak.title|Tři v řadě
+badge.three_day_streak.description|Cvič 3 dny po sobě.
+badge.three_day_streak.hint|První série se začíná nejhůř.
+badge.seven_day_streak.title|Celý týden
+badge.seven_day_streak.description|Cvič 7 dní po sobě.
+badge.seven_day_streak.hint|Celý týden bez vynechaného dne.
+badge.twenty_one_day_streak.title|Zvyk vytvořen
+badge.twenty_one_day_streak.description|Cvič 21 dní po sobě.
+badge.twenty_one_day_streak.hint|Po 21 dnech se zvyk začíná upevňovat.
+badge.seven_sevens_streak.title|Sedm silných týdnů
+badge.seven_sevens_streak.description|Dosáhni série 49 dní.
+badge.seven_sevens_streak.hint|Sedm týdnů bez jediného vynechaného dne.
+badge.hundred_day_streak.title|Série 100 dní
+badge.hundred_day_streak.description|Dosáhni série 100 dní.
+badge.hundred_day_streak.hint|Sto dní v kuse – skutečné odhodlání.
+badge.early_bird.title|Ranní ptáče
+badge.early_bird.description|Zacvič si jednou před 8. hodinou ranní.
+badge.early_bird.hint|Nejčasnější hodina, nejklidnější trénink.
+badge.dawn_warrior.title|Bojovnice úsvitu
+badge.dawn_warrior.description|Zacvič si 10krát před 8. hodinou ranní.
+badge.dawn_warrior.hint|Brzká rána, svěží vzduch, klidné soustředění.
+badge.sunrise_habit.title|Ranní zvyk
+badge.sunrise_habit.description|Zacvič si 40krát před 8. hodinou ranní.
+badge.sunrise_habit.hint|Cvičení za východu slunce se stalo samozřejmostí.
+badge.evening_wind_down.title|Večerní zklidnění
+badge.evening_wind_down.description|Zacvič si 10krát po 18. hodině.
+badge.evening_wind_down.hint|Zakonči den posledním úsilím.
+badge.night_owl.title|Noční sova
+badge.night_owl.description|Zacvič si 40krát po 18. hodině.
+badge.night_owl.hint|Večerní trénink patří tobě.
+badge.weekend_warrior.title|Víkendová bojovnice
+badge.weekend_warrior.description|Cvič o 8 víkendových dnech.
+badge.weekend_warrior.hint|I volné dny mohou být tréninkové.
+badge.first_hour.title|První hodina
+badge.first_hour.description|Nasbírej 60 minut tréninku.
+badge.first_hour.hint|Hodina úsilí nikdy nepřijde nazmar.
+badge.ten_hours.title|Deset hodin
+badge.ten_hours.description|Nasbírej 600 minut tréninku.
+badge.ten_hours.hint|Pohyby začínají být přirozené.
+badge.fifty_hours.title|Padesát hodin
+badge.fifty_hours.description|Nasbírej 3000 minut tréninku.
+badge.fifty_hours.hint|Pravidelně investovaný čas se vyplácí.
+badge.long_workout.title|Až do konce
+badge.long_workout.description|Dokonči 10 tréninků dlouhých 20 minut a víc.
+badge.long_workout.hint|Delší tréninky budují skutečnou vytrvalost.
+badge.full_hour_day.title|Celá hodina
+badge.full_hour_day.description|Cvič 60 minut během jednoho dne.
+badge.full_hour_day.hint|Jeden dlouhý, soustředěný tréninkový den.
+badge.three_programs.title|Tři programy
+badge.three_programs.description|Vyzkoušej 3 různé tréninkové programy.
+badge.three_programs.hint|Každý program tě prověří jinak.
+badge.five_programs.title|Pět programů
+badge.five_programs.description|Vyzkoušej 5 různých tréninkových programů.
+badge.five_programs.hint|Nenech tělo si zvyknout.
+badge.eight_programs.title|Osm programů
+badge.eight_programs.description|Vyzkoušej 8 různých tréninkových programů.
+badge.eight_programs.hint|Všestranná rutina skládaná kousek po kousku.
+badge.one_month_days.title|Jeden měsíc
+badge.one_month_days.description|Cvič ve 30 různých dnech.
+badge.one_month_days.hint|Celý měsíc pravidelné účasti.
+badge.four_months.title|Čtyři měsíce
+badge.four_months.description|Cvič ve 4 různých měsících.
+badge.four_months.hint|Zvyk přečkal změnu ročního období.
+badge.year_of_fitness.title|Rok fitness
+badge.year_of_fitness.description|Cvič ve 12 různých měsících.
+badge.year_of_fitness.hint|Ne rychle. Ne nahlas. Prostě jsi nikdy nepřestala.
+badge.twelve_weeks.title|Dvanáct týdnů
+badge.twelve_weeks.description|Cvič ve 12 různých týdnech.
+badge.twelve_weeks.hint|Tři měsíce neustálých návratů.
+badge.calorie_burn_5000.title|Spáleno 5000 kcal
+badge.calorie_burn_5000.description|Spal tréninkem 5000 kcal.
+badge.calorie_burn_5000.hint|Stálé úsilí, trpělivě opakované.

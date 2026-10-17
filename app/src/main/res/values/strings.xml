@@ -410,6 +410,11 @@
 <string name="badge_tier_gold">Gold</string>
 <string name="badge_tier_jade">Jade</string>
 
+<!-- Tiêu đề nhóm / mục trong Cài đặt (trước đây viết cứng tiếng Anh trong res/xml). -->
+<string name="pref_category_general">General</string>
+<string name="pref_tts_engine">TTS Engine</string>
+<string name="pref_version">Version</string>
+
 <plurals name="badge_unit_session">
     <item quantity="one">session</item>
     <item quantity="other">sessions</item>

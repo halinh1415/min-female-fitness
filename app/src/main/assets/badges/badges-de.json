@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "Erste Schritte",
+   "subtitle": "Jede Reise beginnt mit einem Training"
+  },
+  {
+   "id": "consistency",
+   "title": "Beständigkeit",
+   "subtitle": "Kleine tägliche Schritte ergeben große Erfolge"
+  },
+  {
+   "id": "rhythm",
+   "title": "Tageszeit",
+   "subtitle": "Trainiere, wann es dir passt"
+  },
+  {
+   "id": "endurance",
+   "title": "Ausdauer",
+   "subtitle": "Minuten summieren sich zu echtem Fortschritt"
+  },
+  {
+   "id": "variety",
+   "title": "Abwechslung",
+   "subtitle": "Bring Abwechslung rein und fordere deinen Körper"
+  },
+  {
+   "id": "journey",
+   "title": "Langfristiger Fortschritt",
+   "subtitle": "Gemessen in Wochen und Monaten, nicht in Tagen"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "Erstes Training",
+   "description": "Schließe dein allererstes Training ab.",
+   "hint": "Beende ein beliebiges Training, um loszulegen."
+  },
+  {
+   "id": "ten_workouts",
+   "title": "Reingekommen",
+   "description": "Schließe 10 Trainings ab.",
+   "hint": "Wiederholung schafft Schwung."
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "Starke Fünfzig",
+   "description": "Schließe 50 Trainings ab.",
+   "hint": "Fünfzig Trainings und es geht weiter."
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "Hunderter-Club",
+   "description": "Schließe 100 Trainings ab.",
+   "hint": "Dreistellig – jetzt eine echte Gewohnheit."
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "Unaufhaltsam",
+   "description": "Schließe 300 Trainings ab.",
+   "hint": "Nur wenige schaffen es so weit. Du schon."
+  },
+  {
+   "id": "three_day_streak",
+   "title": "Drei am Stück",
+   "description": "Trainiere 3 Tage in Folge.",
+   "hint": "Die erste Serie ist am schwersten."
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "Ganze Woche",
+   "description": "Trainiere 7 Tage in Folge.",
+   "hint": "Eine ganze Woche ohne Pause."
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "Gewohnheit geformt",
+   "description": "Trainiere 21 Tage in Folge.",
+   "hint": "Nach 21 Tagen beginnt eine Gewohnheit zu halten."
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "Sieben starke Wochen",
+   "description": "Erreiche eine Serie von 49 Tagen.",
+   "hint": "Sieben Wochen ohne einen einzigen Ausfall."
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "100-Tage-Serie",
+   "description": "Erreiche eine Serie von 100 Tagen.",
+   "hint": "Hundert Tage am Stück – echte Hingabe."
+  },
+  {
+   "id": "early_bird",
+   "title": "Frühaufsteherin",
+   "description": "Trainiere einmal vor 8 Uhr morgens.",
+   "hint": "Die früheste Stunde, das ruhigste Training."
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "Morgenkriegerin",
+   "description": "Trainiere 10-mal vor 8 Uhr morgens.",
+   "hint": "Frühe Morgen, frische Luft, ruhiger Fokus."
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "Morgenroutine",
+   "description": "Trainiere 40-mal vor 8 Uhr morgens.",
+   "hint": "Training bei Sonnenaufgang ist dir in Fleisch und Blut übergegangen."
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "Abendausklang",
+   "description": "Trainiere 10-mal nach 18 Uhr.",
+   "hint": "Den Tag mit einer letzten Anstrengung abschließen."
+  },
+  {
+   "id": "night_owl",
+   "title": "Nachteule",
+   "description": "Trainiere 40-mal nach 18 Uhr.",
+   "hint": "Das Abendtraining gehört dir."
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "Wochenendkriegerin",
+   "description": "Trainiere an 8 Wochenendtagen.",
+   "hint": "Auch freie Tage können Trainingstage sein."
+  },
+  {
+   "id": "first_hour",
+   "title": "Die erste Stunde",
+   "description": "Sammle 60 Trainingsminuten.",
+   "hint": "Eine Stunde Einsatz ist nie verschwendet."
+  },
+  {
+   "id": "ten_hours",
+   "title": "Zehn Stunden geschafft",
+   "description": "Sammle 600 Trainingsminuten.",
+   "hint": "Die Bewegungen werden langsam natürlich."
+  },
+  {
+   "id": "fifty_hours",
+   "title": "Fünfzig starke Stunden",
+   "description": "Sammle 3000 Trainingsminuten.",
+   "hint": "Beständig investierte Zeit zahlt sich aus."
+  },
+  {
+   "id": "long_workout",
+   "title": "Langer Atem",
+   "description": "Schließe 10 Trainings mit mindestens 20 Minuten ab.",
+   "hint": "Längere Einheiten bauen echte Ausdauer auf."
+  },
+  {
+   "id": "full_hour_day",
+   "title": "Volle Stunde",
+   "description": "Trainiere 60 Minuten an einem einzigen Tag.",
+   "hint": "Ein langer, konzentrierter Trainingstag."
+  },
+  {
+   "id": "three_programs",
+   "title": "Drei Programme",
+   "description": "Probiere 3 verschiedene Trainingsprogramme aus.",
+   "hint": "Jedes Programm fordert dich anders."
+  },
+  {
+   "id": "five_programs",
+   "title": "Fünf Programme",
+   "description": "Probiere 5 verschiedene Trainingsprogramme aus.",
+   "hint": "Halte deinen Körper auf Trab."
+  },
+  {
+   "id": "eight_programs",
+   "title": "Acht Programme",
+   "description": "Probiere 8 verschiedene Trainingsprogramme aus.",
+   "hint": "Eine ausgewogene Routine, Stück für Stück aufgebaut."
+  },
+  {
+   "id": "one_month_days",
+   "title": "Ein Monat",
+   "description": "Trainiere an 30 verschiedenen Tagen.",
+   "hint": "Einen ganzen Monat lang drangeblieben."
+  },
+  {
+   "id": "four_months",
+   "title": "Vier Monate",
+   "description": "Trainiere in 4 verschiedenen Monaten.",
+   "hint": "Die Gewohnheit übersteht den Jahreszeitenwechsel."
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "Ein Jahr Fitness",
+   "description": "Trainiere in 12 verschiedenen Monaten.",
+   "hint": "Nicht schnell. Nicht laut. Einfach nie aufgehört."
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "Zwölf Wochen",
+   "description": "Trainiere in 12 verschiedenen Wochen.",
+   "hint": "Drei Monate, in denen du immer wiederkamst."
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "5.000 kcal verbrannt",
+   "description": "Verbrenne 5000 kcal beim Training.",
+   "hint": "Stetige Mühe, geduldig wiederholt."
+  }
+ ]
+}

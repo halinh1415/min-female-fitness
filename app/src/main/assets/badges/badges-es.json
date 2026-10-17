@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "Primeros pasos",
+   "subtitle": "Todo camino empieza con un entrenamiento"
+  },
+  {
+   "id": "consistency",
+   "title": "Constancia",
+   "subtitle": "Pequeños esfuerzos diarios suman grandes resultados"
+  },
+  {
+   "id": "rhythm",
+   "title": "Momento del día",
+   "subtitle": "Entrena cuando mejor te venga"
+  },
+  {
+   "id": "endurance",
+   "title": "Resistencia",
+   "subtitle": "Los minutos se convierten en progreso real"
+  },
+  {
+   "id": "variety",
+   "title": "Variedad",
+   "subtitle": "Cambia la rutina y desafía a tu cuerpo"
+  },
+  {
+   "id": "journey",
+   "title": "Progreso a largo plazo",
+   "subtitle": "Se mide en semanas y meses, no en días"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "Primer entrenamiento",
+   "description": "Completa tu primer entrenamiento.",
+   "hint": "Termina cualquier entrenamiento para empezar tu camino."
+  },
+  {
+   "id": "ten_workouts",
+   "title": "Tomando ritmo",
+   "description": "Completa 10 entrenamientos.",
+   "hint": "La repetición crea impulso."
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "Cincuenta fuerte",
+   "description": "Completa 50 entrenamientos.",
+   "hint": "Cincuenta sesiones y sigues adelante."
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "Club de los 100",
+   "description": "Completa 100 entrenamientos.",
+   "hint": "Tres cifras: ya es un hábito de verdad."
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "Imparable",
+   "description": "Completa 300 entrenamientos.",
+   "hint": "Pocas llegan tan lejos. Tú lo lograste."
+  },
+  {
+   "id": "three_day_streak",
+   "title": "Tres seguidos",
+   "description": "Entrena 3 días seguidos.",
+   "hint": "La primera racha es la más difícil de empezar."
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "Semana completa",
+   "description": "Entrena 7 días seguidos.",
+   "hint": "Una semana entera sin fallar un día."
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "Hábito formado",
+   "description": "Entrena 21 días seguidos.",
+   "hint": "A los 21 días un hábito empieza a quedarse."
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "Siete semanas fuerte",
+   "description": "Alcanza una racha de 49 días.",
+   "hint": "Siete semanas sin saltarte ni un día."
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "Racha de 100 días",
+   "description": "Alcanza una racha de 100 días.",
+   "hint": "Cien días seguidos: dedicación de verdad."
+  },
+  {
+   "id": "early_bird",
+   "title": "Madrugadora",
+   "description": "Entrena una vez antes de las 8 de la mañana.",
+   "hint": "La hora más temprana, el entrenamiento más tranquilo."
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "Guerrera del amanecer",
+   "description": "Entrena 10 veces antes de las 8 de la mañana.",
+   "hint": "Mañanas tempranas, aire fresco, concentración serena."
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "Hábito matutino",
+   "description": "Entrena 40 veces antes de las 8 de la mañana.",
+   "hint": "Entrenar al amanecer ya es algo natural para ti."
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "Cierre del día",
+   "description": "Entrena 10 veces después de las 6 de la tarde.",
+   "hint": "Despedir el día con un último esfuerzo."
+  },
+  {
+   "id": "night_owl",
+   "title": "Ave nocturna",
+   "description": "Entrena 40 veces después de las 6 de la tarde.",
+   "hint": "El entrenamiento de la tarde es tuyo."
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "Guerrera de fin de semana",
+   "description": "Entrena 8 días de fin de semana.",
+   "hint": "Los días libres también pueden ser días de entrenamiento."
+  },
+  {
+   "id": "first_hour",
+   "title": "La primera hora",
+   "description": "Acumula 60 minutos de entrenamiento.",
+   "hint": "Una hora de esfuerzo nunca se desperdicia."
+  },
+  {
+   "id": "ten_hours",
+   "title": "Diez horas",
+   "description": "Acumula 600 minutos de entrenamiento.",
+   "hint": "Los movimientos empiezan a salir solos."
+  },
+  {
+   "id": "fifty_hours",
+   "title": "Cincuenta horas fuerte",
+   "description": "Acumula 3000 minutos de entrenamiento.",
+   "hint": "El tiempo invertido con constancia da frutos."
+  },
+  {
+   "id": "long_workout",
+   "title": "Hasta el final",
+   "description": "Completa 10 entrenamientos de 20 minutos o más.",
+   "hint": "Las sesiones largas construyen resistencia real."
+  },
+  {
+   "id": "full_hour_day",
+   "title": "Una hora completa",
+   "description": "Entrena 60 minutos en un solo día.",
+   "hint": "Un día largo y concentrado de entrenamiento."
+  },
+  {
+   "id": "three_programs",
+   "title": "Tres programas",
+   "description": "Prueba 3 programas de entrenamiento diferentes.",
+   "hint": "Cada programa te desafía de forma distinta."
+  },
+  {
+   "id": "five_programs",
+   "title": "Cinco programas",
+   "description": "Prueba 5 programas de entrenamiento diferentes.",
+   "hint": "Mantén a tu cuerpo adivinando."
+  },
+  {
+   "id": "eight_programs",
+   "title": "Ocho programas",
+   "description": "Prueba 8 programas de entrenamiento diferentes.",
+   "hint": "Una rutina completa, construida pieza a pieza."
+  },
+  {
+   "id": "one_month_days",
+   "title": "Un mes",
+   "description": "Entrena en 30 días distintos.",
+   "hint": "Un mes entero sin faltar."
+  },
+  {
+   "id": "four_months",
+   "title": "Cuatro meses",
+   "description": "Entrena en 4 meses distintos.",
+   "hint": "El hábito sobrevive al cambio de estación."
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "Un año de fitness",
+   "description": "Entrena en 12 meses distintos.",
+   "hint": "Sin prisa. Sin ruido. Simplemente nunca paraste."
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "Doce semanas",
+   "description": "Entrena en 12 semanas distintas.",
+   "hint": "Tres meses volviendo a por más."
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "5000 kcal quemadas",
+   "description": "Quema 5000 kcal entrenando.",
+   "hint": "Esfuerzo constante, repetido con paciencia."
+  }
+ ]
+}

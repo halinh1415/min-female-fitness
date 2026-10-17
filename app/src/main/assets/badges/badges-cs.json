@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "První kroky",
+   "subtitle": "Každá cesta začíná jedním tréninkem"
+  },
+  {
+   "id": "consistency",
+   "title": "Pravidelnost",
+   "subtitle": "Malé každodenní úsilí přináší velké výsledky"
+  },
+  {
+   "id": "rhythm",
+   "title": "Denní doba",
+   "subtitle": "Cvič, kdy se ti to hodí"
+  },
+  {
+   "id": "endurance",
+   "title": "Vytrvalost",
+   "subtitle": "Minuty se sčítají ve skutečný pokrok"
+  },
+  {
+   "id": "variety",
+   "title": "Rozmanitost",
+   "subtitle": "Střídej cviky a vyzvi své tělo"
+  },
+  {
+   "id": "journey",
+   "title": "Dlouhodobý pokrok",
+   "subtitle": "Měřeno v týdnech a měsících, ne ve dnech"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "První trénink",
+   "description": "Dokonči svůj úplně první trénink.",
+   "hint": "Dokonči jakýkoli trénink a vydej se na cestu."
+  },
+  {
+   "id": "ten_workouts",
+   "title": "Rozjíždím se",
+   "description": "Dokonči 10 tréninků.",
+   "hint": "Opakování buduje hybnost."
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "Silná padesátka",
+   "description": "Dokonči 50 tréninků.",
+   "hint": "Padesát tréninků a pořád pokračuješ."
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "Klub stovky",
+   "description": "Dokonči 100 tréninků.",
+   "hint": "Trojciferné číslo – teď už skutečný zvyk."
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "Nezastavitelná",
+   "description": "Dokonči 300 tréninků.",
+   "hint": "Jen málokdo dojde tak daleko. Ty ano."
+  },
+  {
+   "id": "three_day_streak",
+   "title": "Tři v řadě",
+   "description": "Cvič 3 dny po sobě.",
+   "hint": "První série se začíná nejhůř."
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "Celý týden",
+   "description": "Cvič 7 dní po sobě.",
+   "hint": "Celý týden bez vynechaného dne."
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "Zvyk vytvořen",
+   "description": "Cvič 21 dní po sobě.",
+   "hint": "Po 21 dnech se zvyk začíná upevňovat."
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "Sedm silných týdnů",
+   "description": "Dosáhni série 49 dní.",
+   "hint": "Sedm týdnů bez jediného vynechaného dne."
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "Série 100 dní",
+   "description": "Dosáhni série 100 dní.",
+   "hint": "Sto dní v kuse – skutečné odhodlání."
+  },
+  {
+   "id": "early_bird",
+   "title": "Ranní ptáče",
+   "description": "Zacvič si jednou před 8. hodinou ranní.",
+   "hint": "Nejčasnější hodina, nejklidnější trénink."
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "Bojovnice úsvitu",
+   "description": "Zacvič si 10krát před 8. hodinou ranní.",
+   "hint": "Brzká rána, svěží vzduch, klidné soustředění."
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "Ranní zvyk",
+   "description": "Zacvič si 40krát před 8. hodinou ranní.",
+   "hint": "Cvičení za východu slunce se stalo samozřejmostí."
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "Večerní zklidnění",
+   "description": "Zacvič si 10krát po 18. hodině.",
+   "hint": "Zakonči den posledním úsilím."
+  },
+  {
+   "id": "night_owl",
+   "title": "Noční sova",
+   "description": "Zacvič si 40krát po 18. hodině.",
+   "hint": "Večerní trénink patří tobě."
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "Víkendová bojovnice",
+   "description": "Cvič o 8 víkendových dnech.",
+   "hint": "I volné dny mohou být tréninkové."
+  },
+  {
+   "id": "first_hour",
+   "title": "První hodina",
+   "description": "Nasbírej 60 minut tréninku.",
+   "hint": "Hodina úsilí nikdy nepřijde nazmar."
+  },
+  {
+   "id": "ten_hours",
+   "title": "Deset hodin",
+   "description": "Nasbírej 600 minut tréninku.",
+   "hint": "Pohyby začínají být přirozené."
+  },
+  {
+   "id": "fifty_hours",
+   "title": "Padesát hodin",
+   "description": "Nasbírej 3000 minut tréninku.",
+   "hint": "Pravidelně investovaný čas se vyplácí."
+  },
+  {
+   "id": "long_workout",
+   "title": "Až do konce",
+   "description": "Dokonči 10 tréninků dlouhých 20 minut a víc.",
+   "hint": "Delší tréninky budují skutečnou vytrvalost."
+  },
+  {
+   "id": "full_hour_day",
+   "title": "Celá hodina",
+   "description": "Cvič 60 minut během jednoho dne.",
+   "hint": "Jeden dlouhý, soustředěný tréninkový den."
+  },
+  {
+   "id": "three_programs",
+   "title": "Tři programy",
+   "description": "Vyzkoušej 3 různé tréninkové programy.",
+   "hint": "Každý program tě prověří jinak."
+  },
+  {
+   "id": "five_programs",
+   "title": "Pět programů",
+   "description": "Vyzkoušej 5 různých tréninkových programů.",
+   "hint": "Nenech tělo si zvyknout."
+  },
+  {
+   "id": "eight_programs",
+   "title": "Osm programů",
+   "description": "Vyzkoušej 8 různých tréninkových programů.",
+   "hint": "Všestranná rutina skládaná kousek po kousku."
+  },
+  {
+   "id": "one_month_days",
+   "title": "Jeden měsíc",
+   "description": "Cvič ve 30 různých dnech.",
+   "hint": "Celý měsíc pravidelné účasti."
+  },
+  {
+   "id": "four_months",
+   "title": "Čtyři měsíce",
+   "description": "Cvič ve 4 různých měsících.",
+   "hint": "Zvyk přečkal změnu ročního období."
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "Rok fitness",
+   "description": "Cvič ve 12 různých měsících.",
+   "hint": "Ne rychle. Ne nahlas. Prostě jsi nikdy nepřestala."
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "Dvanáct týdnů",
+   "description": "Cvič ve 12 různých týdnech.",
+   "hint": "Tři měsíce neustálých návratů."
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "Spáleno 5000 kcal",
+   "description": "Spal tréninkem 5000 kcal.",
+   "hint": "Stálé úsilí, trpělivě opakované."
+  }
+ ]
+}

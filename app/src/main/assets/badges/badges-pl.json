@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "Pierwsze kroki",
+   "subtitle": "Każda podróż zaczyna się od jednego treningu"
+  },
+  {
+   "id": "consistency",
+   "title": "Systematyczność",
+   "subtitle": "Małe codzienne wysiłki dają wielkie efekty"
+  },
+  {
+   "id": "rhythm",
+   "title": "Pora dnia",
+   "subtitle": "Ćwicz wtedy, kiedy ci pasuje"
+  },
+  {
+   "id": "endurance",
+   "title": "Wytrzymałość",
+   "subtitle": "Minuty składają się na prawdziwe postępy"
+  },
+  {
+   "id": "variety",
+   "title": "Różnorodność",
+   "subtitle": "Zmieniaj ćwiczenia i rzucaj wyzwanie ciału"
+  },
+  {
+   "id": "journey",
+   "title": "Długofalowe postępy",
+   "subtitle": "Mierzone tygodniami i miesiącami, nie dniami"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "Pierwszy trening",
+   "description": "Ukończ swój pierwszy trening.",
+   "hint": "Ukończ dowolny trening, aby rozpocząć podróż."
+  },
+  {
+   "id": "ten_workouts",
+   "title": "Rozkręcam się",
+   "description": "Ukończ 10 treningów.",
+   "hint": "Powtarzanie buduje rozpęd."
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "Mocna pięćdziesiątka",
+   "description": "Ukończ 50 treningów.",
+   "hint": "Pięćdziesiąt treningów i wciąż do przodu."
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "Klub setki",
+   "description": "Ukończ 100 treningów.",
+   "hint": "Trzy cyfry – to już prawdziwy nawyk."
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "Nie do zatrzymania",
+   "description": "Ukończ 300 treningów.",
+   "hint": "Niewiele osób dochodzi tak daleko. Tobie się udało."
+  },
+  {
+   "id": "three_day_streak",
+   "title": "Trzy z rzędu",
+   "description": "Ćwicz 3 dni z rzędu.",
+   "hint": "Pierwszą serię najtrudniej zacząć."
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "Pełny tydzień",
+   "description": "Ćwicz 7 dni z rzędu.",
+   "hint": "Cały tydzień bez opuszczenia dnia."
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "Nawyk utrwalony",
+   "description": "Ćwicz 21 dni z rzędu.",
+   "hint": "Po 21 dniach nawyk zaczyna się utrwalać."
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "Siedem mocnych tygodni",
+   "description": "Osiągnij serię 49 dni.",
+   "hint": "Siedem tygodni bez opuszczenia ani jednego dnia."
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "Seria 100 dni",
+   "description": "Osiągnij serię 100 dni.",
+   "hint": "Sto dni z rzędu – prawdziwe zaangażowanie."
+  },
+  {
+   "id": "early_bird",
+   "title": "Ranny ptaszek",
+   "description": "Poćwicz raz przed 8 rano.",
+   "hint": "Najwcześniejsza godzina, najspokojniejszy trening."
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "Wojowniczka świtu",
+   "description": "Poćwicz 10 razy przed 8 rano.",
+   "hint": "Wczesne poranki, chłodne powietrze, spokojne skupienie."
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "Poranny nawyk",
+   "description": "Poćwicz 40 razy przed 8 rano.",
+   "hint": "Treningi o wschodzie słońca stały się naturalne."
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "Wieczorne wyciszenie",
+   "description": "Poćwicz 10 razy po 18:00.",
+   "hint": "Zakończ dzień ostatnim wysiłkiem."
+  },
+  {
+   "id": "night_owl",
+   "title": "Nocny marek",
+   "description": "Poćwicz 40 razy po 18:00.",
+   "hint": "Wieczorny trening należy do ciebie."
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "Weekendowa wojowniczka",
+   "description": "Poćwicz w 8 dni weekendowych.",
+   "hint": "Dni wolne też mogą być dniami treningowymi."
+  },
+  {
+   "id": "first_hour",
+   "title": "Pierwsza godzina",
+   "description": "Zbierz 60 minut treningu.",
+   "hint": "Godzina wysiłku nigdy nie idzie na marne."
+  },
+  {
+   "id": "ten_hours",
+   "title": "Dziesięć godzin",
+   "description": "Zbierz 600 minut treningu.",
+   "hint": "Ruchy zaczynają przychodzić naturalnie."
+  },
+  {
+   "id": "fifty_hours",
+   "title": "Pięćdziesiąt godzin",
+   "description": "Zbierz 3000 minut treningu.",
+   "hint": "Systematycznie inwestowany czas procentuje."
+  },
+  {
+   "id": "long_workout",
+   "title": "Do samego końca",
+   "description": "Ukończ 10 treningów trwających 20 minut lub dłużej.",
+   "hint": "Dłuższe sesje budują prawdziwą wytrzymałość."
+  },
+  {
+   "id": "full_hour_day",
+   "title": "Pełna godzina",
+   "description": "Ćwicz 60 minut w ciągu jednego dnia.",
+   "hint": "Jeden długi, skupiony dzień treningu."
+  },
+  {
+   "id": "three_programs",
+   "title": "Trzy programy",
+   "description": "Wypróbuj 3 różne programy treningowe.",
+   "hint": "Każdy program to inne wyzwanie."
+  },
+  {
+   "id": "five_programs",
+   "title": "Pięć programów",
+   "description": "Wypróbuj 5 różnych programów treningowych.",
+   "hint": "Zaskakuj swoje ciało."
+  },
+  {
+   "id": "eight_programs",
+   "title": "Osiem programów",
+   "description": "Wypróbuj 8 różnych programów treningowych.",
+   "hint": "Wszechstronna rutyna budowana krok po kroku."
+  },
+  {
+   "id": "one_month_days",
+   "title": "Jeden miesiąc",
+   "description": "Ćwicz w 30 różnych dniach.",
+   "hint": "Cały miesiąc regularnej obecności."
+  },
+  {
+   "id": "four_months",
+   "title": "Cztery miesiące",
+   "description": "Ćwicz w 4 różnych miesiącach.",
+   "hint": "Nawyk przetrwał zmianę pory roku."
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "Rok fitnessu",
+   "description": "Ćwicz w 12 różnych miesiącach.",
+   "hint": "Nie szybko. Nie głośno. Po prostu bez zatrzymywania się."
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "Dwanaście tygodni",
+   "description": "Ćwicz w 12 różnych tygodniach.",
+   "hint": "Trzy miesiące ciągłych powrotów."
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "Spalone 5000 kcal",
+   "description": "Spal 5000 kcal podczas treningów.",
+   "hint": "Stały wysiłek, cierpliwie powtarzany."
+  }
+ ]
+}

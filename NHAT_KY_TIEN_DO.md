@@ -2,6 +2,19 @@
 
 > Mới nhất ở trên.
 
+## 2026-10-17 – Dịch Cài đặt + màn Thành tích sang 26 ngôn ngữ ✅ (yêu cầu Telegram, đã push)
+- `res/xml/settings_preference.xml`, `sound_settings.xml`: bỏ chữ tiếng Anh cứng (General, Music, Voice Guide, TTS Engine,
+  Privacy Policy, Version) → string resource (`pref_category_general`, `pref_tts_engine`, `pref_version` mới; dùng lại
+  `txt_music`, `txt_voice_guide`, `pwb_privacy_link`).
+- 20 chuỗi `badge_*` + 7 plurals đơn vị (đúng quy tắc số nhiều từng ngôn ngữ: ar 6 dạng, ru/pl/cs few/many, hr, lv...)
+  + 3 chuỗi Cài đặt → `res/values-<lang>/strings_badges.xml`.
+- Tên / mô tả / gợi ý 29 huy hiệu + 6 nhóm → `assets/badges/badges-<tag>.json` (loader có sẵn tự ghép; thêm bản trùng cho
+  `id`, `nb`, `zh` vì Locale có thể trả mã khác).
+- Nguồn: `tools/badge_i18n/<lang>.txt` (Claude dịch), sinh lại bằng `python3 tools/build_badge_translations.py`
+  (`--template` in danh sách câu tiếng Anh). Script kiểm đủ khoá và số placeholder.
+- Build debug + bundleRelease OK. Test S8+ tiếng Việt: Cài đặt hiện "Thành tích – Đã đạt 0/29", "Âm nhạc"; màn Thành tích
+  toàn bộ tiếng Việt. Chữ in sẵn trên ảnh huy hiệu (FIRST WORKOUT...) vẫn tiếng Anh vì nằm trong ảnh.
+
 ## 2026-10-17 – Dọn file không dùng ✅ (yêu cầu Telegram, chưa push)
 - Quét bằng lint `UnusedResources` (thêm tạm khối `lint { checkOnly ... }` rồi bỏ) + kiểm tra tham chiếu động: app không
   dùng `getIdentifier` cho drawable/string (chỉ `raw video_` và dimen hệ thống), ảnh chương trình nằm trong `assets/images`.

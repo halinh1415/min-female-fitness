@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "はじめの一歩",
+   "subtitle": "どんな旅も1回のワークアウトから始まる"
+  },
+  {
+   "id": "consistency",
+   "title": "継続",
+   "subtitle": "毎日の小さな努力が大きな成果に"
+  },
+  {
+   "id": "rhythm",
+   "title": "時間帯",
+   "subtitle": "自分に合った時間にワークアウト"
+  },
+  {
+   "id": "endurance",
+   "title": "持久力",
+   "subtitle": "積み重ねた分が本当の進歩に"
+  },
+  {
+   "id": "variety",
+   "title": "バラエティ",
+   "subtitle": "変化をつけて体に挑戦しよう"
+  },
+  {
+   "id": "journey",
+   "title": "長期的な成長",
+   "subtitle": "日ではなく、週と月で測る成長"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "初めてのワークアウト",
+   "description": "最初のワークアウトを完了する。",
+   "hint": "どれか1つのワークアウトを終えて旅を始めよう。"
+  },
+  {
+   "id": "ten_workouts",
+   "title": "調子が出てきた",
+   "description": "ワークアウトを10回完了する。",
+   "hint": "繰り返しが勢いを生む。"
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "50回達成",
+   "description": "ワークアウトを50回完了する。",
+   "hint": "50回を超えても、まだ続いている。"
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "100回クラブ",
+   "description": "ワークアウトを100回完了する。",
+   "hint": "3桁到達、もう立派な習慣。"
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "止まらない",
+   "description": "ワークアウトを300回完了する。",
+   "hint": "ここまで来る人はわずか。あなたは来た。"
+  },
+  {
+   "id": "three_day_streak",
+   "title": "3日連続",
+   "description": "3日連続でワークアウトする。",
+   "hint": "最初の連続記録がいちばん難しい。"
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "まる1週間",
+   "description": "7日連続でワークアウトする。",
+   "hint": "1日も休まずに丸1週間。"
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "習慣化",
+   "description": "21日連続でワークアウトする。",
+   "hint": "21日で習慣が身につき始める。"
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "7週間の継続",
+   "description": "49日連続を達成する。",
+   "hint": "7週間、1日も欠かさずに。"
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "100日連続",
+   "description": "100日連続を達成する。",
+   "hint": "100日連続、本物の献身。"
+  },
+  {
+   "id": "early_bird",
+   "title": "早起き",
+   "description": "朝8時前に1回ワークアウトする。",
+   "hint": "いちばん早い時間、いちばん静かなトレーニング。"
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "夜明けの戦士",
+   "description": "朝8時前に10回ワークアウトする。",
+   "hint": "早朝の澄んだ空気と静かな集中。"
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "朝の習慣",
+   "description": "朝8時前に40回ワークアウトする。",
+   "hint": "日の出のワークアウトが当たり前に。"
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "夜のひと汗",
+   "description": "夕方6時以降に10回ワークアウトする。",
+   "hint": "最後のひと頑張りで1日を締めくくる。"
+  },
+  {
+   "id": "night_owl",
+   "title": "夜型",
+   "description": "夕方6時以降に40回ワークアウトする。",
+   "hint": "夜のワークアウトはあなたの時間。"
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "週末の戦士",
+   "description": "週末に8日ワークアウトする。",
+   "hint": "休みの日もワークアウトの日にできる。"
+  },
+  {
+   "id": "first_hour",
+   "title": "最初の1時間",
+   "description": "ワークアウトを合計60分行う。",
+   "hint": "1時間の努力は決して無駄にならない。"
+  },
+  {
+   "id": "ten_hours",
+   "title": "10時間達成",
+   "description": "ワークアウトを合計600分行う。",
+   "hint": "動きが自然になってきた。"
+  },
+  {
+   "id": "fifty_hours",
+   "title": "50時間達成",
+   "description": "ワークアウトを合計3000分行う。",
+   "hint": "コツコツ積み上げた時間は必ず報われる。"
+  },
+  {
+   "id": "long_workout",
+   "title": "ロングワークアウト",
+   "description": "20分以上のワークアウトを10回完了する。",
+   "hint": "長めのセッションで本物の持久力を。"
+  },
+  {
+   "id": "full_hour_day",
+   "title": "まる1時間の日",
+   "description": "1日で60分ワークアウトする。",
+   "hint": "長く集中してトレーニングした1日。"
+  },
+  {
+   "id": "three_programs",
+   "title": "3つのプログラム",
+   "description": "3種類のプログラムを試す。",
+   "hint": "プログラムごとに違う挑戦がある。"
+  },
+  {
+   "id": "five_programs",
+   "title": "5つのプログラム",
+   "description": "5種類のプログラムを試す。",
+   "hint": "体に慣れさせない。"
+  },
+  {
+   "id": "eight_programs",
+   "title": "8つのプログラム",
+   "description": "8種類のプログラムを試す。",
+   "hint": "少しずつ作り上げたバランスのよいルーティン。"
+  },
+  {
+   "id": "one_month_days",
+   "title": "1か月",
+   "description": "30日分ワークアウトする。",
+   "hint": "まる1か月、続けて取り組んだ。"
+  },
+  {
+   "id": "four_months",
+   "title": "4か月",
+   "description": "4つの異なる月にワークアウトする。",
+   "hint": "季節が変わっても習慣は続く。"
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "フィットネスの1年",
+   "description": "12の異なる月にワークアウトする。",
+   "hint": "速くなくても、派手でなくても、ただ一度も止まらなかった。"
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "12週間",
+   "description": "12の異なる週にワークアウトする。",
+   "hint": "3か月間、何度も戻ってきた。"
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "5,000kcal消費",
+   "description": "ワークアウトで5000kcalを消費する。",
+   "hint": "地道な努力を、根気よく繰り返して。"
+  }
+ ]
+}

@@ -15,7 +15,7 @@
         android:summary="@string/sign_in_tips"
         android:title="@string/set_backup"
         android:visibility="visible" />
-    <PreferenceCategory android:title="General">
+    <PreferenceCategory android:title="@string/pref_category_general">
         <Preference
             android:icon="@drawable/ic_setting_achievement"
             android:key="ACHIEVEMENTS"
@@ -58,7 +58,7 @@
             android:title="@string/txt_reminder"/>
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="Music">
+    <PreferenceCategory app:title="@string/txt_music">
         <SwitchPreference
             app:defaultValue="true"
             app:icon="@drawable/ic_baseline_music_note_24"
@@ -98,7 +98,7 @@
             android:title="@string/txt_rest_time" />
 
     </PreferenceCategory>
-    <PreferenceCategory app:title="Voice Guide">
+    <PreferenceCategory app:title="@string/txt_voice_guide">
         <SwitchPreference
             app:defaultValue="true"
             app:icon="@drawable/ic_baseline_record_voice_over_24"
@@ -132,7 +132,7 @@
             android:key="TTS_ENGINE"
             app:dependency="VOICE_ON"
             app:isPreferenceVisible="false"
-            android:title="TTS Engine"/>
+            android:title="@string/pref_tts_engine"/>
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/txt_support">
@@ -151,9 +151,9 @@
         <Preference
             android:icon="@drawable/ic_security_black_24dp"
             android:key="PRIVACY_POLICY"
-            android:title="Privacy Policy" />
+            android:title="@string/pwb_privacy_link" />
         <Preference
             android:key="VERSION_APP"
-            android:title="Version" />
+            android:title="@string/pref_version" />
     </PreferenceCategory>
 </PreferenceScreen>

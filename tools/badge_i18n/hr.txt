@@ -1,0 +1,143 @@
+str.badge_screen_title|Postignuća
+str.badge_screen_subtitle|Prekretnice koje se zarađuju trudom, a ne dobivaju na dar.
+str.badge_summary|Ostvareno %1$d od %2$d
+str.badge_locked|Zaključano
+str.badge_earned|Ostvareno
+str.badge_earned_on|Ostvareno %1$s
+str.badge_remaining|Još %1$d %2$s
+str.badge_empty|Još nema postavljenih postignuća.
+str.badge_next_up|Najbliže postignuće
+str.badge_view_all|Prikaži sve
+str.badge_unlocked_celebration_title|Postignuće ostvareno
+str.badge_unlocked_celebration_more|+%1$d još ostvareno
+str.badge_continue|Nastavi
+str.badge_share|Podijeli
+str.badge_share_chooser|Podijeli postignuće
+str.badge_share_message|Upravo sam ostvarila postignuće \"%1$s\" u aplikaciji %2$s!
+str.badge_tier_bronze|Bronca
+str.badge_tier_silver|Srebro
+str.badge_tier_gold|Zlato
+str.badge_tier_jade|Žad
+str.pref_category_general|Općenito
+str.pref_tts_engine|Mehanizam pretvaranja teksta u govor
+str.pref_version|Verzija
+plural.badge_unit_session.one|trening
+plural.badge_unit_session.few|treninga
+plural.badge_unit_session.other|treninga
+plural.badge_unit_day.one|dan
+plural.badge_unit_day.few|dana
+plural.badge_unit_day.other|dana
+plural.badge_unit_minute.one|minuta
+plural.badge_unit_minute.few|minute
+plural.badge_unit_minute.other|minuta
+plural.badge_unit_kcal.one|kcal
+plural.badge_unit_kcal.few|kcal
+plural.badge_unit_kcal.other|kcal
+plural.badge_unit_program.one|program
+plural.badge_unit_program.few|programa
+plural.badge_unit_program.other|programa
+plural.badge_unit_week.one|tjedan
+plural.badge_unit_week.few|tjedna
+plural.badge_unit_week.other|tjedana
+plural.badge_unit_month.one|mjesec
+plural.badge_unit_month.few|mjeseca
+plural.badge_unit_month.other|mjeseci
+cat.beginnings.title|Prvi koraci
+cat.beginnings.subtitle|Svako putovanje počinje jednim treningom
+cat.consistency.title|Ustrajnost
+cat.consistency.subtitle|Mali svakodnevni napori donose velike rezultate
+cat.rhythm.title|Doba dana
+cat.rhythm.subtitle|Treniraj kad ti odgovara
+cat.endurance.title|Izdržljivost
+cat.endurance.subtitle|Minute se zbrajaju u pravi napredak
+cat.variety.title|Raznolikost
+cat.variety.subtitle|Mijenjaj vježbe i izazovi svoje tijelo
+cat.journey.title|Dugoročni napredak
+cat.journey.subtitle|Mjeri se tjednima i mjesecima, a ne danima
+badge.first_workout.title|Prvi trening
+badge.first_workout.description|Završi svoj prvi trening.
+badge.first_workout.hint|Završi bilo koji trening i započni svoje putovanje.
+badge.ten_workouts.title|Ulazim u ritam
+badge.ten_workouts.description|Završi 10 treninga.
+badge.ten_workouts.hint|Ponavljanje stvara zamah.
+badge.fifty_workouts.title|Snažnih pedeset
+badge.fifty_workouts.description|Završi 50 treninga.
+badge.fifty_workouts.hint|Pedeset treninga, a ti i dalje nastavljaš.
+badge.hundred_workouts.title|Klub stotke
+badge.hundred_workouts.description|Završi 100 treninga.
+badge.hundred_workouts.hint|Troznamenkasto – sada prava navika.
+badge.three_hundred_workouts.title|Nezaustavljiva
+badge.three_hundred_workouts.description|Završi 300 treninga.
+badge.three_hundred_workouts.hint|Malo tko stigne ovako daleko. Ti jesi.
+badge.three_day_streak.title|Tri zaredom
+badge.three_day_streak.description|Treniraj 3 dana zaredom.
+badge.three_day_streak.hint|Prvi niz najteže je započeti.
+badge.seven_day_streak.title|Cijeli tjedan
+badge.seven_day_streak.description|Treniraj 7 dana zaredom.
+badge.seven_day_streak.hint|Cijeli tjedan bez propuštenog dana.
+badge.twenty_one_day_streak.title|Navika stvorena
+badge.twenty_one_day_streak.description|Treniraj 21 dan zaredom.
+badge.twenty_one_day_streak.hint|Nakon 21 dana navika se počinje ustaljivati.
+badge.seven_sevens_streak.title|Sedam snažnih tjedana
+badge.seven_sevens_streak.description|Ostvari niz od 49 dana.
+badge.seven_sevens_streak.hint|Sedam tjedana bez ijednog propuštenog dana.
+badge.hundred_day_streak.title|Niz od 100 dana
+badge.hundred_day_streak.description|Ostvari niz od 100 dana.
+badge.hundred_day_streak.hint|Sto dana zaredom – prava predanost.
+badge.early_bird.title|Ranoranilica
+badge.early_bird.description|Treniraj jednom prije 8 ujutro.
+badge.early_bird.hint|Najraniji sat, najmirniji trening.
+badge.dawn_warrior.title|Ratnica zore
+badge.dawn_warrior.description|Treniraj 10 puta prije 8 ujutro.
+badge.dawn_warrior.hint|Rana jutra, svjež zrak, mirna usredotočenost.
+badge.sunrise_habit.title|Jutarnja navika
+badge.sunrise_habit.description|Treniraj 40 puta prije 8 ujutro.
+badge.sunrise_habit.hint|Trening u zoru postao ti je druga priroda.
+badge.evening_wind_down.title|Večernje opuštanje
+badge.evening_wind_down.description|Treniraj 10 puta nakon 18 sati.
+badge.evening_wind_down.hint|Završi dan posljednjim naporom.
+badge.night_owl.title|Noćna ptica
+badge.night_owl.description|Treniraj 40 puta nakon 18 sati.
+badge.night_owl.hint|Večernji trening pripada tebi.
+badge.weekend_warrior.title|Vikend ratnica
+badge.weekend_warrior.description|Treniraj 8 vikend dana.
+badge.weekend_warrior.hint|I slobodni dani mogu biti dani treninga.
+badge.first_hour.title|Prvi sat
+badge.first_hour.description|Skupi 60 minuta treninga.
+badge.first_hour.hint|Sat truda nikad nije uzaludan.
+badge.ten_hours.title|Deset sati
+badge.ten_hours.description|Skupi 600 minuta treninga.
+badge.ten_hours.hint|Pokreti počinju biti prirodni.
+badge.fifty_hours.title|Pedeset sati
+badge.fifty_hours.description|Skupi 3000 minuta treninga.
+badge.fifty_hours.hint|Ustrajno uloženo vrijeme se isplati.
+badge.long_workout.title|Do kraja
+badge.long_workout.description|Završi 10 treninga od 20 minuta ili duže.
+badge.long_workout.hint|Duži treninzi grade pravu izdržljivost.
+badge.full_hour_day.title|Puni sat
+badge.full_hour_day.description|Treniraj 60 minuta u jednom danu.
+badge.full_hour_day.hint|Jedan dug, usredotočen dan treninga.
+badge.three_programs.title|Tri programa
+badge.three_programs.description|Isprobaj 3 različita programa treninga.
+badge.three_programs.hint|Svaki program izaziva te na drugačiji način.
+badge.five_programs.title|Pet programa
+badge.five_programs.description|Isprobaj 5 različitih programa treninga.
+badge.five_programs.hint|Neka tijelo stalno pogađa.
+badge.eight_programs.title|Osam programa
+badge.eight_programs.description|Isprobaj 8 različitih programa treninga.
+badge.eight_programs.hint|Svestrana rutina, građena dio po dio.
+badge.one_month_days.title|Jedan mjesec
+badge.one_month_days.description|Treniraj u 30 različitih dana.
+badge.one_month_days.hint|Cijeli mjesec dolaženja.
+badge.four_months.title|Četiri mjeseca
+badge.four_months.description|Treniraj u 4 različita mjeseca.
+badge.four_months.hint|Navika je preživjela promjenu godišnjeg doba.
+badge.year_of_fitness.title|Godina fitnessa
+badge.year_of_fitness.description|Treniraj u 12 različitih mjeseci.
+badge.year_of_fitness.hint|Ne brzo. Ne glasno. Jednostavno nikad nisi stala.
+badge.twelve_weeks.title|Dvanaest tjedana
+badge.twelve_weeks.description|Treniraj u 12 različitih tjedana.
+badge.twelve_weeks.hint|Tri mjeseca stalnog vraćanja po još.
+badge.calorie_burn_5000.title|Potrošeno 5000 kcal
+badge.calorie_burn_5000.description|Potroši 5000 kcal treningom.
+badge.calorie_burn_5000.hint|Stalan trud, strpljivo ponavljan.

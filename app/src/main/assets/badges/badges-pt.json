@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "Primeiros passos",
+   "subtitle": "Toda jornada começa com um treino"
+  },
+  {
+   "id": "consistency",
+   "title": "Constância",
+   "subtitle": "Pequenos esforços diários somam grandes resultados"
+  },
+  {
+   "id": "rhythm",
+   "title": "Hora do dia",
+   "subtitle": "Treine no horário que for melhor para você"
+  },
+  {
+   "id": "endurance",
+   "title": "Resistência",
+   "subtitle": "Os minutos viram progresso de verdade"
+  },
+  {
+   "id": "variety",
+   "title": "Variedade",
+   "subtitle": "Varie e desafie seu corpo"
+  },
+  {
+   "id": "journey",
+   "title": "Progresso a longo prazo",
+   "subtitle": "Medido em semanas e meses, não em dias"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "Primeiro treino",
+   "description": "Conclua seu primeiro treino.",
+   "hint": "Termine qualquer treino para começar sua jornada."
+  },
+  {
+   "id": "ten_workouts",
+   "title": "Pegando o ritmo",
+   "description": "Conclua 10 treinos.",
+   "hint": "A repetição cria impulso."
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "Cinquenta forte",
+   "description": "Conclua 50 treinos.",
+   "hint": "Cinquenta treinos e seguindo em frente."
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "Clube dos 100",
+   "description": "Conclua 100 treinos.",
+   "hint": "Três dígitos: agora é um hábito de verdade."
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "Imparável",
+   "description": "Conclua 300 treinos.",
+   "hint": "Poucas chegam tão longe. Você chegou."
+  },
+  {
+   "id": "three_day_streak",
+   "title": "Três seguidos",
+   "description": "Treine 3 dias seguidos.",
+   "hint": "A primeira sequência é a mais difícil de começar."
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "Semana completa",
+   "description": "Treine 7 dias seguidos.",
+   "hint": "Uma semana inteira sem faltar um dia."
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "Hábito formado",
+   "description": "Treine 21 dias seguidos.",
+   "hint": "Com 21 dias, um hábito começa a se firmar."
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "Sete semanas firme",
+   "description": "Alcance uma sequência de 49 dias.",
+   "hint": "Sete semanas sem pular nenhum dia."
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "Sequência de 100 dias",
+   "description": "Alcance uma sequência de 100 dias.",
+   "hint": "Cem dias seguidos: dedicação de verdade."
+  },
+  {
+   "id": "early_bird",
+   "title": "Madrugadora",
+   "description": "Treine uma vez antes das 8 da manhã.",
+   "hint": "A hora mais cedo, o treino mais tranquilo."
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "Guerreira do amanhecer",
+   "description": "Treine 10 vezes antes das 8 da manhã.",
+   "hint": "Manhãs cedo, ar fresco, foco tranquilo."
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "Hábito matinal",
+   "description": "Treine 40 vezes antes das 8 da manhã.",
+   "hint": "Treinar ao nascer do sol virou algo natural."
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "Fim de dia",
+   "description": "Treine 10 vezes depois das 18h.",
+   "hint": "Encerrar o dia com um último esforço."
+  },
+  {
+   "id": "night_owl",
+   "title": "Coruja noturna",
+   "description": "Treine 40 vezes depois das 18h.",
+   "hint": "O treino da noite é seu."
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "Guerreira de fim de semana",
+   "description": "Treine em 8 dias de fim de semana.",
+   "hint": "Dias de folga também podem ser dias de treino."
+  },
+  {
+   "id": "first_hour",
+   "title": "A primeira hora",
+   "description": "Acumule 60 minutos de treino.",
+   "hint": "Uma hora de esforço nunca é desperdiçada."
+  },
+  {
+   "id": "ten_hours",
+   "title": "Dez horas",
+   "description": "Acumule 600 minutos de treino.",
+   "hint": "Os movimentos começam a ficar naturais."
+  },
+  {
+   "id": "fifty_hours",
+   "title": "Cinquenta horas",
+   "description": "Acumule 3000 minutos de treino.",
+   "hint": "Tempo investido com constância traz retorno."
+  },
+  {
+   "id": "long_workout",
+   "title": "Até o fim",
+   "description": "Conclua 10 treinos de 20 minutos ou mais.",
+   "hint": "Treinos mais longos constroem resistência real."
+  },
+  {
+   "id": "full_hour_day",
+   "title": "Uma hora completa",
+   "description": "Treine 60 minutos em um único dia.",
+   "hint": "Um dia longo e focado de treino."
+  },
+  {
+   "id": "three_programs",
+   "title": "Três programas",
+   "description": "Experimente 3 programas de treino diferentes.",
+   "hint": "Cada programa desafia você de um jeito."
+  },
+  {
+   "id": "five_programs",
+   "title": "Cinco programas",
+   "description": "Experimente 5 programas de treino diferentes.",
+   "hint": "Mantenha seu corpo surpreso."
+  },
+  {
+   "id": "eight_programs",
+   "title": "Oito programas",
+   "description": "Experimente 8 programas de treino diferentes.",
+   "hint": "Uma rotina completa, montada peça por peça."
+  },
+  {
+   "id": "one_month_days",
+   "title": "Um mês",
+   "description": "Treine em 30 dias diferentes.",
+   "hint": "Um mês inteiro de presença."
+  },
+  {
+   "id": "four_months",
+   "title": "Quatro meses",
+   "description": "Treine em 4 meses diferentes.",
+   "hint": "O hábito resiste à mudança de estação."
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "Um ano de fitness",
+   "description": "Treine em 12 meses diferentes.",
+   "hint": "Sem pressa. Sem barulho. Simplesmente nunca parou."
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "Doze semanas",
+   "description": "Treine em 12 semanas diferentes.",
+   "hint": "Três meses voltando para mais."
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "5.000 kcal queimadas",
+   "description": "Queime 5000 kcal treinando.",
+   "hint": "Esforço constante, repetido com paciência."
+  }
+ ]
+}

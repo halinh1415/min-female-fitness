@@ -1,0 +1,136 @@
+str.badge_screen_title|Erfolge
+str.badge_screen_subtitle|Meilensteine, die man sich erarbeitet – nicht geschenkt bekommt.
+str.badge_summary|%1$d von %2$d erreicht
+str.badge_locked|Gesperrt
+str.badge_earned|Erreicht
+str.badge_earned_on|Erreicht am %1$s
+str.badge_remaining|Noch %1$d %2$s
+str.badge_empty|Noch keine Erfolge eingerichtet.
+str.badge_next_up|Nächster Erfolg
+str.badge_view_all|Alle anzeigen
+str.badge_unlocked_celebration_title|Erfolg erreicht
+str.badge_unlocked_celebration_more|+%1$d weitere erreicht
+str.badge_continue|Weiter
+str.badge_share|Teilen
+str.badge_share_chooser|Erfolg teilen
+str.badge_share_message|Ich habe gerade den Erfolg \"%1$s\" in %2$s erreicht!
+str.badge_tier_bronze|Bronze
+str.badge_tier_silver|Silber
+str.badge_tier_gold|Gold
+str.badge_tier_jade|Jade
+str.pref_category_general|Allgemein
+str.pref_tts_engine|Sprachausgabe-Engine
+str.pref_version|Version
+plural.badge_unit_session.one|Training
+plural.badge_unit_session.other|Trainings
+plural.badge_unit_day.one|Tag
+plural.badge_unit_day.other|Tage
+plural.badge_unit_minute.one|Minute
+plural.badge_unit_minute.other|Minuten
+plural.badge_unit_kcal.one|kcal
+plural.badge_unit_kcal.other|kcal
+plural.badge_unit_program.one|Programm
+plural.badge_unit_program.other|Programme
+plural.badge_unit_week.one|Woche
+plural.badge_unit_week.other|Wochen
+plural.badge_unit_month.one|Monat
+plural.badge_unit_month.other|Monate
+cat.beginnings.title|Erste Schritte
+cat.beginnings.subtitle|Jede Reise beginnt mit einem Training
+cat.consistency.title|Beständigkeit
+cat.consistency.subtitle|Kleine tägliche Schritte ergeben große Erfolge
+cat.rhythm.title|Tageszeit
+cat.rhythm.subtitle|Trainiere, wann es dir passt
+cat.endurance.title|Ausdauer
+cat.endurance.subtitle|Minuten summieren sich zu echtem Fortschritt
+cat.variety.title|Abwechslung
+cat.variety.subtitle|Bring Abwechslung rein und fordere deinen Körper
+cat.journey.title|Langfristiger Fortschritt
+cat.journey.subtitle|Gemessen in Wochen und Monaten, nicht in Tagen
+badge.first_workout.title|Erstes Training
+badge.first_workout.description|Schließe dein allererstes Training ab.
+badge.first_workout.hint|Beende ein beliebiges Training, um loszulegen.
+badge.ten_workouts.title|Reingekommen
+badge.ten_workouts.description|Schließe 10 Trainings ab.
+badge.ten_workouts.hint|Wiederholung schafft Schwung.
+badge.fifty_workouts.title|Starke Fünfzig
+badge.fifty_workouts.description|Schließe 50 Trainings ab.
+badge.fifty_workouts.hint|Fünfzig Trainings und es geht weiter.
+badge.hundred_workouts.title|Hunderter-Club
+badge.hundred_workouts.description|Schließe 100 Trainings ab.
+badge.hundred_workouts.hint|Dreistellig – jetzt eine echte Gewohnheit.
+badge.three_hundred_workouts.title|Unaufhaltsam
+badge.three_hundred_workouts.description|Schließe 300 Trainings ab.
+badge.three_hundred_workouts.hint|Nur wenige schaffen es so weit. Du schon.
+badge.three_day_streak.title|Drei am Stück
+badge.three_day_streak.description|Trainiere 3 Tage in Folge.
+badge.three_day_streak.hint|Die erste Serie ist am schwersten.
+badge.seven_day_streak.title|Ganze Woche
+badge.seven_day_streak.description|Trainiere 7 Tage in Folge.
+badge.seven_day_streak.hint|Eine ganze Woche ohne Pause.
+badge.twenty_one_day_streak.title|Gewohnheit geformt
+badge.twenty_one_day_streak.description|Trainiere 21 Tage in Folge.
+badge.twenty_one_day_streak.hint|Nach 21 Tagen beginnt eine Gewohnheit zu halten.
+badge.seven_sevens_streak.title|Sieben starke Wochen
+badge.seven_sevens_streak.description|Erreiche eine Serie von 49 Tagen.
+badge.seven_sevens_streak.hint|Sieben Wochen ohne einen einzigen Ausfall.
+badge.hundred_day_streak.title|100-Tage-Serie
+badge.hundred_day_streak.description|Erreiche eine Serie von 100 Tagen.
+badge.hundred_day_streak.hint|Hundert Tage am Stück – echte Hingabe.
+badge.early_bird.title|Frühaufsteherin
+badge.early_bird.description|Trainiere einmal vor 8 Uhr morgens.
+badge.early_bird.hint|Die früheste Stunde, das ruhigste Training.
+badge.dawn_warrior.title|Morgenkriegerin
+badge.dawn_warrior.description|Trainiere 10-mal vor 8 Uhr morgens.
+badge.dawn_warrior.hint|Frühe Morgen, frische Luft, ruhiger Fokus.
+badge.sunrise_habit.title|Morgenroutine
+badge.sunrise_habit.description|Trainiere 40-mal vor 8 Uhr morgens.
+badge.sunrise_habit.hint|Training bei Sonnenaufgang ist dir in Fleisch und Blut übergegangen.
+badge.evening_wind_down.title|Abendausklang
+badge.evening_wind_down.description|Trainiere 10-mal nach 18 Uhr.
+badge.evening_wind_down.hint|Den Tag mit einer letzten Anstrengung abschließen.
+badge.night_owl.title|Nachteule
+badge.night_owl.description|Trainiere 40-mal nach 18 Uhr.
+badge.night_owl.hint|Das Abendtraining gehört dir.
+badge.weekend_warrior.title|Wochenendkriegerin
+badge.weekend_warrior.description|Trainiere an 8 Wochenendtagen.
+badge.weekend_warrior.hint|Auch freie Tage können Trainingstage sein.
+badge.first_hour.title|Die erste Stunde
+badge.first_hour.description|Sammle 60 Trainingsminuten.
+badge.first_hour.hint|Eine Stunde Einsatz ist nie verschwendet.
+badge.ten_hours.title|Zehn Stunden geschafft
+badge.ten_hours.description|Sammle 600 Trainingsminuten.
+badge.ten_hours.hint|Die Bewegungen werden langsam natürlich.
+badge.fifty_hours.title|Fünfzig starke Stunden
+badge.fifty_hours.description|Sammle 3000 Trainingsminuten.
+badge.fifty_hours.hint|Beständig investierte Zeit zahlt sich aus.
+badge.long_workout.title|Langer Atem
+badge.long_workout.description|Schließe 10 Trainings mit mindestens 20 Minuten ab.
+badge.long_workout.hint|Längere Einheiten bauen echte Ausdauer auf.
+badge.full_hour_day.title|Volle Stunde
+badge.full_hour_day.description|Trainiere 60 Minuten an einem einzigen Tag.
+badge.full_hour_day.hint|Ein langer, konzentrierter Trainingstag.
+badge.three_programs.title|Drei Programme
+badge.three_programs.description|Probiere 3 verschiedene Trainingsprogramme aus.
+badge.three_programs.hint|Jedes Programm fordert dich anders.
+badge.five_programs.title|Fünf Programme
+badge.five_programs.description|Probiere 5 verschiedene Trainingsprogramme aus.
+badge.five_programs.hint|Halte deinen Körper auf Trab.
+badge.eight_programs.title|Acht Programme
+badge.eight_programs.description|Probiere 8 verschiedene Trainingsprogramme aus.
+badge.eight_programs.hint|Eine ausgewogene Routine, Stück für Stück aufgebaut.
+badge.one_month_days.title|Ein Monat
+badge.one_month_days.description|Trainiere an 30 verschiedenen Tagen.
+badge.one_month_days.hint|Einen ganzen Monat lang drangeblieben.
+badge.four_months.title|Vier Monate
+badge.four_months.description|Trainiere in 4 verschiedenen Monaten.
+badge.four_months.hint|Die Gewohnheit übersteht den Jahreszeitenwechsel.
+badge.year_of_fitness.title|Ein Jahr Fitness
+badge.year_of_fitness.description|Trainiere in 12 verschiedenen Monaten.
+badge.year_of_fitness.hint|Nicht schnell. Nicht laut. Einfach nie aufgehört.
+badge.twelve_weeks.title|Zwölf Wochen
+badge.twelve_weeks.description|Trainiere in 12 verschiedenen Wochen.
+badge.twelve_weeks.hint|Drei Monate, in denen du immer wiederkamst.
+badge.calorie_burn_5000.title|5.000 kcal verbrannt
+badge.calorie_burn_5000.description|Verbrenne 5000 kcal beim Training.
+badge.calorie_burn_5000.hint|Stetige Mühe, geduldig wiederholt.

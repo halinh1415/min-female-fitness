@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "Pirmie soļi",
+   "subtitle": "Katrs ceļš sākas ar vienu treniņu"
+  },
+  {
+   "id": "consistency",
+   "title": "Regularitāte",
+   "subtitle": "Mazas ikdienas pūles dod lielus rezultātus"
+  },
+  {
+   "id": "rhythm",
+   "title": "Diennakts laiks",
+   "subtitle": "Trenējies, kad tev ērti"
+  },
+  {
+   "id": "endurance",
+   "title": "Izturība",
+   "subtitle": "Minūtes saskaitās īstā progresā"
+  },
+  {
+   "id": "variety",
+   "title": "Daudzveidība",
+   "subtitle": "Mainies un izaicini savu ķermeni"
+  },
+  {
+   "id": "journey",
+   "title": "Ilgtermiņa progress",
+   "subtitle": "Mēra nedēļās un mēnešos, nevis dienās"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "Pirmais treniņš",
+   "description": "Pabeidz savu pirmo treniņu.",
+   "hint": "Pabeidz jebkuru treniņu, lai sāktu savu ceļu."
+  },
+  {
+   "id": "ten_workouts",
+   "title": "Iesildos",
+   "description": "Pabeidz 10 treniņus.",
+   "hint": "Atkārtošana rada impulsu."
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "Spēcīgie piecdesmit",
+   "description": "Pabeidz 50 treniņus.",
+   "hint": "Piecdesmit treniņi, un tu turpini."
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "Simtnieku klubs",
+   "description": "Pabeidz 100 treniņus.",
+   "hint": "Trīsciparu skaitlis – tagad īsts ieradums."
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "Neapturama",
+   "description": "Pabeidz 300 treniņus.",
+   "hint": "Retais tiek tik tālu. Tu tiki."
+  },
+  {
+   "id": "three_day_streak",
+   "title": "Trīs pēc kārtas",
+   "description": "Trenējies 3 dienas pēc kārtas.",
+   "hint": "Pirmo sēriju sākt ir visgrūtāk."
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "Visa nedēļa",
+   "description": "Trenējies 7 dienas pēc kārtas.",
+   "hint": "Vesela nedēļa bez izlaistas dienas."
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "Ieradums izveidots",
+   "description": "Trenējies 21 dienu pēc kārtas.",
+   "hint": "Pēc 21 dienas ieradums sāk nostiprināties."
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "Septiņas spēcīgas nedēļas",
+   "description": "Sasniedz 49 dienu sēriju.",
+   "hint": "Septiņas nedēļas bez nevienas izlaistas dienas."
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "100 dienu sērija",
+   "description": "Sasniedz 100 dienu sēriju.",
+   "hint": "Simts dienas pēc kārtas – īsta apņēmība."
+  },
+  {
+   "id": "early_bird",
+   "title": "Agrais putns",
+   "description": "Trenējies vienreiz pirms 8 rītā.",
+   "hint": "Agrākā stunda, mierīgākais treniņš."
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "Rītausmas karotāja",
+   "description": "Trenējies 10 reizes pirms 8 rītā.",
+   "hint": "Agri rīti, svaigs gaiss, mierīga koncentrēšanās."
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "Rīta ieradums",
+   "description": "Trenējies 40 reizes pirms 8 rītā.",
+   "hint": "Treniņi saullēktā ir kļuvuši par otro dabu."
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "Vakara nomierināšanās",
+   "description": "Trenējies 10 reizes pēc 18:00.",
+   "hint": "Noslēdz dienu ar pēdējo piepūli."
+  },
+  {
+   "id": "night_owl",
+   "title": "Nakts pūce",
+   "description": "Trenējies 40 reizes pēc 18:00.",
+   "hint": "Vakara treniņš pieder tev."
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "Nedēļas nogales karotāja",
+   "description": "Trenējies 8 nedēļas nogales dienās.",
+   "hint": "Arī brīvdienas var būt treniņu dienas."
+  },
+  {
+   "id": "first_hour",
+   "title": "Pirmā stunda",
+   "description": "Sakrāj 60 treniņu minūtes.",
+   "hint": "Stunda pūļu nekad nav veltīga."
+  },
+  {
+   "id": "ten_hours",
+   "title": "Desmit stundas",
+   "description": "Sakrāj 600 treniņu minūtes.",
+   "hint": "Kustības sāk šķist dabiskas."
+  },
+  {
+   "id": "fifty_hours",
+   "title": "Piecdesmit stundas",
+   "description": "Sakrāj 3000 treniņu minūtes.",
+   "hint": "Regulāri ieguldīts laiks atmaksājas."
+  },
+  {
+   "id": "long_workout",
+   "title": "Līdz galam",
+   "description": "Pabeidz 10 treniņus, kas ilgst 20 minūtes vai vairāk.",
+   "hint": "Garāki treniņi veido īstu izturību."
+  },
+  {
+   "id": "full_hour_day",
+   "title": "Pilna stunda",
+   "description": "Trenējies 60 minūtes vienā dienā.",
+   "hint": "Viena gara, koncentrēta treniņu diena."
+  },
+  {
+   "id": "three_programs",
+   "title": "Trīs programmas",
+   "description": "Izmēģini 3 dažādas treniņu programmas.",
+   "hint": "Katra programma izaicina citādi."
+  },
+  {
+   "id": "five_programs",
+   "title": "Piecas programmas",
+   "description": "Izmēģini 5 dažādas treniņu programmas.",
+   "hint": "Neļauj ķermenim pierast."
+  },
+  {
+   "id": "eight_programs",
+   "title": "Astoņas programmas",
+   "description": "Izmēģini 8 dažādas treniņu programmas.",
+   "hint": "Vispusīga rutīna, veidota pa gabaliņam."
+  },
+  {
+   "id": "one_month_days",
+   "title": "Viens mēnesis",
+   "description": "Trenējies 30 dažādās dienās.",
+   "hint": "Vesels mēnesis regulāras klātbūtnes."
+  },
+  {
+   "id": "four_months",
+   "title": "Četri mēneši",
+   "description": "Trenējies 4 dažādos mēnešos.",
+   "hint": "Ieradums pārdzīvoja gadalaiku maiņu."
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "Fitnesa gads",
+   "description": "Trenējies 12 dažādos mēnešos.",
+   "hint": "Ne ātri. Ne skaļi. Vienkārši nekad neapstājies."
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "Divpadsmit nedēļas",
+   "description": "Trenējies 12 dažādās nedēļās.",
+   "hint": "Trīs mēneši, atgriežoties atkal un atkal."
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "Sadedzinātas 5000 kcal",
+   "description": "Sadedzini 5000 kcal treniņos.",
+   "hint": "Pastāvīgas pūles, pacietīgi atkārtotas."
+  }
+ ]
+}

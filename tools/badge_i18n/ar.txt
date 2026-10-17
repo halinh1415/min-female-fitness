@@ -1,0 +1,164 @@
+str.badge_screen_title|الإنجازات
+str.badge_screen_subtitle|محطات تُكتسب بالجهد، لا تُمنح.
+str.badge_summary|تم تحقيق %1$d من %2$d
+str.badge_locked|مقفل
+str.badge_earned|تم التحقيق
+str.badge_earned_on|تم التحقيق في %1$s
+str.badge_remaining|متبقٍ %1$d %2$s
+str.badge_empty|لا توجد إنجازات بعد.
+str.badge_next_up|أقرب إنجاز
+str.badge_view_all|عرض الكل
+str.badge_unlocked_celebration_title|تم تحقيق إنجاز
+str.badge_unlocked_celebration_more|+%1$d إنجازات أخرى
+str.badge_continue|متابعة
+str.badge_share|مشاركة
+str.badge_share_chooser|مشاركة الإنجاز
+str.badge_share_message|لقد حققت للتو إنجاز \"%1$s\" في %2$s!
+str.badge_tier_bronze|برونزي
+str.badge_tier_silver|فضي
+str.badge_tier_gold|ذهبي
+str.badge_tier_jade|يشم
+str.pref_category_general|عام
+str.pref_tts_engine|محرك تحويل النص إلى كلام
+str.pref_version|الإصدار
+plural.badge_unit_session.zero|تمرين
+plural.badge_unit_session.one|تمرين
+plural.badge_unit_session.two|تمرين
+plural.badge_unit_session.few|تمارين
+plural.badge_unit_session.many|تمرينًا
+plural.badge_unit_session.other|تمرين
+plural.badge_unit_day.zero|يوم
+plural.badge_unit_day.one|يوم
+plural.badge_unit_day.two|يوم
+plural.badge_unit_day.few|أيام
+plural.badge_unit_day.many|يومًا
+plural.badge_unit_day.other|يوم
+plural.badge_unit_minute.zero|دقيقة
+plural.badge_unit_minute.one|دقيقة
+plural.badge_unit_minute.two|دقيقة
+plural.badge_unit_minute.few|دقائق
+plural.badge_unit_minute.many|دقيقة
+plural.badge_unit_minute.other|دقيقة
+plural.badge_unit_kcal.zero|سعرة
+plural.badge_unit_kcal.one|سعرة
+plural.badge_unit_kcal.two|سعرة
+plural.badge_unit_kcal.few|سعرات
+plural.badge_unit_kcal.many|سعرة
+plural.badge_unit_kcal.other|سعرة
+plural.badge_unit_program.zero|برنامج
+plural.badge_unit_program.one|برنامج
+plural.badge_unit_program.two|برنامج
+plural.badge_unit_program.few|برامج
+plural.badge_unit_program.many|برنامجًا
+plural.badge_unit_program.other|برنامج
+plural.badge_unit_week.zero|أسبوع
+plural.badge_unit_week.one|أسبوع
+plural.badge_unit_week.two|أسبوع
+plural.badge_unit_week.few|أسابيع
+plural.badge_unit_week.many|أسبوعًا
+plural.badge_unit_week.other|أسبوع
+plural.badge_unit_month.zero|شهر
+plural.badge_unit_month.one|شهر
+plural.badge_unit_month.two|شهر
+plural.badge_unit_month.few|أشهر
+plural.badge_unit_month.many|شهرًا
+plural.badge_unit_month.other|شهر
+cat.beginnings.title|الخطوات الأولى
+cat.beginnings.subtitle|كل رحلة تبدأ بتمرين واحد
+cat.consistency.title|الاستمرارية
+cat.consistency.subtitle|الجهود اليومية الصغيرة تصنع نتائج كبيرة
+cat.rhythm.title|وقت اليوم
+cat.rhythm.subtitle|تمرّني في الوقت الذي يناسبك
+cat.endurance.title|التحمّل
+cat.endurance.subtitle|الدقائق تتراكم لتصنع تقدمًا حقيقيًا
+cat.variety.title|التنوع
+cat.variety.subtitle|نوّعي وتحدّي جسمك
+cat.journey.title|تقدّم طويل الأمد
+cat.journey.subtitle|يُقاس بالأسابيع والأشهر، لا بالأيام
+badge.first_workout.title|أول تمرين
+badge.first_workout.description|أكملي أول تمرين لك.
+badge.first_workout.hint|أنهي أي تمرين لتبدئي رحلتك.
+badge.ten_workouts.title|بداية الاندماج
+badge.ten_workouts.description|أكملي 10 تمارين.
+badge.ten_workouts.hint|التكرار يصنع الزخم.
+badge.fifty_workouts.title|خمسون بقوة
+badge.fifty_workouts.description|أكملي 50 تمرينًا.
+badge.fifty_workouts.hint|خمسون تمرينًا وما زلتِ مستمرة.
+badge.hundred_workouts.title|نادي المئة
+badge.hundred_workouts.description|أكملي 100 تمرين.
+badge.hundred_workouts.hint|ثلاثة أرقام - أصبحت عادة حقيقية الآن.
+badge.three_hundred_workouts.title|لا يمكن إيقافك
+badge.three_hundred_workouts.description|أكملي 300 تمرين.
+badge.three_hundred_workouts.hint|قليلات يصلن إلى هنا. وأنتِ وصلتِ.
+badge.three_day_streak.title|ثلاثة على التوالي
+badge.three_day_streak.description|تمرّني 3 أيام متتالية.
+badge.three_day_streak.hint|السلسلة الأولى هي الأصعب في البداية.
+badge.seven_day_streak.title|أسبوع كامل
+badge.seven_day_streak.description|تمرّني 7 أيام متتالية.
+badge.seven_day_streak.hint|أسبوع كامل دون تفويت يوم.
+badge.twenty_one_day_streak.title|تكوّنت العادة
+badge.twenty_one_day_streak.description|تمرّني 21 يومًا متتاليًا.
+badge.twenty_one_day_streak.hint|بعد 21 يومًا تبدأ العادة بالثبات.
+badge.seven_sevens_streak.title|سبعة أسابيع بقوة
+badge.seven_sevens_streak.description|حقّقي سلسلة من 49 يومًا.
+badge.seven_sevens_streak.hint|سبعة أسابيع دون تفويت يوم واحد.
+badge.hundred_day_streak.title|سلسلة 100 يوم
+badge.hundred_day_streak.description|حقّقي سلسلة من 100 يوم.
+badge.hundred_day_streak.hint|مئة يوم متتالية - تفانٍ حقيقي.
+badge.early_bird.title|المبكّرة
+badge.early_bird.description|تمرّني مرة واحدة قبل الثامنة صباحًا.
+badge.early_bird.hint|أبكر ساعة، أهدأ تمرين.
+badge.dawn_warrior.title|محاربة الفجر
+badge.dawn_warrior.description|تمرّني 10 مرات قبل الثامنة صباحًا.
+badge.dawn_warrior.hint|صباح باكر، هواء منعش، تركيز هادئ.
+badge.sunrise_habit.title|عادة الصباح
+badge.sunrise_habit.description|تمرّني 40 مرة قبل الثامنة صباحًا.
+badge.sunrise_habit.hint|أصبح التمرين مع شروق الشمس طبيعة ثانية لك.
+badge.evening_wind_down.title|ختام المساء
+badge.evening_wind_down.description|تمرّني 10 مرات بعد السادسة مساءً.
+badge.evening_wind_down.hint|إنهاء اليوم بجهد أخير.
+badge.night_owl.title|بومة الليل
+badge.night_owl.description|تمرّني 40 مرة بعد السادسة مساءً.
+badge.night_owl.hint|تمرين المساء وقتك الخاص.
+badge.weekend_warrior.title|محاربة عطلة الأسبوع
+badge.weekend_warrior.description|تمرّني في 8 أيام عطلة.
+badge.weekend_warrior.hint|أيام الراحة يمكن أن تكون أيام تمرين أيضًا.
+badge.first_hour.title|الساعة الأولى
+badge.first_hour.description|اجمعي 60 دقيقة من التمارين.
+badge.first_hour.hint|ساعة من الجهد لا تضيع أبدًا.
+badge.ten_hours.title|عشر ساعات
+badge.ten_hours.description|اجمعي 600 دقيقة من التمارين.
+badge.ten_hours.hint|بدأت الحركات تصبح طبيعية.
+badge.fifty_hours.title|خمسون ساعة
+badge.fifty_hours.description|اجمعي 3000 دقيقة من التمارين.
+badge.fifty_hours.hint|الوقت المستثمر بثبات يؤتي ثماره.
+badge.long_workout.title|حتى النهاية
+badge.long_workout.description|أكملي 10 تمارين مدة كل منها 20 دقيقة أو أكثر.
+badge.long_workout.hint|الجلسات الأطول تبني تحمّلًا حقيقيًا.
+badge.full_hour_day.title|ساعة كاملة
+badge.full_hour_day.description|تمرّني 60 دقيقة في يوم واحد.
+badge.full_hour_day.hint|يوم تدريب طويل ومركّز.
+badge.three_programs.title|ثلاثة برامج
+badge.three_programs.description|جرّبي 3 برامج تمارين مختلفة.
+badge.three_programs.hint|كل برنامج يتحدّاك بطريقة مختلفة.
+badge.five_programs.title|خمسة برامج
+badge.five_programs.description|جرّبي 5 برامج تمارين مختلفة.
+badge.five_programs.hint|اجعلي جسمك يتفاجأ دائمًا.
+badge.eight_programs.title|ثمانية برامج
+badge.eight_programs.description|جرّبي 8 برامج تمارين مختلفة.
+badge.eight_programs.hint|روتين متكامل يُبنى قطعة بعد قطعة.
+badge.one_month_days.title|شهر واحد
+badge.one_month_days.description|تمرّني في 30 يومًا مختلفًا.
+badge.one_month_days.hint|شهر كامل من الالتزام.
+badge.four_months.title|أربعة أشهر
+badge.four_months.description|تمرّني خلال 4 أشهر مختلفة.
+badge.four_months.hint|العادة صمدت أمام تغيّر الفصول.
+badge.year_of_fitness.title|عام من اللياقة
+badge.year_of_fitness.description|تمرّني خلال 12 شهرًا مختلفًا.
+badge.year_of_fitness.hint|ليس بسرعة. ليس بضجيج. فقط لم تتوقفي أبدًا.
+badge.twelve_weeks.title|اثنا عشر أسبوعًا
+badge.twelve_weeks.description|تمرّني خلال 12 أسبوعًا مختلفًا.
+badge.twelve_weeks.hint|ثلاثة أشهر من العودة للمزيد.
+badge.calorie_burn_5000.title|حرق 5000 سعرة
+badge.calorie_burn_5000.description|احرقي 5000 سعرة حرارية بالتمارين.
+badge.calorie_burn_5000.hint|جهد ثابت يتكرر بصبر.

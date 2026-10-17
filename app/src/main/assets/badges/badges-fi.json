@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "Ensiaskeleet",
+   "subtitle": "Jokainen matka alkaa yhdestä treenistä"
+  },
+  {
+   "id": "consistency",
+   "title": "Säännöllisyys",
+   "subtitle": "Pienet päivittäiset ponnistukset tuovat suuria tuloksia"
+  },
+  {
+   "id": "rhythm",
+   "title": "Vuorokaudenaika",
+   "subtitle": "Treenaa silloin, kun sinulle sopii"
+  },
+  {
+   "id": "endurance",
+   "title": "Kestävyys",
+   "subtitle": "Minuutit kertyvät todelliseksi edistykseksi"
+  },
+  {
+   "id": "variety",
+   "title": "Monipuolisuus",
+   "subtitle": "Vaihtele ja haasta kehoasi"
+  },
+  {
+   "id": "journey",
+   "title": "Pitkän aikavälin edistys",
+   "subtitle": "Mitataan viikoissa ja kuukausissa, ei päivissä"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "Ensimmäinen treeni",
+   "description": "Suorita ensimmäinen treenisi.",
+   "hint": "Suorita mikä tahansa treeni aloittaaksesi matkasi."
+  },
+  {
+   "id": "ten_workouts",
+   "title": "Vauhdissa",
+   "description": "Suorita 10 treeniä.",
+   "hint": "Toisto luo vauhtia."
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "Vahvat viisikymmentä",
+   "description": "Suorita 50 treeniä.",
+   "hint": "Viisikymmentä treeniä, ja jatkat yhä."
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "Sadan kerho",
+   "description": "Suorita 100 treeniä.",
+   "hint": "Kolminumeroinen – nyt todellinen tapa."
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "Pysäyttämätön",
+   "description": "Suorita 300 treeniä.",
+   "hint": "Harva pääsee näin pitkälle. Sinä pääsit."
+  },
+  {
+   "id": "three_day_streak",
+   "title": "Kolme putkeen",
+   "description": "Treenaa 3 päivää putkeen.",
+   "hint": "Ensimmäinen putki on vaikein aloittaa."
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "Koko viikko",
+   "description": "Treenaa 7 päivää putkeen.",
+   "hint": "Koko viikko ilman yhtään väliin jäänyttä päivää."
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "Tapa syntynyt",
+   "description": "Treenaa 21 päivää putkeen.",
+   "hint": "21 päivässä tapa alkaa juurtua."
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "Seitsemän vahvaa viikkoa",
+   "description": "Saavuta 49 päivän putki.",
+   "hint": "Seitsemän viikkoa jättämättä päivääkään väliin."
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "100 päivän putki",
+   "description": "Saavuta 100 päivän putki.",
+   "hint": "Sata päivää putkeen – todellista omistautumista."
+  },
+  {
+   "id": "early_bird",
+   "title": "Aamuvirkku",
+   "description": "Treenaa kerran ennen kahdeksaa aamulla.",
+   "hint": "Aikaisin tunti, rauhallisin treeni."
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "Aamunkoiton soturi",
+   "description": "Treenaa 10 kertaa ennen kahdeksaa aamulla.",
+   "hint": "Varhaiset aamut, raikas ilma, rauhallinen keskittyminen."
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "Aamutapa",
+   "description": "Treenaa 40 kertaa ennen kahdeksaa aamulla.",
+   "hint": "Auringonnousun treeneistä on tullut toinen luontosi."
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "Illan päätös",
+   "description": "Treenaa 10 kertaa kello 18 jälkeen.",
+   "hint": "Päätä päivä viimeisellä ponnistuksella."
+  },
+  {
+   "id": "night_owl",
+   "title": "Yökyöpeli",
+   "description": "Treenaa 40 kertaa kello 18 jälkeen.",
+   "hint": "Iltatreeni on sinun."
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "Viikonloppusoturi",
+   "description": "Treenaa 8 viikonloppupäivänä.",
+   "hint": "Vapaapäivätkin voivat olla treenipäiviä."
+  },
+  {
+   "id": "first_hour",
+   "title": "Ensimmäinen tunti",
+   "description": "Kerrytä 60 minuuttia treeniä.",
+   "hint": "Tunnin ponnistus ei koskaan mene hukkaan."
+  },
+  {
+   "id": "ten_hours",
+   "title": "Kymmenen tuntia",
+   "description": "Kerrytä 600 minuuttia treeniä.",
+   "hint": "Liikkeet alkavat tuntua luontevilta."
+  },
+  {
+   "id": "fifty_hours",
+   "title": "Viisikymmentä tuntia",
+   "description": "Kerrytä 3000 minuuttia treeniä.",
+   "hint": "Tasaisesti sijoitettu aika palkitsee."
+  },
+  {
+   "id": "long_workout",
+   "title": "Loppuun asti",
+   "description": "Suorita 10 vähintään 20 minuutin treeniä.",
+   "hint": "Pidemmät treenit rakentavat todellista kestävyyttä."
+  },
+  {
+   "id": "full_hour_day",
+   "title": "Täysi tunti",
+   "description": "Treenaa 60 minuuttia yhden päivän aikana.",
+   "hint": "Yksi pitkä, keskittynyt treenipäivä."
+  },
+  {
+   "id": "three_programs",
+   "title": "Kolme ohjelmaa",
+   "description": "Kokeile 3 eri treeniohjelmaa.",
+   "hint": "Jokainen ohjelma haastaa eri tavalla."
+  },
+  {
+   "id": "five_programs",
+   "title": "Viisi ohjelmaa",
+   "description": "Kokeile 5 eri treeniohjelmaa.",
+   "hint": "Pidä keho arvailemassa."
+  },
+  {
+   "id": "eight_programs",
+   "title": "Kahdeksan ohjelmaa",
+   "description": "Kokeile 8 eri treeniohjelmaa.",
+   "hint": "Monipuolinen rutiini, rakennettu pala palalta."
+  },
+  {
+   "id": "one_month_days",
+   "title": "Yksi kuukausi",
+   "description": "Treenaa 30 eri päivänä.",
+   "hint": "Kokonainen kuukausi paikalla oloa."
+  },
+  {
+   "id": "four_months",
+   "title": "Neljä kuukautta",
+   "description": "Treenaa 4 eri kuukautena.",
+   "hint": "Tapa kestää vuodenajan vaihtumisen."
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "Vuosi kuntoilua",
+   "description": "Treenaa 12 eri kuukautena.",
+   "hint": "Ei nopeasti. Ei äänekkäästi. Et vain koskaan lopettanut."
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "Kaksitoista viikkoa",
+   "description": "Treenaa 12 eri viikolla.",
+   "hint": "Kolme kuukautta palaamista lisää kohti."
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "5 000 kcal poltettu",
+   "description": "Polta treenaamalla 5000 kcal.",
+   "hint": "Tasaista työtä, kärsivällisesti toistettuna."
+  }
+ ]
+}

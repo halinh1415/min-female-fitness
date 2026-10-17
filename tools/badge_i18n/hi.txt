@@ -1,0 +1,136 @@
+str.badge_screen_title|उपलब्धियाँ
+str.badge_screen_subtitle|मेहनत से कमाए गए पड़ाव, यूँ ही नहीं मिलते।
+str.badge_summary|%2$d में से %1$d हासिल
+str.badge_locked|लॉक
+str.badge_earned|हासिल
+str.badge_earned_on|%1$s को हासिल
+str.badge_remaining|%1$d %2$s बाकी
+str.badge_empty|अभी कोई उपलब्धि सेट नहीं है।
+str.badge_next_up|सबसे नज़दीकी उपलब्धि
+str.badge_view_all|सभी देखें
+str.badge_unlocked_celebration_title|उपलब्धि हासिल
+str.badge_unlocked_celebration_more|+%1$d और हासिल
+str.badge_continue|जारी रखें
+str.badge_share|शेयर करें
+str.badge_share_chooser|उपलब्धि शेयर करें
+str.badge_share_message|मैंने अभी %2$s में \"%1$s\" उपलब्धि हासिल की!
+str.badge_tier_bronze|कांस्य
+str.badge_tier_silver|रजत
+str.badge_tier_gold|स्वर्ण
+str.badge_tier_jade|जेड
+str.pref_category_general|सामान्य
+str.pref_tts_engine|टेक्स्ट-टू-स्पीच इंजन
+str.pref_version|संस्करण
+plural.badge_unit_session.one|वर्कआउट
+plural.badge_unit_session.other|वर्कआउट
+plural.badge_unit_day.one|दिन
+plural.badge_unit_day.other|दिन
+plural.badge_unit_minute.one|मिनट
+plural.badge_unit_minute.other|मिनट
+plural.badge_unit_kcal.one|kcal
+plural.badge_unit_kcal.other|kcal
+plural.badge_unit_program.one|प्रोग्राम
+plural.badge_unit_program.other|प्रोग्राम
+plural.badge_unit_week.one|सप्ताह
+plural.badge_unit_week.other|सप्ताह
+plural.badge_unit_month.one|महीना
+plural.badge_unit_month.other|महीने
+cat.beginnings.title|पहले कदम
+cat.beginnings.subtitle|हर सफ़र एक वर्कआउट से शुरू होता है
+cat.consistency.title|निरंतरता
+cat.consistency.subtitle|रोज़ की छोटी कोशिशें बड़े नतीजे देती हैं
+cat.rhythm.title|दिन का समय
+cat.rhythm.subtitle|जब आपको सुविधा हो, तब वर्कआउट करें
+cat.endurance.title|सहनशक्ति
+cat.endurance.subtitle|मिनट जुड़कर असली प्रगति बनते हैं
+cat.variety.title|विविधता
+cat.variety.subtitle|बदलाव लाएँ और शरीर को चुनौती दें
+cat.journey.title|लंबी अवधि की प्रगति
+cat.journey.subtitle|दिनों में नहीं, हफ़्तों और महीनों में मापी जाती है
+badge.first_workout.title|पहला वर्कआउट
+badge.first_workout.description|अपना पहला वर्कआउट पूरा करें।
+badge.first_workout.hint|अपना सफ़र शुरू करने के लिए कोई भी वर्कआउट पूरा करें।
+badge.ten_workouts.title|लय में आ रही हैं
+badge.ten_workouts.description|10 वर्कआउट पूरे करें।
+badge.ten_workouts.hint|दोहराव से रफ़्तार बनती है।
+badge.fifty_workouts.title|पचास का दम
+badge.fifty_workouts.description|50 वर्कआउट पूरे करें।
+badge.fifty_workouts.hint|पचास वर्कआउट हो गए, और सफ़र जारी है।
+badge.hundred_workouts.title|सेंचुरी क्लब
+badge.hundred_workouts.description|100 वर्कआउट पूरे करें।
+badge.hundred_workouts.hint|तीन अंक - अब यह सच्ची आदत है।
+badge.three_hundred_workouts.title|अजेय
+badge.three_hundred_workouts.description|300 वर्कआउट पूरे करें।
+badge.three_hundred_workouts.hint|बहुत कम लोग यहाँ तक पहुँचते हैं। आप पहुँचीं।
+badge.three_day_streak.title|लगातार तीन
+badge.three_day_streak.description|लगातार 3 दिन वर्कआउट करें।
+badge.three_day_streak.hint|पहली स्ट्रीक शुरू करना सबसे मुश्किल है।
+badge.seven_day_streak.title|पूरा सप्ताह
+badge.seven_day_streak.description|लगातार 7 दिन वर्कआउट करें।
+badge.seven_day_streak.hint|बिना एक भी दिन छोड़े पूरा सप्ताह।
+badge.twenty_one_day_streak.title|आदत बन गई
+badge.twenty_one_day_streak.description|लगातार 21 दिन वर्कआउट करें।
+badge.twenty_one_day_streak.hint|21 दिनों में आदत टिकने लगती है।
+badge.seven_sevens_streak.title|सात मज़बूत सप्ताह
+badge.seven_sevens_streak.description|49 दिनों की स्ट्रीक हासिल करें।
+badge.seven_sevens_streak.hint|सात सप्ताह, एक भी दिन छोड़े बिना।
+badge.hundred_day_streak.title|100 दिन की स्ट्रीक
+badge.hundred_day_streak.description|100 दिनों की स्ट्रीक हासिल करें।
+badge.hundred_day_streak.hint|लगातार सौ दिन - सच्चा समर्पण।
+badge.early_bird.title|सुबह की चिड़िया
+badge.early_bird.description|सुबह 8 बजे से पहले एक बार वर्कआउट करें।
+badge.early_bird.hint|सबसे जल्दी घंटा, सबसे शांत वर्कआउट।
+badge.dawn_warrior.title|भोर की योद्धा
+badge.dawn_warrior.description|सुबह 8 बजे से पहले 10 बार वर्कआउट करें।
+badge.dawn_warrior.hint|सुबह-सुबह, ठंडी हवा, शांत एकाग्रता।
+badge.sunrise_habit.title|सुबह की आदत
+badge.sunrise_habit.description|सुबह 8 बजे से पहले 40 बार वर्कआउट करें।
+badge.sunrise_habit.hint|सूर्योदय पर वर्कआउट अब आपका स्वभाव बन गया है।
+badge.evening_wind_down.title|शाम की राहत
+badge.evening_wind_down.description|शाम 6 बजे के बाद 10 बार वर्कआउट करें।
+badge.evening_wind_down.hint|एक आख़िरी कोशिश के साथ दिन का अंत।
+badge.night_owl.title|रात की उल्लू
+badge.night_owl.description|शाम 6 बजे के बाद 40 बार वर्कआउट करें।
+badge.night_owl.hint|शाम का वर्कआउट आपका अपना है।
+badge.weekend_warrior.title|वीकेंड योद्धा
+badge.weekend_warrior.description|8 वीकेंड दिनों पर वर्कआउट करें।
+badge.weekend_warrior.hint|छुट्टी के दिन भी वर्कआउट के दिन हो सकते हैं।
+badge.first_hour.title|पहला घंटा
+badge.first_hour.description|कुल 60 मिनट वर्कआउट करें।
+badge.first_hour.hint|एक घंटे की मेहनत कभी बेकार नहीं जाती।
+badge.ten_hours.title|दस घंटे
+badge.ten_hours.description|कुल 600 मिनट वर्कआउट करें।
+badge.ten_hours.hint|मूवमेंट अब स्वाभाविक लगने लगे हैं।
+badge.fifty_hours.title|पचास घंटे
+badge.fifty_hours.description|कुल 3000 मिनट वर्कआउट करें।
+badge.fifty_hours.hint|लगातार लगाया गया समय रंग लाता है।
+badge.long_workout.title|अंत तक
+badge.long_workout.description|20 मिनट या उससे लंबे 10 वर्कआउट पूरे करें।
+badge.long_workout.hint|लंबे सेशन असली सहनशक्ति बनाते हैं।
+badge.full_hour_day.title|पूरा एक घंटा
+badge.full_hour_day.description|एक ही दिन में 60 मिनट वर्कआउट करें।
+badge.full_hour_day.hint|ट्रेनिंग का एक लंबा, एकाग्र दिन।
+badge.three_programs.title|तीन प्रोग्राम
+badge.three_programs.description|3 अलग-अलग वर्कआउट प्रोग्राम आज़माएँ।
+badge.three_programs.hint|हर प्रोग्राम अलग तरह से चुनौती देता है।
+badge.five_programs.title|पाँच प्रोग्राम
+badge.five_programs.description|5 अलग-अलग वर्कआउट प्रोग्राम आज़माएँ।
+badge.five_programs.hint|शरीर को हमेशा चौंकाते रहें।
+badge.eight_programs.title|आठ प्रोग्राम
+badge.eight_programs.description|8 अलग-अलग वर्कआउट प्रोग्राम आज़माएँ।
+badge.eight_programs.hint|टुकड़ा-टुकड़ा बनाई गई संतुलित दिनचर्या।
+badge.one_month_days.title|एक महीना
+badge.one_month_days.description|30 अलग-अलग दिनों में वर्कआउट करें।
+badge.one_month_days.hint|पूरे एक महीने की नियमितता।
+badge.four_months.title|चार महीने
+badge.four_months.description|4 अलग-अलग महीनों में वर्कआउट करें।
+badge.four_months.hint|मौसम बदला, पर आदत बनी रही।
+badge.year_of_fitness.title|फ़िटनेस का एक साल
+badge.year_of_fitness.description|12 अलग-अलग महीनों में वर्कआउट करें।
+badge.year_of_fitness.hint|न तेज़, न शोर। बस कभी रुकी नहीं।
+badge.twelve_weeks.title|बारह सप्ताह
+badge.twelve_weeks.description|12 अलग-अलग सप्ताहों में वर्कआउट करें।
+badge.twelve_weeks.hint|तीन महीने तक बार-बार लौटती रहीं।
+badge.calorie_burn_5000.title|5,000 kcal बर्न
+badge.calorie_burn_5000.description|वर्कआउट से 5000 kcal बर्न करें।
+badge.calorie_burn_5000.hint|लगातार मेहनत, धैर्य से दोहराई गई।

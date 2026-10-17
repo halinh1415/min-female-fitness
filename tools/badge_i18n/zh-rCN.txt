@@ -1,0 +1,129 @@
+str.badge_screen_title|成就
+str.badge_screen_subtitle|靠努力赢得的里程碑，而不是白送的。
+str.badge_summary|已获得 %1$d/%2$d
+str.badge_locked|未解锁
+str.badge_earned|已获得
+str.badge_earned_on|获得于 %1$s
+str.badge_remaining|还差 %1$d %2$s
+str.badge_empty|暂未设置成就。
+str.badge_next_up|最接近的成就
+str.badge_view_all|查看全部
+str.badge_unlocked_celebration_title|获得成就
+str.badge_unlocked_celebration_more|另获得 %1$d 个
+str.badge_continue|继续
+str.badge_share|分享
+str.badge_share_chooser|分享成就
+str.badge_share_message|我刚在 %2$s 获得了“%1$s”成就！
+str.badge_tier_bronze|铜
+str.badge_tier_silver|银
+str.badge_tier_gold|金
+str.badge_tier_jade|玉
+str.pref_category_general|通用
+str.pref_tts_engine|文字转语音引擎
+str.pref_version|版本
+plural.badge_unit_session.other|次训练
+plural.badge_unit_day.other|天
+plural.badge_unit_minute.other|分钟
+plural.badge_unit_kcal.other|千卡
+plural.badge_unit_program.other|个计划
+plural.badge_unit_week.other|周
+plural.badge_unit_month.other|个月
+cat.beginnings.title|第一步
+cat.beginnings.subtitle|每段旅程都从一次训练开始
+cat.consistency.title|坚持
+cat.consistency.subtitle|每天的小努力汇聚成大成果
+cat.rhythm.title|训练时段
+cat.rhythm.subtitle|按你的节奏安排训练
+cat.endurance.title|耐力
+cat.endurance.subtitle|一分一秒累积成真正的进步
+cat.variety.title|多样化
+cat.variety.subtitle|变换花样，挑战身体
+cat.journey.title|长期进步
+cat.journey.subtitle|以周和月衡量，而不是以天
+badge.first_workout.title|第一次训练
+badge.first_workout.description|完成你的第一次训练。
+badge.first_workout.hint|完成任意一次训练，开启你的旅程。
+badge.ten_workouts.title|渐入佳境
+badge.ten_workouts.description|完成 10 次训练。
+badge.ten_workouts.hint|重复带来动力。
+badge.fifty_workouts.title|五十次达成
+badge.fifty_workouts.description|完成 50 次训练。
+badge.fifty_workouts.hint|五十次训练，仍在继续。
+badge.hundred_workouts.title|百次俱乐部
+badge.hundred_workouts.description|完成 100 次训练。
+badge.hundred_workouts.hint|三位数了，已经是真正的习惯。
+badge.three_hundred_workouts.title|势不可挡
+badge.three_hundred_workouts.description|完成 300 次训练。
+badge.three_hundred_workouts.hint|很少有人能走到这里，你做到了。
+badge.three_day_streak.title|连续三天
+badge.three_day_streak.description|连续训练 3 天。
+badge.three_day_streak.hint|第一次连续最难开始。
+badge.seven_day_streak.title|整整一周
+badge.seven_day_streak.description|连续训练 7 天。
+badge.seven_day_streak.hint|整整一周，一天不落。
+badge.twenty_one_day_streak.title|养成习惯
+badge.twenty_one_day_streak.description|连续训练 21 天。
+badge.twenty_one_day_streak.hint|21 天是习惯开始稳固的时候。
+badge.seven_sevens_streak.title|坚持七周
+badge.seven_sevens_streak.description|达成连续 49 天。
+badge.seven_sevens_streak.hint|七周没有漏过一天。
+badge.hundred_day_streak.title|连续百天
+badge.hundred_day_streak.description|达成连续 100 天。
+badge.hundred_day_streak.hint|连续一百天，真正的坚持。
+badge.early_bird.title|早起鸟
+badge.early_bird.description|在早上 8 点前训练一次。
+badge.early_bird.hint|最早的时刻，最安静的训练。
+badge.dawn_warrior.title|黎明战士
+badge.dawn_warrior.description|在早上 8 点前训练 10 次。
+badge.dawn_warrior.hint|清晨、凉爽的空气、平静的专注。
+badge.sunrise_habit.title|晨练习惯
+badge.sunrise_habit.description|在早上 8 点前训练 40 次。
+badge.sunrise_habit.hint|日出训练已成为你的本能。
+badge.evening_wind_down.title|傍晚放松
+badge.evening_wind_down.description|在晚上 6 点后训练 10 次。
+badge.evening_wind_down.hint|用最后一次努力结束这一天。
+badge.night_owl.title|夜猫子
+badge.night_owl.description|在晚上 6 点后训练 40 次。
+badge.night_owl.hint|晚间训练属于你。
+badge.weekend_warrior.title|周末战士
+badge.weekend_warrior.description|在 8 个周末日训练。
+badge.weekend_warrior.hint|休息日也可以是训练日。
+badge.first_hour.title|第一个小时
+badge.first_hour.description|累计训练 60 分钟。
+badge.first_hour.hint|一小时的努力永远不会白费。
+badge.ten_hours.title|十小时
+badge.ten_hours.description|累计训练 600 分钟。
+badge.ten_hours.hint|动作开始变得自然。
+badge.fifty_hours.title|五十小时
+badge.fifty_hours.description|累计训练 3000 分钟。
+badge.fifty_hours.hint|持续投入的时间终有回报。
+badge.long_workout.title|坚持到底
+badge.long_workout.description|完成 10 次 20 分钟以上的训练。
+badge.long_workout.hint|更长的训练打造真正的耐力。
+badge.full_hour_day.title|满一小时
+badge.full_hour_day.description|一天内训练 60 分钟。
+badge.full_hour_day.hint|专注训练的漫长一天。
+badge.three_programs.title|三个计划
+badge.three_programs.description|尝试 3 个不同的训练计划。
+badge.three_programs.hint|每个计划以不同方式挑战你。
+badge.five_programs.title|五个计划
+badge.five_programs.description|尝试 5 个不同的训练计划。
+badge.five_programs.hint|让身体保持新鲜感。
+badge.eight_programs.title|八个计划
+badge.eight_programs.description|尝试 8 个不同的训练计划。
+badge.eight_programs.hint|一点一点搭建的全面训练。
+badge.one_month_days.title|一个月
+badge.one_month_days.description|在 30 个不同的日子训练。
+badge.one_month_days.hint|整整一个月坚持出现。
+badge.four_months.title|四个月
+badge.four_months.description|在 4 个不同的月份训练。
+badge.four_months.hint|习惯挺过了季节变换。
+badge.year_of_fitness.title|健身一年
+badge.year_of_fitness.description|在 12 个不同的月份训练。
+badge.year_of_fitness.hint|不快，不张扬，只是从未停下。
+badge.twelve_weeks.title|十二周
+badge.twelve_weeks.description|在 12 个不同的周训练。
+badge.twelve_weeks.hint|三个月来一次次回来训练。
+badge.calorie_burn_5000.title|燃烧 5000 千卡
+badge.calorie_burn_5000.description|通过训练燃烧 5000 千卡。
+badge.calorie_burn_5000.hint|稳定的努力，耐心地重复。

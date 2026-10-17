@@ -1,0 +1,136 @@
+str.badge_screen_title|Prestasjoner
+str.badge_screen_subtitle|Milepæler som er fortjent med innsats, ikke gitt.
+str.badge_summary|%1$d av %2$d oppnådd
+str.badge_locked|Låst
+str.badge_earned|Oppnådd
+str.badge_earned_on|Oppnådd %1$s
+str.badge_remaining|%1$d %2$s igjen
+str.badge_empty|Ingen prestasjoner er satt opp ennå.
+str.badge_next_up|Nærmeste prestasjon
+str.badge_view_all|Se alle
+str.badge_unlocked_celebration_title|Prestasjon oppnådd
+str.badge_unlocked_celebration_more|+%1$d flere oppnådd
+str.badge_continue|Fortsett
+str.badge_share|Del
+str.badge_share_chooser|Del prestasjon
+str.badge_share_message|Jeg har akkurat oppnådd prestasjonen \"%1$s\" i %2$s!
+str.badge_tier_bronze|Bronse
+str.badge_tier_silver|Sølv
+str.badge_tier_gold|Gull
+str.badge_tier_jade|Jade
+str.pref_category_general|Generelt
+str.pref_tts_engine|Tekst-til-tale-motor
+str.pref_version|Versjon
+plural.badge_unit_session.one|økt
+plural.badge_unit_session.other|økter
+plural.badge_unit_day.one|dag
+plural.badge_unit_day.other|dager
+plural.badge_unit_minute.one|minutt
+plural.badge_unit_minute.other|minutter
+plural.badge_unit_kcal.one|kcal
+plural.badge_unit_kcal.other|kcal
+plural.badge_unit_program.one|program
+plural.badge_unit_program.other|programmer
+plural.badge_unit_week.one|uke
+plural.badge_unit_week.other|uker
+plural.badge_unit_month.one|måned
+plural.badge_unit_month.other|måneder
+cat.beginnings.title|Første steg
+cat.beginnings.subtitle|Hver reise begynner med én treningsøkt
+cat.consistency.title|Jevnhet
+cat.consistency.subtitle|Små daglige innsatser gir store resultater
+cat.rhythm.title|Tid på døgnet
+cat.rhythm.subtitle|Tren når det passer deg
+cat.endurance.title|Utholdenhet
+cat.endurance.subtitle|Minuttene blir til ekte fremgang
+cat.variety.title|Variasjon
+cat.variety.subtitle|Varier og utfordre kroppen din
+cat.journey.title|Langsiktig fremgang
+cat.journey.subtitle|Målt i uker og måneder, ikke dager
+badge.first_workout.title|Første økt
+badge.first_workout.description|Fullfør din aller første treningsøkt.
+badge.first_workout.hint|Fullfør hvilken som helst økt for å starte reisen.
+badge.ten_workouts.title|I gang
+badge.ten_workouts.description|Fullfør 10 treningsøkter.
+badge.ten_workouts.hint|Gjentakelse skaper driv.
+badge.fifty_workouts.title|Sterke femti
+badge.fifty_workouts.description|Fullfør 50 treningsøkter.
+badge.fifty_workouts.hint|Femti økter, og du fortsetter.
+badge.hundred_workouts.title|Hundreklubben
+badge.hundred_workouts.description|Fullfør 100 treningsøkter.
+badge.hundred_workouts.hint|Tre sifre – nå en ekte vane.
+badge.three_hundred_workouts.title|Ustoppelig
+badge.three_hundred_workouts.description|Fullfør 300 treningsøkter.
+badge.three_hundred_workouts.hint|Få kommer så langt. Det gjorde du.
+badge.three_day_streak.title|Tre på rad
+badge.three_day_streak.description|Tren 3 dager på rad.
+badge.three_day_streak.hint|Den første rekken er vanskeligst å starte.
+badge.seven_day_streak.title|Hel uke
+badge.seven_day_streak.description|Tren 7 dager på rad.
+badge.seven_day_streak.hint|En hel uke uten å hoppe over en dag.
+badge.twenty_one_day_streak.title|Vane skapt
+badge.twenty_one_day_streak.description|Tren 21 dager på rad.
+badge.twenty_one_day_streak.hint|Etter 21 dager begynner en vane å sitte.
+badge.seven_sevens_streak.title|Sju sterke uker
+badge.seven_sevens_streak.description|Nå en rekke på 49 dager.
+badge.seven_sevens_streak.hint|Sju uker uten å hoppe over én eneste dag.
+badge.hundred_day_streak.title|100 dager på rad
+badge.hundred_day_streak.description|Nå en rekke på 100 dager.
+badge.hundred_day_streak.hint|Hundre dager på rad – ekte dedikasjon.
+badge.early_bird.title|Morgenfugl
+badge.early_bird.description|Tren én gang før klokken 8 om morgenen.
+badge.early_bird.hint|Den tidligste timen, den roligste økten.
+badge.dawn_warrior.title|Morgengryets kriger
+badge.dawn_warrior.description|Tren 10 ganger før klokken 8 om morgenen.
+badge.dawn_warrior.hint|Tidlige morgener, frisk luft, rolig fokus.
+badge.sunrise_habit.title|Morgenvane
+badge.sunrise_habit.description|Tren 40 ganger før klokken 8 om morgenen.
+badge.sunrise_habit.hint|Trening ved soloppgang har blitt din andre natur.
+badge.evening_wind_down.title|Kveldsavslutning
+badge.evening_wind_down.description|Tren 10 ganger etter klokken 18.
+badge.evening_wind_down.hint|Avslutt dagen med en siste innsats.
+badge.night_owl.title|Nattugle
+badge.night_owl.description|Tren 40 ganger etter klokken 18.
+badge.night_owl.hint|Kveldsøkten er din.
+badge.weekend_warrior.title|Helgekriger
+badge.weekend_warrior.description|Tren på 8 helgedager.
+badge.weekend_warrior.hint|Fridager kan også være treningsdager.
+badge.first_hour.title|Den første timen
+badge.first_hour.description|Samle 60 minutter med trening.
+badge.first_hour.hint|En time med innsats er aldri bortkastet.
+badge.ten_hours.title|Ti timer
+badge.ten_hours.description|Samle 600 minutter med trening.
+badge.ten_hours.hint|Bevegelsene begynner å føles naturlige.
+badge.fifty_hours.title|Femti timer
+badge.fifty_hours.description|Samle 3000 minutter med trening.
+badge.fifty_hours.hint|Tid investert jevnt lønner seg.
+badge.long_workout.title|Hele veien
+badge.long_workout.description|Fullfør 10 økter på 20 minutter eller mer.
+badge.long_workout.hint|Lengre økter bygger ekte utholdenhet.
+badge.full_hour_day.title|En hel time
+badge.full_hour_day.description|Tren i 60 minutter på én dag.
+badge.full_hour_day.hint|En lang, fokusert treningsdag.
+badge.three_programs.title|Tre programmer
+badge.three_programs.description|Prøv 3 ulike treningsprogrammer.
+badge.three_programs.hint|Hvert program utfordrer deg på en ny måte.
+badge.five_programs.title|Fem programmer
+badge.five_programs.description|Prøv 5 ulike treningsprogrammer.
+badge.five_programs.hint|Hold kroppen på tå hev.
+badge.eight_programs.title|Åtte programmer
+badge.eight_programs.description|Prøv 8 ulike treningsprogrammer.
+badge.eight_programs.hint|En allsidig rutine, bygget bit for bit.
+badge.one_month_days.title|Én måned
+badge.one_month_days.description|Tren på 30 ulike dager.
+badge.one_month_days.hint|En hel måned der du møtte opp.
+badge.four_months.title|Fire måneder
+badge.four_months.description|Tren i 4 ulike måneder.
+badge.four_months.hint|Vanen overlever årstidsskiftet.
+badge.year_of_fitness.title|Et år med trening
+badge.year_of_fitness.description|Tren i 12 ulike måneder.
+badge.year_of_fitness.hint|Ikke raskt. Ikke høylytt. Bare aldri stoppet.
+badge.twelve_weeks.title|Tolv uker
+badge.twelve_weeks.description|Tren i 12 ulike uker.
+badge.twelve_weeks.hint|Tre måneder med å komme tilbake for mer.
+badge.calorie_burn_5000.title|5 000 kcal forbrent
+badge.calorie_burn_5000.description|Forbrenn 5000 kcal gjennom trening.
+badge.calorie_burn_5000.hint|Jevn innsats, tålmodig gjentatt.

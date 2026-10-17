@@ -1,0 +1,136 @@
+str.badge_screen_title|Succès
+str.badge_screen_subtitle|Des étapes gagnées par l'effort, jamais offertes.
+str.badge_summary|%1$d sur %2$d obtenus
+str.badge_locked|Verrouillé
+str.badge_earned|Obtenu
+str.badge_earned_on|Obtenu le %1$s
+str.badge_remaining|Encore %1$d %2$s
+str.badge_empty|Aucun succès configuré pour le moment.
+str.badge_next_up|Succès le plus proche
+str.badge_view_all|Tout voir
+str.badge_unlocked_celebration_title|Succès obtenu
+str.badge_unlocked_celebration_more|+%1$d autres obtenus
+str.badge_continue|Continuer
+str.badge_share|Partager
+str.badge_share_chooser|Partager le succès
+str.badge_share_message|Je viens d'obtenir le succès \"%1$s\" dans %2$s !
+str.badge_tier_bronze|Bronze
+str.badge_tier_silver|Argent
+str.badge_tier_gold|Or
+str.badge_tier_jade|Jade
+str.pref_category_general|Général
+str.pref_tts_engine|Moteur de synthèse vocale
+str.pref_version|Version
+plural.badge_unit_session.one|séance
+plural.badge_unit_session.other|séances
+plural.badge_unit_day.one|jour
+plural.badge_unit_day.other|jours
+plural.badge_unit_minute.one|minute
+plural.badge_unit_minute.other|minutes
+plural.badge_unit_kcal.one|kcal
+plural.badge_unit_kcal.other|kcal
+plural.badge_unit_program.one|programme
+plural.badge_unit_program.other|programmes
+plural.badge_unit_week.one|semaine
+plural.badge_unit_week.other|semaines
+plural.badge_unit_month.one|mois
+plural.badge_unit_month.other|mois
+cat.beginnings.title|Premiers pas
+cat.beginnings.subtitle|Chaque parcours commence par une séance
+cat.consistency.title|Régularité
+cat.consistency.subtitle|De petits efforts quotidiens font de grands résultats
+cat.rhythm.title|Moment de la journée
+cat.rhythm.subtitle|Entraîne-toi quand ça te convient
+cat.endurance.title|Endurance
+cat.endurance.subtitle|Les minutes deviennent de vrais progrès
+cat.variety.title|Variété
+cat.variety.subtitle|Varie les séances et challenge ton corps
+cat.journey.title|Progrès à long terme
+cat.journey.subtitle|Mesuré en semaines et en mois, pas en jours
+badge.first_workout.title|Première séance
+badge.first_workout.description|Termine ta toute première séance.
+badge.first_workout.hint|Termine n'importe quelle séance pour commencer.
+badge.ten_workouts.title|Ça démarre
+badge.ten_workouts.description|Termine 10 séances.
+badge.ten_workouts.hint|La répétition crée l'élan.
+badge.fifty_workouts.title|Cinquante et forte
+badge.fifty_workouts.description|Termine 50 séances.
+badge.fifty_workouts.hint|Cinquante séances, et ça continue.
+badge.hundred_workouts.title|Club des 100
+badge.hundred_workouts.description|Termine 100 séances.
+badge.hundred_workouts.hint|Trois chiffres : c'est devenu une vraie habitude.
+badge.three_hundred_workouts.title|Inarrêtable
+badge.three_hundred_workouts.description|Termine 300 séances.
+badge.three_hundred_workouts.hint|Peu arrivent jusqu'ici. Toi, si.
+badge.three_day_streak.title|Trois d'affilée
+badge.three_day_streak.description|Entraîne-toi 3 jours d'affilée.
+badge.three_day_streak.hint|La première série est la plus dure à lancer.
+badge.seven_day_streak.title|Semaine complète
+badge.seven_day_streak.description|Entraîne-toi 7 jours d'affilée.
+badge.seven_day_streak.hint|Une semaine entière sans manquer un jour.
+badge.twenty_one_day_streak.title|Habitude prise
+badge.twenty_one_day_streak.description|Entraîne-toi 21 jours d'affilée.
+badge.twenty_one_day_streak.hint|C'est vers 21 jours qu'une habitude s'installe.
+badge.seven_sevens_streak.title|Sept semaines solides
+badge.seven_sevens_streak.description|Atteins une série de 49 jours.
+badge.seven_sevens_streak.hint|Sept semaines sans sauter un seul jour.
+badge.hundred_day_streak.title|Série de 100 jours
+badge.hundred_day_streak.description|Atteins une série de 100 jours.
+badge.hundred_day_streak.hint|Cent jours d'affilée : un vrai engagement.
+badge.early_bird.title|Lève-tôt
+badge.early_bird.description|Entraîne-toi une fois avant 8 h du matin.
+badge.early_bird.hint|L'heure la plus matinale, la séance la plus calme.
+badge.dawn_warrior.title|Guerrière de l'aube
+badge.dawn_warrior.description|Entraîne-toi 10 fois avant 8 h du matin.
+badge.dawn_warrior.hint|Matins tôt, air frais, concentration paisible.
+badge.sunrise_habit.title|Habitude matinale
+badge.sunrise_habit.description|Entraîne-toi 40 fois avant 8 h du matin.
+badge.sunrise_habit.hint|S'entraîner au lever du soleil est devenu naturel.
+badge.evening_wind_down.title|Fin de journée
+badge.evening_wind_down.description|Entraîne-toi 10 fois après 18 h.
+badge.evening_wind_down.hint|Clore la journée par un dernier effort.
+badge.night_owl.title|Oiseau de nuit
+badge.night_owl.description|Entraîne-toi 40 fois après 18 h.
+badge.night_owl.hint|La séance du soir t'appartient.
+badge.weekend_warrior.title|Guerrière du week-end
+badge.weekend_warrior.description|Entraîne-toi 8 jours de week-end.
+badge.weekend_warrior.hint|Les jours de repos peuvent aussi être des jours d'entraînement.
+badge.first_hour.title|La première heure
+badge.first_hour.description|Cumule 60 minutes d'entraînement.
+badge.first_hour.hint|Une heure d'effort n'est jamais perdue.
+badge.ten_hours.title|Dix heures
+badge.ten_hours.description|Cumule 600 minutes d'entraînement.
+badge.ten_hours.hint|Les mouvements deviennent naturels.
+badge.fifty_hours.title|Cinquante heures
+badge.fifty_hours.description|Cumule 3000 minutes d'entraînement.
+badge.fifty_hours.hint|Le temps investi avec régularité finit par payer.
+badge.long_workout.title|Jusqu'au bout
+badge.long_workout.description|Termine 10 séances de 20 minutes ou plus.
+badge.long_workout.hint|Les longues séances bâtissent une vraie endurance.
+badge.full_hour_day.title|Une heure pleine
+badge.full_hour_day.description|Entraîne-toi 60 minutes en une seule journée.
+badge.full_hour_day.hint|Une longue journée d'entraînement concentrée.
+badge.three_programs.title|Trois programmes
+badge.three_programs.description|Essaie 3 programmes d'entraînement différents.
+badge.three_programs.hint|Chaque programme te challenge autrement.
+badge.five_programs.title|Cinq programmes
+badge.five_programs.description|Essaie 5 programmes d'entraînement différents.
+badge.five_programs.hint|Surprends ton corps.
+badge.eight_programs.title|Huit programmes
+badge.eight_programs.description|Essaie 8 programmes d'entraînement différents.
+badge.eight_programs.hint|Une routine complète, construite pièce par pièce.
+badge.one_month_days.title|Un mois
+badge.one_month_days.description|Entraîne-toi sur 30 jours différents.
+badge.one_month_days.hint|Un mois entier de présence.
+badge.four_months.title|Quatre mois
+badge.four_months.description|Entraîne-toi sur 4 mois différents.
+badge.four_months.hint|L'habitude résiste au changement de saison.
+badge.year_of_fitness.title|Une année de fitness
+badge.year_of_fitness.description|Entraîne-toi sur 12 mois différents.
+badge.year_of_fitness.hint|Pas vite. Pas fort. Simplement sans jamais t'arrêter.
+badge.twelve_weeks.title|Douze semaines
+badge.twelve_weeks.description|Entraîne-toi sur 12 semaines différentes.
+badge.twelve_weeks.hint|Trois mois à revenir encore et encore.
+badge.calorie_burn_5000.title|5 000 kcal brûlées
+badge.calorie_burn_5000.description|Brûle 5000 kcal en t'entraînant.
+badge.calorie_burn_5000.hint|Un effort régulier, répété avec patience.

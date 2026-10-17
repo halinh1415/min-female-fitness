@@ -1,0 +1,136 @@
+str.badge_screen_title|Prestaties
+str.badge_screen_subtitle|Mijlpalen die je met inzet verdient, niet krijgt.
+str.badge_summary|%1$d van %2$d behaald
+str.badge_locked|Vergrendeld
+str.badge_earned|Behaald
+str.badge_earned_on|Behaald op %1$s
+str.badge_remaining|Nog %1$d %2$s
+str.badge_empty|Nog geen prestaties ingesteld.
+str.badge_next_up|Dichtstbijzijnde prestatie
+str.badge_view_all|Alles bekijken
+str.badge_unlocked_celebration_title|Prestatie behaald
+str.badge_unlocked_celebration_more|+%1$d meer behaald
+str.badge_continue|Doorgaan
+str.badge_share|Delen
+str.badge_share_chooser|Prestatie delen
+str.badge_share_message|Ik heb net de prestatie \"%1$s\" behaald in %2$s!
+str.badge_tier_bronze|Brons
+str.badge_tier_silver|Zilver
+str.badge_tier_gold|Goud
+str.badge_tier_jade|Jade
+str.pref_category_general|Algemeen
+str.pref_tts_engine|Tekst-naar-spraak-engine
+str.pref_version|Versie
+plural.badge_unit_session.one|training
+plural.badge_unit_session.other|trainingen
+plural.badge_unit_day.one|dag
+plural.badge_unit_day.other|dagen
+plural.badge_unit_minute.one|minuut
+plural.badge_unit_minute.other|minuten
+plural.badge_unit_kcal.one|kcal
+plural.badge_unit_kcal.other|kcal
+plural.badge_unit_program.one|programma
+plural.badge_unit_program.other|programma's
+plural.badge_unit_week.one|week
+plural.badge_unit_week.other|weken
+plural.badge_unit_month.one|maand
+plural.badge_unit_month.other|maanden
+cat.beginnings.title|Eerste stappen
+cat.beginnings.subtitle|Elke reis begint met één training
+cat.consistency.title|Volharding
+cat.consistency.subtitle|Kleine dagelijkse inspanningen leveren veel op
+cat.rhythm.title|Tijdstip
+cat.rhythm.subtitle|Train wanneer het jou uitkomt
+cat.endurance.title|Uithoudingsvermogen
+cat.endurance.subtitle|Minuten tellen op tot echte vooruitgang
+cat.variety.title|Afwisseling
+cat.variety.subtitle|Wissel af en daag je lichaam uit
+cat.journey.title|Langetermijnvooruitgang
+cat.journey.subtitle|Gemeten in weken en maanden, niet in dagen
+badge.first_workout.title|Eerste training
+badge.first_workout.description|Voltooi je allereerste training.
+badge.first_workout.hint|Rond een willekeurige training af om te beginnen.
+badge.ten_workouts.title|Op gang
+badge.ten_workouts.description|Voltooi 10 trainingen.
+badge.ten_workouts.hint|Herhaling zorgt voor vaart.
+badge.fifty_workouts.title|Sterke vijftig
+badge.fifty_workouts.description|Voltooi 50 trainingen.
+badge.fifty_workouts.hint|Vijftig trainingen en je gaat nog steeds door.
+badge.hundred_workouts.title|Honderdclub
+badge.hundred_workouts.description|Voltooi 100 trainingen.
+badge.hundred_workouts.hint|Drie cijfers: nu echt een gewoonte.
+badge.three_hundred_workouts.title|Niet te stoppen
+badge.three_hundred_workouts.description|Voltooi 300 trainingen.
+badge.three_hundred_workouts.hint|Weinigen komen zo ver. Jij wel.
+badge.three_day_streak.title|Drie op rij
+badge.three_day_streak.description|Train 3 dagen achter elkaar.
+badge.three_day_streak.hint|De eerste reeks is het moeilijkst om te beginnen.
+badge.seven_day_streak.title|Volle week
+badge.seven_day_streak.description|Train 7 dagen achter elkaar.
+badge.seven_day_streak.hint|Een hele week zonder een dag over te slaan.
+badge.twenty_one_day_streak.title|Gewoonte gevormd
+badge.twenty_one_day_streak.description|Train 21 dagen achter elkaar.
+badge.twenty_one_day_streak.hint|Na 21 dagen begint een gewoonte te blijven hangen.
+badge.seven_sevens_streak.title|Zeven sterke weken
+badge.seven_sevens_streak.description|Bereik een reeks van 49 dagen.
+badge.seven_sevens_streak.hint|Zeven weken zonder ook maar één dag over te slaan.
+badge.hundred_day_streak.title|Reeks van 100 dagen
+badge.hundred_day_streak.description|Bereik een reeks van 100 dagen.
+badge.hundred_day_streak.hint|Honderd dagen achter elkaar: echte toewijding.
+badge.early_bird.title|Vroege vogel
+badge.early_bird.description|Train één keer voor 8 uur 's ochtends.
+badge.early_bird.hint|Het vroegste uur, de rustigste training.
+badge.dawn_warrior.title|Ochtendstrijder
+badge.dawn_warrior.description|Train 10 keer voor 8 uur 's ochtends.
+badge.dawn_warrior.hint|Vroege ochtenden, frisse lucht, rustige focus.
+badge.sunrise_habit.title|Ochtendgewoonte
+badge.sunrise_habit.description|Train 40 keer voor 8 uur 's ochtends.
+badge.sunrise_habit.hint|Trainen bij zonsopgang is een tweede natuur geworden.
+badge.evening_wind_down.title|Avondafsluiter
+badge.evening_wind_down.description|Train 10 keer na 18.00 uur.
+badge.evening_wind_down.hint|De dag afsluiten met een laatste inspanning.
+badge.night_owl.title|Nachtuil
+badge.night_owl.description|Train 40 keer na 18.00 uur.
+badge.night_owl.hint|De avondtraining is van jou.
+badge.weekend_warrior.title|Weekendstrijder
+badge.weekend_warrior.description|Train op 8 weekenddagen.
+badge.weekend_warrior.hint|Vrije dagen kunnen ook trainingsdagen zijn.
+badge.first_hour.title|Het eerste uur
+badge.first_hour.description|Verzamel 60 trainingsminuten.
+badge.first_hour.hint|Een uur inspanning is nooit verspild.
+badge.ten_hours.title|Tien uur
+badge.ten_hours.description|Verzamel 600 trainingsminuten.
+badge.ten_hours.hint|De bewegingen beginnen natuurlijk te voelen.
+badge.fifty_hours.title|Vijftig sterke uren
+badge.fifty_hours.description|Verzamel 3000 trainingsminuten.
+badge.fifty_hours.hint|Gestaag geïnvesteerde tijd betaalt zich terug.
+badge.long_workout.title|De lange adem
+badge.long_workout.description|Voltooi 10 trainingen van 20 minuten of langer.
+badge.long_workout.hint|Langere sessies bouwen echt uithoudingsvermogen op.
+badge.full_hour_day.title|Vol uur
+badge.full_hour_day.description|Train 60 minuten op één dag.
+badge.full_hour_day.hint|Eén lange, gefocuste trainingsdag.
+badge.three_programs.title|Drie programma's
+badge.three_programs.description|Probeer 3 verschillende trainingsprogramma's.
+badge.three_programs.hint|Elk programma daagt je anders uit.
+badge.five_programs.title|Vijf programma's
+badge.five_programs.description|Probeer 5 verschillende trainingsprogramma's.
+badge.five_programs.hint|Houd je lichaam scherp.
+badge.eight_programs.title|Acht programma's
+badge.eight_programs.description|Probeer 8 verschillende trainingsprogramma's.
+badge.eight_programs.hint|Een veelzijdige routine, stukje bij beetje opgebouwd.
+badge.one_month_days.title|Eén maand
+badge.one_month_days.description|Train op 30 verschillende dagen.
+badge.one_month_days.hint|Een hele maand blijven komen.
+badge.four_months.title|Vier maanden
+badge.four_months.description|Train in 4 verschillende maanden.
+badge.four_months.hint|De gewoonte overleeft de wisseling van seizoen.
+badge.year_of_fitness.title|Een jaar fitness
+badge.year_of_fitness.description|Train in 12 verschillende maanden.
+badge.year_of_fitness.hint|Niet snel. Niet luid. Gewoon nooit gestopt.
+badge.twelve_weeks.title|Twaalf weken
+badge.twelve_weeks.description|Train in 12 verschillende weken.
+badge.twelve_weeks.hint|Drie maanden lang steeds teruggekomen.
+badge.calorie_burn_5000.title|5.000 kcal verbrand
+badge.calorie_burn_5000.description|Verbrand 5000 kcal met trainen.
+badge.calorie_burn_5000.hint|Gestage inzet, geduldig herhaald.

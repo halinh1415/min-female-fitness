@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "Primi passi",
+   "subtitle": "Ogni percorso inizia con un allenamento"
+  },
+  {
+   "id": "consistency",
+   "title": "Costanza",
+   "subtitle": "Piccoli sforzi quotidiani portano grandi risultati"
+  },
+  {
+   "id": "rhythm",
+   "title": "Momento della giornata",
+   "subtitle": "Allenati quando ti è più comodo"
+  },
+  {
+   "id": "endurance",
+   "title": "Resistenza",
+   "subtitle": "I minuti diventano progressi reali"
+  },
+  {
+   "id": "variety",
+   "title": "Varietà",
+   "subtitle": "Cambia e metti alla prova il tuo corpo"
+  },
+  {
+   "id": "journey",
+   "title": "Progressi a lungo termine",
+   "subtitle": "Si misurano in settimane e mesi, non in giorni"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "Primo allenamento",
+   "description": "Completa il tuo primo allenamento.",
+   "hint": "Completa un allenamento qualsiasi per iniziare."
+  },
+  {
+   "id": "ten_workouts",
+   "title": "Ci stai prendendo gusto",
+   "description": "Completa 10 allenamenti.",
+   "hint": "La ripetizione crea slancio."
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "Cinquanta e oltre",
+   "description": "Completa 50 allenamenti.",
+   "hint": "Cinquanta allenamenti e non ti fermi."
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "Club dei 100",
+   "description": "Completa 100 allenamenti.",
+   "hint": "Tre cifre: ormai è una vera abitudine."
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "Inarrestabile",
+   "description": "Completa 300 allenamenti.",
+   "hint": "Poche arrivano fin qui. Tu sì."
+  },
+  {
+   "id": "three_day_streak",
+   "title": "Tre di fila",
+   "description": "Allenati 3 giorni di fila.",
+   "hint": "La prima serie è la più difficile da iniziare."
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "Settimana piena",
+   "description": "Allenati 7 giorni di fila.",
+   "hint": "Un'intera settimana senza saltare un giorno."
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "Abitudine creata",
+   "description": "Allenati 21 giorni di fila.",
+   "hint": "Dopo 21 giorni un'abitudine inizia a consolidarsi."
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "Sette settimane",
+   "description": "Raggiungi una serie di 49 giorni.",
+   "hint": "Sette settimane senza saltare un giorno."
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "Serie di 100 giorni",
+   "description": "Raggiungi una serie di 100 giorni.",
+   "hint": "Cento giorni di fila: vera dedizione."
+  },
+  {
+   "id": "early_bird",
+   "title": "Mattiniera",
+   "description": "Allenati una volta prima delle 8 del mattino.",
+   "hint": "L'ora più presto, l'allenamento più tranquillo."
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "Guerriera dell'alba",
+   "description": "Allenati 10 volte prima delle 8 del mattino.",
+   "hint": "Mattine presto, aria fresca, concentrazione calma."
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "Abitudine mattutina",
+   "description": "Allenati 40 volte prima delle 8 del mattino.",
+   "hint": "Allenarti all'alba ti viene ormai naturale."
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "Fine giornata",
+   "description": "Allenati 10 volte dopo le 18.",
+   "hint": "Chiudere la giornata con un ultimo sforzo."
+  },
+  {
+   "id": "night_owl",
+   "title": "Nottambula",
+   "description": "Allenati 40 volte dopo le 18.",
+   "hint": "L'allenamento serale è tutto tuo."
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "Guerriera del weekend",
+   "description": "Allenati in 8 giorni del weekend.",
+   "hint": "Anche i giorni liberi possono essere giorni di allenamento."
+  },
+  {
+   "id": "first_hour",
+   "title": "La prima ora",
+   "description": "Accumula 60 minuti di allenamento.",
+   "hint": "Un'ora di impegno non è mai sprecata."
+  },
+  {
+   "id": "ten_hours",
+   "title": "Dieci ore",
+   "description": "Accumula 600 minuti di allenamento.",
+   "hint": "I movimenti iniziano a venire naturali."
+  },
+  {
+   "id": "fifty_hours",
+   "title": "Cinquanta ore",
+   "description": "Accumula 3000 minuti di allenamento.",
+   "hint": "Il tempo investito con costanza ripaga."
+  },
+  {
+   "id": "long_workout",
+   "title": "Fino in fondo",
+   "description": "Completa 10 allenamenti di almeno 20 minuti.",
+   "hint": "Le sessioni lunghe costruiscono vera resistenza."
+  },
+  {
+   "id": "full_hour_day",
+   "title": "Un'ora piena",
+   "description": "Allenati 60 minuti in un solo giorno.",
+   "hint": "Una lunga giornata di allenamento concentrato."
+  },
+  {
+   "id": "three_programs",
+   "title": "Tre programmi",
+   "description": "Prova 3 programmi di allenamento diversi.",
+   "hint": "Ogni programma ti mette alla prova in modo diverso."
+  },
+  {
+   "id": "five_programs",
+   "title": "Cinque programmi",
+   "description": "Prova 5 programmi di allenamento diversi.",
+   "hint": "Tieni il corpo sempre sorpreso."
+  },
+  {
+   "id": "eight_programs",
+   "title": "Otto programmi",
+   "description": "Prova 8 programmi di allenamento diversi.",
+   "hint": "Una routine completa, costruita pezzo per pezzo."
+  },
+  {
+   "id": "one_month_days",
+   "title": "Un mese",
+   "description": "Allenati in 30 giorni diversi.",
+   "hint": "Un mese intero di presenza."
+  },
+  {
+   "id": "four_months",
+   "title": "Quattro mesi",
+   "description": "Allenati in 4 mesi diversi.",
+   "hint": "L'abitudine supera il cambio di stagione."
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "Un anno di fitness",
+   "description": "Allenati in 12 mesi diversi.",
+   "hint": "Senza fretta. Senza rumore. Semplicemente senza mai fermarti."
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "Dodici settimane",
+   "description": "Allenati in 12 settimane diverse.",
+   "hint": "Tre mesi a tornare per allenarti ancora."
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "5.000 kcal bruciate",
+   "description": "Brucia 5000 kcal allenandoti.",
+   "hint": "Impegno costante, ripetuto con pazienza."
+  }
+ ]
+}

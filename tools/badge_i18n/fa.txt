@@ -1,0 +1,136 @@
+str.badge_screen_title|دستاوردها
+str.badge_screen_subtitle|نقطه‌عطف‌هایی که با تلاش به دست می‌آیند، نه هدیه.
+str.badge_summary|%1$d از %2$d کسب شده
+str.badge_locked|قفل
+str.badge_earned|کسب شده
+str.badge_earned_on|کسب شده در %1$s
+str.badge_remaining|%1$d %2$s مانده
+str.badge_empty|هنوز دستاوردی تعریف نشده است.
+str.badge_next_up|نزدیک‌ترین دستاورد
+str.badge_view_all|مشاهده همه
+str.badge_unlocked_celebration_title|دستاورد کسب شد
+str.badge_unlocked_celebration_more|+%1$d دستاورد دیگر
+str.badge_continue|ادامه
+str.badge_share|اشتراک‌گذاری
+str.badge_share_chooser|اشتراک‌گذاری دستاورد
+str.badge_share_message|همین الان دستاورد «%1$s» را در %2$s کسب کردم!
+str.badge_tier_bronze|برنز
+str.badge_tier_silver|نقره
+str.badge_tier_gold|طلا
+str.badge_tier_jade|یشم
+str.pref_category_general|عمومی
+str.pref_tts_engine|موتور تبدیل متن به گفتار
+str.pref_version|نسخه
+plural.badge_unit_session.one|جلسه
+plural.badge_unit_session.other|جلسه
+plural.badge_unit_day.one|روز
+plural.badge_unit_day.other|روز
+plural.badge_unit_minute.one|دقیقه
+plural.badge_unit_minute.other|دقیقه
+plural.badge_unit_kcal.one|کیلوکالری
+plural.badge_unit_kcal.other|کیلوکالری
+plural.badge_unit_program.one|برنامه
+plural.badge_unit_program.other|برنامه
+plural.badge_unit_week.one|هفته
+plural.badge_unit_week.other|هفته
+plural.badge_unit_month.one|ماه
+plural.badge_unit_month.other|ماه
+cat.beginnings.title|قدم‌های اول
+cat.beginnings.subtitle|هر سفری با یک تمرین آغاز می‌شود
+cat.consistency.title|پیوستگی
+cat.consistency.subtitle|تلاش‌های کوچک روزانه نتایج بزرگ می‌سازند
+cat.rhythm.title|زمان روز
+cat.rhythm.subtitle|هر وقت برایت مناسب است تمرین کن
+cat.endurance.title|استقامت
+cat.endurance.subtitle|دقیقه‌ها به پیشرفت واقعی تبدیل می‌شوند
+cat.variety.title|تنوع
+cat.variety.subtitle|تنوع بده و بدنت را به چالش بکش
+cat.journey.title|پیشرفت بلندمدت
+cat.journey.subtitle|با هفته و ماه سنجیده می‌شود، نه روز
+badge.first_workout.title|اولین تمرین
+badge.first_workout.description|اولین تمرینت را کامل کن.
+badge.first_workout.hint|هر تمرینی را تمام کن تا سفرت آغاز شود.
+badge.ten_workouts.title|در مسیر
+badge.ten_workouts.description|۱۰ تمرین را کامل کن.
+badge.ten_workouts.hint|تکرار، شتاب می‌سازد.
+badge.fifty_workouts.title|پنجاه قدرتمند
+badge.fifty_workouts.description|۵۰ تمرین را کامل کن.
+badge.fifty_workouts.hint|پنجاه جلسه و هنوز ادامه می‌دهی.
+badge.hundred_workouts.title|باشگاه صدتایی‌ها
+badge.hundred_workouts.description|۱۰۰ تمرین را کامل کن.
+badge.hundred_workouts.hint|سه رقمی شد - حالا یک عادت واقعی است.
+badge.three_hundred_workouts.title|توقف‌ناپذیر
+badge.three_hundred_workouts.description|۳۰۰ تمرین را کامل کن.
+badge.three_hundred_workouts.hint|کمتر کسی تا اینجا می‌رسد. تو رسیدی.
+badge.three_day_streak.title|سه روز پیاپی
+badge.three_day_streak.description|۳ روز پشت سر هم تمرین کن.
+badge.three_day_streak.hint|شروع اولین زنجیره از همه سخت‌تر است.
+badge.seven_day_streak.title|یک هفته کامل
+badge.seven_day_streak.description|۷ روز پشت سر هم تمرین کن.
+badge.seven_day_streak.hint|یک هفته کامل بدون جا انداختن حتی یک روز.
+badge.twenty_one_day_streak.title|عادت شکل گرفت
+badge.twenty_one_day_streak.description|۲۱ روز پشت سر هم تمرین کن.
+badge.twenty_one_day_streak.hint|۲۱ روز زمانی است که عادت ماندگار می‌شود.
+badge.seven_sevens_streak.title|هفت هفته قدرتمند
+badge.seven_sevens_streak.description|به زنجیره ۴۹ روزه برس.
+badge.seven_sevens_streak.hint|هفت هفته بدون جا انداختن حتی یک روز.
+badge.hundred_day_streak.title|زنجیره ۱۰۰ روزه
+badge.hundred_day_streak.description|به زنجیره ۱۰۰ روزه برس.
+badge.hundred_day_streak.hint|صد روز پیاپی - تعهد واقعی.
+badge.early_bird.title|سحرخیز
+badge.early_bird.description|یک بار قبل از ساعت ۸ صبح تمرین کن.
+badge.early_bird.hint|زودترین ساعت، آرام‌ترین تمرین.
+badge.dawn_warrior.title|جنگجوی سپیده‌دم
+badge.dawn_warrior.description|۱۰ بار قبل از ساعت ۸ صبح تمرین کن.
+badge.dawn_warrior.hint|صبح زود، هوای خنک، تمرکز آرام.
+badge.sunrise_habit.title|عادت صبحگاهی
+badge.sunrise_habit.description|۴۰ بار قبل از ساعت ۸ صبح تمرین کن.
+badge.sunrise_habit.hint|تمرین هنگام طلوع، طبیعت دوم تو شده است.
+badge.evening_wind_down.title|پایان عصر
+badge.evening_wind_down.description|۱۰ بار بعد از ساعت ۶ عصر تمرین کن.
+badge.evening_wind_down.hint|روز را با یک تلاش آخر به پایان برسان.
+badge.night_owl.title|جغد شب
+badge.night_owl.description|۴۰ بار بعد از ساعت ۶ عصر تمرین کن.
+badge.night_owl.hint|تمرین عصرگاهی متعلق به توست.
+badge.weekend_warrior.title|جنگجوی آخر هفته
+badge.weekend_warrior.description|در ۸ روز آخر هفته تمرین کن.
+badge.weekend_warrior.hint|روزهای تعطیل هم می‌توانند روز تمرین باشند.
+badge.first_hour.title|اولین ساعت
+badge.first_hour.description|۶۰ دقیقه تمرین جمع کن.
+badge.first_hour.hint|یک ساعت تلاش هرگز هدر نمی‌رود.
+badge.ten_hours.title|ده ساعت
+badge.ten_hours.description|۶۰۰ دقیقه تمرین جمع کن.
+badge.ten_hours.hint|حرکات کم‌کم طبیعی می‌شوند.
+badge.fifty_hours.title|پنجاه ساعت
+badge.fifty_hours.description|۳۰۰۰ دقیقه تمرین جمع کن.
+badge.fifty_hours.hint|زمانی که پیوسته سرمایه‌گذاری شود، نتیجه می‌دهد.
+badge.long_workout.title|تا انتها
+badge.long_workout.description|۱۰ تمرین ۲۰ دقیقه‌ای یا بیشتر کامل کن.
+badge.long_workout.hint|جلسات طولانی‌تر استقامت واقعی می‌سازند.
+badge.full_hour_day.title|یک ساعت کامل
+badge.full_hour_day.description|در یک روز ۶۰ دقیقه تمرین کن.
+badge.full_hour_day.hint|یک روز طولانی و متمرکز تمرین.
+badge.three_programs.title|سه برنامه
+badge.three_programs.description|۳ برنامه تمرینی مختلف را امتحان کن.
+badge.three_programs.hint|هر برنامه تو را به شکلی متفاوت به چالش می‌کشد.
+badge.five_programs.title|پنج برنامه
+badge.five_programs.description|۵ برنامه تمرینی مختلف را امتحان کن.
+badge.five_programs.hint|بدنت را همیشه غافلگیر نگه دار.
+badge.eight_programs.title|هشت برنامه
+badge.eight_programs.description|۸ برنامه تمرینی مختلف را امتحان کن.
+badge.eight_programs.hint|یک برنامه کامل که تکه‌تکه ساخته شده است.
+badge.one_month_days.title|یک ماه
+badge.one_month_days.description|در ۳۰ روز مختلف تمرین کن.
+badge.one_month_days.hint|یک ماه کامل حضور.
+badge.four_months.title|چهار ماه
+badge.four_months.description|در ۴ ماه مختلف تمرین کن.
+badge.four_months.hint|عادت از تغییر فصل جان سالم به در برد.
+badge.year_of_fitness.title|یک سال تناسب اندام
+badge.year_of_fitness.description|در ۱۲ ماه مختلف تمرین کن.
+badge.year_of_fitness.hint|نه سریع. نه پرسروصدا. فقط هرگز متوقف نشدی.
+badge.twelve_weeks.title|دوازده هفته
+badge.twelve_weeks.description|در ۱۲ هفته مختلف تمرین کن.
+badge.twelve_weeks.hint|سه ماه که بارها و بارها برگشتی.
+badge.calorie_burn_5000.title|۵۰۰۰ کیلوکالری سوخت
+badge.calorie_burn_5000.description|با تمرین ۵۰۰۰ کیلوکالری بسوزان.
+badge.calorie_burn_5000.hint|تلاش پیوسته، با صبر تکرار شده.

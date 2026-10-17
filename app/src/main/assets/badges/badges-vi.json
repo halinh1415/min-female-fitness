@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "Bước đầu tiên",
+   "subtitle": "Mọi hành trình đều bắt đầu từ một buổi tập"
+  },
+  {
+   "id": "consistency",
+   "title": "Kiên trì",
+   "subtitle": "Nỗ lực nhỏ mỗi ngày tạo nên kết quả lớn"
+  },
+  {
+   "id": "rhythm",
+   "title": "Thời điểm tập",
+   "subtitle": "Tập vào lúc phù hợp với bạn"
+  },
+  {
+   "id": "endurance",
+   "title": "Sức bền",
+   "subtitle": "Từng phút cộng lại thành tiến bộ thật"
+  },
+  {
+   "id": "variety",
+   "title": "Đa dạng",
+   "subtitle": "Đổi mới bài tập để thử thách cơ thể"
+  },
+  {
+   "id": "journey",
+   "title": "Tiến bộ lâu dài",
+   "subtitle": "Đo bằng tuần và tháng, không phải từng ngày"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "Buổi tập đầu tiên",
+   "description": "Hoàn thành buổi tập đầu tiên.",
+   "hint": "Hoàn thành một bài tập bất kỳ để bắt đầu hành trình."
+  },
+  {
+   "id": "ten_workouts",
+   "title": "Bắt nhịp",
+   "description": "Hoàn thành 10 buổi tập.",
+   "hint": "Lặp lại tạo nên đà tiến."
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "Năm mươi buổi",
+   "description": "Hoàn thành 50 buổi tập.",
+   "hint": "Năm mươi buổi và vẫn đang tiếp tục."
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "Câu lạc bộ 100",
+   "description": "Hoàn thành 100 buổi tập.",
+   "hint": "Ba chữ số - giờ đã thành thói quen thật sự."
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "Không thể cản",
+   "description": "Hoàn thành 300 buổi tập.",
+   "hint": "Ít ai đi được xa thế này. Bạn đã làm được."
+  },
+  {
+   "id": "three_day_streak",
+   "title": "Ba ngày liền",
+   "description": "Tập 3 ngày liên tiếp.",
+   "hint": "Chuỗi đầu tiên là khó bắt đầu nhất."
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "Trọn một tuần",
+   "description": "Tập 7 ngày liên tiếp.",
+   "hint": "Cả tuần không bỏ ngày nào."
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "Thành thói quen",
+   "description": "Tập 21 ngày liên tiếp.",
+   "hint": "21 ngày là lúc thói quen bắt đầu bền vững."
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "Bảy tuần bền bỉ",
+   "description": "Đạt chuỗi 49 ngày.",
+   "hint": "Bảy tuần không bỏ một ngày nào."
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "Chuỗi 100 ngày",
+   "description": "Đạt chuỗi 100 ngày.",
+   "hint": "Một trăm ngày liền - sự tận tâm thật sự."
+  },
+  {
+   "id": "early_bird",
+   "title": "Dậy sớm",
+   "description": "Tập một lần trước 8 giờ sáng.",
+   "hint": "Giờ sớm nhất, phòng tập yên tĩnh nhất."
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "Chiến binh bình minh",
+   "description": "Tập 10 lần trước 8 giờ sáng.",
+   "hint": "Sáng sớm, không khí mát, tâm trí tập trung."
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "Thói quen buổi sáng",
+   "description": "Tập 40 lần trước 8 giờ sáng.",
+   "hint": "Tập lúc bình minh đã trở thành bản năng."
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "Thư giãn buổi tối",
+   "description": "Tập 10 lần sau 6 giờ tối.",
+   "hint": "Khép lại một ngày bằng nỗ lực cuối cùng."
+  },
+  {
+   "id": "night_owl",
+   "title": "Cú đêm",
+   "description": "Tập 40 lần sau 6 giờ tối.",
+   "hint": "Buổi tập tối là của riêng bạn."
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "Chiến binh cuối tuần",
+   "description": "Tập vào 8 ngày cuối tuần.",
+   "hint": "Ngày nghỉ vẫn có thể là ngày tập."
+  },
+  {
+   "id": "first_hour",
+   "title": "Giờ tập đầu tiên",
+   "description": "Tích lũy 60 phút tập luyện.",
+   "hint": "Một giờ nỗ lực không bao giờ uổng phí."
+  },
+  {
+   "id": "ten_hours",
+   "title": "Mười giờ tập",
+   "description": "Tích lũy 600 phút tập luyện.",
+   "hint": "Các động tác bắt đầu trở nên tự nhiên."
+  },
+  {
+   "id": "fifty_hours",
+   "title": "Năm mươi giờ bền bỉ",
+   "description": "Tích lũy 3000 phút tập luyện.",
+   "hint": "Thời gian đầu tư đều đặn sẽ được đền đáp."
+  },
+  {
+   "id": "long_workout",
+   "title": "Đi đường dài",
+   "description": "Hoàn thành 10 buổi tập từ 20 phút trở lên.",
+   "hint": "Buổi tập dài xây dựng sức bền thật sự."
+  },
+  {
+   "id": "full_hour_day",
+   "title": "Một giờ trọn vẹn",
+   "description": "Tập 60 phút trong một ngày.",
+   "hint": "Một ngày tập trung luyện tập thật lâu."
+  },
+  {
+   "id": "three_programs",
+   "title": "Ba chương trình",
+   "description": "Thử 3 chương trình tập khác nhau.",
+   "hint": "Mỗi chương trình thử thách bạn một kiểu."
+  },
+  {
+   "id": "five_programs",
+   "title": "Năm chương trình",
+   "description": "Thử 5 chương trình tập khác nhau.",
+   "hint": "Khiến cơ thể luôn bất ngờ."
+  },
+  {
+   "id": "eight_programs",
+   "title": "Tám chương trình",
+   "description": "Thử 8 chương trình tập khác nhau.",
+   "hint": "Một lịch tập toàn diện, xây dựng từng phần."
+  },
+  {
+   "id": "one_month_days",
+   "title": "Một tháng",
+   "description": "Tập vào 30 ngày khác nhau.",
+   "hint": "Trọn một tháng có mặt đều đặn."
+  },
+  {
+   "id": "four_months",
+   "title": "Bốn tháng",
+   "description": "Tập trong 4 tháng khác nhau.",
+   "hint": "Thói quen vẫn vững qua mùa thay đổi."
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "Một năm luyện tập",
+   "description": "Tập trong 12 tháng khác nhau.",
+   "hint": "Không nhanh. Không ồn ào. Chỉ là chưa từng dừng lại."
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "Mười hai tuần",
+   "description": "Tập trong 12 tuần khác nhau.",
+   "hint": "Ba tháng liên tục quay lại tập."
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "Đốt 5.000 kcal",
+   "description": "Đốt 5000 kcal qua các buổi tập.",
+   "hint": "Nỗ lực đều đặn, kiên nhẫn lặp lại."
+  }
+ ]
+}

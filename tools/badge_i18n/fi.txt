@@ -1,0 +1,136 @@
+str.badge_screen_title|Saavutukset
+str.badge_screen_subtitle|Virstanpylväitä, jotka ansaitaan työllä, ei saada lahjaksi.
+str.badge_summary|%1$d/%2$d saavutettu
+str.badge_locked|Lukittu
+str.badge_earned|Saavutettu
+str.badge_earned_on|Saavutettu %1$s
+str.badge_remaining|%1$d %2$s jäljellä
+str.badge_empty|Saavutuksia ei ole vielä määritetty.
+str.badge_next_up|Lähin saavutus
+str.badge_view_all|Näytä kaikki
+str.badge_unlocked_celebration_title|Saavutus ansaittu
+str.badge_unlocked_celebration_more|+%1$d muuta ansaittu
+str.badge_continue|Jatka
+str.badge_share|Jaa
+str.badge_share_chooser|Jaa saavutus
+str.badge_share_message|Ansaitsin juuri saavutuksen \"%1$s\" sovelluksessa %2$s!
+str.badge_tier_bronze|Pronssi
+str.badge_tier_silver|Hopea
+str.badge_tier_gold|Kulta
+str.badge_tier_jade|Jade
+str.pref_category_general|Yleiset
+str.pref_tts_engine|Tekstistä puheeksi -moottori
+str.pref_version|Versio
+plural.badge_unit_session.one|treeni
+plural.badge_unit_session.other|treeniä
+plural.badge_unit_day.one|päivä
+plural.badge_unit_day.other|päivää
+plural.badge_unit_minute.one|minuutti
+plural.badge_unit_minute.other|minuuttia
+plural.badge_unit_kcal.one|kcal
+plural.badge_unit_kcal.other|kcal
+plural.badge_unit_program.one|ohjelma
+plural.badge_unit_program.other|ohjelmaa
+plural.badge_unit_week.one|viikko
+plural.badge_unit_week.other|viikkoa
+plural.badge_unit_month.one|kuukausi
+plural.badge_unit_month.other|kuukautta
+cat.beginnings.title|Ensiaskeleet
+cat.beginnings.subtitle|Jokainen matka alkaa yhdestä treenistä
+cat.consistency.title|Säännöllisyys
+cat.consistency.subtitle|Pienet päivittäiset ponnistukset tuovat suuria tuloksia
+cat.rhythm.title|Vuorokaudenaika
+cat.rhythm.subtitle|Treenaa silloin, kun sinulle sopii
+cat.endurance.title|Kestävyys
+cat.endurance.subtitle|Minuutit kertyvät todelliseksi edistykseksi
+cat.variety.title|Monipuolisuus
+cat.variety.subtitle|Vaihtele ja haasta kehoasi
+cat.journey.title|Pitkän aikavälin edistys
+cat.journey.subtitle|Mitataan viikoissa ja kuukausissa, ei päivissä
+badge.first_workout.title|Ensimmäinen treeni
+badge.first_workout.description|Suorita ensimmäinen treenisi.
+badge.first_workout.hint|Suorita mikä tahansa treeni aloittaaksesi matkasi.
+badge.ten_workouts.title|Vauhdissa
+badge.ten_workouts.description|Suorita 10 treeniä.
+badge.ten_workouts.hint|Toisto luo vauhtia.
+badge.fifty_workouts.title|Vahvat viisikymmentä
+badge.fifty_workouts.description|Suorita 50 treeniä.
+badge.fifty_workouts.hint|Viisikymmentä treeniä, ja jatkat yhä.
+badge.hundred_workouts.title|Sadan kerho
+badge.hundred_workouts.description|Suorita 100 treeniä.
+badge.hundred_workouts.hint|Kolminumeroinen – nyt todellinen tapa.
+badge.three_hundred_workouts.title|Pysäyttämätön
+badge.three_hundred_workouts.description|Suorita 300 treeniä.
+badge.three_hundred_workouts.hint|Harva pääsee näin pitkälle. Sinä pääsit.
+badge.three_day_streak.title|Kolme putkeen
+badge.three_day_streak.description|Treenaa 3 päivää putkeen.
+badge.three_day_streak.hint|Ensimmäinen putki on vaikein aloittaa.
+badge.seven_day_streak.title|Koko viikko
+badge.seven_day_streak.description|Treenaa 7 päivää putkeen.
+badge.seven_day_streak.hint|Koko viikko ilman yhtään väliin jäänyttä päivää.
+badge.twenty_one_day_streak.title|Tapa syntynyt
+badge.twenty_one_day_streak.description|Treenaa 21 päivää putkeen.
+badge.twenty_one_day_streak.hint|21 päivässä tapa alkaa juurtua.
+badge.seven_sevens_streak.title|Seitsemän vahvaa viikkoa
+badge.seven_sevens_streak.description|Saavuta 49 päivän putki.
+badge.seven_sevens_streak.hint|Seitsemän viikkoa jättämättä päivääkään väliin.
+badge.hundred_day_streak.title|100 päivän putki
+badge.hundred_day_streak.description|Saavuta 100 päivän putki.
+badge.hundred_day_streak.hint|Sata päivää putkeen – todellista omistautumista.
+badge.early_bird.title|Aamuvirkku
+badge.early_bird.description|Treenaa kerran ennen kahdeksaa aamulla.
+badge.early_bird.hint|Aikaisin tunti, rauhallisin treeni.
+badge.dawn_warrior.title|Aamunkoiton soturi
+badge.dawn_warrior.description|Treenaa 10 kertaa ennen kahdeksaa aamulla.
+badge.dawn_warrior.hint|Varhaiset aamut, raikas ilma, rauhallinen keskittyminen.
+badge.sunrise_habit.title|Aamutapa
+badge.sunrise_habit.description|Treenaa 40 kertaa ennen kahdeksaa aamulla.
+badge.sunrise_habit.hint|Auringonnousun treeneistä on tullut toinen luontosi.
+badge.evening_wind_down.title|Illan päätös
+badge.evening_wind_down.description|Treenaa 10 kertaa kello 18 jälkeen.
+badge.evening_wind_down.hint|Päätä päivä viimeisellä ponnistuksella.
+badge.night_owl.title|Yökyöpeli
+badge.night_owl.description|Treenaa 40 kertaa kello 18 jälkeen.
+badge.night_owl.hint|Iltatreeni on sinun.
+badge.weekend_warrior.title|Viikonloppusoturi
+badge.weekend_warrior.description|Treenaa 8 viikonloppupäivänä.
+badge.weekend_warrior.hint|Vapaapäivätkin voivat olla treenipäiviä.
+badge.first_hour.title|Ensimmäinen tunti
+badge.first_hour.description|Kerrytä 60 minuuttia treeniä.
+badge.first_hour.hint|Tunnin ponnistus ei koskaan mene hukkaan.
+badge.ten_hours.title|Kymmenen tuntia
+badge.ten_hours.description|Kerrytä 600 minuuttia treeniä.
+badge.ten_hours.hint|Liikkeet alkavat tuntua luontevilta.
+badge.fifty_hours.title|Viisikymmentä tuntia
+badge.fifty_hours.description|Kerrytä 3000 minuuttia treeniä.
+badge.fifty_hours.hint|Tasaisesti sijoitettu aika palkitsee.
+badge.long_workout.title|Loppuun asti
+badge.long_workout.description|Suorita 10 vähintään 20 minuutin treeniä.
+badge.long_workout.hint|Pidemmät treenit rakentavat todellista kestävyyttä.
+badge.full_hour_day.title|Täysi tunti
+badge.full_hour_day.description|Treenaa 60 minuuttia yhden päivän aikana.
+badge.full_hour_day.hint|Yksi pitkä, keskittynyt treenipäivä.
+badge.three_programs.title|Kolme ohjelmaa
+badge.three_programs.description|Kokeile 3 eri treeniohjelmaa.
+badge.three_programs.hint|Jokainen ohjelma haastaa eri tavalla.
+badge.five_programs.title|Viisi ohjelmaa
+badge.five_programs.description|Kokeile 5 eri treeniohjelmaa.
+badge.five_programs.hint|Pidä keho arvailemassa.
+badge.eight_programs.title|Kahdeksan ohjelmaa
+badge.eight_programs.description|Kokeile 8 eri treeniohjelmaa.
+badge.eight_programs.hint|Monipuolinen rutiini, rakennettu pala palalta.
+badge.one_month_days.title|Yksi kuukausi
+badge.one_month_days.description|Treenaa 30 eri päivänä.
+badge.one_month_days.hint|Kokonainen kuukausi paikalla oloa.
+badge.four_months.title|Neljä kuukautta
+badge.four_months.description|Treenaa 4 eri kuukautena.
+badge.four_months.hint|Tapa kestää vuodenajan vaihtumisen.
+badge.year_of_fitness.title|Vuosi kuntoilua
+badge.year_of_fitness.description|Treenaa 12 eri kuukautena.
+badge.year_of_fitness.hint|Ei nopeasti. Ei äänekkäästi. Et vain koskaan lopettanut.
+badge.twelve_weeks.title|Kaksitoista viikkoa
+badge.twelve_weeks.description|Treenaa 12 eri viikolla.
+badge.twelve_weeks.hint|Kolme kuukautta palaamista lisää kohti.
+badge.calorie_burn_5000.title|5 000 kcal poltettu
+badge.calorie_burn_5000.description|Polta treenaamalla 5000 kcal.
+badge.calorie_burn_5000.hint|Tasaista työtä, kärsivällisesti toistettuna.

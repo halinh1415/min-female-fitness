@@ -1,0 +1,129 @@
+str.badge_screen_title|Pencapaian
+str.badge_screen_subtitle|Pencapaian yang diraih dengan usaha, bukan diberikan.
+str.badge_summary|%1$d dari %2$d diraih
+str.badge_locked|Terkunci
+str.badge_earned|Diraih
+str.badge_earned_on|Diraih pada %1$s
+str.badge_remaining|%1$d %2$s lagi
+str.badge_empty|Belum ada pencapaian yang diatur.
+str.badge_next_up|Pencapaian terdekat
+str.badge_view_all|Lihat semua
+str.badge_unlocked_celebration_title|Pencapaian diraih
+str.badge_unlocked_celebration_more|+%1$d lainnya diraih
+str.badge_continue|Lanjutkan
+str.badge_share|Bagikan
+str.badge_share_chooser|Bagikan pencapaian
+str.badge_share_message|Aku baru saja meraih pencapaian \"%1$s\" di %2$s!
+str.badge_tier_bronze|Perunggu
+str.badge_tier_silver|Perak
+str.badge_tier_gold|Emas
+str.badge_tier_jade|Giok
+str.pref_category_general|Umum
+str.pref_tts_engine|Mesin teks ke ucapan
+str.pref_version|Versi
+plural.badge_unit_session.other|sesi
+plural.badge_unit_day.other|hari
+plural.badge_unit_minute.other|menit
+plural.badge_unit_kcal.other|kkal
+plural.badge_unit_program.other|program
+plural.badge_unit_week.other|minggu
+plural.badge_unit_month.other|bulan
+cat.beginnings.title|Langkah pertama
+cat.beginnings.subtitle|Setiap perjalanan dimulai dengan satu latihan
+cat.consistency.title|Konsistensi
+cat.consistency.subtitle|Usaha kecil setiap hari membuahkan hasil besar
+cat.rhythm.title|Waktu latihan
+cat.rhythm.subtitle|Latihan di waktu yang paling cocok untukmu
+cat.endurance.title|Daya tahan
+cat.endurance.subtitle|Menit demi menit menjadi kemajuan nyata
+cat.variety.title|Variasi
+cat.variety.subtitle|Ganti latihan dan tantang tubuhmu
+cat.journey.title|Kemajuan jangka panjang
+cat.journey.subtitle|Diukur dalam minggu dan bulan, bukan hari
+badge.first_workout.title|Latihan pertama
+badge.first_workout.description|Selesaikan latihan pertamamu.
+badge.first_workout.hint|Selesaikan latihan apa saja untuk memulai perjalananmu.
+badge.ten_workouts.title|Mulai terbiasa
+badge.ten_workouts.description|Selesaikan 10 latihan.
+badge.ten_workouts.hint|Pengulangan membangun momentum.
+badge.fifty_workouts.title|Lima puluh latihan
+badge.fifty_workouts.description|Selesaikan 50 latihan.
+badge.fifty_workouts.hint|Lima puluh sesi, dan masih terus berjalan.
+badge.hundred_workouts.title|Klub 100
+badge.hundred_workouts.description|Selesaikan 100 latihan.
+badge.hundred_workouts.hint|Tiga digit - kini benar-benar kebiasaan.
+badge.three_hundred_workouts.title|Tak terhentikan
+badge.three_hundred_workouts.description|Selesaikan 300 latihan.
+badge.three_hundred_workouts.hint|Sedikit yang sampai sejauh ini. Kamu berhasil.
+badge.three_day_streak.title|Tiga hari berturut-turut
+badge.three_day_streak.description|Latihan 3 hari berturut-turut.
+badge.three_day_streak.hint|Rangkaian pertama paling sulit dimulai.
+badge.seven_day_streak.title|Seminggu penuh
+badge.seven_day_streak.description|Latihan 7 hari berturut-turut.
+badge.seven_day_streak.hint|Seminggu penuh tanpa melewatkan satu hari pun.
+badge.twenty_one_day_streak.title|Kebiasaan terbentuk
+badge.twenty_one_day_streak.description|Latihan 21 hari berturut-turut.
+badge.twenty_one_day_streak.hint|Di hari ke-21 kebiasaan mulai melekat.
+badge.seven_sevens_streak.title|Tujuh minggu kuat
+badge.seven_sevens_streak.description|Capai rangkaian 49 hari.
+badge.seven_sevens_streak.hint|Tujuh minggu tanpa pernah bolos sehari pun.
+badge.hundred_day_streak.title|Rangkaian 100 hari
+badge.hundred_day_streak.description|Capai rangkaian 100 hari.
+badge.hundred_day_streak.hint|Seratus hari berturut-turut - dedikasi sejati.
+badge.early_bird.title|Bangun pagi
+badge.early_bird.description|Latihan sekali sebelum jam 8 pagi.
+badge.early_bird.hint|Jam paling awal, latihan paling tenang.
+badge.dawn_warrior.title|Pejuang fajar
+badge.dawn_warrior.description|Latihan 10 kali sebelum jam 8 pagi.
+badge.dawn_warrior.hint|Pagi buta, udara sejuk, fokus yang tenang.
+badge.sunrise_habit.title|Kebiasaan pagi
+badge.sunrise_habit.description|Latihan 40 kali sebelum jam 8 pagi.
+badge.sunrise_habit.hint|Latihan saat matahari terbit sudah jadi kebiasaan.
+badge.evening_wind_down.title|Penutup hari
+badge.evening_wind_down.description|Latihan 10 kali setelah jam 6 sore.
+badge.evening_wind_down.hint|Menutup hari dengan satu usaha terakhir.
+badge.night_owl.title|Burung hantu
+badge.night_owl.description|Latihan 40 kali setelah jam 6 sore.
+badge.night_owl.hint|Latihan malam adalah milikmu.
+badge.weekend_warrior.title|Pejuang akhir pekan
+badge.weekend_warrior.description|Latihan di 8 hari akhir pekan.
+badge.weekend_warrior.hint|Hari libur pun bisa jadi hari latihan.
+badge.first_hour.title|Jam pertama
+badge.first_hour.description|Kumpulkan 60 menit latihan.
+badge.first_hour.hint|Satu jam usaha tak pernah sia-sia.
+badge.ten_hours.title|Sepuluh jam
+badge.ten_hours.description|Kumpulkan 600 menit latihan.
+badge.ten_hours.hint|Gerakan mulai terasa alami.
+badge.fifty_hours.title|Lima puluh jam
+badge.fifty_hours.description|Kumpulkan 3000 menit latihan.
+badge.fifty_hours.hint|Waktu yang diinvestasikan dengan tekun pasti terbayar.
+badge.long_workout.title|Sampai tuntas
+badge.long_workout.description|Selesaikan 10 latihan berdurasi 20 menit atau lebih.
+badge.long_workout.hint|Sesi yang lebih panjang membangun daya tahan sejati.
+badge.full_hour_day.title|Satu jam penuh
+badge.full_hour_day.description|Latihan 60 menit dalam satu hari.
+badge.full_hour_day.hint|Satu hari latihan yang panjang dan fokus.
+badge.three_programs.title|Tiga program
+badge.three_programs.description|Coba 3 program latihan berbeda.
+badge.three_programs.hint|Setiap program menantangmu dengan cara berbeda.
+badge.five_programs.title|Lima program
+badge.five_programs.description|Coba 5 program latihan berbeda.
+badge.five_programs.hint|Buat tubuhmu terus beradaptasi.
+badge.eight_programs.title|Delapan program
+badge.eight_programs.description|Coba 8 program latihan berbeda.
+badge.eight_programs.hint|Rutinitas lengkap, dibangun sedikit demi sedikit.
+badge.one_month_days.title|Satu bulan
+badge.one_month_days.description|Latihan di 30 hari berbeda.
+badge.one_month_days.hint|Sebulan penuh selalu hadir.
+badge.four_months.title|Empat bulan
+badge.four_months.description|Latihan di 4 bulan berbeda.
+badge.four_months.hint|Kebiasaan bertahan melewati pergantian musim.
+badge.year_of_fitness.title|Setahun kebugaran
+badge.year_of_fitness.description|Latihan di 12 bulan berbeda.
+badge.year_of_fitness.hint|Tidak cepat. Tidak heboh. Hanya tak pernah berhenti.
+badge.twelve_weeks.title|Dua belas minggu
+badge.twelve_weeks.description|Latihan di 12 minggu berbeda.
+badge.twelve_weeks.hint|Tiga bulan terus kembali berlatih.
+badge.calorie_burn_5000.title|5.000 kkal terbakar
+badge.calorie_burn_5000.description|Bakar 5000 kkal lewat latihan.
+badge.calorie_burn_5000.hint|Usaha yang stabil, diulang dengan sabar.

@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "Første skridt",
+   "subtitle": "Enhver rejse begynder med én træning"
+  },
+  {
+   "id": "consistency",
+   "title": "Vedholdenhed",
+   "subtitle": "Små daglige indsatser giver store resultater"
+  },
+  {
+   "id": "rhythm",
+   "title": "Tid på dagen",
+   "subtitle": "Træn, når det passer dig"
+  },
+  {
+   "id": "endurance",
+   "title": "Udholdenhed",
+   "subtitle": "Minutterne bliver til reelle fremskridt"
+  },
+  {
+   "id": "variety",
+   "title": "Variation",
+   "subtitle": "Varier og udfordr din krop"
+  },
+  {
+   "id": "journey",
+   "title": "Langsigtede fremskridt",
+   "subtitle": "Målt i uger og måneder, ikke dage"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "Første træning",
+   "description": "Gennemfør din allerførste træning.",
+   "hint": "Gennemfør en hvilken som helst træning for at komme i gang."
+  },
+  {
+   "id": "ten_workouts",
+   "title": "Godt i gang",
+   "description": "Gennemfør 10 træninger.",
+   "hint": "Gentagelse skaber fremdrift."
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "Stærke halvtreds",
+   "description": "Gennemfør 50 træninger.",
+   "hint": "Halvtreds træninger, og du fortsætter."
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "Hundredklubben",
+   "description": "Gennemfør 100 træninger.",
+   "hint": "Tre cifre – nu en ægte vane."
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "Ustoppelig",
+   "description": "Gennemfør 300 træninger.",
+   "hint": "Få når så langt. Det gjorde du."
+  },
+  {
+   "id": "three_day_streak",
+   "title": "Tre i træk",
+   "description": "Træn 3 dage i træk.",
+   "hint": "Den første stime er sværest at starte."
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "Hel uge",
+   "description": "Træn 7 dage i træk.",
+   "hint": "En hel uge uden at springe en dag over."
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "Vane skabt",
+   "description": "Træn 21 dage i træk.",
+   "hint": "Efter 21 dage begynder en vane at sidde fast."
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "Syv stærke uger",
+   "description": "Nå en stime på 49 dage.",
+   "hint": "Syv uger uden at springe en eneste dag over."
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "100-dages stime",
+   "description": "Nå en stime på 100 dage.",
+   "hint": "Hundrede dage i træk – ægte dedikation."
+  },
+  {
+   "id": "early_bird",
+   "title": "Morgenfrisk",
+   "description": "Træn én gang før kl. 8 om morgenen.",
+   "hint": "Den tidligste time, den roligste træning."
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "Daggryets kriger",
+   "description": "Træn 10 gange før kl. 8 om morgenen.",
+   "hint": "Tidlige morgener, frisk luft, rolig fokus."
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "Morgenvane",
+   "description": "Træn 40 gange før kl. 8 om morgenen.",
+   "hint": "Træning ved solopgang er blevet din anden natur."
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "Aftenafslapning",
+   "description": "Træn 10 gange efter kl. 18.",
+   "hint": "Afslut dagen med en sidste indsats."
+  },
+  {
+   "id": "night_owl",
+   "title": "Natteravn",
+   "description": "Træn 40 gange efter kl. 18.",
+   "hint": "Aftentræningen er din."
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "Weekendkriger",
+   "description": "Træn på 8 weekenddage.",
+   "hint": "Fridage kan også være træningsdage."
+  },
+  {
+   "id": "first_hour",
+   "title": "Den første time",
+   "description": "Saml 60 minutters træning.",
+   "hint": "En times indsats er aldrig spildt."
+  },
+  {
+   "id": "ten_hours",
+   "title": "Ti timer",
+   "description": "Saml 600 minutters træning.",
+   "hint": "Bevægelserne begynder at føles naturlige."
+  },
+  {
+   "id": "fifty_hours",
+   "title": "Halvtreds timer",
+   "description": "Saml 3000 minutters træning.",
+   "hint": "Tid investeret stabilt betaler sig."
+  },
+  {
+   "id": "long_workout",
+   "title": "Hele vejen",
+   "description": "Gennemfør 10 træninger på 20 minutter eller mere.",
+   "hint": "Længere træninger bygger ægte udholdenhed."
+  },
+  {
+   "id": "full_hour_day",
+   "title": "En hel time",
+   "description": "Træn i 60 minutter på én dag.",
+   "hint": "En lang, fokuseret træningsdag."
+  },
+  {
+   "id": "three_programs",
+   "title": "Tre programmer",
+   "description": "Prøv 3 forskellige træningsprogrammer.",
+   "hint": "Hvert program udfordrer dig på en ny måde."
+  },
+  {
+   "id": "five_programs",
+   "title": "Fem programmer",
+   "description": "Prøv 5 forskellige træningsprogrammer.",
+   "hint": "Hold din krop på tæerne."
+  },
+  {
+   "id": "eight_programs",
+   "title": "Otte programmer",
+   "description": "Prøv 8 forskellige træningsprogrammer.",
+   "hint": "En alsidig rutine, bygget stykke for stykke."
+  },
+  {
+   "id": "one_month_days",
+   "title": "En måned",
+   "description": "Træn på 30 forskellige dage.",
+   "hint": "En hel måned, hvor du mødte op."
+  },
+  {
+   "id": "four_months",
+   "title": "Fire måneder",
+   "description": "Træn i 4 forskellige måneder.",
+   "hint": "Vanen overlever skiftet af årstid."
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "Et år med fitness",
+   "description": "Træn i 12 forskellige måneder.",
+   "hint": "Ikke hurtigt. Ikke højlydt. Bare aldrig stoppet."
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "Tolv uger",
+   "description": "Træn i 12 forskellige uger.",
+   "hint": "Tre måneder, hvor du kom igen og igen."
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "5.000 kcal forbrændt",
+   "description": "Forbrænd 5000 kcal ved træning.",
+   "hint": "Stabil indsats, tålmodigt gentaget."
+  }
+ ]
+}

@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "Första stegen",
+   "subtitle": "Varje resa börjar med ett träningspass"
+  },
+  {
+   "id": "consistency",
+   "title": "Uthållighet i vardagen",
+   "subtitle": "Små dagliga insatser ger stora resultat"
+  },
+  {
+   "id": "rhythm",
+   "title": "Tid på dygnet",
+   "subtitle": "Träna när det passar dig"
+  },
+  {
+   "id": "endurance",
+   "title": "Uthållighet",
+   "subtitle": "Minuterna blir till verkliga framsteg"
+  },
+  {
+   "id": "variety",
+   "title": "Variation",
+   "subtitle": "Variera och utmana din kropp"
+  },
+  {
+   "id": "journey",
+   "title": "Långsiktiga framsteg",
+   "subtitle": "Mäts i veckor och månader, inte dagar"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "Första passet",
+   "description": "Slutför ditt allra första träningspass.",
+   "hint": "Slutför valfritt pass för att börja din resa."
+  },
+  {
+   "id": "ten_workouts",
+   "title": "Kommit igång",
+   "description": "Slutför 10 träningspass.",
+   "hint": "Upprepning skapar fart."
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "Starka femtio",
+   "description": "Slutför 50 träningspass.",
+   "hint": "Femtio pass och du fortsätter."
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "Hundraklubben",
+   "description": "Slutför 100 träningspass.",
+   "hint": "Tresiffrigt – nu en riktig vana."
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "Ostoppbar",
+   "description": "Slutför 300 träningspass.",
+   "hint": "Få når så här långt. Det gjorde du."
+  },
+  {
+   "id": "three_day_streak",
+   "title": "Tre i rad",
+   "description": "Träna 3 dagar i rad.",
+   "hint": "Den första sviten är svårast att starta."
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "Hel vecka",
+   "description": "Träna 7 dagar i rad.",
+   "hint": "En hel vecka utan att missa en dag."
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "Vana skapad",
+   "description": "Träna 21 dagar i rad.",
+   "hint": "Efter 21 dagar börjar en vana sätta sig."
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "Sju starka veckor",
+   "description": "Nå en svit på 49 dagar.",
+   "hint": "Sju veckor utan att hoppa över en enda dag."
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "100 dagar i rad",
+   "description": "Nå en svit på 100 dagar.",
+   "hint": "Hundra dagar i rad – äkta engagemang."
+  },
+  {
+   "id": "early_bird",
+   "title": "Morgonpigg",
+   "description": "Träna en gång före klockan 8 på morgonen.",
+   "hint": "Den tidigaste timmen, det lugnaste passet."
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "Gryningens krigare",
+   "description": "Träna 10 gånger före klockan 8 på morgonen.",
+   "hint": "Tidiga morgnar, sval luft, lugnt fokus."
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "Morgonvana",
+   "description": "Träna 40 gånger före klockan 8 på morgonen.",
+   "hint": "Träning i soluppgången har blivit din andra natur."
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "Kvällsavslut",
+   "description": "Träna 10 gånger efter klockan 18.",
+   "hint": "Avsluta dagen med en sista ansträngning."
+  },
+  {
+   "id": "night_owl",
+   "title": "Nattuggla",
+   "description": "Träna 40 gånger efter klockan 18.",
+   "hint": "Kvällspasset är ditt."
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "Helgkrigare",
+   "description": "Träna på 8 helgdagar.",
+   "hint": "Lediga dagar kan också vara träningsdagar."
+  },
+  {
+   "id": "first_hour",
+   "title": "Den första timmen",
+   "description": "Samla 60 minuters träning.",
+   "hint": "En timmes ansträngning är aldrig bortkastad."
+  },
+  {
+   "id": "ten_hours",
+   "title": "Tio timmar",
+   "description": "Samla 600 minuters träning.",
+   "hint": "Rörelserna börjar kännas naturliga."
+  },
+  {
+   "id": "fifty_hours",
+   "title": "Femtio timmar",
+   "description": "Samla 3000 minuters träning.",
+   "hint": "Tid som investeras jämnt lönar sig."
+  },
+  {
+   "id": "long_workout",
+   "title": "Hela vägen",
+   "description": "Slutför 10 pass på 20 minuter eller mer.",
+   "hint": "Längre pass bygger verklig uthållighet."
+  },
+  {
+   "id": "full_hour_day",
+   "title": "En hel timme",
+   "description": "Träna i 60 minuter under en och samma dag.",
+   "hint": "En lång, fokuserad träningsdag."
+  },
+  {
+   "id": "three_programs",
+   "title": "Tre program",
+   "description": "Prova 3 olika träningsprogram.",
+   "hint": "Varje program utmanar dig på ett nytt sätt."
+  },
+  {
+   "id": "five_programs",
+   "title": "Fem program",
+   "description": "Prova 5 olika träningsprogram.",
+   "hint": "Håll kroppen på tårna."
+  },
+  {
+   "id": "eight_programs",
+   "title": "Åtta program",
+   "description": "Prova 8 olika träningsprogram.",
+   "hint": "En allsidig rutin, byggd bit för bit."
+  },
+  {
+   "id": "one_month_days",
+   "title": "En månad",
+   "description": "Träna på 30 olika dagar.",
+   "hint": "En hel månad där du dök upp."
+  },
+  {
+   "id": "four_months",
+   "title": "Fyra månader",
+   "description": "Träna under 4 olika månader.",
+   "hint": "Vanan klarar årstidsskiftet."
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "Ett år av träning",
+   "description": "Träna under 12 olika månader.",
+   "hint": "Inte snabbt. Inte högljutt. Bara aldrig stoppat."
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "Tolv veckor",
+   "description": "Träna under 12 olika veckor.",
+   "hint": "Tre månader av att komma tillbaka för mer."
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "5 000 kcal förbrända",
+   "description": "Förbränn 5000 kcal genom träning.",
+   "hint": "Jämn ansträngning, tålmodigt upprepad."
+  }
+ ]
+}

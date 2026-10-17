@@ -1,0 +1,136 @@
+str.badge_screen_title|Prestationer
+str.badge_screen_subtitle|Milstolpar som förtjänas med ansträngning, inte ges bort.
+str.badge_summary|%1$d av %2$d uppnådda
+str.badge_locked|Låst
+str.badge_earned|Uppnådd
+str.badge_earned_on|Uppnådd %1$s
+str.badge_remaining|%1$d %2$s kvar
+str.badge_empty|Inga prestationer har lagts upp ännu.
+str.badge_next_up|Närmaste prestation
+str.badge_view_all|Visa alla
+str.badge_unlocked_celebration_title|Prestation uppnådd
+str.badge_unlocked_celebration_more|+%1$d till uppnådda
+str.badge_continue|Fortsätt
+str.badge_share|Dela
+str.badge_share_chooser|Dela prestation
+str.badge_share_message|Jag har precis uppnått prestationen \"%1$s\" i %2$s!
+str.badge_tier_bronze|Brons
+str.badge_tier_silver|Silver
+str.badge_tier_gold|Guld
+str.badge_tier_jade|Jade
+str.pref_category_general|Allmänt
+str.pref_tts_engine|Text till tal-motor
+str.pref_version|Version
+plural.badge_unit_session.one|träningspass
+plural.badge_unit_session.other|träningspass
+plural.badge_unit_day.one|dag
+plural.badge_unit_day.other|dagar
+plural.badge_unit_minute.one|minut
+plural.badge_unit_minute.other|minuter
+plural.badge_unit_kcal.one|kcal
+plural.badge_unit_kcal.other|kcal
+plural.badge_unit_program.one|program
+plural.badge_unit_program.other|program
+plural.badge_unit_week.one|vecka
+plural.badge_unit_week.other|veckor
+plural.badge_unit_month.one|månad
+plural.badge_unit_month.other|månader
+cat.beginnings.title|Första stegen
+cat.beginnings.subtitle|Varje resa börjar med ett träningspass
+cat.consistency.title|Uthållighet i vardagen
+cat.consistency.subtitle|Små dagliga insatser ger stora resultat
+cat.rhythm.title|Tid på dygnet
+cat.rhythm.subtitle|Träna när det passar dig
+cat.endurance.title|Uthållighet
+cat.endurance.subtitle|Minuterna blir till verkliga framsteg
+cat.variety.title|Variation
+cat.variety.subtitle|Variera och utmana din kropp
+cat.journey.title|Långsiktiga framsteg
+cat.journey.subtitle|Mäts i veckor och månader, inte dagar
+badge.first_workout.title|Första passet
+badge.first_workout.description|Slutför ditt allra första träningspass.
+badge.first_workout.hint|Slutför valfritt pass för att börja din resa.
+badge.ten_workouts.title|Kommit igång
+badge.ten_workouts.description|Slutför 10 träningspass.
+badge.ten_workouts.hint|Upprepning skapar fart.
+badge.fifty_workouts.title|Starka femtio
+badge.fifty_workouts.description|Slutför 50 träningspass.
+badge.fifty_workouts.hint|Femtio pass och du fortsätter.
+badge.hundred_workouts.title|Hundraklubben
+badge.hundred_workouts.description|Slutför 100 träningspass.
+badge.hundred_workouts.hint|Tresiffrigt – nu en riktig vana.
+badge.three_hundred_workouts.title|Ostoppbar
+badge.three_hundred_workouts.description|Slutför 300 träningspass.
+badge.three_hundred_workouts.hint|Få når så här långt. Det gjorde du.
+badge.three_day_streak.title|Tre i rad
+badge.three_day_streak.description|Träna 3 dagar i rad.
+badge.three_day_streak.hint|Den första sviten är svårast att starta.
+badge.seven_day_streak.title|Hel vecka
+badge.seven_day_streak.description|Träna 7 dagar i rad.
+badge.seven_day_streak.hint|En hel vecka utan att missa en dag.
+badge.twenty_one_day_streak.title|Vana skapad
+badge.twenty_one_day_streak.description|Träna 21 dagar i rad.
+badge.twenty_one_day_streak.hint|Efter 21 dagar börjar en vana sätta sig.
+badge.seven_sevens_streak.title|Sju starka veckor
+badge.seven_sevens_streak.description|Nå en svit på 49 dagar.
+badge.seven_sevens_streak.hint|Sju veckor utan att hoppa över en enda dag.
+badge.hundred_day_streak.title|100 dagar i rad
+badge.hundred_day_streak.description|Nå en svit på 100 dagar.
+badge.hundred_day_streak.hint|Hundra dagar i rad – äkta engagemang.
+badge.early_bird.title|Morgonpigg
+badge.early_bird.description|Träna en gång före klockan 8 på morgonen.
+badge.early_bird.hint|Den tidigaste timmen, det lugnaste passet.
+badge.dawn_warrior.title|Gryningens krigare
+badge.dawn_warrior.description|Träna 10 gånger före klockan 8 på morgonen.
+badge.dawn_warrior.hint|Tidiga morgnar, sval luft, lugnt fokus.
+badge.sunrise_habit.title|Morgonvana
+badge.sunrise_habit.description|Träna 40 gånger före klockan 8 på morgonen.
+badge.sunrise_habit.hint|Träning i soluppgången har blivit din andra natur.
+badge.evening_wind_down.title|Kvällsavslut
+badge.evening_wind_down.description|Träna 10 gånger efter klockan 18.
+badge.evening_wind_down.hint|Avsluta dagen med en sista ansträngning.
+badge.night_owl.title|Nattuggla
+badge.night_owl.description|Träna 40 gånger efter klockan 18.
+badge.night_owl.hint|Kvällspasset är ditt.
+badge.weekend_warrior.title|Helgkrigare
+badge.weekend_warrior.description|Träna på 8 helgdagar.
+badge.weekend_warrior.hint|Lediga dagar kan också vara träningsdagar.
+badge.first_hour.title|Den första timmen
+badge.first_hour.description|Samla 60 minuters träning.
+badge.first_hour.hint|En timmes ansträngning är aldrig bortkastad.
+badge.ten_hours.title|Tio timmar
+badge.ten_hours.description|Samla 600 minuters träning.
+badge.ten_hours.hint|Rörelserna börjar kännas naturliga.
+badge.fifty_hours.title|Femtio timmar
+badge.fifty_hours.description|Samla 3000 minuters träning.
+badge.fifty_hours.hint|Tid som investeras jämnt lönar sig.
+badge.long_workout.title|Hela vägen
+badge.long_workout.description|Slutför 10 pass på 20 minuter eller mer.
+badge.long_workout.hint|Längre pass bygger verklig uthållighet.
+badge.full_hour_day.title|En hel timme
+badge.full_hour_day.description|Träna i 60 minuter under en och samma dag.
+badge.full_hour_day.hint|En lång, fokuserad träningsdag.
+badge.three_programs.title|Tre program
+badge.three_programs.description|Prova 3 olika träningsprogram.
+badge.three_programs.hint|Varje program utmanar dig på ett nytt sätt.
+badge.five_programs.title|Fem program
+badge.five_programs.description|Prova 5 olika träningsprogram.
+badge.five_programs.hint|Håll kroppen på tårna.
+badge.eight_programs.title|Åtta program
+badge.eight_programs.description|Prova 8 olika träningsprogram.
+badge.eight_programs.hint|En allsidig rutin, byggd bit för bit.
+badge.one_month_days.title|En månad
+badge.one_month_days.description|Träna på 30 olika dagar.
+badge.one_month_days.hint|En hel månad där du dök upp.
+badge.four_months.title|Fyra månader
+badge.four_months.description|Träna under 4 olika månader.
+badge.four_months.hint|Vanan klarar årstidsskiftet.
+badge.year_of_fitness.title|Ett år av träning
+badge.year_of_fitness.description|Träna under 12 olika månader.
+badge.year_of_fitness.hint|Inte snabbt. Inte högljutt. Bara aldrig stoppat.
+badge.twelve_weeks.title|Tolv veckor
+badge.twelve_weeks.description|Träna under 12 olika veckor.
+badge.twelve_weeks.hint|Tre månader av att komma tillbaka för mer.
+badge.calorie_burn_5000.title|5 000 kcal förbrända
+badge.calorie_burn_5000.description|Förbränn 5000 kcal genom träning.
+badge.calorie_burn_5000.hint|Jämn ansträngning, tålmodigt upprepad.

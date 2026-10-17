@@ -1,0 +1,129 @@
+str.badge_screen_title|업적
+str.badge_screen_subtitle|주어지는 것이 아니라 노력으로 얻는 이정표입니다.
+str.badge_summary|%2$d개 중 %1$d개 달성
+str.badge_locked|잠김
+str.badge_earned|달성
+str.badge_earned_on|%1$s 달성
+str.badge_remaining|%1$d%2$s 남음
+str.badge_empty|아직 설정된 업적이 없습니다.
+str.badge_next_up|가장 가까운 업적
+str.badge_view_all|모두 보기
+str.badge_unlocked_celebration_title|업적 달성
+str.badge_unlocked_celebration_more|+%1$d개 더 달성
+str.badge_continue|계속
+str.badge_share|공유
+str.badge_share_chooser|업적 공유
+str.badge_share_message|%2$s에서 \"%1$s\" 업적을 달성했어요!
+str.badge_tier_bronze|브론즈
+str.badge_tier_silver|실버
+str.badge_tier_gold|골드
+str.badge_tier_jade|제이드
+str.pref_category_general|일반
+str.pref_tts_engine|음성 합성 엔진
+str.pref_version|버전
+plural.badge_unit_session.other|회
+plural.badge_unit_day.other|일
+plural.badge_unit_minute.other|분
+plural.badge_unit_kcal.other|kcal
+plural.badge_unit_program.other|개 프로그램
+plural.badge_unit_week.other|주
+plural.badge_unit_month.other|개월
+cat.beginnings.title|첫걸음
+cat.beginnings.subtitle|모든 여정은 한 번의 운동에서 시작됩니다
+cat.consistency.title|꾸준함
+cat.consistency.subtitle|매일의 작은 노력이 큰 결과를 만듭니다
+cat.rhythm.title|운동 시간대
+cat.rhythm.subtitle|나에게 맞는 시간에 운동하세요
+cat.endurance.title|지구력
+cat.endurance.subtitle|쌓인 시간이 진짜 성장이 됩니다
+cat.variety.title|다양성
+cat.variety.subtitle|변화를 주고 몸에 도전하세요
+cat.journey.title|장기적인 성장
+cat.journey.subtitle|하루가 아닌 주와 달로 재는 성장
+badge.first_workout.title|첫 운동
+badge.first_workout.description|첫 운동을 완료하세요.
+badge.first_workout.hint|아무 운동이나 끝내고 여정을 시작하세요.
+badge.ten_workouts.title|본격 시작
+badge.ten_workouts.description|운동 10회를 완료하세요.
+badge.ten_workouts.hint|반복이 추진력을 만듭니다.
+badge.fifty_workouts.title|50회 달성
+badge.fifty_workouts.description|운동 50회를 완료하세요.
+badge.fifty_workouts.hint|50회를 넘어서도 계속 가는 중.
+badge.hundred_workouts.title|100회 클럽
+badge.hundred_workouts.description|운동 100회를 완료하세요.
+badge.hundred_workouts.hint|세 자릿수, 이제 진짜 습관입니다.
+badge.three_hundred_workouts.title|멈출 수 없음
+badge.three_hundred_workouts.description|운동 300회를 완료하세요.
+badge.three_hundred_workouts.hint|여기까지 오는 사람은 드물어요. 당신은 해냈어요.
+badge.three_day_streak.title|3일 연속
+badge.three_day_streak.description|3일 연속 운동하세요.
+badge.three_day_streak.hint|첫 연속 기록이 시작하기 가장 어렵습니다.
+badge.seven_day_streak.title|일주일 완주
+badge.seven_day_streak.description|7일 연속 운동하세요.
+badge.seven_day_streak.hint|하루도 빠짐없이 일주일 내내.
+badge.twenty_one_day_streak.title|습관 형성
+badge.twenty_one_day_streak.description|21일 연속 운동하세요.
+badge.twenty_one_day_streak.hint|21일이면 습관이 자리 잡기 시작해요.
+badge.seven_sevens_streak.title|7주 연속
+badge.seven_sevens_streak.description|49일 연속 기록을 달성하세요.
+badge.seven_sevens_streak.hint|7주 동안 하루도 거르지 않았어요.
+badge.hundred_day_streak.title|100일 연속
+badge.hundred_day_streak.description|100일 연속 기록을 달성하세요.
+badge.hundred_day_streak.hint|100일 연속, 진정한 헌신입니다.
+badge.early_bird.title|아침형
+badge.early_bird.description|오전 8시 전에 한 번 운동하세요.
+badge.early_bird.hint|가장 이른 시간, 가장 조용한 운동.
+badge.dawn_warrior.title|새벽 전사
+badge.dawn_warrior.description|오전 8시 전에 10번 운동하세요.
+badge.dawn_warrior.hint|이른 아침, 시원한 공기, 차분한 집중.
+badge.sunrise_habit.title|아침 습관
+badge.sunrise_habit.description|오전 8시 전에 40번 운동하세요.
+badge.sunrise_habit.hint|해 뜰 무렵 운동이 자연스러워졌어요.
+badge.evening_wind_down.title|저녁 마무리
+badge.evening_wind_down.description|오후 6시 이후에 10번 운동하세요.
+badge.evening_wind_down.hint|마지막 노력으로 하루를 마무리해요.
+badge.night_owl.title|올빼미
+badge.night_owl.description|오후 6시 이후에 40번 운동하세요.
+badge.night_owl.hint|저녁 운동은 당신의 시간입니다.
+badge.weekend_warrior.title|주말 전사
+badge.weekend_warrior.description|주말 8일 동안 운동하세요.
+badge.weekend_warrior.hint|쉬는 날도 운동하는 날이 될 수 있어요.
+badge.first_hour.title|첫 1시간
+badge.first_hour.description|운동 시간 60분을 쌓으세요.
+badge.first_hour.hint|1시간의 노력은 결코 헛되지 않아요.
+badge.ten_hours.title|10시간 돌파
+badge.ten_hours.description|운동 시간 600분을 쌓으세요.
+badge.ten_hours.hint|동작이 자연스러워지기 시작해요.
+badge.fifty_hours.title|50시간 돌파
+badge.fifty_hours.description|운동 시간 3000분을 쌓으세요.
+badge.fifty_hours.hint|꾸준히 투자한 시간은 보답합니다.
+badge.long_workout.title|끝까지 간다
+badge.long_workout.description|20분 이상 운동을 10회 완료하세요.
+badge.long_workout.hint|긴 운동이 진짜 지구력을 키워요.
+badge.full_hour_day.title|꽉 찬 1시간
+badge.full_hour_day.description|하루에 60분 운동하세요.
+badge.full_hour_day.hint|오래 집중해서 운동한 하루.
+badge.three_programs.title|프로그램 3개
+badge.three_programs.description|서로 다른 운동 프로그램 3개를 해 보세요.
+badge.three_programs.hint|프로그램마다 다른 도전이 있어요.
+badge.five_programs.title|프로그램 5개
+badge.five_programs.description|서로 다른 운동 프로그램 5개를 해 보세요.
+badge.five_programs.hint|몸이 익숙해지지 않게 하세요.
+badge.eight_programs.title|프로그램 8개
+badge.eight_programs.description|서로 다른 운동 프로그램 8개를 해 보세요.
+badge.eight_programs.hint|하나씩 쌓아 만든 균형 잡힌 루틴.
+badge.one_month_days.title|한 달
+badge.one_month_days.description|서로 다른 30일 동안 운동하세요.
+badge.one_month_days.hint|한 달 내내 꾸준히 나왔어요.
+badge.four_months.title|4개월
+badge.four_months.description|서로 다른 4개월 동안 운동하세요.
+badge.four_months.hint|계절이 바뀌어도 습관은 이어져요.
+badge.year_of_fitness.title|피트니스 1년
+badge.year_of_fitness.description|서로 다른 12개월 동안 운동하세요.
+badge.year_of_fitness.hint|빠르지도 요란하지도 않게, 그저 멈추지 않았어요.
+badge.twelve_weeks.title|12주
+badge.twelve_weeks.description|서로 다른 12주 동안 운동하세요.
+badge.twelve_weeks.hint|석 달 동안 계속 돌아왔어요.
+badge.calorie_burn_5000.title|5,000kcal 소모
+badge.calorie_burn_5000.description|운동으로 5000kcal를 소모하세요.
+badge.calorie_burn_5000.hint|꾸준한 노력을 끈기 있게 반복해요.

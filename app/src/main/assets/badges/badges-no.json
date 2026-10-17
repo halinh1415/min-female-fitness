@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "Første steg",
+   "subtitle": "Hver reise begynner med én treningsøkt"
+  },
+  {
+   "id": "consistency",
+   "title": "Jevnhet",
+   "subtitle": "Små daglige innsatser gir store resultater"
+  },
+  {
+   "id": "rhythm",
+   "title": "Tid på døgnet",
+   "subtitle": "Tren når det passer deg"
+  },
+  {
+   "id": "endurance",
+   "title": "Utholdenhet",
+   "subtitle": "Minuttene blir til ekte fremgang"
+  },
+  {
+   "id": "variety",
+   "title": "Variasjon",
+   "subtitle": "Varier og utfordre kroppen din"
+  },
+  {
+   "id": "journey",
+   "title": "Langsiktig fremgang",
+   "subtitle": "Målt i uker og måneder, ikke dager"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "Første økt",
+   "description": "Fullfør din aller første treningsøkt.",
+   "hint": "Fullfør hvilken som helst økt for å starte reisen."
+  },
+  {
+   "id": "ten_workouts",
+   "title": "I gang",
+   "description": "Fullfør 10 treningsøkter.",
+   "hint": "Gjentakelse skaper driv."
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "Sterke femti",
+   "description": "Fullfør 50 treningsøkter.",
+   "hint": "Femti økter, og du fortsetter."
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "Hundreklubben",
+   "description": "Fullfør 100 treningsøkter.",
+   "hint": "Tre sifre – nå en ekte vane."
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "Ustoppelig",
+   "description": "Fullfør 300 treningsøkter.",
+   "hint": "Få kommer så langt. Det gjorde du."
+  },
+  {
+   "id": "three_day_streak",
+   "title": "Tre på rad",
+   "description": "Tren 3 dager på rad.",
+   "hint": "Den første rekken er vanskeligst å starte."
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "Hel uke",
+   "description": "Tren 7 dager på rad.",
+   "hint": "En hel uke uten å hoppe over en dag."
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "Vane skapt",
+   "description": "Tren 21 dager på rad.",
+   "hint": "Etter 21 dager begynner en vane å sitte."
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "Sju sterke uker",
+   "description": "Nå en rekke på 49 dager.",
+   "hint": "Sju uker uten å hoppe over én eneste dag."
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "100 dager på rad",
+   "description": "Nå en rekke på 100 dager.",
+   "hint": "Hundre dager på rad – ekte dedikasjon."
+  },
+  {
+   "id": "early_bird",
+   "title": "Morgenfugl",
+   "description": "Tren én gang før klokken 8 om morgenen.",
+   "hint": "Den tidligste timen, den roligste økten."
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "Morgengryets kriger",
+   "description": "Tren 10 ganger før klokken 8 om morgenen.",
+   "hint": "Tidlige morgener, frisk luft, rolig fokus."
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "Morgenvane",
+   "description": "Tren 40 ganger før klokken 8 om morgenen.",
+   "hint": "Trening ved soloppgang har blitt din andre natur."
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "Kveldsavslutning",
+   "description": "Tren 10 ganger etter klokken 18.",
+   "hint": "Avslutt dagen med en siste innsats."
+  },
+  {
+   "id": "night_owl",
+   "title": "Nattugle",
+   "description": "Tren 40 ganger etter klokken 18.",
+   "hint": "Kveldsøkten er din."
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "Helgekriger",
+   "description": "Tren på 8 helgedager.",
+   "hint": "Fridager kan også være treningsdager."
+  },
+  {
+   "id": "first_hour",
+   "title": "Den første timen",
+   "description": "Samle 60 minutter med trening.",
+   "hint": "En time med innsats er aldri bortkastet."
+  },
+  {
+   "id": "ten_hours",
+   "title": "Ti timer",
+   "description": "Samle 600 minutter med trening.",
+   "hint": "Bevegelsene begynner å føles naturlige."
+  },
+  {
+   "id": "fifty_hours",
+   "title": "Femti timer",
+   "description": "Samle 3000 minutter med trening.",
+   "hint": "Tid investert jevnt lønner seg."
+  },
+  {
+   "id": "long_workout",
+   "title": "Hele veien",
+   "description": "Fullfør 10 økter på 20 minutter eller mer.",
+   "hint": "Lengre økter bygger ekte utholdenhet."
+  },
+  {
+   "id": "full_hour_day",
+   "title": "En hel time",
+   "description": "Tren i 60 minutter på én dag.",
+   "hint": "En lang, fokusert treningsdag."
+  },
+  {
+   "id": "three_programs",
+   "title": "Tre programmer",
+   "description": "Prøv 3 ulike treningsprogrammer.",
+   "hint": "Hvert program utfordrer deg på en ny måte."
+  },
+  {
+   "id": "five_programs",
+   "title": "Fem programmer",
+   "description": "Prøv 5 ulike treningsprogrammer.",
+   "hint": "Hold kroppen på tå hev."
+  },
+  {
+   "id": "eight_programs",
+   "title": "Åtte programmer",
+   "description": "Prøv 8 ulike treningsprogrammer.",
+   "hint": "En allsidig rutine, bygget bit for bit."
+  },
+  {
+   "id": "one_month_days",
+   "title": "Én måned",
+   "description": "Tren på 30 ulike dager.",
+   "hint": "En hel måned der du møtte opp."
+  },
+  {
+   "id": "four_months",
+   "title": "Fire måneder",
+   "description": "Tren i 4 ulike måneder.",
+   "hint": "Vanen overlever årstidsskiftet."
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "Et år med trening",
+   "description": "Tren i 12 ulike måneder.",
+   "hint": "Ikke raskt. Ikke høylytt. Bare aldri stoppet."
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "Tolv uker",
+   "description": "Tren i 12 ulike uker.",
+   "hint": "Tre måneder med å komme tilbake for mer."
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "5 000 kcal forbrent",
+   "description": "Forbrenn 5000 kcal gjennom trening.",
+   "hint": "Jevn innsats, tålmodig gjentatt."
+  }
+ ]
+}

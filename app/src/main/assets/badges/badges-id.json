@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "Langkah pertama",
+   "subtitle": "Setiap perjalanan dimulai dengan satu latihan"
+  },
+  {
+   "id": "consistency",
+   "title": "Konsistensi",
+   "subtitle": "Usaha kecil setiap hari membuahkan hasil besar"
+  },
+  {
+   "id": "rhythm",
+   "title": "Waktu latihan",
+   "subtitle": "Latihan di waktu yang paling cocok untukmu"
+  },
+  {
+   "id": "endurance",
+   "title": "Daya tahan",
+   "subtitle": "Menit demi menit menjadi kemajuan nyata"
+  },
+  {
+   "id": "variety",
+   "title": "Variasi",
+   "subtitle": "Ganti latihan dan tantang tubuhmu"
+  },
+  {
+   "id": "journey",
+   "title": "Kemajuan jangka panjang",
+   "subtitle": "Diukur dalam minggu dan bulan, bukan hari"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "Latihan pertama",
+   "description": "Selesaikan latihan pertamamu.",
+   "hint": "Selesaikan latihan apa saja untuk memulai perjalananmu."
+  },
+  {
+   "id": "ten_workouts",
+   "title": "Mulai terbiasa",
+   "description": "Selesaikan 10 latihan.",
+   "hint": "Pengulangan membangun momentum."
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "Lima puluh latihan",
+   "description": "Selesaikan 50 latihan.",
+   "hint": "Lima puluh sesi, dan masih terus berjalan."
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "Klub 100",
+   "description": "Selesaikan 100 latihan.",
+   "hint": "Tiga digit - kini benar-benar kebiasaan."
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "Tak terhentikan",
+   "description": "Selesaikan 300 latihan.",
+   "hint": "Sedikit yang sampai sejauh ini. Kamu berhasil."
+  },
+  {
+   "id": "three_day_streak",
+   "title": "Tiga hari berturut-turut",
+   "description": "Latihan 3 hari berturut-turut.",
+   "hint": "Rangkaian pertama paling sulit dimulai."
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "Seminggu penuh",
+   "description": "Latihan 7 hari berturut-turut.",
+   "hint": "Seminggu penuh tanpa melewatkan satu hari pun."
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "Kebiasaan terbentuk",
+   "description": "Latihan 21 hari berturut-turut.",
+   "hint": "Di hari ke-21 kebiasaan mulai melekat."
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "Tujuh minggu kuat",
+   "description": "Capai rangkaian 49 hari.",
+   "hint": "Tujuh minggu tanpa pernah bolos sehari pun."
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "Rangkaian 100 hari",
+   "description": "Capai rangkaian 100 hari.",
+   "hint": "Seratus hari berturut-turut - dedikasi sejati."
+  },
+  {
+   "id": "early_bird",
+   "title": "Bangun pagi",
+   "description": "Latihan sekali sebelum jam 8 pagi.",
+   "hint": "Jam paling awal, latihan paling tenang."
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "Pejuang fajar",
+   "description": "Latihan 10 kali sebelum jam 8 pagi.",
+   "hint": "Pagi buta, udara sejuk, fokus yang tenang."
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "Kebiasaan pagi",
+   "description": "Latihan 40 kali sebelum jam 8 pagi.",
+   "hint": "Latihan saat matahari terbit sudah jadi kebiasaan."
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "Penutup hari",
+   "description": "Latihan 10 kali setelah jam 6 sore.",
+   "hint": "Menutup hari dengan satu usaha terakhir."
+  },
+  {
+   "id": "night_owl",
+   "title": "Burung hantu",
+   "description": "Latihan 40 kali setelah jam 6 sore.",
+   "hint": "Latihan malam adalah milikmu."
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "Pejuang akhir pekan",
+   "description": "Latihan di 8 hari akhir pekan.",
+   "hint": "Hari libur pun bisa jadi hari latihan."
+  },
+  {
+   "id": "first_hour",
+   "title": "Jam pertama",
+   "description": "Kumpulkan 60 menit latihan.",
+   "hint": "Satu jam usaha tak pernah sia-sia."
+  },
+  {
+   "id": "ten_hours",
+   "title": "Sepuluh jam",
+   "description": "Kumpulkan 600 menit latihan.",
+   "hint": "Gerakan mulai terasa alami."
+  },
+  {
+   "id": "fifty_hours",
+   "title": "Lima puluh jam",
+   "description": "Kumpulkan 3000 menit latihan.",
+   "hint": "Waktu yang diinvestasikan dengan tekun pasti terbayar."
+  },
+  {
+   "id": "long_workout",
+   "title": "Sampai tuntas",
+   "description": "Selesaikan 10 latihan berdurasi 20 menit atau lebih.",
+   "hint": "Sesi yang lebih panjang membangun daya tahan sejati."
+  },
+  {
+   "id": "full_hour_day",
+   "title": "Satu jam penuh",
+   "description": "Latihan 60 menit dalam satu hari.",
+   "hint": "Satu hari latihan yang panjang dan fokus."
+  },
+  {
+   "id": "three_programs",
+   "title": "Tiga program",
+   "description": "Coba 3 program latihan berbeda.",
+   "hint": "Setiap program menantangmu dengan cara berbeda."
+  },
+  {
+   "id": "five_programs",
+   "title": "Lima program",
+   "description": "Coba 5 program latihan berbeda.",
+   "hint": "Buat tubuhmu terus beradaptasi."
+  },
+  {
+   "id": "eight_programs",
+   "title": "Delapan program",
+   "description": "Coba 8 program latihan berbeda.",
+   "hint": "Rutinitas lengkap, dibangun sedikit demi sedikit."
+  },
+  {
+   "id": "one_month_days",
+   "title": "Satu bulan",
+   "description": "Latihan di 30 hari berbeda.",
+   "hint": "Sebulan penuh selalu hadir."
+  },
+  {
+   "id": "four_months",
+   "title": "Empat bulan",
+   "description": "Latihan di 4 bulan berbeda.",
+   "hint": "Kebiasaan bertahan melewati pergantian musim."
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "Setahun kebugaran",
+   "description": "Latihan di 12 bulan berbeda.",
+   "hint": "Tidak cepat. Tidak heboh. Hanya tak pernah berhenti."
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "Dua belas minggu",
+   "description": "Latihan di 12 minggu berbeda.",
+   "hint": "Tiga bulan terus kembali berlatih."
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "5.000 kkal terbakar",
+   "description": "Bakar 5000 kkal lewat latihan.",
+   "hint": "Usaha yang stabil, diulang dengan sabar."
+  }
+ ]
+}

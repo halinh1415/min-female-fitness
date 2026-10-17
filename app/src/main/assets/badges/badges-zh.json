@@ -1,0 +1,210 @@
+{
+ "categories": [
+  {
+   "id": "beginnings",
+   "title": "第一步",
+   "subtitle": "每段旅程都从一次训练开始"
+  },
+  {
+   "id": "consistency",
+   "title": "坚持",
+   "subtitle": "每天的小努力汇聚成大成果"
+  },
+  {
+   "id": "rhythm",
+   "title": "训练时段",
+   "subtitle": "按你的节奏安排训练"
+  },
+  {
+   "id": "endurance",
+   "title": "耐力",
+   "subtitle": "一分一秒累积成真正的进步"
+  },
+  {
+   "id": "variety",
+   "title": "多样化",
+   "subtitle": "变换花样，挑战身体"
+  },
+  {
+   "id": "journey",
+   "title": "长期进步",
+   "subtitle": "以周和月衡量，而不是以天"
+  }
+ ],
+ "badges": [
+  {
+   "id": "first_workout",
+   "title": "第一次训练",
+   "description": "完成你的第一次训练。",
+   "hint": "完成任意一次训练，开启你的旅程。"
+  },
+  {
+   "id": "ten_workouts",
+   "title": "渐入佳境",
+   "description": "完成 10 次训练。",
+   "hint": "重复带来动力。"
+  },
+  {
+   "id": "fifty_workouts",
+   "title": "五十次达成",
+   "description": "完成 50 次训练。",
+   "hint": "五十次训练，仍在继续。"
+  },
+  {
+   "id": "hundred_workouts",
+   "title": "百次俱乐部",
+   "description": "完成 100 次训练。",
+   "hint": "三位数了，已经是真正的习惯。"
+  },
+  {
+   "id": "three_hundred_workouts",
+   "title": "势不可挡",
+   "description": "完成 300 次训练。",
+   "hint": "很少有人能走到这里，你做到了。"
+  },
+  {
+   "id": "three_day_streak",
+   "title": "连续三天",
+   "description": "连续训练 3 天。",
+   "hint": "第一次连续最难开始。"
+  },
+  {
+   "id": "seven_day_streak",
+   "title": "整整一周",
+   "description": "连续训练 7 天。",
+   "hint": "整整一周，一天不落。"
+  },
+  {
+   "id": "twenty_one_day_streak",
+   "title": "养成习惯",
+   "description": "连续训练 21 天。",
+   "hint": "21 天是习惯开始稳固的时候。"
+  },
+  {
+   "id": "seven_sevens_streak",
+   "title": "坚持七周",
+   "description": "达成连续 49 天。",
+   "hint": "七周没有漏过一天。"
+  },
+  {
+   "id": "hundred_day_streak",
+   "title": "连续百天",
+   "description": "达成连续 100 天。",
+   "hint": "连续一百天，真正的坚持。"
+  },
+  {
+   "id": "early_bird",
+   "title": "早起鸟",
+   "description": "在早上 8 点前训练一次。",
+   "hint": "最早的时刻，最安静的训练。"
+  },
+  {
+   "id": "dawn_warrior",
+   "title": "黎明战士",
+   "description": "在早上 8 点前训练 10 次。",
+   "hint": "清晨、凉爽的空气、平静的专注。"
+  },
+  {
+   "id": "sunrise_habit",
+   "title": "晨练习惯",
+   "description": "在早上 8 点前训练 40 次。",
+   "hint": "日出训练已成为你的本能。"
+  },
+  {
+   "id": "evening_wind_down",
+   "title": "傍晚放松",
+   "description": "在晚上 6 点后训练 10 次。",
+   "hint": "用最后一次努力结束这一天。"
+  },
+  {
+   "id": "night_owl",
+   "title": "夜猫子",
+   "description": "在晚上 6 点后训练 40 次。",
+   "hint": "晚间训练属于你。"
+  },
+  {
+   "id": "weekend_warrior",
+   "title": "周末战士",
+   "description": "在 8 个周末日训练。",
+   "hint": "休息日也可以是训练日。"
+  },
+  {
+   "id": "first_hour",
+   "title": "第一个小时",
+   "description": "累计训练 60 分钟。",
+   "hint": "一小时的努力永远不会白费。"
+  },
+  {
+   "id": "ten_hours",
+   "title": "十小时",
+   "description": "累计训练 600 分钟。",
+   "hint": "动作开始变得自然。"
+  },
+  {
+   "id": "fifty_hours",
+   "title": "五十小时",
+   "description": "累计训练 3000 分钟。",
+   "hint": "持续投入的时间终有回报。"
+  },
+  {
+   "id": "long_workout",
+   "title": "坚持到底",
+   "description": "完成 10 次 20 分钟以上的训练。",
+   "hint": "更长的训练打造真正的耐力。"
+  },
+  {
+   "id": "full_hour_day",
+   "title": "满一小时",
+   "description": "一天内训练 60 分钟。",
+   "hint": "专注训练的漫长一天。"
+  },
+  {
+   "id": "three_programs",
+   "title": "三个计划",
+   "description": "尝试 3 个不同的训练计划。",
+   "hint": "每个计划以不同方式挑战你。"
+  },
+  {
+   "id": "five_programs",
+   "title": "五个计划",
+   "description": "尝试 5 个不同的训练计划。",
+   "hint": "让身体保持新鲜感。"
+  },
+  {
+   "id": "eight_programs",
+   "title": "八个计划",
+   "description": "尝试 8 个不同的训练计划。",
+   "hint": "一点一点搭建的全面训练。"
+  },
+  {
+   "id": "one_month_days",
+   "title": "一个月",
+   "description": "在 30 个不同的日子训练。",
+   "hint": "整整一个月坚持出现。"
+  },
+  {
+   "id": "four_months",
+   "title": "四个月",
+   "description": "在 4 个不同的月份训练。",
+   "hint": "习惯挺过了季节变换。"
+  },
+  {
+   "id": "year_of_fitness",
+   "title": "健身一年",
+   "description": "在 12 个不同的月份训练。",
+   "hint": "不快，不张扬，只是从未停下。"
+  },
+  {
+   "id": "twelve_weeks",
+   "title": "十二周",
+   "description": "在 12 个不同的周训练。",
+   "hint": "三个月来一次次回来训练。"
+  },
+  {
+   "id": "calorie_burn_5000",
+   "title": "燃烧 5000 千卡",
+   "description": "通过训练燃烧 5000 千卡。",
+   "hint": "稳定的努力，耐心地重复。"
+  }
+ ]
+}
