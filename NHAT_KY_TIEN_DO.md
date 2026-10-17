@@ -2,6 +2,10 @@
 
 > Mới nhất ở trên.
 
+## 2026-10-17 – Bản 1.1.29 (129): chống ANR TTS ✅
+- `versionCode 129`, `versionName "1.1.29"`. assembleRelease + bundleRelease OK (chưa ký).
+- Bản release ký key debug trên emulator: mở app, Preview → Coach voice → nghe thử Default có yêu cầu đọc, không crash/ANR.
+
 ## 2026-10-17 – Chống ANR TextToSpeech (rà theo lỗi ANR Muay Thai) ✅
 - `CoachOptionActivity`: tạo engine, setLanguage/getDefaultVoice, nút nghe thử, shutdown chạy trên `TtsExecutor` (trước gọi trên
   main thread → nguy cơ ANR). Test emulator: mở Coach voice, nghe thử Default gửi được yêu cầu đọc, không ANR.
