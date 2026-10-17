@@ -21,7 +21,6 @@
     <string name="pwb_cta_trial">DÙNG THỬ MIỄN PHÍ %d NGÀY</string>
     <string name="pwb_cta_sub">TIẾP TỤC</string>
     <string name="pwb_no_payment">Không cần thanh toán ngay</string>
-    <string name="pwb_note_trial">Miễn phí %1$d ngày, sau đó %2$s/năm\nHuỷ bất cứ lúc nào trên Google Play</string>
     <string name="pwb_note_sub">Huỷ bất cứ lúc nào trên Google Play</string>
     <string name="pwb_note_lifetime">Thanh toán một lần, không phải gói đăng ký</string>
     <string name="pwb_restore">Khôi phục</string>

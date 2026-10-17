@@ -14,17 +14,11 @@
     <string name="pp_back">Back</string>
     <string name="pp_leg">Leg</string>
     <string name="pp_butt">Butt</string>
-    <string name="pp_injury">Injured Area</string>
     <string name="pp_none">None</string>
     <string name="pp_knee">Knee</string>
     <string name="pp_shoulder">Arm &amp; Shoulder</string>
     <string name="pp_wrist">Wrist</string>
     <string name="pp_injury_note">Exercises that strain these areas will be left out. If the pain is serious, check with a doctor before training.</string>
-    <string name="pp_aerobic">Aerobic Level</string>
-    <string name="pp_low">Low intensity</string>
-    <string name="pp_moderate">Moderate intensity</string>
-    <string name="pp_high">High intensity</string>
-    <string name="pp_type">Workout Type</string>
     <string name="pp_jump_free">Jump-free</string>
     <string name="pp_duration">Workout Duration</string>
     <string name="pp_min">min</string>

@@ -14,17 +14,11 @@
     <string name="pp_back">Selkä</string>
     <string name="pp_leg">Jalat</string>
     <string name="pp_butt">Pakarat</string>
-    <string name="pp_injury">Loukkaantuneet alueet</string>
     <string name="pp_none">Ei mitään</string>
     <string name="pp_knee">Polvi</string>
     <string name="pp_shoulder">Käsi &amp; olkapää</string>
     <string name="pp_wrist">Ranne</string>
     <string name="pp_injury_note">Näitä alueita kuormittavat liikkeet jätetään pois. Jos kipu on kovaa, kysy lääkäriltä ennen treeniä.</string>
-    <string name="pp_aerobic">Aerobinen taso</string>
-    <string name="pp_low">Matala teho</string>
-    <string name="pp_moderate">Kohtalainen teho</string>
-    <string name="pp_high">Korkea teho</string>
-    <string name="pp_type">Treenityyppi</string>
     <string name="pp_jump_free">Ilman hyppyjä</string>
     <string name="pp_duration">Treenin kesto</string>
     <string name="pp_min">min</string>

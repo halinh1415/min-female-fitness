@@ -14,17 +14,11 @@
     <string name="pp_back">الظهر</string>
     <string name="pp_leg">الساقان</string>
     <string name="pp_butt">الأرداف</string>
-    <string name="pp_injury">المناطق المصابة</string>
     <string name="pp_none">لا شيء</string>
     <string name="pp_knee">الركبة</string>
     <string name="pp_shoulder">الذراع والكتف</string>
     <string name="pp_wrist">الرسغ</string>
     <string name="pp_injury_note">سيتم استبعاد التمارين التي تضغط على هذه المناطق. إذا كان الألم شديدًا، استشيري الطبيب قبل التمرين.</string>
-    <string name="pp_aerobic">المستوى الهوائي</string>
-    <string name="pp_low">شدة منخفضة</string>
-    <string name="pp_moderate">شدة متوسطة</string>
-    <string name="pp_high">شدة عالية</string>
-    <string name="pp_type">نوع التمرين</string>
     <string name="pp_jump_free">بدون قفز</string>
     <string name="pp_duration">مدة التمرين</string>
     <string name="pp_min">دقيقة</string>

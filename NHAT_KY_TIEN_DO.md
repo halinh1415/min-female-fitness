@@ -2,6 +2,19 @@
 
 > Mới nhất ở trên.
 
+## 2026-10-17 – Dọn file không dùng ✅ (yêu cầu Telegram, chưa push)
+- Quét bằng lint `UnusedResources` (thêm tạm khối `lint { checkOnly ... }` rồi bỏ) + kiểm tra tham chiếu động: app không
+  dùng `getIdentifier` cho drawable/string (chỉ `raw video_` và dimen hệ thống), ảnh chương trình nằm trong `assets/images`.
+- Xoá 241 file resource (drawable/layout/anim/menu/raw, ~3,6 MB nguồn), 3 color state list `ob_*` chỉ dùng trong style
+  thừa, 10 style không dùng, ~6.000 mục giá trị (string ở mọi ngôn ngữ, color, dimen, integer, array).
+- Xoá 11 class không được tham chiếu: `BottomNavigationViewBehavior`, `CustomAppBarLayoutBehavior`, `GridSpacingItemDecoration`,
+  `ProgressStackedView`, `StackedLineDrawable`, `SuffixEditText`, `TipObject`, `DialogUtils`, `DownloadVideoWorker`,
+  `RecipeDatabase`, `XORDecryptionInputStream`. Xoá asset `breath.json`, `slot_machine.json`.
+- Giữ: mipmap launcher, id trong layout (vô hại), video `assets/i/g|v` (bài tập lấy theo id lúc chạy, file plan mã hoá).
+- AAB release 72,1 MB → 68,5 MB. assembleDebug + bundleRelease OK. Test S8+: 5 tab, preview, tải bài, màn tập chạy bình
+  thường, không crash / thiếu resource.
+- Có sẵn từ trước (không do dọn): nhóm cài đặt "General" và "Achievements" còn chữ tiếng Anh cứng.
+
 ## 2026-10-17 – Bản 1.1.30 (130) ✅ đã push
 - Gồm: vector muscle map viền hồng + highlight nhóm cơ.
 - assembleDebug + bundleRelease OK (AAB chưa ký, anh tự ký).

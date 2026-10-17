@@ -21,7 +21,6 @@
     <string name="pw_cancel_anytime">Atcel jebkurā laikā Google Play</string>
     <string name="pw_cta_continue">Turpināt</string>
     <string name="pw_cta_trial">Sākt manu %d dienu bezmaksas izmēģinājumu</string>
-    <string name="pw_disclosure_sub">%s. Automātiski atjaunojas līdz atcelšanai.</string>
     <string name="pw_disclosure_trial">%1$d dienas bez maksas, pēc tam %2$s. Automātiski atjaunojas līdz atcelšanai.</string>
     <string name="pw_loading">Ielādē cenas…</string>
     <string name="pw_manage">Pārvaldīt abonementu</string>

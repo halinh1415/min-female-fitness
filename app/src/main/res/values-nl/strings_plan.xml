@@ -14,17 +14,11 @@
     <string name="pp_back">Rug</string>
     <string name="pp_leg">Benen</string>
     <string name="pp_butt">Billen</string>
-    <string name="pp_injury">Geblesseerde zones</string>
     <string name="pp_none">Geen</string>
     <string name="pp_knee">Knie</string>
     <string name="pp_shoulder">Arm &amp; schouder</string>
     <string name="pp_wrist">Pols</string>
     <string name="pp_injury_note">Oefeningen die deze zones belasten worden weggelaten. Bij veel pijn: raadpleeg eerst een arts.</string>
-    <string name="pp_aerobic">Aerobe niveau</string>
-    <string name="pp_low">Lage intensiteit</string>
-    <string name="pp_moderate">Gemiddelde intensiteit</string>
-    <string name="pp_high">Hoge intensiteit</string>
-    <string name="pp_type">Soort training</string>
     <string name="pp_jump_free">Zonder springen</string>
     <string name="pp_duration">Trainingsduur</string>
     <string name="pp_min">min</string>

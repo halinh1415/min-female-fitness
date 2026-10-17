@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="wk_bg">#151013</color>
-    <color name="wk_surface">#221B1F</color>
     <color name="wk_title">#F4ECEF</color>
     <color name="wk_muted">#C9BAC2</color>
     <color name="wk_track">#3A2E34</color>

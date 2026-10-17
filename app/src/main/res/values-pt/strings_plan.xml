@@ -14,17 +14,11 @@
     <string name="pp_back">Costas</string>
     <string name="pp_leg">Pernas</string>
     <string name="pp_butt">Glúteos</string>
-    <string name="pp_injury">Áreas lesionadas</string>
     <string name="pp_none">Nenhuma</string>
     <string name="pp_knee">Joelho</string>
     <string name="pp_shoulder">Braço e ombro</string>
     <string name="pp_wrist">Pulso</string>
     <string name="pp_injury_note">Exercícios que forçam essas áreas serão removidos. Se a dor for forte, consulte um médico antes de treinar.</string>
-    <string name="pp_aerobic">Nível aeróbico</string>
-    <string name="pp_low">Baixa intensidade</string>
-    <string name="pp_moderate">Intensidade moderada</string>
-    <string name="pp_high">Alta intensidade</string>
-    <string name="pp_type">Tipo de treino</string>
     <string name="pp_jump_free">Sem saltos</string>
     <string name="pp_duration">Duração do treino</string>
     <string name="pp_min">min</string>

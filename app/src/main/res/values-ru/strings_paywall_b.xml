@@ -21,7 +21,6 @@
     <string name="pwb_cta_trial">%d ДН. БЕСПЛАТНО</string>
     <string name="pwb_cta_sub">ПРОДОЛЖИТЬ</string>
     <string name="pwb_no_payment">Без оплаты сейчас</string>
-    <string name="pwb_note_trial">%1$d дн. бесплатно, затем %2$s/год\nОтмена в любое время в Google Play</string>
     <string name="pwb_note_sub">Отмена в любое время в Google Play</string>
     <string name="pwb_note_lifetime">Разовый платёж, без подписки</string>
     <string name="pwb_restore">Восстановить</string>

@@ -21,7 +21,6 @@
     <string name="pwb_cta_trial">%d DNÍ ZDARMA</string>
     <string name="pwb_cta_sub">POKRAČOVAT</string>
     <string name="pwb_no_payment">Nyní nic neplatíš</string>
-    <string name="pwb_note_trial">%1$d dní zdarma, poté %2$s/rok\nZrušit lze kdykoli v Google Play</string>
     <string name="pwb_note_sub">Zrušit lze kdykoli v Google Play</string>
     <string name="pwb_note_lifetime">Jednorázová platba, žádné předplatné</string>
     <string name="pwb_restore">Obnovit</string>

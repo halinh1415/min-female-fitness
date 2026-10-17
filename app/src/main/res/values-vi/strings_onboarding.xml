@@ -1,105 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ob_skip">Bỏ qua</string>
-    <string name="ob_continue">Tiếp tục</string>
-    <string name="ob_back">Quay lại</string>
-    <string name="ob_percent">%d%%</string>
-    <string name="ob_not_now">Để sau</string>
 
-    <string name="ob_goal_title">Mục tiêu chính của bạn là gì?</string>
-    <string name="ob_goal_subtitle">Chúng tôi sẽ xây dựng lộ trình dựa trên mục tiêu này.</string>
-    <string name="ob_goal_lose_weight">Giảm cân</string>
-    <string name="ob_goal_lose_weight_desc">Đốt mỡ với bài tập tại nhà có hướng dẫn</string>
-    <string name="ob_goal_tone">Săn chắc cơ thể</string>
-    <string name="ob_goal_tone_desc">Làm săn bụng, tay, mông và chân</string>
-    <string name="ob_goal_flexibility">Dẻo dai &amp; giảm căng thẳng</string>
-    <string name="ob_goal_flexibility_desc">Giãn cơ, vận động khớp và thư giãn</string>
-    <string name="ob_goal_strength">Khoẻ mạnh hơn</string>
-    <string name="ob_goal_strength_desc">Tăng sức mạnh và năng lượng</string>
 
-    <string name="ob_focus_title">Bạn muốn tập trung vào vùng nào?</string>
-    <string name="ob_focus_subtitle">Chọn một hoặc nhiều vùng.</string>
-    <string name="ob_focus_full_body">Toàn thân</string>
-    <string name="ob_focus_abs">Bụng</string>
-    <string name="ob_focus_arms">Tay</string>
-    <string name="ob_focus_butt">Mông</string>
-    <string name="ob_focus_legs">Đùi &amp; chân</string>
 
-    <string name="ob_level_title">Thể lực hiện tại của bạn thế nào?</string>
-    <string name="ob_level_subtitle">Hãy trả lời thật lòng - chúng tôi sẽ điều chỉnh cường độ phù hợp.</string>
-    <string name="ob_level_beginner">Mới bắt đầu</string>
-    <string name="ob_level_beginner_desc">Tôi hiếm khi tập luyện</string>
-    <string name="ob_level_intermediate">Trung bình</string>
-    <string name="ob_level_intermediate_desc">Tôi tập 1-2 lần mỗi tuần</string>
-    <string name="ob_level_advanced">Nâng cao</string>
-    <string name="ob_level_advanced_desc">Tôi tập từ 3 lần mỗi tuần</string>
 
-    <string name="ob_body_title">Cho chúng tôi biết thêm về bạn</string>
-    <string name="ob_body_subtitle">Dùng để tính BMI và lượng calo. Chỉ lưu trên thiết bị của bạn.</string>
-    <string name="ob_unit_metric">kg · cm</string>
-    <string name="ob_unit_imperial">lb · ft</string>
-    <string name="ob_age">Tuổi</string>
-    <string name="ob_height">Chiều cao</string>
-    <string name="ob_weight">Cân nặng hiện tại</string>
-    <string name="ob_target_weight">Cân nặng mục tiêu</string>
-    <string name="ob_bmi_value">BMI của bạn: %1$.1f · %2$s</string>
-    <string name="ob_bmi_under">Thiếu cân</string>
-    <string name="ob_bmi_normal">Bình thường</string>
-    <string name="ob_bmi_over">Thừa cân</string>
-    <string name="ob_bmi_obese">Béo phì</string>
 
-    <string name="ob_time_title">Mỗi ngày bạn có thể dành bao nhiêu thời gian?</string>
-    <string name="ob_time_subtitle">Tập ngắn nhưng đều đặn mang lại hiệu quả tốt.</string>
-    <string name="ob_time_short">5–10 phút</string>
-    <string name="ob_time_short_desc">Nhanh gọn, dễ sắp xếp</string>
-    <string name="ob_time_medium">10–20 phút</string>
-    <string name="ob_time_medium_desc">Phù hợp với hầu hết mọi người</string>
-    <string name="ob_time_long">20–30+ phút</string>
-    <string name="ob_time_long_desc">Để tiến bộ nhanh hơn</string>
 
-    <string name="ob_reminder_title">Bạn muốn tập vào lúc nào?</string>
-    <string name="ob_reminder_subtitle">Chúng tôi sẽ nhắc nhẹ nhàng vào giờ này.</string>
-    <string name="ob_reminder_benefit_title">Xây dựng thói quen bền vững</string>
-    <string name="ob_reminder_benefit_desc">Lời nhắc mỗi ngày giúp bạn giữ chuỗi tập luyện. Bạn có thể đổi giờ hoặc tắt bất cứ lúc nào trong Cài đặt.</string>
-    <string name="ob_reminder_enable">Nhắc tôi mỗi ngày</string>
 
-    <string name="ob_generating_title">Đang tạo lộ trình cá nhân…</string>
     <string name="ob_status_bmi">Đang tính chỉ số BMI…</string>
     <string name="ob_status_habits">Đang phân tích câu trả lời…</string>
     <string name="ob_status_plan">Đang chọn bài tập phù hợp nhất…</string>
     <string name="ob_status_done">Hoàn tất!</string>
-    <string name="ob_check_profile">Đã phân tích hồ sơ</string>
-    <string name="ob_check_workouts">Đã chọn bài tập</string>
-    <string name="ob_check_schedule">Đã lên lịch tập</string>
 
-    <string name="ob_result_title">Lộ trình của bạn đã sẵn sàng 🎉</string>
-    <string name="ob_result_subtitle">Cá nhân hoá từ câu trả lời của bạn</string>
-    <string name="ob_result_goal">Mục tiêu</string>
-    <string name="ob_result_focus">Tập trung</string>
-    <string name="ob_result_level">Trình độ</string>
-    <string name="ob_result_time">Mỗi ngày</string>
-    <string name="ob_result_bmi">BMI</string>
-    <string name="ob_result_minutes">%d phút/ngày</string>
-    <string name="ob_result_projection_title">Dự kiến của bạn</string>
-    <string name="ob_result_projection">%1$s → %2$s</string>
-    <string name="ob_result_projection_date">Dự kiến đạt vào %s</string>
-    <string name="ob_result_disclaimer">Ước tính dựa trên tốc độ an toàn khoảng 0,5 kg mỗi tuần kết hợp ăn uống lành mạnh. Kết quả mỗi người có thể khác nhau.</string>
-    <string name="ob_result_cta">Nhận lộ trình của tôi</string>
 
     <string name="pw_title">Mở khoá toàn bộ lộ trình</string>
-    <string name="pw_subtitle_personal">Lộ trình %s của bạn đã sẵn sàng. Nâng cấp Premium để dùng đầy đủ.</string>
-    <string name="pw_subtitle_default">Đạt mục tiêu nhanh hơn với Premium.</string>
-    <string name="pw_benefit_programs">Mở khoá mọi bài tập &amp; thử thách</string>
-    <string name="pw_benefit_ads">Không quảng cáo, không gián đoạn</string>
-    <string name="pw_benefit_plan">Lộ trình cá nhân tự điều chỉnh theo bạn</string>
-    <string name="pw_benefit_meal">Thực đơn, nhạc &amp; huấn luyện viên giọng nói</string>
     <string name="pw_plan_yearly">Gói năm</string>
     <string name="pw_plan_monthly">Gói tháng</string>
-    <string name="pw_plan_lifetime">Trọn đời</string>
     <string name="pw_per_month">%s / tháng</string>
     <string name="pw_per_year">%s / năm</string>
-    <string name="pw_one_time">Thanh toán một lần</string>
-    <string name="pw_save_badge">TIẾT KIỆM %d%%</string>
     <string name="pw_trial_badge">MIỄN PHÍ %d NGÀY</string>
     <string name="pw_best_value">ĐÁNG GIÁ NHẤT</string>
     <string name="pw_timeline_title">Cách hoạt động của bản dùng thử</string>
@@ -113,8 +31,6 @@
     <string name="pw_cta_trial">Dùng thử miễn phí %d ngày</string>
     <string name="pw_cta_continue">Tiếp tục</string>
     <string name="pw_disclosure_trial">Miễn phí %1$d ngày, sau đó %2$s. Tự động gia hạn cho đến khi huỷ.</string>
-    <string name="pw_disclosure_sub">%s. Tự động gia hạn cho đến khi huỷ.</string>
-    <string name="pw_disclosure_lifetime">Thanh toán một lần %s. Không phải gói đăng ký.</string>
     <string name="pw_cancel_anytime">Huỷ bất cứ lúc nào trên Google Play</string>
     <string name="pw_no_payment_today">Hôm nay chưa thanh toán</string>
     <string name="pw_selected">Đã chọn</string>
@@ -130,14 +46,8 @@
     <string name="pw_restore_none">Không tìm thấy giao dịch trước đó.</string>
     <string name="pw_purchase_success">Chào mừng bạn đến với Premium! 🎉</string>
     <string name="pw_purchase_pending">Giao dịch đang chờ xử lý. Premium sẽ được mở khi Google Play xác nhận thanh toán.</string>
-    <string name="pw_purchase_error">Không thể hoàn tất giao dịch. Vui lòng thử lại.</string>
     <string name="paywall_band_special">Giá ưu đãi</string>
     <string name="paywall_special_offer">Ưu đãi giảm %1$d%%</string>
     <string name="paywall_special_price">%1$s (giá gốc %2$s)/năm</string>
     <string name="paywall_per_week">%1$s/tuần</string>
-    <string name="pw_exit_title">Khoan đã! Ưu đãi dành riêng cho bạn</string>
-    <string name="pw_exit_subtitle">Nhận Premium gói năm chỉ với %1$s thay vì %2$s.</string>
-    <string name="pw_exit_badge">-%d%%</string>
-    <string name="pw_exit_cta">Nhận ưu đãi</string>
-    <string name="pw_exit_decline">Không, cảm ơn</string>
 </resources>

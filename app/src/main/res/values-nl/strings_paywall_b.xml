@@ -21,7 +21,6 @@
     <string name="pwb_cta_trial">%d DAGEN GRATIS PROBEREN</string>
     <string name="pwb_cta_sub">DOORGAAN</string>
     <string name="pwb_no_payment">Nu niets betalen</string>
-    <string name="pwb_note_trial">%1$d dagen gratis, daarna %2$s/jaar\nAltijd opzegbaar via Google Play</string>
     <string name="pwb_note_sub">Altijd opzegbaar via Google Play</string>
     <string name="pwb_note_lifetime">Eenmalige betaling, geen abonnement</string>
     <string name="pwb_restore">Herstellen</string>

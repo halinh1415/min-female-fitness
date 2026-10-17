@@ -21,7 +21,6 @@
     <string name="pwb_cta_trial">BESPLATNA PROBA %d DANA</string>
     <string name="pwb_cta_sub">NASTAVI</string>
     <string name="pwb_no_payment">Bez plaćanja sada</string>
-    <string name="pwb_note_trial">Besplatna proba %1$d dana, zatim %2$s/god.\nOtkaži bilo kada na Google Playu</string>
     <string name="pwb_note_sub">Otkaži bilo kada na Google Playu</string>
     <string name="pwb_note_lifetime">Jednokratno plaćanje, bez pretplate</string>
     <string name="pwb_restore">Vrati kupnju</string>

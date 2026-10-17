@@ -21,7 +21,6 @@
     <string name="pw_cancel_anytime">Avbryt når som helst i Google Play</string>
     <string name="pw_cta_continue">Fortsett</string>
     <string name="pw_cta_trial">Start min %d-dagers gratis prøveperiode</string>
-    <string name="pw_disclosure_sub">%s. Fornyes automatisk til den sies opp.</string>
     <string name="pw_disclosure_trial">%1$d dager gratis, deretter %2$s. Fornyes automatisk til den sies opp.</string>
     <string name="pw_loading">Laster inn priser…</string>
     <string name="pw_manage">Administrer abonnement</string>

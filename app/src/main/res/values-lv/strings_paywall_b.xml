@@ -21,7 +21,6 @@
     <string name="pwb_cta_trial">%d DIENU BEZMAKSAS IZMĒĢINĀJUMS</string>
     <string name="pwb_cta_sub">TURPINĀT</string>
     <string name="pwb_no_payment">Tagad nav jāmaksā</string>
-    <string name="pwb_note_trial">%1$d dienas bez maksas, pēc tam %2$s/gadā\nAtcel jebkurā laikā Google Play</string>
     <string name="pwb_note_sub">Atcel jebkurā laikā Google Play</string>
     <string name="pwb_note_lifetime">Vienreizējs maksājums, bez abonementa</string>
     <string name="pwb_restore">Atjaunot</string>

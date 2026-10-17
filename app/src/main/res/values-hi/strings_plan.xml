@@ -14,17 +14,11 @@
     <string name="pp_back">पीठ</string>
     <string name="pp_leg">पैर</string>
     <string name="pp_butt">नितंब</string>
-    <string name="pp_injury">चोट वाले हिस्से</string>
     <string name="pp_none">कोई नहीं</string>
     <string name="pp_knee">घुटना</string>
     <string name="pp_shoulder">बाँह और कंधा</string>
     <string name="pp_wrist">कलाई</string>
     <string name="pp_injury_note">इन हिस्सों पर ज़ोर डालने वाले व्यायाम हटा दिए जाएँगे। दर्द ज़्यादा हो तो व्यायाम से पहले डॉक्टर से सलाह लें।</string>
-    <string name="pp_aerobic">एरोबिक स्तर</string>
-    <string name="pp_low">कम तीव्रता</string>
-    <string name="pp_moderate">मध्यम तीव्रता</string>
-    <string name="pp_high">उच्च तीव्रता</string>
-    <string name="pp_type">वर्कआउट प्रकार</string>
     <string name="pp_jump_free">बिना कूद</string>
     <string name="pp_duration">वर्कआउट अवधि</string>
     <string name="pp_min">मिनट</string>

@@ -14,17 +14,11 @@
     <string name="pp_back">Lưng</string>
     <string name="pp_leg">Chân</string>
     <string name="pp_butt">Mông</string>
-    <string name="pp_injury">Vùng chấn thương</string>
     <string name="pp_none">Không</string>
     <string name="pp_knee">Đầu gối</string>
     <string name="pp_shoulder">Tay &amp; Vai</string>
     <string name="pp_wrist">Cổ tay</string>
     <string name="pp_injury_note">Các bài gây áp lực lên vùng này sẽ được loại bỏ. Nếu đau nhiều, hãy hỏi ý kiến bác sĩ trước khi tập.</string>
-    <string name="pp_aerobic">Cường độ aerobic</string>
-    <string name="pp_low">Cường độ thấp</string>
-    <string name="pp_moderate">Cường độ vừa</string>
-    <string name="pp_high">Cường độ cao</string>
-    <string name="pp_type">Kiểu bài tập</string>
     <string name="pp_jump_free">Không nhảy</string>
     <string name="pp_duration">Thời lượng mỗi buổi</string>
     <string name="pp_min">phút</string>

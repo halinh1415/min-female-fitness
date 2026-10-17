@@ -21,7 +21,6 @@
     <string name="pwb_cta_trial">%d DAGE GRATIS</string>
     <string name="pwb_cta_sub">FORTSÆT</string>
     <string name="pwb_no_payment">Ingen betaling nu</string>
-    <string name="pwb_note_trial">%1$d dage gratis, derefter %2$s/år\nOpsig når som helst via Google Play</string>
     <string name="pwb_note_sub">Opsig når som helst via Google Play</string>
     <string name="pwb_note_lifetime">Engangsbetaling, intet abonnement</string>
     <string name="pwb_restore">Gendan</string>

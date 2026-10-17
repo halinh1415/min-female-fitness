@@ -21,7 +21,6 @@
     <string name="pwb_cta_trial">%d DAGAR GRATIS</string>
     <string name="pwb_cta_sub">FORTSÄTT</string>
     <string name="pwb_no_payment">Ingen betalning nu</string>
-    <string name="pwb_note_trial">%1$d dagar gratis, sedan %2$s/år\nAvsluta när som helst via Google Play</string>
     <string name="pwb_note_sub">Avsluta när som helst via Google Play</string>
     <string name="pwb_note_lifetime">Engångsbetalning, ingen prenumeration</string>
     <string name="pwb_restore">Återställ</string>

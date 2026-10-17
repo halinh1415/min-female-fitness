@@ -14,17 +14,11 @@
     <string name="pp_back">Espalda</string>
     <string name="pp_leg">Piernas</string>
     <string name="pp_butt">Glúteos</string>
-    <string name="pp_injury">Zonas lesionadas</string>
     <string name="pp_none">Ninguna</string>
     <string name="pp_knee">Rodilla</string>
     <string name="pp_shoulder">Brazo y hombro</string>
     <string name="pp_wrist">Muñeca</string>
     <string name="pp_injury_note">Se omitirán los ejercicios que fuerzan estas zonas. Si el dolor es intenso, consulta a un médico antes de entrenar.</string>
-    <string name="pp_aerobic">Nivel aeróbico</string>
-    <string name="pp_low">Intensidad baja</string>
-    <string name="pp_moderate">Intensidad moderada</string>
-    <string name="pp_high">Intensidad alta</string>
-    <string name="pp_type">Tipo de entrenamiento</string>
     <string name="pp_jump_free">Sin saltos</string>
     <string name="pp_duration">Duración del entrenamiento</string>
     <string name="pp_min">min</string>

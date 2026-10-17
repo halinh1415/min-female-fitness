@@ -14,17 +14,11 @@
     <string name="pp_back">Dos</string>
     <string name="pp_leg">Jambes</string>
     <string name="pp_butt">Fessiers</string>
-    <string name="pp_injury">Zones blessées</string>
     <string name="pp_none">Aucune</string>
     <string name="pp_knee">Genou</string>
     <string name="pp_shoulder">Bras &amp; Épaule</string>
     <string name="pp_wrist">Poignet</string>
     <string name="pp_injury_note">Les exercices qui sollicitent ces zones seront retirés. Si la douleur est forte, consulte un médecin avant de t\'entraîner.</string>
-    <string name="pp_aerobic">Niveau d\'aérobie</string>
-    <string name="pp_low">Faible intensité</string>
-    <string name="pp_moderate">Intensité modérée</string>
-    <string name="pp_high">Haute intensité</string>
-    <string name="pp_type">Type d\'entraînement</string>
     <string name="pp_jump_free">Sans sauts</string>
     <string name="pp_duration">Durée de la séance</string>
     <string name="pp_min">min</string>

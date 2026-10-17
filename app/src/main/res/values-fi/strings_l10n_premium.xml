@@ -18,7 +18,6 @@
     <string name="pw_cancel_anytime">Peru milloin tahansa Google Playssa</string>
     <string name="pw_cta_continue">Jatka</string>
     <string name="pw_cta_trial">Aloita %d päivän ilmainen kokeilu</string>
-    <string name="pw_disclosure_sub">%s. Uusiutuu automaattisesti, kunnes se perutaan.</string>
     <string name="pw_disclosure_trial">%1$d päivää ilmaiseksi, sitten %2$s. Uusiutuu automaattisesti, kunnes se perutaan.</string>
     <string name="pw_loading">Ladataan hintoja…</string>
     <string name="pw_manage">Hallinnoi tilausta</string>

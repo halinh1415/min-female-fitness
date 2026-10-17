@@ -21,7 +21,6 @@
     <string name="pwb_cta_trial">%d天免費試用</string>
     <string name="pwb_cta_sub">繼續</string>
     <string name="pwb_no_payment">現在不需付款</string>
-    <string name="pwb_note_trial">免費試用%1$d天，之後%2$s/年\n可隨時透過 Google Play 取消</string>
     <string name="pwb_note_sub">可隨時透過 Google Play 取消</string>
     <string name="pwb_note_lifetime">一次性付款，非訂閱</string>
     <string name="pwb_restore">恢復</string>

@@ -14,17 +14,11 @@
     <string name="pp_back">背中</string>
     <string name="pp_leg">脚</string>
     <string name="pp_butt">お尻</string>
-    <string name="pp_injury">けがのある部位</string>
     <string name="pp_none">なし</string>
     <string name="pp_knee">ひざ</string>
     <string name="pp_shoulder">腕と肩</string>
     <string name="pp_wrist">手首</string>
     <string name="pp_injury_note">これらの部位に負担がかかるエクササイズは除外されます。痛みが強い場合は、運動の前に医師に相談してください。</string>
-    <string name="pp_aerobic">有酸素レベル</string>
-    <string name="pp_low">低強度</string>
-    <string name="pp_moderate">中強度</string>
-    <string name="pp_high">高強度</string>
-    <string name="pp_type">トレーニングの種類</string>
     <string name="pp_jump_free">ジャンプなし</string>
     <string name="pp_duration">1回の時間</string>
     <string name="pp_min">分</string>

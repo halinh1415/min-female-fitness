@@ -14,17 +14,11 @@
     <string name="pp_back">หลัง</string>
     <string name="pp_leg">ขา</string>
     <string name="pp_butt">สะโพก</string>
-    <string name="pp_injury">ส่วนที่บาดเจ็บ</string>
     <string name="pp_none">ไม่มี</string>
     <string name="pp_knee">เข่า</string>
     <string name="pp_shoulder">แขนและไหล่</string>
     <string name="pp_wrist">ข้อมือ</string>
     <string name="pp_injury_note">ท่าที่ทำให้ส่วนเหล่านี้รับแรงมากจะถูกตัดออก หากปวดมาก ควรปรึกษาแพทย์ก่อนออกกำลังกาย</string>
-    <string name="pp_aerobic">ระดับแอโรบิก</string>
-    <string name="pp_low">ความหนักต่ำ</string>
-    <string name="pp_moderate">ความหนักปานกลาง</string>
-    <string name="pp_high">ความหนักสูง</string>
-    <string name="pp_type">ประเภทการออกกำลังกาย</string>
     <string name="pp_jump_free">ไม่มีกระโดด</string>
     <string name="pp_duration">ระยะเวลาต่อครั้ง</string>
     <string name="pp_min">นาที</string>

@@ -21,7 +21,6 @@
     <string name="pw_cancel_anytime">Zrušit můžete kdykoli v Google Play</string>
     <string name="pw_cta_continue">Pokračovat</string>
     <string name="pw_cta_trial">Začít %d denní zkušební verzi zdarma</string>
-    <string name="pw_disclosure_sub">%s. Automaticky se obnovuje až do zrušení.</string>
     <string name="pw_disclosure_trial">%1$d dní zdarma, poté %2$s. Automaticky se obnovuje až do zrušení.</string>
     <string name="pw_loading">Načítání cen…</string>
     <string name="pw_manage">Spravovat předplatné</string>

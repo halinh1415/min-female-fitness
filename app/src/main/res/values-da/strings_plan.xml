@@ -14,17 +14,11 @@
     <string name="pp_back">Ryg</string>
     <string name="pp_leg">Ben</string>
     <string name="pp_butt">Balder</string>
-    <string name="pp_injury">Skadede områder</string>
     <string name="pp_none">Ingen</string>
     <string name="pp_knee">Knæ</string>
     <string name="pp_shoulder">Arm &amp; skulder</string>
     <string name="pp_wrist">Håndled</string>
     <string name="pp_injury_note">Øvelser, der belaster disse områder, udelades. Ved kraftige smerter bør du tale med en læge før træning.</string>
-    <string name="pp_aerobic">Aerobt niveau</string>
-    <string name="pp_low">Lav intensitet</string>
-    <string name="pp_moderate">Moderat intensitet</string>
-    <string name="pp_high">Høj intensitet</string>
-    <string name="pp_type">Træningstype</string>
     <string name="pp_jump_free">Uden hop</string>
     <string name="pp_duration">Træningens varighed</string>
     <string name="pp_min">min</string>

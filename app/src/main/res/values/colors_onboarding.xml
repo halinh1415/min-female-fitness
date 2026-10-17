@@ -2,16 +2,6 @@
 <!-- Colors for the new onboarding quiz and paywall (light theme). -->
 <resources>
     <color name="ob_bg">#FFF7FA</color>
-    <color name="ob_surface">#FFFFFF</color>
-    <color name="ob_text_primary">#1F1B20</color>
-    <color name="ob_text_secondary">#6B6570</color>
     <color name="ob_accent">#E24077</color>
     <color name="ob_accent_dark">#830631</color>
-    <color name="ob_accent_soft">#FFE3EE</color>
-    <color name="ob_stroke">#EEE3E8</color>
-    <color name="ob_success">#2EAD6B</color>
-    <color name="ob_badge">#FFB300</color>
-    <color name="ob_on_accent">#FFFFFF</color>
-    <color name="pw_hero_start">#E74C7F</color>
-    <color name="pw_hero_end">#FFF7FA</color>
 </resources>

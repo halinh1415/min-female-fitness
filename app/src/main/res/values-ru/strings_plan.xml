@@ -14,17 +14,11 @@
     <string name="pp_back">Спина</string>
     <string name="pp_leg">Ноги</string>
     <string name="pp_butt">Ягодицы</string>
-    <string name="pp_injury">Травмированные зоны</string>
     <string name="pp_none">Нет</string>
     <string name="pp_knee">Колено</string>
     <string name="pp_shoulder">Рука и плечо</string>
     <string name="pp_wrist">Запястье</string>
     <string name="pp_injury_note">Упражнения, нагружающие эти зоны, будут исключены. При сильной боли проконсультируйтесь с врачом перед тренировкой.</string>
-    <string name="pp_aerobic">Аэробный уровень</string>
-    <string name="pp_low">Низкая интенсивность</string>
-    <string name="pp_moderate">Средняя интенсивность</string>
-    <string name="pp_high">Высокая интенсивность</string>
-    <string name="pp_type">Тип тренировки</string>
     <string name="pp_jump_free">Без прыжков</string>
     <string name="pp_duration">Длительность тренировки</string>
     <string name="pp_min">мин</string>

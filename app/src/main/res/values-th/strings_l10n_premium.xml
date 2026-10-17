@@ -19,7 +19,6 @@
     <string name="pw_cancel_anytime">ยกเลิกได้ทุกเมื่อใน Google Play</string>
     <string name="pw_cta_continue">ดำเนินการต่อ</string>
     <string name="pw_cta_trial">เริ่มทดลองใช้ฟรี %d วัน</string>
-    <string name="pw_disclosure_sub">%s ต่ออายุอัตโนมัติจนกว่าจะยกเลิก</string>
     <string name="pw_disclosure_trial">ฟรี %1$d วัน จากนั้น %2$s ต่ออายุอัตโนมัติจนกว่าจะยกเลิก</string>
     <string name="pw_loading">กำลังโหลดราคา…</string>
     <string name="pw_manage">จัดการการสมัครสมาชิก</string>

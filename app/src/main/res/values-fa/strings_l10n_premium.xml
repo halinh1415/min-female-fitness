@@ -16,7 +16,6 @@
     <string name="pw_cancel_anytime">هر زمان در Google Play لغو کنید</string>
     <string name="pw_cta_continue">ادامه</string>
     <string name="pw_cta_trial">شروع دوره آزمایشی رایگان %d روزه</string>
-    <string name="pw_disclosure_sub">%s. تا زمان لغو به‌طور خودکار تمدید می‌شود.</string>
     <string name="pw_disclosure_trial">%1$d روز رایگان، سپس %2$s. تا زمان لغو به‌طور خودکار تمدید می‌شود.</string>
     <string name="pw_loading">در حال بارگیری قیمت‌ها…</string>
     <string name="pw_manage">مدیریت اشتراک</string>

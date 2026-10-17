@@ -21,7 +21,6 @@
     <string name="pwb_cta_trial">PRUEBA GRATIS DE %d DÍAS</string>
     <string name="pwb_cta_sub">CONTINUAR</string>
     <string name="pwb_no_payment">Sin pagar ahora</string>
-    <string name="pwb_note_trial">Prueba gratis de %1$d días, luego %2$s/año\nCancela cuando quieras en Google Play</string>
     <string name="pwb_note_sub">Cancela cuando quieras en Google Play</string>
     <string name="pwb_note_lifetime">Pago único, sin suscripción</string>
     <string name="pwb_restore">Restaurar</string>

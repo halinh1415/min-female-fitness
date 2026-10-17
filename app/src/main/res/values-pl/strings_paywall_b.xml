@@ -21,7 +21,6 @@
     <string name="pwb_cta_trial">%d DNI ZA DARMO</string>
     <string name="pwb_cta_sub">DALEJ</string>
     <string name="pwb_no_payment">Bez płatności teraz</string>
-    <string name="pwb_note_trial">%1$d dni za darmo, potem %2$s/rok\nAnuluj w każdej chwili w Google Play</string>
     <string name="pwb_note_sub">Anuluj w każdej chwili w Google Play</string>
     <string name="pwb_note_lifetime">Płatność jednorazowa, bez subskrypcji</string>
     <string name="pwb_restore">Przywróć</string>

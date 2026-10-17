@@ -14,17 +14,11 @@
     <string name="pp_back">Rücken</string>
     <string name="pp_leg">Beine</string>
     <string name="pp_butt">Po</string>
-    <string name="pp_injury">Verletzte Bereiche</string>
     <string name="pp_none">Keine</string>
     <string name="pp_knee">Knie</string>
     <string name="pp_shoulder">Arm &amp; Schulter</string>
     <string name="pp_wrist">Handgelenk</string>
     <string name="pp_injury_note">Übungen, die diese Bereiche belasten, werden weggelassen. Bei starken Schmerzen frag vor dem Training einen Arzt.</string>
-    <string name="pp_aerobic">Aerobic-Level</string>
-    <string name="pp_low">Niedrige Intensität</string>
-    <string name="pp_moderate">Mittlere Intensität</string>
-    <string name="pp_high">Hohe Intensität</string>
-    <string name="pp_type">Trainingsart</string>
     <string name="pp_jump_free">Ohne Springen</string>
     <string name="pp_duration">Trainingsdauer</string>
     <string name="pp_min">Min.</string>

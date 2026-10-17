@@ -14,17 +14,11 @@
     <string name="pp_back">背部</string>
     <string name="pp_leg">腿部</string>
     <string name="pp_butt">臀部</string>
-    <string name="pp_injury">受傷部位</string>
     <string name="pp_none">無</string>
     <string name="pp_knee">膝蓋</string>
     <string name="pp_shoulder">手臂和肩膀</string>
     <string name="pp_wrist">手腕</string>
     <string name="pp_injury_note">會對這些部位造成負擔的動作將被排除。如果疼痛嚴重，請在訓練前諮詢醫師。</string>
-    <string name="pp_aerobic">有氧強度</string>
-    <string name="pp_low">低強度</string>
-    <string name="pp_moderate">中等強度</string>
-    <string name="pp_high">高強度</string>
-    <string name="pp_type">訓練類型</string>
     <string name="pp_jump_free">無跳躍</string>
     <string name="pp_duration">訓練時長</string>
     <string name="pp_min">分鐘</string>

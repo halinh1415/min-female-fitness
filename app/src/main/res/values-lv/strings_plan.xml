@@ -14,17 +14,11 @@
     <string name="pp_back">Mugura</string>
     <string name="pp_leg">Kājas</string>
     <string name="pp_butt">Sēžamvieta</string>
-    <string name="pp_injury">Traumētās zonas</string>
     <string name="pp_none">Nav</string>
     <string name="pp_knee">Celis</string>
     <string name="pp_shoulder">Roka un plecs</string>
     <string name="pp_wrist">Plaukstas locītava</string>
     <string name="pp_injury_note">Vingrinājumi, kas noslogo šīs zonas, tiks izlaisti. Ja sāpes ir stipras, pirms treniņa konsultējies ar ārstu.</string>
-    <string name="pp_aerobic">Aerobais līmenis</string>
-    <string name="pp_low">Zema intensitāte</string>
-    <string name="pp_moderate">Vidēja intensitāte</string>
-    <string name="pp_high">Augsta intensitāte</string>
-    <string name="pp_type">Treniņa veids</string>
     <string name="pp_jump_free">Bez lēcieniem</string>
     <string name="pp_duration">Treniņa ilgums</string>
     <string name="pp_min">min</string>

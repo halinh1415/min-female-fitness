@@ -21,7 +21,6 @@
     <string name="pwb_cta_trial">%d روز آزمایش رایگان</string>
     <string name="pwb_cta_sub">ادامه</string>
     <string name="pwb_no_payment">الان پرداختی نیست</string>
-    <string name="pwb_note_trial">%1$d روز رایگان، سپس %2$s در سال\nهر زمان از طریق Google Play لغو کنید</string>
     <string name="pwb_note_sub">هر زمان از طریق Google Play لغو کنید</string>
     <string name="pwb_note_lifetime">پرداخت یک‌باره، بدون اشتراک</string>
     <string name="pwb_restore">بازیابی</string>

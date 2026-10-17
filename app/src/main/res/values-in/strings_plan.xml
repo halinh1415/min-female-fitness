@@ -14,17 +14,11 @@
     <string name="pp_back">Punggung</string>
     <string name="pp_leg">Kaki</string>
     <string name="pp_butt">Bokong</string>
-    <string name="pp_injury">Area cedera</string>
     <string name="pp_none">Tidak ada</string>
     <string name="pp_knee">Lutut</string>
     <string name="pp_shoulder">Lengan &amp; bahu</string>
     <string name="pp_wrist">Pergelangan tangan</string>
     <string name="pp_injury_note">Latihan yang membebani area ini akan dihapus. Jika nyeri parah, konsultasikan dengan dokter sebelum berlatih.</string>
-    <string name="pp_aerobic">Tingkat aerobik</string>
-    <string name="pp_low">Intensitas rendah</string>
-    <string name="pp_moderate">Intensitas sedang</string>
-    <string name="pp_high">Intensitas tinggi</string>
-    <string name="pp_type">Jenis latihan</string>
     <string name="pp_jump_free">Tanpa lompatan</string>
     <string name="pp_duration">Durasi latihan</string>
     <string name="pp_min">mnt</string>

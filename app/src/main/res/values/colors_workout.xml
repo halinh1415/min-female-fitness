@@ -2,7 +2,6 @@
 <resources>
     <!-- Màn tập / màn nghỉ (PlayFragment, RestFragment), cùng bảng màu Rose của MinUi -->
     <color name="wk_bg">#FFF7FA</color>
-    <color name="wk_surface">#FFFFFF</color>
     <color name="wk_title">#1F1A1D</color>
     <color name="wk_muted">#6B5E66</color>
     <color name="wk_track">#F1E4EA</color>

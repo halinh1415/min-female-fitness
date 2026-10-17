@@ -14,17 +14,11 @@
     <string name="pp_back">Plecy</string>
     <string name="pp_leg">Nogi</string>
     <string name="pp_butt">Pośladki</string>
-    <string name="pp_injury">Kontuzjowane obszary</string>
     <string name="pp_none">Brak</string>
     <string name="pp_knee">Kolano</string>
     <string name="pp_shoulder">Ramię i bark</string>
     <string name="pp_wrist">Nadgarstek</string>
     <string name="pp_injury_note">Ćwiczenia obciążające te obszary zostaną pominięte. Przy silnym bólu skonsultuj się z lekarzem przed treningiem.</string>
-    <string name="pp_aerobic">Poziom aerobowy</string>
-    <string name="pp_low">Niska intensywność</string>
-    <string name="pp_moderate">Umiarkowana intensywność</string>
-    <string name="pp_high">Wysoka intensywność</string>
-    <string name="pp_type">Rodzaj treningu</string>
     <string name="pp_jump_free">Bez skoków</string>
     <string name="pp_duration">Czas treningu</string>
     <string name="pp_min">min</string>

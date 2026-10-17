@@ -21,7 +21,6 @@
     <string name="pwb_cta_trial">UJI COBA GRATIS %d HARI</string>
     <string name="pwb_cta_sub">LANJUTKAN</string>
     <string name="pwb_no_payment">Tanpa bayar sekarang</string>
-    <string name="pwb_note_trial">Gratis %1$d hari, lalu %2$s/tahun\nBatalkan kapan saja lewat Google Play</string>
     <string name="pwb_note_sub">Batalkan kapan saja lewat Google Play</string>
     <string name="pwb_note_lifetime">Pembayaran sekali, bukan langganan</string>
     <string name="pwb_restore">Pulihkan</string>

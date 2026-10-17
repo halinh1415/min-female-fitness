@@ -14,17 +14,11 @@
     <string name="pp_back">등</string>
     <string name="pp_leg">다리</string>
     <string name="pp_butt">엉덩이</string>
-    <string name="pp_injury">부상 부위</string>
     <string name="pp_none">없음</string>
     <string name="pp_knee">무릎</string>
     <string name="pp_shoulder">팔 &amp; 어깨</string>
     <string name="pp_wrist">손목</string>
     <string name="pp_injury_note">이 부위에 무리가 가는 운동은 제외됩니다. 통증이 심하면 운동 전에 의사와 상담하세요.</string>
-    <string name="pp_aerobic">유산소 강도</string>
-    <string name="pp_low">저강도</string>
-    <string name="pp_moderate">중강도</string>
-    <string name="pp_high">고강도</string>
-    <string name="pp_type">운동 유형</string>
     <string name="pp_jump_free">점프 없음</string>
     <string name="pp_duration">운동 시간</string>
     <string name="pp_min">분</string>

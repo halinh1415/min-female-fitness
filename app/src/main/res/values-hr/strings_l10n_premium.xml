@@ -21,7 +21,6 @@
     <string name="pw_cancel_anytime">Otkažite bilo kada u Google Playu</string>
     <string name="pw_cta_continue">Nastavi</string>
     <string name="pw_cta_trial">Započni moje besplatno probno razdoblje od %d dana</string>
-    <string name="pw_disclosure_sub">%s. Automatski se obnavlja do otkazivanja.</string>
     <string name="pw_disclosure_trial">%1$d dana besplatno, zatim %2$s. Automatski se obnavlja do otkazivanja.</string>
     <string name="pw_loading">Učitavanje cijena…</string>
     <string name="pw_manage">Upravljanje pretplatom</string>

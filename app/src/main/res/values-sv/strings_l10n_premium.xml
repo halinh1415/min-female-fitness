@@ -18,7 +18,6 @@
     <string name="pw_cancel_anytime">Avsluta när som helst i Google Play</string>
     <string name="pw_cta_continue">Fortsätt</string>
     <string name="pw_cta_trial">Starta min gratis provperiod på %d dagar</string>
-    <string name="pw_disclosure_sub">%s. Förnyas automatiskt tills den sägs upp.</string>
     <string name="pw_disclosure_trial">%1$d dagar gratis, sedan %2$s. Förnyas automatiskt tills den sägs upp.</string>
     <string name="pw_loading">Laddar priser…</string>
     <string name="pw_manage">Hantera prenumeration</string>

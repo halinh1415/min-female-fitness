@@ -21,7 +21,6 @@
     <string name="pwb_cta_trial">%d日間無料で試す</string>
     <string name="pwb_cta_sub">続ける</string>
     <string name="pwb_no_payment">今は支払い不要</string>
-    <string name="pwb_note_trial">%1$d日間無料、その後%2$s/年\nGoogle Playでいつでも解約できます</string>
     <string name="pwb_note_sub">Google Playでいつでも解約できます</string>
     <string name="pwb_note_lifetime">一回払い、サブスクなし</string>
     <string name="pwb_restore">復元</string>

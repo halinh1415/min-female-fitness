@@ -14,17 +14,11 @@
     <string name="pp_back">Leđa</string>
     <string name="pp_leg">Noge</string>
     <string name="pp_butt">Stražnjica</string>
-    <string name="pp_injury">Ozlijeđena područja</string>
     <string name="pp_none">Nema</string>
     <string name="pp_knee">Koljeno</string>
     <string name="pp_shoulder">Ruka i rame</string>
     <string name="pp_wrist">Zapešće</string>
     <string name="pp_injury_note">Vježbe koje opterećuju ova područja bit će izostavljene. Ako je bol jaka, prije treninga se posavjetuj s liječnikom.</string>
-    <string name="pp_aerobic">Aerobna razina</string>
-    <string name="pp_low">Niski intenzitet</string>
-    <string name="pp_moderate">Umjereni intenzitet</string>
-    <string name="pp_high">Visoki intenzitet</string>
-    <string name="pp_type">Vrsta treninga</string>
     <string name="pp_jump_free">Bez skokova</string>
     <string name="pp_duration">Trajanje treninga</string>
     <string name="pp_min">min</string>

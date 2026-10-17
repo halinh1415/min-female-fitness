@@ -21,7 +21,6 @@
     <string name="pwb_cta_trial">%d일 무료 체험</string>
     <string name="pwb_cta_sub">계속</string>
     <string name="pwb_no_payment">지금은 결제 없음</string>
-    <string name="pwb_note_trial">%1$d일 무료, 이후 연 %2$s\nGoogle Play에서 언제든 취소 가능</string>
     <string name="pwb_note_sub">Google Play에서 언제든 취소 가능</string>
     <string name="pwb_note_lifetime">일회성 결제, 구독 아님</string>
     <string name="pwb_restore">복원</string>

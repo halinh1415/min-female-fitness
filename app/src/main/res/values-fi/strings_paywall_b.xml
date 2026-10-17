@@ -21,7 +21,6 @@
     <string name="pwb_cta_trial">%d PÄIVÄÄ ILMAISEKSI</string>
     <string name="pwb_cta_sub">JATKA</string>
     <string name="pwb_no_payment">Ei maksua nyt</string>
-    <string name="pwb_note_trial">%1$d päivää ilmaiseksi, sitten %2$s/vuosi\nPeru milloin tahansa Google Playssa</string>
     <string name="pwb_note_sub">Peru milloin tahansa Google Playssa</string>
     <string name="pwb_note_lifetime">Kertamaksu, ei tilausta</string>
     <string name="pwb_restore">Palauta</string>

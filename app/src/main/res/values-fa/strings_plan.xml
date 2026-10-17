@@ -14,17 +14,11 @@
     <string name="pp_back">کمر</string>
     <string name="pp_leg">پا</string>
     <string name="pp_butt">باسن</string>
-    <string name="pp_injury">نواحی آسیب‌دیده</string>
     <string name="pp_none">هیچ</string>
     <string name="pp_knee">زانو</string>
     <string name="pp_shoulder">دست و شانه</string>
     <string name="pp_wrist">مچ دست</string>
     <string name="pp_injury_note">تمرین‌هایی که به این نواحی فشار می‌آورند حذف می‌شوند. اگر درد شدید است، قبل از تمرین با پزشک مشورت کنید.</string>
-    <string name="pp_aerobic">سطح هوازی</string>
-    <string name="pp_low">شدت کم</string>
-    <string name="pp_moderate">شدت متوسط</string>
-    <string name="pp_high">شدت زیاد</string>
-    <string name="pp_type">نوع تمرین</string>
     <string name="pp_jump_free">بدون پرش</string>
     <string name="pp_duration">مدت تمرین</string>
     <string name="pp_min">دقیقه</string>

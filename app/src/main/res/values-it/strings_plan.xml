@@ -14,17 +14,11 @@
     <string name="pp_back">Schiena</string>
     <string name="pp_leg">Gambe</string>
     <string name="pp_butt">Glutei</string>
-    <string name="pp_injury">Zone infortunate</string>
     <string name="pp_none">Nessuna</string>
     <string name="pp_knee">Ginocchio</string>
     <string name="pp_shoulder">Braccio e spalla</string>
     <string name="pp_wrist">Polso</string>
     <string name="pp_injury_note">Gli esercizi che sollecitano queste zone verranno esclusi. Se il dolore è forte, consulta un medico prima di allenarti.</string>
-    <string name="pp_aerobic">Livello aerobico</string>
-    <string name="pp_low">Bassa intensità</string>
-    <string name="pp_moderate">Intensità moderata</string>
-    <string name="pp_high">Alta intensità</string>
-    <string name="pp_type">Tipo di allenamento</string>
     <string name="pp_jump_free">Senza salti</string>
     <string name="pp_duration">Durata dell\'allenamento</string>
     <string name="pp_min">min</string>
