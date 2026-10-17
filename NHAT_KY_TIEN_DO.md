@@ -2,6 +2,10 @@
 
 > Mới nhất ở trên.
 
+## 2026-10-17 – Bản 1.1.30 (130) ✅ đã push
+- Gồm: vector muscle map viền hồng + highlight nhóm cơ.
+- assembleDebug + bundleRelease OK (AAB chưa ký, anh tự ký).
+
 ## 2026-10-17 – Bản đồ cơ vector (hình nữ, viền hồng nhẹ) + highlight nhóm cơ ✅ (yêu cầu Telegram, chưa push)
 - Thay ảnh cơ thể xám dạng giải phẫu (`img_body.png` + 28 ảnh `img_<cơ>_1/2.png`) bằng bản đồ cơ vector dùng chung với
   Women Workout: `assets/muscle/muscle_map.json` lấy từ app đó (trace bằng `WomenWorkout/tools/trace_muscle_map.py`),
