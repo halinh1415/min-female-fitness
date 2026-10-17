@@ -2,6 +2,17 @@
 
 > Mới nhất ở trên.
 
+## 2026-10-17 – Bản đồ cơ vector (hình nữ, viền hồng nhẹ) + highlight nhóm cơ ✅ (yêu cầu Telegram, chưa push)
+- Thay ảnh cơ thể xám dạng giải phẫu (`img_body.png` + 28 ảnh `img_<cơ>_1/2.png`) bằng bản đồ cơ vector dùng chung với
+  Women Workout: `assets/muscle/muscle_map.json` lấy từ app đó (trace bằng `WomenWorkout/tools/trace_muscle_map.py`),
+  đổi màu: viền `#F8BBD0` (hồng nhẹ, thay xanh lá), cơ chính `#F20C0D`, cơ phụ `#F1696C` (khớp chấm `ic_red_1/2` trên chip).
+- Mới `custom/MuscleMapView.java` (port từ Women Workout): nhấn chip hoặc nhấn thẳng vào nhóm cơ trên hình → nhấp nháy vàng.
+- `ExerciseDetailActivity`, `DialogDemoWorkout`, 3 layout dùng `muscle_map`; bỏ code ghép bitmap ở luồng nền (trước đây gọi
+  `getResources()` trong luồng nền của dialog, có thể crash khi dialog đã đóng). Xoá `FitnessConstUtils.getMuscle`.
+- `chip_item.xml` + `color/chip_muscle_bg|text`: màu chip chọn theo accent hồng.
+- Build OK. Test S8+: màn chi tiết + dialog (i) lúc tập (Bật nhảy): vẽ đúng, chip + nhấn vào mông / bắp chân / ngực / vai
+  highlight đúng, không crash. Có video.
+
 ## 2026-10-17 – Bản 1.1.29 (129): chống ANR TTS ✅
 - `versionCode 129`, `versionName "1.1.29"`. assembleRelease + bundleRelease OK (chưa ký).
 - Bản release ký key debug trên emulator: mở app, Preview → Coach voice → nghe thử Default có yêu cầu đọc, không crash/ANR.

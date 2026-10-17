@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chip nhóm cơ: màu chọn cố định theo accent (theme dialog làm chip đã chọn gần như trắng). -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:alpha="0.20" android:color="@color/colorAccent" android:state_checked="true" />
+    <item android:alpha="0.12" android:color="?attr/colorOnSurface" />
+</selector>

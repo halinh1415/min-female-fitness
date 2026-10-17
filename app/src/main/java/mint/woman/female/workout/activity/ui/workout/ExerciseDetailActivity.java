@@ -4,13 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -29,6 +23,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.minfitness.decode.Decoder;
 
+import mint.woman.female.workout.custom.MuscleMapView;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
@@ -43,8 +38,6 @@ import mint.woman.female.workout.utils.LanguageHelper;
 import mint.woman.female.workout.utils.MyPreference;
 
 import java.util.Locale;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class ExerciseDetailActivity extends AppCompatActivity {
     // @BindView(R.id.videoView)
@@ -54,9 +47,6 @@ public class ExerciseDetailActivity extends AppCompatActivity {
     VideoDemoAdapter mAdapter;
     MyPreference myPreference;
     Boolean flagAds = false;
-    ExecutorService executor = Executors.newSingleThreadExecutor();
-    Handler handler = new Handler(Looper.getMainLooper());
-    Bitmap body;
     int actionId = 0;
 
     @Override
@@ -121,6 +111,7 @@ public class ExerciseDetailActivity extends AppCompatActivity {
                     return;
                 }
                 ChipGroup chipGroup = findViewById(R.id.chipGroup);
+                MuscleMapView muscleMap = binding.contentExercise.muscleMap;
                 if (customfields.getMuscleMajor()!= null) {
                     for (String major : customfields.getMuscleMajor()) {
                         Chip chip = (Chip) LayoutInflater.from(this).inflate(R.layout.chip_item, chipGroup, false);
@@ -129,6 +120,7 @@ public class ExerciseDetailActivity extends AppCompatActivity {
                         if (resId > 0) {
                             chip.setText(getString(resId));
                             chipGroup.addView(chip);
+                            muscleMap.bindChip(chip, major);
                         }
 
                     }
@@ -141,63 +133,17 @@ public class ExerciseDetailActivity extends AppCompatActivity {
                         if (resId > 0) {
                             chip.setText(getString(resId));
                             chipGroup.addView(chip);
+                            muscleMap.bindChip(chip, minor);
                         }
                     }
                 }
-                body = BitmapFactory.decodeResource(getResources(),
-                        R.drawable.img_body);
-
-                binding.contentExercise.imgMuscle.setImageBitmap(body);
-                executor.execute(() -> {
-                    body = BitmapFactory.decodeResource(getResources(), R.drawable.img_body);
-                    if (customfields.getMuscleMajor() != null) {
-                        for (String major : customfields.getMuscleMajor()) {
-                            int mus = FitnessConstUtils.getMuscle(Integer.parseInt(major), true);
-                            body = overlay(body, BitmapFactory.decodeResource(getResources(), mus));
-
-                        }
-                    }
-                    if (customfields.getMuscleMinor() != null) {
-                        for (String minor : customfields.getMuscleMinor()) {
-                            int mus = FitnessConstUtils.getMuscle(Integer.parseInt(minor), false);
-                            body = overlay(body, BitmapFactory.decodeResource(getResources(), mus));
-                        }
-                    }
-                    handler.post(() -> {
-                        binding.contentExercise.imgMuscle.setImageBitmap(body);
-                    });
-                });
+                muscleMap.setMuscleGroups(customfields.getMuscleMajor(), customfields.getMuscleMinor());
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
 
-    }
-
-    public Bitmap overlay(Bitmap bmp1, Bitmap bmp2) {
-        Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());
-        Canvas canvas = new Canvas(bmOverlay);
-        canvas.drawBitmap(bmp1, new Matrix(), null);
-        canvas.drawBitmap(bmp2, 0, 0, null);
-        return bmOverlay;
-    }
-
-    private Bitmap combineImages(Bitmap bitmap1, Bitmap bitmap2) {
-
-        int width = Math.max(bitmap1.getWidth(), bitmap2.getWidth());
-        int height = bitmap1.getHeight() + bitmap2.getHeight();
-
-        Bitmap combinedBitmap = Bitmap.createBitmap(width, height, bitmap1.getConfig());
-        Canvas canvas = new Canvas(combinedBitmap);
-
-        // Draw the first image at the top
-        canvas.drawBitmap(bitmap1, 0, 0, null);
-
-        // Draw the second image below the first one
-        canvas.drawBitmap(bitmap2, 0, bitmap1.getHeight(), null);
-
-        return combinedBitmap;
     }
 
     @Override
@@ -212,9 +158,6 @@ public class ExerciseDetailActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (executor != null && !executor.isShutdown()) {
-            executor.shutdown();
-        }
     }
 
     @Override

@@ -4,14 +4,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,8 +30,6 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
@@ -71,9 +63,6 @@ public class DialogDemoWorkout extends DialogFragment{
 //    @BindView(R.id.cv_muscle)
 //    View cvMuscle;
     private WorkoutViewModel mWorkoutViewModel;
-    ExecutorService executor = Executors.newSingleThreadExecutor();
-    Handler handler = new Handler(Looper.getMainLooper());
-    Bitmap body;
 
     public DialogDemoWorkout() {
 
@@ -189,6 +178,7 @@ public class DialogDemoWorkout extends DialogFragment{
                 return;
             }
 
+            MuscleMapView muscleMap = binding.muscleMap;
             for (String major : customfields.getMuscleMajor()) {
                 Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_item, binding.chipGroup, false);
 
@@ -196,6 +186,7 @@ public class DialogDemoWorkout extends DialogFragment{
                 if (resId > 0) {
                     chip.setText(getString(resId));
                     binding.chipGroup.addView(chip);
+                    muscleMap.bindChip(chip, major);
                 }
 
             }
@@ -206,27 +197,10 @@ public class DialogDemoWorkout extends DialogFragment{
                 if (resId > 0) {
                     chip.setText(getString(resId));
                     binding.chipGroup.addView(chip);
+                    muscleMap.bindChip(chip, minor);
                 }
             }
-            body = BitmapFactory.decodeResource(getResources(),
-                    R.drawable.img_body);
-
-            binding.imgMuscle.setImageBitmap(body);
-            executor.execute(() -> {
-                body = BitmapFactory.decodeResource(getResources(), R.drawable.img_body);
-                for (String major : customfields.getMuscleMajor()) {
-                    int mus = FitnessConstUtils.getMuscle(Integer.parseInt(major), true);
-                    body = overlay(body, BitmapFactory.decodeResource(getResources(), mus));
-
-                }
-                for (String minor : customfields.getMuscleMinor()) {
-                    int mus = FitnessConstUtils.getMuscle(Integer.parseInt(minor), false);
-                    body = overlay(body, BitmapFactory.decodeResource(getResources(), mus));
-                }
-                handler.post(() -> {
-                    binding.imgMuscle.setImageBitmap(body);
-                });
-            });
+            muscleMap.setMuscleGroups(customfields.getMuscleMajor(), customfields.getMuscleMinor());
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -236,13 +210,6 @@ public class DialogDemoWorkout extends DialogFragment{
         });
     }
 
-    public Bitmap overlay(Bitmap bmp1, Bitmap bmp2) {
-        Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());
-        Canvas canvas = new Canvas(bmOverlay);
-        canvas.drawBitmap(bmp1, new Matrix(), null);
-        canvas.drawBitmap(bmp2, 0, 0, null);
-        return bmOverlay;
-    }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

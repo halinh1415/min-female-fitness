@@ -9,6 +9,8 @@
     app:chipIcon="@drawable/ic_red_1"
     app:chipIconSize="12dp"
     app:iconStartPadding="@dimen/_5sdp"
+    app:chipBackgroundColor="@color/chip_muscle_bg"
+    android:textColor="@color/chip_muscle_text"
     app:chipIconEnabled="true"
     app:chipIconVisible="true"
     app:closeIconVisible="false"
