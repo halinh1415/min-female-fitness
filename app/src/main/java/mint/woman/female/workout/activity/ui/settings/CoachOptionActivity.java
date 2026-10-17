@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
+import mint.woman.female.workout.utils.TtsExecutor;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -49,7 +50,8 @@ public class CoachOptionActivity extends AppCompatActivity implements VoiceAdapt
 
     MyPreference myPreference;
     ActivityCoachOptionBinding binding;
-    private TextToSpeech tts;
+    // Lệnh TextToSpeech chạy trên TtsExecutor: gọi trên main thread lúc engine đang kết nối là treo → ANR.
+    private volatile TextToSpeech tts;
     VoiceViewModel voiceViewModel;
     MediaPlayer mediaPlayer;
     private VoiceAdapter voiceAdapter;
@@ -77,23 +79,26 @@ public class CoachOptionActivity extends AppCompatActivity implements VoiceAdapt
         voiceAdapter = new VoiceAdapter( this,getFilesDir()+"/voice/"+myPreference.getLanguage()+"/",this);
         binding.rcVoice.setAdapter(voiceAdapter);
         binding.rcVoice.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        this.tts = new TextToSpeech(this, i -> {
-            if (i == TextToSpeech.SUCCESS) {
-                try {
-                    if (!myPreference.getLanguage().isEmpty()) {
-                        tts.setLanguage(new Locale(myPreference.getLanguage()));
-                        defaultEngine = tts.getDefaultEngine();
-                        if (tts.getDefaultVoice()!= null) {
-                            defaultLocale = tts.getDefaultVoice().getLocale();
-                        }
-                        if (voiceAdapter != null) {
-                            voiceAdapter.setDefaultTTs(defaultEngine, defaultLocale);
-                        }
+        String language = myPreference.getLanguage();
+        android.content.Context appContext = getApplicationContext();
+        TtsExecutor.run(() -> {
+            TextToSpeech[] holder = new TextToSpeech[1];
+            holder[0] = new TextToSpeech(appContext, i -> TtsExecutor.run(() -> {
+                TextToSpeech engine = holder[0];
+                if (i != TextToSpeech.SUCCESS || engine == null || engine != tts || language.isEmpty()) return;
+                engine.setLanguage(new Locale(language));
+                String engineName = engine.getDefaultEngine();
+                Locale locale = engine.getDefaultVoice() != null ? engine.getDefaultVoice().getLocale() : null;
+                runOnUiThread(() -> {
+                    defaultEngine = engineName;
+                    defaultLocale = locale;
+                    if (voiceAdapter != null && !isDestroyed()) {
+                        voiceAdapter.setDefaultTTs(defaultEngine, defaultLocale);
                     }
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
+                });
+            }));
+            if (isDestroyed()) holder[0].shutdown();
+            else tts = holder[0];
         });
         voiceAdapter.setSelectVoice(myPreference.getVoiceModel(myPreference.getLanguage()));
         voiceList = new ArrayList<>();
@@ -268,9 +273,13 @@ public class CoachOptionActivity extends AppCompatActivity implements VoiceAdapt
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (tts != null) {
-            tts.stop();
-            tts.shutdown();
+        TextToSpeech engine = tts;
+        tts = null;
+        if (engine != null) {
+            TtsExecutor.run(() -> {
+                engine.stop();
+                engine.shutdown();
+            });
         }
         if (mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
@@ -294,7 +303,7 @@ public class CoachOptionActivity extends AppCompatActivity implements VoiceAdapt
                     setVoiceAdapter("");
                 }
             },2000);
-            tts.speak(getString(R.string.test_voice),TextToSpeech.QUEUE_ADD,null,"");
+            speakTestVoice();
 
         }else{
             String voicePath = getFilesDir()+"/voice/"+myPreference.getLanguage()+"/"+voiceItem.getValue()+"/";
@@ -333,7 +342,7 @@ public class CoachOptionActivity extends AppCompatActivity implements VoiceAdapt
                     setVoiceAdapter("");
                 }
             },2000);
-            tts.speak(getString(R.string.test_voice),TextToSpeech.QUEUE_ADD, null);
+            speakTestVoice();
 
         }else{
             String voicePath = getFilesDir()+"/voice/"+myPreference.getLanguage()+"/"+voiceItem.getValue()+"/";
@@ -375,7 +384,7 @@ public class CoachOptionActivity extends AppCompatActivity implements VoiceAdapt
             }
             voiceAdapter.setVoicePlay(voiceItem.getName());
             new Handler().postDelayed(() -> setVoiceAdapter(""),2000);
-            tts.speak(getString(R.string.test_voice),TextToSpeech.QUEUE_ADD, null);
+            speakTestVoice();
 
         }else{
 
@@ -435,5 +444,12 @@ public class CoachOptionActivity extends AppCompatActivity implements VoiceAdapt
             overrideConfiguration.uiMode = uiMode;
         }
         super.applyOverrideConfiguration(overrideConfiguration);
+    }
+
+    private void speakTestVoice() {
+        TextToSpeech engine = tts;
+        if (engine == null) return;
+        String text = getString(R.string.test_voice);
+        TtsExecutor.run(() -> engine.speak(text, TextToSpeech.QUEUE_ADD, null, "test"));
     }
 }

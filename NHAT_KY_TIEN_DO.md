@@ -2,6 +2,10 @@
 
 > Mới nhất ở trên.
 
+## 2026-10-17 – Chống ANR TextToSpeech (rà theo lỗi ANR Muay Thai) ✅
+- `CoachOptionActivity`: tạo engine, setLanguage/getDefaultVoice, nút nghe thử, shutdown chạy trên `TtsExecutor` (trước gọi trên
+  main thread → nguy cơ ANR). Test emulator: mở Coach voice, nghe thử Default gửi được yêu cầu đọc, không ANR.
+
 ## 2026-10-16 – Chính sách Subscriptions lần 2: ghi rõ điều khoản gói đăng ký – 1.1.28 (128) ✅ (yêu cầu Telegram, chưa commit)
 - Google vẫn từ chối bản 125 ("Terms of subscription offer are unclear"), ảnh kèm: vé giảm 50% ("Claim Now!") và thẻ Flash sale ở Home
   "Get it" mở thẳng hộp thanh toán Google Play – trong app không ghi tự gia hạn / chu kỳ trừ tiền / có bắt buộc đăng ký không.
