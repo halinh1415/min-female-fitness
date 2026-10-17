@@ -2,6 +2,11 @@
 
 > Mới nhất ở trên.
 
+## 2026-10-17 – Highlight nhóm cơ: bỏ làm mờ nền ✅ (yêu cầu Telegram, chưa push)
+- `MuscleMapView`: bỏ `baseAlpha` / `DIM_ALPHA` / `saveLayerAlpha` (giống Home Workout) – hình cơ thể giữ nguyên độ sáng,
+  chỉ nhóm cơ được chọn nhấp nháy vàng.
+- Build OK. Test S8+: bấm chip nhóm cơ, nền không mờ, chỉ vùng cơ nhấp nháy, không crash.
+
 ## 2026-10-17 – Màn Lịch sử không hiện ảnh chương trình ✅ (yêu cầu Telegram, chưa push)
 - Nguyên nhân: `DoWorkoutActivity.createHistory()` không bao giờ lưu `image` → `HistoryActivity.imageUrl()` ghép
   "file:///android_asset/images/" + "" → URL chỉ là thư mục, ảnh trống.

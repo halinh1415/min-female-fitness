@@ -40,14 +40,13 @@ import java.util.concurrent.Executors;
  * Bản đồ cơ vẽ bằng vector path (assets/muscle/muscle_map.json: hình nữ trace từ app Women Workout bằng tools/trace_muscle_map.py của app đó,
  * viền đổi sang hồng nhẹ)
  * thay cho ảnh cơ thể xám + 28 ảnh bitmap nhóm cơ. Cơ chính tô đỏ, cơ phụ tô hồng; nhấn chip hoặc nhấn thẳng vào nhóm cơ trên hình
- * → nhóm đó nhấp nháy viền sáng vàng, phần còn lại mờ đi.
+ * → nhóm đó nhấp nháy viền sáng vàng, phần còn lại giữ nguyên.
  */
 public class MuscleMapView extends View {
     private static final int COLOR_FILL = 0xFF000000;
     private static final int COLOR_HIGHLIGHT = 0xFFFFC233;
     private static final long PULSE_DURATION = 1800;
     private static final int PULSES = 3;
-    private static final float DIM_ALPHA = 0.55f;
 
     private static final ExecutorService LOADER = Executors.newSingleThreadExecutor();
     private static volatile MapData sData;
@@ -69,7 +68,6 @@ public class MuscleMapView extends View {
 
     private int highlightKey = -1;
     private float pulse;
-    private float baseAlpha = 1f;
     private ValueAnimator animator;
     private Chip activeChip;
 
@@ -132,7 +130,6 @@ public class MuscleMapView extends View {
         setActiveChip(chips.get(key));
         highlightKey = key;
         float startPulse = pulse;
-        float startBase = baseAlpha;
         animator = ValueAnimator.ofFloat(0f, 1f);
         animator.setDuration(PULSE_DURATION);
         animator.setInterpolator(new LinearInterpolator());
@@ -141,16 +138,12 @@ public class MuscleMapView extends View {
             // Nhịp sáng/tối dạng cos: bắt đầu và kết thúc ở 0 nên không giật; đổi nhóm giữa chừng thì chuyển dần.
             float wave = (float) (0.5 - 0.5 * Math.cos(2 * Math.PI * PULSES * t));
             pulse = lerp(startPulse, wave, smooth(t / 0.1f));
-            baseAlpha = t < 0.85f
-                    ? lerp(startBase, DIM_ALPHA, smooth(t / 0.12f))
-                    : lerp(DIM_ALPHA, 1f, smooth((t - 0.85f) / 0.15f));
             invalidate();
         });
         animator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 pulse = 0f;
-                baseAlpha = 1f;
                 highlightKey = -1;
                 setActiveChip(null);
                 invalidate();
@@ -204,16 +197,12 @@ public class MuscleMapView extends View {
         canvas.save();
         canvas.concat(matrix);
 
-        int layer = baseAlpha < 1f
-                ? canvas.saveLayerAlpha(0, 0, mapWidth(), mapHeight(), Math.round(baseAlpha * 255))
-                : -1;
         canvas.drawPath(data.silhouette, linePaint);
         canvas.drawPath(data.fill, fillPaint);
         for (int i = 0; i < shown.size(); i++) {
             Path path = data.muscles.get(shown.keyAt(i));
             if (path != null) canvas.drawPath(path, shown.valueAt(i) ? majorPaint : minorPaint);
         }
-        if (layer >= 0) canvas.restoreToCount(layer);
 
         Path focus = highlightKey > 0 ? data.muscles.get(highlightKey) : null;
         if (focus != null && pulse > 0.01f) {
@@ -295,7 +284,6 @@ public class MuscleMapView extends View {
             animator = null;
         }
         pulse = 0f;
-        baseAlpha = 1f;
         highlightKey = -1;
         super.onDetachedFromWindow();
     }
