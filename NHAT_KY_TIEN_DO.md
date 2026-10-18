@@ -429,10 +429,17 @@
   bỏ bài vừa tập), bấm mở Challenge / Preview, log `finish_next_start`.
 - Thông báo: nhắc hằng ngày ghi "Ngày x/28 trong kế hoạch của bạn", bấm mở plan. Paywall định kỳ (openCount % 5) bỏ qua người
   mới: cài < 3 ngày hoặc < 3 buổi tập.
-- Chuỗi mới `strings_extra.xml` 27 ngôn ngữ (cs, hi, hr, lv, no, th dịch mới). Build OK. Unit test không chạy được: OnboardingStepFactoryTest lỗi biên dịch từ trước (dùng ONBOARD_STEPS / create() kiểu cũ), không liên quan thay đổi này.
+- Chuỗi mới `strings_extra.xml` 27 ngôn ngữ (cs, hi, hr, lv, no, th dịch mới). Build OK.
 - S8+ (sao lưu dữ liệu bằng run-as, pm clear, test, trả lại): onboarding quick_7 → plan tự tạo, Home thẻ plan Ngày 1/28 lên đầu +
   popup buổi đầu → plan → Preview Ngày 1 (7 phút / 13 động tác, không có công tắc khởi động); màn nghỉ đổi 40s OK; tập hết tới
   Finished: Tuần này 1/5, Buổi tiếp theo "Kế hoạch của tôi · Ngày 2". Preview Cơ bụng Beginner: bật 23 động tác (có nhãn
   KHỞI ĐỘNG), tắt 19. Cài đặt có 2 công tắc mới. Không crash. Đã trả lại dữ liệu máy test.
 - Chưa làm: sửa cấp độ bài trong assets (dữ liệu riêng của app, chưa kiểm tra); không hỏi lại nhắc tập ở Finished (onboarding
   Min không hỏi giờ nhắc nên không áp dụng). Màn tập / màn nghỉ và tìm kiếm Min đã có sẵn.
+
+## 2026-10-18 — Sửa unit test onboarding cho chạy lại (yêu cầu Telegram)
+- `OnboardingStepFactoryTest` lỗi biên dịch từ khi onboarding chuyển sang đọc chữ từ Resources (`onboardSteps(res)`,
+  `create(variant, all)`) và mặc định quick_7 (8 màn). Viết lại theo API mới, dùng Resources giả trả "s<id>"; cập nhật kỳ vọng
+  (giá trị lạ → QUICK_7, quick có 8 màn gồm vùng tập).
+- `app/build.gradle`: `testOptions.unitTests.returnDefaultValues = true` để dựng Resources giả trên JVM.
+- `./gradlew testDebugUnitTest`: 17/17 pass. assembleDebug OK.

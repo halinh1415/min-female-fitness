@@ -1,5 +1,6 @@
 package mint.woman.female.workout.activity.ui.onboarding.onboard
 
+import android.content.res.Resources
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue
@@ -7,10 +8,19 @@ import org.junit.Test
 
 class OnboardingStepFactoryTest {
 
+    /** Chữ trên màn không quan trọng ở đây: Resources giả trả "s<id>" để dựng danh sách màn ngoài thiết bị. */
+    @Suppress("DEPRECATION")
+    private class FakeResources : Resources(null, null, null) {
+        override fun getString(id: Int): String = "s$id"
+    }
+
+    private val all = onboardSteps(FakeResources())
+
     @Test
-    fun unknownRemoteValueFallsBackToFull() {
-        assertEquals(OnboardingVariant.FULL, OnboardingVariant.fromRemoteValue("unknown"))
-        assertEquals(OnboardingVariant.FULL, OnboardingVariant.fromRemoteValue(null))
+    fun unknownRemoteValueFallsBackToQuick() {
+        assertEquals(OnboardingVariant.QUICK_7, OnboardingVariant.fromRemoteValue("unknown"))
+        assertEquals(OnboardingVariant.QUICK_7, OnboardingVariant.fromRemoteValue(null))
+        assertEquals(OnboardingVariant.DEFAULT, OnboardingVariant.fromRemoteValue(null))
     }
 
     @Test
@@ -23,15 +33,15 @@ class OnboardingStepFactoryTest {
 
     @Test
     fun fullUsesEveryScreen() {
-        val steps = OnboardingStepFactory.create(OnboardingVariant.FULL)
-        assertSame(ONBOARD_STEPS, steps)
+        val steps = OnboardingStepFactory.create(OnboardingVariant.FULL, all)
+        assertSame(all, steps)
         assertTrue("full should be 4x screens, was ${steps.size}", steps.size in 40..49)
         assertEquals(steps.size, steps.map { it.stableKey }.distinct().size)
     }
 
     @Test
     fun standardHasTwentySixScreensInOriginalOrder() {
-        val steps = OnboardingStepFactory.create(OnboardingVariant.STANDARD_26)
+        val steps = OnboardingStepFactory.create(OnboardingVariant.STANDARD_26, all)
         assertEquals(26, steps.size)
         assertOrderKept(steps)
         assertTrue(steps.any { it.kind == StepKind.TARGET_WEIGHT })
@@ -39,12 +49,14 @@ class OnboardingStepFactoryTest {
         assertEquals(StepKind.TRIAL_INTRO, steps.last().kind)
     }
 
+    /** Nhánh quick_7 giữ tên cũ nhưng có 8 màn (thêm màn vùng tập). */
     @Test
-    fun quickHasSevenScreensAndStillBuildsAPlan() {
-        val steps = OnboardingStepFactory.create(OnboardingVariant.QUICK_7)
-        assertEquals(7, steps.size)
+    fun quickHasEightScreensAndStillBuildsAPlan() {
+        val steps = OnboardingStepFactory.create(OnboardingVariant.QUICK_7, all)
+        assertEquals(8, steps.size)
         assertOrderKept(steps)
         assertEquals(StepKind.WELCOME, steps.first().kind)
+        assertTrue(steps.any { it.id == ObId.FOCUS })
         assertTrue(steps.any { it.kind == StepKind.WEIGHT })
         assertTrue(steps.any { it.kind == StepKind.TARGET_WEIGHT })
         assertEquals(StepKind.PLAN_RESULT, steps.last().kind)
@@ -52,12 +64,12 @@ class OnboardingStepFactoryTest {
 
     @Test
     fun targetWeightComesRightAfterCurrentWeight() {
-        val weight = ONBOARD_STEPS.indexOfFirst { it.kind == StepKind.WEIGHT }
-        assertEquals(StepKind.TARGET_WEIGHT, ONBOARD_STEPS[weight + 1].kind)
+        val weight = all.indexOfFirst { it.kind == StepKind.WEIGHT }
+        assertEquals(StepKind.TARGET_WEIGHT, all[weight + 1].kind)
     }
 
     private fun assertOrderKept(steps: List<OnboardStep>) {
-        val positions = steps.map { step -> ONBOARD_STEPS.indexOfFirst { it.stableKey == step.stableKey } }
+        val positions = steps.map { step -> all.indexOfFirst { it.stableKey == step.stableKey } }
         assertEquals(positions.sorted(), positions)
     }
 }

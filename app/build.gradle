@@ -7,6 +7,10 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.compose'
 }
 android {
+    // Unit test dựng danh sách màn onboarding qua Resources giả (OnboardingStepFactoryTest): stub android.jar trả giá trị mặc định.
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
     namespace 'mint.woman.female.workout'
     compileSdk 36
 
