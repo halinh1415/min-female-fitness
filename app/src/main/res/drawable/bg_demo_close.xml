@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nút Đóng của dialog demo: cùng kiểu nút Bắt đầu của app. -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#33FFFFFF">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="50dp" />
+            <gradient android:angle="0" android:endColor="@color/dm_btn_end" android:startColor="@color/dm_btn_start" />
+        </shape>
+    </item>
+</ripple>

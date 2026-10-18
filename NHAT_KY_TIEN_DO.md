@@ -461,3 +461,17 @@
 - Chuỗi `pv_warm_up_cool_down_sub` bỏ số "3": "Động tác nhẹ trước và giãn cơ sau" (mọi ngôn ngữ).
 - Build OK. S8+: WomenWorkout Cơ bụng Người bắt đầu — 3 stretch cuối có nhãn GIÃN CƠ, không thêm trùng, đầu bài có nhãn
   KHỞI ĐỘNG; Min Cánh tay Intermediate — cuối bài căng cơ tay trái/phải + duỗi cơ tay trước trái/phải đều nhãn GIÃN CƠ.
+
+## 2026-10-18 — Dialog xem demo bài tập (DialogDemoWorkout) theo style mới (yêu cầu Telegram)
+- Áp cho Home Workout, Min, Women Workout (cả `layout` và `layout-land`); file sinh từ một mẫu chung, màu riêng từng app
+  trong `colors_demo.xml` (values + values-night, tiền tố `dm_`).
+- Tab Animation / Video: chữ thường, tab chọn màu nhấn của app + gạch chân mảnh, tab kia xám (trước tab chọn gần như trắng).
+- Thẻ Giới thiệu / Vùng tập trung: nền phẳng viền mảnh bo 16dp, không bóng (`bg_demo_card`), hai tiêu đề cùng style `DemoHeading`,
+  bỏ khoảng trống trên Giới thiệu.
+- Chip cơ: layout riêng `chip_demo_item` (nền nhạt `dm_chip`, chữ 14sp, giữ chấm đỏ); `chip_item` cũ không đổi cho màn khác.
+- Nút Đóng nằm trên thanh nền riêng có viền trên, nội dung cuộn phía trên nên hình cơ không bị che; nút pill theo nút Bắt đầu
+  (`bg_demo_close`: Home xanh, Women teal, Min hồng đặc).
+- Min: sửa lỗi có sẵn — từ commit 0ce1c65 video bài tập nằm ở `WorkoutVideoCache`, nhưng `VideoDemoFragment` (tab Animation
+  của dialog) và `PauseDialog` vẫn đọc `cache/temp.mp4` không còn ai ghi → khung video đen. Thêm
+  `VideoDemoFragment.newInstance(name, actionId)` lấy từ cache (chưa có thì giải mã nền); màn chi tiết bài tập vẫn dùng temp.mp4.
+- Build OK. S8+: dialog hồng đúng style, tab Animation có video (trước đen), màn Tạm dừng có video, Đóng hoạt động.

@@ -180,7 +180,7 @@ public class DialogDemoWorkout extends DialogFragment{
 
             MuscleMapView muscleMap = binding.muscleMap;
             for (String major : customfields.getMuscleMajor()) {
-                Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_item, binding.chipGroup, false);
+                Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_demo_item, binding.chipGroup, false);
 
                 int resId = FitnessConstUtils.getMuscleId(Integer.parseInt(major));
                 if (resId > 0) {
@@ -191,7 +191,7 @@ public class DialogDemoWorkout extends DialogFragment{
 
             }
             for (String minor : customfields.getMuscleMinor()) {
-                Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_item, binding.chipGroup, false);
+                Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_demo_item, binding.chipGroup, false);
                 chip.setChipIconResource(R.drawable.ic_red_2);
                 int resId = FitnessConstUtils.getMuscleId(Integer.parseInt(minor));
                 if (resId > 0) {
@@ -279,7 +279,7 @@ public class DialogDemoWorkout extends DialogFragment{
         @Override
         public Fragment getItem(int position) {
             if (position == 1) return VideoYtFragment.newInstance(ExerciseHelper.getInstance().getUrl(mExerciseObject.getId()));
-            else return VideoDemoFragment.newInstance(mExerciseObject.getImagePath());
+            else return VideoDemoFragment.newInstance(mExerciseObject.getImagePath(), mExerciseObject.getId());
         }
 
         @Override

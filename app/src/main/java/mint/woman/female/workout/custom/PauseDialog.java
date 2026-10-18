@@ -22,9 +22,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import java.io.File;
+
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.workout.DoWorkoutActivity;
+import mint.woman.female.workout.utils.WorkoutVideoCache;
 import mint.woman.female.workout.activity.ui.workout.WorkoutViewModel;
 import mint.woman.female.workout.databinding.FragmentPauseBinding;
 import mint.woman.female.workout.model.ExerciseObject;
@@ -104,13 +107,25 @@ public class PauseDialog extends DialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
        // int resourceId = getContext().getResources().getIdentifier("video_" + mExerciseObject.getId(), "raw", getContext().getPackageName());
-        path = getContext().getCacheDir() + "/temp.mp4";
+        // Video của buổi tập nằm ở WorkoutVideoCache (mỗi động tác một file), không còn temp.mp4.
+        File video = WorkoutVideoCache.fileFor(requireContext(), DoWorkoutActivity.discover,
+                FitnessApplication.getApplication().getVersion(), mActionObject.actionId);
+        path = video.getPath();
         binding.imgResume.setOnClickListener(this::onClick);
-        binding.videoView.setVideoURI(Uri.parse(path));
         binding.videoView.setOnPreparedListener(mediaPlayer -> {
             mediaPlayer.setLooping(true);
         });
-        binding.videoView.start();
+        if (video.length() > 0) {
+            binding.videoView.setVideoURI(Uri.parse(path));
+            binding.videoView.start();
+        } else {
+            WorkoutVideoCache.prepare(requireContext(), DoWorkoutActivity.discover,
+                    FitnessApplication.getApplication().getVersion(), mActionObject.actionId, ready -> {
+                        if (ready == null || getView() == null) return;
+                        binding.videoView.setVideoURI(Uri.parse(path));
+                        binding.videoView.start();
+                    });
+        }
         binding.tvExerciseName.setText(mExerciseObject.getName());
         int minutes = (mActionObject.time) / 60;
         int seconds = mActionObject.time % 60;

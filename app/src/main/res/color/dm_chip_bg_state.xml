@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chip nhóm cơ trong dialog demo: chip đang chọn nhuốm màu nhấn. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:alpha="0.16" android:color="@color/dm_accent" android:state_checked="true" />
+    <item android:color="@color/dm_chip" />
+</selector>

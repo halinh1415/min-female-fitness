@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chip nhóm cơ của dialog demo (chip_item cũ vẫn dùng cho màn khác). -->
+<com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.MaterialComponents.Chip.Choice"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:checkable="false"
+    android:clickable="true"
+    android:focusable="false"
+    android:textColor="@color/dm_chip_text_state"
+    android:textSize="14sp"
+    app:chipBackgroundColor="@color/dm_chip_bg_state"
+    app:chipIcon="@drawable/ic_red_1"
+    app:chipIconEnabled="true"
+    app:chipIconSize="10dp"
+    app:chipIconVisible="true"
+    app:chipMinHeight="34dp"
+    app:chipStrokeWidth="0dp"
+    app:closeIconVisible="false"
+    app:iconStartPadding="10dp"
+    app:rippleColor="#14000000" />

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dialog xem demo bài tập (DialogDemoWorkout) -->
+    <color name="dm_bg">#FFF7FA</color>
+    <color name="dm_card">#FFFFFF</color>
+    <color name="dm_stroke">#F1E4EA</color>
+    <color name="dm_title">#1F1A1D</color>
+    <color name="dm_text">#54484E</color>
+    <color name="dm_muted">#6B5E66</color>
+    <color name="dm_accent">#E91E63</color>
+    <color name="dm_chip">#FDE7EF</color>
+    <color name="dm_chip_text">#3A2F35</color>
+    <color name="dm_bar">#FFFFFF</color>
+    <color name="dm_btn_start">#E91E63</color>
+    <color name="dm_btn_end">#E91E63</color>
+</resources>
