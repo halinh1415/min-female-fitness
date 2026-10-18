@@ -403,3 +403,10 @@
 
 ## 2026-10-18 — Nâng version 1.1.31 (131) và push
 - Build assembleDebug + bundleRelease OK.
+
+## 2026-10-18 — Thẻ ưu đãi năm (base plan yearly-special-34-off) cho mọi người, giống Tai Chi Qigong
+- `PremiumActivity.kt`: thẻ ưu đãi hiện cho mọi người trừ paywall ngay sau onboarding / lần setup đầu (trước đây chỉ người
+  mở nhiều lần bốc trúng 34%). Đợt 50% vẫn ưu tiên; bốc trúng Trọn đời thì hiện thêm thẻ Trọn đời. Chọn sẵn thẻ ưu đãi.
+  Analytics `paywall_offer` thêm giá trị `special34` cho người thấy thẻ mà không qua bốc thăm.
+- Build OK; S8+ (giả lập người mới: xoá PAYWALL_ROTATE_PICK / PROMO_END_TIME, đếm mở = 0): thẻ hiện, mức giảm theo giá Play
+  hiện tại là 25% (752.000 ₫ / 1.000.000 ₫).

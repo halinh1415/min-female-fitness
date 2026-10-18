@@ -196,8 +196,9 @@ class PremiumActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
             null
         }
 
-        // Đợt giảm 50% luôn được ưu tiên; không có đợt nào thì chào gói đã bốc cho người mở nhiều lần
-        // (bốc trúng 34% mà Play không có base plan 34% thì chào Trọn đời).
+        // Đợt giảm 50% luôn được ưu tiên; không có đợt nào thì chào thẻ 34% cho mọi người trừ paywall lần
+        // setup đầu (giống Tai Chi Qigong; trước đây chỉ người mở nhiều lần bốc trúng 34% mới thấy). Người mở
+        // nhiều lần bốc trúng Trọn đời (hoặc Play không có base plan 34%) thì có thêm thẻ Trọn đời.
         val offer50 = PaywallOffers.offerByBasePlanId(yearly, InAppKey.YEARLY_SPECIAL_50)
         val offer34 = PaywallOffers.offerByBasePlanId(yearly, InAppKey.YEARLY_SPECIAL_34)
         if (countPromoOpen && yearly != null) {
@@ -209,7 +210,7 @@ class PremiumActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
             (rotatePick == PaywallPlan.LIFETIME || offer34 == null)
         val specialOffer = when {
             promoEnd != null -> offer50
-            rotatePick == PaywallPlan.SPECIAL && !featureLifetime -> offer34
+            !isFirstSetup -> offer34
             else -> null
         }
 
@@ -232,15 +233,16 @@ class PremiumActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
         offerShown = when {
             prices.special?.endsAt != null -> OFFER_PROMO_50
             featureLifetime -> OFFER_ROTATE_LIFETIME
-            prices.special != null -> OFFER_ROTATE_SPECIAL_34
+            rotatePick != null && prices.special != null -> OFFER_ROTATE_SPECIAL_34
+            prices.special != null -> OFFER_SPECIAL_34
             else -> OFFER_DEFAULT
         }
         // Gói ưu đãi biến mất (hết giờ / Play gỡ base plan) mà đang chọn thì về gói năm; người dùng
         // chưa tự chọn thì chọn sẵn gói đang chào.
         when {
             selected == PaywallPlan.SPECIAL && prices.special == null -> vm.setSelected(PaywallPlan.YEARLY)
-            !userPickedPlan && prices.special != null -> vm.setSelected(PaywallPlan.SPECIAL)
             !userPickedPlan && featureLifetime -> vm.setSelected(PaywallPlan.LIFETIME)
+            !userPickedPlan && prices.special != null -> vm.setSelected(PaywallPlan.SPECIAL)
         }
         if (!offerLogged && yearly != null) {
             offerLogged = true
@@ -415,5 +417,6 @@ class PremiumActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
         private const val OFFER_PROMO_50 = "promo50"
         private const val OFFER_ROTATE_LIFETIME = "rotate_lifetime"
         private const val OFFER_ROTATE_SPECIAL_34 = "rotate_special34"
+        private const val OFFER_SPECIAL_34 = "special34"
     }
 }
