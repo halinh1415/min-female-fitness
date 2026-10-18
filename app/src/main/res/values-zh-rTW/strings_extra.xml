@@ -7,7 +7,7 @@
     <string name="pv_warm_up">暖身</string>
     <string name="pv_cool_down">緩和</string>
     <string name="pv_warm_up_cool_down">暖身和緩和</string>
-    <string name="pv_warm_up_cool_down_sub">訓練前 3 個輕鬆動作，訓練後 3 個伸展</string>
+    <string name="pv_warm_up_cool_down_sub">訓練前輕鬆熱身，訓練後伸展</string>
     <string name="set_no_jump">不跳躍</string>
     <string name="set_no_jump_sub">將跳躍動作換成低衝擊動作</string>
     <string name="wk_edit_rest">修改休息時間</string>

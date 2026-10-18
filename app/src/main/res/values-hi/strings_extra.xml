@@ -7,7 +7,7 @@
     <string name="pv_warm_up">वार्म-अप</string>
     <string name="pv_cool_down">कूल-डाउन</string>
     <string name="pv_warm_up_cool_down">वार्म-अप और कूल-डाउन</string>
-    <string name="pv_warm_up_cool_down_sub">पहले 3 आसान मूव्स और बाद में 3 स्ट्रेच</string>
+    <string name="pv_warm_up_cool_down_sub">पहले आसान मूव्स, बाद में स्ट्रेच</string>
     <string name="set_no_jump">कोई जंपिंग नहीं</string>
     <string name="set_no_jump_sub">जंपिंग मूव्स को कम प्रभाव वाले मूव्स से बदलें</string>
     <string name="wk_edit_rest">आराम का समय बदलें</string>

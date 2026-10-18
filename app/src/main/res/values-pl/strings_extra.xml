@@ -7,7 +7,7 @@
     <string name="pv_warm_up">Rozgrzewka</string>
     <string name="pv_cool_down">Wyciszenie</string>
     <string name="pv_warm_up_cool_down">Rozgrzewka i wyciszenie</string>
-    <string name="pv_warm_up_cool_down_sub">3 lekkie ćwiczenia przed i 3 rozciągania po</string>
+    <string name="pv_warm_up_cool_down_sub">Lekkie ćwiczenia przed, rozciąganie po</string>
     <string name="set_no_jump">Bez skoków</string>
     <string name="set_no_jump_sub">Zamień skoki na ćwiczenia o niskim obciążeniu</string>
     <string name="wk_edit_rest">Zmień czas odpoczynku</string>

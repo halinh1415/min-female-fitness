@@ -7,7 +7,7 @@
     <string name="pv_warm_up">Isınma</string>
     <string name="pv_cool_down">Soğuma</string>
     <string name="pv_warm_up_cool_down">Isınma ve soğuma</string>
-    <string name="pv_warm_up_cool_down_sub">Önce 3 hafif hareket, sonra 3 esneme</string>
+    <string name="pv_warm_up_cool_down_sub">Önce hafif hareketler, sonra esneme</string>
     <string name="set_no_jump">Zıplama yok</string>
     <string name="set_no_jump_sub">Zıplamalı hareketleri düşük etkili olanlarla değiştir</string>
     <string name="wk_edit_rest">Dinlenme süresini değiştir</string>

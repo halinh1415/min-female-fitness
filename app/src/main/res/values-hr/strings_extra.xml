@@ -7,7 +7,7 @@
     <string name="pv_warm_up">Zagrijavanje</string>
     <string name="pv_cool_down">Istezanje</string>
     <string name="pv_warm_up_cool_down">Zagrijavanje i istezanje</string>
-    <string name="pv_warm_up_cool_down_sub">3 lagane vježbe prije i 3 istezanja poslije</string>
+    <string name="pv_warm_up_cool_down_sub">Lagane vježbe prije, istezanja poslije</string>
     <string name="set_no_jump">Bez skakanja</string>
     <string name="set_no_jump_sub">Zamijeni vježbe sa skokovima nježnijima</string>
     <string name="wk_edit_rest">Uredi vrijeme odmora</string>

@@ -7,7 +7,7 @@
     <string name="pv_warm_up">워밍업</string>
     <string name="pv_cool_down">쿨다운</string>
     <string name="pv_warm_up_cool_down">워밍업 &amp; 쿨다운</string>
-    <string name="pv_warm_up_cool_down_sub">운동 전 가벼운 동작 3개, 운동 후 스트레칭 3개</string>
+    <string name="pv_warm_up_cool_down_sub">운동 전 가벼운 동작, 운동 후 스트레칭</string>
     <string name="set_no_jump">점프 없음</string>
     <string name="set_no_jump_sub">점프 동작을 저충격 동작으로 바꿔요</string>
     <string name="wk_edit_rest">휴식 시간 변경</string>

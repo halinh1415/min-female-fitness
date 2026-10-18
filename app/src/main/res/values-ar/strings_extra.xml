@@ -7,7 +7,7 @@
     <string name="pv_warm_up">الإحماء</string>
     <string name="pv_cool_down">التهدئة</string>
     <string name="pv_warm_up_cool_down">الإحماء والتهدئة</string>
-    <string name="pv_warm_up_cool_down_sub">3 حركات سهلة قبل التمرين و3 تمارين إطالة بعده</string>
+    <string name="pv_warm_up_cool_down_sub">حركات سهلة قبل التمرين وتمارين إطالة بعده</string>
     <string name="set_no_jump">بدون قفز</string>
     <string name="set_no_jump_sub">استبدال حركات القفز بحركات منخفضة التأثير</string>
     <string name="wk_edit_rest">تعديل وقت الراحة</string>

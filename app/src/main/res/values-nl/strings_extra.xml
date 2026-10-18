@@ -7,7 +7,7 @@
     <string name="pv_warm_up">Warming-up</string>
     <string name="pv_cool_down">Cooling-down</string>
     <string name="pv_warm_up_cool_down">Warming-up &amp; cooling-down</string>
-    <string name="pv_warm_up_cool_down_sub">3 lichte oefeningen vooraf en 3 rekoefeningen achteraf</string>
+    <string name="pv_warm_up_cool_down_sub">Lichte oefeningen vooraf, rekoefeningen achteraf</string>
     <string name="set_no_jump">Geen sprongen</string>
     <string name="set_no_jump_sub">Sprongoefeningen vervangen door gewrichtsvriendelijke</string>
     <string name="wk_edit_rest">Rusttijd aanpassen</string>

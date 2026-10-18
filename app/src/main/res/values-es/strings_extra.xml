@@ -7,7 +7,7 @@
     <string name="pv_warm_up">Calentamiento</string>
     <string name="pv_cool_down">Enfriamiento</string>
     <string name="pv_warm_up_cool_down">Calentamiento y enfriamiento</string>
-    <string name="pv_warm_up_cool_down_sub">3 movimientos suaves antes y 3 estiramientos después</string>
+    <string name="pv_warm_up_cool_down_sub">Movimientos suaves antes, estiramientos después</string>
     <string name="set_no_jump">Sin saltos</string>
     <string name="set_no_jump_sub">Cambiar los ejercicios con saltos por otros de bajo impacto</string>
     <string name="wk_edit_rest">Editar descanso</string>

@@ -7,7 +7,7 @@
     <string name="pv_warm_up">Rozcvička</string>
     <string name="pv_cool_down">Protažení</string>
     <string name="pv_warm_up_cool_down">Rozcvička a protažení</string>
-    <string name="pv_warm_up_cool_down_sub">3 lehké cviky předem a 3 protažení potom</string>
+    <string name="pv_warm_up_cool_down_sub">Lehké cviky předem, protažení potom</string>
     <string name="set_no_jump">Bez skákání</string>
     <string name="set_no_jump_sub">Nahradit skákací cviky šetrnými</string>
     <string name="wk_edit_rest">Upravit dobu odpočinku</string>

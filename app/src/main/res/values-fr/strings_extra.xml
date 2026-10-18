@@ -7,7 +7,7 @@
     <string name="pv_warm_up">Échauffement</string>
     <string name="pv_cool_down">Retour au calme</string>
     <string name="pv_warm_up_cool_down">Échauffement et retour au calme</string>
-    <string name="pv_warm_up_cool_down_sub">3 mouvements doux avant et 3 étirements après</string>
+    <string name="pv_warm_up_cool_down_sub">Mouvements doux avant, étirements après</string>
     <string name="set_no_jump">Sans sauts</string>
     <string name="set_no_jump_sub">Remplacer les sauts par des mouvements à faible impact</string>
     <string name="wk_edit_rest">Modifier le repos</string>

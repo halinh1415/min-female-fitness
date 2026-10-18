@@ -7,7 +7,7 @@
     <string name="pv_warm_up">Iesildīšanās</string>
     <string name="pv_cool_down">Atsildīšanās</string>
     <string name="pv_warm_up_cool_down">Iesildīšanās un atsildīšanās</string>
-    <string name="pv_warm_up_cool_down_sub">3 vieglas kustības pirms un 3 stiepšanās pēc</string>
+    <string name="pv_warm_up_cool_down_sub">Vieglas kustības pirms, stiepšanās pēc</string>
     <string name="set_no_jump">Bez lēcieniem</string>
     <string name="set_no_jump_sub">Aizstāt lēcienu vingrinājumus ar saudzīgākiem</string>
     <string name="wk_edit_rest">Mainīt atpūtas laiku</string>

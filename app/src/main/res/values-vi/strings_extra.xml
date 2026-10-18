@@ -7,7 +7,7 @@
     <string name="pv_warm_up">Khởi động</string>
     <string name="pv_cool_down">Giãn cơ</string>
     <string name="pv_warm_up_cool_down">Khởi động &amp; giãn cơ</string>
-    <string name="pv_warm_up_cool_down_sub">3 động tác nhẹ trước và 3 động tác giãn cơ sau</string>
+    <string name="pv_warm_up_cool_down_sub">Động tác nhẹ trước và giãn cơ sau</string>
     <string name="set_no_jump">Không nhảy</string>
     <string name="set_no_jump_sub">Đổi động tác bật nhảy sang động tác nhẹ nhàng</string>
     <string name="wk_edit_rest">Chỉnh thời gian nghỉ</string>

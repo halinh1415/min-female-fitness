@@ -7,7 +7,7 @@
     <string name="pv_warm_up">Aufwärmen</string>
     <string name="pv_cool_down">Abkühlen</string>
     <string name="pv_warm_up_cool_down">Aufwärmen &amp; Abkühlen</string>
-    <string name="pv_warm_up_cool_down_sub">3 leichte Übungen vorher und 3 Dehnungen danach</string>
+    <string name="pv_warm_up_cool_down_sub">Leichte Übungen vorher, Dehnungen danach</string>
     <string name="set_no_jump">Keine Sprünge</string>
     <string name="set_no_jump_sub">Sprungübungen durch gelenkschonende ersetzen</string>
     <string name="wk_edit_rest">Pausenzeit ändern</string>

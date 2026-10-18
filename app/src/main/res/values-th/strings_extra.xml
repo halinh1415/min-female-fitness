@@ -7,7 +7,7 @@
     <string name="pv_warm_up">วอร์มอัพ</string>
     <string name="pv_cool_down">คูลดาวน์</string>
     <string name="pv_warm_up_cool_down">วอร์มอัพและคูลดาวน์</string>
-    <string name="pv_warm_up_cool_down_sub">ท่าง่าย 3 ท่าก่อน และยืดเหยียด 3 ท่าหลัง</string>
+    <string name="pv_warm_up_cool_down_sub">ท่าง่ายก่อน และยืดเหยียดหลังออกกำลังกาย</string>
     <string name="set_no_jump">ไม่กระโดด</string>
     <string name="set_no_jump_sub">เปลี่ยนท่ากระโดดเป็นท่าที่แรงกระแทกต่ำ</string>
     <string name="wk_edit_rest">แก้ไขเวลาพัก</string>

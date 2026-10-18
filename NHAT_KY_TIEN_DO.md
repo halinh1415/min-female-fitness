@@ -450,3 +450,14 @@
   injuries + jumpFree (code lưu đã có từ lần port trước). Test cập nhật: quick 9 màn, có DISCOMFORT.
 - Build OK, 17/17 unit test. S8+ (sao lưu → pm clear → test → trả lại dữ liệu): chip "quick_7 · 9 màn", màn chấn thương hiện sau cân
   mục tiêu, chọn "Chấn thương đầu gối" → JOINT_PAIN=1, NO_JUMP=true, plan {injuries:[KNEE], jumpFree:true, UNDER_10}.
+
+## 2026-10-18 — Giãn cơ: gắn nhãn động tác stretch có sẵn, thêm nhiều động tác giãn cơ hơn (yêu cầu Telegram)
+- `WorkoutExtras.markOwnSections`: động tác classid 8 (giãn cơ) liền nhau ở cuối bài → nhãn GIÃN CƠ, classid 7 (xoay tay,
+  cuộn vai, đấm...) liền nhau ở đầu bài → nhãn KHỞI ĐỘNG (bỏ qua bài phần lớn là giãn cơ). Gắn cả cho plan cá nhân.
+- Bài đã tự kết thúc bằng ≥ 3 động tác giãn cơ thì không thêm giãn cơ nữa (trước đây thêm trùng / thừa).
+- Giãn cơ thêm vào 5–6 động tác theo vùng, đủ cặp trái / phải (id lấy từ dữ liệu bài tập giải mã trên máy, code tạm đã gỡ):
+  tay 155, 203/204, 268/269, 300; bụng 198, 141, 196/197, 144; mông 330/331, 259/260, 144; chân 218/219, 332/333, 201/202;
+  toàn thân 198, 155, 196/197, 144. Không thêm động tác đã có trong bài.
+- Chuỗi `pv_warm_up_cool_down_sub` bỏ số "3": "Động tác nhẹ trước và giãn cơ sau" (mọi ngôn ngữ).
+- Build OK. S8+: WomenWorkout Cơ bụng Người bắt đầu — 3 stretch cuối có nhãn GIÃN CƠ, không thêm trùng, đầu bài có nhãn
+  KHỞI ĐỘNG; Min Cánh tay Intermediate — cuối bài căng cơ tay trái/phải + duỗi cơ tay trước trái/phải đều nhãn GIÃN CƠ.

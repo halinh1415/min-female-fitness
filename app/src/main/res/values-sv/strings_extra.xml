@@ -7,7 +7,7 @@
     <string name="pv_warm_up">Uppvärmning</string>
     <string name="pv_cool_down">Nedvarvning</string>
     <string name="pv_warm_up_cool_down">Uppvärmning &amp; nedvarvning</string>
-    <string name="pv_warm_up_cool_down_sub">3 lätta övningar före och 3 stretchövningar efter</string>
+    <string name="pv_warm_up_cool_down_sub">Lätta övningar före, stretch efter</string>
     <string name="set_no_jump">Inga hopp</string>
     <string name="set_no_jump_sub">Byt hoppövningar mot skonsamma övningar</string>
     <string name="wk_edit_rest">Ändra vilotid</string>

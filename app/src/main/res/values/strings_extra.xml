@@ -7,7 +7,7 @@
     <string name="pv_warm_up">Warm-up</string>
     <string name="pv_cool_down">Cool-down</string>
     <string name="pv_warm_up_cool_down">Warm-up &amp; cool-down</string>
-    <string name="pv_warm_up_cool_down_sub">3 easy moves before and 3 stretches after</string>
+    <string name="pv_warm_up_cool_down_sub">Easy moves before, stretches after</string>
     <string name="set_no_jump">No jumping</string>
     <string name="set_no_jump_sub">Swap jumping moves for low-impact ones</string>
     <string name="wk_edit_rest">Edit rest time</string>

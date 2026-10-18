@@ -7,7 +7,7 @@
     <string name="pv_warm_up">Lämmittely</string>
     <string name="pv_cool_down">Loppujäähdyttely</string>
     <string name="pv_warm_up_cool_down">Lämmittely ja jäähdyttely</string>
-    <string name="pv_warm_up_cool_down_sub">3 kevyttä liikettä ennen ja 3 venytystä jälkeen</string>
+    <string name="pv_warm_up_cool_down_sub">Kevyitä liikkeitä ennen, venytyksiä jälkeen</string>
     <string name="set_no_jump">Ei hyppyjä</string>
     <string name="set_no_jump_sub">Vaihda hyppyliikkeet nivelystävällisiin</string>
     <string name="wk_edit_rest">Muuta lepoaikaa</string>

@@ -7,7 +7,7 @@
     <string name="pv_warm_up">Opvarmning</string>
     <string name="pv_cool_down">Nedkøling</string>
     <string name="pv_warm_up_cool_down">Opvarmning og nedkøling</string>
-    <string name="pv_warm_up_cool_down_sub">3 lette øvelser før og 3 stræk efter</string>
+    <string name="pv_warm_up_cool_down_sub">Lette øvelser før, stræk efter</string>
     <string name="set_no_jump">Ingen hop</string>
     <string name="set_no_jump_sub">Byt hoppeøvelser ud med skånsomme øvelser</string>
     <string name="wk_edit_rest">Rediger hviletid</string>

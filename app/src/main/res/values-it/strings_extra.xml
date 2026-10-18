@@ -7,7 +7,7 @@
     <string name="pv_warm_up">Riscaldamento</string>
     <string name="pv_cool_down">Defaticamento</string>
     <string name="pv_warm_up_cool_down">Riscaldamento e defaticamento</string>
-    <string name="pv_warm_up_cool_down_sub">3 movimenti leggeri prima e 3 allungamenti dopo</string>
+    <string name="pv_warm_up_cool_down_sub">Movimenti leggeri prima, allungamenti dopo</string>
     <string name="set_no_jump">Niente salti</string>
     <string name="set_no_jump_sub">Sostituisci i salti con movimenti a basso impatto</string>
     <string name="wk_edit_rest">Modifica il recupero</string>

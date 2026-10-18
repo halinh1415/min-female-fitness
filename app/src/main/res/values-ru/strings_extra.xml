@@ -7,7 +7,7 @@
     <string name="pv_warm_up">Разминка</string>
     <string name="pv_cool_down">Заминка</string>
     <string name="pv_warm_up_cool_down">Разминка и заминка</string>
-    <string name="pv_warm_up_cool_down_sub">3 лёгких упражнения до и 3 растяжки после</string>
+    <string name="pv_warm_up_cool_down_sub">Лёгкие упражнения до, растяжка после</string>
     <string name="set_no_jump">Без прыжков</string>
     <string name="set_no_jump_sub">Заменять прыжки упражнениями с низкой нагрузкой</string>
     <string name="wk_edit_rest">Изменить отдых</string>

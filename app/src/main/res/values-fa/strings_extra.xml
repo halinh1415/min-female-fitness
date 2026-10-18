@@ -7,7 +7,7 @@
     <string name="pv_warm_up">گرم کردن</string>
     <string name="pv_cool_down">سرد کردن</string>
     <string name="pv_warm_up_cool_down">گرم کردن و سرد کردن</string>
-    <string name="pv_warm_up_cool_down_sub">۳ حرکت سبک قبل و ۳ حرکت کششی بعد</string>
+    <string name="pv_warm_up_cool_down_sub">حرکات سبک قبل و حرکات کششی بعد</string>
     <string name="set_no_jump">بدون پرش</string>
     <string name="set_no_jump_sub">جایگزینی حرکات پرشی با حرکات کم‌فشار</string>
     <string name="wk_edit_rest">ویرایش زمان استراحت</string>
