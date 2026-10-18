@@ -410,3 +410,6 @@
   Analytics `paywall_offer` thêm giá trị `special34` cho người thấy thẻ mà không qua bốc thăm.
 - Build OK; S8+ (giả lập người mới: xoá PAYWALL_ROTATE_PICK / PROMO_END_TIME, đếm mở = 0): thẻ hiện, mức giảm theo giá Play
   hiện tại là 25% (752.000 ₫ / 1.000.000 ₫).
+
+## 2026-10-18 — Nâng version 1.1.32 (132) và push
+- Gồm thẻ ưu đãi năm cho mọi người. Build assembleDebug + bundleRelease OK.
