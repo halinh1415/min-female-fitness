@@ -7,6 +7,7 @@ import android.content.Context;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.PlanObject;
+import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.utils.JsonHelper;
 
 import org.json.JSONArray;
@@ -14,6 +15,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -45,66 +49,54 @@ public class DemoDataProvider extends AbstractDemoDataProvider {
         if (day < mData.size()) {
             max = mData.get(index).mActionList.size();
             if (mData.get(day).getRule() != null) {
-//                allExercises = mJsonHelper.getAllExercise(discover, version);
-//                if (allExercises == null){
-//                    actionObjectList.addAll(mData.get(day).mActionList);
-//                }
+                // Duyệt danh sách đã xáo trộn đúng 1 lượt. Trước đây bốc ngẫu nhiên trong vòng while
+                // đến khi đủ rule.value: bài không đủ động tác hợp lệ (thiếu trong file ngôn ngữ /
+                // trùng id) thì lặp vô hạn trên main thread -> ANR ở PreviewActivity.
                 max = mData.get(day).getRule().getValue();
-                boolean[] map = new boolean[1000];
-                while (actionObjectList.size() < max) {
-                    Random random = new Random();
-                    int id = random.nextInt(mData.get(index).mActionList.size());
-                    PlanObject.ActionObject actionObject = mData.get(index).mActionList.get(id);
+                Set<Integer> used = new HashSet<>();
+                List<PlanObject.ActionObject> candidates = new ArrayList<>(mData.get(index).mActionList);
+                Collections.shuffle(candidates, new Random());
+                for (PlanObject.ActionObject actionObject : candidates) {
+                    if (actionObjectList.size() >= max) break;
                     ExerciseObject exerciseObject = hashMap.get(actionObject.actionId);
-
-                    if (!map[actionObject.actionId] && exerciseObject != null) {
-                        map[actionObject.actionId] = true;
-                        List<Integer> list = exerciseObject.getGroupactions();
-                        if (list!= null && !list.isEmpty()){
-                            PlanObject.ActionObject leftAction = actionObject.clone();
-                            leftAction.actionId = list.get(0);
-                            map[leftAction.actionId] = true;
-                            ExerciseObject exerciseLeft = hashMap.get(leftAction.actionId);
-                            if (exerciseLeft!= null) {
-                                actionObjectList.add(leftAction);
-                            }
+                    if (exerciseObject == null || !used.add(actionObject.actionId)) continue;
+                    List<Integer> list = exerciseObject.getGroupactions();
+                    if (list != null && !list.isEmpty()) {
+                        PlanObject.ActionObject leftAction = actionObject.clone();
+                        leftAction.actionId = list.get(0);
+                        used.add(leftAction.actionId);
+                        if (hashMap.get(leftAction.actionId) != null) {
+                            actionObjectList.add(leftAction);
                         }
-                        actionObjectList.add(actionObject.clone());
-//                        if (exerciseObject.getImagePath().contains("left")) {
-//                            String rightName = exerciseObject.getImagePath().replace("left", "right");
-//                            ExerciseObject exerciseObjectRight = findPair(rightName);
-//                            actionObjectList.add(actionObject.clone());
-//                            if (exerciseObjectRight != null) {
-//                                map[exerciseObjectRight.getId()] = true;
-//                                PlanObject.ActionObject rightAction = actionObject.clone();
-//                                rightAction.actionId = exerciseObjectRight.getId();
-//                                actionObjectList.add(rightAction);
-//                            }
-//                        } else if (hashMap.get(actionObject.actionId).getImagePath().contains("right")) {
-//                            String leftName = exerciseObject.getImagePath().replace("right", "left");
-//                            ExerciseObject exerciseObjectLeft = findPair(leftName);
-//                            if (exerciseObjectLeft != null) {
-//                                map[exerciseObjectLeft.getId()] = true;
-//                                PlanObject.ActionObject leftAction = actionObject.clone();
-//                                leftAction.actionId = exerciseObjectLeft.getId();
-//                                actionObjectList.add(leftAction);
-//                            }
-//                            actionObjectList.add(actionObject.clone());
-//                        } else {
-//                            actionObjectList.add(actionObject.clone());
-//                        }
                     }
-
+                    actionObjectList.add(actionObject.clone());
                 }
-
-
             } else {
                 for (PlanObject.ActionObject action : mData.get(index).mActionList
                 ) {
                     actionObjectList.add(action.clone());
                 }
             }
+            if (extrasProgram != null) {
+                WorkoutExtras.apply(actionObjectList, hashMap, extrasProgram, extrasWarmUp, extrasNoJump);
+            }
         }
+    }
+
+    private ProgramObject extrasProgram;
+    private boolean extrasWarmUp, extrasNoJump;
+
+    /** Bật khởi động / giãn cơ và đổi động tác nhảy cho các lần setData / resetData sau (xem WorkoutExtras). */
+    public void setExtras(ProgramObject program, boolean warmUpCoolDown, boolean noJump) {
+        extrasProgram = program;
+        extrasWarmUp = warmUpCoolDown;
+        extrasNoJump = noJump;
+    }
+
+    public boolean supportsWarmUp() {
+        PlanObject planObject = getPlanObject();
+        return extrasProgram != null && planObject != null
+                && WorkoutExtras.supportsWarmUp(planObject.mActionList, hashMap, extrasProgram);
     }
 
 //    private ExerciseObject findPair(String imageName) {

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chuỗi cho các tính năng chuyển từ Home Workout (10/2026). -->
+<resources>
+    <string name="home_first_title">Bắt đầu buổi tập đầu tiên!</string>
+    <string name="home_first_sub">%1$s · %2$d phút, chọn riêng cho bạn</string>
+    <string name="home_first_cta">Bắt đầu thôi</string>
+    <string name="pv_warm_up">Khởi động</string>
+    <string name="pv_cool_down">Giãn cơ</string>
+    <string name="pv_warm_up_cool_down">Khởi động &amp; giãn cơ</string>
+    <string name="pv_warm_up_cool_down_sub">3 động tác nhẹ trước và 3 động tác giãn cơ sau</string>
+    <string name="set_no_jump">Không nhảy</string>
+    <string name="set_no_jump_sub">Đổi động tác bật nhảy sang động tác nhẹ nhàng</string>
+    <string name="wk_edit_rest">Chỉnh thời gian nghỉ</string>
+    <string name="fin_next_title">Buổi tiếp theo</string>
+    <string name="noti_plan_day_message">Ngày %1$d/%2$d trong kế hoạch của bạn đã sẵn sàng. Tiếp tục thôi!</string>
+</resources>

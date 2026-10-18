@@ -3,6 +3,8 @@ package mint.woman.female.workout.notification;
 import android.content.Context;
 
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.activity.ui.plan.PersonalPlanStore;
+import mint.woman.female.workout.utils.MyPreference;
 
 public class SmartNotificationEngine {
 
@@ -46,10 +48,16 @@ public class SmartNotificationEngine {
             );
         }
 
+        String message = context.getString(R.string.noti_daily_message);
+        // Có plan cá nhân: nói rõ hôm nay là ngày mấy của plan để người dùng biết việc cần làm.
+        if (PersonalPlanStore.hasPlan(context)) {
+            int done = new MyPreference(context).getPlanProgress(PersonalPlanStore.PROGRAM_ID);
+            if (done < 28) message = context.getString(R.string.noti_plan_day_message, done + 1, 28);
+        }
         return new NotificationContent(
                 NotificationType.DAILY_REMINDER,
                 context.getString(R.string.noti_daily_title),
-                context.getString(R.string.noti_daily_message),
+                message,
                 "app://home/discover"
         );
     }

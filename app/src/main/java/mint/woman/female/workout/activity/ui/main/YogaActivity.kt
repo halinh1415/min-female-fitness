@@ -1,5 +1,8 @@
 package mint.woman.female.workout.activity.ui.main
 
+import mint.woman.female.workout.utils.HistoryDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import android.Manifest
 import android.view.View
 import android.content.ActivityNotFoundException
@@ -184,7 +187,13 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
             isFirst = false
             val openCount = myPreference.openCount()
             if (openCount > 2 && openCount % 5 == 0 && !myPreference.isPremiumMember()) {
-                startActivity(Intent(this@YogaActivity, PremiumActivity::class.java))
+                // Người mới (3 ngày đầu hoặc chưa đủ 3 buổi tập) không bị paywall định kỳ chặn: để họ tạo thói quen trước.
+                lifecycleScope.launch {
+                    val established = withContext(Dispatchers.IO) { isEstablishedUser() }
+                    if (established && !isFinishing) {
+                        startActivity(Intent(this@YogaActivity, PremiumActivity::class.java))
+                    }
+                }
             }
             if (openCount>1 && openCount% 10 ==1){
                 requestReview()
@@ -841,7 +850,17 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
         return super.onOptionsItemSelected(item)
     }
 
+    /** Đã cài ít nhất [NEW_USER_DAYS] ngày và tập xong ít nhất [NEW_USER_SESSIONS] buổi. */
+    private fun isEstablishedUser(): Boolean {
+        val installedAt = runCatching { packageManager.getPackageInfo(packageName, 0).firstInstallTime }.getOrDefault(0L)
+        if (System.currentTimeMillis() - installedAt < NEW_USER_DAYS * 24L * 60 * 60 * 1000) return false
+        val sessions = runCatching { HistoryDatabase.getDatabase(this).historyDao().getRecentPassedHistory(NEW_USER_SESSIONS).orEmpty().size }.getOrDefault(0)
+        return sessions >= NEW_USER_SESSIONS
+    }
+
     companion object {
+        private const val NEW_USER_DAYS = 3
+        private const val NEW_USER_SESSIONS = 3
         private const val TAG = "YogaActivity"
         var isFirst: Boolean = true
         const val RC_SIGN_IN: Int = 1201

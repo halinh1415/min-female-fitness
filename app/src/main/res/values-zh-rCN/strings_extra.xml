@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chuỗi cho các tính năng chuyển từ Home Workout (10/2026). -->
+<resources>
+    <string name="home_first_title">开始你的第一次训练！</string>
+    <string name="home_first_sub">%1$s · %2$d 分钟，为你精选</string>
+    <string name="home_first_cta">开始</string>
+    <string name="pv_warm_up">热身</string>
+    <string name="pv_cool_down">放松</string>
+    <string name="pv_warm_up_cool_down">热身和放松</string>
+    <string name="pv_warm_up_cool_down_sub">训练前 3 个轻松动作，训练后 3 个拉伸</string>
+    <string name="set_no_jump">不跳跃</string>
+    <string name="set_no_jump_sub">将跳跃动作替换为低冲击动作</string>
+    <string name="wk_edit_rest">修改休息时间</string>
+    <string name="fin_next_title">下一次训练</string>
+    <string name="noti_plan_day_message">你的计划第 %1$d/%2$d 天已准备好，继续加油！</string>
+</resources>

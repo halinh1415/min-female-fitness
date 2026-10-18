@@ -255,7 +255,10 @@ public class PreviewActivity extends AppCompatActivity implements PreviewActions
             return;
         }
         mDemoDataProvider = new DemoDataProvider(PreviewActivity.this, mProgramObject.getDiscover(), mProgramObject.getVersion());
+        mDemoDataProvider.setExtras(mProgramObject, myPreference.isWarmUpCoolDown(), myPreference.isNoJump());
         mDemoDataProvider.setData(mProgramObject.getPlan(), mIndexDay);
+        state.setWarmUpVisible(mDemoDataProvider.supportsWarmUp());
+        state.setWarmUpOn(myPreference.isWarmUpCoolDown());
         refreshItems();
         updatePlan();
         startDownLoadAudio();
@@ -574,6 +577,14 @@ public class PreviewActivity extends AppCompatActivity implements PreviewActions
         myPreference.setVersionPlan(mProgramObject.getPlan(), JsonHelper.VERSION_DAY_PLAN);
         updatePlan();
         Toast.makeText(this, "Save!!!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onToggleWarmUp() {
+        // Bật/tắt khởi động + giãn cơ: danh sách đổi nên tiến độ đang dở của bài này về 0.
+        myPreference.setWarmUpCoolDown(!myPreference.isWarmUpCoolDown());
+        myPreference.saveProgressWorkout(mProgramObject.getId(), mIndexDay, 0);
+        updateData();
     }
 
     @Override

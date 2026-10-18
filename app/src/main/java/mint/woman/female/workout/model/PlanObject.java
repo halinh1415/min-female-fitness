@@ -113,6 +113,8 @@ public class PlanObject implements Parcelable, Cloneable {
         private String unit;
 
         public boolean isSelected = false;
+        /** Khởi động / giãn cơ thêm vào buổi tập (WorkoutExtras.SECTION_*); 0 = động tác chính của bài. */
+        public int section;
 
         public ActionObject() {
             unit ="";
@@ -134,6 +136,7 @@ public class PlanObject implements Parcelable, Cloneable {
             mId = in.readInt();
             unit = in.readString();
             isSelected = in.readByte() != 0;
+            section = in.readInt();
         }
 
         @Override
@@ -145,6 +148,7 @@ public class PlanObject implements Parcelable, Cloneable {
             dest.writeInt(mId);
             dest.writeString(unit);
             dest.writeByte((byte) (isSelected ? 1 : 0));
+            dest.writeInt(section);
         }
 
         @Override
@@ -171,6 +175,7 @@ public class PlanObject implements Parcelable, Cloneable {
             actionObject.unit = unit;
             actionObject.actype = actype;
             actionObject.rest = rest;
+            actionObject.section = section;
             return actionObject;
         }
 

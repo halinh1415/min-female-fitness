@@ -54,6 +54,11 @@ import mint.woman.female.workout.activity.ui.main.YogaActivity
 import mint.woman.female.workout.activity.ui.premium.PaywallActivity
 import mint.woman.female.workout.utils.EdgeToEdgeHelper
 import mint.woman.female.workout.utils.LanguageHelper
+import mint.woman.female.workout.activity.ui.plan.PersonalPlanStore
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
+import androidx.lifecycle.lifecycleScope
 import mint.woman.female.workout.utils.MyPreference
 import mint.woman.female.workout.utils.RemoteConfigKeys
 import java.util.Locale
@@ -130,7 +135,17 @@ class OnboardFlowActivity : ComponentActivity(), EdgeToEdgeHelper.HandlesInsets 
 
         state.persist(preference)
         analytics.flowFinished(completed, state.step, state.steps.size)
-        openMain()
+        // Tạo luôn plan 28 ngày từ câu trả lời (trước đây người dùng phải tự vào "Kế hoạch cá nhân → Tạo"), xong mới
+        // mở Home để thẻ plan / popup buổi đầu có ngay. Chạy nền vì phải giải mã / mã hoá dữ liệu bài tập.
+        val context = applicationContext
+        lifecycleScope.launch {
+            if (!PersonalPlanStore.hasPlan(context)) {
+                withContext(Dispatchers.IO) {
+                    runCatching { PersonalPlanStore.create(context, PersonalPlanStore.defaultsFromOnboarding(context)) }
+                }
+            }
+            openMain()
+        }
     }
 
     /** Đăng nhập dùng chung FirebaseUI + Realtime DB với mục Back up & Restore trong Cài đặt. */

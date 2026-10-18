@@ -58,7 +58,14 @@ import mint.woman.female.workout.model.HistoryItem
 import mint.woman.female.workout.model.ProgramObject
 import mint.woman.female.workout.notification.NotificationPermissionDialog
 import mint.woman.female.workout.notification.PracticeStatsStore
+import mint.woman.female.workout.activity.ui.preview.PreviewActivity
+import mint.woman.female.workout.activity.ui.workout.compose.FinishedNext
+import mint.woman.female.workout.activity.ui.workout.compose.FinishedWeekDay
+import mint.woman.female.workout.utils.DateIdUtils
 import mint.woman.female.workout.utils.EdgeToEdgeHelper
+import mint.woman.female.workout.utils.ProgramRecommenderV3
+import java.text.SimpleDateFormat
+import java.util.Calendar
 import mint.woman.female.workout.utils.HistoryDatabase
 import mint.woman.female.workout.utils.LanguageHelper
 import mint.woman.female.workout.utils.MyPreference
@@ -103,6 +110,7 @@ class FinishedActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
                         onShare = ::share,
                         onDone = ::closeWithAd,
                         onClose = ::closeWithAd,
+                        onNext = ::startNext,
                     ),
                     banner = { AdBanner() },
                 )
@@ -116,6 +124,68 @@ class FinishedActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
         initView()
         observeBadgeUnlocks()
         showStreak()
+        showWeekAndNext()
+    }
+
+    /** Thẻ "Tuần này" và "Buổi tiếp theo" (đọc lịch sử / chấm điểm bài ở luồng nền). */
+    private fun showWeekAndNext() {
+        lifecycleScope.launch {
+            val (week, next) = withContext(Dispatchers.IO) {
+                runCatching { loadWeek() }.getOrDefault(emptyList()) to runCatching { loadNext() }.getOrNull()
+            }
+            state = state.copy(week = week, weekGoal = myPreference.goalOfWeek.coerceAtLeast(1), next = next)
+        }
+    }
+
+    /** 7 ngày của tuần hiện tại như thẻ mục tiêu tuần ở Home; hôm nay luôn tính là đã tập (buổi vừa xong). */
+    private fun loadWeek(): List<FinishedWeekDay> {
+        val cal = Calendar.getInstance().apply {
+            firstDayOfWeek = myPreference.firstDayOfWeek
+            set(Calendar.DAY_OF_WEEK, myPreference.firstDayOfWeek)
+            set(Calendar.HOUR_OF_DAY, 0); set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0); set(Calendar.MILLISECOND, 0)
+        }
+        val today = DateIdUtils.todayDateId()
+        if (cal.timeInMillis > today) cal.add(Calendar.DAY_OF_MONTH, -7)
+        val trained = HistoryDatabase.getDatabase(this).historyDao().allPassedDateIds.orEmpty().toSet()
+        val labelFormat = SimpleDateFormat("EEEEE", Locale.getDefault())
+        return (0 until 7).map {
+            val dateId = DateIdUtils.toDateId(cal.timeInMillis)
+            val day = FinishedWeekDay(labelFormat.format(cal.time), dateId in trained || dateId == today, dateId == today)
+            cal.add(Calendar.DAY_OF_MONTH, 1)
+            day
+        }
+    }
+
+    /** Thử thách nhiều ngày: ngày kế tiếp của chính thử thách đó. Còn lại: bài gợi ý cho ngày mai (khác bài vừa tập). */
+    private fun loadNext(): FinishedNext? {
+        val program = mProgramObject ?: return null
+        val day = intent.extras?.getInt("DAY_NUMBER", 0) ?: 0
+        if (program.type == 1) {
+            if (day + 1 >= program.total.coerceAtLeast(1)) return null
+            return FinishedNext(program, program.name.orEmpty(), getString(R.string.txt_day) + " " + (day + 2))
+        }
+        val candidates = FitnessApplication.getApplication().mJsonHelper.allCategory.orEmpty().filter { it.id != program.id }
+        val hour = java.time.LocalTime.now().hour
+        val timeOfDay = when (hour) {
+            in 5..11 -> ProgramRecommenderV3.TIME_MORNING
+            in 12..16 -> ProgramRecommenderV3.TIME_AFTERNOON
+            else -> ProgramRecommenderV3.TIME_EVENING
+        }
+        val next = ProgramRecommenderV3().suggest(
+            candidates, 1, myPreference.isPremiumMember, timeOfDay, setOf(program.id), 1, 0,
+            myPreference.userTargetFocus, false
+        ) ?: return null
+        return FinishedNext(next, next.name.orEmpty(), getString(R.string.x_minutes, next.total))
+    }
+
+    /** Mở buổi tiếp theo như Home (thử thách -> màn thử thách, bài lẻ -> Preview), không chen quảng cáo. */
+    private fun startNext() {
+        val program = state.next?.program ?: return
+        FirebaseAnalytics.getInstance(this).logEvent("finish_next_start", Bundle().apply { putInt("program_id", program.id) })
+        val target = if (program.type == 1) ChallengeActivity::class.java else PreviewActivity::class.java
+        startActivity(Intent(this, target).putExtra("PROGRAM_ID", program.id).putExtra("DAY_NUMBER", 0))
+        finish()
     }
 
     override fun onResume() {

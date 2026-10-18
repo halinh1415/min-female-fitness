@@ -224,6 +224,12 @@ class OnboardState : ViewModel() {
                 }
             )
         }
+        // Đau gối / lưng dưới (bước "khó chịu khi tập") hoặc chọn "Không nhảy" ở bước kiểu bài tập:
+        // bật "Không nhảy" cho mọi buổi tập và cho plan cá nhân.
+        val discomfort = answers[ObId.DISCOMFORT].orEmpty().split(",").map { it.trim() }
+        val jointPain = (if ("knee" in discomfort) 1 else 0) or (if ("back" in discomfort) 2 else 0)
+        preference.setJointPain(jointPain)
+        preference.setNoJump(jointPain > 0 || answers[ObId.WORKOUT_TYPE] == "no_jumping")
         preference.setOnboarded(true)
         preference.setFirstOpen(false)
     }

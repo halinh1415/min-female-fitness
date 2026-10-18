@@ -219,6 +219,46 @@ public class MyPreference {
         mEditor.apply();
     }
 
+    /** Tự thêm khởi động + giãn cơ vào buổi tập (mặc định bật, tắt ở màn Preview / Cài đặt). */
+    public boolean isWarmUpCoolDown() {
+        return mSharedPreferences.getBoolean("WARM_UP_COOL_DOWN", true);
+    }
+
+    public void setWarmUpCoolDown(boolean value) {
+        mEditor.putBoolean("WARM_UP_COOL_DOWN", value);
+        mEditor.apply();
+    }
+
+    /** Không tập động tác bật nhảy (đau gối / lưng dưới, chọn ở onboarding hoặc Cài đặt). */
+    public boolean isNoJump() {
+        return mSharedPreferences.getBoolean("NO_JUMP", false);
+    }
+
+    public void setNoJump(boolean value) {
+        mEditor.putBoolean("NO_JUMP", value);
+        mEditor.apply();
+    }
+
+    /** Câu hỏi đau khớp ở onboarding: 0 không, 1 đầu gối, 2 lưng dưới, 3 cả hai. */
+    public int getJointPain() {
+        return mSharedPreferences.getInt("JOINT_PAIN", 0);
+    }
+
+    public void setJointPain(int value) {
+        mEditor.putInt("JOINT_PAIN", value);
+        mEditor.apply();
+    }
+
+    /** Người dùng đã tự chọn thời gian nghỉ (Cài đặt hoặc màn nghỉ): dùng thay cho thời gian nghỉ ghi trong bài. */
+    public boolean hasCustomRestTime() {
+        return mSharedPreferences.contains("REST_TIME");
+    }
+
+    public void setRestTime(int seconds) {
+        mEditor.putString("REST_TIME", String.valueOf(seconds));
+        mEditor.apply();
+    }
+
     public int getRestTime() {
         int value = Integer.valueOf(mSharedPreferences.getString("REST_TIME", "20"));
         return value;
@@ -464,6 +504,11 @@ public class MyPreference {
 
     public String getTimeRemindDaily() {
         return mSharedPreferences.getString("TIME_REMIND_DAILY", "20:00");
+    }
+
+    /** Người dùng đã chọn giờ nhắc hằng ngày (onboarding hoặc màn nhắc tập), không phải giá trị mặc định. */
+    public boolean hasDailyReminderTime() {
+        return mSharedPreferences.contains("TIME_REMIND_DAILY");
     }
 
     public void setTimeRemindDaily(String value) {

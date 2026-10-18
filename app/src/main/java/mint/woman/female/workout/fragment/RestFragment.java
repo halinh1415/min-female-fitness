@@ -192,6 +192,9 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         updateRing(false);
         binding.txtSkip.setOnClickListener(this);
         binding.txtAddTime.setOnClickListener(this);
+        // Màn "Sẵn sàng" (trước động tác đầu) không phải nghỉ: ẩn nút chỉnh thời gian nghỉ.
+        binding.txtEditRest.setVisibility(readyToGo ? View.GONE : View.VISIBLE);
+        binding.txtEditRest.setOnClickListener(v -> showEditRest());
         binding.tvExerciseName.setOnClickListener(this);
     }
 
@@ -370,6 +373,32 @@ public class RestFragment extends Fragment implements View.OnClickListener {
                 showDialogDemoWorkout();
                 break;
         }
+    }
+
+    /** Chọn thời gian nghỉ ngay trên màn nghỉ: áp dụng cho lần nghỉ này và các lần sau (lưu REST_TIME). */
+    private void showEditRest() {
+        if (getContext() == null) return;
+        if (countDownTimer != null) countDownTimer.cancel();
+        String[] names = getResources().getStringArray(R.array.arr_rest_name);
+        String[] values = getResources().getStringArray(R.array.arr_rest_value);
+        int checked = java.util.Arrays.asList(values).indexOf(String.valueOf(myPreference.getRestTime()));
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(getContext())
+                .setTitle(R.string.txt_rest_time)
+                .setSingleChoiceItems(names, checked, (dialog, which) -> {
+                    int seconds = Integer.parseInt(values[which]);
+                    myPreference.setRestTime(seconds);
+                    mRestTime = seconds;
+                    mCurrentTime = seconds;
+                    if (binding != null) {
+                        binding.restProgress.setText(FitnessConstUtils.toTime(seconds));
+                        updateRing(false);
+                    }
+                    dialog.dismiss();
+                })
+                .setOnDismissListener(dialog -> {
+                    if (binding != null && isAdded()) initTimer(mCurrentTime);
+                })
+                .show();
     }
 
     public interface OnRestFragmentInteractionListener {

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chuỗi cho các tính năng chuyển từ Home Workout (10/2026). -->
+<resources>
+    <string name="home_first_title">अपना पहला वर्कआउट शुरू करें!</string>
+    <string name="home_first_sub">%1$s · %2$d मिनट, आपके लिए चुना गया</string>
+    <string name="home_first_cta">चलिए शुरू करें</string>
+    <string name="pv_warm_up">वार्म-अप</string>
+    <string name="pv_cool_down">कूल-डाउन</string>
+    <string name="pv_warm_up_cool_down">वार्म-अप और कूल-डाउन</string>
+    <string name="pv_warm_up_cool_down_sub">पहले 3 आसान मूव्स और बाद में 3 स्ट्रेच</string>
+    <string name="set_no_jump">कोई जंपिंग नहीं</string>
+    <string name="set_no_jump_sub">जंपिंग मूव्स को कम प्रभाव वाले मूव्स से बदलें</string>
+    <string name="wk_edit_rest">आराम का समय बदलें</string>
+    <string name="fin_next_title">अगला</string>
+    <string name="noti_plan_day_message">आपके प्लान का दिन %1$d/%2$d तैयार है। चलिए जारी रखें!</string>
+</resources>

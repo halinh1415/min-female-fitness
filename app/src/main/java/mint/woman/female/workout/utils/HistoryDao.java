@@ -39,6 +39,9 @@ public interface HistoryDao {
     @Update
     void update(HistoryItem... historyItems);
 
+    @Query("SELECT COUNT(*) FROM HistoryItem")
+    int countHistory();
+
     @Query("DELETE FROM HistoryItem")
     void deleteAllHistoryItem();
     @Query("SELECT * FROM HistoryItem ORDER BY start_time DESC")

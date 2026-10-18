@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chuỗi cho các tính năng chuyển từ Home Workout (10/2026). -->
+<resources>
+    <string name="home_first_title">Sāc savu pirmo treniņu!</string>
+    <string name="home_first_sub">%1$s · %2$d min, izvēlēts tev</string>
+    <string name="home_first_cta">Aiziet</string>
+    <string name="pv_warm_up">Iesildīšanās</string>
+    <string name="pv_cool_down">Atsildīšanās</string>
+    <string name="pv_warm_up_cool_down">Iesildīšanās un atsildīšanās</string>
+    <string name="pv_warm_up_cool_down_sub">3 vieglas kustības pirms un 3 stiepšanās pēc</string>
+    <string name="set_no_jump">Bez lēcieniem</string>
+    <string name="set_no_jump_sub">Aizstāt lēcienu vingrinājumus ar saudzīgākiem</string>
+    <string name="wk_edit_rest">Mainīt atpūtas laiku</string>
+    <string name="fin_next_title">Nākamais</string>
+    <string name="noti_plan_day_message">Tava plāna %1$d./%2$d. diena ir gatava. Turpinām!</string>
+</resources>

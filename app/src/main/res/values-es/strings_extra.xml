@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chuỗi cho các tính năng chuyển từ Home Workout (10/2026). -->
+<resources>
+    <string name="home_first_title">¡Empieza tu primer entrenamiento!</string>
+    <string name="home_first_sub">%1$s · %2$d min, elegido para ti</string>
+    <string name="home_first_cta">Vamos</string>
+    <string name="pv_warm_up">Calentamiento</string>
+    <string name="pv_cool_down">Enfriamiento</string>
+    <string name="pv_warm_up_cool_down">Calentamiento y enfriamiento</string>
+    <string name="pv_warm_up_cool_down_sub">3 movimientos suaves antes y 3 estiramientos después</string>
+    <string name="set_no_jump">Sin saltos</string>
+    <string name="set_no_jump_sub">Cambiar los ejercicios con saltos por otros de bajo impacto</string>
+    <string name="wk_edit_rest">Editar descanso</string>
+    <string name="fin_next_title">Siguiente</string>
+    <string name="noti_plan_day_message">El día %1$d/%2$d de tu plan está listo. ¡Sigamos!</string>
+</resources>

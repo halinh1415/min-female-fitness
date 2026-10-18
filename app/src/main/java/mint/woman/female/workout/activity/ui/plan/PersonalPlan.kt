@@ -325,7 +325,16 @@ object PersonalPlanStore {
                 else -> null
             }
         }.toSet().ifEmpty { setOf(PlanFocus.FULL_BODY) }
-        return PlanSettings(goal = goal, level = level, focus = focus)
+        // Câu hỏi đau khớp ở onboarding: 1 đầu gối, 2 lưng dưới, 3 cả hai.
+        val injuries = when (pref.jointPain) {
+            1 -> setOf(PlanInjury.KNEE)
+            2 -> setOf(PlanInjury.BACK)
+            3 -> setOf(PlanInjury.KNEE, PlanInjury.BACK)
+            else -> emptySet()
+        }
+        // Người mới bắt đầu: buổi ngắn (~8 phút) cho tuần đầu dễ theo, các tuần sau tăng dần.
+        val duration = if (level == PlanLevel.BEGINNER) PlanDuration.UNDER_10 else PlanDuration.MIN_10_20
+        return PlanSettings(goal = goal, level = level, focus = focus, injuries = injuries, jumpFree = pref.isNoJump, duration = duration)
     }
 
     /** Sinh plan mới, ghi file, đặt lại tiến độ về ngày 1. */

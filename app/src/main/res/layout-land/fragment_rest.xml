@@ -151,7 +151,7 @@
         app:trackColor="#26FFFFFF"
         app:trackCornerRadius="6dp"
         app:trackThickness="4dp"
-        app:layout_constraintBottom_toTopOf="@id/txt_add_time"
+        app:layout_constraintBottom_toTopOf="@id/txt_edit_rest"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideline_1"
         app:layout_constraintTop_toBottomOf="@id/txt_break" />
@@ -169,6 +169,24 @@
         app:layout_constraintStart_toStartOf="@id/rest_ring"
         app:layout_constraintTop_toTopOf="@id/rest_ring"
         tools:text="00:15" />
+
+    <!-- Chọn thời gian nghỉ ngay trên màn nghỉ (ẩn ở màn "Sẵn sàng") -->
+    <TextView
+        android:id="@+id/txt_edit_rest"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/wk_pill_outline"
+        android:gravity="center"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="@string/wk_edit_rest"
+        android:textColor="@color/White"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/txt_add_time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline_1"
+        app:layout_constraintTop_toBottomOf="@id/rest_ring" />
 
     <TextView
         android:id="@+id/txt_add_time"
@@ -188,7 +206,7 @@
         app:layout_constraintEnd_toStartOf="@id/txt_skip"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="@id/guideline_1"
-        app:layout_constraintTop_toBottomOf="@id/rest_ring" />
+        app:layout_constraintTop_toBottomOf="@id/txt_edit_rest" />
 
     <TextView
         android:id="@+id/txt_skip"

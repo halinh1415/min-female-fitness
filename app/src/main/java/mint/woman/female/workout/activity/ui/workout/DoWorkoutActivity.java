@@ -667,7 +667,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                     mAudioAppManager.playText(getString(R.string.wp_each_side));
                 }
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance(getActionObjectCurrent(),getActionObjectCurrent().rest >0?getActionObjectCurrent().rest: myPreference.getRestTime(), progress), "Rest").commitAllowingStateLoss();
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance(getActionObjectCurrent(),getRest(), progress), "Rest").commitAllowingStateLoss();
         } else {
             myPreference.saveProgressWorkout(mProgramObject.getId(), mDayIndex, 0);
             myPreference.setSaveProgressPercent(mProgramObject.getId(), mDayIndex, 1);
@@ -717,7 +717,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
             binding.workoutProgress.setProgress(currentExerciseCount);
             String progress = getString(R.string.txt_next_of_exercise) + " " + (currentExerciseCount + 1) + "/" + totalExercise;
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance(getActionObjectCurrent(), getActionObjectCurrent().rest >0?getActionObjectCurrent().rest: myPreference.getRestTime(), progress), "Rest").commitAllowingStateLoss();
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance(getActionObjectCurrent(), getRest(), progress), "Rest").commitAllowingStateLoss();
         }
     }
 
@@ -848,4 +848,12 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
 //                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
 //                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 //    }
+
+    private int getRest() {
+        int planRest = getActionObjectCurrent().rest;
+        // Người dùng đã tự chọn thời gian nghỉ (Cài đặt / màn nghỉ) thì dùng giá trị đó thay thời gian nghỉ ghi trong bài.
+        if (planRest > 0 && !myPreference.hasCustomRestTime()) return planRest;
+        return myPreference.getRestTime();
+    }
+
 }

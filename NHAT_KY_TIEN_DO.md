@@ -413,3 +413,26 @@
 
 ## 2026-10-18 — Nâng version 1.1.32 (132) và push
 - Gồm thẻ ưu đãi năm cho mọi người. Build assembleDebug + bundleRelease OK.
+
+## 2026-10-18 — Port tính năng mới của Home Workout / Women Workout
+- `WorkoutExtras` + `DemoDataProvider.setExtras`: khởi động / giãn cơ (công tắc ở Preview + Cài đặt `WARM_UP_COOL_DOWN`, không thêm
+  vào plan cá nhân / bài tự tạo / bài giãn cơ), "Không nhảy" (`NO_JUMP`, Cài đặt + onboarding) đổi động tác bật nhảy.
+  `DemoDataProvider.setData`: sửa vòng while bốc ngẫu nhiên có thể lặp vô hạn (cùng lỗi ANR đã sửa ở Women Workout).
+- Màn nghỉ: nút "Chỉnh thời gian nghỉ" (10–120s, lưu REST_TIME, áp dụng luôn; ẩn ở màn Sẵn sàng). Đã tự chọn thì dùng thay
+  thời gian nghỉ ghi trong bài (`DoWorkoutActivity.getRest`).
+- Onboarding: lưu NO_JUMP / JOINT_PAIN từ bước "kiểu bài tập" (no_jumping) và "khó chịu" (gối / lưng) — 2 bước này chỉ có ở
+  nhánh standard_26 / full; nhánh mặc định quick_7 không hỏi. Xong onboarding tạo luôn plan 28 ngày (chạy nền, xong mới mở Home);
+  người mới bắt đầu dùng buổi ngắn (UNDER_10).
+- Home: có plan thì thẻ "Kế hoạch cá nhân · Ngày x/28" lên đầu, thẻ "Gợi ý hôm nay" chỉ hiện khi hôm nay đã tập. Popup "Bắt đầu
+  buổi tập đầu tiên" (chưa có lịch sử, mời 1 lần, HOME_FIRST_WORKOUT_NUDGE_SEEN) mở Ngày 1 của plan.
+- Finished: thẻ "Tuần này" (7 ngày, x/mục tiêu) và "Buổi tiếp theo" (ngày kế của thử thách / plan, còn lại ProgramRecommenderV3
+  bỏ bài vừa tập), bấm mở Challenge / Preview, log `finish_next_start`.
+- Thông báo: nhắc hằng ngày ghi "Ngày x/28 trong kế hoạch của bạn", bấm mở plan. Paywall định kỳ (openCount % 5) bỏ qua người
+  mới: cài < 3 ngày hoặc < 3 buổi tập.
+- Chuỗi mới `strings_extra.xml` 27 ngôn ngữ (cs, hi, hr, lv, no, th dịch mới). Build OK. Unit test không chạy được: OnboardingStepFactoryTest lỗi biên dịch từ trước (dùng ONBOARD_STEPS / create() kiểu cũ), không liên quan thay đổi này.
+- S8+ (sao lưu dữ liệu bằng run-as, pm clear, test, trả lại): onboarding quick_7 → plan tự tạo, Home thẻ plan Ngày 1/28 lên đầu +
+  popup buổi đầu → plan → Preview Ngày 1 (7 phút / 13 động tác, không có công tắc khởi động); màn nghỉ đổi 40s OK; tập hết tới
+  Finished: Tuần này 1/5, Buổi tiếp theo "Kế hoạch của tôi · Ngày 2". Preview Cơ bụng Beginner: bật 23 động tác (có nhãn
+  KHỞI ĐỘNG), tắt 19. Cài đặt có 2 công tắc mới. Không crash. Đã trả lại dữ liệu máy test.
+- Chưa làm: sửa cấp độ bài trong assets (dữ liệu riêng của app, chưa kiểm tra); không hỏi lại nhắc tập ở Finished (onboarding
+  Min không hỏi giờ nhắc nên không áp dụng). Màn tập / màn nghỉ và tìm kiếm Min đã có sẵn.

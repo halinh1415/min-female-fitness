@@ -51,7 +51,13 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.airbnb.lottie.LottieAnimationView
 import mint.woman.female.workout.R
+import android.widget.ImageView
+import mint.woman.female.workout.activity.ui.compose.GlideImage
 import mint.woman.female.workout.activity.ui.compose.MinColor
+import mint.woman.female.workout.activity.ui.compose.backgroundUrl
+import mint.woman.female.workout.activity.ui.compose.fallbackBackgroundUrl
+import mint.woman.female.workout.activity.ui.compose.modelUrl
+import mint.woman.female.workout.model.ProgramObject
 
 @Immutable
 data class FinishedState(
@@ -66,7 +72,18 @@ data class FinishedState(
     val weightText: String = "",
     val bmiText: String = "",
     val reminderText: String = "",
+    /** 7 ngày của tuần hiện tại (thẻ "Tuần này"); rỗng = chưa tính xong. */
+    val week: List<FinishedWeekDay> = emptyList(),
+    val weekGoal: Int = 4,
+    /** Buổi tiếp theo (ngày kế của thử thách hoặc bài gợi ý cho ngày mai); null = không có. */
+    val next: FinishedNext? = null,
 )
+
+@Immutable
+data class FinishedWeekDay(val label: String, val trained: Boolean, val isToday: Boolean)
+
+@Immutable
+data class FinishedNext(val program: ProgramObject, val title: String, val subtitle: String)
 
 class FinishedActions(
     val onFeel: (Int) -> Unit,
@@ -75,6 +92,7 @@ class FinishedActions(
     val onShare: () -> Unit,
     val onDone: () -> Unit,
     val onClose: () -> Unit,
+    val onNext: () -> Unit = {},
 )
 
 // Bảng màu Rose của app Min.
@@ -100,6 +118,8 @@ fun FinishedScreen(state: FinishedState, actions: FinishedActions, banner: @Comp
                 modifier = Modifier.padding(horizontal = 16.dp).padding(top = 14.dp, bottom = 16.dp),
             ) {
                 FeelCard(state.feel, actions.onFeel)
+                if (state.week.isNotEmpty()) WeekCard(state)
+                state.next?.let { NextCard(it, actions.onNext) }
                 InfoRow(
                     emoji = "⚖️",
                     title = stringResource(R.string.fin_weight),
@@ -265,6 +285,84 @@ private fun FeelCard(feel: Int?, onFeel: (Int) -> Unit) {
                 }
             }
         }
+    }
+}
+
+/** Tiến độ mục tiêu tuần ngay sau buổi tập: "Tuần này 2/4" + 7 chấm ngày (hôm nay viền đậm). */
+@Composable
+private fun WeekCard(state: FinishedState) {
+    val done = state.week.count { it.trained }
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(22.dp))
+            .background(MinColor.Surface)
+            .border(1.dp, Border, RoundedCornerShape(22.dp))
+            .padding(16.dp),
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(stringResource(R.string.txt_this_week), color = MinColor.TextPrimary, fontSize = 17.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+            Text(
+                (if (done >= state.weekGoal) "🎉 " else "") + "$done/${state.weekGoal}",
+                color = MinColor.Pink,
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold,
+            )
+        }
+        Spacer(Modifier.height(12.dp))
+        Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
+            state.week.forEach { day ->
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(day.label, color = if (day.isToday) MinColor.Pink else MinColor.TextMuted, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+                    Spacer(Modifier.height(6.dp))
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .size(34.dp)
+                            .clip(CircleShape)
+                            .background(if (day.trained) MinColor.Pink else MinColor.Track)
+                            .border(if (day.isToday) 2.dp else 0.dp, if (day.isToday) MinColor.Pink else Color.Transparent, CircleShape),
+                    ) {
+                        if (day.trained) Text("✓", color = Color.White, fontSize = 15.sp, fontWeight = FontWeight.Bold)
+                    }
+                }
+            }
+        }
+    }
+}
+
+/** Buổi tiếp theo: ảnh chương trình, tên + "Ngày 2" hoặc số phút, nút Bắt đầu để quay lại tập. */
+@Composable
+private fun NextCard(next: FinishedNext, onStart: () -> Unit) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(22.dp))
+            .background(MinColor.Surface)
+            .border(1.dp, Border, RoundedCornerShape(22.dp))
+            .clickable(onClick = onStart)
+            .padding(12.dp),
+    ) {
+        Box(Modifier.size(72.dp).clip(RoundedCornerShape(16.dp)).background(MinColor.PinkSoft)) {
+            GlideImage(next.program.backgroundUrl(), Modifier.fillMaxSize(), errorUrl = next.program.fallbackBackgroundUrl())
+            GlideImage(next.program.modelUrl(), Modifier.fillMaxSize(), scaleType = ImageView.ScaleType.FIT_END)
+        }
+        Spacer(Modifier.width(12.dp))
+        Column(Modifier.weight(1f)) {
+            Text(stringResource(R.string.fin_next_title), color = MinColor.TextMuted, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+            Text(next.title, color = MinColor.TextPrimary, fontSize = 17.sp, fontWeight = FontWeight.Bold, maxLines = 2)
+            Text(next.subtitle, color = MinColor.TextSecondary, fontSize = 12.sp, maxLines = 1)
+        }
+        Spacer(Modifier.width(8.dp))
+        Text(
+            stringResource(R.string.txt_go_to),
+            color = Color.White,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold,
+            maxLines = 1,
+            modifier = Modifier.clip(RoundedCornerShape(50)).background(MinColor.CtaBrush).padding(horizontal = 14.dp, vertical = 9.dp),
+        )
     }
 }
 

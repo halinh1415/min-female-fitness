@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chuỗi cho các tính năng chuyển từ Home Workout (10/2026). -->
+<resources>
+    <string name="home_first_title">İlk antrenmanına başla!</string>
+    <string name="home_first_sub">%1$s · %2$d dk, senin için seçildi</string>
+    <string name="home_first_cta">Hadi başlayalım</string>
+    <string name="pv_warm_up">Isınma</string>
+    <string name="pv_cool_down">Soğuma</string>
+    <string name="pv_warm_up_cool_down">Isınma ve soğuma</string>
+    <string name="pv_warm_up_cool_down_sub">Önce 3 hafif hareket, sonra 3 esneme</string>
+    <string name="set_no_jump">Zıplama yok</string>
+    <string name="set_no_jump_sub">Zıplamalı hareketleri düşük etkili olanlarla değiştir</string>
+    <string name="wk_edit_rest">Dinlenme süresini değiştir</string>
+    <string name="fin_next_title">Sıradaki antrenman</string>
+    <string name="noti_plan_day_message">Planının %1$d/%2$d. günü hazır. Devam edelim!</string>
+</resources>

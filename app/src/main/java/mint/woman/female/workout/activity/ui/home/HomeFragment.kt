@@ -36,6 +36,7 @@ import mint.woman.female.workout.activity.ui.weekgoal.SetGoalActivity
 import mint.woman.female.workout.activity.ui.workout.ChallengeActivity
 import mint.woman.female.workout.model.HistoryItem
 import mint.woman.female.workout.model.ProgramObject
+import mint.woman.female.workout.utils.HistoryDatabase
 import mint.woman.female.workout.utils.MyPreference
 import mint.woman.female.workout.utils.ProgramRecommenderV3
 import mint.woman.female.workout.utils.StreakMessageType
@@ -168,6 +169,29 @@ class HomeFragment : Fragment(), HomeActions {
         state.promoEndsAt = if (pref.isPremiumMember) null else PaywallPromo.activeEndTime(requireContext())
         state.personalPlan = PersonalPlanStore.program(requireContext())
         refreshPlanProgress()
+        refreshFirstWorkoutNudge()
+    }
+
+    /** Popup "Bắt đầu buổi tập đầu tiên": chỉ khi chưa có buổi tập nào và chưa từng mời. */
+    private fun refreshFirstWorkoutNudge() {
+        val context = requireContext().applicationContext
+        val prefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context)
+        if (prefs.getBoolean(PREF_FIRST_WORKOUT_NUDGE, false)) {
+            state.firstWorkoutNudge = false
+            return
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            val noHistory = withContext(Dispatchers.IO) {
+                runCatching { HistoryDatabase.getDatabase(context).historyDao().countHistory() == 0 }.getOrDefault(false)
+            }
+            state.firstWorkoutNudge = noHistory
+        }
+    }
+
+    private fun markFirstWorkoutNudgeSeen() {
+        androidx.preference.PreferenceManager.getDefaultSharedPreferences(requireContext())
+            .edit().putBoolean(PREF_FIRST_WORKOUT_NUDGE, true).apply()
+        state.firstWorkoutNudge = false
     }
 
     // ------------------------------------------------------------ dữ liệu
@@ -356,6 +380,17 @@ class HomeFragment : Fragment(), HomeActions {
         FirebaseAnalytics.getInstance(requireContext()).logEvent(event, Bundle())
     }
 
+    override fun onStartFirstWorkout(program: ProgramObject) {
+        log("click_first_workout_start_scr_home")
+        markFirstWorkoutNudgeSeen()
+        openProgram(program)
+    }
+
+    override fun onFirstWorkoutDismissed() {
+        log("click_first_workout_close_scr_home")
+        markFirstWorkoutNudgeSeen()
+    }
+
     override fun onStartSuggestion() {
         state.suggestion?.let(::openProgram)
     }
@@ -423,6 +458,7 @@ class HomeFragment : Fragment(), HomeActions {
     }
 
     companion object {
+        private const val PREF_FIRST_WORKOUT_NUDGE = "HOME_FIRST_WORKOUT_NUDGE_SEEN"
         private val CHALLENGES = intArrayOf(1, 879, 880, 881, 882, 1178)
         private val ABS = intArrayOf(879, 2, 3, 4)
         private val ARM = intArrayOf(880, 5)

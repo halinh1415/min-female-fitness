@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chuỗi cho các tính năng chuyển từ Home Workout (10/2026). -->
+<resources>
+    <string name="home_first_title">Aloita ensimmäinen treenisi!</string>
+    <string name="home_first_sub">%1$s · %2$d min, valittu sinulle</string>
+    <string name="home_first_cta">Aloitetaan</string>
+    <string name="pv_warm_up">Lämmittely</string>
+    <string name="pv_cool_down">Loppujäähdyttely</string>
+    <string name="pv_warm_up_cool_down">Lämmittely ja jäähdyttely</string>
+    <string name="pv_warm_up_cool_down_sub">3 kevyttä liikettä ennen ja 3 venytystä jälkeen</string>
+    <string name="set_no_jump">Ei hyppyjä</string>
+    <string name="set_no_jump_sub">Vaihda hyppyliikkeet nivelystävällisiin</string>
+    <string name="wk_edit_rest">Muuta lepoaikaa</string>
+    <string name="fin_next_title">Seuraavaksi</string>
+    <string name="noti_plan_day_message">Suunnitelmasi päivä %1$d/%2$d on valmis. Jatketaan!</string>
+</resources>

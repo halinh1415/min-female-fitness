@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chuỗi cho các tính năng chuyển từ Home Workout (10/2026). -->
+<resources>
+    <string name="home_first_title">ابدأ تمرينك الأول!</string>
+    <string name="home_first_sub">%1$s · %2$d دقيقة، مختار لك</string>
+    <string name="home_first_cta">هيا بنا</string>
+    <string name="pv_warm_up">الإحماء</string>
+    <string name="pv_cool_down">التهدئة</string>
+    <string name="pv_warm_up_cool_down">الإحماء والتهدئة</string>
+    <string name="pv_warm_up_cool_down_sub">3 حركات سهلة قبل التمرين و3 تمارين إطالة بعده</string>
+    <string name="set_no_jump">بدون قفز</string>
+    <string name="set_no_jump_sub">استبدال حركات القفز بحركات منخفضة التأثير</string>
+    <string name="wk_edit_rest">تعديل وقت الراحة</string>
+    <string name="fin_next_title">التمرين التالي</string>
+    <string name="noti_plan_day_message">اليوم %1$d/%2$d من خطتك جاهز. لنواصل!</string>
+</resources>

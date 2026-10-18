@@ -1,5 +1,8 @@
 package mint.woman.female.workout.activity.ui.preview
 
+import mint.woman.female.workout.common.data.WorkoutExtras
+import androidx.compose.material3.SwitchDefaults
+import androidx.compose.material3.Switch
 import android.content.Context
 import android.view.View
 import android.widget.ImageView
@@ -109,6 +112,10 @@ class PreviewUiState {
     var buttonProgress by mutableFloatStateOf(1f)
     var showRestart by mutableStateOf(false)
 
+    /** Hàng công tắc "Khởi động & giãn cơ" (chỉ bài có sẵn của app, không phải bài giãn cơ). */
+    var warmUpVisible by mutableStateOf(false)
+    var warmUpOn by mutableStateOf(true)
+
     /** Banner quảng cáo (AdView) do Activity tạo; null = không hiện. */
     var banner by mutableStateOf<View?>(null)
 
@@ -127,6 +134,7 @@ interface PreviewActions {
     fun onEdit()
     fun onSave()
     fun onResetPlan()
+    fun onToggleWarmUp()
     fun onItemClick(index: Int)
     fun onReplace(index: Int)
     fun onMove(from: Int, to: Int)
@@ -177,6 +185,9 @@ fun PreviewScreen(state: PreviewUiState, actions: PreviewActions) {
         ) {
             item(key = "header") {
                 if (state.editMode) EditBar(program, actions) else Header(program, state, actions)
+            }
+            if (state.warmUpVisible && !state.editMode && items != null) {
+                item(key = "warmup") { WarmUpRow(state.warmUpOn, actions::onToggleWarmUp) }
             }
             if (items == null) {
                 item(key = "download") { DownloadPlaceholder() }
@@ -464,6 +475,21 @@ private fun ExerciseRow(
         }
         Spacer(Modifier.width(12.dp))
         Column(Modifier.weight(1f)) {
+            val section = when (item.section) {
+                WorkoutExtras.SECTION_WARM_UP -> R.string.pv_warm_up
+                WorkoutExtras.SECTION_COOL_DOWN -> R.string.pv_cool_down
+                else -> null
+            }
+            if (section != null) {
+                Text(
+                    stringResource(section).uppercase(),
+                    fontSize = 11.sp,
+                    fontWeight = FontWeight.Bold,
+                    letterSpacing = 0.5.sp,
+                    color = MinColor.TextMuted
+                )
+                Spacer(Modifier.height(2.dp))
+            }
             Text(
                 exercise?.name ?: "",
                 fontSize = 16.sp,
@@ -496,6 +522,33 @@ private fun ExerciseRow(
         } else {
             Text("›", fontSize = 26.sp, color = MinColor.TextMuted, modifier = Modifier.padding(horizontal = 6.dp))
         }
+    }
+}
+
+/** Công tắc thêm khởi động ở đầu và giãn cơ ở cuối buổi tập (lưu cho mọi bài). */
+@Composable
+private fun WarmUpRow(checked: Boolean, onToggle: () -> Unit) {
+    Row(
+        Modifier
+            .padding(horizontal = 16.dp, vertical = 5.dp)
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(18.dp))
+            .background(MinColor.PinkSoft)
+            .clickable(onClick = onToggle)
+            .padding(horizontal = 14.dp, vertical = 10.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text("🧘", fontSize = 22.sp)
+        Spacer(Modifier.width(12.dp))
+        Column(Modifier.weight(1f)) {
+            Text(stringResource(R.string.pv_warm_up_cool_down), fontSize = 15.sp, fontWeight = FontWeight.Bold, color = MinColor.TextPrimary)
+            Text(stringResource(R.string.pv_warm_up_cool_down_sub), fontSize = 12.sp, color = MinColor.TextSecondary)
+        }
+        Switch(
+            checked = checked,
+            onCheckedChange = { onToggle() },
+            colors = SwitchDefaults.colors(checkedThumbColor = Color.White, checkedTrackColor = MinColor.Pink)
+        )
     }
 }
 

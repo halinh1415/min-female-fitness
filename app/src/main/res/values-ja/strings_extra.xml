@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chuỗi cho các tính năng chuyển từ Home Workout (10/2026). -->
+<resources>
+    <string name="home_first_title">最初のワークアウトを始めましょう！</string>
+    <string name="home_first_sub">%1$s · %2$d分、あなたにおすすめ</string>
+    <string name="home_first_cta">始める</string>
+    <string name="pv_warm_up">ウォームアップ</string>
+    <string name="pv_cool_down">クールダウン</string>
+    <string name="pv_warm_up_cool_down">ウォームアップ＆クールダウン</string>
+    <string name="pv_warm_up_cool_down_sub">前に軽い動き3つ、後にストレッチ3つ</string>
+    <string name="set_no_jump">ジャンプなし</string>
+    <string name="set_no_jump_sub">ジャンプ系の動きを低負荷の動きに置き換えます</string>
+    <string name="wk_edit_rest">休憩時間を変更</string>
+    <string name="fin_next_title">次のワークアウト</string>
+    <string name="noti_plan_day_message">プランの%1$d/%2$d日目の準備ができました。続けましょう！</string>
+</resources>

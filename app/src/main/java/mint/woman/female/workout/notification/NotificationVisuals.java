@@ -140,7 +140,7 @@ final class NotificationVisuals {
     }
 
     /**
-     * Intent mở thẳng bài tập gần nhất (bỏ qua Splash và quảng cáo); người mới thì vào màn chính.
+     * Intent mở thẳng plan cá nhân / bài tập gần nhất (bỏ qua Splash và quảng cáo); người mới thì vào màn chính.
      * Phần tử đầu luôn là màn chính để bấm back quay về app.
      */
     @WorkerThread
@@ -148,7 +148,9 @@ final class NotificationVisuals {
         Intent main = new Intent(context, YogaActivity.class)
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 .putExtra(AppNotificationHelper.EXTRA_NOTIFICATION_TYPE, type.name());
-        ProgramObject program = lastProgram(context);
+        // Có plan cá nhân 28 ngày: mở thẳng plan (ngày đang tới), không thì bài tập gần nhất.
+        ProgramObject program = mint.woman.female.workout.activity.ui.plan.PersonalPlanStore.program(context);
+        if (program == null) program = lastProgram(context);
         if (program == null) return new Intent[]{main};
 
         Bundle bundle = new Bundle();

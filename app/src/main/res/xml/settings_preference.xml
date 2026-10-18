@@ -96,6 +96,18 @@
             android:key="REST_TIME"
             app:useSimpleSummaryProvider="true"
             android:title="@string/txt_rest_time" />
+        <SwitchPreference
+            app:defaultValue="true"
+            app:icon="@drawable/ic_wk_warmup"
+            app:key="WARM_UP_COOL_DOWN"
+            app:summary="@string/pv_warm_up_cool_down_sub"
+            app:title="@string/pv_warm_up_cool_down" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:icon="@drawable/ic_wk_low_impact"
+            app:key="NO_JUMP"
+            app:summary="@string/set_no_jump_sub"
+            app:title="@string/set_no_jump" />
 
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/txt_voice_guide">

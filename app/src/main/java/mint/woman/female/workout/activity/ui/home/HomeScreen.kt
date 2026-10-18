@@ -46,6 +46,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -89,6 +90,9 @@ class HomeUiState {
     /** Plan cá nhân đã tạo (null = chưa có). */
     var personalPlan by mutableStateOf<ProgramObject?>(null)
 
+    /** Chưa có buổi tập nào và chưa từng mời: hiện popup "Bắt đầu buổi tập đầu tiên". */
+    var firstWorkoutNudge by mutableStateOf(false)
+
     /** Tiến độ từng chương trình (ngày đã tập) – đọc lại mỗi lần quay về màn. */
     var planProgress by mutableStateOf<Map<Int, Int>>(emptyMap())
 }
@@ -106,6 +110,10 @@ interface HomeActions {
     fun onPromoExpired()
     fun onOpenPersonalPlan()
     fun onAdjustPersonalPlan()
+
+    /** Popup buổi tập đầu tiên: bấm bắt đầu mở [program]; cả hai cách đóng đều không mời lại. */
+    fun onStartFirstWorkout(program: ProgramObject)
+    fun onFirstWorkoutDismissed()
 }
 
 // ---------------------------------------------------------------- screen
@@ -142,6 +150,85 @@ fun HomeScreen(state: HomeUiState, actions: HomeActions) {
         MyTrainingTile(actions, Modifier.padding(horizontal = 16.dp, vertical = 8.dp))
         state.sections.forEach { section ->
             key(section.title) { HomeSectionBlock(section, state, actions) }
+        }
+    }
+    // Có plan cá nhân thì mời tập Ngày 1 của plan, không thì bài gợi ý hôm nay.
+    val first = state.personalPlan ?: state.suggestion
+    if (state.firstWorkoutNudge && first != null) {
+        FirstWorkoutDialog(first, onStart = { actions.onStartFirstWorkout(first) }, onDismiss = actions::onFirstWorkoutDismissed)
+    }
+}
+
+/** Popup mời tập buổi đầu tiên ngay sau khi vào app (giống Leap Fitness): ảnh bài, tên, thời lượng, nút bắt đầu. */
+@Composable
+private fun FirstWorkoutDialog(program: ProgramObject, onStart: () -> Unit, onDismiss: () -> Unit) {
+    Dialog(onDismissRequest = onDismiss) {
+        Column(
+            Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(28.dp))
+                .background(MinColor.Surface)
+        ) {
+            Box(
+                Modifier
+                    .fillMaxWidth()
+                    .height(190.dp)
+                    .clipToBounds()
+                    .background(MinColor.PinkSoft)
+            ) {
+                GlideImage(program.backgroundUrl(), Modifier.fillMaxSize(), errorUrl = program.fallbackBackgroundUrl())
+                GlideImage(
+                    program.modelUrl(),
+                    Modifier
+                        .fillMaxHeight()
+                        .width(190.dp)
+                        .align(Alignment.BottomEnd),
+                    scaleType = ImageView.ScaleType.FIT_END
+                )
+                Text(
+                    "✕",
+                    color = Color.White,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .align(Alignment.TopStart)
+                        .padding(12.dp)
+                        .size(34.dp)
+                        .clip(CircleShape)
+                        .background(Color.Black.copy(alpha = 0.25f))
+                        .clickable(onClick = onDismiss)
+                        .padding(top = 6.dp)
+                )
+            }
+            Column(Modifier.padding(start = 22.dp, end = 22.dp, top = 20.dp, bottom = 22.dp)) {
+                Text(
+                    stringResource(R.string.home_first_title),
+                    color = MinColor.TextPrimary,
+                    fontSize = 24.sp,
+                    lineHeight = 28.sp,
+                    fontWeight = FontWeight.ExtraBold
+                )
+                Spacer(Modifier.height(6.dp))
+                Text(
+                    if (program.type == 1) "${program.name} · ${stringResource(R.string.txt_day)} 1/${program.total}"
+                    else stringResource(R.string.home_first_sub, program.name, program.total),
+                    color = MinColor.TextSecondary,
+                    fontSize = 15.sp
+                )
+                Spacer(Modifier.height(20.dp))
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(54.dp)
+                        .clip(RoundedCornerShape(50))
+                        .background(MinColor.CtaBrush)
+                        .clickable(onClick = onStart)
+                ) {
+                    Text(stringResource(R.string.home_first_cta), color = Color.White, fontSize = 17.sp, fontWeight = FontWeight.ExtraBold)
+                }
+            }
         }
     }
 }
@@ -235,8 +322,11 @@ private fun HeroAndCoach(state: HomeUiState, actions: HomeActions) {
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
-            Spacer(Modifier.height(14.dp))
-            CoachCard(state, actions)
+            // Có plan cá nhân: thẻ "Ngày x/28" ngay bên dưới là việc chính của hôm nay, chỉ hiện gợi ý khi hôm nay đã tập.
+            if (state.personalPlan == null || state.weekDays.any { it.today && it.done }) {
+                Spacer(Modifier.height(14.dp))
+                CoachCard(state, actions)
+            }
         }
     }
 }
