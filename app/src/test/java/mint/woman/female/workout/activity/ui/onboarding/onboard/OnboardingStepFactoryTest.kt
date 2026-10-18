@@ -49,14 +49,15 @@ class OnboardingStepFactoryTest {
         assertEquals(StepKind.TRIAL_INTRO, steps.last().kind)
     }
 
-    /** Nhánh quick_7 giữ tên cũ nhưng có 8 màn (thêm màn vùng tập). */
+    /** Nhánh quick_7 giữ tên cũ nhưng có 9 màn (thêm màn vùng tập và màn đau gối / lưng). */
     @Test
-    fun quickHasEightScreensAndStillBuildsAPlan() {
+    fun quickHasNineScreensAndStillBuildsAPlan() {
         val steps = OnboardingStepFactory.create(OnboardingVariant.QUICK_7, all)
-        assertEquals(8, steps.size)
+        assertEquals(9, steps.size)
         assertOrderKept(steps)
         assertEquals(StepKind.WELCOME, steps.first().kind)
         assertTrue(steps.any { it.id == ObId.FOCUS })
+        assertTrue(steps.any { it.id == ObId.DISCOMFORT })
         assertTrue(steps.any { it.kind == StepKind.WEIGHT })
         assertTrue(steps.any { it.kind == StepKind.TARGET_WEIGHT })
         assertEquals(StepKind.PLAN_RESULT, steps.last().kind)

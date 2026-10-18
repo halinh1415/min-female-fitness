@@ -10,10 +10,11 @@ object OnboardingStepFactory {
     }
 
     /**
-     * 8 màn: chào → mục tiêu → vùng tập → chiều cao → cân nặng → cân mục tiêu → tạo kế hoạch → kết quả.
-     * Giữ tên nhánh quick_7 (giá trị Remote Config / analytics) dù đã thêm màn vùng tập.
+     * 9 màn: chào → mục tiêu → vùng tập → chiều cao → cân nặng → cân mục tiêu → khó chịu khi tập (đau gối / lưng)
+     * → tạo kế hoạch → kết quả. Màn khó chịu: chọn gối / lưng thì bật "Không nhảy" và plan tránh bài hại khớp
+     * (như Home Workout). Giữ tên nhánh quick_7 (giá trị Remote Config / analytics) dù đã thêm màn.
      */
-    private val QUICK_DESIGNS = setOf("step1", "step4", "step6", "step9", "step10", "step10b", "step45", "step46")
+    private val QUICK_DESIGNS = setOf("step1", "step4", "step6", "step9", "step10", "step10b", "step27", "step45", "step46")
 
     /** 26 màn = 22 màn dưới đây + 4 màn chuyển phần. */
     private val STANDARD_DESIGNS = setOf(

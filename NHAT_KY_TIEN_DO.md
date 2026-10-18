@@ -443,3 +443,10 @@
   (giá trị lạ → QUICK_7, quick có 8 màn gồm vùng tập).
 - `app/build.gradle`: `testOptions.unitTests.returnDefaultValues = true` để dựng Resources giả trên JVM.
 - `./gradlew testDebugUnitTest`: 17/17 pass. assembleDebug OK.
+
+## 2026-10-18 — Onboarding quick_7: thêm màn đau gối / lưng (yêu cầu Telegram)
+- `OnboardingStepFactory.QUICK_DESIGNS` thêm `step27` (chấn thương / vấn đề sức khoẻ, chọn nhiều) trước màn tạo kế hoạch: quick_7
+  thành 9 màn (giữ tên nhánh cho Remote Config / analytics). Chọn gối / lưng → JOINT_PAIN, NO_JUMP = true, plan 28 ngày có
+  injuries + jumpFree (code lưu đã có từ lần port trước). Test cập nhật: quick 9 màn, có DISCOMFORT.
+- Build OK, 17/17 unit test. S8+ (sao lưu → pm clear → test → trả lại dữ liệu): chip "quick_7 · 9 màn", màn chấn thương hiện sau cân
+  mục tiêu, chọn "Chấn thương đầu gối" → JOINT_PAIN=1, NO_JUMP=true, plan {injuries:[KNEE], jumpFree:true, UNDER_10}.
