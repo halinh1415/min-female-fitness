@@ -382,7 +382,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         String[] names = getResources().getStringArray(R.array.arr_rest_name);
         String[] values = getResources().getStringArray(R.array.arr_rest_value);
         int checked = java.util.Arrays.asList(values).indexOf(String.valueOf(myPreference.getRestTime()));
-        new com.google.android.material.dialog.MaterialAlertDialogBuilder(getContext())
+        androidx.appcompat.app.AlertDialog restDialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(getContext())
                 .setTitle(R.string.txt_rest_time)
                 .setSingleChoiceItems(names, checked, (dialog, which) -> {
                     int seconds = Integer.parseInt(values[which]);
@@ -399,6 +399,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
                     if (binding != null && isAdded()) initTimer(mCurrentTime);
                 })
                 .show();
+        mint.woman.female.workout.utils.ImmersiveHelper.keepDialog(restDialog);
     }
 
     public interface OnRestFragmentInteractionListener {

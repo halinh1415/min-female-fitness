@@ -24,9 +24,9 @@ import androidx.fragment.app.Fragment;
 
 import mint.woman.female.workout.activity.ui.history.HistoryActivity;
 import mint.woman.female.workout.utils.EdgeToEdgeHelper;
+import mint.woman.female.workout.utils.ImmersiveHelper;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.ViewCompat;
-import androidx.core.graphics.Insets;
 import android.graphics.Color;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
@@ -133,6 +133,9 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getOnBackPressedDispatcher().addCallback(this, mBackCallback);
+        // Toàn màn hình như WorkoutActivity của Tai Chi: vẽ dưới thanh hệ thống (kể cả tai thỏ), rồi ẩn cả 2 thanh.
+        ImmersiveHelper.hideSystemBars(getWindow());
+        ImmersiveHelper.keepDialogFragments(getSupportFragmentManager());
         binding = ActivityDoWorkoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         applyInsets();
@@ -797,8 +800,10 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
 
     /**
      * Màn tập ẩn status bar/nav bar (immersive) nên tự xử lý inset, không để EdgeToEdgeHelper phủ dải
-     * màu nền (trắng) lên chỗ status bar. Chỉ chừa vùng tai thỏ/camera (và thanh hệ thống nếu đang
-     * hiện), tô cùng màu với nội dung đang hiển thị: trắng khi đang tập, đen khi nghỉ / chuẩn bị.
+     * màu nền (trắng) lên chỗ status bar. Toàn màn hình như Tai Chi: vẽ cả vào vùng tai thỏ/camera và không
+     * chừa đệm (thanh hệ thống luôn ẩn, chỉ hiện tạm đè lên khi vuốt). Không đệm theo inset vì lúc hộp thoại giữ
+     * focus Activity nhận inset thanh hệ thống, nội dung sẽ bị đẩy xuống. Màu icon thanh điều hướng theo nội dung:
+     * nền sáng khi đang tập, tối khi nghỉ / chuẩn bị.
      */
     private void applyInsets() {
         View root = binding.getRoot();
@@ -809,12 +814,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                 if (f.getId() == R.id.content_workout) setBarAreaColor(f instanceof PlayFragment);
             }
         }, false);
-        ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
-            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars()
-                    | WindowInsetsCompat.Type.displayCutout());
-            v.setPadding(bars.left, bars.top, bars.right, bars.bottom);
-            return WindowInsetsCompat.CONSUMED;
-        });
+        ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> WindowInsetsCompat.CONSUMED);
         ViewCompat.requestApplyInsets(root);
     }
 
@@ -824,19 +824,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
     }
 
     private void hideSystemUI() {
-        // Enables regular immersive mode.
-        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
-        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE
-                        // Set the content to appear under the system bars so that the
-                        // content doesn't resize when the system bars hide and show.
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        // Hide the nav bar and status bar4
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+        ImmersiveHelper.hideSystemBars(getWindow());
     }
 
     // Shows the system bars by removing all the flags
