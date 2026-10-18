@@ -274,4 +274,17 @@
     <string name="tts_data">Last ned flere TTS -språkdata</string>
     <string name="device_tts_setting">Innstilling av enheter</string>
     <string name="default_text">Misligholde</string>
+    <string name="txt_plan_saved">Treningsøkt lagret</string>
+    <string name="txt_plan_restored">Opprinnelig treningsøkt gjenopprettet</string>
+    <string name="fb_how_was">Hvordan var %1$s?</string>
+    <string name="fb_like">Liker</string>
+    <string name="fb_dislike">Liker ikke</string>
+    <string name="fb_dislike_saved">Skjønner. Neste gang bytter vi den ut med en lignende øvelse.</string>
+    <string name="fb_disliked_title">Øvelser du ikke liker</string>
+    <string name="fb_disliked_sub">Byttes ut med lignende øvelser i de innebygde øktene</string>
+    <string name="fb_disliked_empty">Ingen øvelser markert ennå</string>
+    <string name="fin_adjust_easier">Takk! Neste gang blir denne økten litt lettere.</string>
+    <string name="fin_adjust_harder">Takk! Neste gang blir denne økten litt tyngre.</string>
+    <string name="pv_difficulty_title">Vanskelighetsgrad justert</string>
+    <string name="pv_difficulty_sub">%1$s ut fra tilbakemeldingen din</string>
 </resources>

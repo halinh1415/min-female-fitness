@@ -2,6 +2,7 @@
 <resources>
     <!-- Dialog xem demo bài tập (DialogDemoWorkout) -->
     <color name="dm_bg">#FFF7FA</color>
+    <color name="dm_media">#FFF7FA</color>
     <color name="dm_card">#FFFFFF</color>
     <color name="dm_stroke">#F1E4EA</color>
     <color name="dm_title">#1F1A1D</color>

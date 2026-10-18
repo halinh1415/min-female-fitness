@@ -22,6 +22,10 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
+import android.graphics.Color;
+import androidx.core.content.ContextCompat;
+import android.widget.Toast;
+import mint.woman.female.workout.utils.ExerciseFeedbackStore;
 import mint.woman.female.workout.activity.ui.workout.DoWorkoutActivity;
 import mint.woman.female.workout.activity.ui.workout.WorkoutViewModel;
 
@@ -81,6 +85,12 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         return fragment;
     }
 
+    /** Hỏi 👍/👎 cho động tác vừa tập xong (chỉ khi đi tiếp, không khi lùi lại). */
+    public RestFragment withFeedback(int previousActionId) {
+        if (getArguments() != null) getArguments().putInt("prev_action", previousActionId);
+        return this;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,6 +128,42 @@ public class RestFragment extends Fragment implements View.OnClickListener {
 
 
         myPreference = new MyPreference(getContext());
+    }
+
+    private void bindFeedback() {
+        // Màn ngang không có hàng này.
+        if (binding.layoutFeedback == null || getArguments() == null) return;
+        int previousId = getArguments().getInt("prev_action", 0);
+        ExerciseObject previous = previousId > 0
+                ? FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(exerciseDiscover, exerciseVersion).get(previousId) : null;
+        if (previous == null) {
+            binding.layoutFeedback.setVisibility(View.GONE);
+            return;
+        }
+        binding.layoutFeedback.setVisibility(View.VISIBLE);
+        binding.tvFeedback.setText(getString(R.string.fb_how_was, previous.getName()));
+        showFeedback(ExerciseFeedbackStore.get(requireContext(), exerciseDiscover, previousId));
+        binding.btnLike.setOnClickListener(v -> toggleFeedback(previousId, ExerciseFeedbackStore.LIKE));
+        binding.btnDislike.setOnClickListener(v -> toggleFeedback(previousId, ExerciseFeedbackStore.DISLIKE));
+    }
+
+    private void toggleFeedback(int actionId, int value) {
+        int current = ExerciseFeedbackStore.get(requireContext(), exerciseDiscover, actionId);
+        int next = current == value ? ExerciseFeedbackStore.NONE : value;
+        ExerciseFeedbackStore.set(requireContext(), exerciseDiscover, actionId, next);
+        showFeedback(next);
+        if (next == ExerciseFeedbackStore.DISLIKE) {
+            Toast.makeText(getContext(), R.string.fb_dislike_saved, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void showFeedback(int value) {
+        if (binding == null || binding.btnLike == null) return;
+        int accent = ContextCompat.getColor(requireContext(), R.color.dm_accent);
+        binding.btnLike.setSelected(value == ExerciseFeedbackStore.LIKE);
+        binding.btnDislike.setSelected(value == ExerciseFeedbackStore.DISLIKE);
+        binding.btnLike.setColorFilter(value == ExerciseFeedbackStore.LIKE ? accent : Color.WHITE);
+        binding.btnDislike.setColorFilter(value == ExerciseFeedbackStore.DISLIKE ? accent : Color.WHITE);
     }
 
     @Override
@@ -191,6 +237,7 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         binding.restProgress.setText(FitnessConstUtils.toTime(mCurrentTime));
         updateRing(false);
         binding.txtSkip.setOnClickListener(this);
+        bindFeedback();
         binding.txtAddTime.setOnClickListener(this);
         // Màn "Sẵn sàng" (trước động tác đầu) không phải nghỉ: ẩn nút chỉnh thời gian nghỉ.
         binding.txtEditRest.setVisibility(readyToGo ? View.GONE : View.VISIBLE);

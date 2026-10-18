@@ -361,4 +361,17 @@
     <string name="search_face_yoga">يوجا الوجه</string>
     <string name="yoga">اليوغا</string>
     <string name="butt">بعقب</string>
+    <string name="txt_plan_saved">تم حفظ التمرين</string>
+    <string name="txt_plan_restored">تمت استعادة التمرين الأصلي</string>
+    <string name="fb_how_was">ما رأيك في %1$s؟</string>
+    <string name="fb_like">أعجبني</string>
+    <string name="fb_dislike">لم يعجبني</string>
+    <string name="fb_dislike_saved">تم. سنستبدله بتمرين مشابه في المرة القادمة.</string>
+    <string name="fb_disliked_title">التمارين غير المفضلة</string>
+    <string name="fb_disliked_sub">تُستبدل بتمارين مشابهة في التمارين المدمجة</string>
+    <string name="fb_disliked_empty">لا توجد تمارين غير مفضلة بعد</string>
+    <string name="fin_adjust_easier">شكرًا! سيكون هذا التمرين أسهل قليلًا في المرة القادمة.</string>
+    <string name="fin_adjust_harder">شكرًا! سيكون هذا التمرين أصعب قليلًا في المرة القادمة.</string>
+    <string name="pv_difficulty_title">تم ضبط الصعوبة</string>
+    <string name="pv_difficulty_sub">%1$s حسب تقييمك</string>
 </resources>

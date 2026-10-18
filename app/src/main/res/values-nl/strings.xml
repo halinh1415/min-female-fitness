@@ -361,4 +361,17 @@
     <string name="search_face_yoga">Gezichtsyoga</string>
     <string name="yoga">Yoga</string>
     <string name="butt">Kont</string>
+    <string name="txt_plan_saved">Training opgeslagen</string>
+    <string name="txt_plan_restored">Oorspronkelijke training hersteld</string>
+    <string name="fb_how_was">Hoe was %1$s?</string>
+    <string name="fb_like">Vind ik leuk</string>
+    <string name="fb_dislike">Vind ik niet leuk</string>
+    <string name="fb_dislike_saved">Begrepen. Volgende keer vervangen we hem door een vergelijkbare oefening.</string>
+    <string name="fb_disliked_title">Oefeningen die je niet leuk vindt</string>
+    <string name="fb_disliked_sub">Worden in de standaardtrainingen vervangen door vergelijkbare oefeningen</string>
+    <string name="fb_disliked_empty">Nog geen oefeningen gemarkeerd</string>
+    <string name="fin_adjust_easier">Bedankt! De volgende keer wordt deze training iets makkelijker.</string>
+    <string name="fin_adjust_harder">Bedankt! De volgende keer wordt deze training iets zwaarder.</string>
+    <string name="pv_difficulty_title">Moeilijkheid aangepast</string>
+    <string name="pv_difficulty_sub">%1$s op basis van je feedback</string>
 </resources>

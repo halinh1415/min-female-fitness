@@ -285,6 +285,14 @@ private fun FeelCard(feel: Int?, onFeel: (Int) -> Unit) {
                 }
             }
         }
+        val adjust = when (feel) {
+            0, 1 -> R.string.fin_adjust_easier
+            3, 4 -> R.string.fin_adjust_harder
+            else -> null
+        }
+        if (adjust != null) {
+            Text(stringResource(adjust), color = MinColor.Pink, fontSize = 13.sp, modifier = Modifier.padding(top = 10.dp))
+        }
     }
 }
 

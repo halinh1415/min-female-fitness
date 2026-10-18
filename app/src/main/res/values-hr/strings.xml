@@ -274,4 +274,17 @@
     <string name="tts_data">Preuzmite više podataka o jeziku TTS</string>
     <string name="device_tts_setting">Postavka uređaja TTS</string>
     <string name="default_text">Zadano</string>
+    <string name="txt_plan_saved">Trening spremljen</string>
+    <string name="txt_plan_restored">Izvorni trening vraćen</string>
+    <string name="fb_how_was">Kako vam je bila vježba %1$s?</string>
+    <string name="fb_like">Sviđa mi se</string>
+    <string name="fb_dislike">Ne sviđa mi se</string>
+    <string name="fb_dislike_saved">Razumijemo. Sljedeći put zamijenit ćemo je sličnom vježbom.</string>
+    <string name="fb_disliked_title">Vježbe koje vam se ne sviđaju</string>
+    <string name="fb_disliked_sub">U gotovim treninzima zamjenjuju se sličnim vježbama</string>
+    <string name="fb_disliked_empty">Još nema označenih vježbi</string>
+    <string name="fin_adjust_easier">Hvala! Sljedeći put trening će biti malo lakši.</string>
+    <string name="fin_adjust_harder">Hvala! Sljedeći put trening će biti malo teži.</string>
+    <string name="pv_difficulty_title">Težina prilagođena</string>
+    <string name="pv_difficulty_sub">%1$s prema vašoj ocjeni</string>
 </resources>

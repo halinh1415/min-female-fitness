@@ -361,4 +361,17 @@
     <string name="search_face_yoga">Menghadapi yoga</string>
     <string name="yoga">Yoga</string>
     <string name="butt">Pantat</string>
+    <string name="txt_plan_saved">Latihan disimpan</string>
+    <string name="txt_plan_restored">Latihan asli dipulihkan</string>
+    <string name="fb_how_was">Bagaimana %1$s?</string>
+    <string name="fb_like">Suka</string>
+    <string name="fb_dislike">Tidak suka</string>
+    <string name="fb_dislike_saved">Oke. Lain kali kami ganti dengan latihan serupa.</string>
+    <string name="fb_disliked_title">Latihan yang tidak disukai</string>
+    <string name="fb_disliked_sub">Diganti dengan latihan serupa di latihan bawaan</string>
+    <string name="fb_disliked_empty">Belum ada latihan yang ditandai</string>
+    <string name="fin_adjust_easier">Terima kasih! Lain kali latihan ini akan sedikit lebih mudah.</string>
+    <string name="fin_adjust_harder">Terima kasih! Lain kali latihan ini akan sedikit lebih berat.</string>
+    <string name="pv_difficulty_title">Tingkat kesulitan disesuaikan</string>
+    <string name="pv_difficulty_sub">%1$s sesuai penilaian Anda</string>
 </resources>

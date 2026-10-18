@@ -125,5 +125,5 @@ object WorkoutExtras {
     }
 
     private fun extra(actionId: Int, section: Int) =
-        PlanObject.ActionObject(actionId, EXTRA_SECONDS, "s", 0, EXTRA_REST).also { it.section = section }
+        PlanObject.ActionObject(actionId, EXTRA_SECONDS, "s", 0, EXTRA_REST).also { it.section = section; it.added = true }
 }

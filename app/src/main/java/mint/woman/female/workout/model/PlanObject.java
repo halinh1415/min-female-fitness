@@ -115,6 +115,8 @@ public class PlanObject implements Parcelable, Cloneable {
         public boolean isSelected = false;
         /** Khởi động / giãn cơ thêm vào buổi tập (WorkoutExtras.SECTION_*); 0 = động tác chính của bài. */
         public int section;
+        /** Động tác khởi động / giãn cơ do WorkoutExtras chèn thêm (không có trong file bài); không lưu vào PlanEditStore. */
+        public boolean added;
 
         public ActionObject() {
             unit ="";

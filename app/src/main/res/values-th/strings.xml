@@ -361,4 +361,17 @@
     <string name="search_face_yoga">โยคะหน้า</string>
     <string name="yoga">โยคะ</string>
     <string name="butt">ก้น</string>
+    <string name="txt_plan_saved">บันทึกการออกกำลังกายแล้ว</string>
+    <string name="txt_plan_restored">คืนค่าการออกกำลังกายเดิมแล้ว</string>
+    <string name="fb_how_was">%1$s เป็นอย่างไรบ้าง?</string>
+    <string name="fb_like">ชอบ</string>
+    <string name="fb_dislike">ไม่ชอบ</string>
+    <string name="fb_dislike_saved">รับทราบ ครั้งหน้าเราจะเปลี่ยนเป็นท่าที่คล้ายกัน</string>
+    <string name="fb_disliked_title">ท่าที่ไม่ชอบ</string>
+    <string name="fb_disliked_sub">จะเปลี่ยนเป็นท่าที่คล้ายกันในโปรแกรมของแอป</string>
+    <string name="fb_disliked_empty">ยังไม่มีท่าที่ไม่ชอบ</string>
+    <string name="fin_adjust_easier">ขอบคุณ! ครั้งหน้าการออกกำลังกายนี้จะง่ายขึ้นเล็กน้อย</string>
+    <string name="fin_adjust_harder">ขอบคุณ! ครั้งหน้าการออกกำลังกายนี้จะหนักขึ้นเล็กน้อย</string>
+    <string name="pv_difficulty_title">ปรับความยากแล้ว</string>
+    <string name="pv_difficulty_sub">%1$s ตามความเห็นของคุณ</string>
 </resources>

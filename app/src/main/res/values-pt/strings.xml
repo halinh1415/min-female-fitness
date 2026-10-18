@@ -361,4 +361,17 @@
     <string name="search_face_yoga">Ioga facial</string>
     <string name="yoga">Ioga</string>
     <string name="butt">Bunda</string>
+    <string name="txt_plan_saved">Treino salvo</string>
+    <string name="txt_plan_restored">Treino original restaurado</string>
+    <string name="fb_how_was">Como foi %1$s?</string>
+    <string name="fb_like">Gostei</string>
+    <string name="fb_dislike">Não gostei</string>
+    <string name="fb_dislike_saved">Entendido. Da próxima vez, vamos trocá-lo por um exercício parecido.</string>
+    <string name="fb_disliked_title">Exercícios que você não gosta</string>
+    <string name="fb_disliked_sub">Trocados por exercícios parecidos nos treinos prontos</string>
+    <string name="fb_disliked_empty">Nenhum exercício marcado ainda</string>
+    <string name="fin_adjust_easier">Obrigado! Da próxima vez este treino será um pouco mais fácil.</string>
+    <string name="fin_adjust_harder">Obrigado! Da próxima vez este treino será um pouco mais difícil.</string>
+    <string name="pv_difficulty_title">Dificuldade ajustada</string>
+    <string name="pv_difficulty_sub">%1$s com base na sua avaliação</string>
 </resources>

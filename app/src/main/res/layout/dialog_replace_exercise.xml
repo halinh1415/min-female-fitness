@@ -1,135 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Dialog sửa số reps / thời gian ở màn Preview (DialogEditExercise). -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:background="@drawable/bg_edit_reps_card"
         android:orientation="vertical"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        android:background="@drawable/bg_week_item">
-
-
+        android:padding="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="vertical">
-            <ImageView
-                android:id="@+id/img_close"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/admob_close_button_black_circle_white_cross" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_exercise_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/DemoHeading"
+                android:layout_width="0dp"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="Push Up"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textSize="@dimen/_16sdp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:fontFamily="@font/fonts"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textSize="18sp"
+                tools:text="Push Up" />
 
+            <ImageView
+                android:id="@+id/img_close"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="-8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@android:string/cancel"
+                android:padding="8dp"
+                android:src="@drawable/ic_edit_reps_close" />
         </LinearLayout>
 
-
-        <ImageView
-            android:id="@+id/videoView"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="@dimen/_120sdp"/>
-        <ScrollView
+        <FrameLayout
+            android:id="@+id/fl_exercise"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_150sdp">
-            <LinearLayout
+            android:layout_height="180dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_edit_reps_media">
+
+            <ImageView
+                android:id="@+id/videoView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:minHeight="@dimen/_50sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-               >
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:scaleType="fitCenter" />
+        </FrameLayout>
 
-                <TextView
-                    android:id="@+id/tv_exercise_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    />
-
-            </LinearLayout>
-        </ScrollView>
-
+        <TextView
+            android:id="@+id/tv_exercise_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:ellipsize="end"
+            android:lineSpacingExtra="2dp"
+            android:maxLines="3"
+            android:textColor="@color/dm_text"
+            android:textSize="14sp"
+            tools:text="Start in a plank position with your hands slightly wider than shoulders." />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/im_minus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_minus" />
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_edit_reps_step"
+                android:contentDescription="-"
+                android:src="@drawable/ic_edit_reps_minus" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_each_side"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tv_rep"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/wp_each_side"
-                    android:textAlignment="center" />
+                    android:fontFamily="@font/fonts"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/dm_title"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    tools:text="× 12" />
 
                 <TextView
-                    android:id="@+id/tv_rep"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tv_each_side"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="7"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="@dimen/_16sdp"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="4dp"
+                    android:text="@string/wp_each_side"
+                    android:textColor="@color/dm_muted"
+                    android:textSize="13sp" />
             </LinearLayout>
-
 
             <ImageButton
                 android:id="@+id/im_plus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_plus" />
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_edit_reps_step"
+                android:contentDescription="+"
+                android:src="@drawable/ic_edit_reps_plus" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_replace"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/background_button_bound"
-            android:text="@string/OK"
-            android:textColor="@color/White"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_exercise_name" />
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btn_cancel"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_edit_reps_outline"
+                android:fontFamily="@font/fonts"
+                android:gravity="center"
+                android:text="@android:string/cancel"
+                android:textAllCaps="false"
+                android:textColor="@color/dm_title"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/btn_replace"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_demo_close"
+                android:fontFamily="@font/fonts"
+                android:gravity="center"
+                android:text="@string/save"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</FrameLayout>

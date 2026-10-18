@@ -361,4 +361,17 @@
     <string name="search_face_yoga">Yüz yogası</string>
     <string name="yoga">Yoga</string>
     <string name="butt">popo</string>
+    <string name="txt_plan_saved">Antrenman kaydedildi</string>
+    <string name="txt_plan_restored">Orijinal antrenman geri yüklendi</string>
+    <string name="fb_how_was">%1$s nasıldı?</string>
+    <string name="fb_like">Beğendim</string>
+    <string name="fb_dislike">Beğenmedim</string>
+    <string name="fb_dislike_saved">Anlaşıldı. Bir dahaki sefere benzer bir egzersizle değiştireceğiz.</string>
+    <string name="fb_disliked_title">Beğenmediğin egzersizler</string>
+    <string name="fb_disliked_sub">Hazır antrenmanlarda benzer egzersizlerle değiştirilir</string>
+    <string name="fb_disliked_empty">Henüz işaretlenmiş egzersiz yok</string>
+    <string name="fin_adjust_easier">Teşekkürler! Bir dahaki sefere bu antrenman biraz daha kolay olacak.</string>
+    <string name="fin_adjust_harder">Teşekkürler! Bir dahaki sefere bu antrenman biraz daha zor olacak.</string>
+    <string name="pv_difficulty_title">Zorluk ayarlandı</string>
+    <string name="pv_difficulty_sub">Değerlendirmene göre %1$s</string>
 </resources>

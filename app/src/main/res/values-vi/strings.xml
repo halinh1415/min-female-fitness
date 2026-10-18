@@ -371,4 +371,17 @@
     <string name="waist_error_range">Nhập vòng eo từ %1$s đến %2$s</string>
     <string name="weight_saved">Đã lưu cân nặng</string>
     <string name="txt_save">Lưu</string>
+    <string name="txt_plan_saved">Đã lưu bài tập</string>
+    <string name="txt_plan_restored">Đã khôi phục bài tập gốc</string>
+    <string name="fb_how_was">Bạn thấy %1$s thế nào?</string>
+    <string name="fb_like">Thích</string>
+    <string name="fb_dislike">Không thích</string>
+    <string name="fb_dislike_saved">Đã ghi nhận. Lần sau sẽ đổi sang động tác tương tự.</string>
+    <string name="fb_disliked_title">Động tác không thích</string>
+    <string name="fb_disliked_sub">Được đổi sang động tác tương tự trong các bài có sẵn</string>
+    <string name="fb_disliked_empty">Chưa có động tác nào bị 👎</string>
+    <string name="fin_adjust_easier">Cảm ơn bạn! Buổi sau bài này sẽ nhẹ hơn một chút.</string>
+    <string name="fin_adjust_harder">Cảm ơn bạn! Buổi sau bài này sẽ nặng hơn một chút.</string>
+    <string name="pv_difficulty_title">Đã điều chỉnh độ khó</string>
+    <string name="pv_difficulty_sub">%1$s theo đánh giá của bạn</string>
 </resources>

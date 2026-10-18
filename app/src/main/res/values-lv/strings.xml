@@ -274,4 +274,17 @@
     <string name="tts_data">Lejupielādējiet vairāk TTS valodas datu</string>
     <string name="device_tts_setting">Ierīces TTS iestatījums</string>
     <string name="default_text">Nepildīt</string>
+    <string name="txt_plan_saved">Treniņš saglabāts</string>
+    <string name="txt_plan_restored">Sākotnējais treniņš atjaunots</string>
+    <string name="fb_how_was">Kā patika %1$s?</string>
+    <string name="fb_like">Patīk</string>
+    <string name="fb_dislike">Nepatīk</string>
+    <string name="fb_dislike_saved">Sapratām. Nākamreiz to aizstāsim ar līdzīgu vingrinājumu.</string>
+    <string name="fb_disliked_title">Nepatīkamie vingrinājumi</string>
+    <string name="fb_disliked_sub">Iebūvētajos treniņos tiek aizstāti ar līdzīgiem</string>
+    <string name="fb_disliked_empty">Vēl nav atzīmētu vingrinājumu</string>
+    <string name="fin_adjust_easier">Paldies! Nākamreiz šis treniņš būs mazliet vieglāks.</string>
+    <string name="fin_adjust_harder">Paldies! Nākamreiz šis treniņš būs mazliet grūtāks.</string>
+    <string name="pv_difficulty_title">Grūtība pielāgota</string>
+    <string name="pv_difficulty_sub">%1$s pēc jūsu vērtējuma</string>
 </resources>

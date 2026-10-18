@@ -5,7 +5,10 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -43,6 +46,10 @@ public class DialogEditExercise extends DialogFragment {
     int actionId;
     int time;
     int min, max;
+    boolean timed, perSide;
+    String unit;
+    int step, low, high;
+    final Handler repeatHandler = new Handler(Looper.getMainLooper());
     String path;
 
     @Override
@@ -54,6 +61,7 @@ public class DialogEditExercise extends DialogFragment {
             time = getArguments().getInt("time");
             max = getArguments().getInt("max");
             min = getArguments().getInt("min");
+            unit = getArguments().getString("unit");
         }
         return dialog;
     }
@@ -66,6 +74,12 @@ public class DialogEditExercise extends DialogFragment {
         arg.putInt("min", min);
         arg.putInt("max", max);
         dialogEditExercise.setArguments(arg);
+        return dialogEditExercise;
+    }
+
+    public static DialogEditExercise newInstance(int actionId, int time, int min, int max, String unit) {
+        DialogEditExercise dialogEditExercise = newInstance(actionId, time, min, max);
+        dialogEditExercise.getArguments().putString("unit", unit);
         return dialogEditExercise;
     }
 
@@ -110,61 +124,87 @@ public class DialogEditExercise extends DialogFragment {
         Glide.with(getContext()).asGif().load(encrypt).into(binding.videoView);
         mExerciseObject = FitnessApplication.getApplication().getHashMapExercise().get(actionId);
         binding.tvExerciseName.setText(mExerciseObject.getName());
-        if (mExerciseObject.getAlternation() && mExerciseObject.getUnit().isEmpty()){
-
-            time = time/2;
-            binding.tvEachSide.setVisibility(View.VISIBLE);
-        }else{
-            time = time;
-
-            binding.tvEachSide.setVisibility(View.GONE);
+        // Đơn vị lấy theo kế hoạch (giống danh sách và màn tập), dữ liệu bài tập chỉ là dự phòng.
+        if (unit == null) unit = mExerciseObject.getUnit();
+        timed = unit.contains("s");
+        perSide = mExerciseObject.getAlternation() && unit.isEmpty();
+        if (perSide) {
+            time = time / 2;
         }
-        if (mExerciseObject.getUnit().isEmpty()){
-            binding.tvRep.setText(""+time);
-        }else {
-            binding.tvRep.setText(FitnessConstUtils.toTime(time));
-        }
+        binding.tvEachSide.setVisibility(perSide ? View.VISIBLE : View.GONE);
+        // Bài tính giờ bước 5 giây (5s..10 phút); bài đếm reps bước 1 trong khoảng min..max được truyền vào.
+        step = timed ? 5 : 1;
+        low = timed ? 5 : Math.max(1, min);
+        high = timed ? 600 : (perSide ? Math.max(low, max / 2) : max);
+        time = Math.max(low, Math.min(high, time));
+        showValue();
 
         binding.tvExerciseDescription.setText(mExerciseObject.getIntroduce());
-        binding.imMinus.setOnClickListener(view1 -> {
-            if (time>2) {
-                time--;
-                if (mExerciseObject.getUnit().isEmpty()){
-                    binding.tvRep.setText(""+time);
-                }else {
-                    binding.tvRep.setText(FitnessConstUtils.toTime(time));
+        binding.imgClose.setOnClickListener(view1 -> dismiss());
+        binding.btnCancel.setOnClickListener(view1 -> dismiss());
+        bindRepeat(binding.imMinus, -1);
+        bindRepeat(binding.imPlus, 1);
+        binding.btnReplace.setOnClickListener(this::onReplace);
+    }
+
+    // Giữ nút +/- để tăng/giảm liên tục.
+    @SuppressLint("ClickableViewAccessibility")
+    private void bindRepeat(View button, int direction) {
+        Runnable repeat = new Runnable() {
+            @Override
+            public void run() {
+                if (change(direction)) {
+                    repeatHandler.postDelayed(this, 80);
                 }
             }
+        };
+        button.setOnClickListener(v -> change(direction));
+        button.setOnLongClickListener(v -> {
+            repeatHandler.post(repeat);
+            return true;
         });
-        binding.imPlus.setOnClickListener(view1 -> {
-            if (time<200){
-                time++;
-                if (mExerciseObject.getUnit().isEmpty()){
-                    binding.tvRep.setText(""+time);
-                }else {
-                    binding.tvRep.setText(FitnessConstUtils.toTime(time));
-                }
+        button.setOnTouchListener((v, event) -> {
+            int action = event.getActionMasked();
+            if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
+                repeatHandler.removeCallbacks(repeat);
             }
-        });
-        binding.btnReplace.setOnClickListener(view1 -> {
-            if (editExerciseListener != null) {
-                if (mExerciseObject.getAlternation()&& mExerciseObject.getUnit().isEmpty()){
-                    editExerciseListener.onChange(actionId, time*2, mExerciseObject.getUnit());
-                }else {
-                    editExerciseListener.onChange(actionId, time, mExerciseObject.getUnit());
-                }
-            }
-            dismiss();
-        });
-        binding.imgClose.setOnClickListener(view1 -> {
-            dismiss();
+            return false;
         });
     }
 
+    private boolean change(int direction) {
+        int next;
+        if (direction > 0) {
+            next = (time / step + 1) * step;
+        } else {
+            next = ((time + step - 1) / step - 1) * step;
+        }
+        next = Math.max(low, Math.min(high, next));
+        if (next == time) return false;
+        time = next;
+        showValue();
+        return true;
+    }
 
+    @SuppressLint("SetTextI18n")
+    private void showValue() {
+        binding.tvRep.setText(timed ? FitnessConstUtils.toTime(time) : "× " + time);
+        binding.imMinus.setEnabled(time > low);
+        binding.imMinus.setAlpha(time > low ? 1f : 0.4f);
+        binding.imPlus.setEnabled(time < high);
+        binding.imPlus.setAlpha(time < high ? 1f : 0.4f);
+    }
+
+    void onReplace(View view) {
+        if (editExerciseListener != null) {
+            editExerciseListener.onChange(actionId, perSide ? time * 2 : time, unit);
+        }
+        dismiss();
+    }
 
     @Override
     public void onDestroyView() {
+        repeatHandler.removeCallbacksAndMessages(null);
         if (getDialog() != null && getRetainInstance()) {
             getDialog().setDismissMessage(null);
         }

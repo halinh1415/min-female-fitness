@@ -361,4 +361,17 @@
     <string name="search_face_yoga">臉部瑜伽</string>
     <string name="yoga">瑜珈</string>
     <string name="butt">屁股</string>
+    <string name="txt_plan_saved">訓練已儲存</string>
+    <string name="txt_plan_restored">已恢復原始訓練</string>
+    <string name="fb_how_was">%1$s 感覺如何？</string>
+    <string name="fb_like">喜歡</string>
+    <string name="fb_dislike">不喜歡</string>
+    <string name="fb_dislike_saved">知道了。下次會換成類似的動作。</string>
+    <string name="fb_disliked_title">不喜歡的動作</string>
+    <string name="fb_disliked_sub">在內建訓練中換成類似動作</string>
+    <string name="fb_disliked_empty">還沒有不喜歡的動作</string>
+    <string name="fin_adjust_easier">謝謝！下次這個訓練會稍微輕鬆一些。</string>
+    <string name="fin_adjust_harder">謝謝！下次這個訓練會稍微難一些。</string>
+    <string name="pv_difficulty_title">難度已調整</string>
+    <string name="pv_difficulty_sub">根據你的評價 %1$s</string>
 </resources>

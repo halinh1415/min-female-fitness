@@ -361,4 +361,17 @@
     <string name="search_face_yoga">یوگای صورت</string>
     <string name="yoga">یوگا</string>
     <string name="butt">لب به لب</string>
+    <string name="txt_plan_saved">تمرین ذخیره شد</string>
+    <string name="txt_plan_restored">تمرین اصلی بازگردانده شد</string>
+    <string name="fb_how_was">%1$s چطور بود؟</string>
+    <string name="fb_like">پسندیدم</string>
+    <string name="fb_dislike">نپسندیدم</string>
+    <string name="fb_dislike_saved">متوجه شدیم. دفعه بعد آن را با تمرین مشابهی عوض می‌کنیم.</string>
+    <string name="fb_disliked_title">تمرین‌های نپسندیده</string>
+    <string name="fb_disliked_sub">در تمرین‌های آماده با تمرین مشابه عوض می‌شوند</string>
+    <string name="fb_disliked_empty">هنوز تمرینی علامت نخورده است</string>
+    <string name="fin_adjust_easier">ممنون! دفعه بعد این تمرین کمی آسان‌تر می‌شود.</string>
+    <string name="fin_adjust_harder">ممنون! دفعه بعد این تمرین کمی سخت‌تر می‌شود.</string>
+    <string name="pv_difficulty_title">سختی تنظیم شد</string>
+    <string name="pv_difficulty_sub">%1$s بر اساس نظر شما</string>
 </resources>

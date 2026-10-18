@@ -274,4 +274,17 @@
     <string name="tts_data">Stáhněte si více jazykových dat TTS</string>
     <string name="device_tts_setting">Nastavení TTS zařízení</string>
     <string name="default_text">Výchozí</string>
+    <string name="txt_plan_saved">Trénink uložen</string>
+    <string name="txt_plan_restored">Původní trénink obnoven</string>
+    <string name="fb_how_was">Jak se vám líbil cvik %1$s?</string>
+    <string name="fb_like">Líbí se mi</string>
+    <string name="fb_dislike">Nelíbí se mi</string>
+    <string name="fb_dislike_saved">Rozumíme. Příště ho nahradíme podobným cvikem.</string>
+    <string name="fb_disliked_title">Neoblíbené cviky</string>
+    <string name="fb_disliked_sub">V připravených trénincích se nahradí podobnými cviky</string>
+    <string name="fb_disliked_empty">Zatím žádné neoblíbené cviky</string>
+    <string name="fin_adjust_easier">Díky! Příště bude tento trénink o něco lehčí.</string>
+    <string name="fin_adjust_harder">Díky! Příště bude tento trénink o něco těžší.</string>
+    <string name="pv_difficulty_title">Obtížnost upravena</string>
+    <string name="pv_difficulty_sub">%1$s podle vašeho hodnocení</string>
 </resources>

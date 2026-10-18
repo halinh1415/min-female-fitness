@@ -2,6 +2,8 @@
 <resources>
     <!-- Dialog xem demo bài tập (DialogDemoWorkout), bản tối -->
     <color name="dm_bg">#151013</color>
+    <!-- Khung ảnh động tác giữ nền sáng: ảnh động tác vẽ trên nền sáng. -->
+    <color name="dm_media">#F3EAEE</color>
     <color name="dm_card">#1F181C</color>
     <color name="dm_stroke">#3A2E34</color>
     <color name="dm_title">#F4ECEF</color>

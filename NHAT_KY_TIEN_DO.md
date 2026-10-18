@@ -475,3 +475,31 @@
   của dialog) và `PauseDialog` vẫn đọc `cache/temp.mp4` không còn ai ghi → khung video đen. Thêm
   `VideoDemoFragment.newInstance(name, actionId)` lấy từ cache (chưa có thì giải mã nền); màn chi tiết bài tập vẫn dùng temp.mp4.
 - Build OK. S8+: dialog hồng đúng style, tab Animation có video (trước đen), màn Tạm dừng có video, Đóng hoạt động.
+
+## 2026-10-18 — Dialog sửa reps ở màn Preview (DialogEditExercise), port từ Home Workout
+- Giao diện mới theo màu dm_* của dialog demo: card bo 24dp, nút X, khung ảnh động tác (dm_media luôn sáng, kể cả dark mode), mô tả 3 dòng, stepper tròn +/-, nút Huỷ (viền) + Lưu.
+- Bài tính giờ bước 5s (5s–10 phút), bài reps bước 1 theo min/max; giữ nút +/- để tăng nhanh; nút mờ khi chạm giới hạn.
+- Dialog lấy đơn vị (giây/reps) theo kế hoạch như danh sách và màn tập (trước đọc từ dữ liệu bài tập nên có bài danh sách ghi 00:30 mà dialog ghi ×15 mỗi bên).
+- Ảnh động tác vẫn là GIF (Glide) như cũ, chỉ đặt vào khung mới.
+- Sửa lỗi: Lưu xong danh sách Compose không vẽ lại số mới (updateTime sửa tại chỗ cùng object) → onChange thay bằng bản sao.
+- Test S8+: Bước cao 00:30 → 00:40, light + dark OK.
+
+## 2026-10-18 — Lưu thật bài đã chỉnh ở màn Preview (PlanEditStore)
+- Trước: bấm LƯU chỉ hiện toast "Save!!!" (chưa dịch), dòng ghi file bị comment → thoát màn là mất mọi chỉnh sửa.
+- Nay: utils/PlanEditStore lưu danh sách đã chỉnh (reps/giây, đổi bài, thứ tự) theo discover + file kế hoạch + ngày (SharedPreferences "plan_edit_pref", JSON). DemoDataProvider.setData dùng bản đã lưu thay danh sách gốc (trước khi WorkoutExtras thêm khởi động/giãn cơ); saveEdits()/clearEdits().
+- Động tác khởi động/giãn cơ do WorkoutExtras chèn thêm được đánh dấu ActionObject.added và không lưu (tránh lặp khi nạp lại); khởi động/giãn cơ có sẵn trong bài vẫn được lưu.
+- ĐẶT LẠI: xoá bản đã chỉnh rồi nạp bài gốc. Toast txt_plan_saved / txt_plan_restored dịch đủ các ngôn ngữ của app.
+- Test S8+: sửa → LƯU → force-stop → mở lại vẫn giữ, số bài không đổi; ĐẶT LẠI về bài gốc. Đã xoá dữ liệu test trên máy.
+
+## 2026-10-18 — Mục 3: nút nhạc ở màn tập + 👍/👎 từng động tác (port từ Home)
+- Màn tập: nút nhạc (img_music, cả dọc/ngang) mở custom/DialogMusic: bật/tắt nhạc, đổi bài (SoundsActivity), âm lượng; icon đổi khi tắt nhạc.
+- Màn nghỉ (chỉ dọc): "Bạn thấy X thế nào?" + 👍 👎 cho động tác vừa tập (RestFragment.withFeedback khi đi tiếp). utils/ExerciseFeedbackStore lưu.
+- 👎: DemoDataProvider đổi sang động tác tương tự (bài có sẵn, ngày chưa tự lưu chỉnh): chung nhóm cơ, cùng giờ/reps, cùng kiểu từng bên, không nhảy/dụng cụ nếu gốc không có, ưu tiên không khó hơn.
+- Cài đặt: "Động tác không thích" (DISLIKED_EXERCISES) xem/bỏ 👎. Chuỗi fb_* dịch đủ ngôn ngữ.
+- Test S8+: nút nhạc + bảng nhạc, hàng 👍👎 ở màn nghỉ hiển thị đúng.
+
+## 2026-10-19 — Mục 4: tự điều chỉnh độ khó theo đánh giá cuối buổi (port từ Home)
+- utils/DifficultyStore: hệ số % theo chương trình từ ô "Bạn thấy buổi tập thế nào?" ở màn hoàn thành (Quá khó −15, Hơi khó −8, Vừa 0, Hơi dễ +8, Quá dễ +15; 60–160%); chọn lại không cộng dồn.
+- DemoDataProvider nhân reps/giây động tác chính (giờ làm tròn 5s), bỏ qua ngày đã tự lưu chỉnh và động tác khởi động/giãn cơ tự chèn.
+- Preview: hàng "Đã điều chỉnh độ khó · ±x% theo đánh giá của bạn · Đặt lại". Màn hoàn thành báo buổi sau nhẹ/nặng hơn. Chuỗi dịch đủ ngôn ngữ.
+- Test S8+ với −8%: hàng hiện đúng; reps giảm (Min: Gánh đùi 12→11). Đã xoá dữ liệu test.

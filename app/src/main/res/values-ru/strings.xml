@@ -361,4 +361,17 @@
     <string name="search_face_yoga">Йога для лица</string>
     <string name="yoga">Йога</string>
     <string name="butt">Задница</string>
+    <string name="txt_plan_saved">Тренировка сохранена</string>
+    <string name="txt_plan_restored">Исходная тренировка восстановлена</string>
+    <string name="fb_how_was">Как вам %1$s?</string>
+    <string name="fb_like">Нравится</string>
+    <string name="fb_dislike">Не нравится</string>
+    <string name="fb_dislike_saved">Понятно. В следующий раз заменим его похожим упражнением.</string>
+    <string name="fb_disliked_title">Нелюбимые упражнения</string>
+    <string name="fb_disliked_sub">В готовых тренировках заменяются похожими</string>
+    <string name="fb_disliked_empty">Пока нет отмеченных упражнений</string>
+    <string name="fin_adjust_easier">Спасибо! В следующий раз эта тренировка будет чуть легче.</string>
+    <string name="fin_adjust_harder">Спасибо! В следующий раз эта тренировка будет чуть сложнее.</string>
+    <string name="pv_difficulty_title">Сложность изменена</string>
+    <string name="pv_difficulty_sub">%1$s по вашей оценке</string>
 </resources>

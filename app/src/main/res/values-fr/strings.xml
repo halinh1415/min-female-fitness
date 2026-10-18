@@ -361,4 +361,17 @@
     <string name="search_face_yoga">Face yoga</string>
     <string name="yoga">Yoga</string>
     <string name="butt">Bout</string>
+    <string name="txt_plan_saved">Entraînement enregistré</string>
+    <string name="txt_plan_restored">Entraînement d\'origine restauré</string>
+    <string name="fb_how_was">Comment était %1$s ?</string>
+    <string name="fb_like">J\'aime</string>
+    <string name="fb_dislike">Je n\'aime pas</string>
+    <string name="fb_dislike_saved">Compris. La prochaine fois, nous le remplacerons par un exercice similaire.</string>
+    <string name="fb_disliked_title">Exercices non appréciés</string>
+    <string name="fb_disliked_sub">Remplacés par des exercices similaires dans les entraînements intégrés</string>
+    <string name="fb_disliked_empty">Aucun exercice marqué pour l\'instant</string>
+    <string name="fin_adjust_easier">Merci ! La prochaine fois, cet entraînement sera un peu plus facile.</string>
+    <string name="fin_adjust_harder">Merci ! La prochaine fois, cet entraînement sera un peu plus difficile.</string>
+    <string name="pv_difficulty_title">Difficulté ajustée</string>
+    <string name="pv_difficulty_sub">%1$s selon votre avis</string>
 </resources>

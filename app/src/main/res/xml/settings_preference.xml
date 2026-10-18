@@ -108,6 +108,11 @@
             app:key="NO_JUMP"
             app:summary="@string/set_no_jump_sub"
             app:title="@string/set_no_jump" />
+        <Preference
+            app:icon="@drawable/ic_pref_thumb_down"
+            app:key="DISLIKED_EXERCISES"
+            app:summary="@string/fb_disliked_sub"
+            app:title="@string/fb_disliked_title" />
 
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/txt_voice_guide">

@@ -453,4 +453,17 @@
     <string name="waist_error_range">Enter a waist size between %1$s and %2$s</string>
     <string name="weight_saved">Weight saved</string>
     <string name="txt_save">Save</string>
+    <string name="txt_plan_saved">Workout saved</string>
+    <string name="txt_plan_restored">Original workout restored</string>
+    <string name="fb_how_was">How was %1$s?</string>
+    <string name="fb_like">Like</string>
+    <string name="fb_dislike">Dislike</string>
+    <string name="fb_dislike_saved">Got it. Next time we\'ll swap it for a similar exercise.</string>
+    <string name="fb_disliked_title">Disliked exercises</string>
+    <string name="fb_disliked_sub">Swapped for similar exercises in built-in workouts</string>
+    <string name="fb_disliked_empty">No disliked exercises yet</string>
+    <string name="fin_adjust_easier">Thanks! Next time this workout will be a little easier.</string>
+    <string name="fin_adjust_harder">Thanks! Next time this workout will be a little harder.</string>
+    <string name="pv_difficulty_title">Difficulty adjusted</string>
+    <string name="pv_difficulty_sub">%1$s based on your feedback</string>
 </resources>

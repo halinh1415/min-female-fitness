@@ -361,4 +361,17 @@
     <string name="search_face_yoga">Joga twarzy</string>
     <string name="yoga">Joga</string>
     <string name="butt">Krupon</string>
+    <string name="txt_plan_saved">Trening zapisany</string>
+    <string name="txt_plan_restored">Przywrócono oryginalny trening</string>
+    <string name="fb_how_was">Jak ci poszło %1$s?</string>
+    <string name="fb_like">Lubię</string>
+    <string name="fb_dislike">Nie lubię</string>
+    <string name="fb_dislike_saved">Rozumiemy. Następnym razem zamienimy je na podobne ćwiczenie.</string>
+    <string name="fb_disliked_title">Nielubiane ćwiczenia</string>
+    <string name="fb_disliked_sub">W gotowych treningach zamieniane na podobne ćwiczenia</string>
+    <string name="fb_disliked_empty">Brak oznaczonych ćwiczeń</string>
+    <string name="fin_adjust_easier">Dzięki! Następnym razem ten trening będzie trochę łatwiejszy.</string>
+    <string name="fin_adjust_harder">Dzięki! Następnym razem ten trening będzie trochę trudniejszy.</string>
+    <string name="pv_difficulty_title">Poziom trudności dostosowany</string>
+    <string name="pv_difficulty_sub">%1$s na podstawie Twojej oceny</string>
 </resources>

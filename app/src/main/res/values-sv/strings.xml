@@ -274,4 +274,17 @@
     <string name="tts_data">Ladda ner fler TTS -språkdata</string>
     <string name="device_tts_setting">Enhet TTS -inställning</string>
     <string name="default_text">Standard</string>
+    <string name="txt_plan_saved">Träningspass sparat</string>
+    <string name="txt_plan_restored">Ursprungligt träningspass återställt</string>
+    <string name="fb_how_was">Hur var %1$s?</string>
+    <string name="fb_like">Gillar</string>
+    <string name="fb_dislike">Gillar inte</string>
+    <string name="fb_dislike_saved">Uppfattat. Nästa gång byter vi ut den mot en liknande övning.</string>
+    <string name="fb_disliked_title">Övningar du ogillar</string>
+    <string name="fb_disliked_sub">Byts mot liknande övningar i de inbyggda passen</string>
+    <string name="fb_disliked_empty">Inga markerade övningar ännu</string>
+    <string name="fin_adjust_easier">Tack! Nästa gång blir passet lite lättare.</string>
+    <string name="fin_adjust_harder">Tack! Nästa gång blir passet lite tuffare.</string>
+    <string name="pv_difficulty_title">Svårighetsgrad justerad</string>
+    <string name="pv_difficulty_sub">%1$s utifrån din feedback</string>
 </resources>

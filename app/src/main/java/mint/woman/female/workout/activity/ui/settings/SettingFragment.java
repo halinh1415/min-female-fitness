@@ -34,6 +34,12 @@ import java.util.Locale;
 import mint.woman.female.workout.BuildConfig;
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.utils.ExerciseFeedbackStore;
+import mint.woman.female.workout.model.ExerciseObject;
+import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
+import androidx.appcompat.app.AlertDialog;
 import mint.woman.female.workout.activity.PolicyActivity;
 import mint.woman.female.workout.activity.ui.badge.BadgeActivity;
 import mint.woman.female.workout.activity.ui.main.HealthDataDialog;
@@ -78,6 +84,7 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         Preference music = findPreference("BACK_GROUND_MUSIC");
         music.setSummary(MyPreference.newInstance(getContext()).getMusicName());
         findPreference("BACK_GROUND_MUSIC").setOnPreferenceClickListener(this);
+        findPreference("DISLIKED_EXERCISES").setOnPreferenceClickListener(this);
         findPreference("RECOMMEND_APP").setOnPreferenceClickListener(this);
         findPreference("COACH").setOnPreferenceClickListener(this);
         Preference coachPreference = findPreference("COACH");
@@ -158,6 +165,35 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
     }
 
 
+    /** Danh sách động tác đã 👎 (ExerciseFeedbackStore); bỏ chọn để thôi tự đổi động tác đó. */
+    private void showDislikedExercises() {
+        List<Integer> ids = new ArrayList<>(ExerciseFeedbackStore.disliked(requireContext(), 0));
+        if (ids.isEmpty()) {
+            Toast.makeText(getContext(), R.string.fb_disliked_empty, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Map<Integer, ExerciseObject> exercises = FitnessApplication.getApplication().mJsonHelper.getHashMapExercise(0, FitnessApplication.getApplication().getVersion());
+        String[] names = new String[ids.size()];
+        boolean[] checked = new boolean[ids.size()];
+        for (int i = 0; i < ids.size(); i++) {
+            ExerciseObject exercise = exercises.get(ids.get(i));
+            names[i] = exercise != null ? exercise.getName() : "#" + ids.get(i);
+            checked[i] = true;
+        }
+        new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.fb_disliked_title)
+                .setMultiChoiceItems(names, checked, (dialog, which, isChecked) -> checked[which] = isChecked)
+                .setPositiveButton(R.string.save, (dialog, which) -> {
+                    for (int i = 0; i < ids.size(); i++) {
+                        if (!checked[i]) {
+                            ExerciseFeedbackStore.set(requireContext(), 0, ids.get(i), ExerciseFeedbackStore.NONE);
+                        }
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }
+
     @Override
     public boolean onPreferenceClick(Preference preference) {
         switch (preference.getKey()) {
@@ -231,6 +267,9 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
                 break;
             case "ST_REMINDER":
                 Navigation.findNavController(getView()).navigate(R.id.action_nav_setting_to_nav_reminder);
+                break;
+            case "DISLIKED_EXERCISES":
+                showDislikedExercises();
                 break;
             case "BACK_GROUND_MUSIC":
                 startActivity(new Intent(getActivity(), SoundsActivity.class));

@@ -9,6 +9,9 @@ import mint.woman.female.workout.model.ExerciseObject;
 import mint.woman.female.workout.model.PlanObject;
 import mint.woman.female.workout.model.ProgramObject;
 import mint.woman.female.workout.utils.JsonHelper;
+import mint.woman.female.workout.utils.DifficultyStore;
+import mint.woman.female.workout.utils.ExerciseFeedbackStore;
+import mint.woman.female.workout.utils.PlanEditStore;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,6 +46,8 @@ public class DemoDataProvider extends AbstractDemoDataProvider {
     }
 
     public void setData(String fileName, int day) {
+        planFile = fileName;
+        appliedPercent = 100;
         mData = mJsonHelper.getListPlan(fileName, discover, version);
         index = day;
         actionObjectList = new ArrayList<>();
@@ -77,10 +82,41 @@ public class DemoDataProvider extends AbstractDemoDataProvider {
                     actionObjectList.add(action.clone());
                 }
             }
+            // Ngày này người dùng đã chỉnh và bấm Lưu ở màn Preview: dùng bản đó thay danh sách gốc.
+            List<PlanObject.ActionObject> edited = PlanEditStore.load(mContext, discover, fileName, day);
+            if (edited != null) {
+                actionObjectList = edited;
+            } else {
+                if (discover == 0) {
+                    ExerciseFeedbackStore.swapDisliked(mContext, discover, actionObjectList, hashMap);
+                }
+                if (extrasProgram != null) {
+                    DifficultyStore.scale(mContext, extrasProgram.getId(), actionObjectList, hashMap);
+                    appliedPercent = DifficultyStore.percent(mContext, extrasProgram.getId());
+                }
+            }
             if (extrasProgram != null) {
                 WorkoutExtras.apply(actionObjectList, hashMap, extrasProgram, extrasWarmUp, extrasNoJump);
             }
         }
+    }
+
+    private String planFile;
+    private int appliedPercent = 100;
+
+    /** Hệ số độ khó (%) đã áp vào danh sách lần nạp gần nhất; 100 = không chỉnh. */
+    public int getAppliedPercent() {
+        return appliedPercent;
+    }
+
+    /** Ghi danh sách đang chỉnh (động tác chính) cho ngày đang mở; lần nạp sau dùng bản này. */
+    public void saveEdits() {
+        if (planFile != null) PlanEditStore.save(mContext, discover, planFile, index, actionObjectList);
+    }
+
+    /** Bỏ bản đã chỉnh của ngày đang mở để Đặt lại về bài gốc. */
+    public void clearEdits() {
+        if (planFile != null) PlanEditStore.clear(mContext, discover, planFile, index);
     }
 
     private ProgramObject extrasProgram;

@@ -274,4 +274,17 @@
     <string name="tts_data">Lataa lisää TTS -kielitietoja</string>
     <string name="device_tts_setting">Laite TTS -asetus</string>
     <string name="default_text">Laiminlyönti</string>
+    <string name="txt_plan_saved">Treeni tallennettu</string>
+    <string name="txt_plan_restored">Alkuperäinen treeni palautettu</string>
+    <string name="fb_how_was">Millainen %1$s oli?</string>
+    <string name="fb_like">Tykkään</string>
+    <string name="fb_dislike">En tykkää</string>
+    <string name="fb_dislike_saved">Selvä. Ensi kerralla vaihdamme sen samankaltaiseen liikkeeseen.</string>
+    <string name="fb_disliked_title">Liikkeet, joista et pidä</string>
+    <string name="fb_disliked_sub">Vaihdetaan valmiissa treeneissä samankaltaisiin liikkeisiin</string>
+    <string name="fb_disliked_empty">Ei vielä merkittyjä liikkeitä</string>
+    <string name="fin_adjust_easier">Kiitos! Ensi kerralla treeni on vähän kevyempi.</string>
+    <string name="fin_adjust_harder">Kiitos! Ensi kerralla treeni on vähän rankempi.</string>
+    <string name="pv_difficulty_title">Vaikeustaso säädetty</string>
+    <string name="pv_difficulty_sub">%1$s palautteesi perusteella</string>
 </resources>

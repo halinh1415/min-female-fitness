@@ -257,4 +257,17 @@
     <string name="tip_connect_hc_success">हेल्थ कनेक्ट से सफलतापूर्वक जुड़ा</string>
     <string name="tip_disconnect_hc_success">हेल्थ कनेक्ट से डिसकनेक्ट हो गया</string>
     <string name="update_health_connect_gpt">हेल्थ कनेक्ट अपडेट करें</string>
+    <string name="txt_plan_saved">वर्कआउट सहेजा गया</string>
+    <string name="txt_plan_restored">मूल वर्कआउट बहाल किया गया</string>
+    <string name="fb_how_was">%1$s कैसा लगा?</string>
+    <string name="fb_like">पसंद है</string>
+    <string name="fb_dislike">पसंद नहीं</string>
+    <string name="fb_dislike_saved">ठीक है। अगली बार हम इसे मिलते-जुलते व्यायाम से बदल देंगे।</string>
+    <string name="fb_disliked_title">नापसंद व्यायाम</string>
+    <string name="fb_disliked_sub">तैयार वर्कआउट में मिलते-जुलते व्यायाम से बदले जाते हैं</string>
+    <string name="fb_disliked_empty">अभी कोई नापसंद व्यायाम नहीं</string>
+    <string name="fin_adjust_easier">धन्यवाद! अगली बार यह वर्कआउट थोड़ा आसान होगा।</string>
+    <string name="fin_adjust_harder">धन्यवाद! अगली बार यह वर्कआउट थोड़ा कठिन होगा।</string>
+    <string name="pv_difficulty_title">कठिनाई बदली गई</string>
+    <string name="pv_difficulty_sub">आपकी राय के अनुसार %1$s</string>
 </resources>

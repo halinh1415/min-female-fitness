@@ -24,4 +24,13 @@
         <item name="android:orientation">vertical</item>
         <item name="android:padding">16dp</item>
     </style>
+
+    <!-- Bảng nhạc nền ở màn tập: nền trong suốt để thấy góc bo của layout. -->
+    <style name="MusicSheet" parent="Theme.MaterialComponents.DayNight.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/MusicSheetBody</item>
+    </style>
+
+    <style name="MusicSheetBody" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 </resources>

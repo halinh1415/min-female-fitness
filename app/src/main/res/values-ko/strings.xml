@@ -361,4 +361,17 @@
     <string name="search_face_yoga">페이스 요가</string>
     <string name="yoga">요가</string>
     <string name="butt">대상</string>
+    <string name="txt_plan_saved">운동이 저장되었습니다</string>
+    <string name="txt_plan_restored">원래 운동으로 복원되었습니다</string>
+    <string name="fb_how_was">%1$s 어땠나요?</string>
+    <string name="fb_like">좋아요</string>
+    <string name="fb_dislike">별로예요</string>
+    <string name="fb_dislike_saved">알겠습니다. 다음부터 비슷한 운동으로 바꿔 드릴게요.</string>
+    <string name="fb_disliked_title">별로인 운동</string>
+    <string name="fb_disliked_sub">기본 운동에서 비슷한 운동으로 바뀝니다</string>
+    <string name="fb_disliked_empty">아직 표시한 운동이 없습니다</string>
+    <string name="fin_adjust_easier">감사합니다! 다음에는 이 운동이 조금 쉬워집니다.</string>
+    <string name="fin_adjust_harder">감사합니다! 다음에는 이 운동이 조금 어려워집니다.</string>
+    <string name="pv_difficulty_title">난이도 조정됨</string>
+    <string name="pv_difficulty_sub">평가에 따라 %1$s</string>
 </resources>

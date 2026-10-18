@@ -1,5 +1,6 @@
 package mint.woman.female.workout.activity.ui.workout
 
+import mint.woman.female.workout.utils.DifficultyStore
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
@@ -82,6 +83,7 @@ import java.util.Locale
  */
 class FinishedActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
     var mProgramObject: ProgramObject? = null
+    private val basePercent by lazy { DifficultyStore.percent(this, mProgramObject?.id ?: 0) }
     lateinit var mHistoryItem: HistoryItem
     var mCongratulationPlayer: MediaPlayer? = null
     lateinit var myPreference: MyPreference
@@ -300,9 +302,12 @@ class FinishedActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
     private fun reminderText(): String =
         FitnessApplication.getApplication().mDatabase.getReminderSet().orEmpty().ifBlank { "--:--" }
 
-    /** Lưu cảm nhận độ khó (0 = quá khó .. 4 = quá dễ) để thống kê. */
+    /** Cảm nhận độ khó (0 = quá khó .. 4 = quá dễ): thống kê + DifficultyStore chỉnh reps buổi sau. */
     private fun onFeel(level: Int) {
         state = state.copy(feel = level)
+        // Buổi sau tự tăng / giảm reps theo đánh giá; tính từ hệ số lúc mở màn để chọn lại không cộng dồn.
+        val programId = mProgramObject?.id ?: 0
+        DifficultyStore.applyFeel(this, programId, basePercent, level)
         FirebaseAnalytics.getInstance(this).logEvent("workout_feel", Bundle().apply {
             putInt("feel", level)
             putInt("program_id", mProgramObject?.id ?: 0)

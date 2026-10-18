@@ -361,4 +361,17 @@
     <string name="search_face_yoga">Face yoga</string>
     <string name="yoga">Yoga</string>
     <string name="butt">Bagdel</string>
+    <string name="txt_plan_saved">Træning gemt</string>
+    <string name="txt_plan_restored">Oprindelig træning gendannet</string>
+    <string name="fb_how_was">Hvordan var %1$s?</string>
+    <string name="fb_like">Synes godt om</string>
+    <string name="fb_dislike">Synes ikke om</string>
+    <string name="fb_dislike_saved">Forstået. Næste gang skifter vi den ud med en lignende øvelse.</string>
+    <string name="fb_disliked_title">Øvelser du ikke kan lide</string>
+    <string name="fb_disliked_sub">Skiftes ud med lignende øvelser i de indbyggede træninger</string>
+    <string name="fb_disliked_empty">Ingen øvelser markeret endnu</string>
+    <string name="fin_adjust_easier">Tak! Næste gang bliver træningen lidt lettere.</string>
+    <string name="fin_adjust_harder">Tak! Næste gang bliver træningen lidt hårdere.</string>
+    <string name="pv_difficulty_title">Sværhedsgrad justeret</string>
+    <string name="pv_difficulty_sub">%1$s ud fra din feedback</string>
 </resources>

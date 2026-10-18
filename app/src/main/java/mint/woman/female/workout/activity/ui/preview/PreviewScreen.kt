@@ -1,5 +1,6 @@
 package mint.woman.female.workout.activity.ui.preview
 
+import androidx.compose.material3.TextButton
 import mint.woman.female.workout.common.data.WorkoutExtras
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Switch
@@ -116,6 +117,9 @@ class PreviewUiState {
     var warmUpVisible by mutableStateOf(false)
     var warmUpOn by mutableStateOf(true)
 
+    /** Hệ số độ khó đã tự chỉnh theo đánh giá cuối buổi (DifficultyStore); 100 = ẩn hàng. */
+    var difficultyPercent by mutableIntStateOf(100)
+
     /** Banner quảng cáo (AdView) do Activity tạo; null = không hiện. */
     var banner by mutableStateOf<View?>(null)
 
@@ -135,6 +139,7 @@ interface PreviewActions {
     fun onSave()
     fun onResetPlan()
     fun onToggleWarmUp()
+    fun onResetDifficulty()
     fun onItemClick(index: Int)
     fun onReplace(index: Int)
     fun onMove(from: Int, to: Int)
@@ -188,6 +193,9 @@ fun PreviewScreen(state: PreviewUiState, actions: PreviewActions) {
             }
             if (state.warmUpVisible && !state.editMode && items != null) {
                 item(key = "warmup") { WarmUpRow(state.warmUpOn, actions::onToggleWarmUp) }
+            }
+            if (state.difficultyPercent != 100 && !state.editMode && items != null) {
+                item(key = "difficulty") { DifficultyRow(state.difficultyPercent, actions::onResetDifficulty) }
             }
             if (items == null) {
                 item(key = "download") { DownloadPlaceholder() }
@@ -521,6 +529,34 @@ private fun ExerciseRow(
             }
         } else {
             Text("›", fontSize = 26.sp, color = MinColor.TextMuted, modifier = Modifier.padding(horizontal = 6.dp))
+        }
+    }
+}
+
+/** Độ khó đã tự chỉnh theo đánh giá cuối buổi, kèm nút Đặt lại. */
+@Composable
+private fun DifficultyRow(percent: Int, onReset: () -> Unit) {
+    Row(
+        Modifier
+            .padding(horizontal = 16.dp, vertical = 5.dp)
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(18.dp))
+            .background(MinColor.PinkSoft)
+            .padding(start = 14.dp, end = 4.dp, top = 10.dp, bottom = 10.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text("🎚️", fontSize = 22.sp)
+        Spacer(Modifier.width(12.dp))
+        Column(Modifier.weight(1f)) {
+            Text(stringResource(R.string.pv_difficulty_title), fontSize = 15.sp, fontWeight = FontWeight.Bold, color = MinColor.TextPrimary)
+            Text(
+                stringResource(R.string.pv_difficulty_sub, (if (percent > 100) "+" else "") + (percent - 100) + "%"),
+                fontSize = 12.sp,
+                color = MinColor.TextSecondary
+            )
+        }
+        TextButton(onClick = onReset) {
+            Text(stringResource(R.string.txt_reset), color = MinColor.Pink, fontWeight = FontWeight.Bold)
         }
     }
 }

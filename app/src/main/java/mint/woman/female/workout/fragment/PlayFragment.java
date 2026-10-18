@@ -34,6 +34,7 @@ import java.io.File;
 
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.custom.DialogMusic;
 import mint.woman.female.workout.activity.ui.count.CountManagerActivity;
 import mint.woman.female.workout.activity.ui.workout.DoWorkoutActivity;
 import mint.woman.female.workout.activity.ui.workout.WorkoutViewModel;
@@ -196,10 +197,17 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         binding.tvExerciseName.setOnClickListener(this);
         binding.imgSetting.setOnClickListener(this);
         binding.imgRotate.setOnClickListener(this);
+        binding.imgMusic.setOnClickListener(this);
+        mWorkoutViewModel.isMusicOn().observe(getViewLifecycleOwner(), on -> updateMusicIcon());
         binding.imgDone.setOnClickListener(this);
 
     }
 
+
+    private void updateMusicIcon() {
+        if (binding == null) return;
+        binding.imgMusic.setImageResource(myPreference.isMusicOn() ? R.drawable.ic_player_music : R.drawable.ic_player_music_off);
+    }
 
     public void onPauseReady() {
         if (countDownTimer != null) {
@@ -480,6 +488,9 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
 //                DialogSound soundSettings = new DialogSound();
 //                soundSettings.show(getParentFragmentManager(), "sound_settings");
                 break;
+            case R.id.img_music:
+                new DialogMusic().show(getParentFragmentManager(), "music");
+                break;
             case R.id.img_rotate:
                 int currentOrientation = getActivity().getRequestedOrientation();
                 if (currentOrientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
@@ -517,6 +528,8 @@ public class PlayFragment extends Fragment implements View.OnClickListener {
         binding.tvExerciseName.setOnClickListener(this);
         binding.imgSetting.setOnClickListener(this);
         binding.imgRotate.setOnClickListener(this);
+        binding.imgMusic.setOnClickListener(this);
+        updateMusicIcon();
         binding.imgDone.setOnClickListener(this);
     }
 

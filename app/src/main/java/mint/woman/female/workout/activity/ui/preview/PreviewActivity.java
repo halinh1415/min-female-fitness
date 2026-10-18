@@ -43,6 +43,7 @@ import mint.woman.female.workout.activity.ui.settings.CoachOptionActivity;
 
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.utils.DifficultyStore;
 import mint.woman.female.workout.activity.ui.premium.PremiumActivity;
 import mint.woman.female.workout.activity.ui.count.CountManagerActivity;
 import mint.woman.female.workout.activity.ui.workout.DoWorkoutActivity;
@@ -259,6 +260,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewActions
         mDemoDataProvider.setData(mProgramObject.getPlan(), mIndexDay);
         state.setWarmUpVisible(mDemoDataProvider.supportsWarmUp());
         state.setWarmUpOn(myPreference.isWarmUpCoolDown());
+        state.setDifficultyPercent(mDemoDataProvider.getAppliedPercent());
         refreshItems();
         updatePlan();
         startDownLoadAudio();
@@ -575,8 +577,15 @@ public class PreviewActivity extends AppCompatActivity implements PreviewActions
             file.mkdirs();
         }
         myPreference.setVersionPlan(mProgramObject.getPlan(), JsonHelper.VERSION_DAY_PLAN);
+        mDemoDataProvider.saveEdits();
         updatePlan();
-        Toast.makeText(this, "Save!!!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.txt_plan_saved, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onResetDifficulty() {
+        DifficultyStore.reset(this, mProgramObject.getId());
+        updateData();
     }
 
     @Override
@@ -591,7 +600,9 @@ public class PreviewActivity extends AppCompatActivity implements PreviewActions
     public void onResetPlan() {
         if (mDemoDataProvider == null) return;
         if (mProgramObject.getType() <= 2) {
+            mDemoDataProvider.clearEdits();
             mDemoDataProvider.resetData(mProgramObject.getPlan());
+            Toast.makeText(this, R.string.txt_plan_restored, Toast.LENGTH_SHORT).show();
         }
         refreshItems();
         updatePlan();
@@ -727,7 +738,7 @@ public class PreviewActivity extends AppCompatActivity implements PreviewActions
     public void onRepsEdit(int position, PlanObject.ActionObject actionObject) {
         //showAlertRepsEdit(position, actionObject);
         currentActionIndex = position;
-        DialogEditExercise dialogEditWorkout = DialogEditExercise.newInstance(actionObject.actionId, actionObject.time, 1, 200);
+        DialogEditExercise dialogEditWorkout = DialogEditExercise.newInstance(actionObject.actionId, actionObject.time, 1, 200, actionObject.getUnit());
         dialogEditWorkout.setEditExerciseListener(this);
         dialogEditWorkout.show(getSupportFragmentManager(), "Edit");
     }
@@ -844,7 +855,11 @@ public class PreviewActivity extends AppCompatActivity implements PreviewActions
 
     @Override
     public void onChange(int action, int time, String unit) {
-        mDemoDataProvider.updateTime(currentActionIndex, time);
+        // Thay bằng bản sao thay vì sửa tại chỗ: danh sách Compose giữ cùng object nên không vẽ lại số mới.
+        if (currentActionIndex < 0 || currentActionIndex >= mDemoDataProvider.getItemCount()) return;
+        PlanObject.ActionObject edited = mDemoDataProvider.getItem(currentActionIndex).clone();
+        edited.time = time;
+        mDemoDataProvider.updateItem(currentActionIndex, edited);
         refreshItems();
         updatePlan();
     }

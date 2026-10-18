@@ -361,4 +361,17 @@
     <string name="search_face_yoga">Gesichtsyoga</string>
     <string name="yoga">Yoga</string>
     <string name="butt">Hintern</string>
+    <string name="txt_plan_saved">Training gespeichert</string>
+    <string name="txt_plan_restored">Ursprüngliches Training wiederhergestellt</string>
+    <string name="fb_how_was">Wie war %1$s?</string>
+    <string name="fb_like">Gefällt mir</string>
+    <string name="fb_dislike">Gefällt mir nicht</string>
+    <string name="fb_dislike_saved">Verstanden. Beim nächsten Mal tauschen wir sie gegen eine ähnliche Übung.</string>
+    <string name="fb_disliked_title">Nicht gemochte Übungen</string>
+    <string name="fb_disliked_sub">Werden in den Standard-Trainings durch ähnliche Übungen ersetzt</string>
+    <string name="fb_disliked_empty">Noch keine nicht gemochten Übungen</string>
+    <string name="fin_adjust_easier">Danke! Beim nächsten Mal wird dieses Training etwas leichter.</string>
+    <string name="fin_adjust_harder">Danke! Beim nächsten Mal wird dieses Training etwas schwerer.</string>
+    <string name="pv_difficulty_title">Schwierigkeit angepasst</string>
+    <string name="pv_difficulty_sub">%1$s nach deinem Feedback</string>
 </resources>

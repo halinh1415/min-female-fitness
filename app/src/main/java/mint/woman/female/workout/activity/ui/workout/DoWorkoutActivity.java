@@ -670,7 +670,8 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                     mAudioAppManager.playText(getString(R.string.wp_each_side));
                 }
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance(getActionObjectCurrent(),getRest(), progress), "Rest").commitAllowingStateLoss();
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_workout, RestFragment.newInstance(getActionObjectCurrent(),getRest(), progress)
+                    .withFeedback(actionObjectList.get(currentExerciseCount - 1).actionId), "Rest").commitAllowingStateLoss();
         } else {
             myPreference.saveProgressWorkout(mProgramObject.getId(), mDayIndex, 0);
             myPreference.setSaveProgressPercent(mProgramObject.getId(), mDayIndex, 1);

@@ -361,4 +361,17 @@
     <string name="search_face_yoga">顔ヨガ</string>
     <string name="yoga">ヨガ</string>
     <string name="butt">お尻</string>
+    <string name="txt_plan_saved">ワークアウトを保存しました</string>
+    <string name="txt_plan_restored">元のワークアウトに戻しました</string>
+    <string name="fb_how_was">%1$sはどうでしたか？</string>
+    <string name="fb_like">好き</string>
+    <string name="fb_dislike">苦手</string>
+    <string name="fb_dislike_saved">了解しました。次回から似た種目に入れ替えます。</string>
+    <string name="fb_disliked_title">苦手な種目</string>
+    <string name="fb_disliked_sub">内蔵ワークアウトでは似た種目に入れ替えます</string>
+    <string name="fb_disliked_empty">まだ苦手な種目はありません</string>
+    <string name="fin_adjust_easier">ありがとうございます！次回はこのワークアウトを少し軽くします。</string>
+    <string name="fin_adjust_harder">ありがとうございます！次回はこのワークアウトを少しきつくします。</string>
+    <string name="pv_difficulty_title">難易度を調整しました</string>
+    <string name="pv_difficulty_sub">評価に合わせて %1$s</string>
 </resources>
