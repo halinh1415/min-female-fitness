@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ImmersiveHelper: margin / padding gốc trước khi lùi khỏi vùng camera. -->
+    <item name="tag_cutout_base_margins" type="id" />
+    <item name="tag_cutout_base_padding" type="id" />
+    <item name="tag_cutout_inset" type="id" />
+</resources>

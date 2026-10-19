@@ -322,11 +322,8 @@ private fun HeroAndCoach(state: HomeUiState, actions: HomeActions) {
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
-            // Có plan cá nhân: thẻ "Ngày x/28" ngay bên dưới là việc chính của hôm nay, chỉ hiện gợi ý khi hôm nay đã tập.
-            if (state.personalPlan == null || state.weekDays.any { it.today && it.done }) {
-                Spacer(Modifier.height(14.dp))
-                CoachCard(state, actions)
-            }
+            Spacer(Modifier.height(14.dp))
+            CoachCard(state, actions)
         }
     }
 }

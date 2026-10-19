@@ -2,6 +2,14 @@
 
 > Mới nhất ở trên.
 
+## 2026-10-19 – Khôi phục file JSON trong assets bị xoá khi dọn tài nguyên ✅ (yêu cầu Telegram, chưa commit)
+- Commit dọn 9842958 (17/10) xoá assets/breath.json, assets/slot_machine.json. Chủ app: giữ lại mọi file JSON trong assets.
+  Khôi phục cả 2 file. Build OK.
+
+## 2026-10-19 – Home: luôn hiện thẻ "Gợi ý hôm nay" ✅ (yêu cầu Telegram, chưa commit)
+- Từ bản port "plan-first home" (de5f3dc), có kế hoạch cá nhân mà hôm nay chưa tập thì thẻ gợi ý bị ẩn. Chủ app muốn như trước.
+- `HomeScreen.kt` (HeroAndCoach): bỏ điều kiện, `CoachCard` luôn hiện. Chỉ sửa Min-Female (Home Workout, WomenWorkout giữ nguyên).
+
 ## 2026-10-17 – Highlight nhóm cơ: bỏ làm mờ nền ✅ (yêu cầu Telegram, chưa push)
 - `MuscleMapView`: bỏ `baseAlpha` / `DIM_ALPHA` / `saveLayerAlpha` (giống Home Workout) – hình cơ thể giữ nguyên độ sáng,
   chỉ nhóm cơ được chọn nhấp nháy vàng.

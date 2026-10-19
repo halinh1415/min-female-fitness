@@ -801,10 +801,10 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
 
     /**
      * Màn tập ẩn status bar/nav bar (immersive) nên tự xử lý inset, không để EdgeToEdgeHelper phủ dải
-     * màu nền (trắng) lên chỗ status bar. Toàn màn hình như Tai Chi: vẽ cả vào vùng tai thỏ/camera và không
-     * chừa đệm (thanh hệ thống luôn ẩn, chỉ hiện tạm đè lên khi vuốt). Không đệm theo inset vì lúc hộp thoại giữ
-     * focus Activity nhận inset thanh hệ thống, nội dung sẽ bị đẩy xuống. Màu icon thanh điều hướng theo nội dung:
-     * nền sáng khi đang tập, tối khi nghỉ / chuẩn bị.
+     * màu nền (trắng) lên chỗ status bar. Toàn màn hình như Tai Chi: nền vẽ cả vào vùng tai thỏ/camera, chỉ nút /
+     * chữ lùi ra khỏi vùng đó (ImmersiveHelper.installCutoutInsets). Không đệm theo thanh hệ thống (luôn ẩn, chỉ hiện
+     * tạm đè lên khi vuốt; lúc hộp thoại giữ focus Activity lại nhận inset thanh hệ thống, nội dung sẽ bị đẩy xuống).
+     * Màu icon thanh điều hướng theo nội dung: nền sáng khi đang tập, tối khi nghỉ / chuẩn bị.
      */
     private void applyInsets() {
         View root = binding.getRoot();
@@ -815,8 +815,7 @@ public class DoWorkoutActivity extends AppCompatActivity implements RestFragment
                 if (f.getId() == R.id.content_workout) setBarAreaColor(f instanceof PlayFragment);
             }
         }, false);
-        ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> WindowInsetsCompat.CONSUMED);
-        ViewCompat.requestApplyInsets(root);
+        ImmersiveHelper.installCutoutInsets(this, root, binding.layoutTop, binding.workoutProgress, R.id.content_workout);
     }
 
     private void setBarAreaColor(boolean light) {
