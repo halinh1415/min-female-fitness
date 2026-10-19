@@ -28,6 +28,7 @@ import java.util.List;
 
 import mint.woman.female.workout.custom.progress.KProgressHUD;
 import mint.woman.female.workout.utils.RemoteConfigKeys;
+import mint.woman.female.workout.utils.MyPreference;
 
 
 public class AppOpenManager implements Application.ActivityLifecycleCallbacks, LifecycleObserver {
@@ -110,7 +111,19 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
     }
 
 
+
+    /**
+     * Co premium/go quang cao trong bo nho chi duoc gan o Splash/Paywall; app bi kill roi mo lai tu
+     * recents/thong bao (khong qua Splash) thi ve false -> premium van thay quang cao resume.
+     * Doc them MyPreference.isShowAds() (false khi premium/da go quang cao) moi lan.
+     */
+    private boolean adsBlocked() {
+        if (isPremium || isRemoveAd) return true;
+        return myApplication != null && !new MyPreference(myApplication).isShowAds();
+    }
+
     public void fetchAd() {
+        if (adsBlocked()) return;
         // Have unused ad, no need to fetch another.
         if (isAdAvailable() || isLoadingAd || myApplication == null) {
             return;
@@ -446,7 +459,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
     public void onStart() {
         if (currentActivity == null) {
             Log.d(LOG_TAG, "No resumed activity available for app-open ad");
-        } else if (isRemoveAd || isPremium) {
+        } else if (adsBlocked()) {
             Log.d(LOG_TAG, "Remove open ad in app!!");
         } else if (!isAppResumeEnabled) {
             Log.d(LOG_TAG, "onResume: app resume is disabled");
