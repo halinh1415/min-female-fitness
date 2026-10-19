@@ -374,4 +374,15 @@
     <string name="fin_adjust_harder">감사합니다! 다음에는 이 운동이 조금 어려워집니다.</string>
     <string name="pv_difficulty_title">난이도 조정됨</string>
     <string name="pv_difficulty_sub">평가에 따라 %1$s</string>
+    <string name="rec_title">기록 및 합계</string>
+    <string name="rec_total_workouts">운동</string>
+    <string name="rec_total_time">총 시간</string>
+    <string name="rec_total_kcal">총 kcal</string>
+    <string name="rec_best_week">최고의 주</string>
+    <string name="rec_workouts_value">%d회</string>
+    <string name="rec_longest">가장 긴 운동</string>
+    <string name="rec_hours" formatted="true">%.1f시간</string>
+    <string name="rec_minutes_title">운동 시간(분)</string>
+    <string name="rec_minutes_short">분</string>
+    <string name="fin_new_record">🏆 새 기록: 가장 긴 운동!</string>
 </resources>

@@ -67,6 +67,8 @@ data class FinishedState(
     val exercises: Int = 0,
     /** Câu streak ("🔥 Chuỗi 3 ngày!"), null khi đang tính. */
     val streakText: String? = null,
+    /** "🏆 Kỷ lục mới: buổi tập dài nhất" khi buổi vừa xong dài hơn mọi buổi trước; null = không. */
+    val recordText: String? = null,
     /** 0..4 = quá khó..quá dễ; null = chưa chọn. */
     val feel: Int? = null,
     val weightText: String = "",
@@ -222,6 +224,20 @@ private fun Hero(state: FinishedState, onClose: () -> Unit) {
                         .padding(top = 14.dp, start = 16.dp, end = 16.dp)
                         .clip(RoundedCornerShape(50))
                         .background(if (MinColor.isDark) Color(0xFF3A2A1E) else Color(0xFFFFEFE5))
+                        .padding(horizontal = 16.dp, vertical = 8.dp),
+                )
+            }
+            AnimatedVisibility(state.recordText != null, enter = fadeIn() + slideInVertically { it / 2 }) {
+                Text(
+                    state.recordText.orEmpty(),
+                    color = if (MinColor.isDark) Color(0xFFFFD966) else Color(0xFF8A6D00),
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .padding(top = 8.dp, start = 16.dp, end = 16.dp)
+                        .clip(RoundedCornerShape(50))
+                        .background(if (MinColor.isDark) Color(0xFF3A321A) else Color(0xFFFFF4CC))
                         .padding(horizontal = 16.dp, vertical = 8.dp),
                 )
             }

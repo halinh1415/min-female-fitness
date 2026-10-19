@@ -26,6 +26,16 @@ import mint.woman.female.workout.model.ProgramObject
 import mint.woman.female.workout.notification.AppNotificationHelper
 import mint.woman.female.workout.notification.NotificationPermissionDialog
 import mint.woman.female.workout.utils.CaloriesTrendResult
+import mint.woman.female.workout.utils.HistoryDatabase
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
+import java.util.concurrent.TimeUnit
 import mint.woman.female.workout.utils.MyPreference
 import mint.woman.female.workout.utils.WeightTrendResult
 import kotlin.math.abs
@@ -57,6 +67,7 @@ class ReportFragment : Fragment(), ReportActions {
         historyViewModel.refreshWeightTrends()
         historyViewModel.refreshCaloriesTrends()
         historyViewModel.refreshCaloriesChartData()
+        loadRecords()
         historyViewModel.refreshTodayWorkout()
         historyViewModel.refreshWeeklyProgress(pref.goalOfWeek, pref.firstDayOfWeek)
 
@@ -123,6 +134,35 @@ class ReportFragment : Fragment(), ReportActions {
     }
 
     // ------------------------------------------------------------ dữ liệu
+
+    /** Phút tập theo ngày (7/30/90 ngày) + kỷ lục / tổng cộng, đọc toàn bộ lịch sử trên luồng IO. */
+    private fun loadRecords() {
+        val dao = HistoryDatabase.getDatabase(requireContext()).historyDao()
+        viewLifecycleOwner.lifecycleScope.launch {
+            val all = withContext(Dispatchers.IO) { dao.all.orEmpty().filterNotNull() }
+            val dayFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val now = System.currentTimeMillis()
+            state.minutesData = listOf(7, 30, 90).associateWith { days ->
+                val from = now - TimeUnit.DAYS.toMillis(days.toLong())
+                all.filter { it.startTime in from..now }
+                    .sortedBy { it.startTime }
+                    .groupBy { dayFormat.format(Date(it.startTime)) }
+                    .map { (day, items) -> day to items.sumOf { it.duration } / 60 }
+            }
+            val longest = all.maxByOrNull { it.duration }
+            state.totalWorkouts = all.size
+            state.totalMinutes = all.sumOf { it.duration } / 60
+            state.totalCalories = all.sumOf { it.calories }
+            state.longestSec = longest?.duration ?: 0
+            state.longestName = longest?.name.orEmpty()
+            // Tuần tính từ thứ Hai theo giờ máy.
+            val cal = Calendar.getInstance().apply { firstDayOfWeek = Calendar.MONDAY; minimalDaysInFirstWeek = 4 }
+            state.bestWeekWorkouts = all.groupBy {
+                cal.timeInMillis = it.startTime
+                cal.get(Calendar.YEAR) * 100 + cal.get(Calendar.WEEK_OF_YEAR)
+            }.values.maxOfOrNull { it.size } ?: 0
+        }
+    }
 
     private fun updateBody() {
         state.weightUnit = pref.weightUnit

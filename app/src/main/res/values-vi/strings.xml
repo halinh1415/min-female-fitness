@@ -384,4 +384,15 @@
     <string name="fin_adjust_harder">Cảm ơn bạn! Buổi sau bài này sẽ nặng hơn một chút.</string>
     <string name="pv_difficulty_title">Đã điều chỉnh độ khó</string>
     <string name="pv_difficulty_sub">%1$s theo đánh giá của bạn</string>
+    <string name="rec_title">Kỷ lục &amp; tổng cộng</string>
+    <string name="rec_total_workouts">Số buổi tập</string>
+    <string name="rec_total_time">Tổng thời gian</string>
+    <string name="rec_total_kcal">Tổng kcal</string>
+    <string name="rec_best_week">Tuần tập nhiều nhất</string>
+    <string name="rec_workouts_value">%d buổi</string>
+    <string name="rec_longest">Buổi tập dài nhất</string>
+    <string name="rec_hours" formatted="true">%.1f giờ</string>
+    <string name="rec_minutes_title">Phút tập</string>
+    <string name="rec_minutes_short">phút</string>
+    <string name="fin_new_record">🏆 Kỷ lục mới: buổi tập dài nhất của bạn!</string>
 </resources>

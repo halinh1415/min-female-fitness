@@ -287,4 +287,15 @@
     <string name="fin_adjust_harder">Díky! Příště bude tento trénink o něco těžší.</string>
     <string name="pv_difficulty_title">Obtížnost upravena</string>
     <string name="pv_difficulty_sub">%1$s podle vašeho hodnocení</string>
+    <string name="rec_title">Rekordy a součty</string>
+    <string name="rec_total_workouts">Tréninky</string>
+    <string name="rec_total_time">Celkový čas</string>
+    <string name="rec_total_kcal">Celkem kcal</string>
+    <string name="rec_best_week">Nejlepší týden</string>
+    <string name="rec_workouts_value">%d tréninků</string>
+    <string name="rec_longest">Nejdelší trénink</string>
+    <string name="rec_hours" formatted="true">%.1f h</string>
+    <string name="rec_minutes_title">Minuty tréninku</string>
+    <string name="rec_minutes_short">min</string>
+    <string name="fin_new_record">🏆 Nový rekord: tvůj nejdelší trénink!</string>
 </resources>

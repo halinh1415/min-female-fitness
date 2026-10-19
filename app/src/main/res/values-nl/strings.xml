@@ -374,4 +374,15 @@
     <string name="fin_adjust_harder">Bedankt! De volgende keer wordt deze training iets zwaarder.</string>
     <string name="pv_difficulty_title">Moeilijkheid aangepast</string>
     <string name="pv_difficulty_sub">%1$s op basis van je feedback</string>
+    <string name="rec_title">Records &amp; totalen</string>
+    <string name="rec_total_workouts">Trainingen</string>
+    <string name="rec_total_time">Totale tijd</string>
+    <string name="rec_total_kcal">Totaal kcal</string>
+    <string name="rec_best_week">Beste week</string>
+    <string name="rec_workouts_value">%d trainingen</string>
+    <string name="rec_longest">Langste training</string>
+    <string name="rec_hours" formatted="true">%.1f u</string>
+    <string name="rec_minutes_title">Trainingsminuten</string>
+    <string name="rec_minutes_short">min</string>
+    <string name="fin_new_record">🏆 Nieuw record: je langste training!</string>
 </resources>

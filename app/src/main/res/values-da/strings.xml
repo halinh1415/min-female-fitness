@@ -374,4 +374,15 @@
     <string name="fin_adjust_harder">Tak! Næste gang bliver træningen lidt hårdere.</string>
     <string name="pv_difficulty_title">Sværhedsgrad justeret</string>
     <string name="pv_difficulty_sub">%1$s ud fra din feedback</string>
+    <string name="rec_title">Rekorder og i alt</string>
+    <string name="rec_total_workouts">Træninger</string>
+    <string name="rec_total_time">Samlet tid</string>
+    <string name="rec_total_kcal">Kcal i alt</string>
+    <string name="rec_best_week">Bedste uge</string>
+    <string name="rec_workouts_value">%d træninger</string>
+    <string name="rec_longest">Længste træning</string>
+    <string name="rec_hours" formatted="true">%.1f t</string>
+    <string name="rec_minutes_title">Træningsminutter</string>
+    <string name="rec_minutes_short">min</string>
+    <string name="fin_new_record">🏆 Ny rekord: din længste træning!</string>
 </resources>

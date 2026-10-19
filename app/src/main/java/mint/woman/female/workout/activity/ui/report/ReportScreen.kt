@@ -107,6 +107,17 @@ class ReportUiState {
     var caloriesRange by mutableIntStateOf(7)
     var caloriesData by mutableStateOf<Map<Int, List<Pair<String, Int>>>>(emptyMap())
     var caloriesTrendText by mutableStateOf<Map<Int, String>>(emptyMap())
+    /** Phút tập từng ngày theo khoảng 7/30/90 (cùng khoá ngày "yyyy-MM-dd" như calo); [showMinutes] = đang xem phút. */
+    var minutesData by mutableStateOf<Map<Int, List<Pair<String, Int>>>>(emptyMap())
+    var showMinutes by mutableStateOf(false)
+
+    // kỷ lục & tổng cộng (toàn bộ lịch sử)
+    var totalWorkouts by mutableIntStateOf(0)
+    var totalMinutes by mutableIntStateOf(0)
+    var totalCalories by mutableIntStateOf(0)
+    var longestSec by mutableIntStateOf(0)
+    var longestName by mutableStateOf("")
+    var bestWeekWorkouts by mutableIntStateOf(0)
 
     // BMI
     var bmi by mutableFloatStateOf(0f)
@@ -150,6 +161,7 @@ fun ReportScreen(state: ReportUiState, actions: ReportActions) {
         WeekCard(state)
         WeightCard(state, actions)
         CaloriesCard(state)
+        if (state.totalWorkouts > 0) RecordsCard(state)
         BmiCard(state, actions)
         if (state.badgeTotal > 0) BadgeCard(state, actions)
         if (state.suggestionText.isNotEmpty()) NextCard(state, actions)
@@ -549,22 +561,102 @@ private fun WeightLineChart(
 @Composable
 private fun CaloriesCard(state: ReportUiState) {
     MinCard(Modifier.fillMaxWidth()) {
-        Text(stringResource(R.string.txt_calories_chart), fontSize = 18.sp, fontWeight = FontWeight.Bold)
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(
+                stringResource(if (state.showMinutes) R.string.rec_minutes_title else R.string.txt_calories_chart),
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.weight(1f)
+            )
+            // Chuyển biểu đồ giữa kcal và phút tập.
+            UnitToggle(state.showMinutes) { state.showMinutes = it }
+        }
         Spacer(Modifier.height(14.dp))
         RangeSelector(state.caloriesRange) { state.caloriesRange = it }
         Spacer(Modifier.height(12.dp))
-        val data = state.caloriesData[state.caloriesRange].orEmpty()
+        val data = (if (state.showMinutes) state.minutesData else state.caloriesData)[state.caloriesRange].orEmpty()
         CaloriesBarChart(
             data,
-            animationKey = state.caloriesRange,
+            animationKey = "${state.caloriesRange}/${state.showMinutes}",
             modifier = Modifier
                 .fillMaxWidth()
                 .height(170.dp)
         )
-        state.caloriesTrendText[state.caloriesRange]?.takeIf { it.isNotEmpty() }?.let {
+        state.caloriesTrendText[state.caloriesRange]?.takeIf { it.isNotEmpty() && !state.showMinutes }?.let {
             Spacer(Modifier.height(10.dp))
             Text(it, fontSize = 14.sp, fontWeight = FontWeight.Bold, color = MinColor.TextSecondary)
         }
+    }
+}
+
+@Composable
+private fun UnitToggle(minutes: Boolean, onSelect: (Boolean) -> Unit) {
+    Row(
+        Modifier
+            .clip(RoundedCornerShape(14.dp))
+            .background(MinColor.Track)
+            .padding(3.dp)
+    ) {
+        listOf(false to "kcal", true to stringResource(R.string.rec_minutes_short)).forEach { (value, label) ->
+            val active = value == minutes
+            Box(
+                Modifier
+                    .clip(RoundedCornerShape(11.dp))
+                    .background(if (active) MinColor.Surface else Color.Transparent)
+                    .clickable { onSelect(value) }
+                    .padding(horizontal = 14.dp, vertical = 6.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    label,
+                    fontSize = 13.sp,
+                    fontWeight = if (active) FontWeight.Bold else FontWeight.Normal,
+                    color = if (active) MinColor.Pink else MinColor.TextSecondary
+                )
+            }
+        }
+    }
+}
+
+/** Tổng cộng từ trước đến nay + kỷ lục cá nhân, lưới 2 cột giản dị. */
+@Composable
+private fun RecordsCard(state: ReportUiState) {
+    val minutesUnit = stringResource(R.string.rec_minutes_short)
+    MinCard(Modifier.fillMaxWidth()) {
+        Text(stringResource(R.string.rec_title), fontSize = 18.sp, fontWeight = FontWeight.Bold)
+        Spacer(Modifier.height(12.dp))
+        Row {
+            RecordCell(state.totalWorkouts.toString(), stringResource(R.string.rec_total_workouts), Modifier.weight(1f))
+            RecordCell(
+                if (state.totalMinutes < 60) "${state.totalMinutes} $minutesUnit"
+                else stringResource(R.string.rec_hours, state.totalMinutes / 60f),
+                stringResource(R.string.rec_total_time),
+                Modifier.weight(1f)
+            )
+        }
+        Spacer(Modifier.height(12.dp))
+        Row {
+            RecordCell("${state.totalCalories} kcal", stringResource(R.string.rec_total_kcal), Modifier.weight(1f))
+            RecordCell(
+                stringResource(R.string.rec_workouts_value, state.bestWeekWorkouts),
+                stringResource(R.string.rec_best_week),
+                Modifier.weight(1f)
+            )
+        }
+        Spacer(Modifier.height(12.dp))
+        RecordCell(
+            String.format(java.util.Locale.US, "%d:%02d", state.longestSec / 60, state.longestSec % 60),
+            stringResource(R.string.rec_longest) + if (state.longestName.isNotBlank()) " · " + state.longestName else "",
+            Modifier.fillMaxWidth()
+        )
+    }
+}
+
+@Composable
+private fun RecordCell(value: String, label: String, modifier: Modifier) {
+    Column(modifier) {
+        Text(value, fontSize = 18.sp, fontWeight = FontWeight.Bold, color = MinColor.TextPrimary, maxLines = 1)
+        Text(label, fontSize = 13.sp, color = MinColor.TextSecondary, maxLines = 2)
     }
 }
 

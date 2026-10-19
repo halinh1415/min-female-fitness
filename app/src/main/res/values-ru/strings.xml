@@ -374,4 +374,15 @@
     <string name="fin_adjust_harder">Спасибо! В следующий раз эта тренировка будет чуть сложнее.</string>
     <string name="pv_difficulty_title">Сложность изменена</string>
     <string name="pv_difficulty_sub">%1$s по вашей оценке</string>
+    <string name="rec_title">Рекорды и итоги</string>
+    <string name="rec_total_workouts">Тренировки</string>
+    <string name="rec_total_time">Общее время</string>
+    <string name="rec_total_kcal">Всего ккал</string>
+    <string name="rec_best_week">Лучшая неделя</string>
+    <string name="rec_workouts_value">%d трен.</string>
+    <string name="rec_longest">Самая долгая тренировка</string>
+    <string name="rec_hours" formatted="true">%.1f ч</string>
+    <string name="rec_minutes_title">Минуты тренировок</string>
+    <string name="rec_minutes_short">мин</string>
+    <string name="fin_new_record">🏆 Новый рекорд: ваша самая долгая тренировка!</string>
 </resources>

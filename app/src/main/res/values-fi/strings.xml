@@ -287,4 +287,15 @@
     <string name="fin_adjust_harder">Kiitos! Ensi kerralla treeni on vähän rankempi.</string>
     <string name="pv_difficulty_title">Vaikeustaso säädetty</string>
     <string name="pv_difficulty_sub">%1$s palautteesi perusteella</string>
+    <string name="rec_title">Ennätykset ja yhteensä</string>
+    <string name="rec_total_workouts">Treenit</string>
+    <string name="rec_total_time">Kokonaisaika</string>
+    <string name="rec_total_kcal">Kcal yhteensä</string>
+    <string name="rec_best_week">Paras viikko</string>
+    <string name="rec_workouts_value">%d treeniä</string>
+    <string name="rec_longest">Pisin treeni</string>
+    <string name="rec_hours" formatted="true">%.1f h</string>
+    <string name="rec_minutes_title">Treeniminuutit</string>
+    <string name="rec_minutes_short">min</string>
+    <string name="fin_new_record">🏆 Uusi ennätys: pisin treenisi!</string>
 </resources>

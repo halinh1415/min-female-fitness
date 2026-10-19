@@ -466,4 +466,15 @@
     <string name="fin_adjust_harder">Thanks! Next time this workout will be a little harder.</string>
     <string name="pv_difficulty_title">Difficulty adjusted</string>
     <string name="pv_difficulty_sub">%1$s based on your feedback</string>
+    <string name="rec_title">Records &amp; totals</string>
+    <string name="rec_total_workouts">Workouts</string>
+    <string name="rec_total_time">Total time</string>
+    <string name="rec_total_kcal">Total kcal</string>
+    <string name="rec_best_week">Best week</string>
+    <string name="rec_workouts_value">%d workouts</string>
+    <string name="rec_longest">Longest workout</string>
+    <string name="rec_hours" formatted="true">%.1f h</string>
+    <string name="rec_minutes_title">Workout minutes</string>
+    <string name="rec_minutes_short">min</string>
+    <string name="fin_new_record">🏆 New record: your longest workout!</string>
 </resources>

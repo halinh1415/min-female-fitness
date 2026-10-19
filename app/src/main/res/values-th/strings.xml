@@ -374,4 +374,15 @@
     <string name="fin_adjust_harder">ขอบคุณ! ครั้งหน้าการออกกำลังกายนี้จะหนักขึ้นเล็กน้อย</string>
     <string name="pv_difficulty_title">ปรับความยากแล้ว</string>
     <string name="pv_difficulty_sub">%1$s ตามความเห็นของคุณ</string>
+    <string name="rec_title">สถิติและยอดรวม</string>
+    <string name="rec_total_workouts">การออกกำลังกาย</string>
+    <string name="rec_total_time">เวลารวม</string>
+    <string name="rec_total_kcal">kcal รวม</string>
+    <string name="rec_best_week">สัปดาห์ที่ดีที่สุด</string>
+    <string name="rec_workouts_value">%d ครั้ง</string>
+    <string name="rec_longest">ครั้งที่นานที่สุด</string>
+    <string name="rec_hours" formatted="true">%.1f ชม.</string>
+    <string name="rec_minutes_title">นาทีที่ออกกำลังกาย</string>
+    <string name="rec_minutes_short">นาที</string>
+    <string name="fin_new_record">🏆 สถิติใหม่: การออกกำลังกายที่นานที่สุดของคุณ!</string>
 </resources>

@@ -374,4 +374,15 @@
     <string name="fin_adjust_harder">ممنون! دفعه بعد این تمرین کمی سخت‌تر می‌شود.</string>
     <string name="pv_difficulty_title">سختی تنظیم شد</string>
     <string name="pv_difficulty_sub">%1$s بر اساس نظر شما</string>
+    <string name="rec_title">رکوردها و مجموع</string>
+    <string name="rec_total_workouts">تمرین‌ها</string>
+    <string name="rec_total_time">زمان کل</string>
+    <string name="rec_total_kcal">کل کالری</string>
+    <string name="rec_best_week">بهترین هفته</string>
+    <string name="rec_workouts_value">%d تمرین</string>
+    <string name="rec_longest">طولانی‌ترین تمرین</string>
+    <string name="rec_hours" formatted="true">%.1f ساعت</string>
+    <string name="rec_minutes_title">دقایق تمرین</string>
+    <string name="rec_minutes_short">دقیقه</string>
+    <string name="fin_new_record">🏆 رکورد جدید: طولانی‌ترین تمرین شما!</string>
 </resources>

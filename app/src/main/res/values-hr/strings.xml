@@ -287,4 +287,15 @@
     <string name="fin_adjust_harder">Hvala! Sljedeći put trening će biti malo teži.</string>
     <string name="pv_difficulty_title">Težina prilagođena</string>
     <string name="pv_difficulty_sub">%1$s prema vašoj ocjeni</string>
+    <string name="rec_title">Rekordi i ukupno</string>
+    <string name="rec_total_workouts">Treninzi</string>
+    <string name="rec_total_time">Ukupno vrijeme</string>
+    <string name="rec_total_kcal">Ukupno kcal</string>
+    <string name="rec_best_week">Najbolji tjedan</string>
+    <string name="rec_workouts_value">%d treninga</string>
+    <string name="rec_longest">Najduži trening</string>
+    <string name="rec_hours" formatted="true">%.1f h</string>
+    <string name="rec_minutes_title">Minute treninga</string>
+    <string name="rec_minutes_short">min</string>
+    <string name="fin_new_record">🏆 Novi rekord: tvoj najduži trening!</string>
 </resources>

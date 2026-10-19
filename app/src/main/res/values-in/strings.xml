@@ -374,4 +374,15 @@
     <string name="fin_adjust_harder">Terima kasih! Lain kali latihan ini akan sedikit lebih berat.</string>
     <string name="pv_difficulty_title">Tingkat kesulitan disesuaikan</string>
     <string name="pv_difficulty_sub">%1$s sesuai penilaian Anda</string>
+    <string name="rec_title">Rekor &amp; total</string>
+    <string name="rec_total_workouts">Latihan</string>
+    <string name="rec_total_time">Total waktu</string>
+    <string name="rec_total_kcal">Total kkal</string>
+    <string name="rec_best_week">Minggu terbaik</string>
+    <string name="rec_workouts_value">%d latihan</string>
+    <string name="rec_longest">Latihan terlama</string>
+    <string name="rec_hours" formatted="true">%.1f j</string>
+    <string name="rec_minutes_title">Menit latihan</string>
+    <string name="rec_minutes_short">mnt</string>
+    <string name="fin_new_record">🏆 Rekor baru: latihan terlamamu!</string>
 </resources>

@@ -374,4 +374,15 @@
     <string name="fin_adjust_harder">شكرًا! سيكون هذا التمرين أصعب قليلًا في المرة القادمة.</string>
     <string name="pv_difficulty_title">تم ضبط الصعوبة</string>
     <string name="pv_difficulty_sub">%1$s حسب تقييمك</string>
+    <string name="rec_title">الأرقام القياسية والإجمالي</string>
+    <string name="rec_total_workouts">التمارين</string>
+    <string name="rec_total_time">إجمالي الوقت</string>
+    <string name="rec_total_kcal">إجمالي السعرات</string>
+    <string name="rec_best_week">أفضل أسبوع</string>
+    <string name="rec_workouts_value">%d تمارين</string>
+    <string name="rec_longest">أطول تمرين</string>
+    <string name="rec_hours" formatted="true">%.1f س</string>
+    <string name="rec_minutes_title">دقائق التمرين</string>
+    <string name="rec_minutes_short">د</string>
+    <string name="fin_new_record">🏆 رقم قياسي جديد: أطول تمرين لك!</string>
 </resources>

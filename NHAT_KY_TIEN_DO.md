@@ -503,3 +503,9 @@
 - DemoDataProvider nhân reps/giây động tác chính (giờ làm tròn 5s), bỏ qua ngày đã tự lưu chỉnh và động tác khởi động/giãn cơ tự chèn.
 - Preview: hàng "Đã điều chỉnh độ khó · ±x% theo đánh giá của bạn · Đặt lại". Màn hoàn thành báo buổi sau nhẹ/nặng hơn. Chuỗi dịch đủ ngôn ngữ.
 - Test S8+ với −8%: hàng hiện đúng; reps giảm (Min: Gánh đùi 12→11). Đã xoá dữ liệu test.
+
+## 2026-10-19 — Mục 6: lịch sử chi tiết hơn (màn Báo cáo)
+- Thẻ Calories có nút chuyển "kcal / phút": cùng biểu đồ ngày, xem số phút tập (tiêu đề đổi thành "Phút tập").
+- Thẻ mới "Kỷ lục & tổng cộng" (toàn bộ lịch sử): số buổi, tổng thời gian (<1 giờ hiện phút), tổng kcal, tuần tập nhiều nhất, buổi dài nhất (m:ss + tên bài). Chỉ hiện khi đã có buổi tập.
+- Màn hoàn thành: buổi vừa xong dài hơn mọi buổi trước (≥1 phút, có ít nhất 1 buổi trước) thì hiện "🏆 Kỷ lục mới: buổi tập dài nhất". Chưa test thực tế được (cần tập buổi dài).
+- Chuỗi rec_* / fin_new_record dịch đủ ngôn ngữ. Test S8+: thẻ kỷ lục + nút kcal/phút hiện đúng.

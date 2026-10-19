@@ -270,4 +270,15 @@
     <string name="fin_adjust_harder">धन्यवाद! अगली बार यह वर्कआउट थोड़ा कठिन होगा।</string>
     <string name="pv_difficulty_title">कठिनाई बदली गई</string>
     <string name="pv_difficulty_sub">आपकी राय के अनुसार %1$s</string>
+    <string name="rec_title">रिकॉर्ड और कुल</string>
+    <string name="rec_total_workouts">वर्कआउट</string>
+    <string name="rec_total_time">कुल समय</string>
+    <string name="rec_total_kcal">कुल kcal</string>
+    <string name="rec_best_week">सबसे अच्छा हफ़्ता</string>
+    <string name="rec_workouts_value">%d वर्कआउट</string>
+    <string name="rec_longest">सबसे लंबा वर्कआउट</string>
+    <string name="rec_hours" formatted="true">%.1f घं</string>
+    <string name="rec_minutes_title">वर्कआउट मिनट</string>
+    <string name="rec_minutes_short">मि</string>
+    <string name="fin_new_record">🏆 नया रिकॉर्ड: आपका सबसे लंबा वर्कआउट!</string>
 </resources>

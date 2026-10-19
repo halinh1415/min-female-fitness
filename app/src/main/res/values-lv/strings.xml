@@ -287,4 +287,15 @@
     <string name="fin_adjust_harder">Paldies! Nākamreiz šis treniņš būs mazliet grūtāks.</string>
     <string name="pv_difficulty_title">Grūtība pielāgota</string>
     <string name="pv_difficulty_sub">%1$s pēc jūsu vērtējuma</string>
+    <string name="rec_title">Rekordi un kopā</string>
+    <string name="rec_total_workouts">Treniņi</string>
+    <string name="rec_total_time">Kopējais laiks</string>
+    <string name="rec_total_kcal">Kopā kcal</string>
+    <string name="rec_best_week">Labākā nedēļa</string>
+    <string name="rec_workouts_value">%d treniņi</string>
+    <string name="rec_longest">Garākais treniņš</string>
+    <string name="rec_hours" formatted="true">%.1f h</string>
+    <string name="rec_minutes_title">Treniņa minūtes</string>
+    <string name="rec_minutes_short">min</string>
+    <string name="fin_new_record">🏆 Jauns rekords: tavs garākais treniņš!</string>
 </resources>

@@ -287,4 +287,15 @@
     <string name="fin_adjust_harder">Tack! Nästa gång blir passet lite tuffare.</string>
     <string name="pv_difficulty_title">Svårighetsgrad justerad</string>
     <string name="pv_difficulty_sub">%1$s utifrån din feedback</string>
+    <string name="rec_title">Rekord &amp; totalt</string>
+    <string name="rec_total_workouts">Pass</string>
+    <string name="rec_total_time">Total tid</string>
+    <string name="rec_total_kcal">Kcal totalt</string>
+    <string name="rec_best_week">Bästa vecka</string>
+    <string name="rec_workouts_value">%d pass</string>
+    <string name="rec_longest">Längsta passet</string>
+    <string name="rec_hours" formatted="true">%.1f h</string>
+    <string name="rec_minutes_title">Träningsminuter</string>
+    <string name="rec_minutes_short">min</string>
+    <string name="fin_new_record">🏆 Nytt rekord: ditt längsta pass!</string>
 </resources>

@@ -374,4 +374,15 @@
     <string name="fin_adjust_harder">ありがとうございます！次回はこのワークアウトを少しきつくします。</string>
     <string name="pv_difficulty_title">難易度を調整しました</string>
     <string name="pv_difficulty_sub">評価に合わせて %1$s</string>
+    <string name="rec_title">記録と合計</string>
+    <string name="rec_total_workouts">ワークアウト</string>
+    <string name="rec_total_time">合計時間</string>
+    <string name="rec_total_kcal">合計kcal</string>
+    <string name="rec_best_week">ベストな週</string>
+    <string name="rec_workouts_value">%d回</string>
+    <string name="rec_longest">最長ワークアウト</string>
+    <string name="rec_hours" formatted="true">%.1f時間</string>
+    <string name="rec_minutes_title">運動時間（分）</string>
+    <string name="rec_minutes_short">分</string>
+    <string name="fin_new_record">🏆 新記録：最長のワークアウト！</string>
 </resources>

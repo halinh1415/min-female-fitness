@@ -136,6 +136,8 @@ class FinishedActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
                 runCatching { loadWeek() }.getOrDefault(emptyList()) to runCatching { loadNext() }.getOrNull()
             }
             state = state.copy(week = week, weekGoal = myPreference.goalOfWeek.coerceAtLeast(1), next = next)
+            val record = withContext(Dispatchers.IO) { runCatching { isLongestWorkout() }.getOrDefault(false) }
+            if (record) state = state.copy(recordText = getString(R.string.fin_new_record))
         }
     }
 
@@ -301,6 +303,16 @@ class FinishedActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
 
     private fun reminderText(): String =
         FitnessApplication.getApplication().mDatabase.getReminderSet().orEmpty().ifBlank { "--:--" }
+
+    /** Buổi vừa xong dài hơn mọi buổi trước (cần ít nhất 1 buổi trước đó để không báo kỷ lục ở buổi đầu tiên). */
+    private fun isLongestWorkout(): Boolean {
+        if (!::mHistoryItem.isInitialized) return false
+        val current = mHistoryItem.duration
+        if (current < 60) return false
+        val previous = HistoryDatabase.getDatabase(this).historyDao().all.orEmpty().filterNotNull()
+            .filter { it.startTime != mHistoryItem.startTime }
+        return previous.isNotEmpty() && current > previous.maxOf { it.duration }
+    }
 
     /** Cảm nhận độ khó (0 = quá khó .. 4 = quá dễ): thống kê + DifficultyStore chỉnh reps buổi sau. */
     private fun onFeel(level: Int) {

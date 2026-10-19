@@ -374,4 +374,15 @@
     <string name="fin_adjust_harder">謝謝！下次這個訓練會稍微難一些。</string>
     <string name="pv_difficulty_title">難度已調整</string>
     <string name="pv_difficulty_sub">根據你的評價 %1$s</string>
+    <string name="rec_title">紀錄與總計</string>
+    <string name="rec_total_workouts">訓練次數</string>
+    <string name="rec_total_time">總時長</string>
+    <string name="rec_total_kcal">總大卡</string>
+    <string name="rec_best_week">最佳一週</string>
+    <string name="rec_workouts_value">%d 次</string>
+    <string name="rec_longest">最長一次訓練</string>
+    <string name="rec_hours" formatted="true">%.1f 小時</string>
+    <string name="rec_minutes_title">訓練分鐘</string>
+    <string name="rec_minutes_short">分鐘</string>
+    <string name="fin_new_record">🏆 新紀錄：你最長的一次訓練！</string>
 </resources>
