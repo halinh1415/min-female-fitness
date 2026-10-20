@@ -2,6 +2,14 @@
 
 > Mới nhất ở trên.
 
+## 2026-10-20 – Play Console: API tràn viền lỗi thời (Android 15) ✅ (yêu cầu Telegram, theo báo cáo Tai Chi)
+- Bỏ các chỗ app tự gọi `Window.setStatusBarColor/setNavigationBarColor` và cutout `shortEdges`:
+  `material.internal.EdgeToEdgeUtils.applyEdgeToEdge` → `androidx.activity.EdgeToEdge.enable(this)`;
+  ImmersiveHelper (nếu có) chuyển màu thanh trong suốt vào theme `AppTheme.FullScreen.WorkoutBars` của màn tập;
+  xoá `windowLayoutInDisplayCutoutMode=shortEdges` trong styles.
+- Quét dex: code app không còn tham chiếu; phần còn lại thuộc thư viện Google (androidx.activity, Material, Ads).
+- Build OK. Test S8+ (Women Workout): màn tập + hộp thoại thoát không có dải đen. Chưa nâng phiên bản / chưa push.
+
 ## 2026-10-19 – Khôi phục file JSON trong assets bị xoá khi dọn tài nguyên ✅ (yêu cầu Telegram, chưa commit)
 - Commit dọn 9842958 (17/10) xoá assets/breath.json, assets/slot_machine.json. Chủ app: giữ lại mọi file JSON trong assets.
   Khôi phục cả 2 file. Build OK.

@@ -311,7 +311,7 @@
             android:launchMode="singleTask"
             android:parentActivityName=".activity.ui.main.YogaActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.FullScreen" />
+            android:theme="@style/AppTheme.FullScreen.WorkoutBars" />
         <activity
             android:name=".activity.ui.report.ReportActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"

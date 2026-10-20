@@ -10,7 +10,6 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentActivity;
 import mint.woman.female.workout.R;
 import android.app.Dialog;
-import android.graphics.Color;
 import android.os.Build;
 import android.view.Window;
 
@@ -35,10 +34,8 @@ public final class ImmersiveHelper {
     public static void hideSystemBars(@Nullable Window window) {
         if (window == null) return;
         WindowCompat.setDecorFitsSystemWindows(window, false);
-        // Nền thanh hệ thống trong suốt (như EdgeToEdgeUtils bên Tai Chi): khi hộp thoại giữ focus, Activity tưởng
-        // thanh hệ thống đang hiện và tô màu nền (đen) ở mép trên/dưới.
-        window.setStatusBarColor(Color.TRANSPARENT);
-        window.setNavigationBarColor(Color.TRANSPARENT);
+        // Nền thanh hệ thống trong suốt đặt trong theme AppTheme.FullScreen.WorkoutBars (setStatusBarColor /
+        // setNavigationBarColor lỗi thời từ Android 15): khi hộp thoại giữ focus, Activity không tô nền đen ở mép.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             window.setStatusBarContrastEnforced(false);
             window.setNavigationBarContrastEnforced(false);

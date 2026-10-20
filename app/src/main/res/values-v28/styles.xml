@@ -4,7 +4,6 @@
     <style name="AppTheme.FullScreen" parent="AppTheme.NoActionBar">
         <item name="colorPrimaryDark">@color/Black</item>
         <item name="statusBarProtectionColor">@android:color/transparent</item>
-        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
     </style>
 
     <style name="full_screen_dialog" parent="Theme.MaterialComponents.DayNight.DialogWhenLarge">
@@ -13,12 +12,10 @@
         <item name="android:windowMinWidthMinor">100%</item>
         <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
-        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
     </style>
 
     <style name="BottomSheetDialog" parent="Theme.MaterialComponents.DayNight.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>
         <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
-        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
     </style>
 </resources>

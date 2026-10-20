@@ -191,4 +191,9 @@
         <item name="fontFamily">@font/fonts</item>
         <item name="android:fontFamily">@font/fonts</item>
     </style>
+    <!-- Màn tập ẩn thanh hệ thống: nền thanh trong suốt để khi hộp thoại giữ focus không hiện dải đen. -->
+    <style name="AppTheme.FullScreen.WorkoutBars">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
 </resources>
