@@ -386,4 +386,12 @@
     <string name="rec_minutes_short">分鐘</string>
     <string name="fin_new_record">🏆 新紀錄：你最長的一次訓練！</string>
     <string name="my_workout_day_empty">這一天還沒有動作，請先新增再開始。</string>
+    <string name="rest_day_title">休息日</string>
+    <string name="rest_day_sub">恢復也是訓練的一部分。休息時肌肉會變得更強壯。</string>
+    <string name="rest_day_progress">第 %1$d/%2$d 天</string>
+    <string name="rest_tip_water">全天多喝水</string>
+    <string name="rest_tip_walk">輕鬆散步 20 分鐘，讓身體保持活動</string>
+    <string name="rest_tip_sleep">睡足 7–8 小時，好好恢復</string>
+    <string name="rest_stretch_title">想動一動？試試輕柔的伸展</string>
+    <string name="rest_day_done">完成休息日</string>
 </resources>

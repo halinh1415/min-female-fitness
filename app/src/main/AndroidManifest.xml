@@ -450,7 +450,8 @@
             android:name=".activity.ui.workout.RestTimeActivity"
             android:label="@string/txt_rest_time"
             android:parentActivityName=".activity.ui.main.YogaActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="mint.woman.female.workout.activity.ui.main.YogaActivity" />

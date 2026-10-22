@@ -386,4 +386,12 @@
     <string name="rec_minutes_short">د</string>
     <string name="fin_new_record">🏆 رقم قياسي جديد: أطول تمرين لك!</string>
     <string name="my_workout_day_empty">لا توجد تمارين في هذا اليوم بعد. أضف تمارين للبدء.</string>
+    <string name="rest_day_title">يوم راحة</string>
+    <string name="rest_day_sub">التعافي جزء من التمرين. تصبح عضلاتك أقوى أثناء الراحة.</string>
+    <string name="rest_day_progress">اليوم %1$d/%2$d</string>
+    <string name="rest_tip_water">اشربي الكثير من الماء خلال اليوم</string>
+    <string name="rest_tip_walk">مشي خفيف لمدة 20 دقيقة يبقي جسمك نشيطًا</string>
+    <string name="rest_tip_sleep">نامي 7–8 ساعات لتتعافي جيدًا</string>
+    <string name="rest_stretch_title">تريدين الحركة؟ جربي تمدّدًا لطيفًا</string>
+    <string name="rest_day_done">إنهاء يوم الراحة</string>
 </resources>

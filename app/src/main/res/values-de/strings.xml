@@ -386,4 +386,12 @@
     <string name="rec_minutes_short">Min.</string>
     <string name="fin_new_record">🏆 Neuer Rekord: dein längstes Training!</string>
     <string name="my_workout_day_empty">Dieser Tag hat noch keine Übungen. Füge welche hinzu, um zu starten.</string>
+    <string name="rest_day_title">Ruhetag</string>
+    <string name="rest_day_sub">Erholung gehört zum Training. Deine Muskeln werden stärker, während du ruhst.</string>
+    <string name="rest_day_progress">Tag %1$d/%2$d</string>
+    <string name="rest_tip_water">Trinke über den Tag verteilt viel Wasser</string>
+    <string name="rest_tip_walk">Ein leichter 20-minütiger Spaziergang hält dich in Bewegung</string>
+    <string name="rest_tip_sleep">Schlafe 7–8 Stunden, um dich gut zu erholen</string>
+    <string name="rest_stretch_title">Lust auf Bewegung? Probiere sanftes Dehnen</string>
+    <string name="rest_day_done">Ruhetag abschließen</string>
 </resources>

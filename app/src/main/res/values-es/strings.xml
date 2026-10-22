@@ -386,4 +386,12 @@
     <string name="rec_minutes_short">min</string>
     <string name="fin_new_record">🏆 ¡Nuevo récord: tu entrenamiento más largo!</string>
     <string name="my_workout_day_empty">Este día aún no tiene ejercicios. Añade algunos para empezar.</string>
+    <string name="rest_day_title">Día de descanso</string>
+    <string name="rest_day_sub">La recuperación es parte del entrenamiento. Tus músculos se fortalecen mientras descansas.</string>
+    <string name="rest_day_progress">Día %1$d/%2$d</string>
+    <string name="rest_tip_water">Bebe suficiente agua durante el día</string>
+    <string name="rest_tip_walk">Una caminata suave de 20 minutos mantiene tu cuerpo activo</string>
+    <string name="rest_tip_sleep">Duerme 7–8 horas para recuperarte bien</string>
+    <string name="rest_stretch_title">¿Te apetece moverte? Prueba un estiramiento suave</string>
+    <string name="rest_day_done">Terminar día de descanso</string>
 </resources>

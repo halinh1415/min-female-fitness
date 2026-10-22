@@ -276,7 +276,7 @@ public class SplashActivity extends AppCompatActivity {
     private void requestSplashAds() {
         if (hasStartedMain || isFinishing() || isDestroyed()) return;
         if (myPreference.isShowAds() && myPreference.isFirstOpen()) {
-            requestNativeLanguage();
+            if (showLanguageScreen()) requestNativeLanguage();
             requestNativeOnBoard();
             requestNativeSetup();
             loadInterStart();
@@ -462,7 +462,15 @@ public class SplashActivity extends AppCompatActivity {
         handlerChecker.removeCallbacksAndMessages(null);
         hideDialog();
         if (myPreference.isFirstOpen()) {
-            startActivity(new Intent(SplashActivity.this, LanguageActivity.class));
+            // Remote Config native_language (mặc định false, như Home Workout): false thì bỏ qua màn chọn ngôn ngữ,
+            // vào thẳng onboarding (app dùng ngôn ngữ máy); true thì hiện màn ngôn ngữ như trước.
+            if (showLanguageScreen()) {
+                startActivity(new Intent(SplashActivity.this, LanguageActivity.class));
+            } else {
+                Intent intent = new Intent(SplashActivity.this, mint.woman.female.workout.activity.ui.onboarding.onboard.OnboardFlowActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
             finish();
         } else {
             startActivity(new Intent(SplashActivity.this, YogaActivity.class));
@@ -477,6 +485,10 @@ public class SplashActivity extends AppCompatActivity {
         handlerChecker.removeCallbacksAndMessages(null);
         hideDialog();
         super.onDestroy();
+    }
+
+    private boolean showLanguageScreen() {
+        return FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigKeys.NATIVE_LANGUAGE);
     }
 
     void requestNativeLanguage() {

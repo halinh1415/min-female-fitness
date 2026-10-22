@@ -386,4 +386,12 @@
     <string name="rec_minutes_short">mnt</string>
     <string name="fin_new_record">🏆 Rekor baru: latihan terlamamu!</string>
     <string name="my_workout_day_empty">Hari ini belum ada latihan. Tambahkan untuk mulai.</string>
+    <string name="rest_day_title">Hari istirahat</string>
+    <string name="rest_day_sub">Pemulihan adalah bagian dari latihan. Otot Anda menjadi lebih kuat saat beristirahat.</string>
+    <string name="rest_day_progress">Hari %1$d/%2$d</string>
+    <string name="rest_tip_water">Minum banyak air sepanjang hari</string>
+    <string name="rest_tip_walk">Jalan santai 20 menit membuat tubuh tetap bergerak</string>
+    <string name="rest_tip_sleep">Tidur 7–8 jam agar pulih dengan baik</string>
+    <string name="rest_stretch_title">Ingin bergerak? Coba peregangan ringan</string>
+    <string name="rest_day_done">Selesaikan hari istirahat</string>
 </resources>

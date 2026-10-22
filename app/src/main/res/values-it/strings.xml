@@ -386,4 +386,12 @@
     <string name="rec_minutes_short">min</string>
     <string name="fin_new_record">🏆 Nuovo record: il tuo allenamento più lungo!</string>
     <string name="my_workout_day_empty">Questo giorno non ha ancora esercizi. Aggiungine alcuni per iniziare.</string>
+    <string name="rest_day_title">Giorno di riposo</string>
+    <string name="rest_day_sub">Il recupero fa parte dell\'allenamento. I muscoli si rafforzano mentre riposi.</string>
+    <string name="rest_day_progress">Giorno %1$d/%2$d</string>
+    <string name="rest_tip_water">Bevi molta acqua durante la giornata</string>
+    <string name="rest_tip_walk">Una camminata leggera di 20 minuti mantiene il corpo attivo</string>
+    <string name="rest_tip_sleep">Dormi 7–8 ore per recuperare bene</string>
+    <string name="rest_stretch_title">Hai voglia di muoverti? Prova uno stretching dolce</string>
+    <string name="rest_day_done">Completa il giorno di riposo</string>
 </resources>

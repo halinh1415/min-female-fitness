@@ -386,4 +386,12 @@
     <string name="rec_minutes_short">мин</string>
     <string name="fin_new_record">🏆 Новый рекорд: ваша самая долгая тренировка!</string>
     <string name="my_workout_day_empty">В этом дне пока нет упражнений. Добавьте их, чтобы начать.</string>
+    <string name="rest_day_title">День отдыха</string>
+    <string name="rest_day_sub">Восстановление — часть тренировок. Мышцы становятся сильнее, пока вы отдыхаете.</string>
+    <string name="rest_day_progress">День %1$d/%2$d</string>
+    <string name="rest_tip_water">Пейте достаточно воды в течение дня</string>
+    <string name="rest_tip_walk">Лёгкая 20-минутная прогулка поддержит тело в движении</string>
+    <string name="rest_tip_sleep">Спите 7–8 часов, чтобы хорошо восстановиться</string>
+    <string name="rest_stretch_title">Хочется подвигаться? Попробуйте мягкую растяжку</string>
+    <string name="rest_day_done">Завершить день отдыха</string>
 </resources>

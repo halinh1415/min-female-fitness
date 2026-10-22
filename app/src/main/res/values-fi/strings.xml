@@ -299,4 +299,12 @@
     <string name="rec_minutes_short">min</string>
     <string name="fin_new_record">🏆 Uusi ennätys: pisin treenisi!</string>
     <string name="my_workout_day_empty">Tälle päivälle ei ole vielä liikkeitä. Lisää niitä aloittaaksesi.</string>
+    <string name="rest_day_title">Lepopäivä</string>
+    <string name="rest_day_sub">Palautuminen on osa harjoittelua. Lihaksesi vahvistuvat levon aikana.</string>
+    <string name="rest_day_progress">Päivä %1$d/%2$d</string>
+    <string name="rest_tip_water">Juo runsaasti vettä päivän aikana</string>
+    <string name="rest_tip_walk">Kevyt 20 minuutin kävely pitää kehon liikkeessä</string>
+    <string name="rest_tip_sleep">Nuku 7–8 tuntia palautuaksesi hyvin</string>
+    <string name="rest_stretch_title">Tekeekö mieli liikkua? Kokeile kevyttä venyttelyä</string>
+    <string name="rest_day_done">Päätä lepopäivä</string>
 </resources>

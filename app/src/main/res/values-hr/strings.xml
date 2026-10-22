@@ -299,4 +299,12 @@
     <string name="rec_minutes_short">min</string>
     <string name="fin_new_record">🏆 Novi rekord: tvoj najduži trening!</string>
     <string name="my_workout_day_empty">Ovaj dan još nema vježbi. Dodajte ih za početak.</string>
+    <string name="rest_day_title">Dan odmora</string>
+    <string name="rest_day_sub">Oporavak je dio treninga. Mišići jačaju dok se odmarate.</string>
+    <string name="rest_day_progress">Dan %1$d/%2$d</string>
+    <string name="rest_tip_water">Pijte dovoljno vode tijekom dana</string>
+    <string name="rest_tip_walk">Lagana šetnja od 20 minuta drži tijelo u pokretu</string>
+    <string name="rest_tip_sleep">Spavajte 7–8 sati za dobar oporavak</string>
+    <string name="rest_stretch_title">Želite se malo pokrenuti? Probajte nježno istezanje</string>
+    <string name="rest_day_done">Završi dan odmora</string>
 </resources>

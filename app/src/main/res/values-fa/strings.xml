@@ -386,4 +386,12 @@
     <string name="rec_minutes_short">دقیقه</string>
     <string name="fin_new_record">🏆 رکورد جدید: طولانی‌ترین تمرین شما!</string>
     <string name="my_workout_day_empty">این روز هنوز تمرینی ندارد. برای شروع تمرین اضافه کنید.</string>
+    <string name="rest_day_title">روز استراحت</string>
+    <string name="rest_day_sub">ریکاوری بخشی از تمرین است. عضلات شما در زمان استراحت قوی‌تر می‌شوند.</string>
+    <string name="rest_day_progress">روز %1$d/%2$d</string>
+    <string name="rest_tip_water">در طول روز به اندازه کافی آب بنوشید</string>
+    <string name="rest_tip_walk">۲۰ دقیقه پیاده‌روی سبک بدن را فعال نگه می‌دارد</string>
+    <string name="rest_tip_sleep">۷ تا ۸ ساعت بخوابید تا به خوبی ریکاوری کنید</string>
+    <string name="rest_stretch_title">دوست دارید کمی حرکت کنید؟ یک کشش ملایم را امتحان کنید</string>
+    <string name="rest_day_done">پایان روز استراحت</string>
 </resources>

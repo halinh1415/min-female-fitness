@@ -282,4 +282,12 @@
     <string name="rec_minutes_short">मि</string>
     <string name="fin_new_record">🏆 नया रिकॉर्ड: आपका सबसे लंबा वर्कआउट!</string>
     <string name="my_workout_day_empty">इस दिन अभी कोई व्यायाम नहीं है। शुरू करने के लिए जोड़ें।</string>
+    <string name="rest_day_title">आराम का दिन</string>
+    <string name="rest_day_sub">रिकवरी भी ट्रेनिंग का हिस्सा है। आराम करते समय आपकी मांसपेशियाँ मज़बूत होती हैं।</string>
+    <string name="rest_day_progress">दिन %1$d/%2$d</string>
+    <string name="rest_tip_water">दिन भर में भरपूर पानी पिएँ</string>
+    <string name="rest_tip_walk">20 मिनट की हल्की सैर से शरीर सक्रिय रहता है</string>
+    <string name="rest_tip_sleep">अच्छी रिकवरी के लिए 7–8 घंटे सोएँ</string>
+    <string name="rest_stretch_title">थोड़ा हिलना-डुलना चाहते हैं? हल्की स्ट्रेचिंग आज़माएँ</string>
+    <string name="rest_day_done">आराम का दिन पूरा करें</string>
 </resources>

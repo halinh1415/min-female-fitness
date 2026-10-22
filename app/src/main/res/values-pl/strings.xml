@@ -386,4 +386,12 @@
     <string name="rec_minutes_short">min</string>
     <string name="fin_new_record">🏆 Nowy rekord: Twój najdłuższy trening!</string>
     <string name="my_workout_day_empty">Ten dzień nie ma jeszcze ćwiczeń. Dodaj je, aby zacząć.</string>
+    <string name="rest_day_title">Dzień odpoczynku</string>
+    <string name="rest_day_sub">Regeneracja to część treningu. Mięśnie stają się silniejsze, gdy odpoczywasz.</string>
+    <string name="rest_day_progress">Dzień %1$d/%2$d</string>
+    <string name="rest_tip_water">Pij dużo wody w ciągu dnia</string>
+    <string name="rest_tip_walk">Lekki 20-minutowy spacer utrzyma ciało w ruchu</string>
+    <string name="rest_tip_sleep">Śpij 7–8 godzin, aby dobrze się zregenerować</string>
+    <string name="rest_stretch_title">Masz ochotę się poruszać? Spróbuj delikatnego rozciągania</string>
+    <string name="rest_day_done">Zakończ dzień odpoczynku</string>
 </resources>

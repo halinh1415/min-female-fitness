@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.SystemBarStyle
@@ -70,7 +69,6 @@ class ChallengeActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
                         onBack = ::finish,
                         onDay = ::goDay,
                         onReset = ::restartProgress,
-                        onSetProgress = ::showDialogSetProgress,
                         onEdit = ::openEdit,
                     ),
                     banner = { AdBanner() },
@@ -90,7 +88,20 @@ class ChallengeActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
             program = p,
             progress = myPreference.getPlanProgress(p.id),
             showEdit = BuildConfig.DEBUG,
+            restDays = restDays(p),
         )
+    }
+
+    /**
+     * Ngày nghỉ = ngày không có động tác của bài có sẵn / tải về (bài tự tạo: ngày rỗng là ngày chưa soạn,
+     * xem [isEmptyCustomDay]). Bài tải về chưa tải thì chưa biết, coi như không có.
+     */
+    private fun restDays(p: ProgramObject): Set<Int> {
+        if (p.id > Database.MY_WORKOUT_ID_BASE) return emptySet()
+        return runCatching {
+            FitnessApplication.getApplication().mJsonHelper.getListPlan(p.plan, p.discover, p.version).orEmpty()
+                .withIndex().filter { it.value.mActionList.isNullOrEmpty() }.map { it.index }.toSet()
+        }.getOrDefault(emptySet())
     }
 
     private fun goDay(day: Int) {
@@ -107,7 +118,8 @@ class ChallengeActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
                 openEdit()
             }
             else -> startActivity(
-                Intent(this, PreviewActivity::class.java).putExtras(
+                // Ngày nghỉ mở màn nghỉ (Hoàn thành = qua ngày).
+                Intent(this, if (day in state.restDays) RestTimeActivity::class.java else PreviewActivity::class.java).putExtras(
                     Bundle().apply {
                         putInt("PROGRAM_ID", programId)
                         putInt("DAY_NUMBER", day)
@@ -132,26 +144,6 @@ class ChallengeActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
                 myPreference.setPlanProgress(p.id, 0)
                 refresh()
             }
-            .show()
-    }
-
-    private fun showDialogSetProgress() {
-        val p = program ?: return
-        val picker = NumberPicker(this).apply {
-            minValue = 0
-            maxValue = p.total - 1
-            displayedValues = Array(p.total) { getString(R.string.txt_day) + " " + (it + 1) }
-            value = myPreference.getPlanProgress(p.id).coerceIn(0, p.total - 1)
-        }
-        AlertDialog.Builder(this)
-            .setTitle(R.string.txt_start_day)
-            .setMessage(R.string.txt_choose_day)
-            .setView(picker)
-            .setPositiveButton(android.R.string.ok) { _, _ ->
-                myPreference.setPlanProgress(p.id, picker.value)
-                refresh()
-            }
-            .setNegativeButton(android.R.string.cancel, null)
             .show()
     }
 

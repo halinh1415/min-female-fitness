@@ -386,4 +386,12 @@
     <string name="rec_minutes_short">dk</string>
     <string name="fin_new_record">🏆 Yeni rekor: en uzun antrenmanın!</string>
     <string name="my_workout_day_empty">Bu günde henüz egzersiz yok. Başlamak için ekleyin.</string>
+    <string name="rest_day_title">Dinlenme günü</string>
+    <string name="rest_day_sub">Toparlanma antrenmanın bir parçasıdır. Dinlenirken kasların güçlenir.</string>
+    <string name="rest_day_progress">Gün %1$d/%2$d</string>
+    <string name="rest_tip_water">Gün boyunca bol su iç</string>
+    <string name="rest_tip_walk">20 dakikalık hafif bir yürüyüş vücudunu hareketli tutar</string>
+    <string name="rest_tip_sleep">İyi toparlanmak için 7–8 saat uyu</string>
+    <string name="rest_stretch_title">Biraz hareket etmek ister misin? Hafif bir esneme dene</string>
+    <string name="rest_day_done">Dinlenme gününü bitir</string>
 </resources>

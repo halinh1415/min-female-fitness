@@ -478,4 +478,12 @@
     <string name="rec_minutes_short">min</string>
     <string name="fin_new_record">🏆 New record: your longest workout!</string>
     <string name="my_workout_day_empty">This day has no exercises yet. Add some to start.</string>
+    <string name="rest_day_title">Rest day</string>
+    <string name="rest_day_sub">Recovery is part of training. Your muscles grow stronger while you rest.</string>
+    <string name="rest_day_progress">Day %1$d/%2$d</string>
+    <string name="rest_tip_water">Drink plenty of water throughout the day</string>
+    <string name="rest_tip_walk">A light 20-minute walk keeps your body moving</string>
+    <string name="rest_tip_sleep">Sleep 7–8 hours to recover well</string>
+    <string name="rest_stretch_title">Feel like moving? Try a gentle stretch</string>
+    <string name="rest_day_done">Finish rest day</string>
 </resources>

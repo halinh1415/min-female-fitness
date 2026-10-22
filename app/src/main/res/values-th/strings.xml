@@ -386,4 +386,12 @@
     <string name="rec_minutes_short">นาที</string>
     <string name="fin_new_record">🏆 สถิติใหม่: การออกกำลังกายที่นานที่สุดของคุณ!</string>
     <string name="my_workout_day_empty">วันนี้ยังไม่มีท่าออกกำลังกาย เพิ่มท่าเพื่อเริ่มต้น</string>
+    <string name="rest_day_title">วันพัก</string>
+    <string name="rest_day_sub">การพักฟื้นเป็นส่วนหนึ่งของการฝึก กล้ามเนื้อจะแข็งแรงขึ้นระหว่างที่คุณพัก</string>
+    <string name="rest_day_progress">วันที่ %1$d/%2$d</string>
+    <string name="rest_tip_water">ดื่มน้ำให้เพียงพอตลอดวัน</string>
+    <string name="rest_tip_walk">เดินเบา ๆ 20 นาทีช่วยให้ร่างกายได้เคลื่อนไหว</string>
+    <string name="rest_tip_sleep">นอน 7–8 ชั่วโมงเพื่อฟื้นตัวได้ดี</string>
+    <string name="rest_stretch_title">อยากขยับตัวไหม? ลองยืดเหยียดเบา ๆ</string>
+    <string name="rest_day_done">จบวันพัก</string>
 </resources>

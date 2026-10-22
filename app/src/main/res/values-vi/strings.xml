@@ -396,4 +396,12 @@
     <string name="rec_minutes_short">phút</string>
     <string name="fin_new_record">🏆 Kỷ lục mới: buổi tập dài nhất của bạn!</string>
     <string name="my_workout_day_empty">Ngày này chưa có động tác nào. Thêm động tác để bắt đầu.</string>
+    <string name="rest_day_title">Ngày nghỉ</string>
+    <string name="rest_day_sub">Nghỉ ngơi cũng là một phần của tập luyện. Cơ bắp khỏe lên trong lúc bạn nghỉ.</string>
+    <string name="rest_day_progress">Ngày %1$d/%2$d</string>
+    <string name="rest_tip_water">Uống đủ nước trong ngày</string>
+    <string name="rest_tip_walk">Đi bộ nhẹ 20 phút để cơ thể vẫn vận động</string>
+    <string name="rest_tip_sleep">Ngủ đủ 7–8 tiếng để hồi phục tốt</string>
+    <string name="rest_stretch_title">Muốn vận động chút? Thử giãn cơ nhẹ nhàng</string>
+    <string name="rest_day_done">Hoàn thành ngày nghỉ</string>
 </resources>

@@ -299,4 +299,12 @@
     <string name="rec_minutes_short">min</string>
     <string name="fin_new_record">🏆 Nytt rekord: ditt längsta pass!</string>
     <string name="my_workout_day_empty">Den här dagen har inga övningar än. Lägg till några för att börja.</string>
+    <string name="rest_day_title">Vilodag</string>
+    <string name="rest_day_sub">Återhämtning är en del av träningen. Dina muskler blir starkare medan du vilar.</string>
+    <string name="rest_day_progress">Dag %1$d/%2$d</string>
+    <string name="rest_tip_water">Drick mycket vatten under dagen</string>
+    <string name="rest_tip_walk">En lätt promenad på 20 minuter håller kroppen i rörelse</string>
+    <string name="rest_tip_sleep">Sov 7–8 timmar för att återhämta dig väl</string>
+    <string name="rest_stretch_title">Sugen på att röra dig? Prova en mjuk stretch</string>
+    <string name="rest_day_done">Avsluta vilodag</string>
 </resources>

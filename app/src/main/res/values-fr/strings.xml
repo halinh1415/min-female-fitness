@@ -386,4 +386,12 @@
     <string name="rec_minutes_short">min</string>
     <string name="fin_new_record">🏆 Nouveau record : votre séance la plus longue !</string>
     <string name="my_workout_day_empty">Ce jour ne contient encore aucun exercice. Ajoutez-en pour commencer.</string>
+    <string name="rest_day_title">Jour de repos</string>
+    <string name="rest_day_sub">La récupération fait partie de l\'entraînement. Vos muscles se renforcent pendant le repos.</string>
+    <string name="rest_day_progress">Jour %1$d/%2$d</string>
+    <string name="rest_tip_water">Buvez beaucoup d\'eau tout au long de la journée</string>
+    <string name="rest_tip_walk">Une marche légère de 20 minutes garde votre corps actif</string>
+    <string name="rest_tip_sleep">Dormez 7 à 8 heures pour bien récupérer</string>
+    <string name="rest_stretch_title">Envie de bouger ? Essayez un étirement doux</string>
+    <string name="rest_day_done">Terminer le jour de repos</string>
 </resources>

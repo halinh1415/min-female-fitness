@@ -386,4 +386,12 @@
     <string name="rec_minutes_short">min</string>
     <string name="fin_new_record">🏆 Ny rekord: din længste træning!</string>
     <string name="my_workout_day_empty">Denne dag har ingen øvelser endnu. Tilføj nogle for at starte.</string>
+    <string name="rest_day_title">Hviledag</string>
+    <string name="rest_day_sub">Restitution er en del af træningen. Dine muskler bliver stærkere, mens du hviler.</string>
+    <string name="rest_day_progress">Dag %1$d/%2$d</string>
+    <string name="rest_tip_water">Drik rigeligt med vand i løbet af dagen</string>
+    <string name="rest_tip_walk">En let gåtur på 20 minutter holder kroppen i gang</string>
+    <string name="rest_tip_sleep">Sov 7–8 timer for at restituere godt</string>
+    <string name="rest_stretch_title">Lyst til at bevæge dig? Prøv en blid udstrækning</string>
+    <string name="rest_day_done">Afslut hviledag</string>
 </resources>

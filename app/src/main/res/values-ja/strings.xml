@@ -386,4 +386,12 @@
     <string name="rec_minutes_short">分</string>
     <string name="fin_new_record">🏆 新記録：最長のワークアウト！</string>
     <string name="my_workout_day_empty">この日にはまだエクササイズがありません。追加して始めましょう。</string>
+    <string name="rest_day_title">休息日</string>
+    <string name="rest_day_sub">回復もトレーニングの一部。休んでいる間に筋肉は強くなります。</string>
+    <string name="rest_day_progress">%1$d/%2$d日目</string>
+    <string name="rest_tip_water">一日を通してしっかり水分補給を</string>
+    <string name="rest_tip_walk">20分の軽いウォーキングで体を動かしましょう</string>
+    <string name="rest_tip_sleep">7〜8時間眠ってしっかり回復</string>
+    <string name="rest_stretch_title">少し動きたい？やさしいストレッチを試してみましょう</string>
+    <string name="rest_day_done">休息日を完了</string>
 </resources>

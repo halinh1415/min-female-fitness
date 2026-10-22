@@ -299,4 +299,12 @@
     <string name="rec_minutes_short">min</string>
     <string name="fin_new_record">🏆 Jauns rekords: tavs garākais treniņš!</string>
     <string name="my_workout_day_empty">Šai dienai vēl nav vingrinājumu. Pievienojiet tos, lai sāktu.</string>
+    <string name="rest_day_title">Atpūtas diena</string>
+    <string name="rest_day_sub">Atjaunošanās ir daļa no treniņa. Muskuļi kļūst stiprāki, kamēr jūs atpūšaties.</string>
+    <string name="rest_day_progress">Diena %1$d/%2$d</string>
+    <string name="rest_tip_water">Dienas laikā dzeriet pietiekami daudz ūdens</string>
+    <string name="rest_tip_walk">Viegla 20 minūšu pastaiga uztur ķermeni kustībā</string>
+    <string name="rest_tip_sleep">Gulējiet 7–8 stundas, lai labi atjaunotos</string>
+    <string name="rest_stretch_title">Gribas pakustēties? Izmēģiniet vieglu stiepšanos</string>
+    <string name="rest_day_done">Pabeigt atpūtas dienu</string>
 </resources>

@@ -69,6 +69,8 @@ data class ChallengeState(
     /** Số ngày đã hoàn thành (MyPreference PLAN_PROGRESS_<id>). */
     val progress: Int = 0,
     val showEdit: Boolean = false,
+    /** Ngày (0-based) không có động tác: hiện ☕ và nút "Ngày nghỉ". */
+    val restDays: Set<Int> = emptySet(),
 )
 
 class ChallengeActions(
@@ -76,7 +78,6 @@ class ChallengeActions(
     /** Ngày (0-based) được bấm. */
     val onDay: (Int) -> Unit,
     val onReset: () -> Unit,
-    val onSetProgress: () -> Unit,
     val onEdit: () -> Unit,
 )
 
@@ -106,7 +107,7 @@ fun ChallengeScreen(state: ChallengeState, actions: ChallengeActions, banner: @C
             item { Header(program, done, total, state, actions) }
             // Tuần cuối có thể thiếu ngày khi tổng không chia hết cho 7.
             val weeks = (total + 6) / 7
-            items(weeks) { week -> WeekCard(week, total, done, actions.onDay) }
+            items(weeks) { week -> WeekCard(week, total, done, state.restDays, actions.onDay) }
         }
         Column(Modifier.fillMaxWidth().background(MinColor.Surface).navigationBarsPadding()) {
             Button(
@@ -117,7 +118,11 @@ fun ChallengeScreen(state: ChallengeState, actions: ChallengeActions, banner: @C
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp),
             ) {
                 Text(
-                    if (finished) stringResource(R.string.ch_restart) else stringResource(R.string.ch_start_day, done + 1),
+                    when {
+                        finished -> stringResource(R.string.ch_restart)
+                        done in state.restDays -> "☕  " + stringResource(R.string.rest_day_title)
+                        else -> stringResource(R.string.ch_start_day, done + 1)
+                    },
                     fontSize = 17.sp,
                     fontWeight = FontWeight.ExtraBold,
                 )
@@ -155,13 +160,10 @@ private fun Header(program: ProgramObject, done: Int, total: Int, state: Challen
             IconCircle("←", actions.onBack)
             Spacer(Modifier.weight(1f))
             IconCircle("↻", actions.onReset)
-            Box {
+            // Menu chỉ còn mục Sửa (bản debug): bản release ẩn nút ⋮.
+            if (state.showEdit) Box {
                 IconCircle("⋮") { menu = true }
                 DropdownMenu(expanded = menu, onDismissRequest = { menu = false }) {
-//                    DropdownMenuItem(text = { Text(stringResource(R.string.txt_set_progress)) }, onClick = {
-//                        menu = false
-//                        actions.onSetProgress()
-//                    })
                     if (state.showEdit) {
                         DropdownMenuItem(text = { Text(stringResource(R.string.txt_edit)) }, onClick = {
                             menu = false
@@ -229,7 +231,7 @@ private fun ProgressRing(fraction: Float, modifier: Modifier) {
 
 /** Thẻ một tuần: 7 ngày dạng vòng tròn (2 hàng 4 + 3 & cúp), ngày đúng thứ tự trong cả thử thách. */
 @Composable
-private fun WeekCard(week: Int, total: Int, done: Int, onDay: (Int) -> Unit) {
+private fun WeekCard(week: Int, total: Int, done: Int, restDays: Set<Int>, onDay: (Int) -> Unit) {
     val first = week * 7
     val last = minOf(first + 7, total) - 1
     val weekDone = done > last
@@ -265,7 +267,7 @@ private fun WeekCard(week: Int, total: Int, done: Int, onDay: (Int) -> Unit) {
         val days = (first..last).toList()
         val top = days.take(4)
         val bottom = days.drop(4)
-        PathRow(top.map { Node.Day(it) }, done, onDay)
+        PathRow(top.map { Node.Day(it) }, done, restDays, onDay)
         if (bottom.isNotEmpty()) {
             // Nối dọc từ ô cuối hàng trên xuống ô đầu hàng dưới (cùng nằm ở cột phải).
             Box(Modifier.fillMaxWidth().height(18.dp)) {
@@ -280,7 +282,7 @@ private fun WeekCard(week: Int, total: Int, done: Int, onDay: (Int) -> Unit) {
             }
             val nodes = bottom.map { Node.Day(it) as Node } + if (days.size == 7) listOf(Node.Cup(weekDone)) else emptyList()
             // Hàng dưới chạy phải→trái nhưng vẫn canh phải để thẳng cột với hàng trên.
-            PathRow(nodes.reversed(), done, onDay, reversed = true, slots = 4)
+            PathRow(nodes.reversed(), done, restDays, onDay, reversed = true, slots = 4)
         }
     }
 }
@@ -298,7 +300,7 @@ private sealed interface Node {
  * đoạn nối giữa hai ô tô teal theo ngày nằm bên phải (ngày đến trước).
  */
 @Composable
-private fun PathRow(nodes: List<Node>, done: Int, onDay: (Int) -> Unit, reversed: Boolean = false, slots: Int = 4) {
+private fun PathRow(nodes: List<Node>, done: Int, restDays: Set<Int>, onDay: (Int) -> Unit, reversed: Boolean = false, slots: Int = 4) {
     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
         // Hàng thiếu ô (tuần cuối lẻ ngày): đệm bên trái để các ô thẳng cột với hàng trên.
         repeat(slots - nodes.size) {
@@ -312,7 +314,7 @@ private fun PathRow(nodes: List<Node>, done: Int, onDay: (Int) -> Unit, reversed
                 Box(Modifier.weight(1f).height(LINE).background(if (lit) Teal else Border))
             }
             when (node) {
-                is Node.Day -> DayCircle(node.day, done, onDay, Modifier.size(DAY_SIZE))
+                is Node.Day -> DayCircle(node.day, done, node.day in restDays, onDay, Modifier.size(DAY_SIZE))
                 is Node.Cup -> Trophy(node.earned, Modifier.size(DAY_SIZE))
             }
         }
@@ -320,7 +322,7 @@ private fun PathRow(nodes: List<Node>, done: Int, onDay: (Int) -> Unit, reversed
 }
 
 @Composable
-private fun DayCircle(day: Int, done: Int, onDay: (Int) -> Unit, modifier: Modifier) {
+private fun DayCircle(day: Int, done: Int, rest: Boolean, onDay: (Int) -> Unit, modifier: Modifier) {
     val completed = day < done
     val current = day == done
     val pulse = rememberInfiniteTransition(label = "day")
@@ -340,7 +342,11 @@ private fun DayCircle(day: Int, done: Int, onDay: (Int) -> Unit, modifier: Modif
             .clickable { onDay(day) },
     ) {
         Text(
-            if (completed) "✓" else "${day + 1}",
+            when {
+                completed -> "✓"
+                rest -> "☕"
+                else -> "${day + 1}"
+            },
             color = if (completed || current) Color.White else Muted,
             fontSize = if (current) 16.sp else 14.sp,
             fontWeight = FontWeight.ExtraBold,
