@@ -34,13 +34,26 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class JsonHelper {
     public final static int VERSION_DAY_PLAN = 7;
     public static JsonHelper mHelper;
-    private HashMap<Integer, ExerciseObject> hashMapExercises;
+    /**
+     * Danh sách động tác đã giải mã, theo (discover, version, ngôn ngữ). Giữ vài bộ: trước đây chỉ giữ 1 bộ,
+     * các màn gọi với version khác nhau (0 / 1003 / version bài) hoặc xen bài Discover với bài có sẵn làm
+     * giải mã + parse lại ~200KB trên main thread mỗi lần (ANR khi mở màn tập).
+     */
+    private final LinkedHashMap<String, HashMap<Integer, ExerciseObject>> exerciseCache =
+            new LinkedHashMap<String, HashMap<Integer, ExerciseObject>>(4, 0.75f, true) {
+                @Override
+                protected boolean removeEldestEntry(Map.Entry<String, HashMap<Integer, ExerciseObject>> eldest) {
+                    return size() > 3;
+                }
+            };
     private HashMap<Integer, ProgramObject> programHashMap;
     private String key = "aaBALAXIbuaa9988";
     Integer[] meals = new Integer[]{R.string.recipes_breakfast, R.string.recipes_snack, R.string.recipes_lunch, R.string.recipes_dinner};
@@ -48,9 +61,6 @@ public class JsonHelper {
     Context mContext;
     MyPreference myPreference;
     Decode mDecode;
-    private int currentDiscover = -1;
-    private int currentExerciseVersion = -1;
-    private String currentExerciseLocale;
 
 
 
@@ -211,8 +221,10 @@ public class JsonHelper {
             return new HashMap<>();
         }
         String langCode = getLocaleApp();
-        if (hashMapExercises == null || discover != currentDiscover
-                || version != currentExerciseVersion || !langCode.equals(currentExerciseLocale)) {
+        // Bài có sẵn (discover 0) đọc từ assets, không phụ thuộc version.
+        String cacheKey = (discover == 0 ? "0" : discover + "/" + version) + "/" + langCode;
+        HashMap<Integer, ExerciseObject> hashMapExercises = exerciseCache.get(cacheKey);
+        if (hashMapExercises == null) {
             HashMap<Integer, ExerciseObject> loadedExercises = new HashMap<>();
             String fileName;
             String baseUrl;
@@ -253,9 +265,7 @@ public class JsonHelper {
                 if (loadedExercises.isEmpty()) return loadedExercises;
                 // Publish only a successfully loaded catalog; failed loads must remain retryable.
                 hashMapExercises = loadedExercises;
-                currentDiscover = discover;
-                currentExerciseVersion = version;
-                currentExerciseLocale = langCode;
+                exerciseCache.put(cacheKey, loadedExercises);
             } catch (Exception e) {
                 e.printStackTrace();
                 return new HashMap<>();
@@ -590,10 +600,8 @@ public class JsonHelper {
         return productObjects;
     }
     public void resetData() {
-        if (hashMapExercises != null) {
-            hashMapExercises.clear();
-            hashMapExercises = null;
-
+        synchronized (this) {
+            exerciseCache.clear();
         }
         synchronized (programLock) {
             programHashMap = null;

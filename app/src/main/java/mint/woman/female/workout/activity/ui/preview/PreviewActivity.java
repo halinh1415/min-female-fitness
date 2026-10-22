@@ -43,6 +43,8 @@ import mint.woman.female.workout.activity.ui.settings.CoachOptionActivity;
 
 import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
+import mint.woman.female.workout.activity.ui.custom.CustomMyWorkoutActivity;
+import mint.woman.female.workout.utils.Database;
 import mint.woman.female.workout.utils.DifficultyStore;
 import mint.woman.female.workout.activity.ui.premium.PremiumActivity;
 import mint.woman.female.workout.activity.ui.count.CountManagerActivity;
@@ -824,6 +826,15 @@ public class PreviewActivity extends AppCompatActivity implements PreviewActions
             WorkoutDataValidation.report(this, "preview", mBundle == null ? -1 : mBundle.getInt("PROGRAM_ID", -1),
                     -1, -1, mBundle == null ? -1 : mBundle.getInt("DAY_NUMBER", -1), -1, -1, "missing_program_or_provider");
             Toast.makeText(this, "No workout!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        // Bài tự tạo chưa thêm động tác cho ngày này: không phải lỗi dữ liệu, mở màn sửa.
+        List<PlanObject.ActionObject> actions = mDemoDataProvider.getActionObjectList();
+        if (mProgramObject.getId() > Database.MY_WORKOUT_ID_BASE && (actions == null || actions.isEmpty())) {
+            Toast.makeText(this, R.string.my_workout_day_empty, Toast.LENGTH_SHORT).show();
+            Intent edit = new Intent(this, CustomMyWorkoutActivity.class);
+            edit.putExtra("CUSTOM_ID", mProgramObject.getId());
+            startActivity(edit);
             return;
         }
         // Recheck after any interstitial callback, using the same catalog as the workout screen.

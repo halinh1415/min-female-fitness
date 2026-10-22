@@ -395,4 +395,5 @@
     <string name="rec_minutes_title">Phút tập</string>
     <string name="rec_minutes_short">phút</string>
     <string name="fin_new_record">🏆 Kỷ lục mới: buổi tập dài nhất của bạn!</string>
+    <string name="my_workout_day_empty">Ngày này chưa có động tác nào. Thêm động tác để bắt đầu.</string>
 </resources>

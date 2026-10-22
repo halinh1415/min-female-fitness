@@ -385,4 +385,5 @@
     <string name="rec_minutes_title">Trainingsminuten</string>
     <string name="rec_minutes_short">min</string>
     <string name="fin_new_record">🏆 Nieuw record: je langste training!</string>
+    <string name="my_workout_day_empty">Deze dag heeft nog geen oefeningen. Voeg er een paar toe om te beginnen.</string>
 </resources>

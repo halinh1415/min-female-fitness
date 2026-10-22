@@ -385,4 +385,5 @@
     <string name="rec_minutes_title">Minuty treningu</string>
     <string name="rec_minutes_short">min</string>
     <string name="fin_new_record">🏆 Nowy rekord: Twój najdłuższy trening!</string>
+    <string name="my_workout_day_empty">Ten dzień nie ma jeszcze ćwiczeń. Dodaj je, aby zacząć.</string>
 </resources>

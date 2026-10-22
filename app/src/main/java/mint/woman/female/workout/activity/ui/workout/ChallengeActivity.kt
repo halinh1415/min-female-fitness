@@ -32,6 +32,7 @@ import mint.woman.female.workout.activity.ui.workout.compose.ChallengeActions
 import mint.woman.female.workout.activity.ui.workout.compose.ChallengeScreen
 import mint.woman.female.workout.activity.ui.workout.compose.ChallengeState
 import mint.woman.female.workout.model.ProgramObject
+import mint.woman.female.workout.utils.Database
 import mint.woman.female.workout.utils.EdgeToEdgeHelper
 import mint.woman.female.workout.utils.LanguageHelper
 import mint.woman.female.workout.utils.MyPreference
@@ -100,6 +101,11 @@ class ChallengeActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
             day > progress -> Toast.makeText(
                 this, getString(R.string.ch_finish_previous, progress + 1), Toast.LENGTH_SHORT
             ).show()
+            // Bài tự tạo: ngày chưa thêm động tác thì mở màn sửa, không vào Preview trống.
+            isEmptyCustomDay(p, day) -> {
+                Toast.makeText(this, R.string.my_workout_day_empty, Toast.LENGTH_SHORT).show()
+                openEdit()
+            }
             else -> startActivity(
                 Intent(this, PreviewActivity::class.java).putExtras(
                     Bundle().apply {
@@ -109,6 +115,12 @@ class ChallengeActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
                 ),
             )
         }
+    }
+
+    private fun isEmptyCustomDay(p: ProgramObject, day: Int): Boolean {
+        if (p.id <= Database.MY_WORKOUT_ID_BASE) return false
+        val days = FitnessApplication.getApplication().mJsonHelper.getListPlan(p.plan, p.discover, p.version)
+        return days == null || day >= days.size || days[day].mActionList.isNullOrEmpty()
     }
 
     private fun restartProgress() {

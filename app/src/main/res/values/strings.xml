@@ -477,4 +477,5 @@
     <string name="rec_minutes_title">Workout minutes</string>
     <string name="rec_minutes_short">min</string>
     <string name="fin_new_record">🏆 New record: your longest workout!</string>
+    <string name="my_workout_day_empty">This day has no exercises yet. Add some to start.</string>
 </resources>

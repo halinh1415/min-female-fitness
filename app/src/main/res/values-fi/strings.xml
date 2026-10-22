@@ -298,4 +298,5 @@
     <string name="rec_minutes_title">Treeniminuutit</string>
     <string name="rec_minutes_short">min</string>
     <string name="fin_new_record">🏆 Uusi ennätys: pisin treenisi!</string>
+    <string name="my_workout_day_empty">Tälle päivälle ei ole vielä liikkeitä. Lisää niitä aloittaaksesi.</string>
 </resources>

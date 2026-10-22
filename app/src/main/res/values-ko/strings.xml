@@ -385,4 +385,5 @@
     <string name="rec_minutes_title">운동 시간(분)</string>
     <string name="rec_minutes_short">분</string>
     <string name="fin_new_record">🏆 새 기록: 가장 긴 운동!</string>
+    <string name="my_workout_day_empty">이 날에는 아직 운동이 없습니다. 운동을 추가해 시작하세요.</string>
 </resources>

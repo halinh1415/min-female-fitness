@@ -385,4 +385,5 @@
     <string name="rec_minutes_title">Antrenman dakikası</string>
     <string name="rec_minutes_short">dk</string>
     <string name="fin_new_record">🏆 Yeni rekor: en uzun antrenmanın!</string>
+    <string name="my_workout_day_empty">Bu günde henüz egzersiz yok. Başlamak için ekleyin.</string>
 </resources>

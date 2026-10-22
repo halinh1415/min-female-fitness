@@ -385,4 +385,5 @@
     <string name="rec_minutes_title">นาทีที่ออกกำลังกาย</string>
     <string name="rec_minutes_short">นาที</string>
     <string name="fin_new_record">🏆 สถิติใหม่: การออกกำลังกายที่นานที่สุดของคุณ!</string>
+    <string name="my_workout_day_empty">วันนี้ยังไม่มีท่าออกกำลังกาย เพิ่มท่าเพื่อเริ่มต้น</string>
 </resources>

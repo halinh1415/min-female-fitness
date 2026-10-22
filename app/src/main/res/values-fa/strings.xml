@@ -385,4 +385,5 @@
     <string name="rec_minutes_title">دقایق تمرین</string>
     <string name="rec_minutes_short">دقیقه</string>
     <string name="fin_new_record">🏆 رکورد جدید: طولانی‌ترین تمرین شما!</string>
+    <string name="my_workout_day_empty">این روز هنوز تمرینی ندارد. برای شروع تمرین اضافه کنید.</string>
 </resources>

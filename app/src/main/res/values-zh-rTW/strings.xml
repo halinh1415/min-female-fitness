@@ -385,4 +385,5 @@
     <string name="rec_minutes_title">訓練分鐘</string>
     <string name="rec_minutes_short">分鐘</string>
     <string name="fin_new_record">🏆 新紀錄：你最長的一次訓練！</string>
+    <string name="my_workout_day_empty">這一天還沒有動作，請先新增再開始。</string>
 </resources>

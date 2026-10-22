@@ -30,7 +30,6 @@ import mint.woman.female.workout.FitnessApplication;
 import mint.woman.female.workout.R;
 import mint.woman.female.workout.activity.ui.preview.PreviewActivity;
 import mint.woman.female.workout.activity.ui.workout.ProgramActivity;
-import mint.woman.female.workout.activity.ui.workout.RestTimeActivity;
 import mint.woman.female.workout.common.adapter.MyWorkoutAdapter;
 import mint.woman.female.workout.common.data.CustomWorkoutDataProvider;
 import mint.woman.female.workout.databinding.ActivityMyWorkoutBinding;
@@ -230,12 +229,11 @@ public class MyWorkoutActivity extends AppCompatActivity implements MyWorkoutAda
             startActivity(intent);
         } else if (myWorkoutObject.getTotal() == 1) {
             List<PlanObject> dayPlanObjectList = mJsonHelper.getListPlan(myWorkoutObject.getPlan(),0,1001);
-            if (dayPlanObjectList.get(0).mActionList.size() == 0) {
-                flagRefresh = true;
-                mBundle.putInt("DAY_NUMBER", 1);
-                Intent intent = new Intent(MyWorkoutActivity.this, RestTimeActivity.class);
-                intent.putExtras(mBundle);
-                startActivity(intent);
+            if (dayPlanObjectList.isEmpty() || dayPlanObjectList.get(0).mActionList == null
+                    || dayPlanObjectList.get(0).mActionList.isEmpty()) {
+                // Chưa thêm động tác: mở màn sửa (RestTimeActivity cần PLAN nên mở ra sẽ lỗi).
+                Toast.makeText(this, R.string.my_workout_day_empty, Toast.LENGTH_SHORT).show();
+                onEdit(myWorkoutObject);
             } else {
                 flagRefresh = true;
                 Intent intent = new Intent(MyWorkoutActivity.this, PreviewActivity.class);

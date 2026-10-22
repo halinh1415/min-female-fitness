@@ -385,4 +385,5 @@
     <string name="rec_minutes_title">運動時間（分）</string>
     <string name="rec_minutes_short">分</string>
     <string name="fin_new_record">🏆 新記録：最長のワークアウト！</string>
+    <string name="my_workout_day_empty">この日にはまだエクササイズがありません。追加して始めましょう。</string>
 </resources>

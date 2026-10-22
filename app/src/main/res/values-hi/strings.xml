@@ -281,4 +281,5 @@
     <string name="rec_minutes_title">वर्कआउट मिनट</string>
     <string name="rec_minutes_short">मि</string>
     <string name="fin_new_record">🏆 नया रिकॉर्ड: आपका सबसे लंबा वर्कआउट!</string>
+    <string name="my_workout_day_empty">इस दिन अभी कोई व्यायाम नहीं है। शुरू करने के लिए जोड़ें।</string>
 </resources>
