@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">Omdat je wilt trainen: %s</string>
+    <string name="rec_reason_lose">Verbrandt vet voor je afvaldoel</string>
+    <string name="rec_reason_flex">Meer flexibiliteit, zoals je wilde</string>
+    <string name="rec_reason_health">Een lichte sessie om gezond te blijven</string>
+    <string name="rec_reason_level_up">Level up: je bent er klaar voor!</string>
+    <string name="rec_reason_habit">Past bij hoe lang je meestal traint</string>
+    <string name="rec_reason_recovery">Lichte hersteldag na %d dagen op rij</string>
+    <string name="rec_reason_comeback">Rustig herstarten na een paar vrije dagen</string>
+    <string name="rec_reason_new">Iets nieuws dat je nog niet hebt geprobeerd</string>
+    <string name="rec_reason_default">Vandaag voor jou gekozen</string>
+    <string name="rec_reason_morning">Een zachte start van je ochtend</string>
+    <string name="rec_reason_bedtime">Ontspan voor het slapengaan</string>
+    <string name="home_done_sub">Nog iets meer? Probeer deze lichte</string>
+    <string name="home_swap">Wissel</string>
+</resources>

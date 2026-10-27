@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">Çalışmak istediğin bölge: %s</string>
+    <string name="rec_reason_lose">Kilo verme hedefin için yağ yakar</string>
+    <string name="rec_reason_flex">İstediğin gibi esnekliği artırır</string>
+    <string name="rec_reason_health">Sağlıklı kalman için hafif bir seans</string>
+    <string name="rec_reason_level_up">Seviye atla: hazırsın!</string>
+    <string name="rec_reason_habit">Genelde antrenman yaptığın süreye uygun</string>
+    <string name="rec_reason_recovery">Art arda %d günden sonra hafif toparlanma günü</string>
+    <string name="rec_reason_comeback">Birkaç gün aradan sonra yumuşak bir dönüş</string>
+    <string name="rec_reason_new">Henüz denemediğin yeni bir şey</string>
+    <string name="rec_reason_default">Bugün senin için seçildi</string>
+    <string name="rec_reason_morning">Sabahına nazik bir başlangıç</string>
+    <string name="rec_reason_bedtime">Uyumadan önce rahatla</string>
+    <string name="home_done_sub">Biraz daha? Bu hafif olanı dene</string>
+    <string name="home_swap">Değiştir</string>
+</resources>

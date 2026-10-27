@@ -35,4 +35,20 @@
     <string name="pp_standard">Стандартно</string>
     <string name="pp_long">Долго</string>
     <string name="pp_limits">Ограничения</string>
+    <string name="pp_review_title">Неделя %1$d позади! 🎉</string>
+    <string name="pp_review_desc">Расскажите, как прошло, и мы подстроим следующую неделю.</string>
+    <string name="pp_review_button">Оценить</string>
+    <string name="pp_review_q_feel">Как прошла неделя?</string>
+    <string name="pp_review_easy">Слишком легко</string>
+    <string name="pp_review_right">В самый раз</string>
+    <string name="pp_review_hard">Слишком тяжело</string>
+    <string name="pp_review_q_length">Длительность занятия?</string>
+    <string name="pp_review_shorter">Короче</string>
+    <string name="pp_review_same">Оставить</string>
+    <string name="pp_review_longer">Дольше</string>
+    <string name="pp_review_apply">Обновить план</string>
+    <string name="pp_review_later">Не сейчас</string>
+    <string name="pp_review_done">Неделя %1$d обновлена для вас</string>
+    <string name="pp_days_week">Тренировочных дней в неделю</string>
+    <string name="pp_days_hint">В остальные дни — лёгкая растяжка.</string>
 </resources>

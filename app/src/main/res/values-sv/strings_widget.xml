@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">Dagens träning</string>
+    <string name="widget_desc">Din svit och dagens träning i en blick</string>
+    <string name="widget_streak_label">dagar i rad</string>
+    <string name="widget_suggested">Föreslaget för dig</string>
+    <string name="widget_done_today">Klart idag ✓ Bra jobbat!</string>
+    <string name="widget_start">Starta</string>
+    <string name="widget_train_more">Träna mer</string>
+</resources>

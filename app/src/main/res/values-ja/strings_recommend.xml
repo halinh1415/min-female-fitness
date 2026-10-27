@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">鍛えたい部位：%s</string>
+    <string name="rec_reason_lose">減量の目標に合わせて脂肪を燃焼</string>
+    <string name="rec_reason_flex">ご希望どおり柔軟性アップ</string>
+    <string name="rec_reason_health">健康のための軽めのセッション</string>
+    <string name="rec_reason_level_up">レベルアップ：準備はできています！</string>
+    <string name="rec_reason_habit">いつものトレーニング時間にぴったり</string>
+    <string name="rec_reason_recovery">%d日連続のあとは軽めの回復日</string>
+    <string name="rec_reason_comeback">数日休んだあとのやさしい再スタート</string>
+    <string name="rec_reason_new">まだ試していない新しいメニュー</string>
+    <string name="rec_reason_default">今日のおすすめ</string>
+    <string name="rec_reason_morning">朝のやさしいスタートに</string>
+    <string name="rec_reason_bedtime">寝る前にリラックス</string>
+    <string name="home_done_sub">もう少しやる？軽めのこちらをどうぞ</string>
+    <string name="home_swap">変更</string>
+</resources>

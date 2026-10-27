@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">원하는 부위: %s</string>
+    <string name="rec_reason_lose">체중 감량 목표를 위한 지방 연소</string>
+    <string name="rec_reason_flex">원하신 대로 유연성 향상</string>
+    <string name="rec_reason_health">건강을 위한 가벼운 운동</string>
+    <string name="rec_reason_level_up">레벨 업: 준비됐어요!</string>
+    <string name="rec_reason_habit">평소 운동 시간에 딱 맞아요</string>
+    <string name="rec_reason_recovery">%d일 연속 후 가벼운 회복의 날</string>
+    <string name="rec_reason_comeback">며칠 쉬고 부드럽게 다시 시작</string>
+    <string name="rec_reason_new">아직 해보지 않은 새로운 운동</string>
+    <string name="rec_reason_default">오늘의 추천</string>
+    <string name="rec_reason_morning">부드러운 아침의 시작</string>
+    <string name="rec_reason_bedtime">잠들기 전 긴장 풀기</string>
+    <string name="home_done_sub">조금 더? 가벼운 운동을 해보세요</string>
+    <string name="home_swap">바꾸기</string>
+</resources>

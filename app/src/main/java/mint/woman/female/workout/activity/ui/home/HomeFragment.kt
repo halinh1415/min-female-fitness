@@ -1,5 +1,7 @@
 package mint.woman.female.workout.activity.ui.home
 
+import mint.woman.female.workout.recommend.RecommendationService
+import mint.woman.female.workout.widget.TodayWidget
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -38,7 +40,6 @@ import mint.woman.female.workout.model.HistoryItem
 import mint.woman.female.workout.model.ProgramObject
 import mint.woman.female.workout.utils.HistoryDatabase
 import mint.woman.female.workout.utils.MyPreference
-import mint.woman.female.workout.utils.ProgramRecommenderV3
 import mint.woman.female.workout.utils.StreakMessageType
 import mint.woman.female.workout.utils.UserStreakResult
 import java.text.SimpleDateFormat
@@ -61,7 +62,7 @@ import kotlinx.coroutines.withContext
  * Màn Home viết bằng Jetpack Compose.
  *
  * Giữ nguyên dữ liệu và luồng của bản cũ (HomeFragment + WeekGoalNewFragment):
- * gợi ý bài tập từ [ProgramRecommenderV3], mục tiêu tuần từ [HistoryViewModel],
+ * gợi ý bài tập từ [RecommendationService], mục tiêu tuần từ [HistoryViewModel],
  * các nhóm chương trình cố định theo id.
  */
 class HomeFragment : Fragment(), HomeActions {
@@ -77,6 +78,7 @@ class HomeFragment : Fragment(), HomeActions {
     private val state = HomeUiState()
 
     private val recentIds = LinkedHashSet<Int>()
+    private var todayRecommendation: RecommendationService.Result? = null
     private var avgDuration = 0
     private var firstDayOfWeekMillis = 0L
     private var lastDayOfWeekMillis = 0L
@@ -168,6 +170,7 @@ class HomeFragment : Fragment(), HomeActions {
         state.isPremium = pref.isPremiumMember
         state.promoEndsAt = if (pref.isPremiumMember) null else PaywallPromo.activeEndTime(requireContext())
         state.personalPlan = PersonalPlanStore.program(requireContext())
+        state.weekReview = PersonalPlanStore.pendingReviewWeek(requireContext())
         refreshPlanProgress()
         refreshFirstWorkoutNudge()
     }
@@ -273,21 +276,22 @@ class HomeFragment : Fragment(), HomeActions {
      * Danh sách bài đã cache trong JsonHelper (giải mã sẵn lúc mở app); vẫn chạy ở luồng nền vì
      * lần đầu có thể phải chờ giải mã xong, và chấm điểm 170+ bài không cần chiếm main thread.
      */
-    private fun suggestProgram(streak: Int) {
-        val timeOfDay = timeOfDay()
-        val recent = LinkedHashSet(recentIds)
-        val dayOff = dayOff(pref.lastWorkout)
-        val avg = avgDuration
-        val focus = pref.userTargetFocus
+    private fun suggestProgram(@Suppress("UNUSED_PARAMETER") streak: Int) {
+        val appContext = requireContext().applicationContext
         suggestJob?.cancel()
         suggestJob = viewLifecycleOwner.lifecycleScope.launch {
-            val suggested = withContext(Dispatchers.IO) {
-                val programs = FitnessApplication.getApplication().mJsonHelper.allCategory
-                ProgramRecommenderV3().suggest(programs, streak, true, timeOfDay, recent, dayOff, avg, focus, false)
-            } ?: return@launch
+            // RecommendationService (chép từ Women): chấm điểm theo onboarding, trình độ, thói quen, lịch sử 60 ngày,
+            // đánh giá độ khó; thay cho ProgramRecommenderV3 cũ (bộ chấm của app Tai Chi).
+            val today = withContext(Dispatchers.IO) { RecommendationService.today(appContext, 1) } ?: return@launch
+            todayRecommendation = today.pick
+            val suggested = today.pick.program
             state.suggestion = suggested
             state.suggestionInfo = programInfo(suggested)
+            state.suggestionReason = today.pick.reasonText
+            state.canSwap = today.alternatives.isNotEmpty()
             historyViewModel.setSuggestProgram(suggested)
+            RecommendationService.logShown(appContext, today.pick)
+            TodayWidget.saveSuggestion(appContext, suggested.id)
         }
     }
 
@@ -306,9 +310,9 @@ class HomeFragment : Fragment(), HomeActions {
     private fun timeOfDay(): String {
         val hour = LocalTime.now().hour
         return when {
-            hour in 5..11 -> ProgramRecommenderV3.TIME_MORNING
-            hour in 12..16 -> ProgramRecommenderV3.TIME_AFTERNOON
-            else -> ProgramRecommenderV3.TIME_EVENING
+            hour in 5..11 -> mint.woman.female.workout.utils.ProgramRecommenderV3.TIME_MORNING
+            hour in 12..16 -> mint.woman.female.workout.utils.ProgramRecommenderV3.TIME_AFTERNOON
+            else -> mint.woman.female.workout.utils.ProgramRecommenderV3.TIME_EVENING
         }
     }
 
@@ -392,7 +396,16 @@ class HomeFragment : Fragment(), HomeActions {
     }
 
     override fun onStartSuggestion() {
-        state.suggestion?.let(::openProgram)
+        val program = state.suggestion ?: return
+        todayRecommendation?.takeIf { it.program.id == program.id }?.let { RecommendationService.logStart(requireContext(), it) }
+        openProgram(program)
+    }
+
+    /** "Đổi bài": bỏ qua bài hôm nay, lấy bài gợi ý kế tiếp. */
+    override fun onSwapSuggestion() {
+        val current = todayRecommendation ?: return
+        RecommendationService.skipToday(requireContext(), current)
+        suggestProgram(0)
     }
 
     override fun onProgramClick(program: ProgramObject) {
@@ -423,6 +436,24 @@ class HomeFragment : Fragment(), HomeActions {
         } else {
             openProgram(plan)
         }
+    }
+
+    override fun onWeekReview(week: Int, feel: Int, length: Int) {
+        state.weekReview = null
+        val appContext = requireContext().applicationContext
+        viewLifecycleOwner.lifecycleScope.launch {
+            val changed = withContext(Dispatchers.IO) { PersonalPlanStore.applyWeekReview(appContext, week, feel, length) }
+            if (changed) {
+                android.widget.Toast.makeText(appContext, getString(R.string.pp_review_done, week + 1), android.widget.Toast.LENGTH_SHORT).show()
+            }
+            state.personalPlan = PersonalPlanStore.program(appContext)
+            refreshPlanProgress()
+        }
+    }
+
+    override fun onWeekReviewSkip(week: Int) {
+        state.weekReview = null
+        PersonalPlanStore.skipWeekReview(requireContext(), week)
     }
 
     override fun onAdjustPersonalPlan() {

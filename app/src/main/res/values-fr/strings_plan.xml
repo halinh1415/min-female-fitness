@@ -35,4 +35,20 @@
     <string name="pp_standard">Standard</string>
     <string name="pp_long">Long</string>
     <string name="pp_limits">Limitations</string>
+    <string name="pp_review_title">Semaine %1$d terminée ! 🎉</string>
+    <string name="pp_review_desc">Dites-nous comment c\'était, on ajuste la semaine prochaine.</string>
+    <string name="pp_review_button">Évaluer</string>
+    <string name="pp_review_q_feel">Comment était cette semaine ?</string>
+    <string name="pp_review_easy">Trop facile</string>
+    <string name="pp_review_right">Parfait</string>
+    <string name="pp_review_hard">Trop dur</string>
+    <string name="pp_review_q_length">Durée des séances ?</string>
+    <string name="pp_review_shorter">Plus courte</string>
+    <string name="pp_review_same">Garder</string>
+    <string name="pp_review_longer">Plus longue</string>
+    <string name="pp_review_apply">Mettre à jour mon plan</string>
+    <string name="pp_review_later">Pas maintenant</string>
+    <string name="pp_review_done">La semaine %1$d a été ajustée pour vous</string>
+    <string name="pp_days_week">Jours d\'entraînement par semaine</string>
+    <string name="pp_days_hint">Les autres jours sont des séances d\'étirements légers.</string>
 </resources>

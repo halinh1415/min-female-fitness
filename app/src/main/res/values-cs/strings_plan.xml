@@ -35,4 +35,20 @@
     <string name="pp_standard">Standardní</string>
     <string name="pp_long">Dlouhý</string>
     <string name="pp_limits">Omezení</string>
+    <string name="pp_review_title">Týden %1$d hotový! 🎉</string>
+    <string name="pp_review_desc">Řekněte nám, jaké to bylo, a upravíme příští týden.</string>
+    <string name="pp_review_button">Hodnotit</string>
+    <string name="pp_review_q_feel">Jaký byl tento týden?</string>
+    <string name="pp_review_easy">Moc lehké</string>
+    <string name="pp_review_right">Akorát</string>
+    <string name="pp_review_hard">Moc těžké</string>
+    <string name="pp_review_q_length">Délka tréninku?</string>
+    <string name="pp_review_shorter">Kratší</string>
+    <string name="pp_review_same">Ponechat</string>
+    <string name="pp_review_longer">Delší</string>
+    <string name="pp_review_apply">Aktualizovat plán</string>
+    <string name="pp_review_later">Teď ne</string>
+    <string name="pp_review_done">Týden %1$d byl upraven pro vás</string>
+    <string name="pp_days_week">Tréninkové dny v týdnu</string>
+    <string name="pp_days_hint">Ostatní dny jsou lehké protahování.</string>
 </resources>

@@ -35,4 +35,20 @@
     <string name="pp_standard">Standart</string>
     <string name="pp_long">Uzun</string>
     <string name="pp_limits">Kısıtlamalar</string>
+    <string name="pp_review_title">%1$d. hafta tamam! 🎉</string>
+    <string name="pp_review_desc">Nasıl geçtiğini söyle, gelecek haftayı ayarlayalım.</string>
+    <string name="pp_review_button">Değerlendir</string>
+    <string name="pp_review_q_feel">Bu hafta nasıldı?</string>
+    <string name="pp_review_easy">Çok kolay</string>
+    <string name="pp_review_right">Tam kıvamında</string>
+    <string name="pp_review_hard">Çok zor</string>
+    <string name="pp_review_q_length">Seans süresi?</string>
+    <string name="pp_review_shorter">Daha kısa</string>
+    <string name="pp_review_same">Aynı</string>
+    <string name="pp_review_longer">Daha uzun</string>
+    <string name="pp_review_apply">Planımı güncelle</string>
+    <string name="pp_review_later">Şimdi değil</string>
+    <string name="pp_review_done">%1$d. hafta senin için güncellendi</string>
+    <string name="pp_days_week">Haftalık antrenman günü</string>
+    <string name="pp_days_hint">Diğer günler hafif esneme seanslarıdır.</string>
 </resources>

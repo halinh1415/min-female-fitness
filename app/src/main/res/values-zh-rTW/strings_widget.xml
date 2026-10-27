@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">今日訓練</string>
+    <string name="widget_desc">一眼查看連續天數和今日訓練</string>
+    <string name="widget_streak_label">天連續</string>
+    <string name="widget_suggested">為你推薦</string>
+    <string name="widget_done_today">今天已完成 ✓ 太棒了！</string>
+    <string name="widget_start">開始</string>
+    <string name="widget_train_more">再練一組</string>
+</resources>

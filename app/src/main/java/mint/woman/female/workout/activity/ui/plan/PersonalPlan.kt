@@ -25,6 +25,9 @@ enum class PlanPace { SHORT, STANDARD, LONG }
 /** Thời lượng mỗi buổi: <10, 10-20, 20-30, >30 phút -> số phút mục tiêu. */
 enum class PlanDuration(val targetMinutes: Int) { UNDER_10(8), MIN_10_20(15), MIN_20_30(25), OVER_30(35) }
 
+/** Tốc độ tăng độ khó qua từng tuần: giây cộng thêm (bài tính giờ) và số lần cộng thêm (bài đếm lần). */
+enum class PlanProgression(val secondsPerWeek: Int, val repsPerWeek: Int) { GENTLE(3, 1), STANDARD(5, 2), FAST(8, 3) }
+
 data class PlanSettings(
     val goal: PlanGoal = PlanGoal.LOSE_WEIGHT,
     val level: PlanLevel = PlanLevel.BEGINNER,
@@ -37,6 +40,10 @@ data class PlanSettings(
     val restPace: PlanPace = PlanPace.STANDARD,
     /** Số bài khởi động và giãn cơ trong mỗi buổi. */
     val stretch: PlanPace = PlanPace.STANDARD,
+    /** Số ngày tập mỗi tuần (3-6); các ngày còn lại là buổi giãn cơ nhẹ. Plan cũ không có trường này -> 6. */
+    val trainingDays: Int = 6,
+    /** Đánh giá cuối tuần chỉnh trường này; plan cũ không có -> STANDARD (đúng mức tăng trước đây). */
+    val progression: PlanProgression = PlanProgression.STANDARD,
 )
 
 /** Một bài trong buổi tập (giống cấu trúc file plan của app). */
@@ -147,15 +154,18 @@ class PersonalPlanGenerator(private val exercises: Map<Int, ExerciseObject>) {
         }).coerceIn(0.0, 0.6)
 
         val seed = settings.hashCode()
+        val restDays = restDaysOf(settings.trainingDays)
+        var trainingIndex = 0
         val days = ArrayList<List<PlanAction>>(28)
         for (week in 0 until 4) {
             for (dayInWeek in 0 until 7) {
                 val dayIndex = week * 7 + dayInWeek
                 val random = Random(seed * 31 + dayIndex)
-                days += if (dayInWeek == 6) {
+                days += if (dayInWeek in restDays) {
                     recoveryDay(warmPool, coolPool, random)
                 } else {
-                    val focus = focusOrder[(week * 6 + dayInWeek) % focusOrder.size]
+                    // Đếm theo ngày tập (không theo ngày trong tuần) để vùng tập vẫn xoay vòng đều khi tập ít ngày.
+                    val focus = focusOrder[trainingIndex++ % focusOrder.size]
                     // Ngoài vùng chính, trộn thêm một ít bài toàn thân để buổi tập cân bằng.
                     val mainPool = pool(ExerciseTags.FOCUS.getValue(focus))
                     val extraPool = if (focus == PlanFocus.FULL_BODY) emptyList() else pool(ExerciseTags.FOCUS.getValue(PlanFocus.FULL_BODY))
@@ -164,6 +174,14 @@ class PersonalPlanGenerator(private val exercises: Map<Int, ExerciseObject>) {
             }
         }
         return days
+    }
+
+    /** Ngày nghỉ (giãn cơ) trong tuần, rải đều để không tập liền quá nhiều ngày. */
+    private fun restDaysOf(trainingDays: Int): Set<Int> = when (trainingDays.coerceIn(3, 6)) {
+        3 -> setOf(1, 3, 5, 6)
+        4 -> setOf(2, 4, 6)
+        5 -> setOf(2, 6)
+        else -> setOf(6)
     }
 
     private fun actionFor(id: Int, settings: PlanSettings, week: Int, stretch: Boolean = false): PlanAction {
@@ -178,10 +196,10 @@ class PersonalPlanGenerator(private val exercises: Map<Int, ExerciseObject>) {
         val levelIndex = settings.level.ordinal
         return if (timed) {
             val base = intArrayOf(20, 30, 40)[levelIndex] + (if (settings.goal == PlanGoal.BUILD_MUSCLE) 5 else 0)
-            PlanAction(id, (base + week * 5).coerceAtMost(60), "s", rest)
+            PlanAction(id, (base + week * settings.progression.secondsPerWeek).coerceAtMost(60), "s", rest)
         } else {
             val base = intArrayOf(8, 12, 16)[levelIndex] + (if (settings.goal == PlanGoal.BUILD_MUSCLE) 4 else 0)
-            PlanAction(id, base + week * 2, "", rest)
+            PlanAction(id, base + week * settings.progression.repsPerWeek, "", rest)
         }
     }
 
@@ -288,6 +306,8 @@ object PersonalPlanStore {
     const val PLAN_FILE = "custom_plan_new_personal"
     private const val PREFS = "personal_plan"
     private const val KEY_SETTINGS = "settings"
+    /** Tuần lớn nhất (1..3) người dùng đã đánh giá hoặc bỏ qua ở thẻ "Tuần x xong". */
+    private const val KEY_REVIEWED_WEEK = "reviewed_week"
 
     private val gson = Gson()
 
@@ -339,11 +359,26 @@ object PersonalPlanStore {
 
     /** Sinh plan mới, ghi file, đặt lại tiến độ về ngày 1. */
     fun create(context: Context, settings: PlanSettings) {
+        writePlan(context, settings, keepDays = 0)
+        prefs(context).edit().putInt(KEY_REVIEWED_WEEK, 0).apply()
+        MyPreference(context).setPlanProgress(PROGRAM_ID, 0)
+    }
+
+    /**
+     * Ghi file plan theo [settings]. [keepDays] ngày đầu giữ nguyên nội dung cũ (đã tập), chỉ các ngày
+     * sau được sinh lại; tiến độ không đổi.
+     */
+    private fun writePlan(context: Context, settings: PlanSettings, keepDays: Int) {
         val app = FitnessApplication.getApplication()
         val exercises = app.mJsonHelper.getHashMapExercise(0, 0)
         val days = PersonalPlanGenerator(exercises).generate(settings)
+        val old = if (keepDays > 0) runCatching { JSONArray(app.mJsonHelper.readFileFromData(PLAN_FILE)) }.getOrNull() else null
         val json = JSONArray()
         days.forEachIndexed { index, actions ->
+            if (old != null && index < keepDays && index < old.length()) {
+                json.put(old.getJSONObject(index))
+                return@forEachIndexed
+            }
             json.put(JSONObject().apply {
                 put("name", "Day ${index + 1}")
                 put("exercise", JSONArray().apply {
@@ -360,8 +395,62 @@ object PersonalPlanStore {
         }
         app.mJsonHelper.writeFileToData(PLAN_FILE, json.toString())
         prefs(context).edit().putString(KEY_SETTINGS, gson.toJson(settings)).apply()
-        MyPreference(context).setPlanProgress(PROGRAM_ID, 0)
         app.mJsonHelper.invalidatePrograms()
+    }
+
+    // ------------------------------------------------------------ đánh giá cuối tuần
+
+    /** Tuần vừa xong (1..3) chưa được đánh giá, để Home mời "Tuần x xong, chỉnh tuần sau"; null nếu không có. */
+    fun pendingReviewWeek(context: Context): Int? {
+        if (!hasPlan(context)) return null
+        val week = MyPreference(context).getPlanProgress(PROGRAM_ID) / 7
+        if (week !in 1..3) return null
+        return week.takeIf { it > prefs(context).getInt(KEY_REVIEWED_WEEK, 0) }
+    }
+
+    /**
+     * Áp đánh giá tuần [week]: [feel] 1 quá dễ / 0 vừa / -1 quá khó; [length] 1 dài hơn / 0 giữ / -1 ngắn hơn.
+     * Độ khó từng buổi đã có DifficultyStore lo (đánh giá cuối buổi), nên ở đây chỉnh "khung" plan: tốc độ
+     * tăng qua tuần, rồi tới trình độ, và thời lượng buổi. Chỉ sinh lại các ngày chưa tập.
+     * @return true nếu plan được sinh lại.
+     */
+    fun applyWeekReview(context: Context, week: Int, feel: Int, length: Int): Boolean {
+        val current = settings(context) ?: return false
+        var next = current
+        val progressions = PlanProgression.values()
+        val levels = PlanLevel.values()
+        if (feel > 0) {
+            next = if (next.progression != PlanProgression.FAST) next.copy(progression = progressions[next.progression.ordinal + 1])
+            else if (next.level != PlanLevel.ADVANCED) next.copy(level = levels[next.level.ordinal + 1], progression = PlanProgression.STANDARD)
+            else next
+        } else if (feel < 0) {
+            next = if (next.progression != PlanProgression.GENTLE) next.copy(progression = progressions[next.progression.ordinal - 1])
+            else if (next.level != PlanLevel.BEGINNER) next.copy(level = levels[next.level.ordinal - 1], progression = PlanProgression.STANDARD)
+            else next
+        }
+        if (length != 0) {
+            val durations = PlanDuration.values()
+            next = next.copy(duration = durations[(next.duration.ordinal + length).coerceIn(0, durations.size - 1)])
+        }
+        val changed = next != current
+        if (changed) writePlan(context, next, keepDays = MyPreference(context).getPlanProgress(PROGRAM_ID))
+        prefs(context).edit().putInt(KEY_REVIEWED_WEEK, week).apply()
+        com.google.firebase.analytics.FirebaseAnalytics.getInstance(context).logEvent(
+            "plan_week_review",
+            android.os.Bundle().apply {
+                putInt("week", week)
+                putInt("feel", feel)
+                putInt("length", length)
+                putInt("changed", if (changed) 1 else 0)
+            },
+        )
+        return changed
+    }
+
+    fun skipWeekReview(context: Context, week: Int) {
+        prefs(context).edit().putInt(KEY_REVIEWED_WEEK, week).apply()
+        com.google.firebase.analytics.FirebaseAnalytics.getInstance(context)
+            .logEvent("plan_week_review_skip", android.os.Bundle().apply { putInt("week", week) })
     }
 
     /** ProgramObject của plan cá nhân (null nếu chưa tạo). JsonHelper thêm nó vào danh sách chương trình. */

@@ -35,4 +35,20 @@
     <string name="pp_standard">보통</string>
     <string name="pp_long">길게</string>
     <string name="pp_limits">제한 사항</string>
+    <string name="pp_review_title">%1$d주 차 완료! 🎉</string>
+    <string name="pp_review_desc">어땠는지 알려주시면 다음 주를 맞춰 드려요.</string>
+    <string name="pp_review_button">평가하기</string>
+    <string name="pp_review_q_feel">이번 주는 어땠나요?</string>
+    <string name="pp_review_easy">너무 쉬움</string>
+    <string name="pp_review_right">딱 좋음</string>
+    <string name="pp_review_hard">너무 힘듦</string>
+    <string name="pp_review_q_length">운동 시간은?</string>
+    <string name="pp_review_shorter">짧게</string>
+    <string name="pp_review_same">그대로</string>
+    <string name="pp_review_longer">길게</string>
+    <string name="pp_review_apply">플랜 업데이트</string>
+    <string name="pp_review_later">나중에</string>
+    <string name="pp_review_done">%1$d주 차가 맞춤 조정되었어요</string>
+    <string name="pp_days_week">주간 운동 일수</string>
+    <string name="pp_days_hint">나머지 날은 가벼운 스트레칭 날이에요.</string>
 </resources>

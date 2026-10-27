@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">因为你想锻炼：%s</string>
+    <string name="rec_reason_lose">为减重目标燃烧脂肪</string>
+    <string name="rec_reason_flex">按你的目标提升柔韧性</string>
+    <string name="rec_reason_health">轻松训练，保持健康</string>
+    <string name="rec_reason_level_up">升级：你已经准备好了！</string>
+    <string name="rec_reason_habit">符合你平时的训练时长</string>
+    <string name="rec_reason_recovery">连续%d天后的轻松恢复日</string>
+    <string name="rec_reason_comeback">休息几天后轻松重新开始</string>
+    <string name="rec_reason_new">你还没尝试过的新训练</string>
+    <string name="rec_reason_default">今天为你推荐</string>
+    <string name="rec_reason_morning">温和开启你的早晨</string>
+    <string name="rec_reason_bedtime">睡前放松一下</string>
+    <string name="home_done_sub">还想练？试试这个轻松的</string>
+    <string name="home_swap">换一个</string>
+</resources>

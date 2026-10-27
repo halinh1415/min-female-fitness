@@ -35,4 +35,20 @@
     <string name="pp_standard">عادي</string>
     <string name="pp_long">طويل</string>
     <string name="pp_limits">القيود</string>
+    <string name="pp_review_title">انتهى الأسبوع %1$d! 🎉</string>
+    <string name="pp_review_desc">أخبرنا بشعورك وسنضبط الأسبوع القادم.</string>
+    <string name="pp_review_button">تقييم</string>
+    <string name="pp_review_q_feel">كيف كان هذا الأسبوع؟</string>
+    <string name="pp_review_easy">سهل جدًا</string>
+    <string name="pp_review_right">مناسب</string>
+    <string name="pp_review_hard">صعب جدًا</string>
+    <string name="pp_review_q_length">مدة الجلسة؟</string>
+    <string name="pp_review_shorter">أقصر</string>
+    <string name="pp_review_same">كما هي</string>
+    <string name="pp_review_longer">أطول</string>
+    <string name="pp_review_apply">حدّث خطتي</string>
+    <string name="pp_review_later">ليس الآن</string>
+    <string name="pp_review_done">تم تحديث الأسبوع %1$d لك</string>
+    <string name="pp_days_week">أيام التمرين في الأسبوع</string>
+    <string name="pp_days_hint">الأيام الأخرى جلسات تمدد خفيفة.</string>
 </resources>

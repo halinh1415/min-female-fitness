@@ -35,4 +35,20 @@
     <string name="pp_standard">Standardno</string>
     <string name="pp_long">Dugo</string>
     <string name="pp_limits">Ograničenja</string>
+    <string name="pp_review_title">Tjedan %1$d gotov! 🎉</string>
+    <string name="pp_review_desc">Reci nam kako je bilo i prilagodit ćemo sljedeći tjedan.</string>
+    <string name="pp_review_button">Ocijeni</string>
+    <string name="pp_review_q_feel">Kakav je bio ovaj tjedan?</string>
+    <string name="pp_review_easy">Prelagano</string>
+    <string name="pp_review_right">Taman</string>
+    <string name="pp_review_hard">Preteško</string>
+    <string name="pp_review_q_length">Trajanje treninga?</string>
+    <string name="pp_review_shorter">Kraće</string>
+    <string name="pp_review_same">Isto</string>
+    <string name="pp_review_longer">Dulje</string>
+    <string name="pp_review_apply">Ažuriraj plan</string>
+    <string name="pp_review_later">Ne sada</string>
+    <string name="pp_review_done">Tjedan %1$d prilagođen je za tebe</string>
+    <string name="pp_days_week">Dani treninga tjedno</string>
+    <string name="pp_days_hint">Ostali dani su lagano istezanje.</string>
 </resources>

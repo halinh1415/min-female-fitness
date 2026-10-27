@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">การออกกำลังกายวันนี้</string>
+    <string name="widget_desc">ดูสถิติต่อเนื่องและการฝึกวันนี้ได้ทันที</string>
+    <string name="widget_streak_label">วันติดต่อกัน</string>
+    <string name="widget_suggested">แนะนำสำหรับคุณ</string>
+    <string name="widget_done_today">วันนี้เสร็จแล้ว ✓ เยี่ยมมาก!</string>
+    <string name="widget_start">เริ่ม</string>
+    <string name="widget_train_more">ฝึกต่อ</string>
+</resources>

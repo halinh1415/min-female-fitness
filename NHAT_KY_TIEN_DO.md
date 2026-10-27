@@ -539,3 +539,16 @@
 - Lỗi: khi bỏ màn Language, ST_LANGUAGE trống → dùng mã thô của máy ("zh", "id"/"in") không khớp file dữ liệu (zh_CN/zh_TW/in_ID) → rơi về English; giao diện tiếng Trung luôn ra giản thể do cắt mã còn "zh".
 - Sửa: LanguageHelper.matchSystemLanguage() khớp ngôn ngữ máy với SUPPORTED_LANGUAGES; getLanguage() dùng nó khi chưa chọn (cả user cũ); setLanguage("zh") giữ vùng zh_CN/zh_TW. Tai Chi: Splash lưu mã đã khớp thay vì mã thô.
 - Test: máy ảo zh-TW (giao diện + động tác phồn thể), S8+ vi không đổi. Build debug OK.
+
+## 2026-10-28 — Port từ Home: widget, plan theo tuần, ảnh thẻ chia sẻ
+- widget/TodayWidget.kt (+ layout/drawable/xml, strings_widget 26 ngôn ngữ; thêm cs/hi/hr/lv/no), màu #FF5C8A→#C2459F. Min không có RecommendationService: HomeFragment lưu bài ProgramRecommenderV3 gợi ý (TodayWidget.saveSuggestion) để widget dùng khi chưa có plan. Streak dùng StreakCalculator(historyDao).userStreakResult (Min không có freeze).
+- PersonalPlan: thêm PlanProgression (STANDARD = +5s/+2 lần như cũ), writePlan(keepDays) đọc file thường qua readFileFromData; pendingReviewWeek/applyWeekReview/skipWeekReview. Home: WeekReviewCard (activity/ui/home/WeekReview.kt, màu MinColor) dưới thẻ plan.
+- ShareCard.kt + FinishedActivity.share() gửi ảnh + link (trước chỉ gửi link). provider_paths thêm cache-path share.
+- Test S8+: thẻ tuần (Quá khó + Dài hơn → GENTLE, MIN_10_20, giữ tiến độ 7), widget hồng "Ngày 8/28", tập 1 buổi thật → ảnh thẻ đúng. Chưa commit.
+
+## 2026-10-28 — Gợi ý bài + số ngày tập/tuần theo Women
+- recommend/ProgramRecommender.kt (chép nguyên từ Women) + RecommendationService.kt (chuyển cho Min: đọc USER_GOAL lose_weight/build_muscle/keep_fit, USER_FOCUS_AREAS arm/belly/butt/leg/full_body, USER_EXPERIENCE; nhãn từ trường "tag"; focus trống thì lấy vùng trong tag; loại bài mặt/mũi/tăng chiều cao/yoga trẻ em; streak/ngày vắng tính từ HistoryDao). Trọng số ghi đè qua Remote Config recommend_weights.
+- HomeFragment dùng RecommendationService.today() thay ProgramRecommenderV3 (V3 còn dùng ở WeekGoalNewFragment). Thẻ gợi ý hiện lý do + nút "Đổi bài". Analytics recommend_shown/start/swap/complete. FinishedActivity lưu FEEL_<id> để gợi ý học từ đánh giá dễ/khó.
+- strings_recommend.xml 26 ngôn ngữ. Unit test ProgramRecommenderTest (21 test) pass.
+- PersonalPlan: trainingDays 3-6 (mặc định 6 = như cũ), restDaysOf, focus xoay theo ngày tập; màn cài đặt plan thêm mục "Số ngày tập mỗi tuần" (strings pp_days_week/pp_days_hint 26 ngôn ngữ).
+- Test S8+: gợi ý hiện, Đổi bài ra bài khác, mục số ngày tập hiện đúng. Chưa commit.

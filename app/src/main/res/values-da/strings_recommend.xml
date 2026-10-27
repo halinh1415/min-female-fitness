@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">Fordi du vil træne: %s</string>
+    <string name="rec_reason_lose">Forbrænder fedt til dit vægttabsmål</string>
+    <string name="rec_reason_flex">Mere smidighed, som du ønskede</string>
+    <string name="rec_reason_health">En let træning for sundheden</string>
+    <string name="rec_reason_level_up">Næste niveau: du er klar!</string>
+    <string name="rec_reason_habit">Passer til din normale træningstid</string>
+    <string name="rec_reason_recovery">Let restitutionsdag efter %d dage i træk</string>
+    <string name="rec_reason_comeback">En blid genstart efter et par fridage</string>
+    <string name="rec_reason_new">Noget nyt, du ikke har prøvet endnu</string>
+    <string name="rec_reason_default">Valgt til dig i dag</string>
+    <string name="rec_reason_morning">En blid start på morgenen</string>
+    <string name="rec_reason_bedtime">Slap af før sengetid</string>
+    <string name="home_done_sub">Lidt mere? Prøv denne lette</string>
+    <string name="home_swap">Skift</string>
+</resources>

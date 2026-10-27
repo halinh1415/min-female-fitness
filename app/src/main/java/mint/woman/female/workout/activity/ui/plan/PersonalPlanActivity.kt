@@ -102,6 +102,7 @@ class PersonalPlanActivity : AppCompatActivity() {
             putBoolean("jump_free", chosen.jumpFree)
             putString("rest_pace", chosen.restPace.name)
             putString("stretch", chosen.stretch.name)
+            putInt("training_days", chosen.trainingDays)
             putString("duration", chosen.duration.name)
         })
         lifecycleScope.launch {
@@ -225,6 +226,21 @@ fun PlanSettingsScreen(
                         },
                         selected = { it == settings.level },
                         onClick = { onChange(settings.copy(level = it)) }
+                    )
+                }
+                Section(stringResource(R.string.pp_days_week)) {
+                    ChipRow(
+                        options = (3..6).toList(),
+                        label = { it.toString() },
+                        selected = { it == settings.trainingDays.coerceIn(3, 6) },
+                        onClick = { onChange(settings.copy(trainingDays = it)) }
+                    )
+                    Text(
+                        "ⓘ " + stringResource(R.string.pp_days_hint),
+                        fontSize = 13.sp,
+                        lineHeight = 18.sp,
+                        color = MinColor.TextSecondary,
+                        modifier = Modifier.padding(start = 20.dp, end = 20.dp, top = 8.dp)
                     )
                 }
                 Section(stringResource(R.string.pp_focus), stringResource(R.string.pp_multiple)) {

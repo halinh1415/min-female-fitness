@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">För att du vill träna: %s</string>
+    <string name="rec_reason_lose">Förbränner fett för ditt viktmål</string>
+    <string name="rec_reason_flex">Mer rörlighet, som du ville</string>
+    <string name="rec_reason_health">Ett lätt pass för hälsan</string>
+    <string name="rec_reason_level_up">Nästa nivå: du är redo!</string>
+    <string name="rec_reason_habit">Passar din vanliga träningstid</string>
+    <string name="rec_reason_recovery">Lätt återhämtningsdag efter %d dagar i rad</string>
+    <string name="rec_reason_comeback">En mjuk omstart efter några vilodagar</string>
+    <string name="rec_reason_new">Något nytt du inte har provat än</string>
+    <string name="rec_reason_default">Valt för dig idag</string>
+    <string name="rec_reason_morning">En mjuk start på morgonen</string>
+    <string name="rec_reason_bedtime">Varva ner före läggdags</string>
+    <string name="home_done_sub">Lite till? Testa det här lätta</string>
+    <string name="home_swap">Byt</string>
+</resources>

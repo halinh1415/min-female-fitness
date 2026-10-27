@@ -35,4 +35,20 @@
     <string name="pp_standard">सामान्य</string>
     <string name="pp_long">लंबा</string>
     <string name="pp_limits">सीमाएँ</string>
+    <string name="pp_review_title">सप्ताह %1$d पूरा! 🎉</string>
+    <string name="pp_review_desc">बताइए कैसा लगा, हम अगला सप्ताह आपके हिसाब से बदल देंगे।</string>
+    <string name="pp_review_button">समीक्षा</string>
+    <string name="pp_review_q_feel">यह सप्ताह कैसा रहा?</string>
+    <string name="pp_review_easy">बहुत आसान</string>
+    <string name="pp_review_right">बिल्कुल सही</string>
+    <string name="pp_review_hard">बहुत कठिन</string>
+    <string name="pp_review_q_length">सत्र की अवधि?</string>
+    <string name="pp_review_shorter">छोटा</string>
+    <string name="pp_review_same">वैसा ही</string>
+    <string name="pp_review_longer">लंबा</string>
+    <string name="pp_review_apply">मेरा प्लान अपडेट करें</string>
+    <string name="pp_review_later">अभी नहीं</string>
+    <string name="pp_review_done">सप्ताह %1$d आपके लिए अपडेट किया गया</string>
+    <string name="pp_days_week">हर सप्ताह व्यायाम के दिन</string>
+    <string name="pp_days_hint">बाकी दिन हल्की स्ट्रेचिंग होगी।</string>
 </resources>

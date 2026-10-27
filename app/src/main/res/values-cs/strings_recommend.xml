@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">Protože chcete posílit: %s</string>
+    <string name="rec_reason_lose">Pálí tuky pro váš cíl zhubnout</string>
+    <string name="rec_reason_flex">Zlepší ohebnost, jak jste chtěli</string>
+    <string name="rec_reason_health">Lehký trénink pro vaše zdraví</string>
+    <string name="rec_reason_level_up">Další úroveň: jste připraveni na víc!</string>
+    <string name="rec_reason_habit">Sedí na čas, kdy obvykle cvičíte</string>
+    <string name="rec_reason_recovery">Lehký den regenerace po %d dnech v řadě</string>
+    <string name="rec_reason_comeback">Jemný restart po pár dnech pauzy</string>
+    <string name="rec_reason_new">Něco nového, co jste ještě nezkusili</string>
+    <string name="rec_reason_default">Vybráno pro vás na dnešek</string>
+    <string name="rec_reason_morning">Jemný začátek rána</string>
+    <string name="rec_reason_bedtime">Uvolnění před spaním</string>
+    <string name="home_done_sub">Chcete trochu víc? Zkuste tohle lehké</string>
+    <string name="home_swap">Vyměnit</string>
+</resources>

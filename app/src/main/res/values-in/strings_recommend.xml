@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">Karena kamu ingin melatih: %s</string>
+    <string name="rec_reason_lose">Membakar lemak untuk target turun berat badan</string>
+    <string name="rec_reason_flex">Menambah kelenturan, sesuai keinginanmu</string>
+    <string name="rec_reason_health">Sesi ringan agar tetap sehat</string>
+    <string name="rec_reason_level_up">Naik level: kamu sudah siap!</string>
+    <string name="rec_reason_habit">Sesuai durasi latihan biasamu</string>
+    <string name="rec_reason_recovery">Hari pemulihan ringan setelah %d hari berturut-turut</string>
+    <string name="rec_reason_comeback">Mulai lagi pelan-pelan setelah beberapa hari libur</string>
+    <string name="rec_reason_new">Sesuatu yang baru dan belum kamu coba</string>
+    <string name="rec_reason_default">Dipilih untukmu hari ini</string>
+    <string name="rec_reason_morning">Awal pagi yang lembut</string>
+    <string name="rec_reason_bedtime">Rileks sebelum tidur</string>
+    <string name="home_done_sub">Mau lagi? Coba yang ringan ini</string>
+    <string name="home_swap">Ganti</string>
+</resources>

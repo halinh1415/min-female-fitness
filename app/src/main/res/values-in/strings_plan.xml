@@ -35,4 +35,20 @@
     <string name="pp_standard">Standar</string>
     <string name="pp_long">Panjang</string>
     <string name="pp_limits">Batasan</string>
+    <string name="pp_review_title">Minggu %1$d selesai! 🎉</string>
+    <string name="pp_review_desc">Ceritakan rasanya, kami sesuaikan minggu depan.</string>
+    <string name="pp_review_button">Nilai</string>
+    <string name="pp_review_q_feel">Bagaimana minggu ini?</string>
+    <string name="pp_review_easy">Terlalu mudah</string>
+    <string name="pp_review_right">Pas</string>
+    <string name="pp_review_hard">Terlalu berat</string>
+    <string name="pp_review_q_length">Durasi sesi?</string>
+    <string name="pp_review_shorter">Lebih pendek</string>
+    <string name="pp_review_same">Tetap</string>
+    <string name="pp_review_longer">Lebih lama</string>
+    <string name="pp_review_apply">Perbarui rencana</string>
+    <string name="pp_review_later">Nanti saja</string>
+    <string name="pp_review_done">Minggu %1$d sudah disesuaikan untukmu</string>
+    <string name="pp_days_week">Hari latihan per minggu</string>
+    <string name="pp_days_hint">Hari lainnya berisi peregangan ringan.</string>
 </resources>

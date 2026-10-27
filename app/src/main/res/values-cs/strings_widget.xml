@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">Dnešní trénink</string>
+    <string name="widget_desc">Série a dnešní trénink na první pohled</string>
+    <string name="widget_streak_label">dní v řadě</string>
+    <string name="widget_suggested">Doporučeno pro vás</string>
+    <string name="widget_done_today">Dnes hotovo ✓ Skvělé!</string>
+    <string name="widget_start">Začít</string>
+    <string name="widget_train_more">Cvičit dál</string>
+</resources>

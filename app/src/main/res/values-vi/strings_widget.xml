@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">Bài tập hôm nay</string>
+    <string name="widget_desc">Chuỗi ngày tập và bài hôm nay ngay trên màn hình chính</string>
+    <string name="widget_streak_label">ngày liên tiếp</string>
+    <string name="widget_suggested">Gợi ý cho bạn</string>
+    <string name="widget_done_today">Đã tập hôm nay ✓ Tuyệt vời!</string>
+    <string name="widget_start">Bắt đầu</string>
+    <string name="widget_train_more">Tập thêm</string>
+</resources>

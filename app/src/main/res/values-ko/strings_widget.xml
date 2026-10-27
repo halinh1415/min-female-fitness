@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">오늘의 운동</string>
+    <string name="widget_desc">연속 기록과 오늘의 운동을 한눈에</string>
+    <string name="widget_streak_label">일 연속</string>
+    <string name="widget_suggested">추천 운동</string>
+    <string name="widget_done_today">오늘 완료 ✓ 잘했어요!</string>
+    <string name="widget_start">시작</string>
+    <string name="widget_train_more">더 운동하기</string>
+</resources>

@@ -35,4 +35,20 @@
     <string name="pp_standard">Standard</string>
     <string name="pp_long">Lang</string>
     <string name="pp_limits">Begrensninger</string>
+    <string name="pp_review_title">Uke %1$d fullført! 🎉</string>
+    <string name="pp_review_desc">Fortell oss hvordan det føltes, så justerer vi neste uke.</string>
+    <string name="pp_review_button">Vurder</string>
+    <string name="pp_review_q_feel">Hvordan var denne uken?</string>
+    <string name="pp_review_easy">For lett</string>
+    <string name="pp_review_right">Passe</string>
+    <string name="pp_review_hard">For tungt</string>
+    <string name="pp_review_q_length">Øktlengde?</string>
+    <string name="pp_review_shorter">Kortere</string>
+    <string name="pp_review_same">Behold</string>
+    <string name="pp_review_longer">Lengre</string>
+    <string name="pp_review_apply">Oppdater planen</string>
+    <string name="pp_review_later">Ikke nå</string>
+    <string name="pp_review_done">Uke %1$d er justert for deg</string>
+    <string name="pp_days_week">Treningsdager per uke</string>
+    <string name="pp_days_hint">De andre dagene er lett tøying.</string>
 </resources>

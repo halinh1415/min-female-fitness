@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">Тренировка дня</string>
+    <string name="widget_desc">Ваша серия и тренировка на сегодня</string>
+    <string name="widget_streak_label">дней подряд</string>
+    <string name="widget_suggested">Рекомендуем вам</string>
+    <string name="widget_done_today">Сегодня выполнено ✓ Отлично!</string>
+    <string name="widget_start">Начать</string>
+    <string name="widget_train_more">Ещё тренировка</string>
+</resources>

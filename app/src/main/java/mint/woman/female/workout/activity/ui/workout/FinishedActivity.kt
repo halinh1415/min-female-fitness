@@ -253,6 +253,8 @@ class FinishedActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
             val id = mBundle.getInt("PROGRAM_ID", 0)
             val size = mBundle.getInt("SIZE")
             mProgramObject = FitnessApplication.getApplication().getProgram(id)
+            // Bài này là bài gợi ý hôm nay: ghi recommend_complete (một lần).
+            mint.woman.female.workout.recommend.RecommendationService.logCompleteIfRecommended(this, id)
             @Suppress("DEPRECATION")
             mHistoryItem = mBundle.getParcelable<HistoryItem>("HISTORY") as HistoryItem
             val time = mHistoryItem.realDuration
@@ -320,6 +322,8 @@ class FinishedActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
         // Buổi sau tự tăng / giảm reps theo đánh giá; tính từ hệ số lúc mở màn để chọn lại không cộng dồn.
         val programId = mProgramObject?.id ?: 0
         DifficultyStore.applyFeel(this, programId, basePercent, level)
+        // RecommendationService đọc FEEL_<id> để gợi ý bài dễ / khó hơn lần sau (như Women).
+        if (programId > 0) PreferenceManager.getDefaultSharedPreferences(this).edit().putInt("FEEL_$programId", level).apply()
         FirebaseAnalytics.getInstance(this).logEvent("workout_feel", Bundle().apply {
             putInt("feel", level)
             putInt("program_id", mProgramObject?.id ?: 0)
@@ -328,13 +332,22 @@ class FinishedActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
 
     private fun share() {
         try {
-            val sharingIntent = Intent(Intent.ACTION_SEND)
-            sharingIntent.setType("text/plain")
-            sharingIntent.putExtra(
-                Intent.EXTRA_TEXT,
-                "https://play.google.com/store/apps/details?id=$packageName"
+            val text = "https://play.google.com/store/apps/details?id=$packageName"
+            // Ảnh thẻ (ShareCard) để đăng story; lỗi vẽ/lưu ảnh thì quay về chia sẻ link như cũ.
+            val card = ShareCard.Data(
+                programName = state.programName,
+                duration = state.durationText,
+                kcal = state.kcal,
+                exercises = state.exercises,
+                streakText = state.streakText,
+                image = mProgramObject?.image,
             )
-            startActivity(Intent.createChooser(sharingIntent, "Share via"))
+            val shared = runCatching { ShareCard.share(this, card, text, getString(R.string.fin_share)) }.isSuccess
+            if (!shared) {
+                val sharingIntent = Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, text)
+                startActivity(Intent.createChooser(sharingIntent, getString(R.string.fin_share)))
+            }
+            FirebaseAnalytics.getInstance(this).logEvent("workout_share", Bundle().apply { putString("type", if (shared) "image" else "text") })
         } catch (e: Exception) {
             e.printStackTrace()
         }

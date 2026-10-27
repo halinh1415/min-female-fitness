@@ -35,4 +35,20 @@
     <string name="pp_standard">標準</string>
     <string name="pp_long">長め</string>
     <string name="pp_limits">制限事項</string>
+    <string name="pp_review_title">%1$d週目達成！🎉</string>
+    <string name="pp_review_desc">感想を教えてください。来週を調整します。</string>
+    <string name="pp_review_button">評価する</string>
+    <string name="pp_review_q_feel">今週はどうでしたか？</string>
+    <string name="pp_review_easy">簡単すぎ</string>
+    <string name="pp_review_right">ちょうどいい</string>
+    <string name="pp_review_hard">きつすぎ</string>
+    <string name="pp_review_q_length">1回の時間は？</string>
+    <string name="pp_review_shorter">短く</string>
+    <string name="pp_review_same">そのまま</string>
+    <string name="pp_review_longer">長く</string>
+    <string name="pp_review_apply">プランを更新</string>
+    <string name="pp_review_later">あとで</string>
+    <string name="pp_review_done">%1$d週目を調整しました</string>
+    <string name="pp_days_week">週のトレーニング日数</string>
+    <string name="pp_days_hint">それ以外の日は軽いストレッチの日です。</string>
 </resources>

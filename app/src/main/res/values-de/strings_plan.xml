@@ -35,4 +35,20 @@
     <string name="pp_standard">Standard</string>
     <string name="pp_long">Lang</string>
     <string name="pp_limits">Einschränkungen</string>
+    <string name="pp_review_title">Woche %1$d geschafft! 🎉</string>
+    <string name="pp_review_desc">Sag uns, wie es sich angefühlt hat – wir passen die nächste Woche an.</string>
+    <string name="pp_review_button">Bewerten</string>
+    <string name="pp_review_q_feel">Wie war diese Woche?</string>
+    <string name="pp_review_easy">Zu leicht</string>
+    <string name="pp_review_right">Genau richtig</string>
+    <string name="pp_review_hard">Zu schwer</string>
+    <string name="pp_review_q_length">Trainingsdauer?</string>
+    <string name="pp_review_shorter">Kürzer</string>
+    <string name="pp_review_same">Beibehalten</string>
+    <string name="pp_review_longer">Länger</string>
+    <string name="pp_review_apply">Plan anpassen</string>
+    <string name="pp_review_later">Nicht jetzt</string>
+    <string name="pp_review_done">Woche %1$d wurde für dich angepasst</string>
+    <string name="pp_days_week">Trainingstage pro Woche</string>
+    <string name="pp_days_hint">An den anderen Tagen gibt es leichtes Dehnen.</string>
 </resources>

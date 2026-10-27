@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">تمرین امروز</string>
+    <string name="widget_desc">زنجیره روزها و تمرین امروز در یک نگاه</string>
+    <string name="widget_streak_label">روز پشت سر هم</string>
+    <string name="widget_suggested">پیشنهاد برای شما</string>
+    <string name="widget_done_today">امروز انجام شد ✓ عالی بود!</string>
+    <string name="widget_start">شروع</string>
+    <string name="widget_train_more">تمرین بیشتر</string>
+</resources>

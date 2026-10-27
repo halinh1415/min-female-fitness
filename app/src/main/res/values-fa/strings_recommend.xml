@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">چون می‌خواهید تمرین کنید: %s</string>
+    <string name="rec_reason_lose">چربی‌سوزی برای هدف کاهش وزن</string>
+    <string name="rec_reason_flex">برای افزایش انعطاف، همان‌طور که خواستید</string>
+    <string name="rec_reason_health">یک جلسه سبک برای سلامتی</string>
+    <string name="rec_reason_level_up">سطح بالاتر: آماده‌اید!</string>
+    <string name="rec_reason_habit">مطابق با مدت معمول تمرین شما</string>
+    <string name="rec_reason_recovery">روز ریکاوری سبک پس از %d روز متوالی</string>
+    <string name="rec_reason_comeback">شروع دوباره آرام پس از چند روز استراحت</string>
+    <string name="rec_reason_new">چیزی تازه که هنوز امتحان نکرده‌اید</string>
+    <string name="rec_reason_default">انتخاب امروز برای شما</string>
+    <string name="rec_reason_morning">شروعی آرام برای صبح شما</string>
+    <string name="rec_reason_bedtime">آرامش پیش از خواب</string>
+    <string name="home_done_sub">بیشتر می‌خواهید؟ این تمرین سبک را امتحان کنید</string>
+    <string name="home_swap">تعویض</string>
+</resources>

@@ -4,4 +4,8 @@
     <cache-path
         name="shared"
         path="shared/" />
+    <!-- Ảnh thẻ buổi tập (ShareCard) -->
+    <cache-path
+        name="share"
+        path="share/" />
 </paths>

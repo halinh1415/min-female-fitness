@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">Jer želiš raditi na: %s</string>
+    <string name="rec_reason_lose">Topi masnoće za tvoj cilj mršavljenja</string>
+    <string name="rec_reason_flex">Gradi fleksibilnost, kako si htjela</string>
+    <string name="rec_reason_health">Lagani trening za tvoje zdravlje</string>
+    <string name="rec_reason_level_up">Nova razina: spremna si za više!</string>
+    <string name="rec_reason_habit">Odgovara vremenu kad inače treniraš</string>
+    <string name="rec_reason_recovery">Lagani dan oporavka nakon %d dana zaredom</string>
+    <string name="rec_reason_comeback">Nježan povratak nakon par dana pauze</string>
+    <string name="rec_reason_new">Nešto novo što još nisi probala</string>
+    <string name="rec_reason_default">Odabrano za tebe danas</string>
+    <string name="rec_reason_morning">Nježan početak jutra</string>
+    <string name="rec_reason_bedtime">Opusti se prije spavanja</string>
+    <string name="home_done_sub">Želiš još malo? Probaj ovaj lagani</string>
+    <string name="home_swap">Zamijeni</string>
+</resources>

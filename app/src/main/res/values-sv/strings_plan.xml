@@ -35,4 +35,20 @@
     <string name="pp_standard">Standard</string>
     <string name="pp_long">Lång</string>
     <string name="pp_limits">Begränsningar</string>
+    <string name="pp_review_title">Vecka %1$d klar! 🎉</string>
+    <string name="pp_review_desc">Berätta hur det kändes så anpassar vi nästa vecka.</string>
+    <string name="pp_review_button">Utvärdera</string>
+    <string name="pp_review_q_feel">Hur kändes veckan?</string>
+    <string name="pp_review_easy">För lätt</string>
+    <string name="pp_review_right">Lagom</string>
+    <string name="pp_review_hard">För tungt</string>
+    <string name="pp_review_q_length">Passets längd?</string>
+    <string name="pp_review_shorter">Kortare</string>
+    <string name="pp_review_same">Behåll</string>
+    <string name="pp_review_longer">Längre</string>
+    <string name="pp_review_apply">Uppdatera planen</string>
+    <string name="pp_review_later">Inte nu</string>
+    <string name="pp_review_done">Vecka %1$d har anpassats för dig</string>
+    <string name="pp_days_week">Träningsdagar per vecka</string>
+    <string name="pp_days_hint">Övriga dagar är lätt stretching.</string>
 </resources>

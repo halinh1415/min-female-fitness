@@ -35,4 +35,20 @@
     <string name="pp_standard">معمولی</string>
     <string name="pp_long">طولانی</string>
     <string name="pp_limits">محدودیت‌ها</string>
+    <string name="pp_review_title">هفته %1$d تمام شد! 🎉</string>
+    <string name="pp_review_desc">بگویید چطور بود تا هفته بعد را تنظیم کنیم.</string>
+    <string name="pp_review_button">ارزیابی</string>
+    <string name="pp_review_q_feel">این هفته چطور بود؟</string>
+    <string name="pp_review_easy">خیلی آسان</string>
+    <string name="pp_review_right">مناسب</string>
+    <string name="pp_review_hard">خیلی سخت</string>
+    <string name="pp_review_q_length">مدت جلسه؟</string>
+    <string name="pp_review_shorter">کوتاه‌تر</string>
+    <string name="pp_review_same">همین</string>
+    <string name="pp_review_longer">طولانی‌تر</string>
+    <string name="pp_review_apply">به‌روزرسانی برنامه</string>
+    <string name="pp_review_later">فعلاً نه</string>
+    <string name="pp_review_done">هفته %1$d برای شما به‌روز شد</string>
+    <string name="pp_days_week">روزهای تمرین در هفته</string>
+    <string name="pp_days_hint">روزهای دیگر جلسات کشش سبک هستند.</string>
 </resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">Perché vuoi allenare: %s</string>
+    <string name="rec_reason_lose">Brucia grassi per il tuo obiettivo di dimagrire</string>
+    <string name="rec_reason_flex">Più flessibilità, come volevi</string>
+    <string name="rec_reason_health">Una sessione leggera per stare in salute</string>
+    <string name="rec_reason_level_up">Sali di livello: sei pronta!</string>
+    <string name="rec_reason_habit">Adatto al tempo in cui ti alleni di solito</string>
+    <string name="rec_reason_recovery">Giorno di recupero leggero dopo %d giorni di fila</string>
+    <string name="rec_reason_comeback">Una ripresa dolce dopo qualche giorno di pausa</string>
+    <string name="rec_reason_new">Qualcosa di nuovo che non hai ancora provato</string>
+    <string name="rec_reason_default">Scelto per te oggi</string>
+    <string name="rec_reason_morning">Un inizio dolce per la tua mattina</string>
+    <string name="rec_reason_bedtime">Rilassati prima di dormire</string>
+    <string name="home_done_sub">Ancora un po\'? Prova questo leggero</string>
+    <string name="home_swap">Cambia</string>
+</resources>

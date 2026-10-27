@@ -7,15 +7,18 @@ import androidx.lifecycle.LiveData;
 //import homeworkout.noequipment.workout.athome.model.HistoryDate;
 //import homeworkout.noequipment.workout.athome.model.HistoryDateWithItem;
 import mint.woman.female.workout.model.HistoryItem;
+import mint.woman.female.workout.widget.TodayWidget;
 
 import java.util.List;
 
 public class HistoryRepository {
 
     private HistoryDao mHistoryDao;
+    private final Application mApplication;
 
 
     public HistoryRepository(Application application) {
+        mApplication = application;
         HistoryDatabase db = HistoryDatabase.getDatabase(application);
         mHistoryDao = db.historyDao();
     }
@@ -31,6 +34,8 @@ public class HistoryRepository {
     public void insert(HistoryItem historyItem) {
         HistoryDatabase.databaseWriteExecutor.execute(() -> {
             mHistoryDao.insertHistory(historyItem);
+            // Buổi tập mới: widget cập nhật chuỗi ngày / "Đã tập hôm nay".
+            TodayWidget.update(mApplication);
         });
 
     }

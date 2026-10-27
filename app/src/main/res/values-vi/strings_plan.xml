@@ -35,4 +35,20 @@
     <string name="pp_standard">Vừa</string>
     <string name="pp_long">Dài</string>
     <string name="pp_limits">Hạn chế</string>
+    <string name="pp_review_title">Xong tuần %1$d! 🎉</string>
+    <string name="pp_review_desc">Cho biết cảm nhận để điều chỉnh tuần tới cho bạn.</string>
+    <string name="pp_review_button">Đánh giá</string>
+    <string name="pp_review_q_feel">Tuần này bạn thấy thế nào?</string>
+    <string name="pp_review_easy">Quá dễ</string>
+    <string name="pp_review_right">Vừa sức</string>
+    <string name="pp_review_hard">Quá khó</string>
+    <string name="pp_review_q_length">Thời lượng mỗi buổi?</string>
+    <string name="pp_review_shorter">Ngắn hơn</string>
+    <string name="pp_review_same">Giữ nguyên</string>
+    <string name="pp_review_longer">Dài hơn</string>
+    <string name="pp_review_apply">Cập nhật kế hoạch</string>
+    <string name="pp_review_later">Để sau</string>
+    <string name="pp_review_done">Đã điều chỉnh tuần %1$d cho bạn</string>
+    <string name="pp_days_week">Số ngày tập mỗi tuần</string>
+    <string name="pp_days_hint">Những ngày còn lại là buổi giãn cơ nhẹ.</string>
 </resources>

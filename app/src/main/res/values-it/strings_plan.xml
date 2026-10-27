@@ -35,4 +35,20 @@
     <string name="pp_standard">Standard</string>
     <string name="pp_long">Lungo</string>
     <string name="pp_limits">Limitazioni</string>
+    <string name="pp_review_title">Settimana %1$d completata! 🎉</string>
+    <string name="pp_review_desc">Dicci com\'è andata e adatteremo la prossima settimana.</string>
+    <string name="pp_review_button">Valuta</string>
+    <string name="pp_review_q_feel">Com\'è andata questa settimana?</string>
+    <string name="pp_review_easy">Troppo facile</string>
+    <string name="pp_review_right">Giusta</string>
+    <string name="pp_review_hard">Troppo difficile</string>
+    <string name="pp_review_q_length">Durata della sessione?</string>
+    <string name="pp_review_shorter">Più breve</string>
+    <string name="pp_review_same">Uguale</string>
+    <string name="pp_review_longer">Più lunga</string>
+    <string name="pp_review_apply">Aggiorna il piano</string>
+    <string name="pp_review_later">Non ora</string>
+    <string name="pp_review_done">La settimana %1$d è stata aggiornata per te</string>
+    <string name="pp_days_week">Giorni di allenamento a settimana</string>
+    <string name="pp_days_hint">Gli altri giorni sono sessioni di stretching leggero.</string>
 </resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">Šodienas treniņš</string>
+    <string name="widget_desc">Tava sērija un šodienas treniņš vienā skatienā</string>
+    <string name="widget_streak_label">dienas pēc kārtas</string>
+    <string name="widget_suggested">Ieteikts tev</string>
+    <string name="widget_done_today">Šodien izdarīts ✓ Lieliski!</string>
+    <string name="widget_start">Sākt</string>
+    <string name="widget_train_more">Trenēties vēl</string>
+</resources>

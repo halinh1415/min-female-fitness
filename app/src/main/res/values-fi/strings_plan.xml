@@ -35,4 +35,20 @@
     <string name="pp_standard">Normaali</string>
     <string name="pp_long">Pitkä</string>
     <string name="pp_limits">Rajoitukset</string>
+    <string name="pp_review_title">Viikko %1$d tehty! 🎉</string>
+    <string name="pp_review_desc">Kerro miltä tuntui, niin säädämme ensi viikon.</string>
+    <string name="pp_review_button">Arvioi</string>
+    <string name="pp_review_q_feel">Miltä tämä viikko tuntui?</string>
+    <string name="pp_review_easy">Liian helppo</string>
+    <string name="pp_review_right">Sopiva</string>
+    <string name="pp_review_hard">Liian raskas</string>
+    <string name="pp_review_q_length">Treenin pituus?</string>
+    <string name="pp_review_shorter">Lyhyempi</string>
+    <string name="pp_review_same">Sama</string>
+    <string name="pp_review_longer">Pidempi</string>
+    <string name="pp_review_apply">Päivitä suunnitelma</string>
+    <string name="pp_review_later">Ei nyt</string>
+    <string name="pp_review_done">Viikko %1$d on säädetty sinulle</string>
+    <string name="pp_days_week">Treenipäiviä viikossa</string>
+    <string name="pp_days_hint">Muina päivinä on kevyttä venyttelyä.</string>
 </resources>

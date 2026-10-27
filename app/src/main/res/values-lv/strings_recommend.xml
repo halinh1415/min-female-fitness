@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">Jo tu vēlies trenēt: %s</string>
+    <string name="rec_reason_lose">Dedzina taukus tavam svara zaudēšanas mērķim</string>
+    <string name="rec_reason_flex">Uzlabo lokanību, kā vēlējies</string>
+    <string name="rec_reason_health">Viegls treniņš tavai veselībai</string>
+    <string name="rec_reason_level_up">Nākamais līmenis: tu esi gatava vairāk!</string>
+    <string name="rec_reason_habit">Atbilst laikam, kad parasti trenējies</string>
+    <string name="rec_reason_recovery">Viegla atjaunošanās diena pēc %d dienām pēc kārtas</string>
+    <string name="rec_reason_comeback">Maiga atsākšana pēc dažu dienu pārtraukuma</string>
+    <string name="rec_reason_new">Kaut kas jauns, ko vēl neesi izmēģinājusi</string>
+    <string name="rec_reason_default">Izvēlēts tev šodien</string>
+    <string name="rec_reason_morning">Maigs rīta sākums</string>
+    <string name="rec_reason_bedtime">Atslābsti pirms miega</string>
+    <string name="home_done_sub">Gribi vēl mazliet? Izmēģini šo vieglo</string>
+    <string name="home_swap">Mainīt</string>
+</resources>

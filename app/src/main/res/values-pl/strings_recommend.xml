@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">Bo chcesz ćwiczyć: %s</string>
+    <string name="rec_reason_lose">Spala tłuszcz dla Twojego celu odchudzania</string>
+    <string name="rec_reason_flex">Większa elastyczność, tak jak chciałaś</string>
+    <string name="rec_reason_health">Lekki trening dla zdrowia</string>
+    <string name="rec_reason_level_up">Wyższy poziom: jesteś gotowa!</string>
+    <string name="rec_reason_habit">Pasuje do Twojego zwykłego czasu treningu</string>
+    <string name="rec_reason_recovery">Lekki dzień regeneracji po %d dniach z rzędu</string>
+    <string name="rec_reason_comeback">Łagodny powrót po kilku dniach przerwy</string>
+    <string name="rec_reason_new">Coś nowego, czego jeszcze nie próbowałaś</string>
+    <string name="rec_reason_default">Wybrane dla Ciebie na dziś</string>
+    <string name="rec_reason_morning">Łagodny początek poranka</string>
+    <string name="rec_reason_bedtime">Odpręż się przed snem</string>
+    <string name="home_done_sub">Jeszcze trochę? Spróbuj tego lekkiego</string>
+    <string name="home_swap">Zmień</string>
+</resources>

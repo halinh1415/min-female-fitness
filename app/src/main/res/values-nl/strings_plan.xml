@@ -35,4 +35,20 @@
     <string name="pp_standard">Standaard</string>
     <string name="pp_long">Lang</string>
     <string name="pp_limits">Beperkingen</string>
+    <string name="pp_review_title">Week %1$d voltooid! 🎉</string>
+    <string name="pp_review_desc">Vertel hoe het ging, dan passen we volgende week aan.</string>
+    <string name="pp_review_button">Beoordelen</string>
+    <string name="pp_review_q_feel">Hoe was deze week?</string>
+    <string name="pp_review_easy">Te makkelijk</string>
+    <string name="pp_review_right">Precies goed</string>
+    <string name="pp_review_hard">Te zwaar</string>
+    <string name="pp_review_q_length">Duur van de sessie?</string>
+    <string name="pp_review_shorter">Korter</string>
+    <string name="pp_review_same">Zo laten</string>
+    <string name="pp_review_longer">Langer</string>
+    <string name="pp_review_apply">Plan bijwerken</string>
+    <string name="pp_review_later">Niet nu</string>
+    <string name="pp_review_done">Week %1$d is voor je aangepast</string>
+    <string name="pp_days_week">Trainingsdagen per week</string>
+    <string name="pp_days_hint">De andere dagen zijn lichte rek-sessies.</string>
 </resources>

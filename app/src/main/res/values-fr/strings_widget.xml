@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">Séance du jour</string>
+    <string name="widget_desc">Votre série et la séance du jour en un coup d\'œil</string>
+    <string name="widget_streak_label">jours d\'affilée</string>
+    <string name="widget_suggested">Suggéré pour vous</string>
+    <string name="widget_done_today">Fait aujourd\'hui ✓ Bravo !</string>
+    <string name="widget_start">Commencer</string>
+    <string name="widget_train_more">S\'entraîner encore</string>
+</resources>

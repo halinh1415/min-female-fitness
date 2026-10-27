@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">Porque quieres trabajar: %s</string>
+    <string name="rec_reason_lose">Quema grasa para tu objetivo de perder peso</string>
+    <string name="rec_reason_flex">Mejora tu flexibilidad, como querías</string>
+    <string name="rec_reason_health">Una sesión suave para mantenerte sana</string>
+    <string name="rec_reason_level_up">Sube de nivel: ¡estás lista para más!</string>
+    <string name="rec_reason_habit">Se ajusta al tiempo que sueles entrenar</string>
+    <string name="rec_reason_recovery">Día de recuperación suave tras %d días seguidos</string>
+    <string name="rec_reason_comeback">Un regreso suave tras unos días de descanso</string>
+    <string name="rec_reason_new">Algo nuevo que aún no has probado</string>
+    <string name="rec_reason_default">Elegido para ti hoy</string>
+    <string name="rec_reason_morning">Un comienzo suave para tu mañana</string>
+    <string name="rec_reason_bedtime">Relájate antes de dormir</string>
+    <string name="home_done_sub">¿Un poco más? Prueba este suave</string>
+    <string name="home_swap">Cambiar</string>
+</resources>

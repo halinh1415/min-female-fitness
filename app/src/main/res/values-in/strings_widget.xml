@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">Latihan hari ini</string>
+    <string name="widget_desc">Rentetan dan latihan hari ini sekilas</string>
+    <string name="widget_streak_label">hari berturut-turut</string>
+    <string name="widget_suggested">Disarankan untukmu</string>
+    <string name="widget_done_today">Selesai hari ini ✓ Kerja bagus!</string>
+    <string name="widget_start">Mulai</string>
+    <string name="widget_train_more">Latihan lagi</string>
+</resources>

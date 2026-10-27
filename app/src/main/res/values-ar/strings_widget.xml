@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">تمرين اليوم</string>
+    <string name="widget_desc">سلسلتك وتمرين اليوم في لمحة</string>
+    <string name="widget_streak_label">أيام متتالية</string>
+    <string name="widget_suggested">مقترح لك</string>
+    <string name="widget_done_today">تم اليوم ✓ عمل رائع!</string>
+    <string name="widget_start">ابدأ</string>
+    <string name="widget_train_more">تمرّن أكثر</string>
+</resources>

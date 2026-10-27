@@ -35,4 +35,20 @@
     <string name="pp_standard">มาตรฐาน</string>
     <string name="pp_long">ยาว</string>
     <string name="pp_limits">ข้อจำกัด</string>
+    <string name="pp_review_title">ครบสัปดาห์ที่ %1$d แล้ว! 🎉</string>
+    <string name="pp_review_desc">บอกเราว่ารู้สึกอย่างไร แล้วเราจะปรับสัปดาห์หน้าให้</string>
+    <string name="pp_review_button">ประเมิน</string>
+    <string name="pp_review_q_feel">สัปดาห์นี้เป็นอย่างไร?</string>
+    <string name="pp_review_easy">ง่ายไป</string>
+    <string name="pp_review_right">กำลังดี</string>
+    <string name="pp_review_hard">หนักไป</string>
+    <string name="pp_review_q_length">ระยะเวลาต่อครั้ง?</string>
+    <string name="pp_review_shorter">สั้นลง</string>
+    <string name="pp_review_same">เท่าเดิม</string>
+    <string name="pp_review_longer">นานขึ้น</string>
+    <string name="pp_review_apply">อัปเดตแผน</string>
+    <string name="pp_review_later">ไว้ทีหลัง</string>
+    <string name="pp_review_done">ปรับสัปดาห์ที่ %1$d ให้แล้ว</string>
+    <string name="pp_days_week">จำนวนวันฝึกต่อสัปดาห์</string>
+    <string name="pp_days_hint">วันอื่นเป็นการยืดเหยียดเบา ๆ</string>
 </resources>

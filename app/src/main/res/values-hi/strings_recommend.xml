@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">क्योंकि आप इस पर काम करना चाहती हैं: %s</string>
+    <string name="rec_reason_lose">वज़न घटाने के लक्ष्य के लिए फैट बर्न करें</string>
+    <string name="rec_reason_flex">आपकी चाहत के अनुसार लचीलापन बढ़ाए</string>
+    <string name="rec_reason_health">स्वस्थ रहने के लिए आसान सत्र</string>
+    <string name="rec_reason_level_up">अगला स्तर: आप और के लिए तैयार हैं!</string>
+    <string name="rec_reason_habit">आपके नियमित व्यायाम के समय के अनुकूल</string>
+    <string name="rec_reason_recovery">लगातार %d दिनों के बाद हल्का रिकवरी दिन</string>
+    <string name="rec_reason_comeback">कुछ दिनों के विराम के बाद हल्की शुरुआत</string>
+    <string name="rec_reason_new">कुछ नया जो आपने अभी तक नहीं आज़माया</string>
+    <string name="rec_reason_default">आज आपके लिए चुना गया</string>
+    <string name="rec_reason_morning">सुबह की हल्की शुरुआत</string>
+    <string name="rec_reason_bedtime">सोने से पहले आराम</string>
+    <string name="home_done_sub">थोड़ा और करना है? यह हल्का वाला आज़माएँ</string>
+    <string name="home_swap">बदलें</string>
+</resources>

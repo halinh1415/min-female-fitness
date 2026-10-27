@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">Heutiges Training</string>
+    <string name="widget_desc">Deine Serie und dein heutiges Training auf einen Blick</string>
+    <string name="widget_streak_label">Tage in Folge</string>
+    <string name="widget_suggested">Für dich empfohlen</string>
+    <string name="widget_done_today">Heute erledigt ✓ Super!</string>
+    <string name="widget_start">Start</string>
+    <string name="widget_train_more">Weiter trainieren</string>
+</resources>

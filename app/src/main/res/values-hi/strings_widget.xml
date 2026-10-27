@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">आज का वर्कआउट</string>
+    <string name="widget_desc">आपकी लगातार कसरत और आज का वर्कआउट एक नज़र में</string>
+    <string name="widget_streak_label">दिन लगातार</string>
+    <string name="widget_suggested">आपके लिए सुझाया गया</string>
+    <string name="widget_done_today">आज पूरा ✓ बहुत बढ़िया!</string>
+    <string name="widget_start">शुरू करें</string>
+    <string name="widget_train_more">और कसरत करें</string>
+</resources>

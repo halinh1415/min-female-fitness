@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">Training van vandaag</string>
+    <string name="widget_desc">Je reeks en de training van vandaag in één oogopslag</string>
+    <string name="widget_streak_label">dagen op rij</string>
+    <string name="widget_suggested">Aanbevolen voor jou</string>
+    <string name="widget_done_today">Vandaag gedaan ✓ Goed bezig!</string>
+    <string name="widget_start">Start</string>
+    <string name="widget_train_more">Meer trainen</string>
+</resources>

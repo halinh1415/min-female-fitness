@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">Because you want to work on: %s</string>
+    <string name="rec_reason_lose">Burns fat for your weight-loss goal</string>
+    <string name="rec_reason_flex">Builds flexibility, as you wanted</string>
+    <string name="rec_reason_health">An easy session to keep you healthy</string>
+    <string name="rec_reason_level_up">Level up: you\'re ready for more!</string>
+    <string name="rec_reason_habit">Fits the time you usually train</string>
+    <string name="rec_reason_recovery">Light recovery day after %d days in a row</string>
+    <string name="rec_reason_comeback">A gentle restart after a few days off</string>
+    <string name="rec_reason_new">Something new you haven\'t tried yet</string>
+    <string name="rec_reason_default">Picked for you today</string>
+    <string name="rec_reason_morning">A gentle start to your morning</string>
+    <string name="rec_reason_bedtime">Unwind before bed</string>
+    <string name="home_done_sub">Want a little more? Try this light one</string>
+    <string name="home_swap">Swap</string>
+</resources>

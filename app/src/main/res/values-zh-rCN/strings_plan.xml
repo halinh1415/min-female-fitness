@@ -35,4 +35,20 @@
     <string name="pp_standard">标准</string>
     <string name="pp_long">长</string>
     <string name="pp_limits">限制</string>
+    <string name="pp_review_title">第 %1$d 周完成！🎉</string>
+    <string name="pp_review_desc">告诉我们感受，我们会调整下周的计划。</string>
+    <string name="pp_review_button">评价</string>
+    <string name="pp_review_q_feel">这周感觉如何？</string>
+    <string name="pp_review_easy">太简单</string>
+    <string name="pp_review_right">刚刚好</string>
+    <string name="pp_review_hard">太难</string>
+    <string name="pp_review_q_length">每次时长？</string>
+    <string name="pp_review_shorter">缩短</string>
+    <string name="pp_review_same">保持</string>
+    <string name="pp_review_longer">延长</string>
+    <string name="pp_review_apply">更新计划</string>
+    <string name="pp_review_later">以后再说</string>
+    <string name="pp_review_done">已为你调整第 %1$d 周</string>
+    <string name="pp_days_week">每周训练天数</string>
+    <string name="pp_days_hint">其余日子为轻度拉伸。</string>
 </resources>

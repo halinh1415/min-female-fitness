@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">เพราะคุณอยากฝึก: %s</string>
+    <string name="rec_reason_lose">เผาผลาญไขมันตามเป้าหมายลดน้ำหนัก</string>
+    <string name="rec_reason_flex">เพิ่มความยืดหยุ่นตามที่คุณต้องการ</string>
+    <string name="rec_reason_health">ฝึกเบา ๆ เพื่อสุขภาพที่ดี</string>
+    <string name="rec_reason_level_up">เลเวลอัป: คุณพร้อมสำหรับความท้าทายใหม่!</string>
+    <string name="rec_reason_habit">ตรงกับเวลาที่คุณฝึกเป็นประจำ</string>
+    <string name="rec_reason_recovery">วันพักฟื้นเบา ๆ หลังฝึกติดกัน %d วัน</string>
+    <string name="rec_reason_comeback">เริ่มใหม่อย่างนุ่มนวลหลังพักไปหลายวัน</string>
+    <string name="rec_reason_new">ท่าใหม่ที่คุณยังไม่เคยลอง</string>
+    <string name="rec_reason_default">คัดมาเพื่อคุณวันนี้</string>
+    <string name="rec_reason_morning">เริ่มเช้าอย่างนุ่มนวล</string>
+    <string name="rec_reason_bedtime">ผ่อนคลายก่อนนอน</string>
+    <string name="home_done_sub">อยากฝึกอีกนิด? ลองท่าเบา ๆ นี้</string>
+    <string name="home_swap">เปลี่ยน</string>
+</resources>

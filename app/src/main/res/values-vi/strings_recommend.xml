@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">Vì bạn muốn tập: %s</string>
+    <string name="rec_reason_lose">Đốt mỡ cho mục tiêu giảm cân</string>
+    <string name="rec_reason_flex">Tăng độ dẻo dai theo mục tiêu của bạn</string>
+    <string name="rec_reason_health">Bài nhẹ nhàng để luôn khỏe mạnh</string>
+    <string name="rec_reason_level_up">Nâng độ khó: bạn đã sẵn sàng!</string>
+    <string name="rec_reason_habit">Vừa với thời lượng bạn hay tập</string>
+    <string name="rec_reason_recovery">Ngày phục hồi nhẹ sau %d ngày liên tiếp</string>
+    <string name="rec_reason_comeback">Khởi động lại nhẹ nhàng sau vài ngày nghỉ</string>
+    <string name="rec_reason_new">Bài mới bạn chưa thử</string>
+    <string name="rec_reason_default">Gợi ý riêng cho bạn hôm nay</string>
+    <string name="rec_reason_morning">Khởi động nhẹ nhàng cho buổi sáng</string>
+    <string name="rec_reason_bedtime">Thư giãn trước khi ngủ</string>
+    <string name="home_done_sub">Muốn tập thêm? Thử bài nhẹ này</string>
+    <string name="home_swap">Đổi bài</string>
+</resources>

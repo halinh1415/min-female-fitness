@@ -77,6 +77,12 @@ class HomeUiState {
     var coachMessage by mutableStateOf("")
     var suggestion by mutableStateOf<ProgramObject?>(null)
     var suggestionInfo by mutableStateOf("")
+
+    /** Lý do gợi ý ("Vì bạn muốn tập: Mông"), null = nhãn "Gợi ý hôm nay" mặc định. */
+    var suggestionReason by mutableStateOf<String?>(null)
+
+    /** Còn bài để "Đổi bài" hôm nay. */
+    var canSwap by mutableStateOf(false)
     var weekDays by mutableStateOf<List<WeekDay>>(emptyList())
     var goalDone by mutableIntStateOf(0)
     var goalTotal by mutableIntStateOf(0)
@@ -93,12 +99,16 @@ class HomeUiState {
     /** Chưa có buổi tập nào và chưa từng mời: hiện popup "Bắt đầu buổi tập đầu tiên". */
     var firstWorkoutNudge by mutableStateOf(false)
 
+    /** Tuần plan vừa xong (1..3) chưa đánh giá: hiện thẻ "Tuần x xong" để chỉnh tuần sau. */
+    var weekReview by mutableStateOf<Int?>(null)
+
     /** Tiến độ từng chương trình (ngày đã tập) – đọc lại mỗi lần quay về màn. */
     var planProgress by mutableStateOf<Map<Int, Int>>(emptyMap())
 }
 
 interface HomeActions {
     fun onStartSuggestion()
+    fun onSwapSuggestion() {}
     fun onProgramClick(program: ProgramObject)
     fun onRecentProgramClick(program: ProgramObject)
     fun onSeeMore(section: HomeSection)
@@ -110,6 +120,10 @@ interface HomeActions {
     fun onPromoExpired()
     fun onOpenPersonalPlan()
     fun onAdjustPersonalPlan()
+
+    /** Đánh giá tuần plan: feel 1 dễ / 0 vừa / -1 khó, length 1 dài / 0 giữ / -1 ngắn. */
+    fun onWeekReview(week: Int, feel: Int, length: Int) {}
+    fun onWeekReviewSkip(week: Int) {}
 
     /** Popup buổi tập đầu tiên: bấm bắt đầu mở [program]; cả hai cách đóng đều không mời lại. */
     fun onStartFirstWorkout(program: ProgramObject)
@@ -139,6 +153,16 @@ fun HomeScreen(state: HomeUiState, actions: HomeActions) {
             )
         }
         PersonalPlanCard(state, actions, Modifier.padding(start = 16.dp, end = 16.dp, top = 14.dp, bottom = 4.dp))
+        state.weekReview?.let { week ->
+            key(week) {
+                WeekReviewCard(
+                    week,
+                    { feel, length -> actions.onWeekReview(week, feel, length) },
+                    { actions.onWeekReviewSkip(week) },
+                    Modifier.padding(start = 16.dp, end = 16.dp, top = 10.dp, bottom = 4.dp),
+                )
+            }
+        }
         WeekGoalCard(
             state,
             actions,
@@ -386,17 +410,35 @@ private fun CoachCard(state: HomeUiState, actions: HomeActions) {
                 )
         )
         Text(
-            stringResource(R.string.suggestion_today),
+            state.suggestionReason ?: stringResource(R.string.suggestion_today),
             color = Color.White,
             fontSize = 12.sp,
             fontWeight = FontWeight.SemiBold,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
             modifier = Modifier
                 .align(Alignment.TopStart)
-                .padding(14.dp)
+                .padding(start = 14.dp, top = 14.dp, end = if (state.canSwap) 110.dp else 14.dp)
                 .clip(RoundedCornerShape(50))
                 .background(Color.Black.copy(alpha = 0.28f))
                 .padding(horizontal = 10.dp, vertical = 5.dp)
         )
+        if (state.canSwap) {
+            Text(
+                "⟳ " + stringResource(R.string.home_swap),
+                color = Color.White,
+                fontSize = 12.sp,
+                fontWeight = FontWeight.SemiBold,
+                maxLines = 1,
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(14.dp)
+                    .clip(RoundedCornerShape(50))
+                    .background(Color.Black.copy(alpha = 0.28f))
+                    .clickable(onClick = actions::onSwapSuggestion)
+                    .padding(horizontal = 10.dp, vertical = 5.dp)
+            )
+        }
         Column(
             Modifier
                 .align(Alignment.BottomStart)

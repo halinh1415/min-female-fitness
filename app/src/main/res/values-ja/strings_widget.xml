@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">今日のワークアウト</string>
+    <string name="widget_desc">連続記録と今日のワークアウトをひと目で</string>
+    <string name="widget_streak_label">日連続</string>
+    <string name="widget_suggested">あなたへのおすすめ</string>
+    <string name="widget_done_today">今日は完了 ✓ よく頑張りました！</string>
+    <string name="widget_start">スタート</string>
+    <string name="widget_train_more">もっと鍛える</string>
+</resources>

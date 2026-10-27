@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">Потому что вы хотите проработать: %s</string>
+    <string name="rec_reason_lose">Сжигает жир для цели похудеть</string>
+    <string name="rec_reason_flex">Для гибкости, как вы хотели</string>
+    <string name="rec_reason_health">Лёгкая тренировка для здоровья</string>
+    <string name="rec_reason_level_up">Новый уровень: вы готовы к большему!</string>
+    <string name="rec_reason_habit">Под ваше привычное время тренировки</string>
+    <string name="rec_reason_recovery">Лёгкий день восстановления после %d дней подряд</string>
+    <string name="rec_reason_comeback">Мягкое возвращение после нескольких дней отдыха</string>
+    <string name="rec_reason_new">Что-то новое, что вы ещё не пробовали</string>
+    <string name="rec_reason_default">Подобрано для вас сегодня</string>
+    <string name="rec_reason_morning">Мягкое начало утра</string>
+    <string name="rec_reason_bedtime">Расслабьтесь перед сном</string>
+    <string name="home_done_sub">Хотите ещё? Попробуйте эту лёгкую</string>
+    <string name="home_swap">Сменить</string>
+</resources>

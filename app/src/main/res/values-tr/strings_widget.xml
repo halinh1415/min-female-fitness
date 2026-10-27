@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">Bugünün antrenmanı</string>
+    <string name="widget_desc">Serin ve bugünün antrenmanı tek bakışta</string>
+    <string name="widget_streak_label">gün üst üste</string>
+    <string name="widget_suggested">Senin için önerilen</string>
+    <string name="widget_done_today">Bugün tamam ✓ Harika iş!</string>
+    <string name="widget_start">Başla</string>
+    <string name="widget_train_more">Daha fazla çalış</string>
+</resources>

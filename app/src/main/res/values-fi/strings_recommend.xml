@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">Koska haluat treenata: %s</string>
+    <string name="rec_reason_lose">Polttaa rasvaa painonpudotustavoitteeseesi</string>
+    <string name="rec_reason_flex">Lisää liikkuvuutta, kuten halusit</string>
+    <string name="rec_reason_health">Kevyt treeni terveydeksi</string>
+    <string name="rec_reason_level_up">Tasonnousu: olet valmis!</string>
+    <string name="rec_reason_habit">Sopii tavalliseen treeniaikaasi</string>
+    <string name="rec_reason_recovery">Kevyt palautumispäivä %d peräkkäisen päivän jälkeen</string>
+    <string name="rec_reason_comeback">Pehmeä paluu muutaman vapaapäivän jälkeen</string>
+    <string name="rec_reason_new">Jotain uutta, mitä et ole vielä kokeillut</string>
+    <string name="rec_reason_default">Valittu sinulle tänään</string>
+    <string name="rec_reason_morning">Lempeä aloitus aamuun</string>
+    <string name="rec_reason_bedtime">Rentoudu ennen nukkumaanmenoa</string>
+    <string name="home_done_sub">Vielä vähän? Kokeile tätä kevyttä</string>
+    <string name="home_swap">Vaihda</string>
+</resources>

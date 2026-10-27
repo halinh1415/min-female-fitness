@@ -1,6 +1,8 @@
 package mint.woman.female.workout.utils;
 
 public class RemoteConfigKeys {
+    /** JSON ghi đè trọng số chấm điểm của RecommendationService (giống app Women). */
+    public static final String RECOMMEND_WEIGHTS = "recommend_weights";
     public static final String INTER_SPLASH ="inter_splash" ;
     public static final String APP_OPEN_RESUME = "app_resume" ;
     public static final String PRO_VIDEO_REWARD = "pro_video_reward";

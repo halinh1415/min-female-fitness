@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">Fordi du vil jobbe med: %s</string>
+    <string name="rec_reason_lose">Forbrenner fett for vekttapsmålet ditt</string>
+    <string name="rec_reason_flex">Bygger smidighet, slik du ønsket</string>
+    <string name="rec_reason_health">En lett økt for å holde deg frisk</string>
+    <string name="rec_reason_level_up">Neste nivå: du er klar for mer!</string>
+    <string name="rec_reason_habit">Passer tiden du vanligvis trener</string>
+    <string name="rec_reason_recovery">Lett restitusjonsdag etter %d dager på rad</string>
+    <string name="rec_reason_comeback">En rolig omstart etter noen dager fri</string>
+    <string name="rec_reason_new">Noe nytt du ikke har prøvd ennå</string>
+    <string name="rec_reason_default">Valgt for deg i dag</string>
+    <string name="rec_reason_morning">En rolig start på morgenen</string>
+    <string name="rec_reason_bedtime">Slapp av før leggetid</string>
+    <string name="home_done_sub">Vil du ha litt mer? Prøv denne lette</string>
+    <string name="home_swap">Bytt</string>
+</resources>

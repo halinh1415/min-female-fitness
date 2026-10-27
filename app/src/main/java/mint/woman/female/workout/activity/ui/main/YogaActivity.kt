@@ -1,5 +1,7 @@
 package mint.woman.female.workout.activity.ui.main
 
+import mint.woman.female.workout.activity.ui.plan.PersonalPlanStore
+import mint.woman.female.workout.widget.TodayWidget
 import mint.woman.female.workout.utils.HistoryDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -132,6 +134,7 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
             if (destination.id in COMPOSE_HEADER_TABS) supportActionBar?.hide() else supportActionBar?.show()
         }
         initView()
+        openWidgetProgramIfRequested(intent)
         val file = File(filesDir, "music")
         if (!file.exists()) {
             file.mkdirs()
@@ -239,9 +242,22 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
 
         //checkAccount();
     }
+    /** Bấm "Bắt đầu" trên widget: mở thẳng bài (plan cá nhân hoặc bài gợi ý) như bấm trên Home. */
+    private fun openWidgetProgramIfRequested(intent: Intent?) {
+        val programId = intent?.getIntExtra(TodayWidget.EXTRA_PROGRAM_ID, -1) ?: -1
+        if (programId < 0) return
+        intent?.removeExtra(TodayWidget.EXTRA_PROGRAM_ID)
+        val program = if (programId == PersonalPlanStore.PROGRAM_ID) PersonalPlanStore.program(this)
+        else runCatching { FitnessApplication.getApplication().mJsonHelper.allCategoryHashMap[programId] }.getOrNull()
+        program ?: return
+        TodayWidget.logOpened(this, programId)
+        onGotoPlan(program)
+    }
+
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)
+        openWidgetProgramIfRequested(intent)
         var isReport = intent.getBooleanExtra("IS_REPORT", false);
         // Passing each menu ID as a set of Ids because each
         if (isReport) {
@@ -721,6 +737,8 @@ class YogaActivity : AppCompatActivity(), OnHomeFragmentInteractionListener, OnS
         super.onResume()
         // Ghi lần hoạt động cuối: vắng app lâu thì lần vào paywall tới được tặng đợt 50% (win-back).
         mint.woman.female.workout.activity.ui.premium.PaywallPromo.markAppActive(this)
+        // Widget theo kịp dữ liệu mới (tập xong, đổi plan, sang ngày mới).
+        TodayWidget.update(this)
         // Kiểm tra lại giao dịch mỗi lần quay về app (thanh toán đang chờ, gia hạn, huỷ gói).
         premiumViewModel?.syncPremiumStatus()
         if (flagAds == 1) {

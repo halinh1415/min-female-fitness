@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rec_reason_focus">لأنكِ تريدين تمرين: %s</string>
+    <string name="rec_reason_lose">يحرق الدهون لهدف إنقاص الوزن</string>
+    <string name="rec_reason_flex">لزيادة المرونة كما أردتِ</string>
+    <string name="rec_reason_health">جلسة خفيفة للحفاظ على صحتك</string>
+    <string name="rec_reason_level_up">مستوى أعلى: أنتِ جاهزة!</string>
+    <string name="rec_reason_habit">يناسب مدة تمرينك المعتادة</string>
+    <string name="rec_reason_recovery">يوم تعافٍ خفيف بعد %d أيام متتالية</string>
+    <string name="rec_reason_comeback">عودة لطيفة بعد بضعة أيام راحة</string>
+    <string name="rec_reason_new">شيء جديد لم تجرّبيه بعد</string>
+    <string name="rec_reason_default">مختار لكِ اليوم</string>
+    <string name="rec_reason_morning">بداية لطيفة لصباحكِ</string>
+    <string name="rec_reason_bedtime">استرخي قبل النوم</string>
+    <string name="home_done_sub">تريدين المزيد؟ جرّبي هذا التمرين الخفيف</string>
+    <string name="home_swap">تبديل</string>
+</resources>

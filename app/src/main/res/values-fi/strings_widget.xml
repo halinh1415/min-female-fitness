@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_name">Päivän treeni</string>
+    <string name="widget_desc">Putkesi ja päivän treeni yhdellä silmäyksellä</string>
+    <string name="widget_streak_label">päivää putkeen</string>
+    <string name="widget_suggested">Ehdotettu sinulle</string>
+    <string name="widget_done_today">Tehty tänään ✓ Hienoa!</string>
+    <string name="widget_start">Aloita</string>
+    <string name="widget_train_more">Treenaa lisää</string>
+</resources>

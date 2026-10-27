@@ -35,4 +35,20 @@
     <string name="pp_standard">Standarta</string>
     <string name="pp_long">Garš</string>
     <string name="pp_limits">Ierobežojumi</string>
+    <string name="pp_review_title">%1$d. nedēļa pabeigta! 🎉</string>
+    <string name="pp_review_desc">Pastāsti, kā gāja, un mēs pielāgosim nākamo nedēļu.</string>
+    <string name="pp_review_button">Novērtēt</string>
+    <string name="pp_review_q_feel">Kā gāja šonedēļ?</string>
+    <string name="pp_review_easy">Pārāk viegli</string>
+    <string name="pp_review_right">Tieši laikā</string>
+    <string name="pp_review_hard">Pārāk grūti</string>
+    <string name="pp_review_q_length">Treniņa ilgums?</string>
+    <string name="pp_review_shorter">Īsāks</string>
+    <string name="pp_review_same">Tāpat</string>
+    <string name="pp_review_longer">Garāks</string>
+    <string name="pp_review_apply">Atjaunināt plānu</string>
+    <string name="pp_review_later">Ne tagad</string>
+    <string name="pp_review_done">%1$d. nedēļa pielāgota tev</string>
+    <string name="pp_days_week">Treniņu dienas nedēļā</string>
+    <string name="pp_days_hint">Pārējās dienas ir viegla stiepšanās.</string>
 </resources>
