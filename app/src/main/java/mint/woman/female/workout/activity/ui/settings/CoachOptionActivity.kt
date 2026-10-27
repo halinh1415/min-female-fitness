@@ -501,7 +501,21 @@ private fun PlayButton(playing: Boolean, onPlay: () -> Unit) {
         Modifier.size(40.dp).clip(CircleShape).background(c.primaryContainer).clickable(onClick = onPlay),
         contentAlignment = Alignment.Center
     ) {
-        Text(if (playing) "♪" else "▶", color = c.primary, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+        if (playing) {
+            // Đang phát: sóng nhạc Lottie như màn chọn giọng cũ.
+            androidx.compose.ui.viewinterop.AndroidView(
+                factory = { ctx ->
+                    com.airbnb.lottie.LottieAnimationView(ctx).apply {
+                        setAnimation(R.raw.voice_play)
+                        repeatCount = com.airbnb.lottie.LottieDrawable.INFINITE
+                        playAnimation()
+                    }
+                },
+                modifier = Modifier.size(40.dp)
+            )
+        } else {
+            Text("▶", color = c.primary, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+        }
     }
 }
 
