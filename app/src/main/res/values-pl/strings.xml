@@ -394,4 +394,5 @@
     <string name="rest_tip_sleep">Śpij 7–8 godzin, aby dobrze się zregenerować</string>
     <string name="rest_stretch_title">Masz ochotę się poruszać? Spróbuj delikatnego rozciągania</string>
     <string name="rest_day_done">Zakończ dzień odpoczynku</string>
+    <string name="oops_network_error">Ups! Błąd sieci</string>
 </resources>

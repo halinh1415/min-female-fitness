@@ -486,4 +486,5 @@
     <string name="rest_tip_sleep">Sleep 7–8 hours to recover well</string>
     <string name="rest_stretch_title">Feel like moving? Try a gentle stretch</string>
     <string name="rest_day_done">Finish rest day</string>
+    <string name="oops_network_error">Oops! Network error</string>
 </resources>

@@ -307,4 +307,5 @@
     <string name="rest_tip_sleep">Sov 7–8 timmar för att återhämta dig väl</string>
     <string name="rest_stretch_title">Sugen på att röra dig? Prova en mjuk stretch</string>
     <string name="rest_day_done">Avsluta vilodag</string>
+    <string name="oops_network_error">hoppsan! Nätverksfel</string>
 </resources>

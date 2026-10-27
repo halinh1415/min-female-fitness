@@ -394,4 +394,5 @@
     <string name="rest_tip_sleep">۷ تا ۸ ساعت بخوابید تا به خوبی ریکاوری کنید</string>
     <string name="rest_stretch_title">دوست دارید کمی حرکت کنید؟ یک کشش ملایم را امتحان کنید</string>
     <string name="rest_day_done">پایان روز استراحت</string>
+    <string name="oops_network_error">اوه! خطای شبکه</string>
 </resources>

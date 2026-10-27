@@ -525,3 +525,17 @@
 - Thẻ mới "Kỷ lục & tổng cộng" (toàn bộ lịch sử): số buổi, tổng thời gian (<1 giờ hiện phút), tổng kcal, tuần tập nhiều nhất, buổi dài nhất (m:ss + tên bài). Chỉ hiện khi đã có buổi tập.
 - Màn hoàn thành: buổi vừa xong dài hơn mọi buổi trước (≥1 phút, có ít nhất 1 buổi trước) thì hiện "🏆 Kỷ lục mới: buổi tập dài nhất". Chưa test thực tế được (cần tập buổi dài).
 - Chuỗi rec_* / fin_new_record dịch đủ ngôn ngữ. Test S8+: thẻ kỷ lục + nút kcal/phút hiện đúng.
+
+## 26/10/2026 – Màn chọn giọng HLV viết lại bằng Jetpack Compose (như Women Workout)
+- CoachOptionActivity.kt thay bản XML (xoá CoachOptionActivity.java, VoiceAdapter, VoiceItem, layout activity_coach_option/voice_item/voice_item_default, raw/voice.json).
+- "Đã tải" = có câu giới thiệu HLV (bản cũ kiểm câu "Ready to go": Preview tải sẵn vài câu thì bấm tải không làm gì). Tải theo unique work
+  coach_voice_<lang>_<giọng> (DownloadVoiceWorker gửi TOTAL để hiện %), báo lỗi + tải lại, rời màn vẫn tải và giữ giọng đã chọn.
+- Câu tải giữ như bản cũ (wp_*, v_start_with, tên bài, số 1–99), địa chỉ tải giữ nguyên. Manifest: theme NoActionBar.
+- Màu: chưa có theme Compose, dùng bảng màu theo colorPrimary #E91E63. Thêm chuỗi oops_network_error (21 ngôn ngữ, lấy từ Home Workout).
+- Server min-fitness.uk/voice/vi/woman thiếu 5 câu: "Bắt đầu", "Sẵn sàng để bắt đầu!", "Nửa thời gian", "tiếp theo", "Nghỉ ngơi" (lúc tập đọc TTS).
+- Test S8+ (vi): Hạnh tải xong, chọn được; trả lựa chọn về Mặc định.
+
+## 2026-10-27 — Bỏ màn ngôn ngữ: dữ liệu bài tập theo ngôn ngữ máy
+- Lỗi: khi bỏ màn Language, ST_LANGUAGE trống → dùng mã thô của máy ("zh", "id"/"in") không khớp file dữ liệu (zh_CN/zh_TW/in_ID) → rơi về English; giao diện tiếng Trung luôn ra giản thể do cắt mã còn "zh".
+- Sửa: LanguageHelper.matchSystemLanguage() khớp ngôn ngữ máy với SUPPORTED_LANGUAGES; getLanguage() dùng nó khi chưa chọn (cả user cũ); setLanguage("zh") giữ vùng zh_CN/zh_TW. Tai Chi: Splash lưu mã đã khớp thay vì mã thô.
+- Test: máy ảo zh-TW (giao diện + động tác phồn thể), S8+ vi không đổi. Build debug OK.

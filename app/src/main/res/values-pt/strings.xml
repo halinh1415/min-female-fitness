@@ -394,4 +394,5 @@
     <string name="rest_tip_sleep">Durma 7–8 horas para se recuperar bem</string>
     <string name="rest_stretch_title">Quer se mexer? Experimente um alongamento leve</string>
     <string name="rest_day_done">Concluir dia de descanso</string>
+    <string name="oops_network_error">Ops! Erro de rede</string>
 </resources>

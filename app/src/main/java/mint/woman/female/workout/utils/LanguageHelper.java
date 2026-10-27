@@ -17,6 +17,36 @@ public class LanguageHelper {
 
     private static final String SELECTED_LANGUAGE = "Language.Helper.Selected.Language";
 
+    /** Mã ngôn ngữ app có dữ liệu bài tập (giống mã ở màn chọn ngôn ngữ). */
+    public static final String[] SUPPORTED_LANGUAGES = {"en", "de", "fr", "es", "pt", "zh_CN", "zh_TW", "it", "pl", "nl", "ja", "ko", "tr", "ar", "in_ID", "ru", "vi"};
+
+    /**
+     * Khớp ngôn ngữ máy (theo thứ tự trong Cài đặt máy) với mã ngôn ngữ app, dùng khi người dùng chưa chọn
+     * ngôn ngữ (bỏ qua màn ngôn ngữ): zh-Hant/zh-TW/zh-HK → zh_TW, zh → zh_CN, id/in → in_ID, pt-BR → pt…
+     * Trả null nếu máy không có ngôn ngữ nào app hỗ trợ.
+     */
+    public static String matchSystemLanguage() {
+        LocaleList locales = Resources.getSystem().getConfiguration().getLocales();
+        for (int i = 0; i < locales.size(); i++) {
+            Locale l = locales.get(i);
+            String lang = l.getLanguage();
+            if ("id".equals(lang)) lang = "in";
+            String region = l.getCountry();
+            if ("zh".equals(lang)) {
+                boolean hant = "Hant".equals(l.getScript()) || "TW".equals(region) || "HK".equals(region) || "MO".equals(region);
+                region = hant ? "TW" : "CN";
+            }
+            String full = lang + "_" + region;
+            for (String code : SUPPORTED_LANGUAGES) {
+                if (code.equalsIgnoreCase(full)) return code;
+            }
+            for (String code : SUPPORTED_LANGUAGES) {
+                if (code.split("_")[0].equalsIgnoreCase(lang)) return code;
+            }
+        }
+        return null;
+    }
+
     public static Context onAttach(Context context) {
         String lang = getPersistedData(context, Locale.getDefault().getLanguage());
         return setLanguage(context, lang);
@@ -32,6 +62,12 @@ public class LanguageHelper {
     }
 
     public static Context setLanguage(Context context, String language) {
+        if ("zh".equalsIgnoreCase(language)) {
+            // attachBaseContext cắt mã còn "zh" (mất vùng) → giao diện luôn giản thể; giữ zh_CN/zh_TW cho khớp dữ liệu bài tập.
+            String stored = PreferenceManager.getDefaultSharedPreferences(context).getString("ST_LANGUAGE", "");
+            String full = stored.startsWith("zh_") ? stored : matchSystemLanguage();
+            if (full != null && full.startsWith("zh_")) language = full;
+        }
         persist(context, language);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

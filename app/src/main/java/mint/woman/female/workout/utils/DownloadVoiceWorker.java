@@ -98,7 +98,7 @@ public class DownloadVoiceWorker extends Worker {
             for (int i = 0; i < futures.size(); i++) {
                 try {
                     Boolean success = futures.get(i).get();
-                    setProgressAsync(new Data.Builder().putInt("PROGRESS", i + 1).build());
+                    setProgressAsync(new Data.Builder().putInt("PROGRESS", i + 1).putInt("TOTAL", futures.size()).build());
                     if (!success) {
                         Log.e("DownloadVoiceWorker", "Download failed for file: " + fileNames[i]);
                         // Bạn có thể chọn return Result.retry() nếu một file thất bại

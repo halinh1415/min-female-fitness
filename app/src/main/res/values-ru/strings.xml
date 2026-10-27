@@ -394,4 +394,5 @@
     <string name="rest_tip_sleep">Спите 7–8 часов, чтобы хорошо восстановиться</string>
     <string name="rest_stretch_title">Хочется подвигаться? Попробуйте мягкую растяжку</string>
     <string name="rest_day_done">Завершить день отдыха</string>
+    <string name="oops_network_error">Возникла ошибка! Ошибка сети</string>
 </resources>

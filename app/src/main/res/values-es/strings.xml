@@ -394,4 +394,5 @@
     <string name="rest_tip_sleep">Duerme 7–8 horas para recuperarte bien</string>
     <string name="rest_stretch_title">¿Te apetece moverte? Prueba un estiramiento suave</string>
     <string name="rest_day_done">Terminar día de descanso</string>
+    <string name="oops_network_error">¡Vaya! Error de red</string>
 </resources>

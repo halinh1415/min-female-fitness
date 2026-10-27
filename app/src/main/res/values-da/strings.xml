@@ -394,4 +394,5 @@
     <string name="rest_tip_sleep">Sov 7–8 timer for at restituere godt</string>
     <string name="rest_stretch_title">Lyst til at bevæge dig? Prøv en blid udstrækning</string>
     <string name="rest_day_done">Afslut hviledag</string>
+    <string name="oops_network_error">Ups! Netværksfejl</string>
 </resources>

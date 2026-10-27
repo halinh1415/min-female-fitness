@@ -394,4 +394,5 @@
     <string name="rest_tip_sleep">نامي 7–8 ساعات لتتعافي جيدًا</string>
     <string name="rest_stretch_title">تريدين الحركة؟ جربي تمدّدًا لطيفًا</string>
     <string name="rest_day_done">إنهاء يوم الراحة</string>
+    <string name="oops_network_error">عذرًا! خطأ في الشبكة</string>
 </resources>

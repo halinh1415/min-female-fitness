@@ -90,6 +90,7 @@
         <activity
             android:name=".activity.ui.settings.CoachOptionActivity"
             android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".activity.ui.main.YogaActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

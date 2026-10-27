@@ -394,4 +394,5 @@
     <string name="rest_tip_sleep">Dormi 7–8 ore per recuperare bene</string>
     <string name="rest_stretch_title">Hai voglia di muoverti? Prova uno stretching dolce</string>
     <string name="rest_day_done">Completa il giorno di riposo</string>
+    <string name="oops_network_error">Ops! Errore di rete</string>
 </resources>

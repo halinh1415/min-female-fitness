@@ -394,4 +394,5 @@
     <string name="rest_tip_sleep">7~8시간 자고 충분히 회복하세요</string>
     <string name="rest_stretch_title">움직이고 싶다면? 가벼운 스트레칭을 해 보세요</string>
     <string name="rest_day_done">휴식일 완료</string>
+    <string name="oops_network_error">이런! 네트워크 오류</string>
 </resources>

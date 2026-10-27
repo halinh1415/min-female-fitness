@@ -4,6 +4,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import mint.woman.female.workout.R;
+
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -14,7 +19,10 @@ public class MyPreference {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
 
+    private final Context mAppContext;
+
     public MyPreference(Context context) {
+        mAppContext = context.getApplicationContext();
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         mEditor = mSharedPreferences.edit();
     }
@@ -300,8 +308,10 @@ public class MyPreference {
 
     public String getLanguage() {
         String locale = mSharedPreferences.getString("ST_LANGUAGE", "");
-        if (locale.isEmpty()) {
-            locale = Locale.getDefault().getLanguage().toLowerCase();
+        if (locale.isEmpty() || locale.equals("zh")) {
+            // Chưa chọn ngôn ngữ (bỏ qua màn ngôn ngữ): khớp ngôn ngữ máy với mã dữ liệu, vd "zh" → zh_CN, "id" → in_ID
+            String matched = LanguageHelper.matchSystemLanguage();
+            locale = matched != null ? matched : Locale.getDefault().getLanguage().toLowerCase();
         }
         if (locale.contains("zh") || locale.contains("in")) {
             return locale.replace("-", "_");
@@ -592,10 +602,24 @@ public class MyPreference {
     }
 
     public String getVoiceModel(String language) {
-        if (language.contains("en")){
-            return  mSharedPreferences.getString("voice_" + language, "woman");
+        return mSharedPreferences.getString("voice_" + language, defaultVoiceModel(language));
+    }
+
+    /** Chưa chọn giọng: English hoặc ngôn ngữ có giọng thu sẵn (Remote Config `voice`) → giọng nữ "woman", còn lại TTS máy. */
+    public static String defaultVoiceModel(String language) {
+        return language.contains("en") || isVoiceSupported(language, "woman") ? "woman" : "default";
+    }
+
+    /** Remote Config `voice` = {"woman":"en@fr@vi","man":...}; khớp đúng từng mã ngôn ngữ như màn chọn giọng. */
+    public static boolean isVoiceSupported(String language, String key) {
+        try {
+            FirebaseRemoteConfig config = FirebaseRemoteConfig.getInstance();
+            if (!config.getBoolean("enable_voice")) return false;
+            String codes = new JSONObject(config.getString("voice")).optString(key, "");
+            return ("@" + codes + "@").contains("@" + language + "@");
+        } catch (Exception e) {
+            return false;
         }
-        return mSharedPreferences.getString("voice_" + language, "default");
     }
 
     public void setVoiceModel(String language, String model) {
@@ -609,10 +633,9 @@ public class MyPreference {
     }
 
     public String getVoiceModelName(String language) {
-        if (language.contains("en")){
-            return  mSharedPreferences.getString("voice_" + language, "Sophia");
-        }
-        return mSharedPreferences.getString("coach_" + language, "Default");
+        // Chưa chọn giọng thì tên HLV theo giọng mặc định, khớp tên lúc chọn ở màn giọng (và tên file câu giới thiệu).
+        String fallback = "woman".equals(getVoiceModel(language)) ? mAppContext.getString(R.string.name_female) : "Default";
+        return mSharedPreferences.getString("coach_" + language, fallback);
     }
     public void saveLastWorkout(long millis) {
         mEditor.putLong("LAST_WORKOUT", millis);
