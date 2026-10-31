@@ -395,4 +395,8 @@
     <string name="rest_stretch_title">تريدين الحركة؟ جربي تمدّدًا لطيفًا</string>
     <string name="rest_day_done">إنهاء يوم الراحة</string>
     <string name="oops_network_error">عذرًا! خطأ في الشبكة</string>
+    <string name="widget_add_title">أداة الشاشة الرئيسية</string>
+    <string name="widget_add_sub">تمرين اليوم وسلسلة أيامك بلمسة واحدة</string>
+    <string name="widget_add_action">إضافة</string>
+    <string name="widget_add_manual">اضغط مطولاً على مكان فارغ في الشاشة الرئيسية، ثم اختر الأدوات وابحث عن هذا التطبيق.</string>
 </resources>

@@ -307,4 +307,8 @@
     <string name="rest_tip_sleep">Gulējiet 7–8 stundas, lai labi atjaunotos</string>
     <string name="rest_stretch_title">Gribas pakustēties? Izmēģiniet vieglu stiepšanos</string>
     <string name="rest_day_done">Pabeigt atpūtas dienu</string>
+    <string name="widget_add_title">Sākuma ekrāna logrīks</string>
+    <string name="widget_add_sub">Šodienas treniņš un sērija vienā pieskārienā</string>
+    <string name="widget_add_action">Pievienot</string>
+    <string name="widget_add_manual">Turiet nospiestu tukšu vietu sākuma ekrānā, pieskarieties Logrīki un atrodiet šo lietotni.</string>
 </resources>

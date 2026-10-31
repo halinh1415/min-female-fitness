@@ -395,4 +395,8 @@
     <string name="rest_stretch_title">อยากขยับตัวไหม? ลองยืดเหยียดเบา ๆ</string>
     <string name="rest_day_done">จบวันพัก</string>
     <string name="oops_network_error">อ๊ะ! ข้อผิดพลาดของเครือข่าย</string>
+    <string name="widget_add_title">วิดเจ็ตหน้าจอหลัก</string>
+    <string name="widget_add_sub">การออกกำลังกายวันนี้และสถิติต่อเนื่อง แตะครั้งเดียว</string>
+    <string name="widget_add_action">เพิ่ม</string>
+    <string name="widget_add_manual">กดค้างที่ว่างบนหน้าจอหลัก แตะวิดเจ็ต แล้วค้นหาแอปนี้</string>
 </resources>

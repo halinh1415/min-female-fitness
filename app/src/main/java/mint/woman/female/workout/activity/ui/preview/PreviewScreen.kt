@@ -73,6 +73,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mint.woman.female.workout.R
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.material3.Icon
+import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
+import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowLeft
+import androidx.compose.material.icons.Icons
+import mint.woman.female.workout.custom.MuscleMapView
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.ColumnScope
 import mint.woman.female.workout.activity.ui.compose.GlideImage
 import mint.woman.female.workout.activity.ui.compose.MinColor
 import mint.woman.female.workout.activity.ui.compose.backgroundUrl
@@ -116,6 +125,11 @@ class PreviewUiState {
     /** Hàng công tắc "Khởi động & giãn cơ" (chỉ bài có sẵn của app, không phải bài giãn cơ). */
     var warmUpVisible by mutableStateOf(false)
     var warmUpOn by mutableStateOf(true)
+
+    /** Nhóm cơ của cả buổi (id nhóm, xếp theo số lần xuất hiện); cả hai rỗng = ẩn thẻ vùng cơ. */
+    var muscleMajor by mutableStateOf<List<String>>(emptyList())
+    var muscleMinor by mutableStateOf<List<String>>(emptyList())
+    var muscleSummary by mutableStateOf("")
 
     /** Hệ số độ khó đã tự chỉnh theo đánh giá cuối buổi (DifficultyStore); 100 = ẩn hàng. */
     var difficultyPercent by mutableIntStateOf(100)
@@ -190,9 +204,6 @@ fun PreviewScreen(state: PreviewUiState, actions: PreviewActions) {
         ) {
             item(key = "header") {
                 if (state.editMode) EditBar(program, actions) else Header(program, state, actions)
-            }
-            if (state.warmUpVisible && !state.editMode && items != null) {
-                item(key = "warmup") { WarmUpRow(state.warmUpOn, actions::onToggleWarmUp) }
             }
             if (state.difficultyPercent != 100 && !state.editMode && items != null) {
                 item(key = "difficulty") { DifficultyRow(state.difficultyPercent, actions::onResetDifficulty) }
@@ -323,24 +334,7 @@ private fun Header(program: ProgramObject, state: PreviewUiState, actions: Previ
             StatCell("🏋️", "${state.items?.size ?: 0}", stringResource(R.string.txt_exercises), Modifier.weight(1f))
             StatCell("🔥", "${state.calories}", "kcal", Modifier.weight(1f))
         }
-        state.voice?.let { voice ->
-            Row(
-                Modifier
-                    .padding(start = 16.dp, end = 16.dp, top = 14.dp)
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(16.dp))
-                    .background(MinColor.Surface)
-                    .clickable(onClick = actions::onCoachVoice)
-                    .padding(16.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(stringResource(R.string.coach_voice), color = MinColor.TextSecondary,
-                    fontSize = 14.sp, modifier = Modifier.weight(1f))
-                Text(voice, color = MinColor.Pink, fontSize = 14.sp,
-                    maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f))
-                Text(" ›", color = MinColor.TextSecondary, fontSize = 22.sp)
-            }
-        }
+        OptionsRow(state, actions)
         program.description?.takeIf { it.isNotBlank() }?.let {
             Text(
                 it,
@@ -561,30 +555,158 @@ private fun DifficultyRow(percent: Int, onReset: () -> Unit) {
     }
 }
 
-/** Công tắc thêm khởi động ở đầu và giãn cơ ở cuối buổi tập (lưu cho mọi bài). */
+// ---------------------------------------------------------------- options
+
+/**
+ * Hai cột: trái là thẻ giọng HLV + thẻ khởi động & giãn cơ (cao bằng nhau khi cùng hiện), phải là thẻ vùng cơ
+ * của cả buổi (một mặt cơ thể, nút ‹ › lật trước / sau). Thiếu cột nào thì cột còn lại chiếm cả hàng.
+ */
 @Composable
-private fun WarmUpRow(checked: Boolean, onToggle: () -> Unit) {
+private fun OptionsRow(state: PreviewUiState, actions: PreviewActions) {
+    val voice = state.voice
+    val warmUp = state.warmUpVisible && state.items != null
+    val muscles = state.items != null && (state.muscleMajor.isNotEmpty() || state.muscleMinor.isNotEmpty())
+    if (voice == null && !warmUp && !muscles) return
     Row(
         Modifier
-            .padding(horizontal = 16.dp, vertical = 5.dp)
+            .padding(start = 16.dp, end = 16.dp, top = 14.dp)
             .fillMaxWidth()
-            .clip(RoundedCornerShape(18.dp))
-            .background(MinColor.PinkSoft)
-            .clickable(onClick = onToggle)
-            .padding(horizontal = 14.dp, vertical = 10.dp),
-        verticalAlignment = Alignment.CenterVertically
+            .height(IntrinsicSize.Min),
+        horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        Text("🧘", fontSize = 22.sp)
-        Spacer(Modifier.width(12.dp))
-        Column(Modifier.weight(1f)) {
-            Text(stringResource(R.string.pv_warm_up_cool_down), fontSize = 15.sp, fontWeight = FontWeight.Bold, color = MinColor.TextPrimary)
-            Text(stringResource(R.string.pv_warm_up_cool_down_sub), fontSize = 12.sp, color = MinColor.TextSecondary)
+        if (voice != null || warmUp) {
+            val fill = voice != null && warmUp
+            Column(
+                Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                if (voice != null) CoachCard(voice, fill, actions::onCoachVoice)
+                if (warmUp) WarmUpCard(state.warmUpOn, fill, actions::onToggleWarmUp)
+            }
         }
-        Switch(
-            checked = checked,
-            onCheckedChange = { onToggle() },
-            colors = SwitchDefaults.colors(checkedThumbColor = Color.White, checkedTrackColor = MinColor.Pink)
-        )
+        if (muscles) MuscleCard(state, Modifier.weight(1f))
+    }
+}
+
+private fun Modifier.optionCard() = this
+    .fillMaxWidth()
+    .clip(RoundedCornerShape(18.dp))
+    .background(MinColor.Surface)
+
+@Composable
+private fun ColumnScope.CoachCard(voice: String, fill: Boolean, onClick: () -> Unit) {
+    Column(
+        (if (fill) Modifier.weight(1f) else Modifier)
+            .optionCard()
+            .clickable(onClick = onClick)
+            .padding(14.dp)
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(stringResource(R.string.coach_voice), fontSize = 15.sp, fontWeight = FontWeight.Bold,
+                color = MinColor.TextPrimary, modifier = Modifier.weight(1f))
+            Text("›", fontSize = 22.sp, color = MinColor.TextSecondary)
+        }
+        if (fill) Spacer(Modifier.weight(1f).heightIn(min = 10.dp)) else Spacer(Modifier.height(10.dp))
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text("🗣️", fontSize = 20.sp)
+            Spacer(Modifier.width(10.dp))
+            Text(voice, color = MinColor.Pink, fontSize = 15.sp, fontWeight = FontWeight.Bold,
+                maxLines = 1, overflow = TextOverflow.Ellipsis)
+        }
+    }
+}
+
+/** Công tắc thêm khởi động ở đầu và giãn cơ ở cuối buổi tập (lưu cho mọi bài). */
+@Composable
+private fun ColumnScope.WarmUpCard(checked: Boolean, fill: Boolean, onToggle: () -> Unit) {
+    Column(
+        (if (fill) Modifier.weight(1f) else Modifier)
+            .optionCard()
+            .clickable(onClick = onToggle)
+            .padding(14.dp)
+    ) {
+        Text(stringResource(R.string.pv_warm_up_cool_down), fontSize = 15.sp, fontWeight = FontWeight.Bold, color = MinColor.TextPrimary)
+        if (fill) Spacer(Modifier.weight(1f).heightIn(min = 6.dp)) else Spacer(Modifier.height(6.dp))
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text("🧘", fontSize = 20.sp)
+            Spacer(Modifier.weight(1f))
+            Switch(
+                checked = checked,
+                onCheckedChange = { onToggle() },
+                colors = SwitchDefaults.colors(checkedThumbColor = Color.White, checkedTrackColor = MinColor.Pink)
+            )
+        }
+    }
+}
+
+/** Vùng cơ tác động của cả buổi; mở màn hiện mặt của nhóm cơ chính đứng đầu, người dùng đã lật thì giữ mặt đó. */
+@Composable
+private fun MuscleCard(state: PreviewUiState, modifier: Modifier) {
+    var mapView by remember { mutableStateOf<MuscleMapView?>(null) }
+    var sideChosen by remember { mutableStateOf(false) }
+    // Đã nháy cơ chính lúc mở màn chưa (mảng thường: đổi giá trị không cần vẽ lại).
+    val pulsed = remember { booleanArrayOf(false) }
+    val major = state.muscleMajor
+    val minor = state.muscleMinor
+    val flip = {
+        mapView?.let { view ->
+            sideChosen = true
+            val next = if (view.side == MuscleMapView.SIDE_BACK) MuscleMapView.SIDE_FRONT else MuscleMapView.SIDE_BACK
+            view.animate().cancel()
+            view.animate().alpha(0f).setDuration(120).withEndAction {
+                view.setSide(next)
+                view.animate().alpha(1f).setDuration(160).start()
+            }.start()
+        }
+        Unit
+    }
+    Column(
+        modifier
+            .optionCard()
+            .padding(14.dp)
+    ) {
+        Text(stringResource(R.string.txt_muscle_focus), fontSize = 15.sp, fontWeight = FontWeight.Bold, color = MinColor.TextPrimary)
+        Text(state.muscleSummary, fontSize = 13.sp, color = MinColor.TextSecondary, maxLines = 2,
+            overflow = TextOverflow.Ellipsis, modifier = Modifier.padding(top = 2.dp))
+        Box(
+            Modifier
+                .padding(top = 8.dp)
+                .fillMaxWidth()
+                .height(190.dp)
+        ) {
+            AndroidView(
+                factory = { context -> MuscleMapView(context).also { mapView = it } },
+                update = { view ->
+                    view.setMuscleGroups(major, minor)
+                    if (!sideChosen) view.setSide(view.suggestedSide())
+                    if (!pulsed[0]) {
+                        pulsed[0] = true
+                        view.postDelayed({ view.highlightMajor() }, 400)
+                    }
+                },
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 28.dp)
+            )
+            ArrowButton(Icons.AutoMirrored.Rounded.KeyboardArrowLeft, Modifier.align(Alignment.CenterStart), flip)
+            ArrowButton(Icons.AutoMirrored.Rounded.KeyboardArrowRight, Modifier.align(Alignment.CenterEnd), flip)
+        }
+    }
+}
+
+@Composable
+private fun ArrowButton(icon: ImageVector, modifier: Modifier, onClick: () -> Unit) {
+    Box(
+        modifier
+            .size(30.dp)
+            .clip(CircleShape)
+            .background(MinColor.PinkSoft)
+            .clickable(onClick = onClick),
+        contentAlignment = Alignment.Center
+    ) {
+        Icon(icon, contentDescription = null, tint = MinColor.Pink, modifier = Modifier.size(22.dp))
     }
 }
 

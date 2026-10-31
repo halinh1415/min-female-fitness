@@ -308,4 +308,8 @@
     <string name="rest_stretch_title">Sugen på att röra dig? Prova en mjuk stretch</string>
     <string name="rest_day_done">Avsluta vilodag</string>
     <string name="oops_network_error">hoppsan! Nätverksfel</string>
+    <string name="widget_add_title">Widget för hemskärmen</string>
+    <string name="widget_add_sub">Dagens träning och svit med ett tryck</string>
+    <string name="widget_add_action">Lägg till</string>
+    <string name="widget_add_manual">Tryck länge på en tom plats på hemskärmen, välj Widgetar och leta upp den här appen.</string>
 </resources>

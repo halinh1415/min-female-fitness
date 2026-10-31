@@ -2,6 +2,24 @@
 
 > Mới nhất ở trên.
 
+## 2026-10-30 — Nút thêm widget ra màn hình chính
+- TodayWidget: isAdded / canPin / requestPin (AppWidgetManager.requestPinAppWidget, Android 8+).
+- Cài đặt → mục "Widget màn hình chính" (ADD_WIDGET, ic_pref_widget) dưới Lời nhắc; launcher không hỗ trợ ghim thì Toast hướng dẫn thêm tay (widget_add_manual).
+- Màn Hoàn thành: thẻ 📱 "Widget màn hình chính" + nút Thêm, chỉ hiện khi launcher cho ghim và chưa có widget (tính lại ở onResume nên thêm xong là ẩn).
+- Chuỗi widget_add_* cho mọi ngôn ngữ của app.
+
+## 2026-10-30 — Splash toàn màn hình trên SDK 36
+- SplashActivity.hideSystemUI(): WindowCompat.setDecorFitsSystemWindows(false) + WindowInsetsControllerCompat.hide(systemBars) (vuốt hiện tạm), cutout ALWAYS (API 30+); gọi cả ở onCreate. Cờ SYSTEM_UI_FLAG cũ không ẩn thanh điều hướng.
+- Min: SplashActivity implements EdgeToEdgeHelper.HandlesInsets (helper đệm insets làm hở dải trắng trên/dưới).
+- Test máy ảo Pixel 10 Pro XL (API 36) + S8+ (API 29).
+
+## 2026-10-30 – Màn Preview: bản đồ cơ của cả buổi tập (theo Home Workout) ✅
+- Mở màn Preview: MuscleMapView.highlightMajor() nháy vàng tất cả cơ chính ~3 giây (4 nhịp, trễ 400 ms, chỉ một lần mỗi lần mở màn).
+- PreviewScreen.kt: OptionsRow 2 cột thay hàng Giọng HLV + hàng Khởi động — trái CoachCard + WarmUpCard (cao bằng nhau khi cùng hiện), phải MuscleCard ("Tập trung cơ bắp": tên nhóm cơ + MuscleMapView qua AndroidView, nút ‹ › lật trước/sau).
+- PreviewUiState thêm muscleMajor/muscleMinor/muscleSummary; PreviewActivity.updateMuscleMap() (gọi trong refreshItems) gom từ động tác chính (section == 0).
+- MuscleMapView: setSide/suggestedSide, khung nhìn bản đồ 1000×1000, vẽ cơ phụ trước cơ chính.
+- Build OK, test S8+ (Kế hoạch ngày 9, HIIT cấp 1). Chưa gặp bài có thẻ khởi động trên máy test.
+
 ## 2026-10-20 – Play Console: API tràn viền lỗi thời (Android 15) ✅ (yêu cầu Telegram, theo báo cáo Tai Chi)
 - Bỏ các chỗ app tự gọi `Window.setStatusBarColor/setNavigationBarColor` và cutout `shortEdges`:
   `material.internal.EdgeToEdgeUtils.applyEdgeToEdge` → `androidx.activity.EdgeToEdge.enable(this)`;
@@ -552,3 +570,12 @@
 - strings_recommend.xml 26 ngôn ngữ. Unit test ProgramRecommenderTest (21 test) pass.
 - PersonalPlan: trainingDays 3-6 (mặc định 6 = như cũ), restDaysOf, focus xoay theo ngày tập; màn cài đặt plan thêm mục "Số ngày tập mỗi tuần" (strings pp_days_week/pp_days_hint 26 ngôn ngữ).
 - Test S8+: gợi ý hiện, Đổi bài ra bài khác, mục số ngày tập hiện đúng. Chưa commit.
+
+## 2026-10-28 — Màn Hoàn thành: "Buổi tiếp theo" dùng bộ gợi ý mới
+- WeekGoalNewFragment (Java) không còn được tạo ở đâu (Home Compose đã thay) nên không sửa; ProgramRecommenderV3 chỉ còn sống ở FinishedActivity.loadNext().
+- FinishedActivity.loadNext(): bài lẻ dùng RecommendationService.recommendNext(this, program.id) (giống Women), bỏ ProgramRecommenderV3. HomeFragment: xoá timeOfDay()/dayOff() không dùng + import java.time thừa. TodayWidget: sửa comment.
+- Test S8+: tập thật "HIIT đốt cháy mỡ thừa" (2 phút) → thẻ Buổi tiếp theo "4 PHÚT Tabata · 4 phút". Chưa commit.
+
+## 2026-10-28 — Thẻ nhỏ "Gợi ý hôm nay" khi có plan (như Home Workout)
+- Chủ app yêu cầu. HomeUiState.didToday (từ userStreak.didPracticeToday). Có plan cá nhân và chưa tập hôm nay: ẩn thẻ gợi ý lớn (CoachCard), hiện SuggestionCard dưới thẻ plan (ảnh 76dp, lý do, tên, thời lượng, nút ▶ hồng, "Đổi bài"). Tập xong thì thẻ lớn quay lại như cũ.
+- Test S8+: xoá 2 buổi tập thử hôm nay (id 8, 9 trong history_database) để có trạng thái chưa tập → thẻ plan trên, thẻ nhỏ dưới, Đổi bài đổi đúng. Bài "Phân chia nâng cao" không có ảnh người mẫu nên ô ảnh chỉ có nền (thẻ lớn cũng vậy). Chưa commit.

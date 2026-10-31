@@ -395,4 +395,8 @@
     <string name="rest_stretch_title">Хочется подвигаться? Попробуйте мягкую растяжку</string>
     <string name="rest_day_done">Завершить день отдыха</string>
     <string name="oops_network_error">Возникла ошибка! Ошибка сети</string>
+    <string name="widget_add_title">Виджет на главный экран</string>
+    <string name="widget_add_sub">Тренировка на сегодня и серия — в одно касание</string>
+    <string name="widget_add_action">Добавить</string>
+    <string name="widget_add_manual">Нажмите и удерживайте пустое место на главном экране, выберите «Виджеты» и найдите это приложение.</string>
 </resources>

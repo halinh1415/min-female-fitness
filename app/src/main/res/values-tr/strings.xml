@@ -395,4 +395,8 @@
     <string name="rest_stretch_title">Biraz hareket etmek ister misin? Hafif bir esneme dene</string>
     <string name="rest_day_done">Dinlenme gününü bitir</string>
     <string name="oops_network_error">Hay aksi! Ağ hatası</string>
+    <string name="widget_add_title">Ana ekran widget\'ı</string>
+    <string name="widget_add_sub">Bugünkü antrenmanın ve serin tek dokunuşta</string>
+    <string name="widget_add_action">Ekle</string>
+    <string name="widget_add_manual">Ana ekranda boş bir yere uzun basın, Widget\'lar\'a dokunun ve bu uygulamayı bulun.</string>
 </resources>

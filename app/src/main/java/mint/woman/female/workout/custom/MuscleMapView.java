@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.RectF;
 import android.graphics.Region;
 import android.os.Handler;
 import android.os.Looper;
@@ -48,6 +49,17 @@ public class MuscleMapView extends View {
     private static final long PULSE_DURATION = 1800;
     private static final int PULSES = 3;
 
+    /** Hiện cả hai mặt (mặc định) hoặc chỉ một mặt: hình gốc 1000×1000 đặt mặt trước bên trái, mặt sau bên phải (tách ở x = 500). */
+    public static final int SIDE_BOTH = 0;
+    public static final int SIDE_FRONT = 1;
+    public static final int SIDE_BACK = 2;
+    private static final RectF VIEW_BOTH = new RectF(0f, 0f, 1000f, 1000f);
+    private static final RectF VIEW_FRONT = new RectF(24f, 55f, 500f, 1000f);
+    private static final RectF VIEW_BACK = new RectF(500f, 55f, 940f, 1000f);
+    /** Khoá nhóm nằm chủ yếu ở mặt trước / mặt sau (vai, cổ thấy ở cả hai mặt nên không tính); xem groupToKey. */
+    private static final int[] FRONT_KEYS = {1, 4, 5, 6, 9, 15}; // abs, biceps, forearms, chest, quads, adductors
+    private static final int[] BACK_KEYS = {2, 3, 8, 10, 11, 12}; // back, triceps, glutes, hamstrings, calves, traps
+
     private static final ExecutorService LOADER = Executors.newSingleThreadExecutor();
     private static volatile MapData sData;
 
@@ -67,9 +79,15 @@ public class MuscleMapView extends View {
     private final SparseArray<Region> regions = new SparseArray<>();
 
     private int highlightKey = -1;
+    /** highlightKey đặc biệt: nháy tất cả cơ chính cùng lúc. */
+    private static final int HIGHLIGHT_MAJOR = 1000;
+    private static final long INTRO_DURATION = 3000;
+    private static final int INTRO_PULSES = 4;
     private float pulse;
     private ValueAnimator animator;
     private Chip activeChip;
+    private int side = SIDE_BOTH;
+    private final List<Integer> order = new ArrayList<>();
 
     public MuscleMapView(Context context) {
         this(context, null);
@@ -106,10 +124,46 @@ public class MuscleMapView extends View {
     public void setMuscleGroups(@Nullable List<String> major, @Nullable List<String> minor) {
         shown.clear();
         regions.clear();
+        order.clear();
+        order.addAll(keys(major));
+        order.addAll(keys(minor));
         // Thêm cơ phụ trước để cơ chính ghi đè khi trùng nhóm.
         for (int key : keys(minor)) shown.put(key, false);
         for (int key : keys(major)) shown.put(key, true);
         invalidate();
+    }
+
+    public void setSide(int side) {
+        if (this.side == side) return;
+        this.side = side;
+        updateMatrix();
+        requestLayout();
+        invalidate();
+    }
+
+    public int getSide() {
+        return side;
+    }
+
+    /**
+     * Mặt của nhóm cơ đứng đầu danh sách (setMuscleGroups nhận danh sách đã xếp theo mức độ, cơ chính trước);
+     * bỏ qua nhóm thấy ở cả hai mặt như vai; không có nhóm nào thì mặt trước.
+     */
+    public int suggestedSide() {
+        for (int key : order) {
+            if (contains(FRONT_KEYS, key)) return SIDE_FRONT;
+            if (contains(BACK_KEYS, key)) return SIDE_BACK;
+        }
+        return SIDE_FRONT;
+    }
+
+    private static boolean contains(int[] keys, int key) {
+        for (int k : keys) if (k == key) return true;
+        return false;
+    }
+
+    private RectF viewport() {
+        return side == SIDE_FRONT ? VIEW_FRONT : side == SIDE_BACK ? VIEW_BACK : VIEW_BOTH;
     }
 
     /** Nhấn chip → highlight nhóm cơ tương ứng; nhấn vào hình → chip tương ứng được chọn. */
@@ -123,6 +177,15 @@ public class MuscleMapView extends View {
     }
 
     public void highlight(int key) {
+        pulse(key, PULSE_DURATION, PULSES);
+    }
+
+    /** Nháy tất cả cơ chính vài giây (khi vừa mở màn xem trước); không có cơ chính thì nháy cơ phụ. */
+    public void highlightMajor() {
+        pulse(HIGHLIGHT_MAJOR, INTRO_DURATION, INTRO_PULSES);
+    }
+
+    private void pulse(int key, long duration, int pulses) {
         if (animator != null) {
             animator.removeAllListeners();
             animator.cancel();
@@ -131,12 +194,12 @@ public class MuscleMapView extends View {
         highlightKey = key;
         float startPulse = pulse;
         animator = ValueAnimator.ofFloat(0f, 1f);
-        animator.setDuration(PULSE_DURATION);
+        animator.setDuration(duration);
         animator.setInterpolator(new LinearInterpolator());
         animator.addUpdateListener(a -> {
             float t = (float) a.getAnimatedValue();
             // Nhịp sáng/tối dạng cos: bắt đầu và kết thúc ở 0 nên không giật; đổi nhóm giữa chừng thì chuyển dần.
-            float wave = (float) (0.5 - 0.5 * Math.cos(2 * Math.PI * PULSES * t));
+            float wave = (float) (0.5 - 0.5 * Math.cos(2 * Math.PI * pulses * t));
             pulse = lerp(startPulse, wave, smooth(t / 0.1f));
             invalidate();
         });
@@ -165,7 +228,8 @@ public class MuscleMapView extends View {
         if (MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY) {
             height = MeasureSpec.getSize(heightMeasureSpec);
         } else {
-            height = Math.round(width * mapHeight() / mapWidth());
+            RectF view = viewport();
+            height = Math.round(width * view.height() / view.width());
         }
         setMeasuredDimension(width, height);
     }
@@ -180,10 +244,12 @@ public class MuscleMapView extends View {
         int w = getWidth() - getPaddingLeft() - getPaddingRight();
         int h = getHeight() - getPaddingTop() - getPaddingBottom();
         if (w <= 0 || h <= 0) return;
-        float scale = Math.min(w / mapWidth(), h / mapHeight());
-        matrix.setScale(scale, scale);
-        matrix.postTranslate(getPaddingLeft() + (w - mapWidth() * scale) / 2f,
-                getPaddingTop() + (h - mapHeight() * scale) / 2f);
+        RectF view = viewport();
+        float scale = Math.min(w / view.width(), h / view.height());
+        matrix.setTranslate(-view.left, -view.top);
+        matrix.postScale(scale, scale);
+        matrix.postTranslate(getPaddingLeft() + (w - view.width() * scale) / 2f,
+                getPaddingTop() + (h - view.height() * scale) / 2f);
         matrix.invert(inverse);
     }
 
@@ -196,16 +262,21 @@ public class MuscleMapView extends View {
         minorPaint.setColor(data.minorColor);
         canvas.save();
         canvas.concat(matrix);
+        canvas.clipRect(viewport());
 
         canvas.drawPath(data.silhouette, linePaint);
         canvas.drawPath(data.fill, fillPaint);
-        for (int i = 0; i < shown.size(); i++) {
-            Path path = data.muscles.get(shown.keyAt(i));
-            if (path != null) canvas.drawPath(path, shown.valueAt(i) ? majorPaint : minorPaint);
+        // Vẽ cơ phụ trước, cơ chính sau: vùng cơ phụ chồng lên (vd. cơ cầu vai phủ lưng) không che màu cơ chính.
+        for (int pass = 0; pass < 2; pass++) {
+            for (int i = 0; i < shown.size(); i++) {
+                if (shown.valueAt(i) != (pass == 1)) continue;
+                Path path = data.muscles.get(shown.keyAt(i));
+                if (path != null) canvas.drawPath(path, shown.valueAt(i) ? majorPaint : minorPaint);
+            }
         }
 
-        Path focus = highlightKey > 0 ? data.muscles.get(highlightKey) : null;
-        if (focus != null && pulse > 0.01f) {
+        for (Path focus : focusPaths(data)) {
+            if (pulse <= 0.01f) break;
             // Viền sáng mềm: 2 lớp stroke trong suốt dần + lớp tô, đều chạy được bằng phần cứng.
             glowPaint.setStrokeWidth(12f * mapWidth() / 600f);
             glowPaint.setAlpha(Math.round(70 * pulse));
@@ -219,6 +290,23 @@ public class MuscleMapView extends View {
         canvas.restore();
     }
 
+    private List<Path> focusPaths(MapData data) {
+        List<Path> paths = new ArrayList<>();
+        if (highlightKey == HIGHLIGHT_MAJOR) {
+            for (int pass = 0; pass < 2 && paths.isEmpty(); pass++) {
+                for (int i = 0; i < shown.size(); i++) {
+                    if (pass == 0 && !shown.valueAt(i)) continue;
+                    Path path = data.muscles.get(shown.keyAt(i));
+                    if (path != null) paths.add(path);
+                }
+            }
+        } else if (highlightKey > 0) {
+            Path path = data.muscles.get(highlightKey);
+            if (path != null) paths.add(path);
+        }
+        return paths;
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (sData == null || shown.size() == 0) return super.onTouchEvent(event);
@@ -227,6 +315,7 @@ public class MuscleMapView extends View {
         touch[0] = event.getX();
         touch[1] = event.getY();
         inverse.mapPoints(touch);
+        if (!viewport().contains(touch[0], touch[1])) return true;
         int key = hitTest(Math.round(touch[0]), Math.round(touch[1]));
         if (key > 0) {
             highlight(key);

@@ -290,4 +290,8 @@
     <string name="rest_tip_sleep">अच्छी रिकवरी के लिए 7–8 घंटे सोएँ</string>
     <string name="rest_stretch_title">थोड़ा हिलना-डुलना चाहते हैं? हल्की स्ट्रेचिंग आज़माएँ</string>
     <string name="rest_day_done">आराम का दिन पूरा करें</string>
+    <string name="widget_add_title">होम स्क्रीन विजेट</string>
+    <string name="widget_add_sub">आज का वर्कआउट और स्ट्रीक, बस एक टैप में</string>
+    <string name="widget_add_action">जोड़ें</string>
+    <string name="widget_add_manual">होम स्क्रीन पर खाली जगह को दबाकर रखें, विजेट पर टैप करें और यह ऐप ढूंढें।</string>
 </resources>

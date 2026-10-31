@@ -405,4 +405,8 @@
     <string name="rest_stretch_title">Muốn vận động chút? Thử giãn cơ nhẹ nhàng</string>
     <string name="rest_day_done">Hoàn thành ngày nghỉ</string>
     <string name="oops_network_error">Rất tiếc! Lỗi mạng</string>
+    <string name="widget_add_title">Widget màn hình chính</string>
+    <string name="widget_add_sub">Bài tập hôm nay và chuỗi ngày, chạm một lần là tập</string>
+    <string name="widget_add_action">Thêm</string>
+    <string name="widget_add_manual">Nhấn giữ chỗ trống trên màn hình chính, chọn Tiện ích (Widgets) rồi tìm ứng dụng này.</string>
 </resources>

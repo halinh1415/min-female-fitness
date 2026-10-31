@@ -1,6 +1,7 @@
 package mint.woman.female.workout.activity.ui.settings;
 
 
+import mint.woman.female.workout.widget.TodayWidget;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
@@ -90,6 +91,8 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         Preference coachPreference = findPreference("COACH");
         coachPreference.setSummary(myPreference.getVoiceModelName(myPreference.getLanguage()));
         preferenceBackUp = findPreference("BACK_UP");
+        Preference addWidget = findPreference("ADD_WIDGET");
+        if (addWidget != null) addWidget.setOnPreferenceClickListener(this);
         Preference reminder = findPreference("ST_REMINDER");
         reminder.setSummary(FitnessApplication.getApplication().mDatabase.getReminderSet());
         Preference version = findPreference("VERSION_APP");
@@ -264,6 +267,12 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
             case "PRIVACY_POLICY":
                 AppOpenManager.getInstance().disableAdResumeByClickAction();
                 startActivity(new Intent(getActivity(), PolicyActivity.class));
+                break;
+            case "ADD_WIDGET":
+                // Launcher hỗ trợ ghim thì mở hộp thoại thêm widget; không thì hướng dẫn thêm bằng tay.
+                if (!TodayWidget.requestPin(requireContext())) {
+                    Toast.makeText(requireContext(), R.string.widget_add_manual, Toast.LENGTH_LONG).show();
+                }
                 break;
             case "ST_REMINDER":
                 Navigation.findNavController(getView()).navigate(R.id.action_nav_setting_to_nav_reminder);

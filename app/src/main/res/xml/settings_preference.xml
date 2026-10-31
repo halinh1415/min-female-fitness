@@ -56,6 +56,11 @@
             android:icon="@drawable/ic_bell"
             android:key="ST_REMINDER"
             android:title="@string/txt_reminder"/>
+        <Preference
+            android:icon="@drawable/ic_pref_widget"
+            android:key="ADD_WIDGET"
+            android:summary="@string/widget_add_sub"
+            android:title="@string/widget_add_title" />
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/txt_music">

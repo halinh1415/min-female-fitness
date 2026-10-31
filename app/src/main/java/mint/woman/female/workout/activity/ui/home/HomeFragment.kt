@@ -43,11 +43,6 @@ import mint.woman.female.workout.utils.MyPreference
 import mint.woman.female.workout.utils.StreakMessageType
 import mint.woman.female.workout.utils.UserStreakResult
 import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.LocalDate
-import java.time.LocalTime
-import java.time.ZoneId
-import java.time.temporal.ChronoUnit
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -145,6 +140,7 @@ class HomeFragment : Fragment(), HomeActions {
         historyViewModel.userStreak.observe(viewLifecycleOwner) { result ->
             if (result == null) return@observe
             state.streakDays = result.streakDays
+            state.didToday = result.didPracticeToday
             state.coachMessage = streakMessage(result)
             suggestProgram(result.streakDays)
         }
@@ -305,21 +301,6 @@ class HomeFragment : Fragment(), HomeActions {
         }
         val focus = program.focus?.takeIf { it.isNotBlank() }?.let { "  •  🧘 $it" } ?: ""
         return "$premium⏱ ${getString(R.string.x_minutes, program.total)}  •  $level$focus"
-    }
-
-    private fun timeOfDay(): String {
-        val hour = LocalTime.now().hour
-        return when {
-            hour in 5..11 -> mint.woman.female.workout.utils.ProgramRecommenderV3.TIME_MORNING
-            hour in 12..16 -> mint.woman.female.workout.utils.ProgramRecommenderV3.TIME_AFTERNOON
-            else -> mint.woman.female.workout.utils.ProgramRecommenderV3.TIME_EVENING
-        }
-    }
-
-    private fun dayOff(lastWorkout: Long): Int {
-        if (lastWorkout <= 0) return 999
-        val last = Instant.ofEpochMilli(lastWorkout).atZone(ZoneId.systemDefault()).toLocalDate()
-        return ChronoUnit.DAYS.between(last, LocalDate.now()).toInt()
     }
 
     private fun streakMessage(result: UserStreakResult): String = when (result.messageType) {

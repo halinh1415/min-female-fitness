@@ -74,6 +74,8 @@ data class FinishedState(
     val weightText: String = "",
     val bmiText: String = "",
     val reminderText: String = "",
+    /** Hiện thẻ "Thêm widget" (launcher cho ghim và chưa có widget nào). */
+    val showAddWidget: Boolean = false,
     /** 7 ngày của tuần hiện tại (thẻ "Tuần này"); rỗng = chưa tính xong. */
     val week: List<FinishedWeekDay> = emptyList(),
     val weekGoal: Int = 4,
@@ -95,6 +97,7 @@ class FinishedActions(
     val onDone: () -> Unit,
     val onClose: () -> Unit,
     val onNext: () -> Unit = {},
+    val onAddWidget: () -> Unit = {},
 )
 
 // Bảng màu Rose của app Min.
@@ -138,6 +141,16 @@ fun FinishedScreen(state: FinishedState, actions: FinishedActions, banner: @Comp
                     action = stringResource(R.string.fin_edit),
                     onAction = actions.onEditReminder,
                 )
+                if (state.showAddWidget) {
+                    InfoRow(
+                        emoji = "📱",
+                        title = stringResource(R.string.widget_add_title),
+                        value = stringResource(R.string.widget_add_sub),
+                        sub = null,
+                        action = stringResource(R.string.widget_add_action),
+                        onAction = actions.onAddWidget,
+                    )
+                }
             }
         }
         Row(

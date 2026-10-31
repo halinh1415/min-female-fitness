@@ -307,4 +307,8 @@
     <string name="rest_tip_sleep">Nuku 7–8 tuntia palautuaksesi hyvin</string>
     <string name="rest_stretch_title">Tekeekö mieli liikkua? Kokeile kevyttä venyttelyä</string>
     <string name="rest_day_done">Päätä lepopäivä</string>
+    <string name="widget_add_title">Aloitusnäytön widget</string>
+    <string name="widget_add_sub">Päivän treeni ja putki yhdellä napautuksella</string>
+    <string name="widget_add_action">Lisää</string>
+    <string name="widget_add_manual">Paina pitkään tyhjää kohtaa aloitusnäytöllä, valitse Widgetit ja etsi tämä sovellus.</string>
 </resources>

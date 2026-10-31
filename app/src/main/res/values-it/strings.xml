@@ -395,4 +395,8 @@
     <string name="rest_stretch_title">Hai voglia di muoverti? Prova uno stretching dolce</string>
     <string name="rest_day_done">Completa il giorno di riposo</string>
     <string name="oops_network_error">Ops! Errore di rete</string>
+    <string name="widget_add_title">Widget della schermata Home</string>
+    <string name="widget_add_sub">L\'allenamento di oggi e la tua serie, a un tocco</string>
+    <string name="widget_add_action">Aggiungi</string>
+    <string name="widget_add_manual">Tieni premuto uno spazio vuoto della schermata Home, tocca Widget e cerca questa app.</string>
 </resources>

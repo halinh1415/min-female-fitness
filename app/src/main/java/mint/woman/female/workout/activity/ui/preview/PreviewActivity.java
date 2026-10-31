@@ -1,5 +1,10 @@
 package mint.woman.female.workout.activity.ui.preview;
 
+import android.text.TextUtils;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import mint.woman.female.workout.model.Customfields;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -612,6 +617,62 @@ public class PreviewActivity extends AppCompatActivity implements PreviewActions
 
     private void refreshItems() {
         state.setItemsFrom(mDemoDataProvider == null ? null : mDemoDataProvider.getActionObjectList());
+        updateMuscleMap();
+    }
+
+    /** Vùng cơ tác động của cả buổi tập: gom từ các động tác chính (bỏ khởi động / giãn cơ thêm vào), xếp theo số lần xuất hiện. */
+    private void updateMuscleMap() {
+        Map<String, Integer> major = new LinkedHashMap<>();
+        Map<String, Integer> minor = new LinkedHashMap<>();
+        List<PlanObject.ActionObject> actions = mDemoDataProvider == null ? null : mDemoDataProvider.getActionObjectList();
+        if (actions != null) {
+            for (PlanObject.ActionObject action : actions) {
+                if (action.section != 0) continue;
+                ExerciseObject exercise = mDemoDataProvider.getExerciseItem(action.actionId);
+                Customfields fields = exercise != null ? exercise.getCustomfields() : null;
+                if (fields == null) continue;
+                countGroups(major, fields.getMuscleMajor());
+                countGroups(minor, fields.getMuscleMinor());
+            }
+        }
+        for (String group : major.keySet()) minor.remove(group);
+        List<String> majorGroups = sortByCount(major);
+        List<String> minorGroups = sortByCount(minor);
+        state.setMuscleMajor(majorGroups);
+        state.setMuscleMinor(minorGroups);
+        state.setMuscleSummary(muscleNames(majorGroups.isEmpty() ? minorGroups : majorGroups));
+    }
+
+    private String muscleNames(List<String> groups) {
+        List<String> labels = new ArrayList<>();
+        for (String group : groups) {
+            int resId;
+            try {
+                resId = FitnessConstUtils.getMuscleId(Integer.parseInt(group));
+            } catch (NumberFormatException e) {
+                continue;
+            }
+            if (resId <= 0) continue;
+            String label = getString(resId);
+            if (!labels.contains(label)) labels.add(label);
+        }
+        return TextUtils.join(", ", labels);
+    }
+
+    private static void countGroups(Map<String, Integer> counts, @Nullable List<String> groups) {
+        if (groups == null) return;
+        for (String group : groups) {
+            if (group == null || group.trim().isEmpty()) continue;
+            String key = group.trim();
+            Integer count = counts.get(key);
+            counts.put(key, count == null ? 1 : count + 1);
+        }
+    }
+
+    private static List<String> sortByCount(Map<String, Integer> counts) {
+        List<String> groups = new ArrayList<>(counts.keySet());
+        Collections.sort(groups, (a, b) -> counts.get(b) - counts.get(a));
+        return groups;
     }
 
     @SuppressLint("DefaultLocale")

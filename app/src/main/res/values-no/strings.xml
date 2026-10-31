@@ -307,4 +307,8 @@
     <string name="rest_tip_sleep">Sov 7–8 timer for å restituere godt</string>
     <string name="rest_stretch_title">Lyst til å bevege deg? Prøv en rolig tøying</string>
     <string name="rest_day_done">Fullfør hviledag</string>
+    <string name="widget_add_title">Widget for startskjermen</string>
+    <string name="widget_add_sub">Dagens økt og rekke med ett trykk</string>
+    <string name="widget_add_action">Legg til</string>
+    <string name="widget_add_manual">Trykk lenge på et tomt sted på startskjermen, velg Moduler og finn denne appen.</string>
 </resources>

@@ -395,4 +395,8 @@
     <string name="rest_stretch_title">움직이고 싶다면? 가벼운 스트레칭을 해 보세요</string>
     <string name="rest_day_done">휴식일 완료</string>
     <string name="oops_network_error">이런! 네트워크 오류</string>
+    <string name="widget_add_title">홈 화면 위젯</string>
+    <string name="widget_add_sub">오늘의 운동과 연속 기록을 한 번에</string>
+    <string name="widget_add_action">추가</string>
+    <string name="widget_add_manual">홈 화면의 빈 곳을 길게 누른 뒤 위젯을 눌러 이 앱을 찾으세요.</string>
 </resources>

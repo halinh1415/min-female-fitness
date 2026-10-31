@@ -74,6 +74,9 @@ data class HomeSection(val title: String, val programs: List<ProgramObject>, val
 class HomeUiState {
     var dateText by mutableStateOf("")
     var streakDays by mutableIntStateOf(0)
+
+    /** Hôm nay đã tập (đủ thời lượng tính streak). */
+    var didToday by mutableStateOf(false)
     var coachMessage by mutableStateOf("")
     var suggestion by mutableStateOf<ProgramObject?>(null)
     var suggestionInfo by mutableStateOf("")
@@ -162,6 +165,9 @@ fun HomeScreen(state: HomeUiState, actions: HomeActions) {
                     Modifier.padding(start = 16.dp, end = 16.dp, top = 10.dp, bottom = 4.dp),
                 )
             }
+        }
+        if (state.showSmallSuggestion) {
+            state.suggestion?.let { SuggestionCard(state, it, actions, Modifier.padding(start = 16.dp, end = 16.dp, top = 10.dp, bottom = 4.dp)) }
         }
         WeekGoalCard(
             state,
@@ -346,8 +352,12 @@ private fun HeroAndCoach(state: HomeUiState, actions: HomeActions) {
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
-            Spacer(Modifier.height(14.dp))
-            CoachCard(state, actions)
+            // Có plan và chưa tập hôm nay: thẻ plan "Ngày x/28" là việc chính, bài gợi ý thành thẻ nhỏ dưới thẻ plan
+            // (như Home Workout). Tập xong thì thẻ gợi ý lớn quay lại ("Muốn tập thêm?").
+            if (!state.showSmallSuggestion) {
+                Spacer(Modifier.height(14.dp))
+                CoachCard(state, actions)
+            }
         }
     }
 }
@@ -483,6 +493,65 @@ private fun CoachCard(state: HomeUiState, actions: HomeActions) {
                     maxLines = 1
                 )
             }
+        }
+    }
+}
+
+private val HomeUiState.showSmallSuggestion: Boolean get() = personalPlan != null && !didToday
+
+/** Thẻ nhỏ "Gợi ý hôm nay" khi đã có plan cá nhân: ảnh vuông, lý do, tên, thời lượng, nút ▶ (như Home Workout). */
+@Composable
+private fun SuggestionCard(state: HomeUiState, program: ProgramObject, actions: HomeActions, modifier: Modifier) {
+    MinCard(modifier.fillMaxWidth(), onClick = actions::onStartSuggestion, padding = 12.dp) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Box(
+                Modifier
+                    .size(76.dp)
+                    .clip(RoundedCornerShape(14.dp))
+            ) {
+                GlideImage(program.backgroundUrl(), Modifier.fillMaxSize(), errorUrl = program.fallbackBackgroundUrl())
+                GlideImage(program.modelUrl(), Modifier.fillMaxSize(), scaleType = ImageView.ScaleType.FIT_CENTER)
+            }
+            Spacer(Modifier.width(14.dp))
+            Column(Modifier.weight(1f)) {
+                Text(
+                    state.suggestionReason ?: stringResource(R.string.suggestion_today),
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = MinColor.Pink,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Spacer(Modifier.height(2.dp))
+                Text(program.name, fontSize = 16.sp, fontWeight = FontWeight.Bold, maxLines = 2, overflow = TextOverflow.Ellipsis)
+                if (state.suggestionInfo.isNotEmpty()) {
+                    Text(state.suggestionInfo, fontSize = 13.sp, color = MinColor.TextSecondary, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                }
+            }
+            Spacer(Modifier.width(10.dp))
+            Box(
+                Modifier
+                    .size(40.dp)
+                    .clip(CircleShape)
+                    .background(MinColor.Pink),
+                contentAlignment = Alignment.Center
+            ) {
+                Text("▶", color = Color.White, fontSize = 14.sp)
+            }
+        }
+        if (state.canSwap) {
+            Spacer(Modifier.height(8.dp))
+            Text(
+                "⟳ " + stringResource(R.string.home_swap),
+                fontSize = 13.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = MinColor.Pink,
+                modifier = Modifier
+                    .align(Alignment.End)
+                    .clip(RoundedCornerShape(50))
+                    .clickable(onClick = actions::onSwapSuggestion)
+                    .padding(horizontal = 10.dp, vertical = 4.dp)
+            )
         }
     }
 }

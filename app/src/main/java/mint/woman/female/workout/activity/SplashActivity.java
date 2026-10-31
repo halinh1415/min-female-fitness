@@ -1,5 +1,11 @@
 package mint.woman.female.workout.activity;
 
+import androidx.core.view.WindowInsetsControllerCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowCompat;
+import mint.woman.female.workout.utils.EdgeToEdgeHelper;
+import android.view.Window;
+import android.os.Build;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -60,7 +66,7 @@ import mint.woman.female.workout.utils.RemoteConfigKeys;
 
 import java.util.Locale;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity implements EdgeToEdgeHelper.HandlesInsets {
 
     private static final String TAG = "SplashActivity";
     private static final int TIME_OUT = 6;
@@ -91,6 +97,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        hideSystemUI();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         myPreference = new MyPreference(this);
         fullScreenContentCallback = new FullScreenContentCallback() {
@@ -566,19 +573,20 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void hideSystemUI() {
-        // Enables regular immersive mode.
-        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
-        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE
-                        // Set the content to appear under the system bars so that the
-                        // content doesn't resize when the system bars hide and show.
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        // Hide the nav bar and status bar4
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+        // Toàn màn hình (cả Android 15/16, targetSdk 36 không còn tắt được edge-to-edge): vẽ dưới thanh hệ thống
+        // và phần khuyết camera, ẩn thanh trạng thái + thanh điều hướng; vuốt từ mép thì hiện tạm rồi tự ẩn.
+        Window window = getWindow();
+        WindowCompat.setDecorFitsSystemWindows(window, false);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            WindowManager.LayoutParams params = window.getAttributes();
+            if (params.layoutInDisplayCutoutMode != WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS) {
+                params.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS;
+                window.setAttributes(params);
+            }
+        }
+        WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(window, window.getDecorView());
+        controller.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+        controller.hide(WindowInsetsCompat.Type.systemBars());
     }
 
     // Shows the system bars by removing all the flags

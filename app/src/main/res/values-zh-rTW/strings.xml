@@ -395,4 +395,8 @@
     <string name="rest_stretch_title">想動一動？試試輕柔的伸展</string>
     <string name="rest_day_done">完成休息日</string>
     <string name="oops_network_error">哎喲！網絡出錯</string>
+    <string name="widget_add_title">主畫面小工具</string>
+    <string name="widget_add_sub">今日訓練與連續天數，一點即達</string>
+    <string name="widget_add_action">新增</string>
+    <string name="widget_add_manual">長按主畫面空白處，輕觸「小工具」，然後找到本應用程式。</string>
 </resources>

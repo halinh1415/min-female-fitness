@@ -395,4 +395,8 @@
     <string name="rest_stretch_title">Zin om te bewegen? Probeer een rustige stretch</string>
     <string name="rest_day_done">Rustdag afronden</string>
     <string name="oops_network_error">Oeps! Netwerkfout</string>
+    <string name="widget_add_title">Widget voor startscherm</string>
+    <string name="widget_add_sub">Je training van vandaag en je reeks, met één tik</string>
+    <string name="widget_add_action">Toevoegen</string>
+    <string name="widget_add_manual">Houd een lege plek op je startscherm ingedrukt, tik op Widgets en zoek deze app.</string>
 </resources>

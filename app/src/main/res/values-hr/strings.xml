@@ -307,4 +307,8 @@
     <string name="rest_tip_sleep">Spavajte 7–8 sati za dobar oporavak</string>
     <string name="rest_stretch_title">Želite se malo pokrenuti? Probajte nježno istezanje</string>
     <string name="rest_day_done">Završi dan odmora</string>
+    <string name="widget_add_title">Widget početnog zaslona</string>
+    <string name="widget_add_sub">Današnji trening i niz na jedan dodir</string>
+    <string name="widget_add_action">Dodaj</string>
+    <string name="widget_add_manual">Dugo pritisnite prazno mjesto na početnom zaslonu, dodirnite Widgeti i pronađite ovu aplikaciju.</string>
 </resources>

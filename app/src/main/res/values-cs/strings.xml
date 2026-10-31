@@ -307,4 +307,8 @@
     <string name="rest_tip_sleep">Spěte 7–8 hodin, abyste se dobře zregenerovali</string>
     <string name="rest_stretch_title">Chcete se hýbat? Zkuste jemné protažení</string>
     <string name="rest_day_done">Dokončit den odpočinku</string>
+    <string name="widget_add_title">Widget na plochu</string>
+    <string name="widget_add_sub">Dnešní trénink a série na jedno klepnutí</string>
+    <string name="widget_add_action">Přidat</string>
+    <string name="widget_add_manual">Podržte prst na prázdném místě plochy, klepněte na Widgety a najděte tuto aplikaci.</string>
 </resources>

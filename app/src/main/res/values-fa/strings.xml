@@ -395,4 +395,8 @@
     <string name="rest_stretch_title">دوست دارید کمی حرکت کنید؟ یک کشش ملایم را امتحان کنید</string>
     <string name="rest_day_done">پایان روز استراحت</string>
     <string name="oops_network_error">اوه! خطای شبکه</string>
+    <string name="widget_add_title">ویجت صفحه اصلی</string>
+    <string name="widget_add_sub">تمرین امروز و زنجیره روزها با یک لمس</string>
+    <string name="widget_add_action">افزودن</string>
+    <string name="widget_add_manual">روی جای خالی صفحه اصلی انگشت خود را نگه دارید، ویجت‌ها را بزنید و این برنامه را پیدا کنید.</string>
 </resources>

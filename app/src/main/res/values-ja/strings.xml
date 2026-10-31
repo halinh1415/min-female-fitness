@@ -395,4 +395,8 @@
     <string name="rest_stretch_title">少し動きたい？やさしいストレッチを試してみましょう</string>
     <string name="rest_day_done">休息日を完了</string>
     <string name="oops_network_error">おっと！ネットワークエラー</string>
+    <string name="widget_add_title">ホーム画面ウィジェット</string>
+    <string name="widget_add_sub">今日のワークアウトと連続記録をワンタップで</string>
+    <string name="widget_add_action">追加</string>
+    <string name="widget_add_manual">ホーム画面の空いている場所を長押しし、「ウィジェット」からこのアプリを探してください。</string>
 </resources>

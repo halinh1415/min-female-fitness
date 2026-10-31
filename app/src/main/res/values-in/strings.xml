@@ -395,4 +395,8 @@
     <string name="rest_stretch_title">Ingin bergerak? Coba peregangan ringan</string>
     <string name="rest_day_done">Selesaikan hari istirahat</string>
     <string name="oops_network_error">Ups! Kesalahan jaringan</string>
+    <string name="widget_add_title">Widget layar utama</string>
+    <string name="widget_add_sub">Latihan hari ini dan streak, cukup satu ketuk</string>
+    <string name="widget_add_action">Tambah</string>
+    <string name="widget_add_manual">Tekan lama area kosong di layar utama, ketuk Widget, lalu cari aplikasi ini.</string>
 </resources>

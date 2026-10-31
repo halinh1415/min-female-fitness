@@ -395,4 +395,8 @@
     <string name="rest_stretch_title">Lust auf Bewegung? Probiere sanftes Dehnen</string>
     <string name="rest_day_done">Ruhetag abschließen</string>
     <string name="oops_network_error">Ups! Netzwerk-Fehler</string>
+    <string name="widget_add_title">Startbildschirm-Widget</string>
+    <string name="widget_add_sub">Dein heutiges Training und deine Serie – nur einen Tipp entfernt</string>
+    <string name="widget_add_action">Hinzufügen</string>
+    <string name="widget_add_manual">Halte eine freie Stelle auf dem Startbildschirm gedrückt, tippe auf Widgets und suche diese App.</string>
 </resources>

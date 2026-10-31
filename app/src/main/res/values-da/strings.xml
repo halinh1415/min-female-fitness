@@ -395,4 +395,8 @@
     <string name="rest_stretch_title">Lyst til at bevæge dig? Prøv en blid udstrækning</string>
     <string name="rest_day_done">Afslut hviledag</string>
     <string name="oops_network_error">Ups! Netværksfejl</string>
+    <string name="widget_add_title">Widget til startskærm</string>
+    <string name="widget_add_sub">Dagens træning og stime med ét tryk</string>
+    <string name="widget_add_action">Tilføj</string>
+    <string name="widget_add_manual">Tryk længe på et tomt sted på startskærmen, vælg Widgets, og find denne app.</string>
 </resources>

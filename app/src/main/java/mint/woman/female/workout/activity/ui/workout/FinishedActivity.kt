@@ -1,5 +1,7 @@
 package mint.woman.female.workout.activity.ui.workout
 
+import mint.woman.female.workout.widget.TodayWidget
+import mint.woman.female.workout.recommend.RecommendationService
 import mint.woman.female.workout.utils.DifficultyStore
 import android.content.Context
 import android.content.Intent
@@ -64,7 +66,6 @@ import mint.woman.female.workout.activity.ui.workout.compose.FinishedNext
 import mint.woman.female.workout.activity.ui.workout.compose.FinishedWeekDay
 import mint.woman.female.workout.utils.DateIdUtils
 import mint.woman.female.workout.utils.EdgeToEdgeHelper
-import mint.woman.female.workout.utils.ProgramRecommenderV3
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import mint.woman.female.workout.utils.HistoryDatabase
@@ -113,6 +114,7 @@ class FinishedActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
                         onDone = ::closeWithAd,
                         onClose = ::closeWithAd,
                         onNext = ::startNext,
+                        onAddWidget = { TodayWidget.requestPin(this) },
                     ),
                     banner = { AdBanner() },
                 )
@@ -169,17 +171,8 @@ class FinishedActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
             if (day + 1 >= program.total.coerceAtLeast(1)) return null
             return FinishedNext(program, program.name.orEmpty(), getString(R.string.txt_day) + " " + (day + 2))
         }
-        val candidates = FitnessApplication.getApplication().mJsonHelper.allCategory.orEmpty().filter { it.id != program.id }
-        val hour = java.time.LocalTime.now().hour
-        val timeOfDay = when (hour) {
-            in 5..11 -> ProgramRecommenderV3.TIME_MORNING
-            in 12..16 -> ProgramRecommenderV3.TIME_AFTERNOON
-            else -> ProgramRecommenderV3.TIME_EVENING
-        }
-        val next = ProgramRecommenderV3().suggest(
-            candidates, 1, myPreference.isPremiumMember, timeOfDay, setOf(program.id), 1, 0,
-            myPreference.userTargetFocus, false
-        ) ?: return null
+        // Cùng bộ chấm với Home (RecommendationService, chép từ Women) thay cho ProgramRecommenderV3 cũ.
+        val next = RecommendationService.recommendNext(this, program.id)?.program ?: return null
         return FinishedNext(next, next.name.orEmpty(), getString(R.string.x_minutes, next.total))
     }
 
@@ -194,6 +187,8 @@ class FinishedActivity : AppCompatActivity(), EdgeToEdgeHelper.HandlesInsets {
 
     override fun onResume() {
         super.onResume()
+        // Vừa thêm widget xong (quay lại từ hộp thoại launcher) thì ẩn thẻ.
+        state = state.copy(showAddWidget = TodayWidget.canPin(this) && !TodayWidget.isAdded(this))
         // Quay lại từ màn Nhắc nhở: hiện giờ nhắc mới.
         state = state.copy(reminderText = reminderText())
     }

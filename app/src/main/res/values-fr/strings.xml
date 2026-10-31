@@ -395,4 +395,8 @@
     <string name="rest_stretch_title">Envie de bouger ? Essayez un étirement doux</string>
     <string name="rest_day_done">Terminer le jour de repos</string>
     <string name="oops_network_error">Oups ! Erreur réseau</string>
+    <string name="widget_add_title">Widget d\'écran d\'accueil</string>
+    <string name="widget_add_sub">Votre séance du jour et votre série, à portée de doigt</string>
+    <string name="widget_add_action">Ajouter</string>
+    <string name="widget_add_manual">Appuyez longuement sur un espace vide de l\'écran d\'accueil, touchez Widgets, puis trouvez cette application.</string>
 </resources>

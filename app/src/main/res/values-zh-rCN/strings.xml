@@ -395,4 +395,8 @@
     <string name="rest_stretch_title">想动一动？试试轻柔的拉伸</string>
     <string name="rest_day_done">完成休息日</string>
     <string name="oops_network_error">哎呦！网络出错</string>
+    <string name="widget_add_title">主屏幕小组件</string>
+    <string name="widget_add_sub">今日训练和连续天数，一点即达</string>
+    <string name="widget_add_action">添加</string>
+    <string name="widget_add_manual">长按主屏幕空白处，点按“小组件”，然后找到本应用。</string>
 </resources>

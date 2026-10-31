@@ -487,4 +487,8 @@
     <string name="rest_stretch_title">Feel like moving? Try a gentle stretch</string>
     <string name="rest_day_done">Finish rest day</string>
     <string name="oops_network_error">Oops! Network error</string>
+    <string name="widget_add_title">Home screen widget</string>
+    <string name="widget_add_sub">Today\'s workout and streak, one tap away</string>
+    <string name="widget_add_action">Add</string>
+    <string name="widget_add_manual">Long-press an empty spot on your home screen, tap Widgets, then find this app.</string>
 </resources>

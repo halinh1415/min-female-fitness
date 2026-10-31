@@ -1,5 +1,6 @@
 package mint.woman.female.workout.widget
 
+import android.os.Build
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
@@ -48,6 +49,30 @@ object TodayWidget {
     /** Gọi khi dữ liệu đổi (tập xong, mở app, tạo plan). Không có widget nào thì bỏ qua. */
     @JvmStatic
     fun update(context: Context) = refresh(context.applicationContext, null)
+
+    /** Đã có widget của app trên màn hình chính chưa. */
+    @JvmStatic
+    fun isAdded(context: Context): Boolean = AppWidgetManager.getInstance(context)
+        .getAppWidgetIds(ComponentName(context, TodayWidgetProvider::class.java)).isNotEmpty()
+
+    /** Launcher cho ghim widget ngay từ trong app (Android 8+, tuỳ launcher). */
+    @JvmStatic
+    fun canPin(context: Context): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
+        AppWidgetManager.getInstance(context).isRequestPinAppWidgetSupported
+
+    /** Mở hộp thoại thêm widget của launcher (nút ở Cài đặt và màn Hoàn thành); false = launcher không hỗ trợ. */
+    @JvmStatic
+    fun requestPin(context: Context): Boolean {
+        if (!canPin(context)) return false
+        return try {
+            AppWidgetManager.getInstance(context)
+                .requestPinAppWidget(ComponentName(context, TodayWidgetProvider::class.java), null, null)
+        } catch (e: IllegalStateException) {
+            // Gọi khi app không ở foreground.
+            Log.w(TAG, "requestPin failed", e)
+            false
+        }
+    }
 
     internal fun refresh(context: Context, pending: BroadcastReceiver.PendingResult?) {
         val manager = AppWidgetManager.getInstance(context)
@@ -120,7 +145,7 @@ object TodayWidget {
     private const val PREFS = "today_widget"
     private const val KEY_SUGGEST = "suggest_program_id"
 
-    /** Home gọi khi vừa tính xong bài gợi ý hôm nay (Min gợi ý bằng ProgramRecommenderV3 ở Home). */
+    /** Home gọi khi vừa tính xong bài gợi ý hôm nay (Home gợi ý bằng RecommendationService). */
     @JvmStatic
     fun saveSuggestion(context: Context, programId: Int) {
         val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)

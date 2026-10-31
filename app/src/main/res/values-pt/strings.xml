@@ -395,4 +395,8 @@
     <string name="rest_stretch_title">Quer se mexer? Experimente um alongamento leve</string>
     <string name="rest_day_done">Concluir dia de descanso</string>
     <string name="oops_network_error">Ops! Erro de rede</string>
+    <string name="widget_add_title">Widget da tela inicial</string>
+    <string name="widget_add_sub">Seu treino de hoje e sua sequência a um toque</string>
+    <string name="widget_add_action">Adicionar</string>
+    <string name="widget_add_manual">Toque e segure um espaço vazio da tela inicial, toque em Widgets e procure este app.</string>
 </resources>
