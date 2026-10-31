@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">Leve para os joelhos</string>
+    <string name="sf_knee_load">Exercícios que sobrecarregam o joelho</string>
+    <string name="sf_easy_back">Leve para a lombar</string>
+    <string name="sf_back_load">Carga na lombar</string>
+    <string name="sf_no_jump">Sem saltos</string>
+    <string name="sf_jump">Saltos</string>
+    <string name="sf_wrist">Mãos no chão (punhos)</string>
+    <string name="sf_avoid_warn">Alguns exercícios sobrecarregam %1$s. Você pode trocá-los por outros mais seguros.</string>
+    <string name="sf_swap">Trocar por exercícios seguros</string>
+    <string name="sf_swapped">%1$d exercícios trocados por outros mais seguros</string>
+    <string name="sf_avoid_left">Alguns exercícios ainda sobrecarregam %1$s e não têm alternativa segura. Você pode removê-los em Editar.</string>
+</resources>

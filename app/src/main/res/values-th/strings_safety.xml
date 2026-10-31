@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">เบาต่อเข่า</string>
+    <string name="sf_knee_load">มีท่าที่ลงน้ำหนักเข่า</string>
+    <string name="sf_easy_back">เบาต่อหลังส่วนล่าง</string>
+    <string name="sf_back_load">มีแรงกดหลังส่วนล่าง</string>
+    <string name="sf_no_jump">ไม่มีการกระโดด</string>
+    <string name="sf_jump">มีการกระโดด</string>
+    <string name="sf_wrist">วางมือบนพื้น (ข้อมือ)</string>
+    <string name="sf_avoid_warn">มีบางท่าที่ลงน้ำหนัก%1$s เปลี่ยนเป็นท่าที่ปลอดภัยกว่าได้</string>
+    <string name="sf_swap">เปลี่ยนเป็นท่าที่ปลอดภัย</string>
+    <string name="sf_swapped">เปลี่ยน %1$d ท่าเป็นท่าที่ปลอดภัยกว่าแล้ว</string>
+    <string name="sf_avoid_left">ยังมีบางท่าที่ลงน้ำหนัก%1$s และไม่มีท่าทดแทนที่ปลอดภัย ลบออกได้ในโหมดแก้ไข</string>
+</resources>

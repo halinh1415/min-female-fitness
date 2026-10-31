@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">Suave para las rodillas</string>
+    <string name="sf_knee_load">Ejercicios que cargan la rodilla</string>
+    <string name="sf_easy_back">Suave para la zona lumbar</string>
+    <string name="sf_back_load">Carga lumbar</string>
+    <string name="sf_no_jump">Sin saltos</string>
+    <string name="sf_jump">Saltos</string>
+    <string name="sf_wrist">Manos en el suelo (muñecas)</string>
+    <string name="sf_avoid_warn">Algunos ejercicios cargan %1$s. Puedes cambiarlos por otros más seguros.</string>
+    <string name="sf_swap">Cambiar por ejercicios seguros</string>
+    <string name="sf_swapped">Se cambiaron %1$d ejercicios por otros más seguros</string>
+    <string name="sf_avoid_left">Algunos ejercicios aún cargan %1$s y no tienen alternativa segura. Puedes quitarlos en Editar.</string>
+</resources>

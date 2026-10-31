@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">Saudzīgi ceļgaliem</string>
+    <string name="sf_knee_load">Ceļgalus noslogojošas kustības</string>
+    <string name="sf_easy_back">Saudzīgi muguras lejasdaļai</string>
+    <string name="sf_back_load">Muguras lejasdaļas slodze</string>
+    <string name="sf_no_jump">Bez lēcieniem</string>
+    <string name="sf_jump">Lēcieni</string>
+    <string name="sf_wrist">Rokas uz grīdas (plaukstas locītavas)</string>
+    <string name="sf_avoid_warn">Dažas kustības noslogo %1$s. Tās var aizstāt ar drošākām.</string>
+    <string name="sf_swap">Aizstāt ar drošām kustībām</string>
+    <string name="sf_swapped">Aizstātas %1$d kustības ar drošākām</string>
+    <string name="sf_avoid_left">Dažas kustības joprojām noslogo %1$s, un tām nav drošas alternatīvas. Tās var noņemt rediģēšanā.</string>
+</resources>

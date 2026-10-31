@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">Nhẹ cho gối</string>
+    <string name="sf_knee_load">Có bài dồn lực gối</string>
+    <string name="sf_easy_back">Nhẹ cho lưng dưới</string>
+    <string name="sf_back_load">Có bài áp lực lưng dưới</string>
+    <string name="sf_no_jump">Không nhảy</string>
+    <string name="sf_jump">Có bật nhảy</string>
+    <string name="sf_wrist">Chống tay xuống sàn (cổ tay)</string>
+    <string name="sf_avoid_warn">Có bài hại %1$s – vùng bạn đang tránh. Có thể đổi sang bài an toàn hơn.</string>
+    <string name="sf_swap">Đổi sang bài an toàn</string>
+    <string name="sf_swapped">Đã đổi %1$d bài sang bài an toàn hơn</string>
+    <string name="sf_avoid_left">Vẫn còn bài hại %1$s mà không có bài thay thế an toàn. Có thể bỏ chúng ở chế độ Sửa.</string>
+</resources>

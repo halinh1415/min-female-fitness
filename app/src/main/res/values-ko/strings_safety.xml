@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">무릎에 부담 적음</string>
+    <string name="sf_knee_load">무릎에 부담 주는 동작</string>
+    <string name="sf_easy_back">허리에 부담 적음</string>
+    <string name="sf_back_load">허리 부담</string>
+    <string name="sf_no_jump">점프 없음</string>
+    <string name="sf_jump">점프 포함</string>
+    <string name="sf_wrist">손 짚기(손목)</string>
+    <string name="sf_avoid_warn">%1$s에 부담을 주는 동작이 있어요. 더 안전한 동작으로 바꿀 수 있어요.</string>
+    <string name="sf_swap">안전한 동작으로 바꾸기</string>
+    <string name="sf_swapped">%1$d개 동작을 더 안전한 동작으로 바꿨어요</string>
+    <string name="sf_avoid_left">%1$s에 부담을 주지만 안전한 대체 동작이 없는 동작이 남아 있어요. 편집에서 뺄 수 있어요.</string>
+</resources>

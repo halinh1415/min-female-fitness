@@ -579,3 +579,9 @@
 ## 2026-10-28 — Thẻ nhỏ "Gợi ý hôm nay" khi có plan (như Home Workout)
 - Chủ app yêu cầu. HomeUiState.didToday (từ userStreak.didPracticeToday). Có plan cá nhân và chưa tập hôm nay: ẩn thẻ gợi ý lớn (CoachCard), hiện SuggestionCard dưới thẻ plan (ảnh 76dp, lý do, tên, thời lượng, nút ▶ hồng, "Đổi bài"). Tập xong thì thẻ lớn quay lại như cũ.
 - Test S8+: xoá 2 buổi tập thử hôm nay (id 8, 9 trong history_database) để có trạng thái chưa tập → thẻ plan trên, thẻ nhỏ dưới, Đổi bài đổi đúng. Bài "Phân chia nâng cao" không có ảnh người mẫu nên ô ảnh chỉ có nền (thẻ lớn cũng vậy). Chưa commit.
+
+## 2026-10-31 — Port tính năng chấn thương từ app Tai Chi
+- PersonalPlan.kt: generator nhận injuriesAt(day) (pool theo bộ chấn thương từng ngày); PersonalPlanStore: injury_easing (bỏ chấn thương vẫn tránh thêm 7 ngày / "Đỡ nhiều" 14 ngày), updateInjuries (chỉ đổi chấn thương ở màn Plan → sinh lại ngày chưa tập, giữ tiến độ), applyWeekReview(..., injury), injuryLabel.
+- Thẻ "Tuần x xong" hỏi thêm Vẫn đau / Đỡ nhiều / Khỏi rồi khi plan đang tránh chấn thương (strings_injury.xml).
+- Preview: SafetyStrip (✓/⚠ gối, lưng dưới, nhảy, cổ tay theo ExerciseTags; cảnh báo chấn thương đang tránh + nút đổi sang bài an toàn cùng nhóm, ít nhãn tải nhất; chỉ áp cho lần tập này như nút Thay thế). Bài chưa gắn nhãn thì không khẳng định ✓. strings_safety.xml.
+- Hạn chế: ExerciseTags chỉ có ~200 bài gốc; bài Discover mới chưa gắn nhãn.

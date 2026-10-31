@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">Dizlere nazik</string>
+    <string name="sf_knee_load">Dizi zorlayan hareketler</string>
+    <string name="sf_easy_back">Bele nazik</string>
+    <string name="sf_back_load">Bel yükü</string>
+    <string name="sf_no_jump">Zıplama yok</string>
+    <string name="sf_jump">Zıplama</string>
+    <string name="sf_wrist">Eller yerde (bilekler)</string>
+    <string name="sf_avoid_warn">Bazı hareketler %1$s bölgesini zorluyor. Daha güvenli olanlarla değiştirebilirsiniz.</string>
+    <string name="sf_swap">Güvenli hareketlerle değiştir</string>
+    <string name="sf_swapped">%1$d hareket daha güvenli olanlarla değiştirildi</string>
+    <string name="sf_avoid_left">Bazı hareketler hâlâ %1$s bölgesini zorluyor ve güvenli alternatifi yok. Düzenle\'den kaldırabilirsiniz.</string>
+</resources>

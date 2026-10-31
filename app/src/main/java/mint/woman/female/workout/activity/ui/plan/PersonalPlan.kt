@@ -116,8 +116,45 @@ internal object ExerciseTags {
  */
 class PersonalPlanGenerator(private val exercises: Map<Int, ExerciseObject>) {
 
-    fun generate(settings: PlanSettings): List<List<PlanAction>> {
-        val blocked = settings.injuries.flatMap { ExerciseTags.blockedBy(it) }.toSet() +
+    /**
+     * [injuriesAt] = chấn thương phải tránh ở từng ngày (0..27): mặc định [PlanSettings.injuries]; vùng vừa khỏi vẫn
+     * tránh thêm một thời gian rồi mới mở lại ([PersonalPlanStore.injuriesForPlan]).
+     */
+    fun generate(
+        settings: PlanSettings, injuriesAt: (day: Int) -> Set<PlanInjury> = { settings.injuries },
+    ): List<List<PlanAction>> {
+        val pools = HashMap<Set<PlanInjury>, Pools>()
+        val seed = settings.hashCode()
+        val restDays = restDaysOf(settings.trainingDays)
+        var trainingIndex = 0
+        val days = ArrayList<List<PlanAction>>(28)
+        for (week in 0 until 4) {
+            for (dayInWeek in 0 until 7) {
+                val dayIndex = week * 7 + dayInWeek
+                val injuries = injuriesAt(dayIndex)
+                val p = pools.getOrPut(injuries) { pools(settings, injuries) }
+                val random = Random(seed * 31 + dayIndex)
+                days += if (dayInWeek in restDays) {
+                    recoveryDay(p.warm, p.cool, random)
+                } else {
+                    val focus = p.focusOrder[trainingIndex++ % p.focusOrder.size]
+                    // Ngoài vùng chính, trộn thêm một ít bài toàn thân để buổi tập cân bằng.
+                    val mainPool = p.main.getValue(focus)
+                    val extraPool = if (focus == PlanFocus.FULL_BODY) emptyList() else p.main.getValue(PlanFocus.FULL_BODY)
+                    trainingDay(settings, week, mainPool, extraPool, p.cardio, p.warm, p.cool, p.cardioShare, random)
+                }
+            }
+        }
+        return days
+    }
+
+    private class Pools(
+        val focusOrder: List<PlanFocus>, val main: Map<PlanFocus, List<Int>>, val cardio: List<Int>,
+        val warm: List<Int>, val cool: List<Int>, val cardioShare: Double,
+    )
+
+    private fun pools(settings: PlanSettings, injuries: Set<PlanInjury>): Pools {
+        val blocked = injuries.flatMap { ExerciseTags.blockedBy(it) }.toSet() +
             (if (settings.jumpFree) ExerciseTags.JUMP else emptySet())
         val maxLevel = when (settings.level) {
             PlanLevel.BEGINNER -> 1
@@ -139,9 +176,6 @@ class PersonalPlanGenerator(private val exercises: Map<Int, ExerciseObject>) {
         }
 
         val focusOrder = PlanFocus.values().filter { it in settings.focus }.ifEmpty { listOf(PlanFocus.FULL_BODY) }
-        val cardioPool = pool(ExerciseTags.CARDIO)
-        val warmPool = usable(ExerciseTags.WARM_UP, 3)
-        val coolPool = usable(ExerciseTags.COOL_DOWN, 3)
 
         val cardioShare = (when (settings.goal) {
             PlanGoal.LOSE_WEIGHT -> 0.45
@@ -152,31 +186,12 @@ class PersonalPlanGenerator(private val exercises: Map<Int, ExerciseObject>) {
             PlanAerobic.MODERATE -> 0.0
             PlanAerobic.HIGH -> 0.15
         }).coerceIn(0.0, 0.6)
-
-        val seed = settings.hashCode()
-        val restDays = restDaysOf(settings.trainingDays)
-        var trainingIndex = 0
-        val days = ArrayList<List<PlanAction>>(28)
-        for (week in 0 until 4) {
-            for (dayInWeek in 0 until 7) {
-                val dayIndex = week * 7 + dayInWeek
-                val random = Random(seed * 31 + dayIndex)
-                days += if (dayInWeek in restDays) {
-                    recoveryDay(warmPool, coolPool, random)
-                } else {
-                    // Đếm theo ngày tập (không theo ngày trong tuần) để vùng tập vẫn xoay vòng đều khi tập ít ngày.
-                    val focus = focusOrder[trainingIndex++ % focusOrder.size]
-                    // Ngoài vùng chính, trộn thêm một ít bài toàn thân để buổi tập cân bằng.
-                    val mainPool = pool(ExerciseTags.FOCUS.getValue(focus))
-                    val extraPool = if (focus == PlanFocus.FULL_BODY) emptyList() else pool(ExerciseTags.FOCUS.getValue(PlanFocus.FULL_BODY))
-                    trainingDay(settings, week, mainPool, extraPool, cardioPool, warmPool, coolPool, cardioShare, random)
-                }
-            }
-        }
-        return days
+        return Pools(
+            focusOrder, (focusOrder + PlanFocus.FULL_BODY).distinct().associateWith { pool(ExerciseTags.FOCUS.getValue(it)) },
+            pool(ExerciseTags.CARDIO), usable(ExerciseTags.WARM_UP, 3), usable(ExerciseTags.COOL_DOWN, 3), cardioShare,
+        )
     }
 
-    /** Ngày nghỉ (giãn cơ) trong tuần, rải đều để không tập liền quá nhiều ngày. */
     private fun restDaysOf(trainingDays: Int): Set<Int> = when (trainingDays.coerceIn(3, 6)) {
         3 -> setOf(1, 3, 5, 6)
         4 -> setOf(2, 4, 6)
@@ -308,6 +323,11 @@ object PersonalPlanStore {
     private const val KEY_SETTINGS = "settings"
     /** Tuần lớn nhất (1..3) người dùng đã đánh giá hoặc bỏ qua ở thẻ "Tuần x xong". */
     private const val KEY_REVIEWED_WEEK = "reviewed_week"
+    /** Chấn thương vừa bỏ → ngày (epoch day) bắt đầu được tập lại bài nặng vùng đó (như app Tai Chi, 31/10/2026). */
+    private const val KEY_INJURY_EASING = "injury_easing"
+    /** Bỏ chấn thương ở form hoặc trả lời "Khỏi rồi": vẫn tránh thêm 7 ngày; "Đỡ nhiều": 14 ngày. */
+    const val EASE_HEALED = 7
+    const val EASE_BETTER = 14
 
     private val gson = Gson()
 
@@ -359,6 +379,7 @@ object PersonalPlanStore {
 
     /** Sinh plan mới, ghi file, đặt lại tiến độ về ngày 1. */
     fun create(context: Context, settings: PlanSettings) {
+        settings(context)?.let { recordInjuryChange(context, it.injuries, settings.injuries, EASE_HEALED) }
         writePlan(context, settings, keepDays = 0)
         prefs(context).edit().putInt(KEY_REVIEWED_WEEK, 0).apply()
         MyPreference(context).setPlanProgress(PROGRAM_ID, 0)
@@ -371,7 +392,7 @@ object PersonalPlanStore {
     private fun writePlan(context: Context, settings: PlanSettings, keepDays: Int) {
         val app = FitnessApplication.getApplication()
         val exercises = app.mJsonHelper.getHashMapExercise(0, 0)
-        val days = PersonalPlanGenerator(exercises).generate(settings)
+        val days = PersonalPlanGenerator(exercises).generate(settings, injuriesForPlan(context, settings, keepDays))
         val old = if (keepDays > 0) runCatching { JSONArray(app.mJsonHelper.readFileFromData(PLAN_FILE)) }.getOrNull() else null
         val json = JSONArray()
         days.forEachIndexed { index, actions ->
@@ -398,6 +419,64 @@ object PersonalPlanStore {
         app.mJsonHelper.invalidatePrograms()
     }
 
+    // ------------------------------------------------------------ chấn thương
+
+    @JvmStatic
+    fun injuryLabel(injury: PlanInjury): Int = when (injury) {
+        PlanInjury.BACK -> R.string.pp_back
+        PlanInjury.KNEE -> R.string.pp_knee
+        PlanInjury.ARM_SHOULDER -> R.string.pp_shoulder
+        PlanInjury.WRIST -> R.string.pp_wrist
+    }
+
+    private fun today() = java.util.concurrent.TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis())
+
+    /** Chấn thương vừa bỏ → epoch day hết thời gian chuyển tiếp. */
+    fun injuryEasing(context: Context): Map<PlanInjury, Long> = runCatching {
+        val o = JSONObject(prefs(context).getString(KEY_INJURY_EASING, null) ?: return emptyMap())
+        o.keys().asSequence().mapNotNull { k -> runCatching { PlanInjury.valueOf(k) to o.getLong(k) }.getOrNull() }.toMap()
+    }.getOrDefault(emptyMap())
+
+    private fun saveEasing(context: Context, easing: Map<PlanInjury, Long>) {
+        prefs(context).edit().putString(KEY_INJURY_EASING, JSONObject(easing.mapKeys { it.key.name }).toString()).apply()
+    }
+
+    /** Ghi nhận đổi chấn thương [before] → [after]: vùng bỏ đi vẫn tránh thêm [easeDays] ngày, vùng thêm vào tránh ngay. */
+    private fun recordInjuryChange(context: Context, before: Set<PlanInjury>, after: Set<PlanInjury>, easeDays: Int) {
+        val easing = injuryEasing(context).filterKeys { it !in after }.toMutableMap()
+        (before - after).forEach { easing[it] = maxOf(easing[it] ?: 0, today() + easeDays) }
+        saveEasing(context, easing)
+    }
+
+    /**
+     * Chấn thương phải tránh ở ngày [day] của plan khi ngày đang tới là [progress] (ứng với hôm nay):
+     * chấn thương đang chọn + vùng vừa bỏ chưa hết thời gian chuyển tiếp.
+     */
+    fun injuriesForPlan(context: Context, settings: PlanSettings, progress: Int): (Int) -> Set<PlanInjury> {
+        val easing = injuryEasing(context)
+        val today = today()
+        return { day -> settings.injuries + easing.filterValues { until -> today + (day - progress) < until }.keys }
+    }
+
+    /**
+     * Chỉ sửa chấn thương ở màn Plan: sinh lại các ngày chưa tập, giữ tiến độ (không tạo lại từ ngày 1).
+     * @return true nếu có thay đổi.
+     */
+    fun updateInjuries(context: Context, injuries: Set<PlanInjury>): Boolean {
+        val current = settings(context) ?: return false
+        if (current.injuries == injuries) return false
+        recordInjuryChange(context, current.injuries, injuries, EASE_HEALED)
+        writePlan(context, current.copy(injuries = injuries), keepDays = MyPreference(context).getPlanProgress(PROGRAM_ID))
+        com.google.firebase.analytics.FirebaseAnalytics.getInstance(context).logEvent(
+            "plan_injuries_edit",
+            android.os.Bundle().apply {
+                putString("added", (injuries - current.injuries).joinToString(",") { it.name })
+                putString("removed", (current.injuries - injuries).joinToString(",") { it.name })
+            },
+        )
+        return true
+    }
+
     // ------------------------------------------------------------ đánh giá cuối tuần
 
     /** Tuần vừa xong (1..3) chưa được đánh giá, để Home mời "Tuần x xong, chỉnh tuần sau"; null nếu không có. */
@@ -412,11 +491,17 @@ object PersonalPlanStore {
      * Áp đánh giá tuần [week]: [feel] 1 quá dễ / 0 vừa / -1 quá khó; [length] 1 dài hơn / 0 giữ / -1 ngắn hơn.
      * Độ khó từng buổi đã có DifficultyStore lo (đánh giá cuối buổi), nên ở đây chỉnh "khung" plan: tốc độ
      * tăng qua tuần, rồi tới trình độ, và thời lượng buổi. Chỉ sinh lại các ngày chưa tập.
+     * [injury] (chỉ hỏi khi plan đang tránh chấn thương): 0 vẫn đau, 1 đỡ nhiều, 2 khỏi rồi – bỏ chấn thương khỏi plan,
+     * vẫn tránh thêm [EASE_BETTER] / [EASE_HEALED] ngày rồi mới mở lại bài nặng.
      * @return true nếu plan được sinh lại.
      */
-    fun applyWeekReview(context: Context, week: Int, feel: Int, length: Int): Boolean {
+    fun applyWeekReview(context: Context, week: Int, feel: Int, length: Int, injury: Int = 0): Boolean {
         val current = settings(context) ?: return false
         var next = current
+        if (injury > 0 && current.injuries.isNotEmpty()) {
+            recordInjuryChange(context, current.injuries, emptySet(), if (injury >= 2) EASE_HEALED else EASE_BETTER)
+            next = next.copy(injuries = emptySet())
+        }
         val progressions = PlanProgression.values()
         val levels = PlanLevel.values()
         if (feel > 0) {
@@ -441,6 +526,7 @@ object PersonalPlanStore {
                 putInt("week", week)
                 putInt("feel", feel)
                 putInt("length", length)
+                putInt("injury", injury)
                 putInt("changed", if (changed) 1 else 0)
             },
         )

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">Knieschonend</string>
+    <string name="sf_knee_load">Kniebelastende Übungen</string>
+    <string name="sf_easy_back">Schonend für den unteren Rücken</string>
+    <string name="sf_back_load">Belastung des unteren Rückens</string>
+    <string name="sf_no_jump">Ohne Springen</string>
+    <string name="sf_jump">Sprünge</string>
+    <string name="sf_wrist">Hände am Boden (Handgelenke)</string>
+    <string name="sf_avoid_warn">Einige Übungen belasten %1$s. Du kannst sie gegen sicherere tauschen.</string>
+    <string name="sf_swap">Gegen sichere Übungen tauschen</string>
+    <string name="sf_swapped">%1$d Übungen gegen sicherere getauscht</string>
+    <string name="sf_avoid_left">Einige Übungen belasten weiterhin %1$s und haben keine sichere Alternative. Du kannst sie unter Bearbeiten entfernen.</string>
+</resources>

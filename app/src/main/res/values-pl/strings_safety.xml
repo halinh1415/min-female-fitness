@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">Łagodne dla kolan</string>
+    <string name="sf_knee_load">Ćwiczenia obciążające kolana</string>
+    <string name="sf_easy_back">Łagodne dla odcinka lędźwiowego</string>
+    <string name="sf_back_load">Obciążenie lędźwi</string>
+    <string name="sf_no_jump">Bez skoków</string>
+    <string name="sf_jump">Skoki</string>
+    <string name="sf_wrist">Dłonie na podłodze (nadgarstki)</string>
+    <string name="sf_avoid_warn">Niektóre ćwiczenia obciążają %1$s. Możesz zamienić je na bezpieczniejsze.</string>
+    <string name="sf_swap">Zamień na bezpieczne ćwiczenia</string>
+    <string name="sf_swapped">Zamieniono %1$d ćwiczeń na bezpieczniejsze</string>
+    <string name="sf_avoid_left">Niektóre ćwiczenia nadal obciążają %1$s i nie mają bezpiecznego zamiennika. Możesz je usunąć w edycji.</string>
+</resources>

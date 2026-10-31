@@ -106,7 +106,15 @@ class PersonalPlanActivity : AppCompatActivity() {
             putString("duration", chosen.duration.name)
         })
         lifecycleScope.launch {
-            withContext(Dispatchers.IO) { PersonalPlanStore.create(applicationContext, chosen) }
+            withContext(Dispatchers.IO) {
+                // Đã có plan và chỉ đổi chấn thương: sinh lại các ngày chưa tập, giữ tiến độ (như app Tai Chi).
+                val current = PersonalPlanStore.settings(applicationContext)
+                if (current != null && PersonalPlanStore.hasPlan(applicationContext) && chosen.copy(injuries = current.injuries) == current) {
+                    PersonalPlanStore.updateInjuries(applicationContext, chosen.injuries)
+                } else {
+                    PersonalPlanStore.create(applicationContext, chosen)
+                }
+            }
             // Cho hiệu ứng "đang tạo plan" chạy hết để người dùng thấy plan được tính riêng cho mình.
             delay(1400)
             startActivity(

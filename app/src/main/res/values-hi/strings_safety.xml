@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">घुटनों पर हल्का</string>
+    <string name="sf_knee_load">घुटनों पर ज़ोर वाले व्यायाम</string>
+    <string name="sf_easy_back">कमर के निचले हिस्से पर हल्का</string>
+    <string name="sf_back_load">कमर के निचले हिस्से पर दबाव</string>
+    <string name="sf_no_jump">कूदना नहीं</string>
+    <string name="sf_jump">कूदना</string>
+    <string name="sf_wrist">हाथ ज़मीन पर (कलाई)</string>
+    <string name="sf_avoid_warn">कुछ व्यायाम आपके %1$s पर ज़ोर डालते हैं। आप उन्हें सुरक्षित व्यायाम से बदल सकते हैं।</string>
+    <string name="sf_swap">सुरक्षित व्यायाम से बदलें</string>
+    <string name="sf_swapped">%1$d व्यायाम सुरक्षित व्यायाम से बदले गए</string>
+    <string name="sf_avoid_left">कुछ व्यायाम अब भी %1$s पर ज़ोर डालते हैं और उनका सुरक्षित विकल्प नहीं है। आप उन्हें एडिट में हटा सकते हैं।</string>
+</resources>

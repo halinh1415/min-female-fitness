@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">Delicato per le ginocchia</string>
+    <string name="sf_knee_load">Esercizi che caricano il ginocchio</string>
+    <string name="sf_easy_back">Delicato per la zona lombare</string>
+    <string name="sf_back_load">Carico lombare</string>
+    <string name="sf_no_jump">Senza salti</string>
+    <string name="sf_jump">Salti</string>
+    <string name="sf_wrist">Mani a terra (polsi)</string>
+    <string name="sf_avoid_warn">Alcuni esercizi affaticano %1$s. Puoi sostituirli con altri più sicuri.</string>
+    <string name="sf_swap">Sostituisci con esercizi sicuri</string>
+    <string name="sf_swapped">%1$d esercizi sostituiti con altri più sicuri</string>
+    <string name="sf_avoid_left">Alcuni esercizi affaticano ancora %1$s e non hanno un\'alternativa sicura. Puoi rimuoverli in Modifica.</string>
+</resources>

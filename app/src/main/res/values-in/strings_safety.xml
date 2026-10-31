@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">Ringan untuk lutut</string>
+    <string name="sf_knee_load">Gerakan yang membebani lutut</string>
+    <string name="sf_easy_back">Ringan untuk punggung bawah</string>
+    <string name="sf_back_load">Beban punggung bawah</string>
+    <string name="sf_no_jump">Tanpa lompat</string>
+    <string name="sf_jump">Lompatan</string>
+    <string name="sf_wrist">Tangan di lantai (pergelangan)</string>
+    <string name="sf_avoid_warn">Beberapa gerakan membebani %1$s. Anda bisa menggantinya dengan yang lebih aman.</string>
+    <string name="sf_swap">Ganti dengan gerakan aman</string>
+    <string name="sf_swapped">%1$d gerakan diganti dengan yang lebih aman</string>
+    <string name="sf_avoid_left">Beberapa gerakan masih membebani %1$s dan tidak ada pengganti yang aman. Anda bisa menghapusnya di Edit.</string>
+</resources>

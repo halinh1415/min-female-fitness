@@ -104,6 +104,8 @@ class HomeUiState {
 
     /** Tuần plan vừa xong (1..3) chưa đánh giá: hiện thẻ "Tuần x xong" để chỉnh tuần sau. */
     var weekReview by mutableStateOf<Int?>(null)
+    /** Chấn thương plan đang tránh (string res tên vùng) để thẻ đánh giá tuần hỏi đã đỡ chưa. */
+    var weekReviewInjuries by mutableStateOf<List<Int>>(emptyList())
 
     /** Tiến độ từng chương trình (ngày đã tập) – đọc lại mỗi lần quay về màn. */
     var planProgress by mutableStateOf<Map<Int, Int>>(emptyMap())
@@ -125,7 +127,7 @@ interface HomeActions {
     fun onAdjustPersonalPlan()
 
     /** Đánh giá tuần plan: feel 1 dễ / 0 vừa / -1 khó, length 1 dài / 0 giữ / -1 ngắn. */
-    fun onWeekReview(week: Int, feel: Int, length: Int) {}
+    fun onWeekReview(week: Int, feel: Int, length: Int, injury: Int) {}
     fun onWeekReviewSkip(week: Int) {}
 
     /** Popup buổi tập đầu tiên: bấm bắt đầu mở [program]; cả hai cách đóng đều không mời lại. */
@@ -160,9 +162,10 @@ fun HomeScreen(state: HomeUiState, actions: HomeActions) {
             key(week) {
                 WeekReviewCard(
                     week,
-                    { feel, length -> actions.onWeekReview(week, feel, length) },
+                    { feel, length, injury -> actions.onWeekReview(week, feel, length, injury) },
                     { actions.onWeekReviewSkip(week) },
                     Modifier.padding(start = 16.dp, end = 16.dp, top = 10.dp, bottom = 4.dp),
+                    state.weekReviewInjuries,
                 )
             }
         }

@@ -39,7 +39,11 @@ import mint.woman.female.workout.activity.ui.compose.MinColor
  * buổi (ngắn / giữ / dài) để sinh lại các ngày còn lại (PersonalPlanStore.applyWeekReview).
  */
 @Composable
-internal fun WeekReviewCard(week: Int, onApply: (feel: Int, length: Int) -> Unit, onSkip: () -> Unit, modifier: Modifier = Modifier) {
+internal fun WeekReviewCard(
+    week: Int, onApply: (feel: Int, length: Int, injury: Int) -> Unit, onSkip: () -> Unit, modifier: Modifier = Modifier,
+    /** Tên chấn thương plan đang tránh (string res): có thì hỏi thêm vẫn đau / đỡ nhiều / khỏi rồi (0 / 1 / 2). */
+    injuries: List<Int> = emptyList(),
+) {
     var open by rememberSaveable { mutableStateOf(false) }
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -71,9 +75,10 @@ internal fun WeekReviewCard(week: Int, onApply: (feel: Int, length: Int) -> Unit
     if (open) {
         WeekReviewDialog(
             week = week,
-            onApply = { feel, length ->
+            injuries = injuries,
+            onApply = { feel, length, injury ->
                 open = false
-                onApply(feel, length)
+                onApply(feel, length, injury)
             },
             onSkip = {
                 open = false
@@ -85,9 +90,12 @@ internal fun WeekReviewCard(week: Int, onApply: (feel: Int, length: Int) -> Unit
 }
 
 @Composable
-private fun WeekReviewDialog(week: Int, onApply: (Int, Int) -> Unit, onSkip: () -> Unit, onDismiss: () -> Unit) {
+private fun WeekReviewDialog(
+    week: Int, injuries: List<Int>, onApply: (Int, Int, Int) -> Unit, onSkip: () -> Unit, onDismiss: () -> Unit,
+) {
     var feel by rememberSaveable { mutableIntStateOf(0) }
     var length by rememberSaveable { mutableIntStateOf(0) }
+    var injury by rememberSaveable { mutableIntStateOf(0) }
     Dialog(onDismissRequest = onDismiss) {
         Column(
             Modifier
@@ -128,9 +136,24 @@ private fun WeekReviewDialog(week: Int, onApply: (Int, Int) -> Unit, onSkip: () 
                 selected = length,
                 onSelect = { length = it },
             )
+            if (injuries.isNotEmpty()) {
+                val names = injuries.map { stringResource(it) }.joinToString(", ")
+                Spacer(Modifier.height(16.dp))
+                Text(stringResource(R.string.pp_review_q_injury, names), color = MinColor.TextPrimary, fontSize = 15.sp, fontWeight = FontWeight.Bold)
+                Spacer(Modifier.height(8.dp))
+                ChoiceRow(
+                    options = listOf(
+                        0 to stringResource(R.string.pp_injury_still),
+                        1 to stringResource(R.string.pp_injury_better),
+                        2 to stringResource(R.string.pp_injury_healed),
+                    ),
+                    selected = injury,
+                    onSelect = { injury = it },
+                )
+            }
             Spacer(Modifier.height(22.dp))
             Button(
-                onClick = { onApply(feel, length) },
+                onClick = { onApply(feel, length, injury) },
                 shape = RoundedCornerShape(50),
                 colors = ButtonDefaults.buttonColors(containerColor = MinColor.Pink),
                 modifier = Modifier.fillMaxWidth().height(52.dp),

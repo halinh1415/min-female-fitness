@@ -157,6 +157,8 @@ interface PreviewActions {
     fun onItemClick(index: Int)
     fun onReplace(index: Int)
     fun onMove(from: Int, to: Int)
+    /** Thẻ nhãn an toàn: đổi bài hại chấn thương đang tránh sang bài an toàn (SafetyStrip). */
+    fun onSwapSafe()
     fun exercise(actionId: Int): ExerciseObject?
     fun discover(): Int
     fun version(): Int
@@ -335,6 +337,7 @@ private fun Header(program: ProgramObject, state: PreviewUiState, actions: Previ
             StatCell("🔥", "${state.calories}", "kcal", Modifier.weight(1f))
         }
         OptionsRow(state, actions)
+        state.items?.let { items -> if (!state.editMode) SafetyStrip.SafetyCard(items, state.revision, actions::onSwapSafe) }
         program.description?.takeIf { it.isNotBlank() }?.let {
             Text(
                 it,

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">膝にやさしい</string>
+    <string name="sf_knee_load">膝に負担のある種目</string>
+    <string name="sf_easy_back">腰にやさしい</string>
+    <string name="sf_back_load">腰に負担あり</string>
+    <string name="sf_no_jump">ジャンプなし</string>
+    <string name="sf_jump">ジャンプあり</string>
+    <string name="sf_wrist">床に手をつく（手首）</string>
+    <string name="sf_avoid_warn">%1$sに負担のある種目があります。より安全な種目に入れ替えられます。</string>
+    <string name="sf_swap">安全な種目に入れ替える</string>
+    <string name="sf_swapped">%1$d種目をより安全な種目に入れ替えました</string>
+    <string name="sf_avoid_left">%1$sに負担があり、安全な代わりのない種目が残っています。編集で外せます。</string>
+</resources>

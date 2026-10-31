@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">Skonsamt för knän</string>
+    <string name="sf_knee_load">Knäbelastande övningar</string>
+    <string name="sf_easy_back">Skonsamt för ländryggen</string>
+    <string name="sf_back_load">Belastning på ländryggen</string>
+    <string name="sf_no_jump">Inga hopp</string>
+    <string name="sf_jump">Hopp</string>
+    <string name="sf_wrist">Händer i golvet (handleder)</string>
+    <string name="sf_avoid_warn">Vissa övningar belastar %1$s. Du kan byta dem mot säkrare.</string>
+    <string name="sf_swap">Byt till säkra övningar</string>
+    <string name="sf_swapped">%1$d övningar bytta mot säkrare</string>
+    <string name="sf_avoid_left">Vissa övningar belastar fortfarande %1$s och saknar säkert alternativ. Du kan ta bort dem under Redigera.</string>
+</resources>

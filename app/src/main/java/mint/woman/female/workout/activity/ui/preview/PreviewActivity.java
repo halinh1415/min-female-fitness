@@ -767,6 +767,24 @@ public class PreviewActivity extends AppCompatActivity implements PreviewActions
         }
     }
 
+    /** Đổi các bài hại chấn thương đang tránh sang bài an toàn cùng nhóm (như nút Thay thế, chỉ áp cho lần tập này). */
+    @Override
+    public void onSwapSafe() {
+        if (mDemoDataProvider == null) return;
+        int count = SafetyStrip.swap(this, mDemoDataProvider.getActionObjectList(), id -> {
+            ExerciseObject exercise = mDemoDataProvider.getExerciseItem(id);
+            return exercise == null ? null : exercise.getUnit().contains("s");
+        }, (index, action) -> {
+            mDemoDataProvider.replaceAction(index, action);
+            return kotlin.Unit.INSTANCE;
+        });
+        if (count == 0) return;
+        state.setItemsFrom(mDemoDataProvider.getActionObjectList());
+        updateMuscleMap();
+        updatePlan();
+        Toast.makeText(this, getString(R.string.sf_swapped, count), Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public void onReplace(int index) {
         if (mDemoDataProvider == null || index >= mDemoDataProvider.getItemCount()) return;

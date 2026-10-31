@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Hỏi chấn thương ở đánh giá tuần (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="pp_review_q_injury">ตอนนี้%1$sของคุณเป็นอย่างไร?</string>
+    <string name="pp_injury_still">ยังเจ็บอยู่</string>
+    <string name="pp_injury_better">ดีขึ้นมาก</string>
+    <string name="pp_injury_healed">หายแล้ว</string>
+</resources>

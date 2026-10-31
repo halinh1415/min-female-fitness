@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">Šetrné ke kolenům</string>
+    <string name="sf_knee_load">Cviky zatěžující kolena</string>
+    <string name="sf_easy_back">Šetrné k bederní páteři</string>
+    <string name="sf_back_load">Zátěž beder</string>
+    <string name="sf_no_jump">Bez skákání</string>
+    <string name="sf_jump">Skákání</string>
+    <string name="sf_wrist">Ruce na zemi (zápěstí)</string>
+    <string name="sf_avoid_warn">Některé cviky zatěžují %1$s. Můžete je vyměnit za bezpečnější.</string>
+    <string name="sf_swap">Vyměnit za bezpečné cviky</string>
+    <string name="sf_swapped">Vyměněno %1$d cviků za bezpečnější</string>
+    <string name="sf_avoid_left">Některé cviky stále zatěžují %1$s a nemají bezpečnou náhradu. Můžete je odebrat v úpravách.</string>
+</resources>

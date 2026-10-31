@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">Doux pour les genoux</string>
+    <string name="sf_knee_load">Exercices sollicitant le genou</string>
+    <string name="sf_easy_back">Doux pour le bas du dos</string>
+    <string name="sf_back_load">Charge sur le bas du dos</string>
+    <string name="sf_no_jump">Sans saut</string>
+    <string name="sf_jump">Sauts</string>
+    <string name="sf_wrist">Mains au sol (poignets)</string>
+    <string name="sf_avoid_warn">Certains exercices sollicitent %1$s. Vous pouvez les remplacer par des plus sûrs.</string>
+    <string name="sf_swap">Remplacer par des exercices sûrs</string>
+    <string name="sf_swapped">%1$d exercices remplacés par des plus sûrs</string>
+    <string name="sf_avoid_left">Certains exercices sollicitent encore %1$s et n\'ont pas d\'alternative sûre. Vous pouvez les retirer dans Modifier.</string>
+</resources>

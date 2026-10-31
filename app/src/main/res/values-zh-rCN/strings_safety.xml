@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">对膝盖友好</string>
+    <string name="sf_knee_load">有膝盖受力动作</string>
+    <string name="sf_easy_back">对下背部友好</string>
+    <string name="sf_back_load">有下背部负担</string>
+    <string name="sf_no_jump">无跳跃</string>
+    <string name="sf_jump">有跳跃</string>
+    <string name="sf_wrist">双手撑地（手腕）</string>
+    <string name="sf_avoid_warn">部分动作会加重%1$s负担，可换成更安全的动作。</string>
+    <string name="sf_swap">换成安全动作</string>
+    <string name="sf_swapped">已将 %1$d 个动作换成更安全的动作</string>
+    <string name="sf_avoid_left">仍有动作会加重%1$s负担且没有安全替代，可在编辑中删除。</string>
+</resources>

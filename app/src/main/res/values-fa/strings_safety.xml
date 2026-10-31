@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">سبک برای زانو</string>
+    <string name="sf_knee_load">حرکات فشار بر زانو</string>
+    <string name="sf_easy_back">سبک برای کمر</string>
+    <string name="sf_back_load">فشار بر کمر</string>
+    <string name="sf_no_jump">بدون پرش</string>
+    <string name="sf_jump">پرش</string>
+    <string name="sf_wrist">دست‌ها روی زمین (مچ)</string>
+    <string name="sf_avoid_warn">برخی حرکات به %1$s فشار می‌آورند. می‌توانید آن‌ها را با حرکات امن‌تر عوض کنید.</string>
+    <string name="sf_swap">جایگزینی با حرکات امن</string>
+    <string name="sf_swapped">%1$d حرکت با حرکات امن‌تر جایگزین شد</string>
+    <string name="sf_avoid_left">برخی حرکات هنوز به %1$s فشار می‌آورند و جایگزین امنی ندارند. می‌توانید آن‌ها را در ویرایش حذف کنید.</string>
+</resources>

@@ -167,6 +167,8 @@ class HomeFragment : Fragment(), HomeActions {
         state.promoEndsAt = if (pref.isPremiumMember) null else PaywallPromo.activeEndTime(requireContext())
         state.personalPlan = PersonalPlanStore.program(requireContext())
         state.weekReview = PersonalPlanStore.pendingReviewWeek(requireContext())
+        state.weekReviewInjuries = PersonalPlanStore.settings(requireContext())?.injuries.orEmpty().sortedBy { it.ordinal }
+            .map { PersonalPlanStore.injuryLabel(it) }
         refreshPlanProgress()
         refreshFirstWorkoutNudge()
     }
@@ -419,11 +421,11 @@ class HomeFragment : Fragment(), HomeActions {
         }
     }
 
-    override fun onWeekReview(week: Int, feel: Int, length: Int) {
+    override fun onWeekReview(week: Int, feel: Int, length: Int, injury: Int) {
         state.weekReview = null
         val appContext = requireContext().applicationContext
         viewLifecycleOwner.lifecycleScope.launch {
-            val changed = withContext(Dispatchers.IO) { PersonalPlanStore.applyWeekReview(appContext, week, feel, length) }
+            val changed = withContext(Dispatchers.IO) { PersonalPlanStore.applyWeekReview(appContext, week, feel, length, injury) }
             if (changed) {
                 android.widget.Toast.makeText(appContext, getString(R.string.pp_review_done, week + 1), android.widget.Toast.LENGTH_SHORT).show()
             }

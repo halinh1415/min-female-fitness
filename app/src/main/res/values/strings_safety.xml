@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nhãn an toàn ở Preview (port từ app Tai Chi, 31/10/2026). -->
+<resources>
+    <string name="sf_easy_knees">Easy on knees</string>
+    <string name="sf_knee_load">Knee-loading moves</string>
+    <string name="sf_easy_back">Easy on lower back</string>
+    <string name="sf_back_load">Lower-back load</string>
+    <string name="sf_no_jump">No jumping</string>
+    <string name="sf_jump">Jumping</string>
+    <string name="sf_wrist">Hands on floor (wrists)</string>
+    <string name="sf_avoid_warn">Some moves strain your %1$s. You can swap them for safer ones.</string>
+    <string name="sf_swap">Swap for safe moves</string>
+    <string name="sf_swapped">Swapped %1$d moves for safer ones</string>
+    <string name="sf_avoid_left">Some moves still strain your %1$s and have no safe alternative. You can remove them in Edit.</string>
+</resources>
